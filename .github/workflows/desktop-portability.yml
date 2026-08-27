@@ -20,11 +20,11 @@ jobs:
         os: [macos-14, ubuntu-24.04, windows-2025]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
         with:
           version: 11.19.0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: pnpm
@@ -52,20 +52,22 @@ jobs:
             command: pnpm desktop:build:windows
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
         with:
           version: 11.19.0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: pnpm
       - uses: dtolnay/rust-toolchain@stable
-      - uses: conda-incubator/setup-miniconda@v3
+      - uses: conda-incubator/setup-miniconda@v4
         if: runner.os == 'Windows'
         with:
           activate-environment: viaspania-build
           miniforge-version: latest
+          channels: conda-forge
+          conda-remove-defaults: true
       - name: GDAL/PROJ en macOS
         if: runner.os == 'macOS'
         run: brew install gdal

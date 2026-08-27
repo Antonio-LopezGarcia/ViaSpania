@@ -86,6 +86,14 @@ jobs:
           "PROJ_DATA=$prefix\Library\share\proj" | Out-File -FilePath $env:GITHUB_ENV -Append
       - run: pnpm install --frozen-lockfile
       - run: ${{ matrix.command }}
+      - name: Publicar instalador de macOS
+        if: runner.os == 'macOS'
+        uses: actions/upload-artifact@v6
+        with:
+          name: ViaSpania-macOS-arm64
+          path: src-tauri/target/release/bundle/dmg/*.dmg
+          if-no-files-found: error
+          compression-level: 0
       - name: Publicar instalador de Windows
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v6

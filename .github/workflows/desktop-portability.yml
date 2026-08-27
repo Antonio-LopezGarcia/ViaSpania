@@ -94,6 +94,17 @@ jobs:
           path: src-tauri/target/release/bundle/dmg/*.dmg
           if-no-files-found: error
           compression-level: 0
+      - name: Publicar instaladores de Linux
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v6
+        with:
+          name: ViaSpania-Ubuntu-x64
+          path: |
+            src-tauri/target/release/bundle/deb/*.deb
+            src-tauri/target/release/bundle/appimage/*.AppImage
+            src-tauri/target/release/bundle/rpm/*.rpm
+          if-no-files-found: error
+          compression-level: 0
       - name: Publicar instalador de Windows
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v6

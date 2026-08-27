@@ -404,6 +404,19 @@ fn platform_executable_name(name: &str, windows: bool) -> String {
     }
 }
 
+fn platform_external_path(path: &Path, windows: bool) -> PathBuf {
+    if !windows {
+        return path.to_path_buf();
+    }
+    let raw = path.to_string_lossy();
+    if let Some(network_path) = raw.strip_prefix(r"\\?\UNC\") {
+        return PathBuf::from(format!(r"\\{network_path}"));
+    }
+    raw.strip_prefix(r"\\?\")
+        .map(PathBuf::from)
+        .unwrap_or_else(|| path.to_path_buf())
+}
+
 fn command_path(name: &str) -> Option<PathBuf> {
     let executable_name = platform_executable_name(name, cfg!(windows));
     let mut candidates = vec![
@@ -599,7 +612,10 @@ fn ensure_app_raster(app: &tauri::AppHandle, raw: &str) -> Result<PathBuf, Nativ
             "El MDT no pertenece al proyecto actual".to_owned(),
         ));
     }
-    Ok(raster)
+    // `canonicalize` uses Windows' verbatim `\\?\` paths. Keep that form for the
+    // containment check above, but pass a regular drive/UNC path to GDAL because
+    // some GDAL utilities interpret the verbatim prefix as part of the filename.
+    Ok(platform_external_path(&raster, cfg!(windows)))
 }
 
 fn metadata_number(metadata: &Value, key: &str, index: usize) -> Result<f64, NativeError> {
@@ -3346,6 +3362,33 @@ mod tests {
     fn resolves_platform_executable_names() {
         assert_eq!(platform_executable_name("gdalinfo", false), "gdalinfo");
         assert_eq!(platform_executable_name("gdalinfo", true), "gdalinfo.exe");
+    }
+
+    #[test]
+    fn removes_windows_verbatim_prefix_for_external_tools() {
+        let path =
+            Path::new(r"\\?\C:\Users\anton\AppData\Roaming\es.viaspania.desktop\rasters\mdt5.tif");
+        assert_eq!(
+            platform_external_path(path, true).to_string_lossy(),
+            r"C:\Users\anton\AppData\Roaming\es.viaspania.desktop\rasters\mdt5.tif"
+        );
+    }
+
+    #[test]
+    fn converts_windows_verbatim_unc_path_for_external_tools() {
+        let path = Path::new(r"\\?\UNC\servidor\datos\mdt5.tif");
+        assert_eq!(
+            platform_external_path(path, true).to_string_lossy(),
+            r"\\servidor\datos\mdt5.tif"
+        );
+    }
+
+    #[test]
+    fn preserves_regular_and_non_windows_paths_for_external_tools() {
+        let windows_path = Path::new(r"C:\datos\mdt5.tif");
+        let unix_path = Path::new("/tmp/mdt5.tif");
+        assert_eq!(platform_external_path(windows_path, true), windows_path);
+        assert_eq!(platform_external_path(unix_path, false), unix_path);
     }
 
     #[test]

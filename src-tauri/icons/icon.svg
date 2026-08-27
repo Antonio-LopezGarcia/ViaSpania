@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <rect width="1024" height="1024" rx="220" fill="#101713"/>
+  <path d="M148 707C266 547 341 624 423 469c67-126 126-41 195-159 54-91 116-42 258-141v687H148Z" fill="#33483c"/>
+  <path d="M160 739c154-211 244-34 346-232 77-149 171-56 360-260" fill="none" stroke="#d8ff55" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="160" cy="739" r="54" fill="#59d2ff"/><circle cx="866" cy="247" r="54" fill="#ff796f"/>
+  <text x="512" y="910" text-anchor="middle" font-family="-apple-system,Arial" font-size="150" font-weight="800" letter-spacing="-8" fill="#f3f7f4">VS</text>
+</svg>

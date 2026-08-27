@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.pnpm-store/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+src-tauri/target/
+src-tauri/resources/geospatial/*
+!src-tauri/resources/geospatial/.gitkeep
+.DS_Store

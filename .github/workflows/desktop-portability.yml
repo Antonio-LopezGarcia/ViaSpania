@@ -1,0 +1,96 @@
+name: Portabilidad de escritorio
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      build_installers:
+        description: Construir instaladores autónomos con GDAL/PROJ
+        required: false
+        type: boolean
+        default: false
+
+jobs:
+  quality:
+    name: Código compartido · ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, ubuntu-24.04, windows-2025]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Dependencias nativas de Linux
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - run: pnpm build
+      - run: cargo test --manifest-path src-tauri/Cargo.toml
+
+  installers:
+    name: Instalador · ${{ matrix.os }}
+    if: github.event_name == 'workflow_dispatch' && inputs.build_installers
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            command: pnpm desktop:build:macos
+          - os: ubuntu-24.04
+            command: pnpm desktop:build:linux
+          - os: windows-2025
+            command: pnpm desktop:build:windows
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: conda-incubator/setup-miniconda@v3
+        if: runner.os == 'Windows'
+        with:
+          activate-environment: viaspania-build
+          miniforge-version: latest
+      - name: GDAL/PROJ en macOS
+        if: runner.os == 'macOS'
+        run: brew install gdal
+      - name: Dependencias de Linux
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev gdal-bin libgdal-dev proj-bin patchelf rpm
+      - name: GDAL/PROJ en Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          conda install -n viaspania-build -c conda-forge gdal -y
+          $prefix = conda run -n viaspania-build python -c "import sys; print(sys.prefix)"
+          $prefix = $prefix.Trim()
+          "$prefix\Library\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+          "GDAL_DATA=$prefix\Library\share\gdal" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "PROJ_DATA=$prefix\Library\share\proj" | Out-File -FilePath $env:GITHUB_ENV -Append
+      - run: pnpm install --frozen-lockfile
+      - run: ${{ matrix.command }}
+      - name: Publicar instalador de Windows
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ViaSpania-Windows-x64
+          path: |
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/nsis/*-setup.exe
+          if-no-files-found: error
+          compression-level: 0

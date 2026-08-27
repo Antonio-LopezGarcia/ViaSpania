@@ -1,0 +1,5 @@
+import type { ContourResult, ViewshedObserverResult } from '../types';
+
+export function contoursGeoJson(result:ContourResult){return JSON.stringify({type:'FeatureCollection',name:`curvas-nivel-${result.intervalM}m`,crs:{type:'name',properties:{name:'urn:ogc:def:crs:OGC:1.3:CRS84'}},features:result.lines.map((line,index)=>({type:'Feature',id:index,properties:{elevation_m:line.level,interval_m:result.intervalM,source:result.source},geometry:{type:'LineString',coordinates:line.coordinates}}))},null,2)}
+
+export function viewshedDataUrl(result:ViewshedObserverResult){const canvas=document.createElement('canvas');canvas.width=result.surfaceWidth;canvas.height=result.surfaceHeight;const context=canvas.getContext('2d');if(!context)return'';const image=context.createImageData(canvas.width,canvas.height);result.surfaceValues.forEach((value,index)=>{const offset=index*4;if(value<0){image.data[offset+3]=0;return}image.data.set(value>0?[35,225,105,210]:[235,70,70,185],offset)});context.putImageData(image,0,0);return canvas.toDataURL('image/png')}

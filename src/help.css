@@ -1,0 +1,9 @@
+.help-dialog { width: min(900px, 92vw); height: min(820px, 88vh); }
+.help-body { overflow: auto; padding: 18px 24px; line-height: 1.55; }
+.help-body h2 { margin: 0 0 18px; color: #d8ff55; }
+.help-body h3 { margin: 25px 0 9px; color: #d8ff55; border-bottom: 1px solid #35433c; padding-bottom: 5px; }
+.help-body h4 { margin: 18px 0 7px; color: #eef6f0; font-size: 13px; }
+.help-body p { margin: 0 0 10px; color: #d8e0db; }
+.help-body ol,
+.help-body ul { margin: 0 0 14px; padding-left: 24px; color: #d8e0db; }
+.help-body li { margin: 4px 0; }

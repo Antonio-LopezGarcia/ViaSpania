@@ -1,0 +1,2 @@
+.brand{display:flex;align-items:center;min-width:0}
+.active-project{max-width:230px;margin-left:12px;padding-left:12px;border-left:1px solid #3a4740;color:#aebbb3;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

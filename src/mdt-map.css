@@ -1,0 +1,5 @@
+.mdt-map { position:absolute;inset:38px 0 0;background:#060908;overflow:hidden; }
+.mdt-map-canvas { position:absolute;inset:0; }
+.mdt-map .ol-viewport { background:#060908; }
+.dem-panel > .terrain-label { bottom: 14px; }
+.dem-panel > .empty-terrain { inset:38px 0 0; }

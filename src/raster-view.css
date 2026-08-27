@@ -1,0 +1,109 @@
+.raster-view {
+  position: absolute;
+  inset: 38px 0 32px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: #060908;
+}
+
+.raster-view img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: auto;
+  filter: contrast(1.15);
+}
+
+.raster-view::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 70px #0008;
+}
+
+.raster-route {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.raster-route polyline {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.raster-route .route-halo { stroke: rgba(5, 15, 18, .92); stroke-width: 9; }
+.raster-route .route-line { stroke: #00f0ff; stroke-width: 4; }
+.raster-route line { vector-effect:non-scaling-stroke;stroke-linecap:round; }
+.raster-route .route-segment-halo { stroke:rgba(5,15,18,.92);stroke-width:9; }
+.raster-route .route-segment { stroke-width:4; }
+.mdt-crosshair{position:absolute;z-index:5;left:50%;top:50%;width:19px;height:19px;transform:translate(-9px,-9px);pointer-events:none}.mdt-crosshair::before,.mdt-crosshair::after{content:"";position:absolute;background:#fff;box-shadow:0 0 2px #000,0 0 5px #000}.mdt-crosshair::before{left:0;top:9px;width:19px;height:1px}.mdt-crosshair::after{left:9px;top:0;width:1px;height:19px}
+
+.palette-control {
+  position: absolute;
+  z-index: 6;
+  top: 44px;
+  right: 10px;
+  padding: 6px 8px;
+  border: 1px solid #526159;
+  border-radius: 6px;
+  background: rgba(7, 17, 12, .9);
+  color: #eef4ef;
+  font-size: 10px;
+}
+
+.palette-control label { display: flex; align-items: center; gap: 7px; }
+.palette-control select { max-width: 135px; }
+
+.empty-terrain {
+  display: grid;
+  place-items: center;
+}
+
+.empty-message {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  gap: 6px;
+  text-align: center;
+  color: #dfe7e1;
+}
+
+.empty-message span {
+  color: #8d9a92;
+  font-size: 11px;
+}
+
+/* Cuatro visores de igual tamaño; el panel lateral conserva ambas filas. */
+.workspace .dem-panel { grid-area: 2 / 1; }
+.workspace .historical-panel { grid-area: 2 / 2; }
+.workspace.max-historical .historical-panel { display:block;grid-area:1 / 1 / 3 / 4; }
+
+.raster-point { vector-effect:non-scaling-stroke;fill:#d8ff55;stroke:#101713;stroke-width:2; }
+.raster-point.inicio { fill:#59d2ff; }
+.raster-point.final { fill:#ff796f; }
+.raster-point.selected { stroke:#fff;stroke-width:3; }
+
+.historical-control { position:absolute;z-index:6;top:45px;left:10px;padding:6px 8px;border:1px solid #526159;border-radius:6px;background:rgba(7,17,12,.9);font-size:10px; }
+.historical-control label { display:flex;align-items:center;gap:7px; }
+.historical-control select { max-width:230px; }
+
+.analysis-settings { display:grid;gap:7px;margin-top:10px;padding:10px;border:1px solid #2d3933;border-radius:8px;background:#151e1a; }
+.analysis-settings label { display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:7px;color:#aab6ae;font-size:10px; }
+.analysis-settings select { grid-column:1/-1; }
+.analysis-settings input { width:72px;padding:7px;background:#17201c;color:#fff;border:1px solid #35433c;border-radius:7px; }
+.analysis-output { margin-top:10px; }
+.matrix-scroll { overflow:auto;max-width:100%; }
+.matrix-scroll table { min-width:520px; }
+.layer-tabs { white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.raster-view { cursor:crosshair; }

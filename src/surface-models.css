@@ -1,0 +1,6 @@
+.surface-source-settings{display:grid;gap:8px;margin-top:5px;padding-top:12px;border-top:1px solid #35433c}
+.surface-source-settings>b{color:#d8ff55;font-size:11px}
+.surface-source-settings small{color:#8e9c94;line-height:1.45}
+.surface-model-warning{position:relative;margin:8px 0;padding:9px 34px 9px 11px;border:1px solid #b9802f;border-radius:7px;background:#2b2112;color:#ffd99a;font-size:11px;line-height:1.4}
+.surface-warning-close{position:absolute;top:5px;right:5px;display:grid;place-items:center;width:23px;height:23px;padding:0;border:0;border-radius:5px;background:transparent;color:#ffd99a;font-size:19px;line-height:1;cursor:pointer}
+.surface-warning-close:hover,.surface-warning-close:focus-visible{background:#5a411f;color:#fff;outline:1px solid #d6a455}

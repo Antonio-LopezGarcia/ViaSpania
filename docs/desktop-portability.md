@@ -22,9 +22,13 @@ Requiere GDAL/PROJ nativos, `gdal-config`, `projinfo`, `otool`, `install_name_to
 
 Requiere GDAL/PROJ, `gdal-config`, `projinfo`, `ldd` y `patchelf`, además de las dependencias de compilación de Tauri/WebKitGTK. El preparador copia las bibliotecas ELF transitivas y establece rutas relativas `$ORIGIN`. El artefacto debe construirse sobre una distribución cuya versión de glibc sea igual o anterior a la mínima soportada.
 
+Los artefactos públicos actuales no están firmados. El AppImage requiere permiso de ejecución (`chmod +x ./ViaSpania_*.AppImage`); los paquetes locales pueden instalarse con `sudo apt install ./ViaSpania_*.deb` o `sudo dnf install ./ViaSpania-*.rpm`. Estas excepciones deben aplicarse únicamente al archivo obtenido de `traxtiber/ViaSpania`, sin desactivar la verificación de firmas del sistema. La compatibilidad binaria depende de glibc, WebKitGTK y la arquitectura x86_64.
+
 ## Windows
 
 Requiere Rust MSVC, WebView2 y una distribución nativa de GDAL/PROJ accesible desde `PATH`. `GDAL_DATA` y `PROJ_DATA` deben apuntar a sus directorios de datos si estos no están junto a la instalación. El preparador copia los ejecutables y las DLL del directorio de GDAL. La validación de publicación debe comprobar que ninguna DLL requerida queda fuera del paquete.
+
+Los instaladores públicos actuales no están firmados y pueden activar Microsoft Defender SmartScreen o mostrar un editor desconocido. Tras comprobar que el MSI o NSIS procede del artefacto `ViaSpania-Windows-x64` de `traxtiber/ViaSpania`, el usuario puede elegir **Más información → Ejecutar de todas formas**. No se debe recomendar desactivar SmartScreen, Defender o el Control de cuentas de usuario globalmente.
 
 ## Matriz mínima de validación
 

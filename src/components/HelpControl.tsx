@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
 import manual from '../../docs/manual.md?raw';
+import manualEn from '../../docs/manual.en.md?raw';
+import {useLanguage} from '../core/i18n';
 import '../exchange-export.css';
 import '../help.css';
 
@@ -35,13 +37,13 @@ export function parseHelpDocument(source: string): HelpBlock[] {
 }
 
 export function HelpControl() {
-  const [open, setOpen] = useState(false);
-  const blocks = useMemo(() => parseHelpDocument(manual), []);
+  const [open, setOpen] = useState(false),language=useLanguage(),en=language==='en';
+  const blocks = useMemo(() => parseHelpDocument(language==='en'?manualEn:manual), [language]);
   return <>
     <button onClick={() => setOpen(true)}>Ayuda</button>
     {open && <section className="exchange-backdrop">
-      <div className="exchange-dialog help-dialog" role="dialog" aria-modal="true" aria-label="Manual de ayuda de ViaSpania">
-        <header><div><b>Ayuda</b><span>Manual de ViaSpania</span></div><button aria-label="Cerrar ayuda" onClick={() => setOpen(false)}>×</button></header>
+      <div className="exchange-dialog help-dialog" role="dialog" aria-modal="true" aria-label={en?'ViaSpania help manual':'Manual de ayuda de ViaSpania'}>
+        <header><div><b>{en?'Help':'Ayuda'}</b><span>{en?'ViaSpania manual':'Manual de ViaSpania'}</span></div><button aria-label={en?'Close help':'Cerrar ayuda'} onClick={() => setOpen(false)}>×</button></header>
         <div className="exchange-body help-body">{blocks.map((block, index) => {
           if (block.type === 'h1') return <h2 key={index}>{block.text}</h2>;
           if (block.type === 'h2') return <h3 key={index}>{block.text}</h3>;
@@ -50,7 +52,7 @@ export function HelpControl() {
           if (block.type === 'ul') return <ul key={index}>{block.items?.map((item, itemIndex) => <li key={itemIndex}>{item}</li>)}</ul>;
           return <p key={index}>{block.text}</p>;
         })}</div>
-        <footer><button className="primary" onClick={() => setOpen(false)}>Cerrar</button></footer>
+        <footer><button className="primary" onClick={() => setOpen(false)}>{en?'Close':'Cerrar'}</button></footer>
       </div>
     </section>}
   </>;

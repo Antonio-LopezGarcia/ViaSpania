@@ -15,11 +15,11 @@ Los cuatro paneles cartográficos comparten centro, escala y rotación.
 
 ### Navegación
 
-Localiza el trabajo sobre OpenStreetMap o topográfico IGN. **Seleccionar área** dibuja por arrastre la extensión del MDT. **Eliminar área** borra extensión, MDT y resultados dependientes, pero conserva puntos y barreras. **Localizarme** solicita una posición puntual y su precisión; no mantiene seguimiento. Al maximizar aparecen PNG y PDF.
+Sitúa el trabajo sobre OpenStreetMap o topográfico IGN. **Seleccionar área** dibuja por arrastre la extensión del MDT. **Eliminar área** borra extensión, MDT y resultados dependientes, pero conserva puntos y barreras. Al maximizar aparecen PNG y PDF.
 
 ### PNOA y herramientas
 
-Muestra la ortofotografía oficial y permite crear puntos Inicio, Final y multipunto, además de barreras, corredores, puentes o pasos y puntos de interés. Las herramientas **Seleccionar elemento**, **Mover elemento** y **Eliminar elemento** funcionan de forma uniforme con todos ellos. Las barreras absolutas bloquean; las permeables multiplican el coste. Los corredores reducen coste dentro de su anchura, los pasos reabren celdas y los puntos de interés influyen o actúan como waypoint. Límites municipales, núcleos urbanos, nombres, escala, cruceta y marcador dependen de Configuración. El marcador de selección está desactivado por defecto.
+Muestra la ortofotografía oficial y permite crear puntos Inicio, Final y multipunto, además de barreras, corredores, puentes o pasos y puntos de interés. Las herramientas **Seleccionar elemento**, **Mover elemento** y **Eliminar elemento** funcionan de forma uniforme con todos ellos. Las barreras absolutas bloquean; las permeables multiplican el coste. Los corredores reducen coste dentro de su anchura, los pasos reabren celdas y los puntos de interés influyen o actúan como waypoint. Límites municipales, núcleos urbanos, nombres, escala, cruceta y punteros simultáneos dependen de Configuración. Los punteros simultáneos están desactivados por defecto.
 
 ### MDT
 
@@ -90,6 +90,8 @@ Todos los cálculos utilizan las elevaciones reales del MDT cargado. Las herrami
 
 **Resultado.** Presenta coste total y unidad, distancia planimétrica, ascenso y descenso acumulados, geometría WGS84, pendientes por tramo, conectividad y parámetros específicos. El mapa colorea la pendiente y el visor propio permite examinar capas y exportar PNG/PDF. GeoJSON conserva geometría y atributos científicos.
 
+**Rutas subóptimas.** Al activar esta opción se calcula primero el óptimo (rango 1). Para cada rango posterior se reduce la conductancia de las aristas incidentes a las celdas utilizadas anteriormente y se repite Dijkstra. Una separación alta usa un multiplicador menor y tiende a alejar más los trazados. Son rutas subóptimas espacialmente diferenciadas, no los *k* caminos mínimos exactos. El coste publicado de todos los rangos se evalúa sobre la superficie original, sin la penalización temporal, y se muestra su incremento respecto al óptimo y el porcentaje de celdas compartidas. Los waypoint obligatorios se respetan en todos los rangos.
+
 **Interpretación.** El trazado expresa un óptimo matemático dentro del raster y de los condicionantes introducidos. No demuestra que exista camino físico, permiso de paso, seguridad, firme adecuado o transitabilidad.
 
 ### Ruta comparativa
@@ -117,6 +119,8 @@ Todos los cálculos utilizan las elevaciones reales del MDT cargado. Las herrami
 **Diferencia con Multirruta.** Multipunto calcula una red completa de pares; Multirruta calcula únicamente tramos consecutivos.
 
 ### Multirruta
+
+**Itinerarios subóptimos.** Cuando se solicitan rutas subóptimas, cada rango representa el recorrido completo por todos los puntos en su orden. ViaSpania calcula y une todos sus tramos, penaliza las celdas del itinerario completo y vuelve a calcular el rango siguiente. No combina arbitrariamente la segunda opción de un tramo con la tercera de otro. El coste total se evalúa sobre la superficie original y se compara con el rango 1.
 
 **Finalidad.** Construye un itinerario abierto que visita los puntos en el orden actual de la lista. Es apropiado cuando el orden ya está decidido y se desea calcular el mejor trazado topográfico entre cada parada.
 
@@ -240,7 +244,7 @@ Las imágenes PNG, los GIF y todos los fotogramas de los vídeos exportados inco
 
 ### Visores 2D
 
-- Etiquetas de elementos, crucetas, marcadores de selección, escalas y coordenadas del cursor en Selección.
+- Etiquetas de elementos, crucetas, punteros simultáneos, escalas y coordenadas del cursor en Selección.
 - Límites administrativos de España.
 - Mapa de navegación, ortofotografía de selección y paleta del modelo digital predeterminados.
 

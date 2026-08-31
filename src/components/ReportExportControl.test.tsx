@@ -25,6 +25,13 @@ describe('compositor de informes',()=>{
   await waitFor(()=>expect(onExport).toHaveBeenCalled());
   expect(onExport.mock.calls[0][1].routeSimple).toMatchObject({base:'historical',includeOutbound:true,includeReturn:true});
  });
+ it('permite excluir las alternativas del informe de Ruta simple',async()=>{
+  const onExport=vi.fn().mockResolvedValue(undefined);
+  render(<ReportExportControl disabled={false} loading={false} outboundAvailable alternativesAvailable onExport={onExport}/>);
+  fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
+  const alternatives=screen.getByRole('checkbox',{name:'Incluir todas las rutas subóptimas calculadas'});expect((alternatives as HTMLInputElement).checked).toBe(true);fireEvent.click(alternatives);
+  fireEvent.click(screen.getByRole('button',{name:'Generar PDF'}));await waitFor(()=>expect(onExport).toHaveBeenCalled());expect(onExport.mock.calls[0][1].routeSimple.includeAlternatives).toBe(false);
+ });
  it('inicia la base 3D con la última orientación del visor y permite modificarla',()=>{
   const onExport=vi.fn().mockResolvedValue(undefined);
   render(<ReportExportControl disabled={false} loading={false} terrainView={{inclination:41,orientation:123}} outboundAvailable onExport={onExport}/>);
@@ -56,13 +63,13 @@ describe('compositor de informes',()=>{
  });
  it('compone Multirruta sin ofrecer una matriz de costes',async()=>{
   const onExport=vi.fn().mockResolvedValue(undefined);
-  render(<ReportExportControl disabled={false} loading={false} mode="multiroute" multipointOrigins={[{id:1,name:'Inicio',connections:1},{id:2,name:'Etapa 2',connections:1}]} onExport={onExport}/>);
+  render(<ReportExportControl disabled={false} loading={false} mode="multiroute" alternativesAvailable multipointOrigins={[{id:1,name:'Inicio',connections:1},{id:2,name:'Etapa 2',connections:1}]} onExport={onExport}/>);
   fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
   expect(screen.getByRole('dialog',{name:'Compositor de informes Multirruta'})).toBeTruthy();
   expect(screen.queryByText('Matriz de costes')).toBeNull();
   fireEvent.click(screen.getByRole('button',{name:'Generar PDF'}));
   await waitFor(()=>expect(onExport).toHaveBeenCalled());
-  expect(onExport.mock.calls[0][1].multiroute).toMatchObject({includeCombinedMap:true,includeTechnicalPage:true});
+  expect(onExport.mock.calls[0][1].multiroute).toMatchObject({includeCombinedMap:true,includeAlternatives:true,includeTechnicalPage:true});
  });
  it('compone el Pasillo con superficie, leyenda y opacidad',async()=>{
   const onExport=vi.fn().mockResolvedValue(undefined);

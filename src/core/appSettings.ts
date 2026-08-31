@@ -7,6 +7,7 @@ export type BuiltInMapSourceId='osm'|'ign-topographic'|'pnoa'|'copernicus-vhr-20
 export type PaletteId='grayscale'|'terrain'|'hypsometric'|'viridis'|'alpine';
 
 export interface AppSettings {
+  language?:'es'|'en';
   tutorialEnabled:boolean;
   showPointLabels:boolean;
   showMunicipalBoundaries:boolean;

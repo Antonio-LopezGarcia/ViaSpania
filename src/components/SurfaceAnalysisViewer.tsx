@@ -41,7 +41,7 @@ function captureMap(element:HTMLElement){
 }
 
 export function SurfaceAnalysisViewer({title,fileBase,points,selectedPointId,barriers,corridors,crossings,route,routes:providedRoutes,elevationProfiles=[],initialView,studyExtent,mdtImageUrl,surfaceImageUrl,initialOpacity=.55,surfaceLabel,lines=[],legend,showRouteLayer=true,onClose}:Props){
-  const [view,setView]=useState(initialView),[background,setBackground]=useState<Background>('pnoa'),[showSurface,setShowSurface]=useState(true),[opacity,setOpacity]=useState(initialOpacity),[elements,setElements]=useState<VisibleElements>({points:true,labels:true,barriers:true,facilitators:true,route:true}),[status,setStatus]=useState(''),[zoomToExtentToken,setZoomToExtentToken]=useState<number|null>(null);
+  const [view,setView]=useState(initialView),[background,setBackground]=useState<Background>('pnoa'),[showSurface,setShowSurface]=useState(true),[opacity,setOpacity]=useState(initialOpacity),[elements,setElements]=useState<VisibleElements>({points:true,labels:true,barriers:true,facilitators:true,route:true}),[status,setStatus]=useState(''),[zoomToExtentToken,setZoomToExtentToken]=useState<number|null>(0);
   const captureRef=useRef<HTMLDivElement>(null),visiblePoints=elements.points?points:[],routeCoordinates=showRouteLayer&&elements.route&&!providedRoutes?route?.coordinates??[]:[],routes=showRouteLayer&&elements.route?(providedRoutes??(routeCoordinates.length>1?[{coordinates:routeCoordinates,color:'#00f0ff'}]:[])):[];
   const surface=showSurface&&surfaceImageUrl?{imageUrl:surfaceImageUrl,extent:studyExtent,opacity}:undefined,mdtSurface=showSurface&&surfaceImageUrl?{imageUrl:surfaceImageUrl,opacity}:undefined;
   const map=background==='mdt'

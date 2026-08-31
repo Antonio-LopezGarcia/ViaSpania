@@ -1,8 +1,9 @@
 import { invoke, isTauri } from '@tauri-apps/api/core';
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
-import type { Barrier, Connectivity, ContourResult, EnabledCrossing, IsochroneResult, LcpCorridorResult, ModelId, PointOfInterest, PreferredCorridor, RouteResult, ViewshedResult } from '../types';
+import type { Barrier, Connectivity, ContourResult, EnabledCrossing, IsochroneResult, LcpCorridorResult, ModelId, PointOfInterest, PreferredCorridor, RankedRouteResult, RouteResult, ViewshedResult } from '../types';
 import { loadAppSettings } from '../core/appSettings';
 import {orderWaypointsByProximity} from '../core/facilitators';
+import {joinRouteSegments,rankResult} from '../core/rankedRoutes';
 let activeCorridors:PreferredCorridor[]=[];let activeCrossings:EnabledCrossing[]=[];
 let activePointsOfInterest:PointOfInterest[]=[];
 export function setActiveFacilitators(corridors:PreferredCorridor[],crossings:EnabledCrossing[],points:PointOfInterest[]=[]){activeCorridors=corridors;activeCrossings=crossings;activePointsOfInterest=points}
@@ -26,8 +27,8 @@ export const inspectGeospatialFile = (path:string) => invoke<Record<string,unkno
 export const rasterColorPreview = (path:string,palette:string) => invoke<string>('raster_color_preview',{path,palette});
 export const fetchMapImage = (url:string) => invoke<string>('fetch_map_image',{url});
 export const fetchVectorTile = (url:string) => invoke<string>('fetch_vector_tile',{url});
-type RouteRequest={rasterPath:string;start:[number,number];end:[number,number];model:ModelId;barriers:Barrier[];corridors?:PreferredCorridor[];crossings?:EnabledCrossing[];pointsOfInterest?:PointOfInterest[];connectivity:Connectivity;criticalSlopePercent:number;ardigoSpeedMs:number};
-const invokeRoute=(request:RouteRequest,start:[number,number],end:[number,number])=>invoke<RouteResult>('calculate_raster_route',{request:{...request,start,end,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),maxCells:loadAppSettings().processingCellLimit}});
+export type RouteRequest={rasterPath:string;start:[number,number];end:[number,number];model:ModelId;barriers:Barrier[];corridors?:PreferredCorridor[];crossings?:EnabledCrossing[];pointsOfInterest?:PointOfInterest[];connectivity:Connectivity;criticalSlopePercent:number;ardigoSpeedMs:number};
+const invokeRoute=(request:RouteRequest,start:[number,number],end:[number,number],rankPenalizedCells:number[]=[],rankPenalty=1)=>invoke<RouteResult>('calculate_raster_route',{request:{...request,start,end,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),rankPenalizedCells,rankPenalty,maxCells:loadAppSettings().processingCellLimit}});
 export const calculateRasterRoute=async(request:RouteRequest)=>{
  const points=request.pointsOfInterest??activePointsOfInterest;
  const orderedWaypoints=orderWaypointsByProximity(request.start,points.filter(point=>point.mode==='waypoint'));
@@ -45,7 +46,30 @@ export const calculateRasterRoute=async(request:RouteRequest)=>{
   segmentCoordinates[segmentCoordinates.length-1]=[...stops[index+1]];
   return index?segmentCoordinates.slice(1):segmentCoordinates;
  });
- return{...segments[0],direction:'origen→puntos de interés por proximidad→destino',coordinates,elevationsM:segments.flatMap((segment,index)=>index?segment.elevationsM?.slice(1)??[]:segment.elevationsM??[]),slopesPercent:segments.flatMap((segment,index)=>index?segment.slopesPercent?.slice(1)??[]:segment.slopesPercent??[]),cost:segments.reduce((sum,segment)=>sum+segment.cost,0),distanceM:segments.reduce((sum,segment)=>sum+segment.distanceM,0),ascentM:segments.reduce((sum,segment)=>sum+segment.ascentM,0),descentM:segments.reduce((sum,segment)=>sum+segment.descentM,0),surfaceReused:segments.every(segment=>segment.surfaceReused),source:`${segments[0].source} · ${waypoints.length} punto(s) obligatorio(s) ordenado(s) por proximidad`};
+ return{...joinRouteSegments(segments,'origen→puntos de interés por proximidad→destino'),coordinates,source:`${segments[0].source} · ${waypoints.length} punto(s) obligatorio(s) ordenado(s) por proximidad`};
+}
+
+export interface RankedItinerary extends RankedRouteResult{segments:RouteResult[]}
+export async function calculateRankedRasterItineraries(request:RouteRequest,stops:readonly [number,number][],k:number,penalty:number,direction:string):Promise<RankedItinerary[]>{
+ if(stops.length<2)throw new Error('El itinerario requiere al menos dos puntos.');
+ if(k<1||k>10)throw new Error('El número de alternativas debe estar entre 1 y 10.');
+ if(!(penalty>0&&penalty<=1))throw new Error('La separación de alternativas no es válida.');
+ const results:RankedItinerary[]=[],penalized=new Set<number>(),signatures=new Set<string>();
+ let optimalCost=0;
+ for(let rank=1;rank<=k;rank++){
+  const segments:RouteResult[]=[];
+  for(let index=1;index<stops.length;index++)segments.push(await invokeRoute(request,[...stops[index-1]],[...stops[index]],[...penalized],rank===1?1:penalty));
+  const result=joinRouteSegments(segments,direction),signature=result.path.join(',');
+  if(signatures.has(signature))break;
+  signatures.add(signature);if(rank===1)optimalCost=result.cost;
+  const ranked=rankResult(rank,result,optimalCost,penalized),metadata={rank,costIncreasePercent:ranked.costIncreasePercent,sharedCellsPercent:ranked.sharedCellsPercent};ranked.result={...ranked.result,...metadata};results.push({...ranked,segments:segments.map(segment=>({...segment,...metadata}))});
+  result.path.forEach(cell=>penalized.add(cell));
+ }
+ return results;
+}
+export function calculateRankedRasterRoute(request:RouteRequest,k:number,penalty:number,direction:string){
+ const points=request.pointsOfInterest??activePointsOfInterest,waypoints=orderWaypointsByProximity(request.start,points.filter(point=>point.mode==='waypoint')).map(point=>[...point.coordinate] as [number,number]);
+ return calculateRankedRasterItineraries(request,[request.start,...waypoints,request.end],k,penalty,direction);
 }
 export const calculateRasterIsochrones = (request:{rasterPath:string;origins:[number,number][];model:ModelId;barriers:Barrier[];corridors?:PreferredCorridor[];crossings?:EnabledCrossing[];pointsOfInterest?:PointOfInterest[];connectivity:Connectivity;criticalSlopePercent:number;ardigoSpeedMs:number;interval:number;maxLevels:number}) => invoke<IsochroneResult>('calculate_raster_isochrones',{request:{...request,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),maxCells:loadAppSettings().processingCellLimit}});
 export const calculateRasterLcpCorridor = (request:{rasterPath:string;start:[number,number];end:[number,number];model:ModelId;barriers:Barrier[];corridors?:PreferredCorridor[];crossings?:EnabledCrossing[];pointsOfInterest?:PointOfInterest[];connectivity:Connectivity;criticalSlopePercent:number;ardigoSpeedMs:number;thresholdPercent:number}) => invoke<LcpCorridorResult>('calculate_raster_lcp_corridor',{request:{...request,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),maxCells:loadAppSettings().processingCellLimit}});

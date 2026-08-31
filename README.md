@@ -45,6 +45,47 @@ sudo xattr -dr com.apple.quarantine "/Applications/ViaSpania.app"
 
 Este comando no desactiva Gatekeeper globalmente; elimina el atributo de cuarentena exclusivamente del paquete indicado. No debe utilizarse con copias obtenidas de terceros. El artefacto actual de macOS está compilado para Apple Silicon (M1 y posteriores), no para Mac Intel.
 
+### Instalar la versión descargable en Windows
+
+Los instaladores MSI y NSIS publicados por GitHub Actions no están firmados con un certificado de firma de código. Por ello, Microsoft Defender SmartScreen o el Control de cuentas de usuario pueden identificar al editor como desconocido y mostrar **«Windows protegió su PC»**.
+
+Use este procedimiento únicamente con el artefacto `ViaSpania-Windows-x64` descargado desde la sección **Actions** de este repositorio:
+
+1. Extraiga por completo el ZIP descargado de GitHub Actions.
+2. Ejecute el instalador `.msi` o `-setup.exe` incluido.
+3. Si aparece SmartScreen, compruebe que el archivo procede de `traxtiber/ViaSpania`, seleccione **Más información** y después **Ejecutar de todas formas**.
+4. Si Windows muestra el aviso del Control de cuentas de usuario, confirme que el nombre de la aplicación sea ViaSpania y que el editor figure como desconocido antes de continuar.
+
+No desactive SmartScreen, Microsoft Defender ni el Control de cuentas de usuario para instalar ViaSpania. No continúe si el archivo procede de un enlace, correo o repositorio distinto. El artefacto actual de Windows está compilado para sistemas x64.
+
+### Instalar la versión descargable en Linux
+
+Los paquetes AppImage, DEB y RPM publicados por GitHub Actions no incluyen una firma de distribución. Linux puede indicar que el AppImage no es ejecutable o que el paquete no está firmado.
+
+Use este procedimiento únicamente con el artefacto `ViaSpania-Ubuntu-x64` descargado desde la sección **Actions** de este repositorio:
+
+1. Extraiga por completo el ZIP descargado de GitHub Actions.
+2. Para AppImage, conceda permiso de ejecución únicamente al archivo descargado y ábralo:
+
+   ```bash
+   chmod +x ./ViaSpania_*.AppImage
+   ./ViaSpania_*.AppImage
+   ```
+
+3. En Debian o Ubuntu puede instalar el DEB local con:
+
+   ```bash
+   sudo apt install ./ViaSpania_*.deb
+   ```
+
+4. En una distribución compatible con RPM puede instalar el paquete local con:
+
+   ```bash
+   sudo dnf install ./ViaSpania-*.rpm
+   ```
+
+Revise siempre el nombre y la procedencia del archivo antes de conceder permisos o usar `sudo`. No desactive la verificación de firmas del sistema ni ejecute scripts descargados de terceros. El artefacto actual de Linux está compilado para x86_64 y su compatibilidad depende de la versión de glibc y WebKitGTK de la distribución.
+
 ## Aviso
 
 El resultado es el óptimo matemático de un modelo de elevación. No demuestra que exista un camino, permiso de paso o condiciones seguras y no sirve para navegación de emergencia.

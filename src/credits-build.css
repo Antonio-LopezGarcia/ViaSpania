@@ -1,0 +1,6 @@
+.credits-build{padding:12px;border:1px solid #3e5147;border-radius:9px;background:#0b120e}
+.credits-build dl{margin:7px 0 0;display:grid;gap:6px}
+.credits-build dl div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:10px;font-size:11px}
+.credits-build dt{color:#96a39b}
+.credits-build dd{margin:0;color:#e8eee8;overflow-wrap:anywhere}
+.credits-build code{font-size:10px;color:#d8ff55}

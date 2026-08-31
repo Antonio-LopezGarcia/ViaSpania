@@ -26,7 +26,8 @@ import { fromLonLat, toLonLat, transformExtent } from 'ol/proj';
 import ScaleLine from 'ol/control/ScaleLine';
 import DragBox from 'ol/interaction/DragBox';
 import Draw from 'ol/interaction/Draw';
-import { Circle as CircleStyle, Fill, RegularShape, Stroke, Style, Text } from 'ol/style';
+import { Circle as CircleStyle, Fill, Stroke, Style, Text } from 'ol/style';
+import {selectionMarkerStyle} from './selectionMarkerStyle';
 import type { Barrier, EnabledCrossing, GeoPoint, PointRole, PreferredCorridor } from '../types';
 import { slopeColor } from '../core/routeSlope';
 import { loadAppSettings } from '../core/appSettings';
@@ -241,7 +242,7 @@ export function MapPanel(props: MapPanelProps) {
     });
     const facilitatorLayer=new VectorLayer({source:facilitatorSourceRef.current,style:feature=>feature.getGeometry()?.getType()==='Point'?new Style({image:new CircleStyle({radius:8,fill:new Fill({color:'#d778ff'}),stroke:new Stroke({color:'#fff',width:2})}),text:new Text({text:String(feature.get('name')??''),offsetY:-17,fill:new Fill({color:'#fff'}),stroke:new Stroke({color:'#111',width:3})})}):new Style({stroke:new Stroke({color:feature.get('kind')==='crossing'?'#36d6ff':'#f4c542',width:feature.get('kind')==='crossing'?7:5,lineDash:feature.get('kind')==='crossing'?undefined:[10,5]})}),zIndex:19});
     const locationLayer=new VectorLayer({source:locationSourceRef.current,zIndex:25,style:feature=>feature.getGeometry()?.getType()==='Circle'?new Style({fill:new Fill({color:'rgba(60,150,255,.16)'}),stroke:new Stroke({color:'rgba(90,180,255,.8)',width:2})}):new Style({image:new CircleStyle({radius:7,fill:new Fill({color:'#168cff'}),stroke:new Stroke({color:'#fff',width:3})})})});
-    const selectionMarkerLayer=new VectorLayer({source:selectionMarkerSourceRef.current,zIndex:30,style:new Style({image:new RegularShape({points:4,radius:7,radius2:0,angle:Math.PI/4,stroke:new Stroke({color:'#e31b23',width:2})})})});
+    const selectionMarkerLayer=new VectorLayer({source:selectionMarkerSourceRef.current,zIndex:30,style:selectionMarkerStyle()});
     const isochroneSurfaceLayer=propsRef.current.isochroneSurface?new ImageLayer({source:new ImageStatic({url:propsRef.current.isochroneSurface.imageUrl,imageExtent:transformExtent(propsRef.current.isochroneSurface.extent,'EPSG:4326','EPSG:3857'),projection:'EPSG:3857'}),opacity:propsRef.current.isochroneSurface.opacity,zIndex:16}):null;
     const map = new Map({
       target: host.current,
@@ -275,11 +276,10 @@ export function MapPanel(props: MapPanelProps) {
       if (center && resolution) propsRef.current.onViewChange({ center: [center[0], center[1]], resolution, rotation: view.getRotation() });
     });
     map.on('pointermove',event=>{
-      if(kind!=='pnoa')return;
       const [lon,lat]=toLonLat(event.coordinate);
       propsRef.current.onPointerCoordinate?.({lon,lat});
     });
-    const leave=()=>kind==='pnoa'&&propsRef.current.onPointerCoordinate?.(null);
+    const leave=()=>propsRef.current.onPointerCoordinate?.(null);
     const contextMenu=(event:MouseEvent)=>{if(!['barrier','corridor','crossing'].includes(propsRef.current.pointMode??''))return;const draw=barrierDrawRef.current,sketch=draw?.getOverlay().getSource()?.getFeatures()[0]?.getGeometry();if(!(sketch instanceof LineString))return;const coordinates=sketch.getCoordinates(),lastCreated=coordinates.at(-2);if(!lastCreated)return;const eventPixel=map.getEventPixel(event),lastPixel=map.getPixelFromCoordinate(lastCreated);if(Math.hypot(eventPixel[0]-lastPixel[0],eventPixel[1]-lastPixel[1])>12)return;event.preventDefault();draw?.finishDrawing()};
     map.getViewport().addEventListener('mouseleave',leave);
     map.getViewport().addEventListener('contextmenu',contextMenu);

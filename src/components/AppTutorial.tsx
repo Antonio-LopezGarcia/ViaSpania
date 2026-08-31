@@ -1,11 +1,12 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { completeTutorial, shouldStartTutorial, tutorialCompleted } from '../core/tutorial';
 import type { AppSettings } from '../core/appSettings';
+import {useLanguage} from '../core/i18n';
 import '../tutorial.css';
 
 interface TutorialStep { selector:string; title:string; text:string }
 const STEPS:TutorialStep[]=[
-  {selector:'.nav-panel',title:'Visor de navegación',text:'Sirve para situar el área de trabajo, cambiar el mapa base, localizarse y delimitar el área de estudio. El botón ↗ de su cabecera alterna entre la vista ampliada y la vista reducida.'},
+  {selector:'.nav-panel',title:'Visor de navegación',text:'Sirve para situar el área de trabajo, cambiar el mapa base y delimitar el área de estudio. El botón ↗ de su cabecera alterna entre la vista ampliada y la vista reducida.'},
   {selector:'.ortho-panel',title:'Visor de selección',text:'Aquí se colocan, seleccionan y editan puntos, barreras, corredores, pasos y lugares de interés sobre la ortofotografía. También puede ampliarse y volver a la vista reducida con ↗.'},
   {selector:'.dem-panel',title:'Visor del modelo digital',text:'Muestra el modelo de elevación cargado y los resultados superpuestos. Permite cambiar su paleta y consultar el terreno. Use ↗ para ampliar o reducir el visor.'},
   {selector:'.historical-panel',title:'Visor de cartografía',text:'Permite contrastar el trabajo con mapas topográficos, cartografía histórica y otras fuentes configuradas. Su botón ↗ ofrece igualmente las vistas ampliada y reducida.'},
@@ -27,24 +28,48 @@ const STEPS:TutorialStep[]=[
   {selector:'main > header > nav > button:nth-of-type(8)',title:'Ayuda',text:'Abre el manual integrado de ViaSpania, con instrucciones de uso y explicaciones sobre el flujo de trabajo. Puede consultarlo en cualquier momento sin modificar el proyecto.'},
   {selector:'main > header > nav > button:nth-of-type(9)',title:'Créditos',text:'Muestra la autoría, las fuentes de datos, atribuciones, licencias y tecnologías utilizadas. Esta información es especialmente importante al interpretar o compartir cartografía y resultados.'},
 ];
+const STEPS_EN:TutorialStep[]=[
+  {selector:'.nav-panel',title:'Navigation viewer',text:'Use this viewer to locate the work area, change the base map and delimit the study area. The ↗ button in its header switches between expanded and compact views.'},
+  {selector:'.ortho-panel',title:'Selection viewer',text:'Place, select and edit points, barriers, corridors, crossings and points of interest here on the orthophoto. Use ↗ to expand it or return to the compact view.'},
+  {selector:'.dem-panel',title:'Digital model viewer',text:'Displays the loaded elevation model and overlaid results. You can change its palette and inspect the terrain. Use ↗ to expand or reduce the viewer.'},
+  {selector:'.historical-panel',title:'Cartography viewer',text:'Compare the study with topographic maps, historical cartography and other configured sources. Its ↗ button also switches between expanded and compact views.'},
+  {selector:'.calculation-access > div:first-child > button:nth-child(1)',title:'Simple route calculation',text:'Calculates the least-cost route between a start and an end point, separately outbound and return. The main options are travel profile, grid connectivity, critical slope when applicable and cost-modifying features. After calculation, “Open route viewer” provides the map, route and elevation profile.'},
+  {selector:'.calculation-access > div:first-child > button:nth-child(2)',title:'Route comparison calculation',text:'Calculates the same endpoints with several profiles to compare cost, distance and geometry under identical conditions. Choose the included models and shared connectivity, barriers and facilitators. The comparison viewer shows overlaid or side-by-side routes and a results table.'},
+  {selector:'.calculation-access > div:first-child > button:nth-child(3)',title:'Multipoint calculation',text:'Creates a directed cost matrix and routes among the first eight points; each direction is calculated independently. Configure the profile, connectivity and territorial modifiers. The multipoint view colours routes by origin, synchronises the map viewers and presents the from/to matrix.'},
+  {selector:'.calculation-access > div:first-child > button:nth-child(4)',title:'Multi-route calculation',text:'Connects points strictly in list order: 1→2, 2→3 and so on. Configure the profile, connectivity and cost features; point order determines the legs. “Open multi-route viewer” shows every leg in a separate colour.'},
+  {selector:'.calculation-access > div:first-child > button:nth-child(5)',title:'Corridor calculation',text:'Delimits alternative routes whose cost does not exceed the optimal LCP by more than the chosen percentage. Configure profile, connectivity, threshold and surface opacity. “Open corridor viewer” displays the corridor, optimal route and territorial features.'},
+  {selector:'.calculation-access > div:nth-child(2) > button:nth-child(1)',title:'Isochrone calculation',text:'Calculates accumulated cost from one or more origins and creates equal-time or equal-cost lines. Choose origins, interval, maximum levels, accumulated surface and opacity. “Open isochrone viewer” displays the surface, lines and level legend.'},
+  {selector:'.calculation-access > div:nth-child(2) > button:nth-child(2)',title:'Viewshed calculation',text:'Determines which terrain cells are visible from one or more observer points. Choose observers and their height—human, tripod, tower or custom. “Open viewshed map” provides a visible/not-visible viewer; the result can also be examined in 3D.'},
+  {selector:'.calculation-access > div:nth-child(2) > button:nth-child(3)',title:'Contour calculation',text:'Extracts equal-elevation lines directly from the loaded digital model. Set the vertical interval using a preset or a custom value in metres. “Open contour layer” displays coloured lines and an elevation legend.'},
+  {selector:'main > header > nav > button:nth-of-type(1)',title:'New project',text:'Creates a clean workspace and asks for a name and file location. Use it to begin a new study without reusing the current points, area or results.'},
+  {selector:'main > header > nav > button:nth-of-type(2)',title:'Open project',text:'Opens a saved ViaSpania project and restores its study area, points, barriers, facilitators and parameters. Save any pending changes in the current project before opening another one.'},
+  {selector:'main > header > nav > button:nth-of-type(3)',title:'Save project',text:'Saves the editable state of the current work. The first save asks for a location; later saves update the same project. Reports and exported results are generated separately.'},
+  {selector:'main > header > nav > button:nth-of-type(4)',title:'Export results',text:'Select and save available products: GeoJSON routes, PNG surfaces, a GeoTIFF elevation model and project features in GeoPackage. Products that have not yet been calculated remain unavailable.'},
+  {selector:'main > header > nav > button:nth-of-type(5)',title:'3D viewer',text:'Opens a three-dimensional representation of the loaded digital model with points, routes and analytical results. The button remains disabled until an elevation model has been downloaded and processed.'},
+  {selector:'main > header > nav > button:nth-of-type(6)',title:'Settings',text:'Opens computer-wide preferences for language, viewer appearance, 3D view, digital models, map sources, processing limits, sounds and tutorial. Changes take effect when preferences are saved.'},
+  {selector:'main > header > nav > button:nth-of-type(7)',title:'Compose report',text:'Opens the PDF report composer for the current calculation mode. Choose maps, results, technical pages, format and visual options. It is enabled only when the current mode and results support a report.'},
+  {selector:'main > header > nav > button:nth-of-type(8)',title:'Help',text:'Opens the integrated ViaSpania manual with operating instructions and workflow explanations. It can be consulted at any time without changing the project.'},
+  {selector:'main > header > nav > button:nth-of-type(9)',title:'Credits',text:'Shows authorship, data sources, attributions, licences, technologies and exact build information. These details matter when interpreting or sharing cartography and results.'},
+];
 
 export function AppTutorial({settings,startToken=0}:{settings:AppSettings;startToken?:number}){
+  const language=useLanguage(),steps=language==='en'?STEPS_EN:STEPS;
   const [open,setOpen]=useState(()=>shouldStartTutorial(settings.tutorialEnabled,tutorialCompleted()));
   const [index,setIndex]=useState(0),[rect,setRect]=useState<DOMRect|null>(null);
-  const dialogRef=useRef<HTMLDivElement>(null),previousStartToken=useRef(startToken),step=STEPS[index];
+  const dialogRef=useRef<HTMLDivElement>(null),previousStartToken=useRef(startToken),step=steps[index];
   useEffect(()=>{if(startToken!==previousStartToken.current){previousStartToken.current=startToken;setIndex(0);setOpen(true)}},[startToken]);
   useLayoutEffect(()=>{if(!open)return;const update=()=>{const element=document.querySelector(step.selector);if(element instanceof HTMLElement){element.scrollIntoView?.({block:'nearest',inline:'nearest'});setRect(element.getBoundingClientRect())}};update();window.addEventListener('resize',update);return()=>window.removeEventListener('resize',update)},[open,step]);
-  useEffect(()=>{if(!open)return;dialogRef.current?.focus();const key=(event:KeyboardEvent)=>{if(event.key==='Escape'){completeTutorial();setOpen(false)}else if(event.key==='ArrowRight')setIndex(value=>Math.min(STEPS.length-1,value+1));else if(event.key==='ArrowLeft')setIndex(value=>Math.max(0,value-1))};window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)},[open,index]);
+  useEffect(()=>{if(!open)return;dialogRef.current?.focus();const key=(event:KeyboardEvent)=>{if(event.key==='Escape'){completeTutorial();setOpen(false)}else if(event.key==='ArrowRight')setIndex(value=>Math.min(steps.length-1,value+1));else if(event.key==='ArrowLeft')setIndex(value=>Math.max(0,value-1))};window.addEventListener('keydown',key);return()=>window.removeEventListener('keydown',key)},[open,index,steps.length]);
   if(!open)return null;
   const finish=()=>{completeTutorial();setOpen(false)},below=rect?rect.bottom+330<window.innerHeight:true;
   return <section className="tutorial-layer" aria-label="Tutorial de ViaSpania">
     {rect?<div className="tutorial-shades" aria-hidden="true"><i style={{left:0,top:0,right:0,height:Math.max(0,rect.top-5)}}/><i style={{left:0,top:Math.max(0,rect.top-5),width:Math.max(0,rect.left-5),height:rect.height+10}}/><i style={{left:rect.right+5,top:Math.max(0,rect.top-5),right:0,height:rect.height+10}}/><i style={{left:0,top:rect.bottom+5,right:0,bottom:0}}/></div>:<div className="tutorial-shade"/>}
     {rect&&<div className="tutorial-highlight" style={{left:rect.left-5,top:rect.top-5,width:rect.width+10,height:rect.height+10}}/>}
     <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="tutorial-title" tabIndex={-1} className={`tutorial-card ${below?'below':'above'}`} style={rect?{left:Math.max(16,Math.min(rect.left,window.innerWidth-396)),top:below?rect.bottom+14:Math.max(16,rect.top-214)}:undefined}>
-      <div className="tutorial-progress"><span>Paso {index+1} de {STEPS.length}</span><button aria-label="Salir del tutorial" onClick={finish}>Salir</button></div>
+      <div className="tutorial-progress"><span>{language==='en'?`Step ${index+1} of ${steps.length}`:`Paso ${index+1} de ${steps.length}`}</span><button aria-label={language==='en'?'Exit tutorial':'Salir del tutorial'} onClick={finish}>{language==='en'?'Exit':'Salir'}</button></div>
       <b id="tutorial-title">{step.title}</b><p>{step.text}</p>
-      <nav className="tutorial-step-picker" aria-label="Ir directamente a un paso">{STEPS.map((item,stepIndex)=><button key={item.title} className={stepIndex===index?'active':''} aria-label={`Ir al paso ${stepIndex+1}: ${item.title}`} onClick={()=>setIndex(stepIndex)}>{stepIndex+1}</button>)}</nav>
-      <footer><button disabled={index===0} onClick={()=>setIndex(value=>value-1)}>Anterior</button><button className="primary" onClick={()=>index===STEPS.length-1?finish():setIndex(value=>value+1)}>{index===STEPS.length-1?'Terminar':'Siguiente elemento'}</button></footer>
+      <nav className="tutorial-step-picker" aria-label={language==='en'?'Go directly to a step':'Ir directamente a un paso'}>{steps.map((item,stepIndex)=><button key={item.title} className={stepIndex===index?'active':''} aria-label={language==='en'?`Go to step ${stepIndex+1}: ${item.title}`:`Ir al paso ${stepIndex+1}: ${item.title}`} onClick={()=>setIndex(stepIndex)}>{stepIndex+1}</button>)}</nav>
+      <footer><button disabled={index===0} onClick={()=>setIndex(value=>value-1)}>{language==='en'?'Previous':'Anterior'}</button><button className="primary" onClick={()=>index===steps.length-1?finish():setIndex(value=>value+1)}>{language==='en'?(index===steps.length-1?'Finish':'Next item'):(index===steps.length-1?'Terminar':'Siguiente elemento')}</button></footer>
     </div>
   </section>;
 }

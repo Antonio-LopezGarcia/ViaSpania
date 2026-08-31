@@ -8,6 +8,8 @@ export interface GeoPackageLayer {name:string;geoJson:string}
 export function resultToken(value:string){return safeExportBaseName(value).replaceAll('-','_').toLowerCase()}
 export function routeResultName(prefix:'sim'|'comp'|'multip',from:string,to:string,model:ModelId){return`${prefix}_${resultToken(from)}_${resultToken(to)}_${MOVECOST_CODES[model]}.geojson`}
 export function multirouteResultName(point:string,model:ModelId){return`multir_${resultToken(point)}_${MOVECOST_CODES[model]}.geojson`}
+export function rankedRouteResultName(direction:'ida'|'vuelta',rank:number,from:string,to:string,model:ModelId){return`subopt_${direction}_r${rank}_${resultToken(from)}_${resultToken(to)}_${MOVECOST_CODES[model]}.geojson`}
+export function rankedMultirouteResultName(rank:number,model:ModelId){return`multir_subopt_r${rank}_${MOVECOST_CODES[model]}.geojson`}
 export function corridorResultName(origin:string,model:ModelId){return`pas_${resultToken(origin)}_${MOVECOST_CODES[model]}.png`}
 export function isochroneResultStem(origin:string,model:ModelId){return`iso_${resultToken(origin)}_${MOVECOST_CODES[model]}`}
 export function viewshedResultName(project:string,observer:string,heightM:number){return`vis_${resultToken(project)}_${resultToken(observer)}_${Math.round(heightM*100)}.png`}

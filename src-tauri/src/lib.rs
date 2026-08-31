@@ -135,6 +135,12 @@ struct RouteRequest {
     ardigo_speed_ms: f64,
     #[serde(default = "default_route_cells")]
     max_cells: usize,
+    /// Cells used by previously ranked itineraries. This transient search
+    /// penalty is deliberately excluded from the prepared-surface cache.
+    #[serde(default)]
+    rank_penalized_cells: Vec<usize>,
+    #[serde(default = "default_rank_penalty")]
+    rank_penalty: f64,
 }
 
 #[derive(Clone, Deserialize, Serialize)]
@@ -180,6 +186,13 @@ fn default_ardigo_speed() -> f64 {
 }
 fn default_route_cells() -> usize {
     MAX_ROUTE_CELLS
+}
+fn default_rank_penalty() -> f64 {
+    1.0
+}
+
+fn ranked_edge_multiplier(from_penalized: bool, to_penalized: bool, penalty: f64) -> f64 {
+    if from_penalized || to_penalized { 1.0 / penalty } else { 1.0 }
 }
 
 #[derive(Serialize)]
@@ -1763,6 +1776,17 @@ fn calculate_route_from_path(
     let penalties = &surface.penalties;
     let discounts = &surface.discounts;
     let cells = width * height;
+    if !request.rank_penalty.is_finite() || request.rank_penalty <= 0.0 || request.rank_penalty > 1.0 {
+        return Err(NativeError::Gdal(
+            "La penalización de alternativas debe estar entre 0 (excluido) y 1".to_owned(),
+        ));
+    }
+    let mut rank_penalized = vec![false; cells];
+    for &index in &request.rank_penalized_cells {
+        if index < cells {
+            rank_penalized[index] = true;
+        }
+    }
     let configured_limit = request.max_cells.clamp(100_000, MAX_ROUTE_CELLS);
     if cells > configured_limit {
         return Err(NativeError::Gdal(format!("El MDT contiene {cells} celdas; el límite de procesado configurado es {configured_limit}. Reduzca el área, utilice MDT25/MDT200 o cambie las Opciones de procesado.")));
@@ -1903,7 +1927,16 @@ fn calculate_route_from_path(
                 request.ardigo_speed_ms,
             )?;
             unit = edge_unit;
-            let candidate = cost + edge_cost * discounts[position].min(discounts[next]);
+            // mc_rank semantics: a conductance multiplier p is equivalent to
+            // dividing traversal cost by p. Penalise every edge incident to a
+            // cell used by an earlier ranked itinerary, without changing the
+            // scientific surface stored in the cache.
+            let rank_multiplier = ranked_edge_multiplier(
+                rank_penalized[position],
+                rank_penalized[next],
+                request.rank_penalty,
+            );
+            let candidate = cost + edge_cost * discounts[position].min(discounts[next]) * rank_multiplier;
             if candidate < distance[next] {
                 distance[next] = candidate;
                 previous[next] = position;
@@ -1937,6 +1970,7 @@ fn calculate_route_from_path(
     let mut distance_m = 0.0;
     let mut ascent_m = 0.0;
     let mut descent_m = 0.0;
+    let mut original_cost = 0.0;
     for pair in path.windows(2) {
         let a = pair[0];
         let b = pair[1];
@@ -1944,6 +1978,15 @@ fn calculate_route_from_path(
         let dy = (b / width) as f64 - (a / width) as f64;
         distance_m += (step_x_m * dx).hypot(step_y_m * dy);
         let rise = (elevations[b] - elevations[a]) as f64;
+        let (edge_cost, _) = transition_cost(
+            &request.model,
+            (step_x_m * dx).hypot(step_y_m * dy),
+            rise,
+            penalties[a].max(penalties[b]),
+            request.critical_slope_percent,
+            request.ardigo_speed_ms,
+        )?;
+        original_cost += edge_cost * discounts[a].min(discounts[b]);
         if rise > 0.0 {
             ascent_m += rise;
         } else {
@@ -1983,11 +2026,11 @@ fn calculate_route_from_path(
     Ok(NativeRouteResult {
         model: request.model,
         direction: "inicio→final".to_owned(),
-        path: Vec::new(),
+        path,
         coordinates,
         elevations_m,
         slopes_percent,
-        cost: distance[end],
+        cost: original_cost,
         unit: unit.to_owned(),
         distance_m,
         ascent_m,
@@ -2056,6 +2099,8 @@ fn calculate_isochrones_from_path(
         critical_slope_percent: request.critical_slope_percent,
         ardigo_speed_ms: request.ardigo_speed_ms,
         max_cells: request.max_cells,
+        rank_penalized_cells: Vec::new(),
+        rank_penalty: 1.0,
     };
     let (surface, reused) = prepared_surface(&raster, &route_request, cache)?;
     let cells = surface.width * surface.height;
@@ -3060,6 +3105,8 @@ fn topographic_surface(
         critical_slope_percent: 10.0,
         ardigo_speed_ms: 1.2,
         max_cells: MAX_ROUTE_CELLS,
+        rank_penalized_cells: vec![],
+        rank_penalty: 1.0,
     };
     prepared_surface(raster, &request, cache)
 }
@@ -3462,6 +3509,8 @@ mod tests {
             critical_slope_percent: 10.0,
             ardigo_speed_ms: 1.2,
             max_cells: MAX_ROUTE_CELLS,
+            rank_penalized_cells: Vec::new(),
+            rank_penalty: 1.0,
         };
         let result = calculate_route_from_path(PathBuf::from(&path), request.clone(), &cache)
             .expect("ruta sobre el GeoTIFF real");
@@ -3531,6 +3580,8 @@ mod tests {
             critical_slope_percent: 10.0,
             ardigo_speed_ms: 1.2,
             max_cells: MAX_ROUTE_CELLS,
+            rank_penalized_cells: Vec::new(),
+            rank_penalty: 1.0,
         };
         let key = surface_cache_key(&path, &request).expect("clave base");
         let mut changed = request.clone();
@@ -3791,5 +3842,12 @@ mod tests {
             Ok(_) => panic!("debía rechazar la altura"),
         };
         assert!(error.to_string().contains("altura"));
+    }
+
+    #[test]
+    fn ranked_penalty_affects_every_edge_incident_to_a_used_cell() {
+        assert_eq!(ranked_edge_multiplier(false, false, 0.01), 1.0);
+        assert_eq!(ranked_edge_multiplier(true, false, 0.01), 100.0);
+        assert_eq!(ranked_edge_multiplier(false, true, 0.1), 10.0);
     }
 }

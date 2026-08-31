@@ -22,6 +22,8 @@ on:
         options:
           - all
           - windows
+          - linux-amd64
+          - linux-arm64
         default: all
 
 jobs:
@@ -51,13 +53,13 @@ jobs:
       - run: cargo test --manifest-path src-tauri/Cargo.toml
 
   installers:
-    name: Instalador · ${{ matrix.os }}
+    name: Instalador · ${{ matrix.label }}
     if: github.event_name == 'workflow_dispatch' && inputs.build_installers
     permissions:
       contents: write
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(inputs.installer_platform == 'windows' && '{"include":[{"os":"windows-2025","command":"pnpm desktop:build:windows"}]}' || '{"include":[{"os":"macos-14","command":"pnpm desktop:build:macos"},{"os":"ubuntu-24.04","command":"pnpm desktop:build:linux"},{"os":"windows-2025","command":"pnpm desktop:build:windows"}]}') }}
+      matrix: ${{ fromJSON(inputs.installer_platform == 'windows' && '{"include":[{"label":"Windows x64","os":"windows-2025","command":"pnpm desktop:build:windows"}]}' || inputs.installer_platform == 'linux-amd64' && '{"include":[{"label":"Linux AMD64","os":"ubuntu-24.04","command":"pnpm desktop:build:linux"}]}' || inputs.installer_platform == 'linux-arm64' && '{"include":[{"label":"Linux ARM64","os":"ubuntu-22.04-arm","command":"pnpm desktop:build:linux"}]}' || '{"include":[{"label":"macOS ARM64","os":"macos-14","command":"pnpm desktop:build:macos"},{"label":"Linux AMD64","os":"ubuntu-24.04","command":"pnpm desktop:build:linux"},{"label":"Linux ARM64","os":"ubuntu-22.04-arm","command":"pnpm desktop:build:linux"},{"label":"Windows x64","os":"windows-2025","command":"pnpm desktop:build:windows"}]}') }}
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6

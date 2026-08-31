@@ -96,6 +96,27 @@ jobs:
           "PROJ_DATA=$prefix\Library\share\proj" | Out-File -FilePath $env:GITHUB_ENV -Append
       - run: pnpm install --frozen-lockfile
       - run: ${{ matrix.command }}
+      - name: Verificar GDAL empaquetado en Linux
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          package_root="$(mktemp -d)"
+          trap 'rm -rf "$package_root"' EXIT
+          package="$(find src-tauri/target/release/bundle/deb -name '*.deb' -print -quit)"
+          test -n "$package"
+          dpkg-deb -x "$package" "$package_root"
+          gdalinfo="$(find "$package_root" -path '*/geospatial/bin/gdalinfo' -type f -print -quit)"
+          test -x "$gdalinfo"
+          geospatial="$(dirname "$(dirname "$gdalinfo")")"
+          test ! -e "$geospatial/lib/libc.so.6"
+          export GDAL_DATA="$geospatial/share/gdal"
+          export PROJ_DATA="$geospatial/share/proj"
+          export PROJ_LIB="$geospatial/share/proj"
+          export LD_LIBRARY_PATH="$geospatial/lib"
+          printf 'P2\n2 2\n255\n0 64\n128 255\n' > "$package_root/smoke.pgm"
+          "$geospatial/bin/gdal_translate" -q -of GTiff "$package_root/smoke.pgm" "$package_root/smoke.tif"
+          "$gdalinfo" -json -stats "$package_root/smoke.tif" > "$package_root/smoke.json"
+          grep -q '"driverShortName":"GTiff"' "$package_root/smoke.json"
       - name: Publicar instalador de macOS
         if: runner.os == 'macOS'
         env:

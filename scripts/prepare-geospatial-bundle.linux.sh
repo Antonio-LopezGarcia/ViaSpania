@@ -7,7 +7,18 @@ bin_dir="$bundle_dir/bin"
 lib_dir="$bundle_dir/lib"
 share_dir="$bundle_dir/share"
 license_dir="$bundle_dir/licenses"
-commands=(gdalinfo gdalwarp gdal_translate gdaldem gdalsrsinfo gdaltransform gdallocationinfo ogr2ogr proj)
+commands=(gdalinfo gdalwarp gdal_translate gdaldem gdalsrsinfo gdaltransform gdallocationinfo ogrinfo ogr2ogr proj)
+
+is_system_runtime_library() {
+  case "$(basename "$1")" in
+    ld-linux-*.so.*|libc.so.*|libm.so.*|libpthread.so.*|libdl.so.*|librt.so.*|libresolv.so.*|libanl.so.*|libutil.so.*|libnss_*.so.*|libBrokenLocale.so.*|libSegFault.so|libmemusage.so|libmvec.so.*|libpcprofile.so|libthread_db.so.*)
+      return 0
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
 
 for tool in gdal-config projinfo ldd patchelf; do
   command -v "$tool" >/dev/null || { echo "Falta la herramienta requerida en Linux: $tool" >&2; exit 1; }
@@ -37,6 +48,7 @@ while test -s "$queue_file"; do
   : > "$next_file"
   while IFS= read -r dependency; do
     test -f "$dependency" || continue
+    is_system_runtime_library "$dependency" && continue
     target="$lib_dir/$(basename "$dependency")"
     test -f "$target" && continue
     cp -L "$dependency" "$target"

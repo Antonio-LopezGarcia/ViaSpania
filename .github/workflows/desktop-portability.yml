@@ -10,6 +10,11 @@ on:
         required: false
         type: boolean
         default: false
+      release_tag:
+        description: Etiqueta de la Release en la que publicar los instaladores
+        required: true
+        type: string
+        default: v0.2.0
 
 jobs:
   quality:
@@ -40,6 +45,8 @@ jobs:
   installers:
     name: Instalador · ${{ matrix.os }}
     if: github.event_name == 'workflow_dispatch' && inputs.build_installers
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -88,30 +95,19 @@ jobs:
       - run: ${{ matrix.command }}
       - name: Publicar instalador de macOS
         if: runner.os == 'macOS'
-        uses: actions/upload-artifact@v6
-        with:
-          name: ViaSpania-macOS-arm64
-          path: src-tauri/target/release/bundle/dmg/*.dmg
-          if-no-files-found: error
-          compression-level: 0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ inputs.release_tag }}" src-tauri/target/release/bundle/dmg/*.dmg --clobber
       - name: Publicar instaladores de Linux
         if: runner.os == 'Linux'
-        uses: actions/upload-artifact@v6
-        with:
-          name: ViaSpania-Ubuntu-x64
-          path: |
-            src-tauri/target/release/bundle/deb/*.deb
-            src-tauri/target/release/bundle/appimage/*.AppImage
-            src-tauri/target/release/bundle/rpm/*.rpm
-          if-no-files-found: error
-          compression-level: 0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ inputs.release_tag }}" src-tauri/target/release/bundle/deb/*.deb src-tauri/target/release/bundle/appimage/*.AppImage src-tauri/target/release/bundle/rpm/*.rpm --clobber
       - name: Publicar instalador de Windows
         if: runner.os == 'Windows'
-        uses: actions/upload-artifact@v6
-        with:
-          name: ViaSpania-Windows-x64
-          path: |
-            src-tauri/target/release/bundle/msi/*.msi
-            src-tauri/target/release/bundle/nsis/*-setup.exe
-          if-no-files-found: error
-          compression-level: 0
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $installers = Get-ChildItem src-tauri/target/release/bundle/msi/*.msi, src-tauri/target/release/bundle/nsis/*-setup.exe
+          gh release upload "${{ inputs.release_tag }}" @($installers.FullName) --clobber

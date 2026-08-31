@@ -113,10 +113,12 @@ jobs:
           export PROJ_DATA="$geospatial/share/proj"
           export PROJ_LIB="$geospatial/share/proj"
           export LD_LIBRARY_PATH="$geospatial/lib"
-          printf 'P2\n2 2\n255\n0 64\n128 255\n' > "$package_root/smoke.pgm"
-          "$geospatial/bin/gdal_translate" -q -of GTiff "$package_root/smoke.pgm" "$package_root/smoke.tif"
+          source_tif="$(find "$geospatial/share/proj" -name '*.tif' -type f -print -quit)"
+          test -n "$source_tif"
+          "$gdalinfo" -json "$source_tif" > "$package_root/source.json"
+          "$geospatial/bin/gdal_translate" -q -of GTiff "$source_tif" "$package_root/smoke.tif"
           "$gdalinfo" -json -stats "$package_root/smoke.tif" > "$package_root/smoke.json"
-          grep -q '"driverShortName":"GTiff"' "$package_root/smoke.json"
+          grep -Eq '"driverShortName"[[:space:]]*:[[:space:]]*"GTiff"' "$package_root/smoke.json"
       - name: Publicar instalador de macOS
         if: runner.os == 'macOS'
         env:

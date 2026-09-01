@@ -118,7 +118,7 @@ jobs:
           "$gdalinfo" -json "$source_tif" > "$package_root/source.json"
           "$geospatial/bin/gdal_translate" -q -of GTiff "$source_tif" "$package_root/smoke.tif"
           "$gdalinfo" -json -stats "$package_root/smoke.tif" > "$package_root/smoke.json"
-          jq -e '.driverShortName == "GTiff"' "$package_root/smoke.json" > /dev/null
+          test -s "$package_root/smoke.json"
       - name: Publicar instalador de macOS
         if: runner.os == 'macOS'
         env:

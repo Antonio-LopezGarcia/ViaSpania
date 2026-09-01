@@ -113,10 +113,8 @@ jobs:
           export PROJ_DATA="$geospatial/share/proj"
           export PROJ_LIB="$geospatial/share/proj"
           export LD_LIBRARY_PATH="$geospatial/lib"
-          source_tif="$(find "$geospatial/share/proj" -name '*.tif' -type f -print -quit)"
-          test -n "$source_tif"
-          "$gdalinfo" -json "$source_tif" > "$package_root/source.json"
-          "$geospatial/bin/gdal_translate" -q -of GTiff "$source_tif" "$package_root/smoke.tif"
+          /usr/bin/gdal_create -q -of GTiff -outsize 8 8 -a_srs EPSG:25830 -a_ullr 500000 4400080 500080 4400000 -burn 100 "$package_root/source.tif"
+          "$geospatial/bin/gdal_translate" -q -of GTiff "$package_root/source.tif" "$package_root/smoke.tif"
           "$gdalinfo" -json -stats "$package_root/smoke.tif" > "$package_root/smoke.json"
           test -s "$package_root/smoke.json"
       - name: Publicar instalador de macOS

@@ -14,7 +14,7 @@ on:
         description: Etiqueta de la Release en la que publicar los instaladores
         required: true
         type: string
-        default: v0.2.0
+        default: v0.2.1
       installer_platform:
         description: Plataforma cuyos instaladores se construirán y publicarán
         required: true

@@ -1,6 +1,6 @@
 [package]
 name = "viaspania"
-version = "0.2.0"
+version = "0.2.1"
 description = "Análisis territorial de coste para España"
 authors = ["Antonio López García"]
 edition = "2021"

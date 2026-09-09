@@ -10,15 +10,16 @@ function segmentDistanceM(a:readonly [number,number],b:readonly [number,number])
 
 export function elevationProfileSamples(route:Pick<RouteResult,'coordinates'|'elevationsM'>):ElevationProfileSample[]{
  const coordinates=route.coordinates??[],elevations=route.elevationsM??[];
- if(coordinates.length<2||coordinates.length!==elevations.length)return[];
+ if(coordinates.length<2||coordinates.length!==elevations.length||!elevations.every(Number.isFinite)||!coordinates.every(point=>point.every(Number.isFinite)))return[];
  let distanceM=0;
  return coordinates.map((coordinate,index)=>{if(index)distanceM+=segmentDistanceM(coordinates[index-1],coordinate);return{distanceM,elevationM:elevations[index]}});
 }
 
 export function profileExtent(series:readonly (readonly ElevationProfileSample[])[]){
- const samples=series.flat(),elevations=samples.map(sample=>sample.elevationM),maxDistanceM=Math.max(0,...samples.map(sample=>sample.distanceM));
- if(!samples.length)return null;
- const rawMin=Math.min(...elevations),rawMax=Math.max(...elevations),padding=Math.max(1,(rawMax-rawMin)*.08);
+ let rawMin=Infinity,rawMax=-Infinity,maxDistanceM=0;
+ for(const samples of series)for(const sample of samples){rawMin=Math.min(rawMin,sample.elevationM);rawMax=Math.max(rawMax,sample.elevationM);maxDistanceM=Math.max(maxDistanceM,sample.distanceM)}
+ if(rawMin===Infinity)return null;
+ const padding=Math.max(1,(rawMax-rawMin)*.08);
  return{minElevationM:rawMin-padding,maxElevationM:rawMax+padding,maxDistanceM};
 }
 

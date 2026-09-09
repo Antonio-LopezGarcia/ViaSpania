@@ -28,3 +28,22 @@ export const MODEL_HELP_EN:Record<ModelId,MT>={
  wheeled:{author:'Vehicle function documented by Irmela Herzog in optimal-path literature.',purpose:'Produces relative cost that grows quadratically beyond a reference slope.',variables:['Absolute slope, distance and critical slope.'],editable:['Critical slope from 1% to 100%.','Connectivity, barriers and facilitators.'],limits:['Critical slope raises cost; it does not block a cell.','Does not model a specific vehicle, traction or turning radius.']},
  eastman:{author:'J. Ronald Eastman developed GIS multi-criteria and cost formulations.',purpose:'Assigns quadratic relative cost from slope angle.',variables:['Absolute slope angle, distance and terrain.'],editable:['Connectivity, barriers and facilitators.'],limits:['An abstract index, not direct time or energy.']},
 };
+
+/** Same equations and units as the Spanish definitions; only notation and prose are localised. */
+export const MODEL_FORMULAS_EN:Record<ModelId,string>={
+  "tobler": "v = 6 · exp(−3.5 · |s + 0.05|) km/h; time = surface distance / v.",
+  "tobler-off": "v = 0.6 · 6 · exp(−3.5 · |s + 0.05|) km/h.",
+  "marquez-perez": "v = 4.8 · exp(−5.3 · |0.7s + 0.03|) km/h.",
+  "kondo-seino": "v = 5.1 · exp(k · |s + 0.07|) km/h; k = −2.25 if s ≥ −0.07, and −1.5 for steeper descents.",
+  "rees": "v = 3.6 / (0.75 + 0.09|s| + 14.6|s|²) km/h.",
+  "gkrs": "v = 4 · exp(−0.008 · a²) km/h; a = arctan(|s|) in degrees.",
+  "tripcevich": "v = (4.028 · 46²) / ((a + 4.127)² + 46²) km/h.",
+  "alberti": "v = 0.25 · 6 · exp(−3.5 · |s + 0.05|) km/h.",
+  "pandolf": "M = 1.5W + 2(W+L)(L/W)² + N(W+L)(1.5V² + 0.35V·100|s|) W; energy = M · distance/V.",
+  "pandolf-corrected": "Starts from Pandolf and, if s < 0, subtracts the Yokota correction factor; cost is restricted to a positive value.",
+  "minetti": "C = 280.5x⁵ − 58.7x⁴ − 76.8x³ + 51.9x² + 19.6x + 2.5 J/(kg·m), with x = |s|.",
+  "herzog": "C = 1337.8x⁶ + 278.19x⁵ − 517.39x⁴ − 78.199x³ + 93.419x² + 19.825x + 1.64 J/(kg·m).",
+  "ardigo": "C = 1.866e^(4.911x)V² − 3.773e^(3.416x)V + 45.71x² + 18.9x + 4.456 J/(kg·m).",
+  "wheeled": "C = distance · (1 + (100|s|/p)²) · terrain; p is the critical slope in %.",
+  "eastman": "C = distance · (0.031a² − 0.025a + 1) · terrain; a = arctan(|s|) in degrees."
+};

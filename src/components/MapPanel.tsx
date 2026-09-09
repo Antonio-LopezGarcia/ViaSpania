@@ -1,3 +1,4 @@
+import {barrierMapStyle,facilitatorMapStyle} from './constraintMapFeatures';
 import { useEffect, useRef, useState } from 'react';
 import Map from 'ol/Map';
 import View from 'ol/View';
@@ -31,6 +32,7 @@ import {selectionMarkerStyle} from './selectionMarkerStyle';
 import type { Barrier, EnabledCrossing, GeoPoint, PointRole, PreferredCorridor } from '../types';
 import { slopeColor } from '../core/routeSlope';
 import { loadAppSettings } from '../core/appSettings';
+import {builtInMapAttribution} from '../core/mapSources';
 import { fetchVectorTile } from '../services/native';
 import { createExternalMapSource } from '../services/externalMapLayers';
 import type { ExternalMapLayer } from '../core/externalMapLayers';
@@ -38,6 +40,7 @@ import { COPERNICUS_VHR_2021_LAYER, COPERNICUS_VHR_2021_WMS } from '../services/
 import 'ol/ol.css';
 
 export interface SharedMapView {
+  extent?: [number,number,number,number];
   center: [number, number];
   resolution: number;
   rotation: number;
@@ -49,6 +52,7 @@ export type SelectableElement = {kind:'point';id:number}|{kind:'barrier';id:numb
 
 interface MapPanelProps {
   kind: 'osm' | 'pnoa' | 'historical';
+  expanded?: boolean;
   navigationLayer?: 'osm' | 'ign-topographic';
   orthophotoLayer?: 'pnoa' | 'copernicus-vhr-2021';
   historicalLayer?: 'MTN50' | 'MTN25' | 'catastrones' | 'Minutas' | 'AMS_1956-1957' | 'Interministerial_1973-1986';
@@ -91,7 +95,7 @@ interface MapPanelProps {
 const pnoaRes = Array.from({ length: 20 }, (_, zoom) => 156543.03392804097 / 2 ** zoom);
 const ids = pnoaRes.map((_, zoom) => String(zoom));
 
-function pointStyle(feature: Feature, selectedPointId?: number | null, showLabel=false) {
+function pointStyle(feature: Feature, selectedPointId?: number | null, showLabel=false, labelSize=11) {
   const role = feature.get('role') as PointRole;
   const selected = feature.get('pointId') === selectedPointId;
   const color = role === 'inicio' ? '#59d2ff' : role === 'final' ? '#ff796f' : '#d8ff55';
@@ -101,7 +105,7 @@ function pointStyle(feature: Feature, selectedPointId?: number | null, showLabel
       fill: new Fill({ color }),
       stroke: new Stroke({ color: selected ? '#ffffff' : '#101713', width: selected ? 3 : 2 }),
     }),
-    text: showLabel ? new Text({ text:String(feature.get('name')??''), offsetY:-17, font:'600 11px sans-serif', fill:new Fill({color:'#fff'}), stroke:new Stroke({color:'#101713',width:3}) }) : undefined,
+    text: showLabel ? new Text({ text:String(feature.get('name')??''), offsetY:-(labelSize+6), font:`600 ${labelSize}px sans-serif`, fill:new Fill({color:'#fff'}), stroke:new Stroke({color:'#101713',width:3}) }) : undefined,
   });
 }
 
@@ -117,7 +121,7 @@ function populatedPlacesUrl(extent: number[]) {
   return `https://www.ign.es/wfs-inspire/ngbe?${params.toString()}`;
 }
 
-function populatedPlaceStyle(feature: Feature) {
+function populatedPlaceStyle(feature: Feature,labelSize=11) {
   const type=feature.get('type') as {href?:string}|string|undefined,href=typeof type==='string'?type:type?.href;
   if(!href?.endsWith('/populatedPlace'))return undefined;
   const name = feature.get('name') as { GeographicalName?: { spelling?: { SpellingOfName?: { text?: string } } } } | undefined;
@@ -125,11 +129,11 @@ function populatedPlaceStyle(feature: Feature) {
   if (!label) return undefined;
   return new Style({
     image: new CircleStyle({ radius: 3, fill: new Fill({ color: '#fff' }), stroke: new Stroke({ color: '#152019', width: 1.5 }) }),
-    text: new Text({ text: label, offsetY: -11, font: '600 12px sans-serif', fill: new Fill({ color: '#fff' }), stroke: new Stroke({ color: '#111', width: 3 }), overflow: false }),
+    text: new Text({ text: label, offsetY: -(labelSize+5), font: `600 ${labelSize}px sans-serif`, fill: new Fill({ color: '#fff' }), stroke: new Stroke({ color: '#111', width: 3 }), overflow: false }),
   });
 }
 
-function populationTileStyle(feature:Feature){const label=String(feature.get('nombre')??'').trim();if(!label)return undefined;return new Style({text:new Text({text:label,font:'700 12px sans-serif',fill:new Fill({color:'#fff'}),stroke:new Stroke({color:'#111',width:3}),overflow:false,padding:[3,5,3,5]})})}
+function populationTileStyle(feature:Feature,labelSize=11){const label=String(feature.get('nombre')??'').trim();if(!label)return undefined;return new Style({text:new Text({text:label,font:`700 ${labelSize}px sans-serif`,fill:new Fill({color:'#fff'}),stroke:new Stroke({color:'#111',width:3}),overflow:false,padding:[3,5,3,5]})})}
 function populationTileSource(){const format=new MVT(),source=new VectorTileSource({format,url:'https://vt-poblaciones.ign.es/api.nuc/{z}/{x}/{y}.pbf',attributions:'Núcleos de población: IGN/CNIG · IGR Poblaciones'});source.setTileLoadFunction((rawTile,url)=>{const tile=rawTile as VectorTile<FeatureLike>;tile.setLoader((extent:Extent,_resolution:number,projection:Projection)=>{fetchVectorTile(url).then(base64=>{const binary=atob(base64),bytes=new Uint8Array(binary.length);for(let index=0;index<binary.length;index++)bytes[index]=binary.charCodeAt(index);tile.setFeatures(format.readFeatures(bytes.buffer,{extent,featureProjection:projection}))}).catch(()=>tile.setFeatures([]))})});return source}
 
 export function MapPanel(props: MapPanelProps) {
@@ -148,6 +152,8 @@ export function MapPanel(props: MapPanelProps) {
   const barrierDrawRef = useRef<Draw | null>(null);
   const propsRef = useRef(props);
   const [mapPreferences,setMapPreferences]=useState(()=>loadAppSettings());
+  const [showConstraints,setShowConstraints]=useState(true),[showLabels,setShowLabels]=useState(()=>loadAppSettings().showPointLabels);
+  const effectiveShowLabels=props.expanded===undefined?(props.showPointLabels??mapPreferences.showPointLabels):showLabels;
   propsRef.current = props;
   useEffect(()=>{const refresh=()=>setMapPreferences(loadAppSettings());window.addEventListener('viaspania-settings',refresh);return()=>window.removeEventListener('viaspania-settings',refresh)},[]);
 
@@ -168,15 +174,15 @@ export function MapPanel(props: MapPanelProps) {
             }),
             style: 'default',
             crossOrigin: 'anonymous',
-            attributions: 'Cartografía topográfica de máxima actualidad: IGN/CNIG',
+            attributions: builtInMapAttribution('ign-topographic'),
           })
-        : new OSM({ attributions: '© OpenStreetMap contributors' })
+        : new OSM({ attributions: builtInMapAttribution('osm') })
       : kind === 'pnoa' && propsRef.current.orthophotoLayer === 'copernicus-vhr-2021' ? new TileWMS({
           url: COPERNICUS_VHR_2021_WMS,
           params: { LAYERS: COPERNICUS_VHR_2021_LAYER, TILED: true, FORMAT: 'image/jpeg', TRANSPARENT: false },
           projection: 'EPSG:4326',
           crossOrigin: 'anonymous',
-          attributions: 'Copernicus Land Monitoring Service · EEA · VHR 2021 · 2 m',
+          attributions: builtInMapAttribution('copernicus-vhr-2021'),
         })
       : kind === 'pnoa' ? new WMTS({
           url: 'https://www.ign.es/wmts/pnoa-ma',
@@ -186,7 +192,7 @@ export function MapPanel(props: MapPanelProps) {
           projection: 'EPSG:3857',
           tileGrid: new WMTSTileGrid({ origin: [-20037508.342789244, 20037508.342789244], resolutions: pnoaRes, matrixIds: ids }),
           style: 'default',
-          attributions: 'Origen: IGN/CNIG',
+          attributions: builtInMapAttribution('pnoa'),
         }) : (() => {
           const layer = propsRef.current.historicalLayer ?? 'MTN50';
           const minutas = layer === 'Minutas';
@@ -196,10 +202,11 @@ export function MapPanel(props: MapPanelProps) {
             params: { LAYERS: layer, TILED: true, FORMAT: aerial ? 'image/jpeg' : 'image/png', TRANSPARENT: !aerial },
             projection: 'EPSG:3857',
             crossOrigin: 'anonymous',
-            attributions: 'Cartografía histórica: IGN/CNIG',
+            attributions: builtInMapAttribution(layer),
           });
         })();
-    const pointLayer = new VectorLayer({ source: pointSourceRef.current, style: feature => pointStyle(feature as Feature, propsRef.current.selectedPointId, propsRef.current.showPointLabels??mapPreferences.showPointLabels), zIndex: 20 });
+    const labelSize=mapPreferences.labelTextSizePx??11;
+    const pointLayer = new VectorLayer({ source: pointSourceRef.current, style: feature => pointStyle(feature as Feature, propsRef.current.selectedPointId, effectiveShowLabels,labelSize), zIndex: 20 });
     const referenceLayers = kind === 'pnoa' && propsRef.current.orthophotoLayer !== 'copernicus-vhr-2021' ? [
       ...((propsRef.current.showMunicipalBoundaries??mapPreferences.showMunicipalBoundaries) ? [new TileLayer({ source: new TileWMS({
         url: 'https://www.ign.es/wms-inspire/unidades-administrativas',
@@ -208,7 +215,7 @@ export function MapPanel(props: MapPanelProps) {
       }) })] : []),
       ...((propsRef.current.showGeographicalNames??mapPreferences.showUrbanNames) ? [new VectorTileLayer({
         source: populationTileSource(),
-        style: feature => populationTileStyle(feature as Feature),
+        style: feature => populationTileStyle(feature as Feature,labelSize),
         declutter: true,
         minZoom: 8,
       })] : []),
@@ -235,12 +242,11 @@ export function MapPanel(props: MapPanelProps) {
     });
     const barrierLayer = new VectorLayer({
       source: barrierSourceRef.current,
-      style: feature => feature.getGeometry()?.getType()==='Point'
-        ? new Style({ image: new CircleStyle({ radius: 6, fill: new Fill({ color: '#ff3b3b' }), stroke: new Stroke({ color: '#fff', width: 2 }) }) })
-        : [new Style({ stroke: new Stroke({ color: feature.get('selected')?'#d8ff55':'#fff', width: feature.get('selected')?9:7 }) }),new Style({ stroke: new Stroke({ color: feature.get('kind')==='penalty'?'#777':'#050505', width: 4, lineDash: feature.get('kind')==='penalty'?[6,4]:undefined }) })],
+      style: feature => barrierMapStyle(feature,effectiveShowLabels,labelSize),
+      visible:showConstraints,
       zIndex: 19,
     });
-    const facilitatorLayer=new VectorLayer({source:facilitatorSourceRef.current,style:feature=>feature.getGeometry()?.getType()==='Point'?new Style({image:new CircleStyle({radius:8,fill:new Fill({color:'#d778ff'}),stroke:new Stroke({color:'#fff',width:2})}),text:new Text({text:String(feature.get('name')??''),offsetY:-17,fill:new Fill({color:'#fff'}),stroke:new Stroke({color:'#111',width:3})})}):new Style({stroke:new Stroke({color:feature.get('kind')==='crossing'?'#36d6ff':'#f4c542',width:feature.get('kind')==='crossing'?7:5,lineDash:feature.get('kind')==='crossing'?undefined:[10,5]})}),zIndex:19});
+    const facilitatorLayer=new VectorLayer({source:facilitatorSourceRef.current,style:feature=>facilitatorMapStyle(feature,effectiveShowLabels,labelSize),visible:showConstraints,zIndex:19});
     const locationLayer=new VectorLayer({source:locationSourceRef.current,zIndex:25,style:feature=>feature.getGeometry()?.getType()==='Circle'?new Style({fill:new Fill({color:'rgba(60,150,255,.16)'}),stroke:new Stroke({color:'rgba(90,180,255,.8)',width:2})}):new Style({image:new CircleStyle({radius:7,fill:new Fill({color:'#168cff'}),stroke:new Stroke({color:'#fff',width:3})})})});
     const selectionMarkerLayer=new VectorLayer({source:selectionMarkerSourceRef.current,zIndex:30,style:selectionMarkerStyle()});
     const isochroneSurfaceLayer=propsRef.current.isochroneSurface?new ImageLayer({source:new ImageStatic({url:propsRef.current.isochroneSurface.imageUrl,imageExtent:transformExtent(propsRef.current.isochroneSurface.extent,'EPSG:4326','EPSG:3857'),projection:'EPSG:3857'}),opacity:propsRef.current.isochroneSurface.opacity,zIndex:16}):null;
@@ -273,7 +279,7 @@ export function MapPanel(props: MapPanelProps) {
       const view = map.getView();
       const center = view.getCenter();
       const resolution = view.getResolution();
-      if (center && resolution) propsRef.current.onViewChange({ center: [center[0], center[1]], resolution, rotation: view.getRotation() });
+      if (center && resolution) propsRef.current.onViewChange({ center: [center[0], center[1]], resolution, rotation: view.getRotation(), extent: transformExtent(view.calculateExtent(map.getSize()), view.getProjection(), 'EPSG:4326') as [number,number,number,number] });
     });
     map.on('pointermove',event=>{
       const [lon,lat]=toLonLat(event.coordinate);
@@ -315,7 +321,7 @@ export function MapPanel(props: MapPanelProps) {
       else if (currentMode === 'multipoint') propsRef.current.onPointMapAction?.({ type: 'place', role: 'multipunto', lon: coordinate[0], lat: coordinate[1] });
     });
     return () => { map.getViewport().removeEventListener('mouseleave',leave);map.getViewport().removeEventListener('contextmenu',contextMenu);barrierDrawRef.current=null;mapRef.current = null; map.setTarget(undefined); };
-  }, [kind, props.historicalLayer, props.navigationLayer, props.orthophotoLayer, props.externalLayer?.id, props.externalLayer?.url, props.showMunicipalBoundaries, props.showGeographicalNames, props.showPointLabels, props.showScale, props.isochroneSurface?.imageUrl, props.isochroneSurface?.opacity, mapPreferences]);
+  }, [kind, props.historicalLayer, props.navigationLayer, props.orthophotoLayer, props.externalLayer?.id, props.externalLayer?.url, props.showMunicipalBoundaries, props.showGeographicalNames, props.showPointLabels, props.showScale, props.isochroneSurface?.imageUrl, props.isochroneSurface?.opacity, mapPreferences,showConstraints,effectiveShowLabels]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -366,11 +372,11 @@ export function MapPanel(props: MapPanelProps) {
     const source=barrierSourceRef.current;
     source.clear();
     for(const [barrierIndex,barrier] of (props.barriers??[]).entries()){
-      if(barrier.coordinates.length>=2){const feature=new Feature(new LineString(barrier.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.set('kind',barrier.kind);feature.set('value',barrier.value);feature.set('barrierIndex',barrierIndex);feature.set('elementKind','barrier');feature.set('elementId',barrierIndex);feature.set('selected',props.selectedElement?.kind==='barrier'&&props.selectedElement.id===barrierIndex);source.addFeature(feature);}
+      if(barrier.coordinates.length>=2){const feature=new Feature(new LineString(barrier.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.set('kind',barrier.kind);feature.set('name',barrier.name?.trim()||`Barrera ${barrierIndex+1}`);feature.set('value',barrier.value);feature.set('barrierIndex',barrierIndex);feature.set('elementKind','barrier');feature.set('elementId',barrierIndex);feature.set('selected',props.selectedElement?.kind==='barrier'&&props.selectedElement.id===barrierIndex);source.addFeature(feature);}
     }
   }, [props.barriers,props.selectedElement]);
-  useEffect(()=>{const source=facilitatorSourceRef.current;source.clear();for(const item of props.corridors??[]){const feature=new Feature(new LineString(item.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.set('kind','corridor');feature.set('elementKind','corridor');feature.set('elementId',item.id);source.addFeature(feature)}for(const item of props.crossings??[]){const feature=new Feature(new LineString(item.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.set('kind','crossing');feature.set('elementKind','crossing');feature.set('elementId',item.id);source.addFeature(feature)}},[props.corridors,props.crossings]);
-  useEffect(()=>{const sync=(event:Event)=>{const detail=(event as CustomEvent<{corridors:PreferredCorridor[];crossings:EnabledCrossing[];points:{id:string;name:string;coordinate:readonly [number,number]}[]}>).detail,source=facilitatorSourceRef.current;source.clear();for(const item of detail.corridors){const feature=new Feature(new LineString(item.coordinates.map(coordinate=>fromLonLat([...coordinate]))));feature.set('kind','corridor');feature.set('elementKind','corridor');feature.set('elementId',item.id);source.addFeature(feature)}for(const item of detail.crossings){const feature=new Feature(new LineString(item.coordinates.map(coordinate=>fromLonLat([...coordinate]))));feature.set('kind','crossing');feature.set('elementKind','crossing');feature.set('elementId',item.id);source.addFeature(feature)}for(const item of detail.points){const feature=new Feature(new Point(fromLonLat([...item.coordinate])));feature.set('kind','poi');feature.set('name',item.name);feature.set('elementKind','poi');feature.set('elementId',item.id);source.addFeature(feature)}};window.addEventListener('viaspania-facilitators-changed',sync);return()=>window.removeEventListener('viaspania-facilitators-changed',sync)},[]);
+  useEffect(()=>{const source=facilitatorSourceRef.current;source.clear();for(const item of props.corridors??[]){const feature=new Feature(new LineString(item.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.set('kind','corridor');feature.set('name',item.name);feature.set('elementKind','corridor');feature.set('elementId',item.id);source.addFeature(feature)}for(const item of props.crossings??[]){const feature=new Feature(new LineString(item.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.set('kind','crossing');feature.set('name',item.name);feature.set('elementKind','crossing');feature.set('elementId',item.id);source.addFeature(feature)}},[props.corridors,props.crossings]);
+  useEffect(()=>{const sync=(event:Event)=>{const detail=(event as CustomEvent<{corridors:PreferredCorridor[];crossings:EnabledCrossing[];points:{id:string;name:string;coordinate:readonly [number,number]}[]}>).detail,source=facilitatorSourceRef.current;source.clear();for(const item of detail.corridors){const feature=new Feature(new LineString(item.coordinates.map(coordinate=>fromLonLat([...coordinate]))));feature.set('kind','corridor');feature.set('name',item.name);feature.set('elementKind','corridor');feature.set('elementId',item.id);source.addFeature(feature)}for(const item of detail.crossings){const feature=new Feature(new LineString(item.coordinates.map(coordinate=>fromLonLat([...coordinate]))));feature.set('kind','crossing');feature.set('name',item.name);feature.set('elementKind','crossing');feature.set('elementId',item.id);source.addFeature(feature)}for(const item of detail.points){const feature=new Feature(new Point(fromLonLat([...item.coordinate])));feature.set('kind','poi');feature.set('name',item.name);feature.set('elementKind','poi');feature.set('elementId',item.id);source.addFeature(feature)}};window.addEventListener('viaspania-facilitators-changed',sync);return()=>window.removeEventListener('viaspania-facilitators-changed',sync)},[]);
 
   useEffect(()=>{const source=locationSourceRef.current;source.clear();const location=props.userLocation;if(!location)return;const center=fromLonLat([location.lon,location.lat]),mercatorRadius=location.accuracyM/Math.max(.1,Math.cos(location.lat*Math.PI/180));source.addFeatures([new Feature(new Circle(center,mercatorRadius)),new Feature(new Point(center))])},[props.userLocation]);
 
@@ -382,6 +388,7 @@ export function MapPanel(props: MapPanelProps) {
 
   return <>
     <div className={`map ${loadAppSettings().showCrosshairs?'map-crosshair':''}`} ref={host} />
+    {props.expanded&&<div className="mdt-constraint-controls"><label><input type="checkbox" checked={showConstraints} onChange={event=>setShowConstraints(event.target.checked)}/>Mostrar barreras y facilitadores</label><label><input type="checkbox" checked={showLabels} onChange={event=>setShowLabels(event.target.checked)}/>Mostrar etiquetas</label></div>}
     {kind==='pnoa'&&selectedPointId!=null&&points.find(point=>point.id===selectedPointId)&&<label className="point-name-editor"><span>Nombre del punto</span><input value={points.find(point=>point.id===selectedPointId)?.name??''} maxLength={20} onChange={event=>props.onPointNameChange?props.onPointNameChange(selectedPointId,event.target.value):window.dispatchEvent(new CustomEvent('viaspania-rename-point',{detail:{pointId:selectedPointId,name:event.target.value}}))}/><small>{Array.from(points.find(point=>point.id===selectedPointId)?.name??'').length}/20</small></label>}
   </>;
 }

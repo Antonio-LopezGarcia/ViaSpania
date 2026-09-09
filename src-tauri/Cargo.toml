@@ -1,8 +1,9 @@
 [package]
 name = "viaspania"
 version = "0.2.1"
-description = "Análisis territorial de coste para España"
-authors = ["Antonio López García"]
+description = ""
+authors = ["Antonio López García, Universidad de Granada"]
+license = "GPL-3.0-only"
 edition = "2021"
 
 [lib]

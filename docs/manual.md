@@ -1,305 +1,319 @@
-# Manual de ViaSpania
+# Manual general de ViaSpania
 
-ViaSpania analiza desplazamiento y topografía sobre Modelos Digitales del Terreno (MDT). Los puntos se conservan en WGS84 y los cálculos se ejecutan en el CRS métrico del raster.
+ViaSpania  
+Copyright © 2026 Antonio López García, Universidad de Granada  
+Este programa se distribuye bajo la licencia GPL-3.0-only.
 
-## 1. Vista general
+[LICENSE](../LICENSE) · Esta declaración se aplica al código original de ViaSpania. Los componentes de terceros y los datos conservan sus respectivos copyrights, licencias y condiciones. El logotipo y los assets gráficos originales de ViaSpania mantienen copyright separado y todos los derechos reservados; los símbolos institucionales conservan sus condiciones propias.
 
-Los cuatro paneles cartográficos comparten centro, escala y rotación.
+ViaSpania permite explorar el relieve, calcular desplazamientos de coste mínimo y estudiar accesibilidad y visibilidad. Este manual explica cómo preparar un proyecto, elegir un análisis, interpretar sus resultados y guardarlos. Para consultar las ecuaciones y los supuestos de un perfil concreto, utilice el botón de ayuda contextual del cálculo.
 
-### Encabezado
+## 1. Empiece aquí
 
-- **Nuevo proyecto**, **Abrir proyecto** y **Guardar proyecto** gestionan el JSON reproducible. La cabecera muestra junto a ViaSpania el nombre del proyecto activo. **Guardar proyecto** sobrescribe directamente el archivo abierto o recién creado; solo solicita una ubicación cuando el proyecto cargado automáticamente aún no está asociado a un archivo. Al abrir un proyecto que contiene un área de estudio válida, todos los mapas hacen zoom automáticamente a esa extensión.
-- **Exportar resultados** reúne en una carpeta los resultados calculados que se seleccionen, organizados por rutas, superficies y elementos auxiliares.
-- **Vista 3D** abre el terreno tridimensional cuando hay MDT.
-- **Configuración**, **Componer informe**, **Ayuda** y **Créditos** abren sus diálogos. Las opciones del informe se eligen en su propio compositor y no forman parte de Configuración.
+### Qué necesita
 
-### Navegación
+Para realizar los análisis necesita la aplicación de escritorio, un modelo de elevación y los puntos que requiera la herramienta elegida. La conexión a Internet es necesaria para descargar modelos, consultar mapas en línea y buscar nombres de lugares. Puede importar un modelo local; los cálculos se realizan en el equipo.
 
-Sitúa el trabajo sobre OpenStreetMap o topográfico IGN. **Seleccionar área** dibuja por arrastre la extensión del MDT. **Eliminar área** borra extensión, MDT y resultados dependientes, pero conserva puntos y barreras. Al maximizar aparecen PNG y PDF.
+Un mapa de fondo sirve para orientarse. El modelo de elevación proporciona las alturas utilizadas en los cálculos. Cambiar una ortofotografía por otro mapa no cambia el terreno sobre el que se calcula.
 
-### PNOA y herramientas
+### Su primera ruta, paso a paso
 
-Muestra la ortofotografía oficial y permite crear puntos Inicio, Final y multipunto, además de barreras, corredores, puentes o pasos y puntos de interés. Las herramientas **Seleccionar elemento**, **Mover elemento** y **Eliminar elemento** funcionan de forma uniforme con todos ellos. Las barreras absolutas bloquean; las permeables multiplican el coste. Los corredores reducen coste dentro de su anchura, los pasos reabren celdas y los puntos de interés influyen o actúan como waypoint. Límites municipales, núcleos urbanos, nombres, escala, cruceta y punteros simultáneos dependen de Configuración. Los punteros simultáneos están desactivados por defecto.
+1. Pulse **Nuevo proyecto**, escriba un nombre y elija dónde guardar el archivo JSON.
+2. Localice una zona conocida en **Navegación**. Puede desplazarse por el mapa o utilizar **Buscar lugar**.
+3. Active **Seleccionar área** y arrastre un rectángulo pequeño que incluya los dos extremos de su recorrido y espacio alrededor para posibles alternativas.
+4. Elija un modelo del terreno y revise su resolución y el tamaño estimado. Descárguelo y espere a que termine el procesamiento.
+5. En el mapa de **Selección**, active la herramienta de Inicio y coloque el origen. Haga lo mismo con Final para el destino. Ambos deben quedar dentro del modelo y sobre celdas con elevación válida.
+6. Abra **Ruta simple**, seleccione un perfil de desplazamiento y una conectividad. Para este primer ejercicio, deje las barreras y los facilitadores vacíos.
+7. Calcule la ida. Revise el trazado, su distancia, el coste y su unidad, y el perfil de elevación.
+8. Si desea estudiar el regreso, calcule la vuelta independiente. Después guarde el proyecto y utilice **Componer informe** o **Exportar resultados** según lo que necesite conservar.
 
-### MDT
+Empiece con un área pequeña y un solo perfil. Cuando comprenda el resultado, pruebe a cambiar una única condición y vuelva a calcular; así podrá identificar qué provoca cada diferencia.
 
-Representa el GeoTIFF con paleta de grises, terreno, hipsométrica, Viridis o alta montaña. La paleta no cambia elevaciones. La consulta opcional del cursor muestra WGS84 y elevación; un guion significa exterior o `nodata`. Las rutas usan azul para descenso, amarillo verdoso cerca de llano y naranja-rojo para ascenso. Admite PNG/PDF al maximizar.
+## 2. Conozca el espacio de trabajo
 
-### Cartografía histórica
+### Los cuatro mapas
 
-Consulta primera edición MTN25/MTN50, minutas MTN50, planimetrías 1870–1950, vuelo americano B 1956–1957 y vuelo interministerial 1973–1986. Son capas IGN/CNIG con cobertura variable. Admite PNG/PDF.
+- **Navegación**: localiza el trabajo y define el área de estudio.
+- **Selección**: permite colocar y editar puntos, barreras y facilitadores sobre un fondo cartográfico u ortofotográfico.
+- **Modelo digital**: muestra la elevación cargada y las superposiciones disponibles.
+- **Cartografía**: facilita la consulta de mapas modernos, históricos y otras fuentes habilitadas.
 
-### Cálculos geográficos
+Los mapas principales comparten la navegación. Utilice el control de ampliar/restaurar para trabajar con más espacio y vuelva a la disposición conjunta cuando quiera contrastar los fondos. Los controles visibles dependen del visor y de los datos disponibles.
 
-Primera fila: **Ruta simple**, **Ruta comparativa**, **Multipunto**, **Multirruta** y **Pasillo**. Segunda: **Isócronas**, **Isovistas** y **Curvas de nivel**. Cada acceso muestra solo parámetros pertinentes.
+### Acciones principales
 
-### Panel Barreras y facilitadores
+**Nuevo proyecto**, **Abrir proyecto** y **Guardar proyecto** gestionan su archivo de trabajo. El nombre del proyecto activo aparece junto a ViaSpania. **Configuración** reúne las preferencias; **Vista 3D** abre el relieve cuando hay un modelo cargado; **Componer informe** prepara un PDF y **Exportar resultados** guarda productos del análisis.
 
-En Ruta simple, Ruta comparativa, Multipunto, Multirruta, Pasillo e Isócronas aparece la pestaña colapsable **Barreras y facilitadores**. El resumen permanece visible cuando está plegada. Al desplegarla reúne en un mismo lugar:
+El panel de cálculos presenta los parámetros de la herramienta seleccionada. Los botones de ayuda contextual explican ese análisis o perfil. Lea también los mensajes de estado: indican qué falta, el progreso de una operación o el motivo de un error.
 
-- valores usados al dibujar nuevas barreras, corredores y pasos;
-- todas las barreras, con tipo absoluta o permeable, multiplicador y número de vértices;
-- todos los corredores, con nombre, anchura y descuento de coste;
-- todos los puentes, vados o túneles, con nombre, tipo y coste;
-- todos los puntos de interés, con categoría, modo, radio y atracción;
-- eliminación individual de cualquier elemento.
+## 3. Crear, guardar y recuperar proyectos
 
-Los controles ya no se mezclan con el perfil, la conectividad ni los parámetros científicos del cálculo. Dibujar y mover continúa realizándose en el mapa de Selección; editar propiedades y eliminar se realiza desde este panel o con las herramientas cartográficas.
+### Crear y guardar
 
-### Configuración actual
+Sin un proyecto creado o abierto, el encabezado indica **Proyecto vacío** y Guardar permanece desactivado. Al crear un proyecto se solicita un nombre y un destino; el nuevo espacio de trabajo comienza sin modelo, puntos ni resultados. Guarde el trabajo actual antes de empezar otro.
 
-Las preferencias se organizan en **Visores 2D**, **Visor 3D**, **Modelos digitales**, **Cartografía**, **Procesado** y **Sonidos**. Las decisiones de contenido, tamaño y composición de los PDF se realizan al pulsar **Componer informe**.
+**Guardar proyecto** actualiza el archivo asociado. Si se ha recuperado el último proyecto automáticamente y todavía no tiene un destino asociado en la sesión, se solicitará una ubicación. Guarde después de editar puntos, cambiar condiciones o completar un análisis que quiera conservar.
 
-## 2. Preparación del MDT
+### Abrir un proyecto
 
-ViaSpania descarga `Elevacion4258_5`, `Elevacion4258_25` o `Elevacion4258_200` mediante WCS IGN/IDEE, valida el GeoTIFF, lo reproyecta con GDAL/PROJ a ETRS89/UTM local, mantiene celdas cuadradas y genera un COG. Inspecciona dimensiones, geotransformación, CRS, resolución y `nodata`. El WCS admite 4096 celdas por eje y Configuración limita además el total procesable.
+1. Pulse **Abrir proyecto** y seleccione un JSON de ViaSpania.
+2. Compruebe el nombre, los puntos y las condiciones recuperadas. Si contiene un área válida, los mapas se ajustan a ella.
+3. Vuelva a descargar o importar el modelo de elevación antes de recalcular.
 
-### Modelos digitales de superficie (MDS)
+El JSON conserva datos y configuración del proyecto y los resultados incluidos al guardar; no incorpora el archivo de elevación. No confunda guardar el proyecto con exportar todos los productos. Mantenga el JSON, el GeoTIFF y las exportaciones en una carpeta de trabajo identificable.
 
-Configuración → Modelos digitales permite habilitar PNOA-LiDAR MDS05 de la 1.ª cobertura y Copernicus DEM GLO-30. Están desactivados inicialmente y solo aparecen en el selector de modelos de elevación después de habilitarlos. ViaSpania descarga MDS05 por área desde el WCS oficial. Para Copernicus GLO-30 determina las teselas COG públicas de un grado que intersectan el área, las descarga, forma un mosaico, lo recorta y lo reproyecta al UTM local con celdas de 30 m.
+## 4. Localizar y delimitar el estudio
 
-Un MDT representa el terreno sin los objetos situados sobre él. Un MDS representa la superficie superior registrada por LiDAR y puede contener edificios y vegetación. ViaSpania permite utilizar un MDS en todos los modos de análisis, pero muestra y conserva esta advertencia:
+### Buscar un lugar o unas coordenadas
 
-**Los MDS contienen edificios y vegetación y están destinados a análisis específicos de superficie. No son adecuados para calcular rutas o pendientes del terreno. Los resultados de esos cálculos pueden diferir en gran medida de la realidad.**
+1. Pulse **Buscar lugar** en Navegación.
+2. Escriba al menos tres caracteres de un topónimo y pulse Buscar o Enter.
+3. Seleccione un resultado con el ratón o con las flechas y Enter. El mapa se centrará en esa posición. Escape cierra la ventana.
 
-El MDS resulta especialmente pertinente para visibilidad, horizonte, obstáculos, sombreado y representación tridimensional. En rutas, isócronas, pasillos, perfiles, pendientes y curvas de nivel, los edificios y las copas pueden comportarse como elevaciones artificiales. Las curvas obtenidas sobre un MDS describen la superficie superior, no el terreno desnudo. Copernicus GLO-30 es una fuente global de aproximadamente 30 m, adecuada principalmente para estudios regionales y trabajos fuera de España; no ofrece el detalle urbano de MDS05.
+La búsqueda de nombres utiliza GeoNames en línea y no requiere configurar una cuenta individual. Solo se consulta al enviar la búsqueda; pueden aparecer límites de cuota o errores de conexión. Centrar el mapa no sustituye a colocar los puntos del cálculo en Selección.
 
-La fecha de adquisición, el método de captura, el relleno de vacíos y los cambios posteriores en edificios o vegetación condicionan cualquier resultado. Copernicus GLO-30 utiliza WGS84 horizontal y alturas EGM2008; ViaSpania conserva los metros de elevación y transforma horizontalmente el raster, pero no debe interpretarse una diferencia vertical respecto a productos IGN como si fuera necesariamente un cambio real del terreno.
+También puede introducir **latitud, longitud** en grados decimales WGS84, por ejemplo **40.4168, -3.7038**. Use punto decimal y una coma entre los valores. Este campo no admite UTM ni grados, minutos y segundos. Las coordenadas se interpretan localmente y la ventana muestra su transformación al sistema del modelo cargado o del visor.
 
-### Ortoimagen europea Copernicus VHR 2021
+### Elegir el área
 
-El selector **Mapa base** del panel Selección permite utilizar **Copernicus VHR 2021 · Europa · 2 m** como alternativa paneuropea a PNOA. Es un mosaico ortorrectificado de imágenes de satélite adquiridas principalmente entre 2020 y 2022, ofrecido como servicio web por Copernicus Land Monitoring Service y la Agencia Europea de Medio Ambiente.
+Active **Seleccionar área** y dibuje un rectángulo en Navegación. Incluya todas las localizaciones necesarias y deje margen para que una ruta pueda rodear obstáculos. Un área demasiado ajustada puede excluir una alternativa útil; una demasiado grande aumenta el consumo de memoria.
 
-Esta capa está destinada a la visualización y selección de elementos. No se descarga como archivo ni interviene en los cálculos, que utilizan exclusivamente el modelo de elevación cargado y los condicionantes definidos. Su resolución de 2 m es inferior al detalle habitual de PNOA, por lo que en España se recomienda mantener PNOA para trabajos locales y utilizar Copernicus VHR como fondo europeo general.
+**Eliminar área** retira la extensión y el modelo asociado, pero conserva puntos y barreras. Después deberá definir o importar de nuevo el terreno de trabajo y recalcular los análisis que dependan de él.
 
-Copernicus VHR 2021 también puede seleccionarse como fondo en los visores de rutas comparadas, pasillos, isócronas, visibilidad y curvas de nivel, y como textura cartográfica del visor 3D. Cada visor conserva la atribución del proveedor en pantalla o en la composición exportada.
+## 5. Preparar el modelo de elevación
 
-## 3. Cálculos geográficos: funcionamiento e interpretación
+### Terreno y superficie: una diferencia importante
 
-Todos los cálculos utilizan las elevaciones reales del MDT cargado. Las herramientas de rutas comparten una superficie de terreno preparada en memoria, pero resuelven de nuevo el análisis cuando cambian puntos, perfil, conectividad o condicionantes. Curvas e isovistas permanecen desacopladas del motor de rutas. Antes de interpretar un resultado conviene comprobar resolución, extensión, CRS, `nodata`, modelo y unidad.
+Un **MDT** representa el terreno sin edificios ni vegetación. Es la opción habitual para estudiar desplazamientos y pendientes del suelo. Un **MDS** representa la superficie superior y puede incluir construcciones y copas de árboles; puede ser útil en estudios de visibilidad, pero esas alturas también afectan a rutas, pendientes y curvas de nivel.
 
-### Ruta simple
+Seleccione el tipo de modelo según la pregunta del estudio. Una imagen aérea no aporta por sí misma alturas de edificios ni información de transitabilidad. Un MDS tampoco garantiza que todos los obstáculos actuales estén representados.
 
-**Finalidad.** Busca una conexión de coste mínimo entre un punto Inicio y un punto Final. «Mínimo» no significa necesariamente menor distancia: significa menor suma del coste definido por el perfil seleccionado sobre todas las transiciones de la ruta.
+### Descargar un modelo
 
-**Datos necesarios.** Requiere un MDT cargado y exactamente un Inicio y un Final dentro de su cobertura. Puede incorporar barreras absolutas, penalizaciones, corredores preferentes, puentes/pasos y puntos de interés. Los waypoint obligan a encadenar varios cálculos parciales en el orden establecido.
+1. Defina el área y seleccione una fuente habilitada en el panel de carga del modelo.
+2. Revise la resolución, las dimensiones, el número de celdas y las estimaciones de recursos.
+3. Inicie la descarga y el procesamiento. Espere a que el modelo aparezca antes de calcular.
+4. Compruebe la cobertura y las alturas en el visor del modelo digital.
 
-**Cómo se calcula.** El MDT se convierte en una rejilla navegable. Cada transición entre celdas recibe una distancia horizontal, una distancia sobre la superficie, un desnivel y una pendiente firmada. El perfil transforma esos valores en segundos, energía o coste relativo. Dijkstra acumula el coste y recupera la secuencia de celdas más barata. Conectividad 4 admite movimientos ortogonales; 8 añade diagonales; 16 añade movimientos de tipo caballo y reduce el sesgo de cuadrícula, a cambio de más tiempo y memoria.
+En **Configuración → Modelos digitales** puede habilitar las fuentes que necesite. Las fuentes disponibles incluyen modelos del terreno y modelos de superficie con distinta cobertura y detalle. La disponibilidad de una fuente en el selector no implica que cubra cualquier área.
 
-**Ida y vuelta.** **Calcular ida sobre MDT** resuelve Inicio→Final. **Calcular vuelta independiente** resuelve Final→Inicio desde cero. No se limita a invertir la polilínea: Tobler, Kondo–Seino, Alberti y otros perfiles usan el signo de la pendiente, por lo que subir y bajar pueden tener costes y recorridos diferentes.
+### Importar un GeoTIFF
 
-**Resultado.** Presenta coste total y unidad, distancia planimétrica, ascenso y descenso acumulados, geometría WGS84, pendientes por tramo, conectividad y parámetros específicos. El mapa colorea la pendiente y el visor propio permite examinar capas y exportar PNG/PDF. GeoJSON conserva geometría y atributos científicos.
+Utilice la opción de importar un modelo local y seleccione si corresponde a terreno o superficie. La aplicación comprueba sus metadatos y prepara el archivo para el análisis. Debe contener elevaciones y un sistema de referencia reconocible; una imagen TIFF sin georreferenciación no basta.
 
-**Rutas subóptimas.** Al activar esta opción se calcula primero el óptimo (rango 1). Para cada rango posterior se reduce la conductancia de las aristas incidentes a las celdas utilizadas anteriormente y se repite Dijkstra. Una separación alta usa un multiplicador menor y tiende a alejar más los trazados. Son rutas subóptimas espacialmente diferenciadas, no los *k* caminos mínimos exactos. El coste publicado de todos los rangos se evalúa sobre la superficie original, sin la penalización temporal, y se muestra su incremento respecto al óptimo y el porcentaje de celdas compartidas. Los waypoint obligatorios se respetan en todos los rangos.
+Tras importar, revise el área, la resolución y el tipo asignado. Los puntos guardados usan WGS84; las distancias y la resolución del análisis se expresan en metros. No es necesario convertir manualmente los puntos al sistema proyectado del archivo.
 
-**Interpretación.** El trazado expresa un óptimo matemático dentro del raster y de los condicionantes introducidos. No demuestra que exista camino físico, permiso de paso, seguridad, firme adecuado o transitabilidad.
+### Resolución, memoria y zonas sin datos
 
-### Ruta comparativa
+Cada celda del modelo representa una parte del terreno. Una celda más pequeña aporta más detalle si la fuente lo contiene, pero aumenta el tamaño y el trabajo de cálculo. Reducir la resolución de salida no crea información nueva en una fuente poco detallada.
 
-**Finalidad.** Permite estudiar cuánto cambia el trazado cuando se modifica la función de coste, manteniendo constantes el área, los extremos y el resto de los datos. Es útil para contrastar hipótesis de marcha, energía, pastoreo, caravana o vehículo.
+Si se supera el límite de procesamiento, reduzca el área o elija un modelo menos detallado. En **Configuración → Procesado** puede aplicar el límite recomendado para la memoria detectada. Aumentar el límite permite más celdas, pero no añade memoria al equipo.
 
-**Selección.** Cada casilla activa un perfil y **Seleccionar todos** controla el conjunto completo. No existe un selector individual redundante. La conectividad es común. **Pendiente crítica** aparece cuando se incluye Vehículo y **Velocidad Ardigò** cuando se incluye ese perfil.
+Las celdas sin elevación válida, llamadas **NoData**, no son terreno de altura cero. Pueden impedir una conexión. Si el cursor muestra un guion, compruebe si está fuera del modelo o sobre una zona sin datos. Cambiar la paleta solo modifica los colores, no las alturas.
 
-**Proceso.** ViaSpania ejecuta los perfiles secuencialmente sobre el mismo MDT y reutiliza la superficie preparada cuando es posible. Cada modelo conserva su propia geometría, unidad y configuración. Un error interrumpe la serie y la interfaz informa en español del punto alcanzado.
+## 6. Añadir puntos y condiciones de paso
 
-**Resultados.** La tabla resume coste y distancia. El visor superpuesto asigna un color estable a cada modelo y permite ocultarlos por separado. El visor dual coloca una ruta y un fondo independientes a cada lado, con navegación sincronizada. También se puede generar una página de informe por ruta.
+### Puntos del cálculo
 
-**Interpretación correcta.** Dos rutas temporales pueden compararse en segundos; dos energéticas pueden compararse si comparten unidad y supuestos. No debe afirmarse que un resultado en J, J/kg o coste relativo sea «menor» que otro en segundos. La comparación espacial de las geometrías sí es válida como contraste de hipótesis.
+Coloque Inicio y Final para una ruta entre dos extremos. Utilice multipuntos para estudiar varias localizaciones o un itinerario con paradas. Revise nombres, posiciones y orden en la lista. Las herramientas de seleccionar, mover y eliminar actúan sobre los elementos del mapa de Selección; vuelva al modo de navegación para desplazar el mapa sin editarlos.
 
-### Multipunto
+Puede importar puntos mediante CSV o GeoJSON. Use la plantilla CSV de la aplicación como referencia de columnas y formato, y compruebe en el mapa el resultado antes de calcular. El orden de coordenadas del buscador es latitud, longitud; GeoJSON utiliza longitud, latitud.
 
-**Finalidad.** Estudia todas las conexiones dirigidas entre un conjunto de localizaciones. Responde preguntas como «¿qué punto resulta más accesible desde cada origen?» o «¿la conexión A→B difiere de B→A?».
+### Barreras y facilitadores
 
-**Datos y límite.** Utiliza los primeros ocho puntos de la lista para mantener un tiempo y una matriz manejables. Todos deben estar dentro del MDT. El orden de la lista determina filas y columnas, pero no obliga a formar un itinerario.
+Dibuje los elementos en Selección y edite sus propiedades en el panel desplegable **Barreras y facilitadores**. Su resumen permite revisar las condiciones sin mantener todos los controles abiertos.
 
-**Proceso.** Para cada par ordenado distinto se ejecuta una ruta real con el perfil, conectividad y condicionantes activos. La diagonal no necesita desplazamiento. Los resultados son direccionales y no se copian al triángulo opuesto.
+- **Barrera absoluta**: impide cruzar las celdas afectadas.
+- **Barrera permeable**: incrementa el coste mediante un multiplicador.
+- **Corredor preferente**: reduce el coste dentro de la anchura indicada.
+- **Puente o paso**: permite atravesar una barrera por su trazado, con el coste configurado.
+- **Punto de interés**: puede influir en el coste cercano o intervenir como visita/punto de paso, según su modo.
 
-**Resultado.** La matriz muestra el coste desde el punto de la fila hacia el de la columna. Además se conserva cada polilínea, distancia y desniveles. En los mapas, el color representa el punto de origen. El informe incorpora matriz, parámetros y conexiones; el GeoJSON agrupa las líneas por perfil.
+Por ejemplo, para representar un obstáculo atravesable solo por un paso, dibuje la barrera y después el paso que la cruza. Compruebe que ambos coinciden a la escala del modelo. Un paso no rellena elevaciones NoData ni demuestra que exista una infraestructura real.
 
-**Diferencia con Multirruta.** Multipunto calcula una red completa de pares; Multirruta calcula únicamente tramos consecutivos.
+### Pasos obligatorios
 
-### Multirruta
+Marque **Paso obligatorio** si la ruta debe visitar ese puente o paso. Sin marcarlo, el paso sigue disponible para cruzar la barrera, pero la ruta puede elegir otra alternativa. Los pasos obligatorios se aplican a rutas simples, comparación, conexiones multipunto y alternativas.
 
-**Itinerarios subóptimos.** Cuando se solicitan rutas subóptimas, cada rango representa el recorrido completo por todos los puntos en su orden. ViaSpania calcula y une todos sus tramos, penaliza las celdas del itinerario completo y vuelve a calcular el rango siguiente. No combina arbitrariamente la segunda opción de un tramo con la tercera de otro. El coste total se evalúa sobre la superficie original y se compara con el rango 1.
+La aplicación encadena visitas; no optimiza globalmente su orden. En Multirruta las condiciones se aplican a cada tramo y un paso puede visitarse más de una vez. Las isócronas y la superficie de pasillo no representan un itinerario de visitas obligatorias.
 
-**Finalidad.** Construye un itinerario abierto que visita los puntos en el orden actual de la lista. Es apropiado cuando el orden ya está decidido y se desea calcular el mejor trazado topográfico entre cada parada.
+### Mostrar no equivale a activar o eliminar
 
-**Proceso.** Con los puntos 1, 2, 3 y 4 ejecuta 1→2, 2→3 y 3→4. Cada tramo se resuelve independientemente con el mismo perfil y condicionantes. ViaSpania no reordena paradas, no resuelve un problema del viajante y no añade un regreso automático al primer punto.
+Ocultar barreras, facilitadores o etiquetas en un visor solo cambia su presentación. Para cambiar las condiciones del análisis, edite o elimine los elementos del proyecto y vuelva a calcular. Compruebe siempre la lista antes de interpretar una nueva ruta.
 
-**Resultado.** Conserva coste, distancia, ascenso, descenso y geometría por tramo. El visor asigna colores distintos para comprobar uniones y solapamientos. El informe presenta el orden y las métricas pertinentes; la exportación vectorial mantiene los tramos calculados.
+## 7. Elegir el análisis
 
-### Pasillo LCP
+### Ruta simple: conectar dos lugares
 
-**Finalidad.** Delimita una zona de alternativas próximas a la ruta óptima, en lugar de reducir el análisis a una única línea. Resulta útil para reconocer bandas de paso potenciales y sectores donde pequeñas diferencias de coste permiten varios trazados.
+Utilícela para buscar una ruta entre Inicio y Final. Cargue el modelo, coloque ambos puntos, elija perfil y conectividad y calcule la ida. El coste mínimo es el menor coste según ese perfil, no necesariamente la distancia más corta.
 
-**Proceso.** ViaSpania calcula una superficie de coste desde Inicio y otra hacia Final respetando la dirección del perfil. Para cada celda suma el mejor coste Inicio→celda y celda→Final. Compara ese total con el coste óptimo Inicio→Final.
+El resultado ofrece trazado, distancia, coste con unidad, ascenso, descenso y perfil de elevación. La vuelta se calcula de forma independiente: subir y bajar pueden producir costes y rutas diferentes. Para comparar sentidos, calcule ambos.
 
-**Umbral.** Una celda entra cuando su ruta completa no supera `óptimo × (1 + umbral/100)`. Con 0 % aparecen únicamente celdas compatibles con soluciones óptimas. Con 10 %, por ejemplo, se admiten rutas hasta un 10 % más costosas. Un valor alto produce un pasillo más amplio, no una predicción de uso.
+### Ruta comparativa: contrastar perfiles
 
-**Resultado.** Informa coste óptimo, unidad, porcentaje y número de celdas. La superficie coloreada está georreferenciada sobre el área; opacidad solo cambia su presentación. El visor exporta PNG/PDF y el informe registra modelo, conectividad, fuente y métricas.
+Utilícela para estudiar cómo cambia el trazado al cambiar la hipótesis de desplazamiento. Seleccione varios perfiles y calcule manteniendo iguales los extremos, el modelo y las condiciones de paso.
 
-**Interpretación.** El pasillo es una tolerancia de coste según el modelo, no una anchura física de camino ni un intervalo estadístico de probabilidad.
+Revise la tabla y los visores superpuesto o dual. En el superpuesto puede mostrar u ocultar perfiles; el dual permite inspeccionar dos rutas con navegación sincronizada. Compare geometrías y compruebe las unidades antes de comparar valores numéricos: segundos, julios y coste relativo no son equivalentes.
 
-### Isócronas
+### Multipunto: comparar conexiones entre localizaciones
 
-**Finalidad.** Delimitan lugares alcanzables con el mismo coste acumulado desde uno o varios orígenes. Aunque se denominan isócronas por tradición, solo representan tiempo cuando el perfil tiene unidad temporal; con perfiles energéticos son isolíneas de energía y con perfiles abstractos, isolíneas de coste relativo.
+Utilícelo para estudiar conexiones entre los primeros ocho puntos de la lista. El resultado es una matriz de costes y un conjunto de rutas dirigidas. Lea cada casilla desde el origen de la fila hacia el destino de la columna.
 
-**Orígenes.** Se puede usar Inicio, Final, todos los multipuntos o todos los puntos. Con varios orígenes cada celda conserva el menor coste procedente de cualquiera de ellos; el resultado no separa una superficie por origen.
+La conexión A→B puede diferir de B→A. Multipunto responde qué cuesta ir entre pares; no propone un orden para visitar todos los lugares.
 
-**Parámetros.** En perfiles temporales el intervalo de interfaz se expresa en minutos y el backend trabaja en segundos. En otros perfiles mantiene su unidad. **Número máximo** entre 1 y 30 evita una leyenda ilegible. **Superficie acumulada** y **Transparencia** no alteran el cálculo.
+### Multirruta: seguir una secuencia de paradas
 
-**Proceso.** Una expansión de Dijkstra obtiene el coste mínimo de todas las celdas accesibles. Después, una extracción interpolada genera los contornos solicitados. La tarea informa preparación, expansión, extracción y reproyección, y **Cancelar cálculo** la detiene de forma segura.
+Utilícela cuando el orden de visita ya está decidido. Ordene los puntos y calcule: con A, B y C se obtiene A→B y después B→C. Revise cada tramo y sus uniones.
 
-**Resultado y exportación.** Informa niveles, máximo y celdas accesibles. Los visores muestran superficie y líneas sobre distintos fondos. GeoJSON exporta nivel, unidad y modelo en WGS84; PNG/PDF conserva la composición visible. La imagen de pantalla puede estar reducida, pero los contornos proceden del cálculo completo.
+La aplicación no reordena las paradas ni añade automáticamente el regreso al inicio. Si desea otro itinerario, cambie la lista y vuelva a calcular.
 
-### Isovistas
+### Alternativas subóptimas
 
-**Finalidad.** Clasifican qué celdas del terreno mantienen línea de visión topográfica desde un observador. Pueden servir para explorar control visual, emplazamientos o relaciones entre relieve y campo visual.
+En los modos que ofrecen esta opción, active las alternativas antes de calcular. El rango 1 es el óptimo; los siguientes buscan trazados espacialmente diferentes. Revise el incremento de coste y el porcentaje compartido con la ruta óptima.
 
-**Observadores.** Se selecciona uno o varios puntos existentes. ViaSpania calcula y conserva un resultado independiente para cada uno, que se elige después en **Resultado**. La altura se añade a la cota del terreno: humana 1,7 m, trípode 3 m, torre 10 m o personalizada entre 0 y 1.000 m.
+La separación influye en cuánto se apartan los trazados. No son las k rutas más cortas exactas, ni todas tienen por qué ser útiles para el estudio. Los costes mostrados se evalúan sobre las condiciones originales. En Multirruta, cada rango corresponde al itinerario completo por la lista de paradas.
 
-**Proceso.** El punto WGS84 se transforma al CRS del MDT y se comprueba que esté dentro y no sea `nodata`. El análisis evalúa horizontes angulares sobre la extensión cargada y limita la rejilla de representación para conservar rendimiento. No intervienen perfiles, conectividad, barreras ni lógica de rutas.
+### Pasillo: explorar una franja de alternativas
 
-**Resultado.** Verde identifica celdas visibles, rojo celdas no visibles y transparente ausencia de datos. Se informan elevación del terreno, altura añadida, celdas visibles y válidas. Los observadores permanecen separados para informes posteriores. Puede abrirse un visor PNG/PDF y una superposición 3D.
+Utilícelo para reconocer una zona de paso potencial entre Inicio y Final. Elija perfil, conectividad y porcentaje de tolerancia; después calcule y revise la superficie.
 
-**Limitación esencial.** La clasificación depende de resolución, precisión vertical, fecha, interpolación y contenido del MDT. Un MDT del terreno puede no incluir vegetación, edificios, muros o infraestructuras. Por tanto, una celda visible topográficamente puede no serlo en una fecha histórica o en la realidad actual. El resultado no debe presentarse automáticamente como reconstrucción histórica ni observación de campo.
+Un umbral del 10 % admite celdas por las que puede pasar una conexión con un coste hasta un 10 % superior al óptimo. Aumentar el porcentaje suele ampliar el pasillo. No representa una anchura física de camino ni una probabilidad de uso.
 
-### Curvas de nivel
+### Isócronas: estudiar alcance desde uno o varios orígenes
 
-**Finalidad.** Transforman la elevación raster en líneas de igual cota para lectura morfológica, composición cartográfica y exportación vectorial.
+Seleccione los orígenes, el intervalo entre niveles y el número máximo de niveles. Calcule y examine las líneas y la superficie acumulada. Con varios orígenes, cada celda toma el menor coste desde cualquiera de ellos.
 
-**Parámetros.** Se ofrecen 10, 20, 50 y 100 m, además de intervalo personalizado entre 0,1 y 10.000 m. Un intervalo pequeño aporta más detalle pero genera más geometrías y exige mayor resolución del MDT; no recupera detalle ausente en la fuente.
+Las líneas representan tiempo solo si el perfil usa unidades temporales. Con otros perfiles expresan energía o coste relativo. En los perfiles temporales, el intervalo de la interfaz se introduce en minutos. No interprete el alcance calculado como una garantía de acceso real.
 
-**Proceso.** ViaSpania recorre celdas válidas, interpola el cruce de cada nivel por sus bordes y reproyecta los segmentos a WGS84. Respeta `nodata` y usa el MDT ya preparado, sin ejecutar rutas ni análisis acumulados.
+### Isovistas: estudiar visibilidad
 
-**Resultado.** Informa número de segmentos, elevación mínima y máxima, CRS, resolución y celdas sin datos. El visor agrupa por cota y aplica exactamente la misma escala de color que la leyenda altura-color. GeoJSON CRS84 incluye `elevation_m`, `interval_m` y fuente. PNG/PDF conserva la cartografía visible.
+Seleccione los observadores y su altura sobre la superficie, calcule y examine las zonas visibles y no visibles. La altura del observador puede representar una persona, un trípode, una torre o un valor personalizado.
 
-## 4. Perfiles de desplazamiento
+La visibilidad depende del modelo cargado. Un MDT no incorpora automáticamente árboles ni edificios; un MDS solo incorpora lo registrado en su superficie. El análisis no incluye refracción atmosférica ni reconstruye condiciones históricas.
 
-Los perfiles temporales acumulan segundos, los metabólicos energía y los abstractos coste relativo.
+### Curvas de nivel: leer las alturas
 
-- **Tobler por caminos**: velocidad de marcha según pendiente firmada. Tobler (1993), *Three Presentations on Geographical Analysis and Modeling*, NCGIA 93-1.
-- **Tobler campo a través**: Tobler ×0,6 fuera de senda. Tobler (1993), NCGIA 93-1.
-- **Márquez–Pérez**: ajuste empírico para senderos naturales. Márquez-Pérez et al. (2017), DOI 10.1080/00167223.2017.1316212.
-- **Kondo–Seino**: tiempo direccional con rama para descensos mayores del 7 %. Kondo y Seino (2010), *GPS-aided Walking Experiments and Data-driven Travel Cost Modeling*.
-- **Rees**: velocidad en terreno montañoso. Rees (2004), *Computers & Geosciences* 30(3), 203–209.
-- **Garmy–Kaddouri–Rozenblat–Schneider**: función exponencial de pendiente angular. Garmy et al.; formulación documentada por Herzog (2020).
-- **Tripcevich**: velocidad de caravanas de llamas. Tripcevich (2008), *Estimating Llama Caravan Travel Speeds*.
-- **Alberti pastoral**: Tobler reescalado a velocidad de rebaño. Alberti (2019), *SoftwareX* 10, 100331.
-- **Pandolf**: energía para 70 kg, carga 0, 1,2 m/s y terreno configurable. Pandolf, Givoni y Goldman (1977), DOI 10.1152/jappl.1977.43.4.577.
-- **Pandolf corregido**: añade corrección Yokota solo en descenso. Pandolf et al. (1977); Yokota et al. (2004), USARIEM T04-09.
-- **Minetti**: energía por kg; dominio recomendado de pendiente −0,5 a 0,5. Minetti et al. (2002), *Journal of Applied Physiology* 93, 1039–1046.
-- **Herzog**: aproximación estable de sexto grado a Minetti. Herzog (2016), *Potential and Limits of Optimal Path Analysis*.
-- **Ardigò**: coste locomotor para caminar, correr o bicicleta; 0,2–15 m/s y presets 1,2, 3,0 y 5,5. Ardigò, Saibene y Minetti (2003), *European Journal of Applied Physiology* 90, 365–371.
-- **Vehículo con pendiente crítica**: penalización cuadrática relativa; la pendiente crítica no crea una barrera. Herzog (2016), *Potential and Limits of Optimal Path Analysis*.
-- **Eastman**: coste cuadrático por pendiente angular. Eastman (1999); formulación en Vaissié (2021).
+Elija la separación vertical en metros y genere las curvas. Utilice sus valores de cota para reconocer laderas, crestas y fondos. Una separación pequeña produce más líneas, pero no mejora la precisión de la fuente.
 
-La auditoría matemática ampliada está en `docs/model-audit.md`.
+Las curvas calculadas pueden superponerse en los visores que las admiten, incluido el 3D. Sobre un MDS describen la superficie superior, no necesariamente el suelo.
 
-## 5. Visores de resultados
+## 8. Elegir parámetros e interpretar resultados
 
-Ruta, multirruta, isócronas, pasillos, curvas e isovistas comparten visor. Opciones: fondo PNOA, MDT, topográfico IGN o MTN50; puntos; nombres; barreras; facilitadores; ruta; superficie y opacidad cuando procede; zoom al área; restablecer; imprimir; PNG; PDF; y cierre superior derecho. En Ruta simple, un perfil altimétrico colapsable se superpone en la esquina inferior izquierda: representa la distancia acumulada y las cotas reales muestreadas del GeoTIFF, con series separadas para ida y vuelta cuando ambas están calculadas. El visor de Ruta comparativa utiliza el mismo gráfico: en superposición representa todos los modelos visibles y en vista dual representa los dos modelos seleccionados, conservando sus colores. Multirruta encadena los perfiles según el orden del itinerario: cada tramo comienza en la distancia acumulada donde termina el anterior y conserva el color utilizado en el mapa. CSV/GeoJSON de entrada, plantilla y exportación de puntos/rutas aparecen solo en cálculos de rutas. Isócronas y curvas usan GeoJSON vectorial; pasillos e isovistas PNG/PDF.
+### Perfil de desplazamiento
 
-## 6. Visor 3D
+El perfil define qué se minimiza: tiempo, energía o coste relativo. Elija uno adecuado a la pregunta y consulte su ayuda contextual para conocer los supuestos. Algunos perfiles ofrecen parámetros propios, como velocidad o pendiente crítica; no son controles universales.
 
-Genera una malla visual simplificada, sin modificar el MDT ni las rutas.
+Un perfil de vehículo no incorpora por sí solo carreteras, firme ni permisos. Su pendiente crítica es una referencia de coste, no una barrera absoluta. Represente las restricciones conocidas mediante las condiciones del proyecto.
 
-### Cámara y orientación
+### Conectividad
 
-- Arrastre izquierdo orbita; derecho desplaza; rueda/trackpad amplía.
-- **Restablecer cámara** recupera la vista inicial.
-- Brújula e inclinómetro del mismo tamaño muestran rumbo y ángulo; el inclinómetro no presenta el texto «inclinación».
-- El cierre está arriba a la derecha.
+La conectividad define las direcciones disponibles entre celdas: 4 permite movimientos ortogonales, 8 añade diagonales y 16 añade direcciones extendidas. Una mayor conectividad puede suavizar el efecto de la cuadrícula, a costa de más trabajo de cálculo. Manténgala constante al comparar perfiles si quiere aislar el efecto del perfil.
 
-### Terreno y capas
+### Cómo revisar un resultado
 
-- Exageración: 0 %, 0,5×, 1×, 1,5×, 2×, 3×, 4×, 6× u 8×.
-- Paletas: grises, terreno, hipsométrica, Viridis y alta montaña.
-- **Mapa sobre el MDT**: PNOA, OSM, topográfico IGN o capas históricas; solo cambia textura.
-- Grosor, color y presentación simultánea de todas las rutas.
-- Capas: puntos, etiquetas, barreras, puentes/pasos, corredores, puntos de interés, isócronas, pasillo y punto más alto.
-- El punto más alto procede de las elevaciones del MDT cargado.
-- Las superposiciones reutilizan resultados; **Exportar PNG** guarda vista y atribución.
+1. Compruebe fuente, área y resolución del modelo utilizado.
+2. Revise puntos, perfil, unidad, conectividad y condiciones de paso.
+3. Examine el trazado y el perfil de elevación, no solo el coste total.
+4. Compruebe si el resultado se acerca al borde del área o a zonas NoData.
+5. Tras cambiar los datos o parámetros del análisis, vuelva a calcular antes de exportar una conclusión.
 
-### Vídeo y GIF
+Cambiar fondo, paleta, opacidad o visibilidad de etiquetas no recalcula el análisis. Una ruta modelada no acredita camino, permiso, transitabilidad ni seguridad. ViaSpania no debe utilizarse para navegación de emergencia.
 
-El panel **Exportación animada** se pliega para liberar espacio y configura la salida sin reproductor en pantalla.
-
-- Tipo: **Órbita de cámara** o **Recorrido de rutas**.
-- Velocidad: 0,25×, 0,5×, 1×, 2×, 5×, 10×, 25× o 50×.
-- Duración inicial 20 s; rango 2–86.400 s, sujeto a límites efectivos.
-- Inclinación 5–85° y orientación 0–359°.
-- Resolución 854×480, 1280×720 o 1920×1080.
-- **Exportar vídeo** elige MP4/H.264 o WebM admitido por MediaRecorder y limita a 90 s efectivos.
-- **Exportar GIF** usa hasta 640 px de anchura, 8 fps, 120 fotogramas y 5 min efectivos.
-- **Cancelar** libera stream, fotogramas y recursos.
-
-Las imágenes PNG, los GIF y todos los fotogramas de los vídeos exportados incorporan automáticamente una pequeña marca de agua **VS · ViaSpania** en la esquina inferior derecha. La marca se adapta a la resolución y no altera el resultado geográfico original.
-
-Órbita completa 360°. Recorrido anima cabeza y estela sobre rutas ya calculadas, sin recalcularlas.
-
-## 7. Configuración
-
-**Cancelar** descarta el borrador; **Guardar preferencias** persiste localmente.
+## 9. Explorar los resultados en 2D y 3D
 
 ### Visores 2D
 
-- Etiquetas de elementos, crucetas, punteros simultáneos, escalas y coordenadas del cursor en Selección.
-- Límites administrativos de España.
-- Mapa de navegación, ortofotografía de selección y paleta del modelo digital predeterminados.
+Abra el visor del resultado para explorar mapas, leyendas, tablas y perfiles. El selector de fondo permite situar el resultado sobre distintas fuentes y capas externas guardadas. Los fondos históricos son contexto visual; no convierten el modelo de elevación actual en un terreno histórico.
+
+En el visor ampliado del modelo digital puede controlar barreras, facilitadores y etiquetas. Ocultarlos no cambia su participación en el cálculo. Los visores de cálculo no tienen exportación PNG/PDF ni impresión directa: utilice el compositor de informes.
 
 ### Visor 3D
 
-- Exageración vertical, paleta, cota máxima y escala horizontal predeterminadas.
+Con un modelo cargado, pulse **Vista 3D**. Arrastre con el botón izquierdo para orbitar, con el derecho para desplazar y use la rueda para acercar o alejar. La brújula y el indicador de inclinación ayudan a orientarse.
 
-### Modelos digitales
+Ajuste exageración vertical, paleta o textura y active los puntos, rutas, curvas y demás resultados disponibles. La exageración solo modifica la representación; un valor de cero aplana la vista. La malla 3D es una representación simplificada, no una fuente de elevación adicional.
 
-- Activa o desactiva individualmente los MDT y MDS disponibles para descarga y análisis.
-- Debe permanecer activo al menos un modelo. Los MDS parten desactivados.
+### Crear imágenes y animaciones
 
-### Cartografía
+1. Prepare las capas visibles y espere a que termine de cargar el fondo.
+2. En **Exportación animada**, elija Órbita de cámara, Recorrido de rutas o Seguimiento a vista de pájaro.
+3. Para seguir una ruta, mantenga una ruta calculada visible y seleccione cuál seguir. Ajuste distancia de cámara, inclinación y los controles disponibles.
+4. Elija duración, velocidad y resolución. Active brújula o perfil altimétrico si los necesita y están disponibles.
+5. Pulse **Exportar vídeo**, **Exportar animación GIF** o **Exportar fotograma PNG** y espere a la confirmación de guardado.
 
-- Enumera las fuentes incorporadas, sus proveedores y enlaces de origen, y permite activarlas o desactivarlas.
-- Añade teselas XYZ mediante una URL con `{z}/{x}/{y}` o servicios WMS/WMTS mediante su URL de capacidades.
-- Para WMS y WMTS, **Consultar servicio** lee `GetCapabilities` y permite escoger una de las capas y matrices compatibles. Se priorizan `EPSG:3857` y `EPSG:4326`.
-- Cada fuente externa se asigna a Navegación, Selección o Visor de cartografía y puede editarse o eliminarse. La atribución introducida se conserva en el visor.
-- Algunos servidores no permiten consultas desde otras aplicaciones mediante CORS. En ese caso ViaSpania muestra el error y no guarda una configuración incompleta.
+El vídeo se guarda como AVI/MJPEG a 30 fotogramas por segundo, con un máximo de 90 segundos y 1,5 GB por archivo. La duración efectiva depende de duración y velocidad: 20 segundos a 2× producen 10 segundos. El tiempo necesario para generar el archivo puede ser mayor que su duración de reproducción.
 
-### Procesado
+GIF adapta la resolución y el número de fotogramas para controlar memoria. El PNG corresponde al fotograma inicial del modo configurado. Los vídeos pueden ocupar mucho espacio; reserve disco para el temporal y el archivo final. Puede cancelar la exportación. Si el reproductor no admite AVI/MJPEG, abra el archivo con uno compatible.
 
-- Memoria detectada y límite recomendado.
-- Límite máximo: 2.000.000, 3.000.000, 3.500.000 o 5.000.000 celdas.
-- **Aplicar valor recomendado** selecciona el nivel calculado. No cambia resolución ni valores.
+## 10. Guardar resultados y componer un informe
 
-### Sonidos
+### Qué opción utilizar
 
-- Activa o desactiva el aviso al terminar cálculos, cargas y exportaciones.
-- Permite elegir y probar el sonido antes de guardar.
+- **Guardar proyecto**: continuar editando el trabajo en ViaSpania.
+- **Exportar resultados**: conservar datos geográficos para archivo o uso en un SIG.
+- **Componer informe**: presentar mapas, métricas y parámetros en PDF.
+- **Exportación del visor 3D**: obtener una imagen o animación de la escena.
 
-## 8. Compositor y exportación del informe PDF
+### Exportar datos
 
-**Componer informe** abre el compositor específico del análisis activo. Permite elegir cálculos, páginas técnicas, mapas combinados, bases cartográficas, capas visibles, flecha del norte, escala gráfica, posición de elementos y tamaño A4/A3/A2 horizontal. La previsualización muestra la organización prevista con la identidad final de ViaSpania.
+Abra **Exportar resultados**, seleccione los productos disponibles y elija una carpeta. La aplicación organiza los archivos con nombres descriptivos. Según el análisis, puede incluir modelos de elevación, rutas, superficies, curvas, puntos, barreras y facilitadores.
 
-**Plantilla** ofrece Análisis activo, Mapas abiertos, Informe completo y Vacía. **Tamaño** elige A4/A3/A2 horizontal. Un mapa se captura al pulsar **Generar PDF**, conservando el encuadre y capas visibles en ese momento; por eso un visor debe permanecer abierto para aparecer en el catálogo. Se registran atribuciones. Puntos, barreras y facilitadores producen páginas de texto seleccionables. **Cancelar** no escribe ningún archivo.
+GeoJSON conserva geometrías vectoriales; GeoPackage agrupa capas y atributos; GeoTIFF conserva datos ráster y su georreferenciación. El GeoTIFF de elevación no incorpora la paleta de la previsualización. Compruebe el mensaje final y los archivos generados antes de trasladar o cerrar el trabajo.
 
-El generador común produce Ruta simple, Ruta comparativa, página por ruta, Multirruta, Multipunto, Isócronas, Pasillos e Isovistas. La composición ordena los bloques añadidos y la plantilla analítica registra fecha, extensión, resolución, tamaño, CRS y fuente del MDT, parámetros y métricas. Predictivo no está implementado.
+### Preparar el PDF
 
-## 9. Archivos y exportaciones
+1. Calcule los resultados que desee incluir y seleccione el modo de análisis correspondiente.
+2. Pulse **Componer informe**. Las opciones cambian según el análisis y los resultados disponibles.
+3. Seleccione mapas, rutas, tablas y páginas técnicas que se ofrezcan. Elija el fondo y el tamaño de página.
+4. Ajuste las opciones visuales. Si utiliza Modelo 3D, revise inclinación y orientación antes de generar el documento.
+5. Pulse **Generar PDF**, elija el destino y compruebe el documento guardado.
 
-Los puntos se importan en CSV/GeoJSON; la plantilla CSV documenta el esquema. Exportar puntos consulta elevación. Exportar rutas crea GeoJSON por perfil con geometría, modelo, coste, unidad, distancia, desniveles, conectividad, extremos y parámetros. Los proyectos usan JSON. Al abrirlos se recupera el área y se ajusta automáticamente el zoom. Los visores exportan PNG/PDF y 3D PNG, vídeo o GIF.
+Incluya los parámetros y las unidades si necesita que otra persona interprete el cálculo. El PDF comunica un resultado; no sustituye al proyecto editable ni a los datos geográficos.
 
-**Exportar resultados** permite seleccionar conjuntamente el MDT o MDS cargado, rutas, isócronas, pasillos, visibilidad, curvas, puntos, barreras y facilitadores disponibles. ViaSpania solicita una carpeta y escribe cada resultado con un nombre descriptivo y el formato apropiado. El modelo de elevación se exporta como GeoTIFF conservando CRS, georreferenciación, resolución y `nodata`; no se exporta la paleta visual aplicada a su previsualización. Los PNG, vídeos y GIF incluyen la marca de agua de ViaSpania.
+## 11. Adaptar la aplicación a su trabajo
 
-## 10. Limitaciones
+### Idioma y ayuda
 
-El MDT solo describe elevación. Una ruta óptima no garantiza camino, permiso, transitabilidad ni seguridad; ViaSpania no debe usarse para emergencias. Las isovistas no incorporan automáticamente vegetación, edificios ni condiciones históricas. Ningún resultado tiene más precisión que su fuente.
+En **Configuración** elija Español o English y guarde las preferencias. La selección se aplica a la interfaz y a la ayuda general, además de los textos asociados. Utilice el tutorial para orientarse por los controles y la ayuda contextual para profundizar en cada cálculo.
 
-## 11. Créditos, fuentes y contacto
+### Mapas y representación
 
-Creador y responsable: Antonio López García, 2026.
+**Visores 2D** permite ajustar punteros, coordenadas, escalas, etiquetas, límites y fondos predeterminados. **Visor 3D** reúne preferencias de relieve y representación. Estas opciones afectan a la lectura del mapa, no a las elevaciones originales.
 
-Correo electrónico: antonio-lopez-garcia@hotmail.com.
+### Fuentes y capas externas
 
-Base metodológica: paquete R `movecost`, creado y mantenido por Gianmarco Alberti. Elevación, PNOA, topográfico, histórica, límites y núcleos: Instituto Geográfico Nacional / Centro Nacional de Información Geográfica. OpenStreetMap: © colaboradores, ODbL 1.0.
+En **Modelos digitales** habilite las fuentes de elevación que quiera ofrecer en el selector. En **Cartografía** gestione los fondos y añada servicios XYZ, WMS o WMTS. Revise la dirección del servicio, la capa y la configuración solicitada antes de guardar. Un servicio puede tener cobertura limitada o impedir el acceso desde la aplicación.
 
-Créditos y licencias enumera dependencias efectivas: React, React DOM, OpenLayers, Three.js, jsPDF, Tauri y Dialog, Vite, TypeScript, Vitest, Testing Library, jsdom, GDAL, PROJ y dependencias Rust declaradas. No se inventan créditos ni licencias.
+### Procesado y sonidos
+
+En **Procesado** revise la memoria detectada y aplique el límite recomendado. En **Sonidos** puede activar, elegir y probar el aviso de finalización. El sonido informa del éxito de una operación; compruebe igualmente el mensaje de estado y el resultado.
+
+## 12. Resolver problemas frecuentes
+
+### No puedo iniciar el cálculo
+
+Compruebe que hay un modelo cargado, un área válida y los puntos requeridos. Revise si los puntos están dentro de la cobertura y si falta algún parámetro. Lea el mensaje de estado; un control desactivado suele indicar un requisito pendiente.
+
+### No se encuentra una ruta
+
+Revise celdas NoData, barreras absolutas y pasos obligatorios. Compruebe que los pasos conectan ambos lados del obstáculo a la resolución utilizada. Amplíe el área si una alternativa puede quedar fuera, vuelva a cargar el modelo y recalcule.
+
+### La descarga o el mapa no carga
+
+Compruebe la conexión y la cobertura de la fuente. Pruebe un área menor o un fondo diferente. Si el servicio falla o alcanza su cuota, inténtelo más tarde. Para continuar con un modelo disponible, use la importación local de GeoTIFF.
+
+### El cálculo consume demasiados recursos
+
+Reduzca el área, utilice un modelo menos detallado o pruebe primero un solo perfil y menos puntos. Comparaciones, alternativas y conectividad 16 pueden requerir más tiempo. No aumente el límite de celdas sin revisar la memoria disponible.
+
+### He abierto un proyecto y no aparece el terreno
+
+El proyecto JSON no contiene el archivo de elevación. Vuelva a descargar o importar el modelo y compruebe que corresponde al estudio antes de recalcular.
+
+### El vídeo falla o no se reproduce
+
+Espere a que las texturas terminen de cargar, compruebe que hay una ruta visible si el modo la requiere y reduzca duración o resolución. Revise el espacio de disco y los límites de exportación. El archivo es AVI/MJPEG; necesita un reproductor que admita ese formato.
+
+### Necesito comunicar un problema
+
+Anote versión y compilación, sistema operativo, pasos realizados y mensaje de error completo. Indique la fuente y resolución del modelo y adjunte solo datos que pueda compartir. Contacto de soporte: antonio.lopez@ugr.es.

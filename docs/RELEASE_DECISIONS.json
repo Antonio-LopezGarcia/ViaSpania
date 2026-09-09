@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "reviews": [
+    {
+      "id": "rights",
+      "requirement": "Documentar titularidad y mandato de publicación con los titulares/UGR.",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "assets",
+      "requirement": "Autorizar redistribución de assets oficiales e imagen institucional enumerados en ASSETS.md.",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "native_scope",
+      "requirement": "Revisar alcance de avisos nativos compuestos, incluido Kerberos, sobre los objetos distribuidos.",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "data",
+      "requirement": "Revisar términos de proj.db, rejillas y exportaciones según DATA_NOTICES.txt.",
+      "status": "pending",
+      "evidence": []
+    },
+    {
+      "id": "corresponding_source",
+      "requirement": "Cerrar recursos auxiliares de builds nativos y verificar reconstrucción desde las fuentes suministradas.",
+      "status": "pending",
+      "evidence": []
+    }
+  ]
+}

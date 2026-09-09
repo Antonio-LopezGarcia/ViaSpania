@@ -1,0 +1,29 @@
+.panel-title .viewer-size-toggle {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #dce7df;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.panel-title .viewer-size-toggle:hover,
+.panel-title .viewer-size-toggle:focus-visible {
+  background: #26332d;
+  color: #d8ff55;
+  outline: none;
+}
+
+.panel-title .viewer-size-toggle span {
+  display: block;
+  color: inherit;
+  font: inherit;
+  transform: translateY(-1px);
+}

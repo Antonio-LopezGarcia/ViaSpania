@@ -1,0 +1,10 @@
+.model-load-panel{display:flex;flex-direction:column;width:100%;min-width:0;max-height:calc(100vh - 210px);overflow:hidden;border:1px solid #46534c;border-radius:7px;background:#101713ed;box-shadow:0 8px 25px #0008}
+.model-load-panel .model-load-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;flex-shrink:0;padding:8px 6px;border:1px solid #46534c;background:#121b17;color:#dce7df;font:inherit;text-align:left}
+.model-load-label{display:flex;align-items:center;gap:6px}
+.model-load-download-icon{font-size:15px;line-height:1;color:#d8ff55}
+.model-load-panel .model-load-toggle span{color:inherit}
+.model-load-toggle:focus-visible{outline:2px solid #d8ff55;outline-offset:-3px}
+.model-load-content{display:grid;gap:7px;padding:10px;overflow:auto;min-height:0;overflow-wrap:anywhere}
+.model-load-content[hidden]{display:none}
+.model-load-content label{flex-wrap:wrap;gap:6px}
+.model-load-content select{width:100%;min-width:0}

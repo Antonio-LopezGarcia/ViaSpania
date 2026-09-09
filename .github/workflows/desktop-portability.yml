@@ -95,7 +95,21 @@ jobs:
           "GDAL_DATA=$prefix\Library\share\gdal" | Out-File -FilePath $env:GITHUB_ENV -Append
           "PROJ_DATA=$prefix\Library\share\proj" | Out-File -FilePath $env:GITHUB_ENV -Append
       - run: pnpm install --frozen-lockfile
+      - name: Preparar expediente de macOS
+        if: runner.os == 'macOS'
+        run: |
+          pnpm geospatial:prepare
+          pnpm compliance:prepare --network
+      - name: Construir candidato de macOS
+        if: runner.os == 'macOS'
+        env:
+          VIASPANIA_USE_PREPARED_GEOSPATIAL: '1'
+        run: |
+          pnpm compliance:build
+          pnpm compliance:inspect
+          pnpm compliance:package
       - run: ${{ matrix.command }}
+        if: runner.os != 'macOS'
       - name: Verificar GDAL empaquetado en Linux
         if: runner.os == 'Linux'
         shell: bash
@@ -117,11 +131,13 @@ jobs:
           "$geospatial/bin/gdal_translate" -q -of GTiff "$package_root/source.tif" "$package_root/smoke.tif"
           "$gdalinfo" -json -stats "$package_root/smoke.tif" > "$package_root/smoke.json"
           test -s "$package_root/smoke.json"
+      - name: Verificar expediente antes de publicar
+        run: pnpm compliance:check --strict
       - name: Publicar instalador de macOS
         if: runner.os == 'macOS'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ inputs.release_tag }}" src-tauri/target/release/bundle/dmg/*.dmg --clobber
+        run: gh release upload "${{ inputs.release_tag }}" src-tauri/target/release/bundle/dmg/*.dmg release/*-source-candidate.tar.gz release/SOURCE_ARTIFACT.json release/APP_INSPECTION.json --clobber
       - name: Publicar instaladores de Linux
         if: runner.os == 'Linux'
         env:

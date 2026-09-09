@@ -10,6 +10,9 @@ export interface AppSettings {
   language?:'es'|'en';
   tutorialEnabled:boolean;
   showPointLabels:boolean;
+  labelTextSizePx?:9|11|13|15|18;
+  label3dOffsetM?:number;
+  label3dLeaderLine?:boolean;
   showMunicipalBoundaries:boolean;
   showUrbanNames:boolean;
   showCrosshairs:boolean;
@@ -27,6 +30,7 @@ export interface AppSettings {
   defaultTerrain3dExaggeration:0|0.5|1|1.5|2|3|4|6|8;
   defaultTerrain3dHighestPoint:boolean;
   defaultTerrain3dShowScale:boolean;
+  terrain3dDetached?:boolean;
   processingCellLimit:2_000_000|3_000_000|3_500_000|5_000_000;
   notificationSounds:boolean;
   notificationSound:NotificationSound;

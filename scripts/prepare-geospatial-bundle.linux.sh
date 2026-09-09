@@ -31,9 +31,11 @@ for name in "${commands[@]}"; do
   source_path="$(command -v "$name" || true)"
   test -n "$source_path" || { echo "Falta la utilidad requerida: $name" >&2; exit 1; }
   cp "$(realpath "$source_path")" "$bin_dir/$name"
+  chmod 755 "$bin_dir/$name"
 done
 
 cp -R "$(gdal-config --datadir)/." "$share_dir/gdal/"
+rm -f "$share_dir/gdal"/GDALLogo*.svg "$share_dir/gdal/gdalicon.png"
 proj_data="$(projinfo --searchpaths | tail -n 1)"
 test -d "$proj_data" || { echo "No se encontró el directorio de datos de PROJ." >&2; exit 1; }
 cp -R "$proj_data/." "$share_dir/proj/"
@@ -52,6 +54,7 @@ while test -s "$queue_file"; do
     target="$lib_dir/$(basename "$dependency")"
     test -f "$target" && continue
     cp -L "$dependency" "$target"
+    chmod 755 "$target"
     ldd "$target" 2>/dev/null | awk '/=> \// {print $3}' >> "$next_file" || true
   done < "$queue_file"
   sort -u "$next_file" > "$queue_file"
@@ -62,4 +65,13 @@ for library in "$lib_dir"/*; do patchelf --set-rpath '$ORIGIN' "$library" 2>/dev
 for source in /usr/share/doc/gdal*/copyright /usr/share/doc/proj*/copyright; do
   test -f "$source" && cp "$source" "$license_dir/$(basename "$(dirname "$source")")-copyright"
 done
+manifest="$bundle_dir/THIRD_PARTY_MANIFEST.txt"
+{
+  echo "ViaSpania bundled geospatial runtime — Linux"
+  echo "Generated from the files copied into this release; system libraries are excluded."
+  echo; echo "Executables:"; for file in "$bin_dir"/*; do echo "- $(basename "$file")"; done
+  echo; echo "Dynamic libraries:"; for file in "$lib_dir"/*; do echo "- $(basename "$file")"; done
+  echo; echo "Licence files included:"; for file in "$license_dir"/*; do echo "- $(basename "$file")"; done
+} > "$manifest"
+test "$(find "$license_dir" -type f | wc -l | tr -d ' ')" -ge 2 || { echo "El paquete geoespacial no contiene los avisos mínimos de GDAL y PROJ." >&2; exit 1; }
 echo "Recursos geoespaciales preparados para Linux: $(du -sh "$bundle_dir" | awk '{print $1}')"

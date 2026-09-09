@@ -1,7 +1,7 @@
 import {useEffect,useState} from 'react';
 import {CALCULATION_MODE_HELP,MODEL_HELP,type CalculationHelpMode} from '../core/calculationHelp';
-import {CALCULATION_MODE_HELP_EN,MODEL_HELP_EN} from '../core/calculationHelp.en';
-import {useLanguage} from '../core/i18n';
+import {CALCULATION_MODE_HELP_EN,MODEL_HELP_EN,MODEL_FORMULAS_EN} from '../core/calculationHelp.en';
+import {useLanguage,translateText} from '../core/i18n';
 import type {ModelId} from '../types';
 import '../calculation-help.css';
 
@@ -20,9 +20,9 @@ export function CalculationHelp({mode,model,availableModels,onClose}:Props){
       <div className="calculation-help-body">
         <section><h3>{en?'What this mode calculates':'Qué calcula este modo'}</h3><p>{calculation.summary}</p><ol>{calculation.process.map(item=><li key={item}>{item}</li>)}</ol><h4>{en?'Parameters you can change':'Parámetros que puede modificar'}</h4><ul>{calculation.parameters.map(item=><li key={item}>{item}</li>)}</ul></section>
         {mode!=='viewshed'&&mode!=='contours'&&<section className="calculation-model-help">
-          <label>{en?'Profile explained':'Perfil explicado'}<select value={selected} onChange={event=>setSelected(event.target.value as ModelId)}>{choices.map(id=><option key={id} value={id}>{MODEL_HELP[id].name}</option>)}</select></label>
-          <div className="calculation-help-heading"><div><small>{profile.family}</small><h3>{profile.name}</h3></div><span>{profile.directional?'Direccional':'No direccional'} · {profile.unit}</span></div>
-          <p>{profile.purpose}</p><h4>{en?'Origin and authorship':'Origen y autoría'}</h4><p>{profile.author}</p><h4>{en?'Formulation used by ViaSpania':'Formulación utilizada por ViaSpania'}</h4><code>{en?profile.formula.replace(/(\d),(\d)/g,'$1.$2').replace('tiempo = distancia sobre la superficie','time = surface distance'):profile.formula}</code><h4>{en?'Variables considered':'Variables consideradas'}</h4><ul>{profile.variables.map(item=><li key={item}>{item}</li>)}</ul><h4>{en?'What can be changed in the application':'Qué puede modificar en el programa'}</h4><ul>{profile.editable.map(item=><li key={item}>{item}</li>)}</ul><h4>{en?'Limitations':'Limitaciones'}</h4><ul>{profile.limits.map(item=><li key={item}>{item}</li>)}</ul><h4>{en?'Reference':'Referencia'}</h4><p className="calculation-help-reference">{profile.reference}</p>
+          <label>{en?'Profile explained':'Perfil explicado'}<select value={selected} onChange={event=>setSelected(event.target.value as ModelId)}>{choices.map(id=><option key={id} value={id}>{translateText(MODEL_HELP[id].name)}</option>)}</select></label>
+          <div className="calculation-help-heading"><div><small>{translateText(profile.family)}</small><h3>{translateText(profile.name)}</h3></div><span>{profile.directional?'Direccional':'No direccional'} · {profile.unit}</span></div>
+          <p>{profile.purpose}</p><h4>{en?'Origin and authorship':'Origen y autoría'}</h4><p>{profile.author}</p><h4>{en?'Formulation used by ViaSpania':'Formulación utilizada por ViaSpania'}</h4><code>{en?MODEL_FORMULAS_EN[selected]:profile.formula}</code><h4>{en?'Variables considered':'Variables consideradas'}</h4><ul>{profile.variables.map(item=><li key={item}>{item}</li>)}</ul><h4>{en?'What can be changed in the application':'Qué puede modificar en el programa'}</h4><ul>{profile.editable.map(item=><li key={item}>{item}</li>)}</ul><h4>{en?'Limitations':'Limitaciones'}</h4><ul>{profile.limits.map(item=><li key={item}>{item}</li>)}</ul><h4>{en?'Reference':'Referencia'}</h4><p className="calculation-help-reference">{translateText(profile.reference)}</p>
         </section>}
         <aside><b>{en?'Responsible interpretation':'Interpretación responsable'}</b><p>{en?'The result is a mathematical optimum conditioned by the digital model and selected assumptions. It does not demonstrate that a path, right of way, safety or real passability exists.':'El resultado es un óptimo matemático condicionado por el modelo digital y los supuestos elegidos. No demuestra que exista un camino, permiso de paso, seguridad o transitabilidad real.'}</p></aside>
       </div>

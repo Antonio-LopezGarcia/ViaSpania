@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "components": [
+    {
+      "id": "npm/@napi-rs__lzma-linux-x64-gnu-1.5.1",
+      "declared": "MIT",
+      "selected": "MIT",
+      "archiveSha256": "e69ca2a96510be330953f5b04b1d74617e7ce5d4487db4876c4b02b8364ef7e7",
+      "declarationEvidence": "docs/license-evidence/npm__@napi-rs__lzma-linux-x64-gnu-1.5.1.txt",
+      "evidenceSha256": "79be138555fff87cc62c39c20feeb8fc18c33442620c4e7ce25232bc601e0616",
+      "basis": "Declaración explícita del paquete exacto; no se altera la licencia upstream.",
+      "secondaryLicense": null
+    },
+    {
+      "id": "npm/lerc-3.0.0",
+      "declared": "Apache-2.0",
+      "selected": "Apache-2.0",
+      "archiveSha256": "5c927cdc5d70387b2f4215f99595f8c119157eacc3cf0fec9a7c4db2da3e784d",
+      "declarationEvidence": "docs/license-evidence/npm__lerc-3.0.0.txt",
+      "evidenceSha256": "e5127275d4e822c7f75a5708eb4c929a83d52b673111d505a3e36888d3ba0c4a",
+      "basis": "Declaración explícita del paquete exacto; no se altera la licencia upstream.",
+      "secondaryLicense": null
+    },
+    {
+      "id": "npm/stackback-0.0.2",
+      "declared": "MIT",
+      "selected": "MIT",
+      "archiveSha256": "3e663c82d1ccf9748ed446b648ec21a7dd6c5895ecf4a95310a60a320ca55858",
+      "declarationEvidence": "docs/license-evidence/npm__stackback-0.0.2.txt",
+      "evidenceSha256": "c6b9a6f3821f02ea10861376c68f30b86939e73fcef244d3718d15454de977fe",
+      "basis": "Declaración explícita del paquete exacto; no se altera la licencia upstream.",
+      "secondaryLicense": null,
+      "additionalLicenses": [
+        {
+          "license": "BSD-3-Clause",
+          "file": "package/formatstack.js",
+          "copyright": "Copyright 2012 the V8 project authors. All rights reserved.",
+          "obligation": "Conservar copyright, condiciones y disclaimer; no endorsement."
+        }
+      ]
+    },
+    {
+      "id": "cargo/libappindicator-sys-0.9.0",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "archiveSha256": "6e9ec52138abedcc58dc17a7c6c0c00a2bdb4f3427c7f63fa97fd0d859155caf",
+      "declarationEvidence": "docs/license-evidence/cargo__libappindicator-sys-0.9.0.txt",
+      "evidenceSha256": "0fdbefd560c6cd6b0d766b07e3e46b6a9f23bb7cb44c4c2b5246a1e56b1b20a2",
+      "basis": "Declaración explícita del paquete exacto; no se altera la licencia upstream.",
+      "secondaryLicense": null
+    },
+    {
+      "id": "cargo/r-efi-5.3.0",
+      "declared": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+      "selected": "MIT",
+      "archiveSha256": "69cdb34c158ceb288df11e18b4bd39de994f6657d83847bdffdbd7f346754b0f",
+      "declarationEvidence": "docs/license-evidence/cargo__r-efi-5.3.0.txt",
+      "evidenceSha256": "351119dc3c33bcf2a2084b81eb9bbfb0f900824375505f35f61266cf2539ad4c",
+      "basis": "Declaración explícita del paquete exacto; no se altera la licencia upstream.",
+      "secondaryLicense": null
+    },
+    {
+      "id": "cargo/r-efi-6.0.0",
+      "declared": "MIT OR Apache-2.0 OR LGPL-2.1-or-later",
+      "selected": "MIT",
+      "archiveSha256": "f8dcc9c7d52a811697d2151c701e0d08956f92b0e24136cf4cf27b57a6a0d9bf",
+      "declarationEvidence": "docs/license-evidence/cargo__r-efi-6.0.0.txt",
+      "evidenceSha256": "3a86be5b9c8b2689d48827785dba4e15ccf4f638b316c6edf1958ff5b731086b",
+      "basis": "Declaración explícita del paquete exacto; no se altera la licencia upstream.",
+      "secondaryLicense": null
+    },
+    {
+      "id": "cargo/selectors-0.36.1",
+      "declared": "MPL-2.0",
+      "selected": "MPL-2.0",
+      "archiveSha256": "c5d9c0c92a92d33f08817311cf3f2c29a3538a8240e94a6a3c622ce652d7e00c",
+      "declarationEvidence": "docs/license-evidence/cargo__selectors-0.36.1.txt",
+      "evidenceSha256": "c7c03648bbfbd84223d64fface4beedd345025f63ad4c5940c7a9cdb787bf2c5",
+      "basis": "Declaración explícita del paquete exacto; no se altera la licencia upstream.",
+      "secondaryLicense": "GPL-3.0-only según MPL 2.0 §3.3; se conserva MPL en los archivos"
+    },
+    {
+      "id": "cargo/winapi-i686-pc-windows-gnu-0.4.0",
+      "declared": "MIT/Apache-2.0",
+      "selected": "MIT",
+      "archiveSha256": "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6",
+      "declarationEvidence": "docs/license-evidence/cargo__winapi-i686-pc-windows-gnu-0.4.0.txt",
+      "evidenceSha256": "9c7bfe1262945cf2ad7a458ab01f6482105791cfb69e4e8f6f6a6799e646b575",
+      "basis": "Declaración explícita del paquete exacto; no se altera la licencia upstream.",
+      "secondaryLicense": null
+    },
+    {
+      "id": "cargo/winapi-x86_64-pc-windows-gnu-0.4.0",
+      "declared": "MIT/Apache-2.0",
+      "selected": "MIT",
+      "archiveSha256": "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f",
+      "declarationEvidence": "docs/license-evidence/cargo__winapi-x86_64-pc-windows-gnu-0.4.0.txt",
+      "evidenceSha256": "949d2fdb7a59a9a8034e989b7c2e8e72613d95d3ee4a7d1b2b800720baa8263f",
+      "basis": "Declaración explícita del paquete exacto; no se altera la licencia upstream.",
+      "secondaryLicense": null
+    }
+  ]
+}

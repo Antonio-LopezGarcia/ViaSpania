@@ -1,0 +1,34 @@
+ViaSpania — datos empaquetados y exportaciones
+
+Este aviso no relicencia datos ni certifica permisos no documentados.
+
+PROJ-data: cada archivo conserva el titular y la licencia indicados en
+geospatial/share/proj/copyright_and_licenses.csv y los README del proveedor.
+Las rejillas no son automáticamente MIT por acompañar PROJ. Mantenga esos avisos
+al redistribuirlas y, cuando corresponda, identifique las modificaciones y cumpla
+las obligaciones de compartir adaptaciones bajo la misma licencia.
+
+proj.db: contiene definiciones de EPSG, ESRI, IGNF y NKG. Sus versiones constan en
+la tabla metadata de la base. Revisar los términos de cada autoridad antes de
+certificar redistribución. https://epsg.org/terms-of-use.html
+
+AdV de_adv_BETA2007.tif: el README documenta permiso de redistribución, pero su
+alcance completo requiere revisión. No se afirma permiso universal de modificación.
+
+GDAL share: tablas, esquemas y plantillas conservan los avisos de LICENSE.TXT
+y cabeceras. Las referencias externas de leaflet_template.html no equivalen a
+un permiso de uso ilimitado de los servicios Leaflet/CDN/OSM/Carto.
+
+Datos usados durante ejecución:
+- IGN/CNIG: https://www.ign.es/web/ign/portal/politica-datos
+- OpenStreetMap: https://www.openstreetmap.org/copyright
+  Tiles: https://operations.osmfoundation.org/policies/tiles/
+- GeoNames: https://www.geonames.org/export/
+- Copernicus CLMS: https://land.copernicus.eu/en/data-policy
+- Copernicus DEM: https://dataspace.copernicus.eu/explore-data/data-collections/copernicus-contributing-missions/collections-description/COP-DEM
+- Proveedores configurados por el usuario: comprobar su licencia específica.
+
+Los informes, mapas, vídeos, imágenes y datos exportados deben mantener las
+atribuciones de las fuentes utilizadas; para datos derivados se aplicarán las
+condiciones del proveedor. GPL del programa no determina automáticamente la
+licencia de las salidas. Verificar cada formato antes de su redistribución.

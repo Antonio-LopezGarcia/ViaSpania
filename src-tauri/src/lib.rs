@@ -1,4 +1,6 @@
 use base64::{engine::general_purpose::STANDARD as BASE64, Engine as _};
+mod video_export;
+mod gazetteer;
 use futures_util::StreamExt;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
@@ -378,6 +380,7 @@ struct TerrainMesh {
     min_elevation_m: f32,
     max_elevation_m: f32,
     elevations: Vec<f32>,
+    valid_cells: Vec<bool>,
     wgs84_extent: [f64; 4],
 }
 
@@ -792,6 +795,9 @@ fn raster_cell_for_point(
     ))
 }
 
+// Shared raster tolerance (cells): a crossing must reopen the full barrier footprint.
+const BARRIER_RASTER_MARGIN: isize = 1;
+
 fn rasterize_barriers(
     barriers: &[BarrierRequest],
     width: usize,
@@ -823,8 +829,8 @@ fn rasterize_barriers(
             let sy = if y0 < y1 { 1 } else { -1 };
             let mut error = dx + dy;
             loop {
-                for oy in -1..=1 {
-                    for ox in -1..=1 {
+                for oy in -BARRIER_RASTER_MARGIN..=BARRIER_RASTER_MARGIN {
+                    for ox in -BARRIER_RASTER_MARGIN..=BARRIER_RASTER_MARGIN {
                         let x = x0 + ox;
                         let y = y0 + oy;
                         if x >= 0 && y >= 0 && x < width as isize && y < height as isize {
@@ -926,7 +932,7 @@ fn rasterize_facilitators(
     for crossing in crossings {
         paint(
             &crossing.coordinates,
-            0,
+            BARRIER_RASTER_MARGIN,
             crossing.crossing_cost_multiplier,
             true,
         );
@@ -1433,21 +1439,26 @@ fn generate_terrain_mesh(
     let metadata = gdal_json_basic(&raster)?;
     let source_width = metadata_number(&metadata, "size", 0)? as usize;
     let source_height = metadata_number(&metadata, "size", 1)? as usize;
+    let margin = terrain_border_margin(source_width, source_height);
+    let cropped_width = source_width - 2 * margin;
+    let cropped_height = source_height - 2 * margin;
+    let nodata = metadata.get("bands").and_then(Value::as_array).and_then(|b| b.first())
+        .and_then(|b| b.get("noDataValue")).and_then(Value::as_f64).map(|v| v as f32);
     let limit = max_size.unwrap_or(450).clamp(100, 700);
-    let scale = (limit as f64 / source_width.max(source_height) as f64).min(1.0);
-    let width = ((source_width as f64 * scale).round() as usize).max(2);
-    let height = ((source_height as f64 * scale).round() as usize).max(2);
-    let origin_x = metadata_number(&metadata, "geoTransform", 0)?;
+    let scale = (limit as f64 / cropped_width.max(cropped_height) as f64).min(1.0);
+    let width = ((cropped_width as f64 * scale).round() as usize).max(2);
+    let height = ((cropped_height as f64 * scale).round() as usize).max(2);
+    let origin_x = metadata_number(&metadata, "geoTransform", 0)? + metadata_number(&metadata, "geoTransform", 1)? * margin as f64;
     let pixel_x = metadata_number(&metadata, "geoTransform", 1)?;
-    let origin_y = metadata_number(&metadata, "geoTransform", 3)?;
+    let origin_y = metadata_number(&metadata, "geoTransform", 3)? + metadata_number(&metadata, "geoTransform", 5)? * margin as f64;
     let pixel_y = metadata_number(&metadata, "geoTransform", 5)?;
-    let width_m = pixel_x.abs() * source_width as f64;
-    let height_m = pixel_y.abs() * source_height as f64;
+    let width_m = pixel_x.abs() * cropped_width as f64;
+    let height_m = pixel_y.abs() * cropped_height as f64;
     let raster_crs = raster_epsg(&raster)?;
     let corners = transform_points(
         &[
-            [origin_x, origin_y + pixel_y * source_height as f64],
-            [origin_x + pixel_x * source_width as f64, origin_y],
+            [origin_x, origin_y + pixel_y * cropped_height as f64],
+            [origin_x + pixel_x * cropped_width as f64, origin_y],
         ],
         &raster_crs,
         "EPSG:4326",
@@ -1462,6 +1473,8 @@ fn generate_terrain_mesh(
             "-of", "ENVI", "-ot", "Float32", "-r", "bilinear", "-outsize",
         ])
         .args([width.to_string(), height.to_string()])
+        .arg("-srcwin")
+        .args([margin.to_string(), margin.to_string(), cropped_width.to_string(), cropped_height.to_string()])
         .arg(&raster)
         .arg(&binary)
         .output()
@@ -1484,10 +1497,11 @@ fn generate_terrain_mesh(
         .chunks_exact(4)
         .map(|chunk| f32::from_le_bytes(chunk.try_into().expect("cuatro bytes")))
         .collect();
+    let valid_cells: Vec<bool> = elevations.iter().map(|v| terrain_value_valid(*v, nodata)).collect();
     let valid: Vec<f32> = elevations
         .iter()
         .copied()
-        .filter(|value| value.is_finite() && *value > -9_000.0)
+        .filter(|value| terrain_value_valid(*value, nodata))
         .collect();
     let min_elevation_m = valid.iter().copied().reduce(f32::min).ok_or_else(|| {
         NativeError::Gdal("El MDT no contiene elevaciones válidas para la vista 3D".to_owned())
@@ -1498,7 +1512,7 @@ fn generate_terrain_mesh(
         .reduce(f32::max)
         .unwrap_or(min_elevation_m);
     for value in &mut elevations {
-        if !value.is_finite() || *value <= -9_000.0 {
+        if !terrain_value_valid(*value, nodata) {
             *value = min_elevation_m;
         }
     }
@@ -1510,6 +1524,7 @@ fn generate_terrain_mesh(
         min_elevation_m,
         max_elevation_m,
         elevations,
+        valid_cells,
         wgs84_extent: [corners[0][0], corners[0][1], corners[1][0], corners[1][1]],
     })
 }
@@ -2523,7 +2538,7 @@ fn save_export_file(
         .to_ascii_lowercase();
     if !matches!(
         extension.as_str(),
-        "json" | "geojson" | "pdf" | "png" | "csv" | "gif" | "webm" | "mp4"
+        "json" | "geojson" | "pdf" | "png" | "csv" | "gif" | "webm" | "mp4" | "avi"
     ) {
         return Err(NativeError::Io(
             "El formato seleccionado no está permitido para la exportación".to_owned(),
@@ -2545,7 +2560,7 @@ fn save_export_file(
     let bytes = match (text, base64) {
         (Some(value), None) if extension != "pdf" => value.into_bytes(),
         (None, Some(value))
-            if matches!(extension.as_str(), "pdf" | "png" | "gif" | "webm" | "mp4") =>
+            if matches!(extension.as_str(), "pdf" | "png" | "gif" | "webm" | "mp4" | "avi") =>
         {
             BASE64
                 .decode(value)
@@ -3119,6 +3134,15 @@ fn valid_elevation(surface: &PreparedSurface, value: f32) -> bool {
             .unwrap_or(true)
 }
 
+// A single native raster cell, never a percentage or a zero-elevation heuristic.
+fn terrain_border_margin(width: usize, height: usize) -> usize {
+    if width >= 4 && height >= 4 { 1 } else { 0 }
+}
+
+fn terrain_value_valid(value: f32, nodata: Option<f32>) -> bool {
+    value.is_finite() && nodata.is_none_or(|n| !n.is_finite() || (value - n).abs() > f32::EPSILON)
+}
+
 fn contour_segments(
     surface: &PreparedSurface,
     interval: f64,
@@ -3128,11 +3152,19 @@ fn contour_segments(
             "El intervalo de curvas debe estar entre 0,1 y 10.000 m".into(),
         ));
     }
+    let margin = terrain_border_margin(surface.width, surface.height);
+    let nodata_cells = surface.elevations.iter().filter(|v| !valid_elevation(surface, **v)).count();
     let valid: Vec<f64> = surface
         .elevations
         .iter()
         .copied()
-        .filter(|v| valid_elevation(surface, *v))
+        .enumerate()
+        .filter(|(i,v)| {
+            let row = i / surface.width;
+            let col = i % surface.width;
+            row >= margin && row < surface.height - margin && col >= margin && col < surface.width - margin && valid_elevation(surface, *v)
+        })
+        .map(|(_,v)| v)
         .map(f64::from)
         .collect();
     if valid.is_empty() {
@@ -3146,8 +3178,8 @@ fn contour_segments(
     let first = (min / interval).ceil() * interval;
     let mut level = first;
     while level <= max {
-        for row in 0..surface.height.saturating_sub(1) {
-            for col in 0..surface.width.saturating_sub(1) {
+        for row in margin..surface.height.saturating_sub(1 + margin) {
+            for col in margin..surface.width.saturating_sub(1 + margin) {
                 let ids = [
                     row * surface.width + col,
                     row * surface.width + col + 1,
@@ -3202,7 +3234,7 @@ fn contour_segments(
             coordinates: vec![geographic[i * 2], geographic[i * 2 + 1]],
         })
         .collect();
-    Ok((lines, min, max, surface.elevations.len() - valid.len()))
+    Ok((lines, min, max, nodata_cells))
 }
 
 #[tauri::command]
@@ -3339,6 +3371,7 @@ fn calculate_viewshed(
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .manage(video_export::VideoExports::default())
         .setup(|app| {
             let geospatial = app.path().resource_dir()?.join("geospatial");
             let gdalinfo = if cfg!(windows) {
@@ -3373,6 +3406,7 @@ pub fn run() {
         .manage(IsochroneState::default())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
+            gazetteer::geonames_search,gazetteer::project_coordinate,
             native_status,
             fetch_capabilities,
             download_wcs,
@@ -3393,6 +3427,10 @@ pub fn run() {
             sample_raster_elevation_at,
             generate_terrain_mesh,
             save_export_file,
+            video_export::video_export_start,
+            video_export::video_export_append,
+            video_export::video_export_finish,
+            video_export::video_export_cancel,
             export_raster_geotiff,
             export_geopackage,
             read_project_file
@@ -3404,6 +3442,47 @@ pub fn run() {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn terrain_edges_preserve_real_zero_and_nodata_metadata() {
+        assert_eq!(terrain_border_margin(450, 450), 1);
+        assert_eq!(terrain_border_margin(3, 20), 0);
+        assert!(terrain_value_valid(0.0, Some(-9999.0)));
+        assert!(!terrain_value_valid(0.0, Some(0.0)));
+        assert!(!terrain_value_valid(32767.0, Some(32767.0)));
+        assert!(!terrain_value_valid(f32::NAN, None));
+        assert!(terrain_value_valid(-9500.0, None));
+    }
+
+    #[test]
+    fn contours_omit_one_cell_rim_without_changing_the_source() {
+        let mut surface = tiny_topographic_surface();
+        surface.width = 4;
+        surface.height = 4;
+        surface.elevations = vec![0.0,0.0,0.0,0.0, 0.0,100.0,200.0,0.0, 0.0,100.0,200.0,0.0, 0.0,0.0,0.0,0.0];
+        let original = surface.elevations.clone();
+        let (lines,min,max,nodata) = contour_segments(&surface,50.0).unwrap();
+        assert_eq!((min,max,nodata),(100.0,200.0,0));
+        assert!(!lines.is_empty());
+        assert!(lines.iter().all(|line| line.level >= 100.0));
+        assert_eq!(surface.elevations,original);
+        surface.elevations[5] = 0.0;
+        assert_eq!(contour_segments(&surface,50.0).unwrap().1,0.0);
+        surface.elevations[5] = -9999.0;
+        assert!(contour_segments(&surface,50.0).unwrap().0.is_empty());
+    }
+
+    #[test]
+    fn saves_avi_binary_without_changing_bytes() {
+        let directory = std::env::temp_dir().join(format!("viaspania-avi-test-{}", uuid::Uuid::new_v4()));
+        std::fs::create_dir_all(&directory).unwrap();
+        let output = directory.join("ruta.avi");
+        let bytes = b"RIFF\x04\x00\x00\x00AVI ";
+        save_export_file(output.to_string_lossy().into_owned(), None, Some(BASE64.encode(bytes))).unwrap();
+        assert_eq!(std::fs::read(&output).unwrap(), bytes);
+        std::fs::remove_file(output).unwrap();
+        std::fs::remove_dir(directory).unwrap();
+    }
 
     #[test]
     fn resolves_platform_executable_names() {
@@ -3674,7 +3753,7 @@ mod tests {
     fn corridors_discount_and_crossings_reopen_only_local_cells() {
         let mut blocked = vec![false; 25];
         blocked[12] = true;
-        blocked[13] = true;
+        blocked[14] = true;
         let discounts = rasterize_facilitators(
             &[CorridorRequest {
                 coordinates: vec![[0.0, -1.0], [4.0, -1.0]],
@@ -3697,7 +3776,45 @@ mod tests {
         assert_eq!(discounts[7], 0.4);
         assert_eq!(discounts[12], 0.4);
         assert!(!blocked[12]);
-        assert!(blocked[13]);
+        assert!(blocked[14]);
+    }
+
+    #[test]
+    fn diagonal_bridge_opens_absolute_barrier_for_every_connectivity() {
+        let (blocked, penalties) = rasterize_barriers(
+            &[BarrierRequest { coordinates: vec![[4.5, -0.5], [4.5, -8.5]], kind: "absolute".into(), value: 1.0 }],
+            9, 9, 0.0, 0.0, 1.0, -1.0,
+        );
+        for connectivity in [4, 8, 16] {
+            for reverse_geometry in [false, true] {
+                let mut surface = PreparedSurface {
+                    raster_crs: "EPSG:25830".into(), width: 9, height: 9,
+                    origin_x: 0.0, origin_y: 0.0, pixel_x: 1.0, pixel_y: -1.0,
+                    nodata: None, elevations: vec![0.0; 81], blocked: blocked.clone(),
+                    penalties: penalties.clone(), discounts: vec![1.0; 81],
+                };
+                let request = RouteRequest {
+                    raster_path: String::new(), start: [0.0, 0.0], end: [0.0, 0.0],
+                    model: "tobler".into(), barriers: vec![], corridors: vec![], crossings: vec![],
+                    points_of_interest: vec![], connectivity, critical_slope_percent: 20.0,
+                    ardigo_speed_ms: 1.0, max_cells: 81, rank_penalized_cells: vec![], rank_penalty: 1.0,
+                };
+                let start = 4 * 9 + 1;
+                let end = 4 * 9 + 7;
+                assert!(!lcp_distances(&surface, start, &request, false).unwrap().0[end].is_finite());
+                let mut coordinates = vec![[3.5, -3.5], [5.5, -5.5]];
+                if reverse_geometry { coordinates.reverse(); }
+                surface.discounts = rasterize_facilitators(
+                    &[/* Corridors do not reopen barriers. */],
+                    &[CrossingRequest { coordinates, crossing_cost_multiplier: 1.0 }],
+                    &[], &mut surface.blocked, 9, 9, 0.0, 0.0, 1.0, -1.0,
+                );
+                assert!(lcp_distances(&surface, start, &request, false).unwrap().0[end].is_finite());
+                assert!(lcp_distances(&surface, end, &request, false).unwrap().0[start].is_finite());
+                assert!(surface.blocked[4]);
+                assert!(surface.blocked[8 * 9 + 4]);
+            }
+        }
     }
 
     #[test]

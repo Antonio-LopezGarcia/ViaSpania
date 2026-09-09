@@ -5,6 +5,20 @@ import {ReportExportControl} from './ReportExportControl';
 
 describe('compositor de informes',()=>{
  afterEach(cleanup);
+ it('muestra el catálogo dinámico y conserva el id de una capa importada en la composición',async()=>{
+  const onExport=vi.fn().mockResolvedValue(undefined),external={id:'external:ortofoto-local',name:'Ortofoto del usuario',group:'Capas importadas' as const,attribution:'Usuario'};
+  const view=render(<ReportExportControl disabled={false} loading={false} outboundAvailable mapSources={[{id:'builtin:ign-topographic',name:'Topográfico IGN',group:'Cartografía',attribution:'IGN'},external]} onExport={onExport}/>);
+  fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
+  expect(screen.getByRole('option',{name:'Ortofoto del usuario'})).toBeTruthy();
+  fireEvent.change(screen.getByLabelText('Base'),{target:{value:external.id}});
+  fireEvent.click(screen.getByRole('button',{name:'Generar PDF'}));
+  await waitFor(()=>expect(onExport).toHaveBeenCalled());
+  expect(onExport.mock.calls[0][1].routeSimple.base).toBe(external.id);
+  view.rerender(<ReportExportControl disabled={false} loading={false} outboundAvailable mapSources={[{id:'builtin:pnoa',name:'PNOA',group:'Ortofotografías',attribution:'IGN'}]} onExport={onExport}/>);
+  fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
+  expect(screen.queryByRole('option',{name:'Ortofoto del usuario'})).toBeNull();
+  expect(screen.getByRole('option',{name:'PNOA'})).toBeTruthy();
+ });
  it('reinicia el compositor al cambiar el modo de cálculo activo',()=>{
   const onExport=vi.fn().mockResolvedValue(undefined);
   const view=render(<ReportExportControl disabled={false} loading={false} mode="simple" outboundAvailable onExport={onExport}/>);
@@ -20,10 +34,10 @@ describe('compositor de informes',()=>{
   render(<ReportExportControl disabled={false} loading={false} outboundAvailable returnAvailable onExport={onExport}/>);
   fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
   expect(screen.getByRole('dialog',{name:'Compositor de informes de Ruta simple'})).toBeTruthy();
-  fireEvent.change(screen.getByLabelText('Base'),{target:{value:'historical'}});
+  fireEvent.change(screen.getByLabelText('Base'),{target:{value:'builtin:MTN50'}});
   fireEvent.click(screen.getByRole('button',{name:'Generar PDF'}));
   await waitFor(()=>expect(onExport).toHaveBeenCalled());
-  expect(onExport.mock.calls[0][1].routeSimple).toMatchObject({base:'historical',includeOutbound:true,includeReturn:true});
+  expect(onExport.mock.calls[0][1].routeSimple).toMatchObject({base:'builtin:MTN50',includeOutbound:true,includeReturn:true});
  });
  it('permite excluir las alternativas del informe de Ruta simple',async()=>{
   const onExport=vi.fn().mockResolvedValue(undefined);
@@ -41,6 +55,16 @@ describe('compositor de informes',()=>{
   expect((screen.getByRole('slider',{name:/Orientación/}) as HTMLInputElement).value).toBe('123');
   fireEvent.change(screen.getByRole('slider',{name:/Orientación/}),{target:{value:'210'}});
   expect((screen.getByRole('slider',{name:/Orientación/}) as HTMLInputElement).value).toBe('210');
+ });
+ it('no ofrece controles de cámara para mapas u ortofotografías 2D',()=>{
+  render(<ReportExportControl disabled={false} loading={false} outboundAvailable mapSources={[{id:'builtin:ign-topographic',name:'Topográfico IGN',group:'Cartografía',attribution:'IGN'},{id:'builtin:pnoa',name:'PNOA',group:'Ortofotografías',attribution:'IGN'},{id:'terrain3d',name:'Modelo 3D',group:'Modelo 3D',attribution:'ViaSpania',terrain3d:true}]} onExport={vi.fn().mockResolvedValue(undefined)}/>);
+  fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
+  expect(screen.queryByRole('slider',{name:/Inclinación/})).toBeNull();
+  expect(screen.queryByRole('slider',{name:/Orientación/})).toBeNull();
+  fireEvent.change(screen.getByLabelText('Base'),{target:{value:'builtin:pnoa'}});
+  expect(screen.queryByRole('slider',{name:/Inclinación/})).toBeNull();
+  fireEvent.change(screen.getByLabelText('Base'),{target:{value:'terrain3d'}});
+  expect(screen.getByRole('slider',{name:/Inclinación/})).toBeTruthy();
  });
  it('compone una comparación con mapa conjunto y páginas por perfil',async()=>{
   const onExport=vi.fn().mockResolvedValue(undefined);
@@ -94,10 +118,10 @@ describe('compositor de informes',()=>{
  });
  it('compone Curvas de nivel como vectores coloreados con leyenda altimétrica',async()=>{
   const onExport=vi.fn().mockResolvedValue(undefined);
-  render(<ReportExportControl disabled={true} loading={false} mode="contours" onExport={onExport}/>);
+  render(<ReportExportControl disabled={true} loading={false} mode="contours" contoursAvailable onExport={onExport}/>);
   fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
   expect(screen.getByRole('dialog',{name:'Compositor de informes de Curvas de nivel'})).toBeTruthy();
-  expect(screen.getByText(/sin borde negro/)).toBeTruthy();
+  expect(screen.queryByText(/sin borde negro/)).toBeNull();
   fireEvent.click(screen.getByRole('button',{name:'Generar PDF'}));
   await waitFor(()=>expect(onExport).toHaveBeenCalled());
   expect(onExport.mock.calls[0][1].contours).toMatchObject({includeCombinedMap:true,includeTechnicalPage:true});
@@ -113,5 +137,31 @@ describe('compositor de informes',()=>{
   fireEvent.click(screen.getByRole('button',{name:'Generar PDF'}));
   await waitFor(()=>expect(onExport).toHaveBeenCalled());
   expect(onExport.mock.calls[0][1].viewshed).toMatchObject({observerId:'2',includeCombinedMap:true,includeTechnicalPage:true});
+ });
+});
+
+describe('curvas en todos los compositores',()=>{
+ afterEach(cleanup);
+ it.each(['simple','comparison','multipoint','multiroute','corridor','isochrones','contours','viewshed'] as const)('permite activar y desactivar en %s',mode=>{
+  render(<ReportExportControl mode={mode} disabled={false} loading={false} contoursAvailable onExport={vi.fn()}/>);
+  fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
+  const checkbox=screen.getByRole('checkbox',{name:'Curvas de nivel'}) as HTMLInputElement;
+  const initial=checkbox.checked;
+  fireEvent.click(checkbox);expect(checkbox.checked).toBe(!initial);
+  fireEvent.click(checkbox);expect(checkbox.checked).toBe(initial);
+ });
+ it('deshabilita la opción sin datos calculados',()=>{
+  render(<ReportExportControl disabled={false} loading={false} onExport={vi.fn()}/>);
+  fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
+  expect((screen.getByRole('checkbox',{name:/Curvas de nivel/}) as HTMLInputElement).disabled).toBe(true);
+ });
+ it('envía la selección a la exportación',async()=>{
+  const onExport=vi.fn().mockResolvedValue(undefined);
+  render(<ReportExportControl disabled={false} loading={false} outboundAvailable contoursAvailable onExport={onExport}/>);
+  fireEvent.click(screen.getByRole('button',{name:'Componer informe'}));
+  fireEvent.click(screen.getByRole('checkbox',{name:'Curvas de nivel'}));
+  fireEvent.click(screen.getByRole('button',{name:'Generar PDF'}));
+  await waitFor(()=>expect(onExport).toHaveBeenCalled());
+  expect(onExport.mock.calls[0][1].routeSimple.showContours).toBe(true);
  });
 });

@@ -2,7 +2,7 @@
 
 ## Overview
 
-ViaSpania is a multi-platform geospatial application for analyzing transportation routes and land features across Spain. It comprises:
+ViaSpania is a multi-platform geospatial application for analyzing transportation routes and land features. It comprises:
 
 - **Web application** (TypeScript/React + OpenLayers) for interactive map exploration
 - **Desktop application** (Tauri + Rust) for native performance and offline GeoTIFF analysis

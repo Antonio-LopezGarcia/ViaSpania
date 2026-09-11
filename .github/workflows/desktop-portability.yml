@@ -28,7 +28,6 @@ on:
 
 jobs:
   quality:
-  quality:
     name: Código compartido · ${{ matrix.os }}
     strategy:
       fail-fast: false

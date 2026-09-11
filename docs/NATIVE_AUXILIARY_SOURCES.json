@@ -6,7 +6,7 @@
       "name": "mimalloc",
       "version": "3.4.1",
       "license": "MIT",
-      "owner": "native/apache-arrow-25.0.1_1",
+      "owner": "native/apache-arrow-25.0.1_2",
       "ownerSourceSha256": "43d5de0a581f43cf63a2c06b4dcf13b9ff6fcd800f023324596e5781093bc500",
       "evidence": "apache-arrow-25.0.1/cpp/thirdparty/versions.txt and cpp/cmake_modules/ThirdpartyToolchain.cmake; mimalloc_ep download observed during reconstruction",
       "sourceRequests": [

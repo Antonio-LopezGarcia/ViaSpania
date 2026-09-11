@@ -5,7 +5,7 @@
 
 ## Español
 
-ViaSpania es una aplicación de escritorio para analizar costes de desplazamiento sobre el terreno, comparar rutas y explorar la topografía, con cartografía y servicios de elevación integrados para España. Procesa los datos geográficos localmente mediante Tauri, Rust, GDAL/PROJ, React, OpenLayers y Three.js.
+ViaSpania es una aplicación de escritorio para analizar costes de desplazamiento sobre el terreno, comparar rutas y explorar la topografía, con cartografía y servicios de elevación integrados. Procesa los datos geográficos localmente mediante Tauri, Rust, GDAL/PROJ, React, OpenLayers y Three.js.
 
 **Estado de publicación:** la última versión publicada comprobada el 8 de septiembre de 2026 es [v0.2.1](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1). Este README también describe cambios posteriores en desarrollo; esas funciones no están necesariamente incluidas en los instaladores publicados.
 
@@ -162,7 +162,7 @@ El logotipo propio conserva copyright separado, con permiso para redistribuirlo 
 
 ## English
 
-ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic exploration, with integrated cartography and elevation services for Spain. It processes geographic data locally using Tauri, Rust, GDAL/PROJ, React, OpenLayers and Three.js.
+ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic exploration, with integrated cartography and elevation services. It processes geographic data locally using Tauri, Rust, GDAL/PROJ, React, OpenLayers and Three.js.
 
 **Release status:** the latest published release verified on 8 September 2026 is [v0.2.1](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1). This README also describes subsequent development changes; those features are not necessarily included in the published installers.
 

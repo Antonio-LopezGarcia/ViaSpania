@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "component": "native/sfcgal-2.3.0_1",
+  "status": "partial-reconstruction-passed",
+  "librarySha256": "4629a7ece70d301e56b33c0aa66230b281915f56c92d08eef3be32b34b1321b3",
+  "smoke": {
+    "wkt": "POLYGON ((0 0,2 0,2 3,0 3,0 0))",
+    "area": 6.0
+  },
+  "headers": "CGAL/Eigen rebuilt from pinned sources; 4356 files match installed headers",
+  "limits": [
+    "Uses installed GMP, MPFR and Boost, not a fully rebuilt dependency tree.",
+    "nlohmann/json ABI version is 3.12.0; historical Homebrew backport applicability remains unverified."
+  ]
+}

@@ -1,6 +1,14 @@
+> Estado vigente 2026-09-11: candidato 0.2.2 en preparación para GitHub como borrador; expediente con 823 componentes. Reconstrucciones parciales de PROJ, Arrow, GDAL, SFCGAL y otras bibliotecas documentadas en [CORRESPONDING_SOURCE_REVIEW.md](CORRESPONDING_SOURCE_REVIEW.md). Siguen pendientes la revisión integral de fuentes y la de datos/exportaciones. No se declara cumplimiento integral ni publicación aprobada.
+
 # Estado de preparación GPL de ViaSpania 0.2.1
 
 ## Resultado actual
+
+PB-2 (alcance residual de Kerberos) está resuelto para el runtime macOS exacto, con avisos conservados y reapertura si cambian los binarios: [NATIVE_LICENSE_REVIEW.md](NATIVE_LICENSE_REVIEW.md). Estos nuevos avisos/evidencias requieren incorporarse al próximo build y paquete de fuentes; los artefactos siguientes son históricos.
+
+La revisión de assets está resuelta para el uso descrito en [ASSETS.md](ASSETS.md): permiso de reproducción del logotipo propio y reconocimiento institucional de financiación. Esta actualización documental requiere incorporarse al próximo build; no se ha creado una nueva release.
+
+La revisión de titularidad y autorización del código propio está resuelta a partir de la declaración del responsable y el extracto de correo UGR aportado: [CODE_OWNERSHIP.md](CODE_OWNERSHIP.md). Los resultados de compilación y hashes siguientes corresponden al candidato anterior a esta actualización documental; no se ha publicado una nueva release.
 
 Se han resuelto los nueve casos de selección/texto de licencia, documentados en [LICENSE_SELECTIONS.md](LICENSE_SELECTIONS.md). Se elige MIT para siete paquetes; Apache-2.0 para lerc; MPL-2.0 con la vía de combinación GPL-3.0-only de §3.3 para selectors. En stackback se conserva además BSD-3-Clause para formatstack.js de V8: no se sustituye por MIT.
 
@@ -19,15 +27,12 @@ El expediente reúne 819 componentes, 839 archivos originales de paquetes/fuente
 
 El ejecutable principal usa GDAL/PROJ mediante subprocess; la app sí distribuye el runtime geoespacial y sus dependencias dinámicas. Mantener esta distinción no elimina las obligaciones sobre esos binarios distribuidos.
 
-## Cinco revisiones que siguen abiertas
+## Dos revisiones que siguen abiertas
 
-- REQUIERE REVISIÓN: Autorizar redistribución de assets oficiales e imagen institucional enumerados en ASSETS.md.
 - REQUIERE REVISIÓN: Cerrar recursos auxiliares de builds nativos y verificar reconstrucción desde las fuentes suministradas.
 - REQUIERE REVISIÓN: Revisar términos de proj.db, rejillas y exportaciones según DATA_NOTICES.txt.
-- REQUIERE REVISIÓN: Revisar alcance de avisos nativos compuestos, incluido Kerberos, sobre los objetos distribuidos.
-- REQUIERE REVISIÓN: Documentar titularidad y mandato de publicación con los titulares/UGR.
 
-Estas cuestiones no se resuelven escogiendo MIT. Deben cerrarse con evidencia en [RELEASE_DECISIONS.json](RELEASE_DECISIONS.json). El control estricto de publicación continúa fallando por esas cinco revisiones, no por los nueve casos ya resueltos. Se mantiene GPL-3.0-only para el código propio; no se certifica todavía toda la distribución.
+Estas cuestiones no se resuelven escogiendo MIT. Deben cerrarse con evidencia en [RELEASE_DECISIONS.json](RELEASE_DECISIONS.json). El control estricto de publicación continúa fallando por esas dos revisiones, no por los nueve casos ya resueltos. Se mantiene GPL-3.0-only para el código propio; no se certifica todavía toda la distribución.
 
 ## Artefactos locales
 
@@ -37,4 +42,4 @@ Estas cuestiones no se resuelven escogiendo MIT. Deben cerrarse con evidencia en
 - Fuentes: `release/ViaSpania-0.2.1-source-candidate.tar.gz`; SHA-256 `528316d9817649e40c25b6e7c7b5a0ded5e0925a0cdb826a14012ddd38507727`.
 - Procedimiento: [RELEASE_COMPLIANCE.md](RELEASE_COMPLIANCE.md).
 
-`release/` está excluido de Git por tamaño. Los artefactos son candidatos locales pendientes de las cinco revisiones. Para la distribución final se deberán ofrecer instalador y fuentes correspondientes por una vía válida y conservar las atribuciones y obligaciones aplicables.
+`release/` está excluido de Git por tamaño. Los artefactos son candidatos locales pendientes de las dos revisiones. Para la distribución final se deberán ofrecer instalador y fuentes correspondientes por una vía válida y conservar las atribuciones y obligaciones aplicables.

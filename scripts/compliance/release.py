@@ -21,6 +21,7 @@ from datetime import datetime, timezone
 from model import archive_name_safe, formula_sources, npm_lock_entries, release_problems, verify_integrity
 from supplement import recover
 from selections import apply_selections
+from model import native_review_matches, data_review_matches, auxiliary_sources
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / 'release/compliance'
@@ -39,7 +40,15 @@ def sha(path):
 
 
 INPUTS += ['docs/LICENSE_SELECTIONS.json', 'scripts/compliance/selections.py']
+INPUTS += ['docs/NATIVE_AUXILIARY_SOURCES.json']
+INPUTS += ['docs/CORRESPONDING_SOURCE_REVIEW.md', 'scripts/compliance/audit_native_sources.py', 'scripts/compliance/rebuild_native_probe.sh']
+INPUTS += [str(p.relative_to(ROOT)) for p in sorted((ROOT/'docs/corresponding-source-evidence').rglob('*')) if p.is_file()]
 INPUTS += [str(p.relative_to(ROOT)) for p in sorted((ROOT/'docs/license-evidence').glob('*')) if p.is_file()]
+INPUTS += ['docs/NATIVE_LICENSE_REVIEW.md', 'docs/DATA_LICENSE_REVIEW.md', 'docs/PROJ_DB_REVIEW.md']
+INPUTS += [str(p.relative_to(ROOT)) for p in sorted((ROOT/'docs/data-evidence').rglob('*')) if p.is_file()]
+if (ROOT/'docs/data-evidence/REVIEW.json').is_file():
+    INPUTS += list(json.loads((ROOT/'docs/data-evidence/REVIEW.json').read_text()).get('reviewedImplementation', {}))
+INPUTS += [str(p.relative_to(ROOT)) for p in sorted((ROOT/'docs/native-evidence').rglob('*')) if p.is_file()]
 
 
 def save_json(path, data):
@@ -251,6 +260,7 @@ def prepare(network):
             raise ValueError('Origen Cargo no fijado por checksum; REQUIERE REVISIÓN: '+p['name'])
         specs.append({'id': 'cargo/'+p['name']+'-'+p['version'], 'name': p['name'], 'version': p['version'], 'sourceRequests': [{'url': f'https://static.crates.io/crates/{p["name"]}/{p["name"]}-{p["version"]}.crate', 'integrity': p['checksum']}]})
     specs.extend(native['components'])
+    specs.extend(auxiliary_sources(json.loads((ROOT/'docs/NATIVE_AUXILIARY_SOURCES.json').read_text()), native['components']))
     components = []
     def job(spec):
         try:
@@ -280,6 +290,17 @@ def prepare(network):
         item = reviews.get(key, {})
         if item.get('status') != 'resolved' or not item.get('evidence'):
             findings.append('REQUIERE REVISIÓN: '+item.get('requirement', key))
+        elif key == 'native_scope':
+            review = json.loads((ROOT/'docs/native-evidence/REVIEW.json').read_text())
+            if not native_review_matches(review, native):
+                findings.append('REQUIERE REVISIÓN: cambió el runtime nativo respecto al cierre documentado de PB-2.')
+        elif key == 'data':
+            review_path = ROOT/'docs/data-evidence/REVIEW.json'
+            review = json.loads(review_path.read_text()) if review_path.is_file() else {}
+            data_files = {str(p.relative_to(GEO/'share')): sha(p) for p in (GEO/'share').rglob('*') if p.is_file()}
+            implementation = {name: sha(ROOT/name) if (ROOT/name).is_file() else None for name in review.get('reviewedImplementation', {})}
+            if not data_review_matches(review, data_files, implementation):
+                findings.append('REQUIERE REVISIÓN: cambiaron los datos o la implementación respecto al cierre de datos/exportaciones.')
     PUBLIC.mkdir(parents=True, exist_ok=True)
     with open(PUBLIC/'THIRD_PARTY_LICENSES.txt', 'w') as output:
         output.write('ViaSpania — textos originales de dependencias inventariadas\nIncluye paquetes de build/otros targets para cobertura de fuentes; no afirma que todos se enlacen.\nLas once dependencias directas Rust usan MIT según THIRD_PARTY_NOTICES.txt. Se conservan además los textos alternativos originales sin exigir su uso conjunto cuando son OR.\n\n')
@@ -374,7 +395,8 @@ def package():
     source_hashes = source_snapshot(snapshot)
     save_json(OUTPUT/'SOURCE_FILES.json', source_hashes)
     # Include actual data, licence texts, recipes and provenance alongside the exact source archives.
-    bundle = ROOT/'release/ViaSpania-0.2.1-source-candidate.tar.gz'
+    version = json.loads((ROOT/'package.json').read_text())['version']
+    bundle = ROOT/f'release/ViaSpania-{version}-source-candidate.tar.gz'
     with tarfile.open(bundle, 'w:gz') as archive:
         archive.add(OUTPUT, arcname='ViaSpania-source', filter=lambda item: None if item.name.endswith('.partial') else item)
         archive.add(GEO/'compliance', arcname='ViaSpania-source/native-provenance')
@@ -401,6 +423,10 @@ def inspect_app(path):
     expected = {f['path'] for f in manifest['files']}
     if actual != expected:
         failures.append('Ficheros nativos extra/ausentes: '+str(actual ^ expected))
+    expected_data = {str(p.relative_to(GEO/'share')): sha(p) for p in (GEO/'share').rglob('*') if p.is_file()}
+    actual_data = {str(p.relative_to(geo/'share')): sha(p) for p in (geo/'share').rglob('*') if p.is_file()}
+    if expected_data != actual_data:
+        failures.append('Los datos empaquetados no coinciden con el inventario revisado.')
     compliance = path/'Contents/Resources/compliance'
     for p in PUBLIC.rglob('*'):
         if p.is_file() and (not (compliance/p.relative_to(PUBLIC)).is_file() or sha(p) != sha(compliance/p.relative_to(PUBLIC))):

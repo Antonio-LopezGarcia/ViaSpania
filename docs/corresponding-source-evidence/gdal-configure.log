@@ -1,0 +1,876 @@
+-- The C compiler identification is AppleClang 21.0.0.21000101
+-- The CXX compiler identification is AppleClang 21.0.0.21000101
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test SSE2NEON_COMPILES
+-- Performing Test SSE2NEON_COMPILES - Success
+-- Performing Test HAVE_STD_FLOAT16_T
+-- Performing Test HAVE_STD_FLOAT16_T - Failed
+-- Setting CMAKE_FIND_FRAMEWORK=LAST
+-- Could NOT find SWIG (missing: SWIG_EXECUTABLE SWIG_DIR) 
+-- Found Python: /opt/miniconda3/bin/python3.13 (found suitable version "3.13.13", minimum required is "3.8") found components: Interpreter Development NumPy Development.Module Development.Embed
+-- Using ARM Neon optimizations
+-- Performing Test HAVE_WFLAG_ALL
+-- Performing Test HAVE_WFLAG_ALL - Success
+-- Performing Test HAVE_WFLAG_EXTRA
+-- Performing Test HAVE_WFLAG_EXTRA - Success
+-- Performing Test HAVE_WFLAG_INIT_SELF
+-- Performing Test HAVE_WFLAG_INIT_SELF - Success
+-- Performing Test HAVE_WFLAG_UNUSED_PARAMETER
+-- Performing Test HAVE_WFLAG_UNUSED_PARAMETER - Success
+-- Performing Test HAVE_WFLAG_MISSING_PROTOTYPES
+-- Performing Test HAVE_WFLAG_MISSING_PROTOTYPES - Success
+-- Performing Test HAVE_WFLAG_MISSING_DECLARATIONS
+-- Performing Test HAVE_WFLAG_MISSING_DECLARATIONS - Success
+-- Performing Test HAVE_WFLAG_SHORTEN_64_TO_32
+-- Performing Test HAVE_WFLAG_SHORTEN_64_TO_32 - Success
+-- Performing Test HAVE_WFLAG_LOGICAL_OP
+-- Performing Test HAVE_WFLAG_LOGICAL_OP - Failed
+-- Performing Test HAVE_WFLAG_SHADOW
+-- Performing Test HAVE_WFLAG_SHADOW - Success
+-- Performing Test HAVE_WFLAG_SHADOW_FIELD
+-- Performing Test HAVE_WFLAG_SHADOW_FIELD - Success
+-- Performing Test HAVE_WFLAG_MISSING_INCLUDE_DIRS
+-- Performing Test HAVE_WFLAG_MISSING_INCLUDE_DIRS - Success
+-- Performing Test HAVE_WFLAG_FORMAT_SECURITY
+-- Performing Test HAVE_WFLAG_FORMAT_SECURITY - Success
+-- Performing Test HAVE_WFLAG_ERROR_VLA
+-- Performing Test HAVE_WFLAG_ERROR_VLA - Success
+-- Performing Test HAVE_WFLAG_NO_CLOBBERED
+-- Performing Test HAVE_WFLAG_NO_CLOBBERED - Failed
+-- Performing Test HAVE_WFLAG_DATE_TIME
+-- Performing Test HAVE_WFLAG_DATE_TIME - Success
+-- Performing Test HAVE_WFLAG_NULL_DEREFERENCE
+-- Performing Test HAVE_WFLAG_NULL_DEREFERENCE - Success
+-- Performing Test HAVE_WFLAG_DUPLICATE_COND
+-- Performing Test HAVE_WFLAG_DUPLICATE_COND - Failed
+-- Performing Test HAVE_WFLAG_EXTRA_SEMI
+-- Performing Test HAVE_WFLAG_EXTRA_SEMI - Success
+-- Performing Test HAVE_WFLAG_COMMA
+-- Performing Test HAVE_WFLAG_COMMA - Success
+-- Performing Test HAVE_WFLAG_FLOAT_CONVERSION
+-- Performing Test HAVE_WFLAG_FLOAT_CONVERSION - Success
+-- Performing Test HAVE_WFLAG_DOCUMENTATION_AND_NO_DEPRECATED
+-- Performing Test HAVE_WFLAG_DOCUMENTATION_AND_NO_DEPRECATED - Success
+-- Performing Test HAVE_WFLAG_UNUSED_PRIVATE_FIELD
+-- Performing Test HAVE_WFLAG_UNUSED_PRIVATE_FIELD - Success
+-- Performing Test HAVE_WFLAG_NON_VIRTUAL_DTOR
+-- Performing Test HAVE_WFLAG_NON_VIRTUAL_DTOR - Success
+-- Performing Test HAVE_WFLAG_OVERLOADED_VIRTUAL
+-- Performing Test HAVE_WFLAG_OVERLOADED_VIRTUAL - Success
+-- Performing Test HAVE_WFLAG_SUGGEST_OVERRIDE
+-- Performing Test HAVE_WFLAG_SUGGEST_OVERRIDE - Success
+-- Performing Test HAVE_WFLAG_SUGGEST_DESTRUCTOR_OVERRIDE
+-- Performing Test HAVE_WFLAG_SUGGEST_DESTRUCTOR_OVERRIDE - Success
+-- Performing Test HAVE_WFLAG_STRING_CONVERSION
+-- Performing Test HAVE_WFLAG_STRING_CONVERSION - Success
+-- Performing Test HAVE_WFLAG_DEPRECATED_COPY_DTOR
+-- Performing Test HAVE_WFLAG_DEPRECATED_COPY_DTOR - Success
+-- Performing Test HAVE_WFLAG_IMPLICIT_FALLTHROUGH
+-- Performing Test HAVE_WFLAG_IMPLICIT_FALLTHROUGH - Success
+-- Performing Test HAVE_WFLAG_WEAK_VTABLES
+-- Performing Test HAVE_WFLAG_WEAK_VTABLES - Success
+-- Performing Test HAVE_WFLAG_INCONSISTENT_MISSING_DESTRUCTOR_OVERRIDE
+-- Performing Test HAVE_WFLAG_INCONSISTENT_MISSING_DESTRUCTOR_OVERRIDE - Success
+-- Performing Test HAVE_WFLAG_CAST_FUNCTION_TYPE
+-- Performing Test HAVE_WFLAG_CAST_FUNCTION_TYPE - Success
+-- Performing Test HAVE_WFLAG_UNREACHABLE_CODE_AGGRESSIVE
+-- Performing Test HAVE_WFLAG_UNREACHABLE_CODE_AGGRESSIVE - Success
+-- Performing Test HAVE_WFLAG_DOUBLE_PROMOTION
+-- Performing Test HAVE_WFLAG_DOUBLE_PROMOTION - Success
+-- Performing Test HAVE_FLAG_NO_OPERATOR_NAMES
+-- Performing Test HAVE_FLAG_NO_OPERATOR_NAMES - Success
+-- Performing Test HAVE_GCC_WARNING_ZERO_AS_NULL_POINTER_CONSTANT
+-- Performing Test HAVE_GCC_WARNING_ZERO_AS_NULL_POINTER_CONSTANT - Success
+-- Performing Test HAVE_WFLAG_OLD_STYLE_CAST
+-- Performing Test HAVE_WFLAG_OLD_STYLE_CAST - Success
+-- Performing Test HAVE_WFLAG_EFFCXX
+-- Performing Test HAVE_WFLAG_EFFCXX - Success
+-- Performing Test HAVE_SANITIZE_IGNORE_LIST
+-- Performing Test HAVE_SANITIZE_IGNORE_LIST - Success
+-- Looking for vsnprintf
+-- Looking for vsnprintf - found
+-- Looking for getcwd
+-- Looking for getcwd - found
+-- Looking for unistd.h
+-- Looking for unistd.h - found
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for locale.h
+-- Looking for locale.h - found
+-- Looking for xlocale.h
+-- Looking for xlocale.h - found
+-- Looking for direct.h
+-- Looking for direct.h - not found
+-- Looking for dlfcn.h
+-- Looking for dlfcn.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of int
+-- Check size of int - done
+-- Check size of unsigned long
+-- Check size of unsigned long - done
+-- Check size of long int
+-- Check size of long int - done
+-- Check size of void*
+-- Check size of void* - done
+-- Check size of size_t
+-- Check size of size_t - done
+-- Performing Test HAVE__FLOAT16
+-- Performing Test HAVE__FLOAT16 - Success
+-- Looking for ctime_r
+-- Looking for ctime_r - found
+-- Looking for gmtime_r
+-- Looking for gmtime_r - found
+-- Looking for localtime_r
+-- Looking for localtime_r - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Performing Test HAVE_PTHREAD_MUTEX_RECURSIVE
+-- Performing Test HAVE_PTHREAD_MUTEX_RECURSIVE - Success
+-- Performing Test HAVE_PTHREAD_MUTEX_ADAPTIVE_NP
+-- Performing Test HAVE_PTHREAD_MUTEX_ADAPTIVE_NP - Failed
+-- Performing Test HAVE_PTHREAD_SPIN_LOCK
+-- Performing Test HAVE_PTHREAD_SPIN_LOCK - Failed
+-- Performing Test HAVE_5ARGS_MREMAP
+-- Performing Test HAVE_5ARGS_MREMAP - Failed
+-- Performing Test HAVE_PTHREAD_ATFORK
+-- Performing Test HAVE_PTHREAD_ATFORK - Success
+-- Looking for posix_spawnp
+-- Looking for posix_spawnp - found
+-- Looking for posix_memalign
+-- Looking for posix_memalign - found
+-- Looking for vfork
+-- Looking for vfork - found
+-- Looking for mmap
+-- Looking for mmap - found
+-- Looking for sigaction
+-- Looking for sigaction - found
+-- Looking for statvfs
+-- Looking for statvfs - found
+-- Looking for statvfs64
+-- Looking for statvfs64 - not found
+-- Looking for getrlimit
+-- Looking for getrlimit - found
+-- Looking for RLIMIT_AS
+-- Looking for RLIMIT_AS - found
+-- Looking for sys/random.h
+-- Looking for sys/random.h - found
+-- Looking for getrandom
+-- Looking for getrandom - not found
+-- Looking for dl_iterate_phdr
+-- Looking for dl_iterate_phdr - not found
+-- Looking for open64
+-- Looking for open64 - not found
+-- Looking for fseek64
+-- Looking for fseek64 - not found
+-- Looking for stat64
+-- Looking for stat64 - found
+-- Performing Test WINDOWS_STAT64
+-- Performing Test WINDOWS_STAT64 - Failed
+-- Check size of off_t
+-- Check size of off_t - done
+-- Looking for pread64
+-- Looking for pread64 - not found
+-- Looking for ftruncate64
+-- Looking for ftruncate64 - not found
+-- Performing Test HAVE_PREAD_BSD
+-- Performing Test HAVE_PREAD_BSD - Success
+-- Performing Test HAVE_USELOCALE
+-- Performing Test HAVE_USELOCALE - Success
+-- Performing Test HAVE_HIDE_INTERNAL_SYMBOLS
+-- Performing Test HAVE_HIDE_INTERNAL_SYMBOLS - Success
+-- Performing Test HAVE_GCC_ATOMIC_BUILTINS
+-- Performing Test HAVE_GCC_ATOMIC_BUILTINS - Success
+-- Performing Test HAVE_SC_PHYS_PAGES
+-- Performing Test HAVE_SC_PHYS_PAGES - Success
+-- Performing Test HAVE_SCHED_GETAFFINITY
+-- Performing Test HAVE_SCHED_GETAFFINITY - Failed
+-- Performing Test INT128_TEST
+-- Performing Test INT128_TEST - Success
+-- checking if sprintf can be overloaded for GDAL compilation
+-- Performing Test DEPRECATE_SPRINTF
+-- Performing Test DEPRECATE_SPRINTF - Failed
+-- Performing Test HAVE_SHARED_MUTEX
+-- Performing Test HAVE_SHARED_MUTEX - Success
+-- Performing Test HAVE_ATOMIC_UINT64_T
+-- Performing Test HAVE_ATOMIC_UINT64_T - Success
+-- Looking for linux/userfaultfd.h
+-- Looking for linux/userfaultfd.h - not found
+-- GDAL_VERSION          = 3.13.2
+-- GDAL_ABI_FULL_VERSION = 39.3.13.2
+-- GDAL_SOVERSION        = 39
+-- Found ODBC: /opt/homebrew/lib/libodbc.dylib  found components: ODBCINST
+-- Could NOT find ODBCCPP (missing: ODBCCPP_LIBRARY ODBCCPP_INCLUDE_DIR) 
+-- Could NOT find MSSQL_ODBC (missing: MSSQL_ODBC_LIBRARY MSSQL_ODBC_INCLUDE_DIR MSSQL_ODBC_VERSION) 
+-- Could NOT find MySQL (missing: MYSQL_LIBRARY MYSQL_INCLUDE_DIR) 
+-- Found CURL: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libcurl.tbd (found suitable version "8.7.1", minimum required is "7.68")
+-- Performing Test Iconv_IS_BUILT_IN
+-- Performing Test Iconv_IS_BUILT_IN - Failed
+-- Found Iconv: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libiconv.tbd
+-- Performing Test _ICONV_SECOND_ARGUMENT_IS_NOT_CONST
+-- Performing Test _ICONV_SECOND_ARGUMENT_IS_NOT_CONST - Success
+-- Performing Test ICONV_HAS_EXTRA_CHARSETS
+-- Performing Test ICONV_HAS_EXTRA_CHARSETS - Success
+-- Found LibXml2: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libxml2.tbd (found version "2.9.13")
+-- Could NOT find EXPAT (missing: EXPAT_DIR)
+-- Found EXPAT: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libexpat.tbd (found version "2.7.4")
+-- Found XercesC: /opt/homebrew/lib/libxerces-c.dylib (found version "3.3.0")
+-- Found ZLIB: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libz.tbd (found version "1.2.12")
+-- Found Deflate: /opt/homebrew/lib/libdeflate.dylib
+-- Found OpenSSL: /opt/homebrew/lib/libcrypto.dylib (found version "3.6.3") found components: SSL Crypto
+-- Could NOT find CryptoPP (missing: CRYPTOPP_LIBRARY CRYPTOPP_TEST_KNOWNBUG CRYPTOPP_INCLUDE_DIR) 
+-- Looking for sqlite3_mutex_alloc
+-- Looking for sqlite3_mutex_alloc - found
+-- Looking for sqlite3_column_table_name
+-- Looking for sqlite3_column_table_name - found
+-- Looking for sqlite3_rtree_query_callback
+-- Looking for sqlite3_rtree_query_callback - found
+-- Looking for sqlite3_load_extension
+-- Looking for sqlite3_load_extension - not found
+-- Looking for sqlite3_progress_handler
+-- Looking for sqlite3_progress_handler - found
+-- Performing Test SQLite3_HAS_NON_DEPRECATED_AUTO_EXTENSION
+-- Performing Test SQLite3_HAS_NON_DEPRECATED_AUTO_EXTENSION - Failed
+-- Found SQLite3: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libsqlite3.tbd (found version "3.51.0")
+-- Found TIFF: /opt/homebrew/lib/libtiff.dylib (found version "4.7.2")
+-- Found CURL: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libcurl.tbd (found version "8.7.1")
+-- Found PkgConfig: /opt/homebrew/bin/pkg-config (found version "3.0.5")
+-- Found ZSTD: /opt/homebrew/lib/libzstd.dylib (found version "1.5.7")
+-- Found SFCGAL: /opt/homebrew/lib/libSFCGAL.dylib (found version "2.3.0")
+-- Could NOT find GeoTIFF (missing: GeoTIFF_DIR)
+-- Found GeoTIFF: /opt/homebrew/lib/libgeotiff.dylib (found version "1.7.4.0")
+-- Found PNG: /opt/homebrew/lib/libpng.dylib (found suitable version "1.6.58", minimum required is "1.6")
+-- Found JPEG: /opt/homebrew/lib/libjpeg.dylib (found version "80")
+-- Performing Test HAVE_JPEGTURBO_DUAL_MODE_8_12
+-- Performing Test HAVE_JPEGTURBO_DUAL_MODE_8_12 - Success
+-- Found GIF: /opt/homebrew/lib/libgif.dylib (found version "6.1.3")
+-- Could NOT find OpenCAD (missing: OPENCAD_LIBRARY OPENCAD_INCLUDE_DIR) 
+-- Found QHULL: /opt/homebrew/lib/libqhull_r.dylib
+-- Found LERC: /opt/homebrew/lib/libLerc.dylib
+-- Could NOT find BRUNSLI (missing: BRUNSLI_ENC_LIB BRUNSLI_DEC_LIB BRUNSLI_INCLUDE_DIR) 
+-- Could NOT find libQB3 (missing: libQB3_DIR)
+-- Could NOT find Shapelib (missing: Shapelib_INCLUDE_DIR Shapelib_LIBRARY) 
+-- Found PCRE2: /opt/homebrew/lib/libpcre2-8.dylib
+-- Found SPATIALITE: /opt/homebrew/lib/libspatialite.dylib (found suitable version "5.1.0", minimum required is "4.1.2")
+-- Could NOT find RASTERLITE2 (missing: RASTERLITE2_LIBRARY RASTERLITE2_INCLUDE_DIR) (Required is at least version "1.1.0")
+-- Found LibKML: /opt/homebrew/lib/libkmlbase.dylib (found version "1.3.0")
+-- Found HDF5: hdf5-shared (found version "2.2.0") found components: C
+-- Found WebP: /opt/homebrew/lib/libwebp.dylib (found version "1.6.0")
+-- Found FreeXL: /opt/homebrew/lib/libfreexl.dylib
+-- Could NOT find MRSID (missing: MRSID_LIBRARY MRSID_INCLUDE_DIR) 
+-- Could NOT find Armadillo (missing: ARMADILLO_INCLUDE_DIR) 
+-- Could NOT find HDF4 (missing: HDF4_df_LIBRARY HDF4_mfhdf_LIBRARY HDF4_INCLUDE_DIR) 
+-- Could NOT find ECW (missing: ECW_LIBRARY ECWnet_LIBRARY ECWC_LIBRARY NCSUtil_LIBRARY ECW_INCLUDE_DIR) 
+-- Found HDF5: hdf5-shared (found version "2.2.0")
+-- Could NOT find PostgreSQL (missing: PostgreSQL_LIBRARY PostgreSQL_INCLUDE_DIR) 
+-- Could NOT find FYBA (missing: FYBA_FYBA_LIBRARY FYBA_FYGM_LIBRARY FYBA_FYUT_LIBRARY FYBA_INCLUDE_DIR) 
+-- Found LibLZMA: /opt/homebrew/lib/liblzma.dylib (found version "5.8.3")
+-- Found LZ4: /opt/homebrew/lib/liblz4.dylib
+-- Found Blosc: /opt/homebrew/lib/libblosc.dylib (found version "1.21.6")
+-- Could NOT find OpenMP_C (missing: OpenMP_C_FLAGS OpenMP_C_LIB_NAMES) 
+-- Could NOT find OpenMP (missing: OpenMP_C_FOUND C) 
+-- Could NOT find basisu (missing: basisu_DIR)
+-- Could NOT find IDB (missing: IDB_INCLUDE_DIR IDB_IFCPP_LIBRARY IDB_IFDMI_LIBRARY IDB_IFSQL_LIBRARY IDB_IFCLI_LIBRARY) 
+-- Could NOT find TileDB (missing: TileDB_DIR)
+-- Could NOT find ExprTk (missing: ExprTk_INCLUDE_DIR) 
+-- Could NOT find muparser (missing: MUPARSER_INCLUDE_DIR MUPARSER_LIBRARY) 
+-- Found OpenEXR: /opt/homebrew/lib/libOpenEXR.dylib (found version "3.4.14")
+-- Could NOT find MONGOCXX (missing: MONGOCXX_INCLUDE_DIR BSONCXX_INCLUDE_DIR MONGOCXX_LIBRARY BSONCXX_LIBRARY) 
+-- Performing Test LIBHEIF_SUPPORTS_TILES
+-- Performing Test LIBHEIF_SUPPORTS_TILES - Success
+-- Performing Test AVIF_HAS_OPAQUE_PROPERTIES
+-- Performing Test AVIF_HAS_OPAQUE_PROPERTIES - Failed
+-- Found OpenJPEG: /opt/homebrew/lib/libopenjp2.dylib (found suitable version "2.5.4", minimum required is "2.3.1")
+-- Found JNI: /Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home/include  found components: AWT JVM
+-- Could NOT find HDFS (missing: HDFS_LIBRARY HDFS_INCLUDE_DIR) 
+-- Found Poppler: /opt/homebrew/lib/libpoppler.dylib (found suitable version "26.08.0", minimum required is "0.86")
+-- Could NOT find Podofo (missing: PODOFO_LIBRARY PODOFO_INCLUDE_DIR) 
+-- Could NOT find Oracle (missing: Oracle_LIBRARY Oracle_INCLUDE_DIR) 
+-- Could NOT find FileGDB (missing: FileGDB_LIBRARY FileGDB_INCLUDE_DIR) 
+-- Could NOT find KDU (missing: KDU_INCLUDE_DIR KDU_LIBRARY KDU_AUX_LIBRARY) (found version "")
+-- Checking for modules 'libbrotlicommon;libbrotlienc;libbrotlidec'
+--   Found libbrotlicommon, version 1.2.0
+--   Found libbrotlienc, version 1.2.0
+--   Found libbrotlidec, version 1.2.0
+-- Found BrotliAlt: /opt/homebrew/Cellar/brotli/1.2.0/lib/libbrotlicommon.dylib
+-- Found OpenSSL: /opt/homebrew/lib/libcrypto.dylib (found version "3.6.3")
+CMake Warning at /opt/homebrew/lib/cmake/Arrow/Findlz4Alt.cmake:29 (find_package):
+  By not providing "Findlz4.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "lz4", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "lz4" with any of
+  the following names:
+
+    lz4.cps
+    lz4Config.cmake
+    lz4-config.cmake
+
+  Add the installation prefix of "lz4" to CMAKE_PREFIX_PATH or set "lz4_DIR"
+  to a directory containing one of the above files.  If "lz4" provides a
+  separate development package or SDK, be sure it has been installed.
+Call Stack (most recent call first):
+  /opt/homebrew/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)
+  /opt/homebrew/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)
+  /opt/homebrew/lib/cmake/Arrow/ArrowConfig.cmake:101 (find_dependency)
+  /opt/homebrew/lib/cmake/Arrow/ArrowConfig.cmake:124 (arrow_find_dependencies)
+  cmake/helpers/CheckDependentLibrariesCommon.cmake:151 (find_package)
+  cmake/helpers/CheckDependentLibrariesArrowParquet.cmake:1 (gdal_check_package)
+  cmake/helpers/CheckDependentLibraries.cmake:500 (include)
+  gdal.cmake:128 (include)
+  CMakeLists.txt:289 (include)
+
+
+-- Checking for module 'liblz4'
+--   Found liblz4, version 1.10.0
+-- Found lz4Alt: /opt/homebrew/opt/lz4/lib/liblz4.dylib
+-- Found BZip2: /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib/libbz2.tbd (found version "1.0.8")
+-- Looking for BZ2_bzCompressInit
+-- Looking for BZ2_bzCompressInit - found
+-- Found utf8proc: /opt/homebrew/lib/libutf8proc.dylib (found version "2.11.3")
+-- Found AWS SDK for C++, Version: 1.11.870, Install Root:/opt/homebrew, Platform Prefix:, Platform Dependent Libraries: pthread;curl
+-- Components specified for AWSSDK: config;s3;transfer;identity-management;sts, application will be depending on libs: aws-cpp-sdk-config;aws-cpp-sdk-transfer;aws-cpp-sdk-identity-management;aws-cpp-sdk-cognito-identity;aws-cpp-sdk-sts;aws-cpp-sdk-s3;aws-cpp-sdk-core
+-- Try finding aws-cpp-sdk-core
+-- Found crypto: /opt/homebrew/lib/libcrypto.dylib
+-- LibCrypto Include Dir: /opt/homebrew/include
+-- LibCrypto Shared Lib:  /opt/homebrew/lib/libcrypto.dylib
+-- LibCrypto Static Lib:  /opt/homebrew/lib/libcrypto.a
+-- Found aws-cpp-sdk-core
+-- Try finding aws-cpp-sdk-s3
+-- Found aws-cpp-sdk-s3
+-- Try finding aws-cpp-sdk-sts
+-- Found aws-cpp-sdk-sts
+-- Try finding aws-cpp-sdk-cognito-identity
+-- Found aws-cpp-sdk-cognito-identity
+-- Try finding aws-cpp-sdk-identity-management
+-- Found aws-cpp-sdk-identity-management
+-- Try finding aws-cpp-sdk-transfer
+-- Found aws-cpp-sdk-transfer
+-- Try finding aws-cpp-sdk-config
+-- Found aws-cpp-sdk-config
+-- Arrow version: 25.0.1
+-- Found the Arrow shared library: /opt/homebrew/lib/libarrow.2500.1.0.dylib
+-- Found the Arrow import library: ARROW_IMPORT_LIB-NOTFOUND
+-- Found the Arrow static library: /opt/homebrew/lib/libarrow.a
+CMake Warning at /opt/homebrew/lib/cmake/Parquet/FindThriftAlt.cmake:42 (find_package):
+  By not providing "FindThrift.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "Thrift", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "Thrift" with any
+  of the following names:
+
+    Thrift.cps
+    thrift.cps
+    ThriftConfig.cmake
+    thrift-config.cmake
+
+  Add the installation prefix of "Thrift" to CMAKE_PREFIX_PATH or set
+  "Thrift_DIR" to a directory containing one of the above files.  If "Thrift"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+Call Stack (most recent call first):
+  /opt/homebrew/share/cmake/Modules/CMakeFindDependencyMacro.cmake:93 (find_package)
+  /opt/homebrew/share/cmake/Modules/CMakeFindDependencyMacro.cmake:125 (__find_dependency_common)
+  /opt/homebrew/lib/cmake/Arrow/ArrowConfig.cmake:101 (find_dependency)
+  /opt/homebrew/lib/cmake/Parquet/ParquetConfig.cmake:62 (arrow_find_dependencies)
+  cmake/helpers/CheckDependentLibrariesCommon.cmake:151 (find_package)
+  cmake/helpers/CheckDependentLibrariesArrowParquet.cmake:3 (gdal_check_package)
+  cmake/helpers/CheckDependentLibraries.cmake:500 (include)
+  gdal.cmake:128 (include)
+  CMakeLists.txt:289 (include)
+
+
+-- Checking for module 'thrift'
+--   Found thrift, version 0.24.0
+-- Found ThriftAlt: /opt/homebrew/Cellar/thrift/0.24.0/lib/libthrift.dylib (found version "0.24.0")
+-- Parquet version: 25.0.1
+-- Found the Parquet shared library: /opt/homebrew/lib/libparquet.2500.1.0.dylib
+-- Found the Parquet import library: PARQUET_IMPORT_LIB-NOTFOUND
+-- Found the Parquet static library: /opt/homebrew/lib/libparquet.a
+-- ArrowCompute version: 25.0.1
+-- Found the ArrowCompute shared library: /opt/homebrew/lib/libarrow_compute.2500.1.0.dylib
+-- Found the ArrowCompute import library: ARROW_COMPUTE_IMPORT_LIB-NOTFOUND
+-- Found the ArrowCompute static library: /opt/homebrew/lib/libarrow_compute.a
+-- ArrowAcero version: 25.0.1
+-- Found the ArrowAcero shared library: /opt/homebrew/lib/libarrow_acero.2500.1.0.dylib
+-- Found the ArrowAcero import library: ARROW_ACERO_IMPORT_LIB-NOTFOUND
+-- Found the ArrowAcero static library: /opt/homebrew/lib/libarrow_acero.a
+-- ArrowDataset version: 25.0.1
+-- Found the ArrowDataset shared library: /opt/homebrew/lib/libarrow_dataset.2500.1.0.dylib
+-- Found the ArrowDataset import library: ARROW_DATASET_IMPORT_LIB-NOTFOUND
+-- Found the ArrowDataset static library: /opt/homebrew/lib/libarrow_dataset.a
+-- Could NOT find OpenDrive (missing: OpenDrive_DIR)
+-- Could NOT find AdbcDriverManager (missing: AdbcDriverManager_DIR)
+-- Found Java: /Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home/bin/java (found version "21.0.6") found components: Runtime Development
+-- Could NOT find CSharp (missing: CSHARP_TYPE CSHARP_VERSION CSHARP_COMPILER) 
+-- Could NOT find Grok (missing: Grok_DIR)
+-- Performing Test HAS_NO_UNDEFINED
+-- Performing Test HAS_NO_UNDEFINED - Failed
+-- Looking for _iconv_close
+-- Looking for _iconv_close - not found
+-- Looking for blosc_cbuffer_validate
+-- Looking for blosc_cbuffer_validate - found
+-- Performing Test HAVE_OPENMP_SIMD
+-- Performing Test HAVE_OPENMP_SIMD - Success
+-- Found BISON: /usr/bin/bison (found version "2.3")
+CMake Warning at frmts/gtiff/CMakeLists.txt:138 (message):
+  Cannot build JXL as a TIFF codec as it requires building with
+  -DGDAL_USE_TIFF_INTERNAL=ON
+
+
+CMake Warning at frmts/hdf5/CMakeLists.txt:94 (message):
+  HDF5 library status regarding thread-safety is unknown (set
+  GDAL_ENABLE_HDF5_GLOBAL_LOCK=NO if it is known to be thread-safe).  Adding
+  a global lock on GDAL side
+
+
+-- Looking for JxlEncoderFrameSettingsSetOption
+-- Looking for JxlEncoderFrameSettingsSetOption - found
+-- Looking for JxlEncoderFrameSettingsCreate
+-- Looking for JxlEncoderFrameSettingsCreate - found
+-- Looking for JxlEncoderSetFrameDistance
+-- Looking for JxlEncoderSetFrameDistance - found
+-- Looking for JxlEncoderSetFrameLossless
+-- Looking for JxlEncoderSetFrameLossless - found
+-- Looking for JxlEncoderSetCodestreamLevel
+-- Looking for JxlEncoderSetCodestreamLevel - found
+-- Looking for JxlEncoderInitExtraChannelInfo
+-- Looking for JxlEncoderInitExtraChannelInfo - found
+-- Looking for JxlDecoderSetDecompressBoxes
+-- Looking for JxlDecoderSetDecompressBoxes - found
+-- Looking for JxlEncoderSetExtraChannelDistance
+-- Looking for JxlEncoderSetExtraChannelDistance - found
+-- Looking for JxlDecoderDefaultPixelFormat
+-- Looking for JxlDecoderDefaultPixelFormat - not found
+-- Looking for sqlite3ext.h
+-- Looking for sqlite3ext.h - found
+--   Target system:             Darwin
+--   Installation directory:    /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/gdal/install
+--   C++ Compiler type:         AppleClang
+--   C compile command line:     /usr/bin/cc
+--   C++ compile command line:   /usr/bin/c++
+-- 
+--   CMAKE_C_FLAGS:               -fvisibility=hidden
+--   CMAKE_CXX_FLAGS:               -fvisibility=hidden
+--   CMAKE_CXX17_STANDARD_COMPILE_OPTION:              -std=c++17
+--   CMAKE_CXX17_EXTENSION_COMPILE_OPTION:              -std=gnu++17
+--   CMAKE_EXE_LINKER_FLAGS:              
+--   CMAKE_MODULE_LINKER_FLAGS:              
+--   CMAKE_SHARED_LINKER_FLAGS:              
+--   CMAKE_STATIC_LINKER_FLAGS:              
+--   CMAKE_C_FLAGS_RELEASE:              -O3 -DNDEBUG
+--   CMAKE_CXX_FLAGS_RELEASE:              -O3 -DNDEBUG
+--   CMAKE_EXE_LINKER_FLAGS_RELEASE:              
+--   CMAKE_MODULE_LINKER_FLAGS_RELEASE:              
+--   CMAKE_SHARED_LINKER_FLAGS_RELEASE:              
+--   CMAKE_STATIC_LINKER_FLAGS_RELEASE:              
+-- 
+-- Enabled drivers and features and found dependency packages
+-- The following features have been enabled:
+
+ * gdal_JPEG, JPEG image format
+ * gdal_RAW, Raw formats:EOSAT FAST Format, FARSITE LCP and Vexcel MFF2 Image
+ * gdal_GTIFF, GeoTIFF image format
+ * gdal_MEM, Read/write data in Memory
+ * gdal_VRT, Virtual GDAL Datasets
+ * gdal_DERIVED, Derived datasets
+ * gdal_GTI, GDAL Tile Index
+ * gdal_LIBERTIFF, GeoTIFF support through libertiff library
+ * gdal_HFA, Erdas Imagine .img
+ * gdal_NITF, National Imagery Transmission Format
+ * gdal_GXF, GXF
+ * gdal_AAIGRID, Arc/Info ASCII Grid Format.
+ * gdal_CEOS, CEOS translator
+ * gdal_SAR_CEOS, ASI CEOS translator
+ * gdal_DTED, Military Elevation Data
+ * gdal_JDEM, JDEM driver
+ * gdal_ENVISAT, Envisat
+ * gdal_L1B, NOAA Polar Orbiter Level 1b Data Set (AVHRR)
+ * gdal_RS2, RS2 -- RadarSat 2 XML Product
+ * gdal_ILWIS, Raster Map
+ * gdal_RMF, RMF --- Raster Matrix Format
+ * gdal_LEVELLER, Daylon Leveller heightfield
+ * gdal_SRTMHGT, SRTM HGT File Read Support
+ * gdal_IDRISI, Idrisi Raster Format
+ * gdal_GSG, Implements the Golden Software Surfer 7 Binary Grid Format.
+ * gdal_ERS, ERMapper .ERS
+ * gdal_JAXAPALSAR, JAXA PALSAR Level 1.1 and Level 1.5 processed products support
+ * gdal_DIMAP, SPOT Dimap Driver
+ * gdal_GFF, Ground-based SAR Applitcations Testbed File Format driver
+ * gdal_COSAR, COSAR -- TerraSAR-X Complex SAR Data Product
+ * gdal_PDS, USGS Astrogeology ISIS Cube (Version 2)
+ * gdal_ADRG, ADRG reader and ASRP/USRP Reader
+ * gdal_COASP, DRDC Configurable Airborne SAR Processor (COASP) data reader
+ * gdal_TSX, TerraSAR-X XML Product Support
+ * gdal_TERRAGEN, Terragen&trade; Terrain File
+ * gdal_MSGN, Meteosat Second Generation (MSG) Native Archive Format (.nat)
+ * gdal_TIL, EarthWatch .TIL Driver
+ * gdal_NORTHWOOD, NWT_GRD/NWT_GRC -- Northwood/Vertical Mapper File Format
+ * gdal_SAGA, SAGA GIS Binary Driver
+ * gdal_XYZ, ASCII Gridded XYZ
+ * gdal_HEIF, HEIF
+ * gdal_ESRIC, ESRI compact cache
+ * gdal_HF2, HF2/HFZ heightfield raster
+ * gdal_KMLSUPEROVERLAY
+ * gdal_CTG, CTG driver
+ * gdal_ZMAP, ZMAP
+ * gdal_NGSGEOID, NOAA NGS Geoid Height Grids
+ * gdal_IRIS, IRIS driver
+ * gdal_MAP, OziExplorer .MAP
+ * gdal_CALS, CALS type 1
+ * gdal_SAFE, SAFE -- Sentinel-1 SAFE XML Product
+ * gdal_SENTINEL2, Driver for Sentinel-2 Level-1B, Level-1C and Level-2A products.
+ * gdal_PRF, PHOTOMOD Raster File
+ * gdal_MRF, Meta raster format
+ * gdal_WMTS, OGC Web Map Tile Service
+ * gdal_GRIB, WMO General Regularly-distributed Information in Binary form
+ * gdal_BMP, Microsoft Windows Device Independent Bitmap
+ * gdal_TGA, TGA
+ * gdal_STACTA, STACTA
+ * gdal_SNAP_TIFF, SNAP TIFF
+ * gdal_BSB, Maptech/NOAA BSB Nautical Chart Format
+ * gdal_AIGRID, Arc/Info Binary Grid Format
+ * gdal_USGSDEM, USGS ASCII DEM (and CDED)
+ * gdal_AIRSAR, AirSAR Polarimetric Format
+ * gdal_PCIDSK, PCI Geomatics Database File
+ * gdal_SIGDEM, Scaled Integer Gridded DEM .sigdem Driver
+ * gdal_RIK, RIK -- Swedish Grid Maps
+ * gdal_STACIT, STACIT
+ * gdal_PDF, Geospatial PDF
+ * gdal_RCM, Radarsat Constellation Mission
+ * gdal_GDALG, GDAL Streamed Algorithm Format
+ * gdal_E57, E57
+ * gdal_PNG, PNG image format
+ * gdal_GIF, Graphics Interchange Format
+ * gdal_WCS, OGC Web Coverage Service
+ * gdal_HTTP, HTTP driver
+ * gdal_NETCDF, NetCDF network Common Data Form
+ * gdal_ZARR, ZARR
+ * gdal_DAAS, Airbus DS Intelligence Data As A Service(DAAS)
+ * gdal_EEDA, Earth Engine Data API
+ * gdal_FITS, FITS Driver
+ * gdal_HDF5, Hierarchical Data Format Release 5 (HDF5)
+ * gdal_PLMOSAIC, PLMosaic (Planet Labs Mosaics API)
+ * gdal_WMS, Web Map Services
+ * gdal_OGCAPI, OGCAPI
+ * gdal_WEBP, WebP
+ * gdal_MBTILES, MBTile
+ * gdal_JP2OPENJPEG, JPEG2000 driver based on OpenJPEG library
+ * gdal_EXR, EXR support via OpenEXR library
+ * gdal_PCRASTER, PCRaster CSF 2.0 raster file driver
+ * gdal_JPEGXL, JPEG-XL
+ * gdal_MIRAMON, MiraMonRaster
+ * ogr_GEOJSON, GeoJSON/GeoJSONSeq/ESRIJSON/TopoJSON drivers
+ * ogr_TAB, MapInfo TAB and MIF/MID
+ * ogr_SHAPE, ESRI shape-file
+ * ogr_KML, KML
+ * ogr_VRT, VRT - Virtual Format
+ * ogr_AVC, AVC
+ * ogr_GML, GML
+ * ogr_CSV, CSV
+ * ogr_DGN, DGN
+ * ogr_GMT, GMT
+ * ogr_NTF, NTF
+ * ogr_S57, S57
+ * ogr_TIGER, U.S. Census TIGER/Line
+ * ogr_GEORSS, GEORSS
+ * ogr_DXF, DXF
+ * ogr_PGDUMP, PGDump
+ * ogr_GPSBABEL, GPSBABEL
+ * ogr_EDIGEO, EDIGEO
+ * ogr_SXF, SXF
+ * ogr_OPENFILEGDB, OPENFILEGDB
+ * ogr_WASP, WAsP .map format
+ * ogr_SELAFIN, OSELAFIN
+ * ogr_JML, JML
+ * ogr_VDV, VDV-451/VDV-452/INTREST Data Format
+ * ogr_FLATGEOBUF, FlatGeobuf
+ * ogr_MAPML, MapML
+ * ogr_ADBC, ADBC
+ * ogr_MIRAMON, MiraMonVector
+ * ogr_AIVECTOR, AIVector
+ * ogr_JSONFG, JSONFG
+ * ogr_GPX, GPX - GPS Exchange Format
+ * ogr_GMLAS, GMLAS
+ * ogr_CSW, CSW
+ * ogr_LIBKML, LibKML
+ * ogr_NAS, NAS/ALKIS
+ * ogr_PLSCENES, PLSCENES
+ * ogr_WFS, OGC WFS service
+ * ogr_OAPIF, OGC API Features service
+ * ogr_NGW, NextGIS Web
+ * ogr_ELASTIC, ElasticSearch
+ * ogr_IDRISI, IDRISI
+ * ogr_PDS, Planetary Data Systems TABLE
+ * ogr_SQLITE, SQLite3 / Spatialite RDBMS
+ * ogr_GPKG, GeoPackage
+ * ogr_OSM, OpenStreetMap XML and PBF
+ * ogr_VFK, Czech Cadastral Exchange Data Format
+ * ogr_MVT, MVT
+ * ogr_PMTILES, PMTiles
+ * ogr_AMIGOCLOUD, AMIGOCLOUD
+ * ogr_CARTO, CARTO
+ * ogr_ILI, ILI
+ * ogr_MSSQLSPATIAL, MSSQLSPATIAL
+ * ogr_ODBC, ODBC
+ * ogr_PGEO, PGEO
+ * ogr_XLSX, Microsoft Office Excel(xlsx)
+ * ogr_XLS, Microsoft Office Excel(xls)
+ * ogr_CAD, OpenCAD
+ * ogr_PARQUET, Parquet
+ * ogr_ARROW, Arrow
+ * ogr_GTFS, GTFS
+ * ogr_ODS, ODS
+ * ogr_LVBAG, LVBAG
+
+-- The following OPTIONAL packages have been found:
+
+ * Python (required version >= 3.8)
+   SWIG_PYTHON: Python binding
+ * ODBC
+   Enable DB support through ODBC
+ * Iconv
+   Character set recoding (used in GDAL portability library)
+ * LibXml2
+   Read and write XML formats
+ * XercesC
+   Read and write XML formats (needed for GMLAS and ILI drivers)
+ * Deflate
+   Enable libdeflate compression library (complement to ZLib)
+ * PROJ
+ * ZSTD, Zstandard - Fast real-time compression algorithm, <https://github.com/facebook/zstd>
+   ZSTD compression library
+ * SFCGAL
+   gdal core supports ISO 19107:2013 and OGC Simple Features Access 1.2 for 3D operations
+ * GIF
+   GIF compression library (external)
+ * JSONC
+   json-c library (external)
+ * PCRE2
+   Enable PCRE2 support for sqlite3
+ * SPATIALITE (required version >= 4.1.2)
+   Enable spatialite support for sqlite3
+ * LibKML
+   Use LIBKML library
+ * WebP
+   WebP compression
+ * FreeXL
+   Enable XLS driver
+ * CFITSIO
+   C FITS I/O library
+ * HDF5
+   Enable HDF5
+ * NetCDF
+   Enable netCDF driver
+ * LibLZMA
+   LZMA compression
+ * LZ4
+   LZ4 compression
+ * Blosc
+   Blosc compression
+ * LIBAEC
+   Adaptive Entropy Coding implementing Golomb-Rice algorithm (used by GRIB)
+ * JXL
+   JPEG-XL compression
+ * JXL_THREADS
+   JPEG-XL threading
+ * OpenEXR
+   OpenEXR >=2.2
+ * HEIF
+   HEIF >= 1.1
+ * OpenJPEG (required version >= 2.3.1)
+   Enable JPEG2000 support with OpenJPEG library
+ * Poppler (required version >= 0.86), A PDF rendering library, <http://poppler.freedesktop.org>
+   Enable PDF driver with Poppler (read side)
+ * Snappy
+ * OpenSSL
+   Use OpenSSL library
+ * ZLIB
+   zlib (external)
+ * lz4
+ * zstd
+ * re2
+ * AWSSDK
+ * Arrow
+   Apache Arrow C++ library
+ * Parquet
+   Apache Parquet C++ library
+ * ArrowDataset
+   Apache ArrowDataset C++ library
+ * JNI
+   SWIG_JAVA: Java binding
+ * Java
+ * BISON
+
+-- The following RECOMMENDED packages have been found:
+
+ * EXPAT
+   Read and write XML formats
+ * CURL
+   Enable drivers to use web API
+ * GeoTIFF
+   libgeotiff library (external)
+ * PNG (required version >= 1.6)
+   PNG compression library (external)
+ * JPEG
+   JPEG compression library (external)
+ * QHULL
+   Enable QHULL (external)
+ * LERC
+   Enable LERC (external)
+ * GEOS
+   Geometry Engine - Open Source (GDAL core dependency)
+
+-- The following REQUIRED packages have been found:
+
+ * Threads
+ * aws-cpp-sdk-core
+ * aws-cpp-sdk-s3
+ * aws-cpp-sdk-sts
+ * aws-cpp-sdk-cognito-identity
+ * aws-cpp-sdk-identity-management
+ * aws-cpp-sdk-transfer
+ * aws-cpp-sdk-config
+
+-- The following features have been disabled:
+
+ * gdal_AVIF, AVIF
+ * gdal_MSG, Meteosat Second Generation
+ * gdal_GTA, Generic Tagged Arrays
+ * gdal_HDF4, Hierarchical Data Format Release 4 (HDF4)
+ * gdal_POSTGISRASTER, PostGIS Raster driver
+ * gdal_DDS, DirectDraw Surface
+ * gdal_KEA, Kea
+ * gdal_TILEDB, TileDB tiledb.io
+ * gdal_BASISU_KTX2, Basis Universal and KTX2 texture formats
+ * gdal_JP2KAK, JPEG-2000 (based on Kakadu)
+ * gdal_JPIPKAK, JPIP Streaming
+ * gdal_MRSID, Multi-resolution Seamless Image Database
+ * gdal_GEOR, Oracle Spatial GeoRaster
+ * gdal_ECW, ERDAS JPEG2000 (.jp2)
+ * gdal_JP2GROK, JPEG-2000 (based on Grok)
+ * ogr_DWG, DWG
+ * ogr_FILEGDB, FileGDB
+ * ogr_SOSI, SOSI:Systematic Organization of Spatial Information
+ * ogr_XODR, OpenDRIVE
+ * ogr_MYSQL, MySQL
+ * ogr_PG, PostGIS
+ * ogr_MONGODBV3, MongoDB V3
+ * ogr_OCI, Oracle OCI
+ * ogr_IDB, IDB
+ * ogr_HANA, SAP HANA
+
+-- The following OPTIONAL packages have not been found:
+
+ * ODBCCPP
+   odbc-cpp library (external)
+ * MSSQL_NCLI
+   MSSQL Native Client to enable bulk copy
+ * MSSQL_ODBC
+   MSSQL ODBC driver to enable bulk copy
+ * MySQL
+   MySQL
+ * CryptoPP
+   Use crypto++ library for CPL.
+ * OpenCAD
+   libopencad (external, used by OpenCAD driver)
+ * BRUNSLI
+   Enable BRUNSLI for JPEG packing in MRF
+ * libQB3
+   Enable QB3 compression in MRF
+ * RASTERLITE2 (required version >= 1.1.0)
+   Enable RasterLite2 support for sqlite3
+ * KEA
+   Enable KEA driver
+ * GTA
+   Enable GTA driver
+ * MRSID
+   MrSID raster SDK
+ * Armadillo
+   C++ library for linear algebra (used for TPS transformation)
+ * HDF4
+   Enable HDF4 driver
+ * ECW
+   Enable ECW driver
+ * PostgreSQL
+ * FYBA
+   enable ogr_SOSI driver
+ * ARCHIVE
+   Multi-format archive and compression library library (used for /vsi7z/
+ * OpenMP
+   Whether GDAL should use OpenMP
+ * Crnlib
+   enable gdal_DDS driver
+ * basisu
+   Enable BASISU driver
+ * IDB
+   enable ogr_IDB driver
+ * TileDB
+   enable TileDB driver
+ * ExprTk
+   Enable C++ Mathematical Expression Tooklit Library (ExprTk) for VRT expressions
+ * MONGOCXX
+   Enable MongoDBV3 driver
+ * AVIF
+   AVIF
+ * HDFS
+   Enable Hadoop File System through native library
+ * PDFIUM
+   Enable PDF driver with Pdfium (read side)
+ * Oracle
+   Enable Oracle OCI and GeoRaster drivers
+ * TEIGHA
+   Enable DWG and DGNv8 drivers
+ * FileGDB
+   Enable FileGDB (based on closed-source SDK) driver
+ * KDU
+   Enable KAKADU
+ * Thrift
+ * OpenDrive
+   Enable libOpenDRIVE
+ * AdbcDriverManager
+   Enable ADBC
+ * Dotnet
+ * CSharp
+   SWIG_CSharp: CSharp binding
+ * Grok
+   Enable JPEG2000 support with Grok library
+
+-- The following RECOMMENDED packages have not been found:
+
+ * SWIG, Software development tool that connects programs written in C and C++ with a variety of high-level programming languages., <http://swig.org/>
+ * muparser
+   Enable muparser library for VRT expressions
+
+-- Internal libraries enabled:
+
+ * OPENCAD internal library enabled
+
+
+CMake Warning at gdal.cmake:796 (message):
+  Environment variable CONDA_PREFIX=/opt/miniconda3 found, its value is not
+  included in the content of the CMake variable
+  CMAKE_PREFIX_PATH=/opt/homebrew.  You likely want to run
+  "/opt/homebrew/bin/cmake
+  /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/gdal/gdal-3.13.2
+  -DCMAKE_PREFIX_PATH=/opt/miniconda3"
+Call Stack (most recent call first):
+  CMakeLists.txt:289 (include)
+
+
+-- Configuring done (18.9s)
+-- Generating done (0.8s)
+-- Build files have been written to: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/gdal/build

@@ -2,6 +2,7 @@ import {translateText} from '../core/i18n';
 import { invoke } from '@tauri-apps/api/core';
 import { open, save } from '@tauri-apps/plugin-dialog';
 import { drawViaSpaniaWatermark } from '../core/exportWatermark';
+import { normalizeProjectName, projectNameFromPath } from '../core/projectFiles';
 
 interface ExportOptions { defaultName:string; label:string; extensions:string[] }
 export async function startVideoExport(){
@@ -13,9 +14,9 @@ export async function startVideoExport(){
  };
 }
 export interface GeoPackageLayerExport {name:string;geoJson:string}
-export interface ResultBundleFile {fileName:string;text?:string;dataUrl?:string;geoPackageLayers?:GeoPackageLayerExport[];rasterPath?:string}
+export interface ResultBundleFile {fileName:string;attributions?:readonly string[];text?:string;dataUrl?:string;geoPackageLayers?:GeoPackageLayerExport[];rasterPath?:string}
 
-export async function saveResultBundle(files:readonly ResultBundleFile[]){const directory=await open({multiple:false,directory:true});if(!directory)return null;const folder=Array.isArray(directory)?directory[0]:directory;if(!folder)return null;const separator=folder.includes('\\')?'\\':'/';for(const file of files){const path=`${folder}${separator}${file.fileName}`;if(file.rasterPath){await invoke<string>('export_raster_geotiff',{sourcePath:file.rasterPath,path});continue}if(file.geoPackageLayers?.length){await invoke<string>('export_geopackage',{path,layers:file.geoPackageLayers});continue}const base64=file.dataUrl?.split(',')[1]??null;if(file.text==null&&!base64)throw new Error(`No se pudo preparar ${file.fileName}`);await invoke<string>('save_export_file',{path,text:file.text??null,base64})}return folder}
+export async function saveResultBundle(files:readonly ResultBundleFile[],attributions:readonly string[]=[]){const directory=await open({multiple:false,directory:true});if(!directory)return null;const folder=Array.isArray(directory)?directory[0]:directory;if(!folder)return null;const separator=folder.includes('\\')?'\\':'/';for(const file of files){const path=`${folder}${separator}${file.fileName}`;if(file.rasterPath){await invoke<string>('export_raster_geotiff',{sourcePath:file.rasterPath,path});continue}if(file.geoPackageLayers?.length){await invoke<string>('export_geopackage',{path,layers:file.geoPackageLayers});continue}const base64=file.dataUrl?.split(',')[1]??null;if(file.text==null&&!base64)throw new Error(`No se pudo preparar ${file.fileName}`);await invoke<string>('save_export_file',{path,text:file.text??null,base64})}for(const file of files){const credits=[...new Set([...(file.attributions??[]),...attributions])];if(!credits.length)continue;await invoke<string>('save_export_file',{path:`${folder}${separator}${file.fileName}.attribution.txt`,text:[`Fuentes y atribuciones del proyecto — ${file.fileName}`,'La licencia GPL-3.0-only del programa no sustituye las licencias de los datos. Conserve este archivo al redistribuir el resultado.',...credits].join('\n\n'),base64:null})}return folder}
 
 export async function saveTextExport(text:string,options:ExportOptions) {
   const path=await save({defaultPath:options.defaultName,filters:[{name:translateText(options.label),extensions:options.extensions}]});
@@ -25,6 +26,14 @@ export async function saveTextExport(text:string,options:ExportOptions) {
 
 export async function overwriteTextExport(path:string,text:string) {
   return invoke<string>('save_export_file',{path,text,base64:null});
+}
+
+export async function saveProjectFile(currentPath:string|null,currentName:string,serialize:(name:string)=>string) {
+  const path=currentPath??await save({defaultPath:`${normalizeProjectName(currentName)||'Proyecto'}.json`,filters:[{name:translateText('Proyecto ViaSpania'),extensions:['json']}]});
+  if(!path)return null;
+  const name=currentPath?currentName:projectNameFromPath(path),text=serialize(name);
+  await overwriteTextExport(path,text);
+  return {path,name,text};
 }
 
 export async function savePdfExport(bytes:Uint8Array,defaultName:string) {

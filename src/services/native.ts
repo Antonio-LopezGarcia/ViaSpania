@@ -1,3 +1,4 @@
+import {withRasterProvenance} from '../core/resultProvenance';
 import { invoke, isTauri } from '@tauri-apps/api/core';
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
 import type { Barrier, Connectivity, ContourResult, EnabledCrossing, IsochroneResult, LcpCorridorResult, ModelId, PointOfInterest, PreferredCorridor, RankedRouteResult, RouteResult, ViewshedResult } from '../types';
@@ -11,7 +12,7 @@ export function setActiveFacilitators(corridors:PreferredCorridor[],crossings:En
 export interface NativeStatus { rustVersion:string; gdalVersion:string; projVersion:string; gdalAvailable:boolean; totalMemoryBytes?:number }
 export interface DownloadProgress { receivedBytes:number; totalBytes?:number; percent?:number }
 export interface IsochroneProgress { phase:string; percent:number; processedCells:number; totalCells:number }
-export interface RasterResult { path:string; bytes:number; metadata:Record<string,unknown>; previewDataUrl:string }
+export interface RasterResult { dataAttribution?:string; path:string; bytes:number; metadata:Record<string,unknown>; previewDataUrl:string }
 export interface RasterSample { lon:number; lat:number; elevationM?:number }
 export interface TerrainMesh { validCells?:boolean[]; width:number; height:number; widthM:number; heightM:number; minElevationM:number; maxElevationM:number; elevations:number[]; wgs84Extent:[number,number,number,number] }
 
@@ -28,7 +29,7 @@ export const rasterColorPreview = (path:string,palette:string) => invoke<string>
 export const fetchMapImage = (url:string) => invoke<string>('fetch_map_image',{url});
 export const fetchVectorTile = (url:string) => invoke<string>('fetch_vector_tile',{url});
 export type RouteRequest={rasterPath:string;start:[number,number];end:[number,number];model:ModelId;barriers:Barrier[];corridors?:PreferredCorridor[];crossings?:EnabledCrossing[];pointsOfInterest?:PointOfInterest[];connectivity:Connectivity;criticalSlopePercent:number;ardigoSpeedMs:number};
-const invokeRoute=(request:RouteRequest,start:[number,number],end:[number,number],rankPenalizedCells:number[]=[],rankPenalty=1)=>invoke<RouteResult>('calculate_raster_route',{request:{...request,start,end,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),rankPenalizedCells,rankPenalty,maxCells:loadAppSettings().processingCellLimit}});
+const invokeRoute=(request:RouteRequest,start:[number,number],end:[number,number],rankPenalizedCells:number[]=[],rankPenalty=1)=>withRasterProvenance(request.rasterPath,()=>invoke<RouteResult>('calculate_raster_route',{request:{...request,start,end,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),rankPenalizedCells,rankPenalty,maxCells:loadAppSettings().processingCellLimit}}));
 const routeWithWaypoints=async(request:RouteRequest,rankPenalizedCells:number[]=[],rankPenalty=1)=>{
  const points=request.pointsOfInterest??activePointsOfInterest;
  const orderedWaypoints=requiredRouteWaypoints(request.start,points,request.crossings??activeCrossings);
@@ -49,7 +50,7 @@ const routeWithWaypoints=async(request:RouteRequest,rankPenalizedCells:number[]=
  return{...joinRouteSegments(segments,'origen→pasos obligatorios por proximidad→destino'),requiredWaypoints:orderedWaypoints,coordinates,source:`${segments[0].source} · ${waypoints.length} vértice(s) de paso obligatorio: ${[...new Set(orderedWaypoints.map(point=>point.name))].join(", ")}`};
 }
 
-export const calculateRasterRoute=(request:RouteRequest)=>routeWithWaypoints(request);
+export const calculateRasterRoute=(request:RouteRequest):Promise<RouteResult>=>routeWithWaypoints(request);
 
 export interface RankedItinerary extends RankedRouteResult{segments:RouteResult[]}
 export async function calculateRankedRasterItineraries(request:RouteRequest,stops:readonly [number,number][],k:number,penalty:number,direction:string):Promise<RankedItinerary[]>{
@@ -72,12 +73,12 @@ export async function calculateRankedRasterItineraries(request:RouteRequest,stop
 export function calculateRankedRasterRoute(request:RouteRequest,k:number,penalty:number,direction:string){
  return calculateRankedRasterItineraries(request,[request.start,request.end],k,penalty,direction);
 }
-export const calculateRasterIsochrones = (request:{rasterPath:string;origins:[number,number][];model:ModelId;barriers:Barrier[];corridors?:PreferredCorridor[];crossings?:EnabledCrossing[];pointsOfInterest?:PointOfInterest[];connectivity:Connectivity;criticalSlopePercent:number;ardigoSpeedMs:number;interval:number;maxLevels:number}) => invoke<IsochroneResult>('calculate_raster_isochrones',{request:{...request,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),maxCells:loadAppSettings().processingCellLimit}});
-export const calculateRasterLcpCorridor = (request:{rasterPath:string;start:[number,number];end:[number,number];model:ModelId;barriers:Barrier[];corridors?:PreferredCorridor[];crossings?:EnabledCrossing[];pointsOfInterest?:PointOfInterest[];connectivity:Connectivity;criticalSlopePercent:number;ardigoSpeedMs:number;thresholdPercent:number}) => invoke<LcpCorridorResult>('calculate_raster_lcp_corridor',{request:{...request,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),maxCells:loadAppSettings().processingCellLimit}});
+export const calculateRasterIsochrones = (request:{rasterPath:string;origins:[number,number][];model:ModelId;barriers:Barrier[];corridors?:PreferredCorridor[];crossings?:EnabledCrossing[];pointsOfInterest?:PointOfInterest[];connectivity:Connectivity;criticalSlopePercent:number;ardigoSpeedMs:number;interval:number;maxLevels:number}) => withRasterProvenance(request.rasterPath,()=>invoke<IsochroneResult>('calculate_raster_isochrones',{request:{...request,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),maxCells:loadAppSettings().processingCellLimit}}));
+export const calculateRasterLcpCorridor = (request:{rasterPath:string;start:[number,number];end:[number,number];model:ModelId;barriers:Barrier[];corridors?:PreferredCorridor[];crossings?:EnabledCrossing[];pointsOfInterest?:PointOfInterest[];connectivity:Connectivity;criticalSlopePercent:number;ardigoSpeedMs:number;thresholdPercent:number}) => withRasterProvenance(request.rasterPath,()=>invoke<LcpCorridorResult>('calculate_raster_lcp_corridor',{request:{...request,corridors:request.corridors??activeCorridors,crossings:request.crossings??activeCrossings,pointsOfInterest:(request.pointsOfInterest??activePointsOfInterest).filter(point=>point.mode==='influence'),maxCells:loadAppSettings().processingCellLimit}}));
 export const cancelRasterIsochrones = () => invoke<void>('cancel_raster_isochrones');
 export const onIsochroneProgress = (callback:(progress:IsochroneProgress)=>void):Promise<UnlistenFn> => listen<IsochroneProgress>('isochrone-progress',event=>callback(event.payload));
 export const sampleRasterElevation = (rasterPath:string,xRatio:number,yRatio:number) => invoke<RasterSample>('sample_raster_elevation',{rasterPath,xRatio,yRatio});
 export const sampleRasterElevationAt = (rasterPath:string,lon:number,lat:number) => invoke<RasterSample>('sample_raster_elevation_at',{rasterPath,lon,lat});
 export const generateTerrainMesh = (rasterPath:string,maxSize=450) => invoke<TerrainMesh>('generate_terrain_mesh',{rasterPath,maxSize});
-export const calculateContours = (rasterPath:string,intervalM:number) => invoke<ContourResult>('calculate_contours',{request:{rasterPath,intervalM}});
-export const calculateViewshed = (rasterPath:string,observers:{id:string;name:string;coordinate:[number,number]}[],observerHeightM:number) => invoke<ViewshedResult>('calculate_viewshed',{request:{rasterPath,observers,observerHeightM}});
+export const calculateContours = (rasterPath:string,intervalM:number) => withRasterProvenance(rasterPath,()=>invoke<ContourResult>('calculate_contours',{request:{rasterPath,intervalM}}));
+export const calculateViewshed = (rasterPath:string,observers:{id:string;name:string;coordinate:[number,number]}[],observerHeightM:number):Promise<ViewshedResult> => withRasterProvenance(rasterPath,()=>invoke<ViewshedResult>('calculate_viewshed',{request:{rasterPath,observers,observerHeightM}}));

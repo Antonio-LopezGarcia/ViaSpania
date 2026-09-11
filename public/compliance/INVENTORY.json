@@ -5734,13 +5734,38 @@
       "version": "1.5.7_1",
       "license": null,
       "selectedLicense": null
+    },
+    {
+      "id": "native-aux/mimalloc-3.4.1",
+      "name": "mimalloc",
+      "version": "3.4.1",
+      "license": "MIT",
+      "selectedLicense": null
+    },
+    {
+      "id": "native-aux/cgal-6.2",
+      "name": "cgal",
+      "version": "6.2",
+      "license": "Véanse receta conservada y licencias originales por archivo",
+      "selectedLicense": null
+    },
+    {
+      "id": "native-aux/eigen-5.0.1",
+      "name": "eigen",
+      "version": "5.0.1",
+      "license": "Véanse receta conservada y licencias originales por archivo",
+      "selectedLicense": null
+    },
+    {
+      "id": "native-aux/nlohmann-json-3.12.0",
+      "name": "nlohmann-json",
+      "version": "3.12.0",
+      "license": "MIT; véanse avisos originales",
+      "selectedLicense": null
     }
   ],
   "findings": [
-    "REQUIERE REVISIÓN: Autorizar redistribución de assets oficiales e imagen institucional enumerados en ASSETS.md.",
     "REQUIERE REVISIÓN: Cerrar recursos auxiliares de builds nativos y verificar reconstrucción desde las fuentes suministradas.",
-    "REQUIERE REVISIÓN: Revisar términos de proj.db, rejillas y exportaciones según DATA_NOTICES.txt.",
-    "REQUIERE REVISIÓN: Revisar alcance de avisos nativos compuestos, incluido Kerberos, sobre los objetos distribuidos.",
-    "REQUIERE REVISIÓN: Documentar titularidad y mandato de publicación con los titulares/UGR."
+    "REQUIERE REVISIÓN: cambiaron los datos o la implementación respecto al cierre de datos/exportaciones."
   ]
 }

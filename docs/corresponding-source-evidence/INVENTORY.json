@@ -1,0 +1,3692 @@
+{
+  "schema": 1,
+  "scope": "macOS runtime; static candidate scan, not dependency closure",
+  "limitations": [
+    "Ruby conditions are not evaluated; HEAD/Linux-only dependencies may appear.",
+    "CMake markers may be disabled by the recipe. Shell/Python downloads are not covered.",
+    "No build success or legal clearance is inferred from source availability."
+  ],
+  "components": [
+    {
+      "id": "native/gdal-3.13.2_1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/gdal-3.13.2_1/gdal.rb",
+      "recipeSha256": "f39de6bbd03f1d7d287a8a4ecdd443ad62fbbc9fa28c0b5c73c58712f9a1729a",
+      "sources": [
+        {
+          "path": "native/gdal-3.13.2_1/source-0.archive",
+          "sha256": "1051c33db1d9e6a05907ac07cd06f5ce8ac0658f317c3229774cc2198a6c1252"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "ant",
+        "boost",
+        "cmake",
+        "doxygen",
+        "pkgconf",
+        "python-setuptools",
+        "swig"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "ant",
+        "cmake",
+        "doxygen",
+        "pkgconf",
+        "python-setuptools",
+        "swig"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/gdal-3.13.2_1/source-0.archive",
+          "file": "gdal-3.13.2/cmake/modules/thirdparty/FindDotnet.cmake",
+          "markers": [
+            {
+              "line": 160,
+              "text": "FILE(DOWNLOAD https://dist.nuget.org/win-x86-commandline/latest/nuget.exe ${NUGET_EXE})"
+            }
+          ]
+        },
+        {
+          "source": "native/gdal-3.13.2_1/source-0.archive",
+          "file": "gdal-3.13.2/frmts/msg/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 44,
+              "text": "ExternalProject_Add("
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/proj-9.8.1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/proj-9.8.1/proj.rb",
+      "recipeSha256": "f051474f321cf71cf984bb92c6d859b2cbd8fdf891948ed24f9e71db70b64f0a",
+      "sources": [
+        {
+          "path": "native/proj-9.8.1/source-0.archive",
+          "sha256": "af5b731c145c1d13c4e3b4eeb7d167e94e845e440f71e3496b4ed8dae0291960"
+        },
+        {
+          "path": "native/proj-9.8.1/source-1.archive",
+          "sha256": "08617c38078c56ba0df67c760bdf7253141ba5c6749898afe7e779ab14a08271"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "libtool",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "pkgconf"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/proj-9.8.1/source-0.archive",
+          "file": "proj-9.8.1/test/unit/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 66,
+              "text": "FetchContent_Declare("
+            }
+          ]
+        },
+        {
+          "source": "native/proj-9.8.1/source-1.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/openexr-3.4.14",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/openexr-3.4.14/openexr.rb",
+      "recipeSha256": "26214e2ad2054e396b30a35623eb657bc2f43bb5c08ad9f75f6763733b2948c0",
+      "sources": [
+        {
+          "path": "native/openexr-3.4.14/source-0.archive",
+          "sha256": "13c3327100a7b92e4c6a048db03ef07ee2db8e79baa4c517c6fae71e5b80034b"
+        },
+        {
+          "path": "native/openexr-3.4.14/source-1.archive",
+          "sha256": "eede573a0b59b79f21de15ee9d3b7649d58d8f2a8e7787ea34f192db3b3c84a4"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "pkgconf"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/openexr-3.4.14/source-0.archive",
+          "file": "openexr-3.4.14/cmake/OpenEXRSetup.cmake",
+          "markers": [
+            {
+              "line": 339,
+              "text": "FetchContent_Declare(Imath"
+            }
+          ]
+        },
+        {
+          "source": "native/openexr-3.4.14/source-1.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/imath-3.2.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/imath-3.2.2/imath.rb",
+      "recipeSha256": "b221441f27fd301264ff21e84174ba5aa0741d0b0763cdc2d155f097fa4f13bd",
+      "sources": [
+        {
+          "path": "native/imath-3.2.2/source-0.archive",
+          "sha256": "b4275d83fb95521510e389b8d13af10298ed5bed1c8e13efd961d91b1105e462"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/liblerc-4.2.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/liblerc-4.2.0/liblerc.rb",
+      "recipeSha256": "db860ee88c7ff26595acfafea14a68ddd979bf21d92943da93c68e0642346fd6",
+      "sources": [
+        {
+          "path": "native/liblerc-4.2.0/source-0.archive",
+          "sha256": "a1fb593ed1fcb5b38800caf3c4454f872745202e961d00d745e53d81447e17c9"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/sfcgal-2.3.0_1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/sfcgal-2.3.0_1/sfcgal.rb",
+      "recipeSha256": "949a96252ee9af6091587879a79d430f89d6c352e7ef8f39052f0ca677dc6383",
+      "sources": [
+        {
+          "path": "native/sfcgal-2.3.0_1/source-0.archive",
+          "sha256": "5f6aa1838e5ae31523ebf410cde0240b7a88d7e062b7ffff945e4fae2aaba0fa"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "eigen",
+        "nlohmann-json"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "eigen",
+        "nlohmann-json"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/abseil-20260526.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/abseil-20260526.0/abseil.rb",
+      "recipeSha256": "30b3978d32c4e5a347f5f294b65614186ac32e9649f09f3a4b97f24b9bbad169",
+      "sources": [
+        {
+          "path": "native/abseil-20260526.0/source-0.archive",
+          "sha256": "6e1aee535473414164bf83e4ebc40240dec71a4701f8a642d906e95bea1aea0c"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "googletest"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "googletest"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libaec-1.1.7",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libaec-1.1.7/libaec.rb",
+      "recipeSha256": "bc4db45e72031278033198d9ee91618b1b860a9c847b828196f66fb1915ac9bd",
+      "sources": [
+        {
+          "path": "native/libaec-1.1.7/source-0.archive",
+          "sha256": "7cf0034eca8f53449252f2fab863d855aedc0520ceb8d3f3fcd3bd601ce4c85e"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aom-3.14.1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aom-3.14.1/aom.rb",
+      "recipeSha256": "d1edb87fa820f49a2a87346f6a8bf665edb15839f1d7e31ceb9d106f6d03b42c",
+      "sources": [
+        {
+          "path": "native/aom-3.14.1/source-0.archive",
+          "sha256": "868fc3446d37d0c6959a48b68906486bd64788b2e795f0e29613cbb1fa73480e"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "nasm",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "nasm",
+        "pkgconf"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/aom-3.14.1/source-0.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libarchive-3.8.9",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libarchive-3.8.9/libarchive.rb",
+      "recipeSha256": "e13105c94497458268c28e4f3002ddd9495e1ddd59ccf7a4744880b53d6c9936",
+      "sources": [
+        {
+          "path": "native/libarchive-3.8.9/source-0.archive",
+          "sha256": "888c934f9d95648ecb9163dc8e23ab80a476ecb81a8f1154704a227b5b676dde"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/apache-arrow-25.0.1_1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/apache-arrow-25.0.1_1/apache-arrow.rb",
+      "recipeSha256": "3e6e815d6a511d40cd0f4ac1c4d0220b71a5f2ec08defe8669ec340f9dad8c0f",
+      "sources": [
+        {
+          "path": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "sha256": "43d5de0a581f43cf63a2c06b4dcf13b9ff6fcd800f023324596e5781093bc500"
+        },
+        {
+          "path": "native/apache-arrow-25.0.1_1/source-1.archive",
+          "sha256": "568ea5843d499f972e8861758747701e29e17babf183461bd0479746d03e4380"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "boost",
+        "cmake",
+        "gflags",
+        "rapidjson",
+        "xsimd"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "gflags",
+        "rapidjson",
+        "xsimd"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/.gitmodules",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[submodule \"cpp/submodules/parquet-testing\"]"
+            },
+            {
+              "line": 4,
+              "text": "[submodule \"testing\"]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/cmake_modules/ThirdpartyToolchain.cmake",
+          "markers": [
+            {
+              "line": 1058,
+              "text": "fetchcontent_declare(boost"
+            },
+            {
+              "line": 1443,
+              "text": "externalproject_add(snappy_ep"
+            },
+            {
+              "line": 1519,
+              "text": "externalproject_add(brotli_ep"
+            },
+            {
+              "line": 1644,
+              "text": "externalproject_add(glog_ep"
+            },
+            {
+              "line": 1706,
+              "text": "externalproject_add(gflags_ep"
+            },
+            {
+              "line": 1784,
+              "text": "fetchcontent_declare(thrift"
+            },
+            {
+              "line": 1897,
+              "text": "fetchcontent_declare(absl"
+            },
+            {
+              "line": 1963,
+              "text": "fetchcontent_declare(protobuf"
+            },
+            {
+              "line": 2085,
+              "text": "externalproject_add(protobuf_ep_host"
+            },
+            {
+              "line": 2344,
+              "text": "externalproject_add(substrait_ep"
+            },
+            {
+              "line": 2495,
+              "text": "externalproject_add(jemalloc_ep"
+            },
+            {
+              "line": 2588,
+              "text": "externalproject_add(mimalloc_ep"
+            },
+            {
+              "line": 2619,
+              "text": "fetchcontent_declare(googletest"
+            },
+            {
+              "line": 2759,
+              "text": "externalproject_add(gbenchmark_ep"
+            },
+            {
+              "line": 2801,
+              "text": "fetchcontent_declare(rapidjson"
+            },
+            {
+              "line": 2842,
+              "text": "externalproject_add(xsimd_ep"
+            },
+            {
+              "line": 2912,
+              "text": "externalproject_add(zlib_ep"
+            },
+            {
+              "line": 2947,
+              "text": "fetchcontent_declare(lz4"
+            },
+            {
+              "line": 3009,
+              "text": "externalproject_add(zstd_ep"
+            },
+            {
+              "line": 3072,
+              "text": "fetchcontent_declare(re2"
+            },
+            {
+              "line": 3130,
+              "text": "externalproject_add(bzip2_ep"
+            },
+            {
+              "line": 3189,
+              "text": "externalproject_add(utf8proc_ep"
+            },
+            {
+              "line": 3227,
+              "text": "fetchcontent_declare(cares"
+            },
+            {
+              "line": 3270,
+              "text": "fetchcontent_declare(grpc"
+            },
+            {
+              "line": 3452,
+              "text": "fetchcontent_declare(nlohmann_json"
+            },
+            {
+              "line": 3492,
+              "text": "fetchcontent_declare(opentelemetry_proto"
+            },
+            {
+              "line": 3500,
+              "text": "fetchcontent_declare(opentelemetry_cpp"
+            },
+            {
+              "line": 3615,
+              "text": "fetchcontent_declare(google_cloud_cpp"
+            },
+            {
+              "line": 3659,
+              "text": "fetchcontent_declare(opentelemetry_cpp"
+            },
+            {
+              "line": 3788,
+              "text": "fetchcontent_declare(orc"
+            },
+            {
+              "line": 3941,
+              "text": "externalproject_add(orc_ep"
+            },
+            {
+              "line": 4035,
+              "text": "fetchcontent_declare(${AWSSDK_PRODUCT}"
+            },
+            {
+              "line": 4220,
+              "text": "fetchcontent_declare(wil"
+            },
+            {
+              "line": 4230,
+              "text": "fetchcontent_declare(azure_sdk"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/abseil-cpp.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/azure.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/boost.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/bzip2.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/c-ares.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/gflags.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/google-benchmark.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/google-brotli.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/google-snappy.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/grpc.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/gtest.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/lz4.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/openssl.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/protobuf.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/rapidjson.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/re2.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/substrait.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/thrift.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/utf8proc.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/zlib.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/cpp/subprojects/zstd.wrap",
+          "markers": [
+            {
+              "line": 18,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/matlab/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 91,
+              "text": "externalproject_add(arrow_ep"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/matlab/tools/cmake/BuildMatlabArrowInterface.cmake",
+          "markers": [
+            {
+              "line": 109,
+              "text": "FetchContent_Declare("
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-0.archive",
+          "file": "apache-arrow-25.0.1/python/cmake_modules/ThirdpartyToolchain.cmake",
+          "markers": [
+            {
+              "line": 1058,
+              "text": "fetchcontent_declare(boost"
+            },
+            {
+              "line": 1443,
+              "text": "externalproject_add(snappy_ep"
+            },
+            {
+              "line": 1519,
+              "text": "externalproject_add(brotli_ep"
+            },
+            {
+              "line": 1644,
+              "text": "externalproject_add(glog_ep"
+            },
+            {
+              "line": 1706,
+              "text": "externalproject_add(gflags_ep"
+            },
+            {
+              "line": 1784,
+              "text": "fetchcontent_declare(thrift"
+            },
+            {
+              "line": 1897,
+              "text": "fetchcontent_declare(absl"
+            },
+            {
+              "line": 1963,
+              "text": "fetchcontent_declare(protobuf"
+            },
+            {
+              "line": 2085,
+              "text": "externalproject_add(protobuf_ep_host"
+            },
+            {
+              "line": 2344,
+              "text": "externalproject_add(substrait_ep"
+            },
+            {
+              "line": 2495,
+              "text": "externalproject_add(jemalloc_ep"
+            },
+            {
+              "line": 2588,
+              "text": "externalproject_add(mimalloc_ep"
+            },
+            {
+              "line": 2619,
+              "text": "fetchcontent_declare(googletest"
+            },
+            {
+              "line": 2759,
+              "text": "externalproject_add(gbenchmark_ep"
+            },
+            {
+              "line": 2801,
+              "text": "fetchcontent_declare(rapidjson"
+            },
+            {
+              "line": 2842,
+              "text": "externalproject_add(xsimd_ep"
+            },
+            {
+              "line": 2912,
+              "text": "externalproject_add(zlib_ep"
+            },
+            {
+              "line": 2947,
+              "text": "fetchcontent_declare(lz4"
+            },
+            {
+              "line": 3009,
+              "text": "externalproject_add(zstd_ep"
+            },
+            {
+              "line": 3072,
+              "text": "fetchcontent_declare(re2"
+            },
+            {
+              "line": 3130,
+              "text": "externalproject_add(bzip2_ep"
+            },
+            {
+              "line": 3189,
+              "text": "externalproject_add(utf8proc_ep"
+            },
+            {
+              "line": 3227,
+              "text": "fetchcontent_declare(cares"
+            },
+            {
+              "line": 3270,
+              "text": "fetchcontent_declare(grpc"
+            },
+            {
+              "line": 3452,
+              "text": "fetchcontent_declare(nlohmann_json"
+            },
+            {
+              "line": 3492,
+              "text": "fetchcontent_declare(opentelemetry_proto"
+            },
+            {
+              "line": 3500,
+              "text": "fetchcontent_declare(opentelemetry_cpp"
+            },
+            {
+              "line": 3615,
+              "text": "fetchcontent_declare(google_cloud_cpp"
+            },
+            {
+              "line": 3659,
+              "text": "fetchcontent_declare(opentelemetry_cpp"
+            },
+            {
+              "line": 3788,
+              "text": "fetchcontent_declare(orc"
+            },
+            {
+              "line": 3941,
+              "text": "externalproject_add(orc_ep"
+            },
+            {
+              "line": 4035,
+              "text": "fetchcontent_declare(${AWSSDK_PRODUCT}"
+            },
+            {
+              "line": 4220,
+              "text": "fetchcontent_declare(wil"
+            },
+            {
+              "line": 4230,
+              "text": "fetchcontent_declare(azure_sdk"
+            }
+          ]
+        },
+        {
+          "source": "native/apache-arrow-25.0.1_1/source-1.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libassuan-3.0.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libassuan-3.0.2/libassuan.rb",
+      "recipeSha256": "6a1486e8358153b2f6ed1f1618b5f3f3c98b7b5cbeafdac82b10f89995267268",
+      "sources": [
+        {
+          "path": "native/libassuan-3.0.2/source-0.archive",
+          "sha256": "d2931cdad266e633510f9970e1a2f346055e351bb19f9b78912475b8074c36f6"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-auth-0.10.4",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-auth-0.10.4/aws-c-auth.rb",
+      "recipeSha256": "7687c9fb8ca3b407397150865f245f897bfad0b900a37738ecaeee883c2d6f79",
+      "sources": [
+        {
+          "path": "native/aws-c-auth-0.10.4/source-0.archive",
+          "sha256": "6fb567f496a450d4b6d3f5749d735977a0156957e8ccbca9af7a5ee15d1ffda7"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-cal-0.9.15",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-cal-0.9.15/aws-c-cal.rb",
+      "recipeSha256": "c8724e61fd70550e74c52d9788134e48d6fa30076b869811ed6212a8a6184f38",
+      "sources": [
+        {
+          "path": "native/aws-c-cal-0.9.15/source-0.archive",
+          "sha256": "215dd31c12ea49c4f40aa7882a800f9648e4095cfcb2d6abdd27e957574ad6e2"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-common-0.14.5",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-common-0.14.5/aws-c-common.rb",
+      "recipeSha256": "6d8f40a87bbbbc733cb26765e0531237bf30872faa87a770f9b4d88e674adbb8",
+      "sources": [
+        {
+          "path": "native/aws-c-common-0.14.5/source-0.archive",
+          "sha256": "103273767fea478545b75a0835c7dc60842baee0a191a112c72f904d22693c84"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-compression-0.3.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-compression-0.3.2/aws-c-compression.rb",
+      "recipeSha256": "b0d97281f38bce739401ec5a302f061b22b61a30542613bae8b346b63acb3d99",
+      "sources": [
+        {
+          "path": "native/aws-c-compression-0.3.2/source-0.archive",
+          "sha256": "f93f5a5d8b3fee3a6d97b14ba279efacd4d4016ef9cc7dc4be7d43519ecfbe93"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-event-stream-0.7.1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-event-stream-0.7.1/aws-c-event-stream.rb",
+      "recipeSha256": "c0bd02feee7ac5477de23221a6bb740d8e8623addecf9ff80c499a6d48bf52d2",
+      "sources": [
+        {
+          "path": "native/aws-c-event-stream-0.7.1/source-0.archive",
+          "sha256": "334b2abfe0cb5c68d79d52525598fdd5f6052b93a17a78a4b1ada7fa1be252c0"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-http-0.11.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-http-0.11.0/aws-c-http.rb",
+      "recipeSha256": "67331dc0a9d4bc1813035afc9961a51576f401875aec62683837d56ed5fc98bc",
+      "sources": [
+        {
+          "path": "native/aws-c-http-0.11.0/source-0.archive",
+          "sha256": "4ccbdd33c798b590288330dec9e93abe2ff6cfb198b7a4db036c9d362f2e6506"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-io-0.27.6",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-io-0.27.6/aws-c-io.rb",
+      "recipeSha256": "f3ce2b8c164a58fa3f8dfc1bf90ab06d1f4726729607ebad793618c1bf249a66",
+      "sources": [
+        {
+          "path": "native/aws-c-io-0.27.6/source-0.archive",
+          "sha256": "2a6890715ccecaa0df6e9d074b186a7156b35360ded9db973064e2e00d45fcc3"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-mqtt-0.16.1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-mqtt-0.16.1/aws-c-mqtt.rb",
+      "recipeSha256": "b8fa559bf4f69b101690d164f0777135e0a674ab7793dabdfbb06540680d338f",
+      "sources": [
+        {
+          "path": "native/aws-c-mqtt-0.16.1/source-0.archive",
+          "sha256": "48fd84e6ff51fdce5cdc4250593d7b0f10db91f8592737c0fe69e0177ee48144"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-s3-0.13.5",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-s3-0.13.5/aws-c-s3.rb",
+      "recipeSha256": "5e04a6552bbae9c8cc6ccc8b10cf200c17aab4f6cbe1bce4608dc0351e18332f",
+      "sources": [
+        {
+          "path": "native/aws-c-s3-0.13.5/source-0.archive",
+          "sha256": "d61313aa30575141afd9dfb207b7594e30d0473885719417c7c8a2a53d3ebb5f"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-c-sdkutils-0.2.9",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-c-sdkutils-0.2.9/aws-c-sdkutils.rb",
+      "recipeSha256": "6788a64ddaa883ed35f92b7db97b93c15689d00ed767c5801fbc0fcd9be43df6",
+      "sources": [
+        {
+          "path": "native/aws-c-sdkutils-0.2.9/source-0.archive",
+          "sha256": "14fe900f80c3b9f5e53a783d9ac0865ed9ba1ae63b67744b9f82a8b3194a4388"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-checksums-0.2.10",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-checksums-0.2.10/aws-checksums.rb",
+      "recipeSha256": "966da8c2c37cd7e0586ec8417588e613552ce089a46d303802047c16686d2578",
+      "sources": [
+        {
+          "path": "native/aws-checksums-0.2.10/source-0.archive",
+          "sha256": "cb6509f75e42ee25c372a6d379e8582ce5179e5335183842e808f7d8abb0c314"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-sdk-cpp-1.11.870",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-sdk-cpp-1.11.870/aws-sdk-cpp.rb",
+      "recipeSha256": "53ee078c3e8057056f7a95df8978a4af0cff91e361ea0db4f7399af0bf4351fa",
+      "sources": [
+        {
+          "path": "native/aws-sdk-cpp-1.11.870/source-0.archive",
+          "sha256": "b8eeb6a79f29e6fa92a75450b27419f1e8ec97df7482703b83fb5bb59333069f"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/aws-sdk-cpp-1.11.870/source-0.archive",
+          "file": "aws-sdk-cpp-1.11.870/.gitmodules",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[submodule \"aws-common-runtime/aws-crt-cpp\"]"
+            }
+          ]
+        },
+        {
+          "source": "native/aws-sdk-cpp-1.11.870/source-0.archive",
+          "file": "aws-sdk-cpp-1.11.870/tests/performance-tests/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 13,
+              "text": "FetchContent_Declare("
+            }
+          ]
+        },
+        {
+          "source": "native/aws-sdk-cpp-1.11.870/source-0.archive",
+          "file": "aws-sdk-cpp-1.11.870/tools/android-build/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 15,
+              "text": "ExternalProject_Add(ZLIB"
+            },
+            {
+              "line": 39,
+              "text": "ExternalProject_Add(OPENSSL"
+            },
+            {
+              "line": 63,
+              "text": "ExternalProject_Add(CURL"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/aws-crt-cpp-0.43.5",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/aws-crt-cpp-0.43.5/aws-crt-cpp.rb",
+      "recipeSha256": "a4eb6dc10c9e228e0dfca7115878eab41c160d73ff824600733427107b3b909c",
+      "sources": [
+        {
+          "path": "native/aws-crt-cpp-0.43.5/source-0.archive",
+          "sha256": "8c83897fb827527b67377f08a5b349576c50add2406fa1ff372cf2dd16fc00f4"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/aws-crt-cpp-0.43.5/source-0.archive",
+          "file": "aws-crt-cpp-0.43.5/.gitmodules",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[submodule \"crt/aws-c-common\"]"
+            },
+            {
+              "line": 4,
+              "text": "[submodule \"crt/aws-c-io\"]"
+            },
+            {
+              "line": 7,
+              "text": "[submodule \"crt/aws-c-compression\"]"
+            },
+            {
+              "line": 10,
+              "text": "[submodule \"crt/aws-c-cal\"]"
+            },
+            {
+              "line": 13,
+              "text": "[submodule \"crt/aws-c-auth\"]"
+            },
+            {
+              "line": 16,
+              "text": "[submodule \"crt/aws-c-http\"]"
+            },
+            {
+              "line": 19,
+              "text": "[submodule \"crt/aws-c-mqtt\"]"
+            },
+            {
+              "line": 22,
+              "text": "[submodule \"crt/s2n\"]"
+            },
+            {
+              "line": 25,
+              "text": "[submodule \"crt/aws-checksums\"]"
+            },
+            {
+              "line": 28,
+              "text": "[submodule \"crt/aws-c-event-stream\"]"
+            },
+            {
+              "line": 31,
+              "text": "[submodule \"crt/aws-c-s3\"]"
+            },
+            {
+              "line": 34,
+              "text": "[submodule \"crt/aws-lc\"]"
+            },
+            {
+              "line": 37,
+              "text": "[submodule \"crt/aws-c-sdkutils\"]"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libb2-0.98.1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libb2-0.98.1/libb2.rb",
+      "recipeSha256": "35179ede9f32d4cb2ab8ea26eb08735e3cdbbbfa1537177bddc66a7b84b517cd",
+      "sources": [
+        {
+          "path": "native/libb2-0.98.1/source-0.archive",
+          "sha256": "53626fddce753c454a3fea581cbbc7fe9bbcf0bc70416d48fdbbf5d87ef6c72e"
+        },
+        {
+          "path": "native/libb2-0.98.1/source-1.archive",
+          "sha256": "35acd6aebc19843f1a2b3a63e880baceb0f5278ab1ace661e57a502d9d78c93c"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [
+        {
+          "source": "native/libb2-0.98.1/source-1.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/c-blosc-1.21.6",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/c-blosc-1.21.6/c-blosc.rb",
+      "recipeSha256": "27d3026fdd794c13994d63c20195c4281a83b57922c97996409d54e03b83c2b9",
+      "sources": [
+        {
+          "path": "native/c-blosc-1.21.6/source-0.archive",
+          "sha256": "9fcd60301aae28f97f1301b735f966cc19e7c49b6b4321b839b4579a0c156f38"
+        },
+        {
+          "path": "native/c-blosc-1.21.6/source-1.archive",
+          "sha256": "756460f653877c12575889f20640605ecc2e49ab72583fba62f59642098fcd63"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/c-blosc-1.21.6/source-1.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/boost-1.92.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/boost-1.92.0/boost.rb",
+      "recipeSha256": "7aea26ce0efb92c04c239c706e2b78f8fd9e6810c0622dfd544f580210d9136d",
+      "sources": [
+        {
+          "path": "native/boost-1.92.0/source-0.archive",
+          "sha256": "ea7b982002cc9dfbe59b0b217b206f470dc75f3de0bb2973d844118934d82411"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/hana/test/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 100,
+              "text": "ExternalProject_Add(test.deploy.fakeroot"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/hana/cmake/FindMeta.cmake",
+          "markers": [
+            {
+              "line": 35,
+              "text": "ExternalProject_Add(meta EXCLUDE_FROM_ALL 1"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/hana/cmake/FindMPL11.cmake",
+          "markers": [
+            {
+              "line": 33,
+              "text": "ExternalProject_Add(MPL11 EXCLUDE_FROM_ALL 1"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/locale/tools/download_icu.cmake",
+          "markers": [
+            {
+              "line": 36,
+              "text": "file(DOWNLOAD \"${url}\" \"${archive}\" SHOW_PROGRESS STATUS DOWNLOAD_STATUS)"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/hash2/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 31,
+              "text": "FetchContent_Declare(boostorg_cmake GIT_REPOSITORY https://github.com/boostorg/cmake GIT_TAG master)"
+            },
+            {
+              "line": 88,
+              "text": "FetchContent_Declare(boostorg_${dep} GIT_REPOSITORY https://github.com/boostorg/${dep} GIT_TAG master EXCLUDE_FROM_ALL)"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/mp11/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 21,
+              "text": "file(DOWNLOAD"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/gil/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 182,
+              "text": "file(DOWNLOAD \"https://raw.githubusercontent.com/conan-io/cmake-conan/0.18.1/conan.cmake\""
+            },
+            {
+              "line": 240,
+              "text": "file(DOWNLOAD"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/histogram/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 33,
+              "text": "file(DOWNLOAD"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/leaf/subprojects/lua.wrap",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/libs/yap/cmake/dependencies.cmake",
+          "markers": [
+            {
+              "line": 16,
+              "text": "ExternalProject_Add(install-Boost"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/tools/cmake/include/BoostFetch.cmake",
+          "markers": [
+            {
+              "line": 15,
+              "text": "file(DOWNLOAD"
+            },
+            {
+              "line": 20,
+              "text": "file(DOWNLOAD"
+            },
+            {
+              "line": 65,
+              "text": "FetchContent_Declare(${NAME} QUIET GIT_REPOSITORY \"https://github.com/${REPO}\" GIT_TAG ${__TAG})"
+            },
+            {
+              "line": 69,
+              "text": "FetchContent_Declare(${NAME} QUIET GIT_REPOSITORY \"https://github.com/${REPO}\" GIT_TAG ${__TAG} GIT_SHALLOW 1)"
+            }
+          ]
+        },
+        {
+          "source": "native/boost-1.92.0/source-0.archive",
+          "file": "boost-1.92.0/.gitmodules",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[submodule \"system\"]"
+            },
+            {
+              "line": 6,
+              "text": "[submodule \"multi_array\"]"
+            },
+            {
+              "line": 11,
+              "text": "[submodule \"math\"]"
+            },
+            {
+              "line": 16,
+              "text": "[submodule \"smart_ptr\"]"
+            },
+            {
+              "line": 21,
+              "text": "[submodule \"parameter\"]"
+            },
+            {
+              "line": 26,
+              "text": "[submodule \"algorithm\"]"
+            },
+            {
+              "line": 31,
+              "text": "[submodule \"any\"]"
+            },
+            {
+              "line": 36,
+              "text": "[submodule \"concept_check\"]"
+            },
+            {
+              "line": 41,
+              "text": "[submodule \"python\"]"
+            },
+            {
+              "line": 46,
+              "text": "[submodule \"tti\"]"
+            },
+            {
+              "line": 51,
+              "text": "[submodule \"functional\"]"
+            },
+            {
+              "line": 56,
+              "text": "[submodule \"config\"]"
+            },
+            {
+              "line": 61,
+              "text": "[submodule \"log\"]"
+            },
+            {
+              "line": 66,
+              "text": "[submodule \"interprocess\"]"
+            },
+            {
+              "line": 71,
+              "text": "[submodule \"exception\"]"
+            },
+            {
+              "line": 76,
+              "text": "[submodule \"foreach\"]"
+            },
+            {
+              "line": 81,
+              "text": "[submodule \"spirit\"]"
+            },
+            {
+              "line": 86,
+              "text": "[submodule \"io\"]"
+            },
+            {
+              "line": 91,
+              "text": "[submodule \"units\"]"
+            },
+            {
+              "line": 96,
+              "text": "[submodule \"preprocessor\"]"
+            },
+            {
+              "line": 101,
+              "text": "[submodule \"format\"]"
+            },
+            {
+              "line": 106,
+              "text": "[submodule \"xpressive\"]"
+            },
+            {
+              "line": 111,
+              "text": "[submodule \"integer\"]"
+            },
+            {
+              "line": 116,
+              "text": "[submodule \"thread\"]"
+            },
+            {
+              "line": 121,
+              "text": "[submodule \"tokenizer\"]"
+            },
+            {
+              "line": 126,
+              "text": "[submodule \"timer\"]"
+            },
+            {
+              "line": 131,
+              "text": "[submodule \"inspect\"]"
+            },
+            {
+              "line": 136,
+              "text": "[submodule \"boostbook\"]"
+            },
+            {
+              "line": 141,
+              "text": "[submodule \"regex\"]"
+            },
+            {
+              "line": 146,
+              "text": "[submodule \"crc\"]"
+            },
+            {
+              "line": 151,
+              "text": "[submodule \"random\"]"
+            },
+            {
+              "line": 156,
+              "text": "[submodule \"serialization\"]"
+            },
+            {
+              "line": 161,
+              "text": "[submodule \"test\"]"
+            },
+            {
+              "line": 166,
+              "text": "[submodule \"date_time\"]"
+            },
+            {
+              "line": 171,
+              "text": "[submodule \"logic\"]"
+            },
+            {
+              "line": 176,
+              "text": "[submodule \"graph\"]"
+            },
+            {
+              "line": 181,
+              "text": "[submodule \"numeric_conversion\"]"
+            },
+            {
+              "line": 186,
+              "text": "[submodule \"lambda\"]"
+            },
+            {
+              "line": 191,
+              "text": "[submodule \"mpl\"]"
+            },
+            {
+              "line": 196,
+              "text": "[submodule \"typeof\"]"
+            },
+            {
+              "line": 201,
+              "text": "[submodule \"tuple\"]"
+            },
+            {
+              "line": 206,
+              "text": "[submodule \"utility\"]"
+            },
+            {
+              "line": 211,
+              "text": "[submodule \"dynamic_bitset\"]"
+            },
+            {
+              "line": 216,
+              "text": "[submodule \"assign\"]"
+            },
+            {
+              "line": 221,
+              "text": "[submodule \"filesystem\"]"
+            },
+            {
+              "line": 226,
+              "text": "[submodule \"function\"]"
+            },
+            {
+              "line": 231,
+              "text": "[submodule \"conversion\"]"
+            },
+            {
+              "line": 236,
+              "text": "[submodule \"optional\"]"
+            },
+            {
+              "line": 241,
+              "text": "[submodule \"property_tree\"]"
+            },
+            {
+              "line": 246,
+              "text": "[submodule \"bimap\"]"
+            },
+            {
+              "line": 251,
+              "text": "[submodule \"variant\"]"
+            },
+            {
+              "line": 256,
+              "text": "[submodule \"array\"]"
+            },
+            {
+              "line": 261,
+              "text": "[submodule \"iostreams\"]"
+            },
+            {
+              "line": 266,
+              "text": "[submodule \"multi_index\"]"
+            },
+            {
+              "line": 271,
+              "text": "[submodule \"bcp\"]"
+            },
+            {
+              "line": 276,
+              "text": "[submodule \"ptr_container\"]"
+            },
+            {
+              "line": 281,
+              "text": "[submodule \"statechart\"]"
+            },
+            {
+              "line": 286,
+              "text": "[submodule \"static_assert\"]"
+            },
+            {
+              "line": 291,
+              "text": "[submodule \"range\"]"
+            },
+            {
+              "line": 296,
+              "text": "[submodule \"rational\"]"
+            },
+            {
+              "line": 301,
+              "text": "[submodule \"iterator\"]"
+            },
+            {
+              "line": 306,
+              "text": "[submodule \"build\"]"
+            },
+            {
+              "line": 311,
+              "text": "[submodule \"quickbook\"]"
+            },
+            {
+              "line": 316,
+              "text": "[submodule \"graph_parallel\"]"
+            },
+            {
+              "line": 321,
+              "text": "[submodule \"property_map\"]"
+            },
+            {
+              "line": 326,
+              "text": "[submodule \"program_options\"]"
+            },
+            {
+              "line": 331,
+              "text": "[submodule \"detail\"]"
+            },
+            {
+              "line": 336,
+              "text": "[submodule \"interval\"]"
+            },
+            {
+              "line": 341,
+              "text": "[submodule \"ublas\"]"
+            },
+            {
+              "line": 346,
+              "text": "[submodule \"wave\"]"
+            },
+            {
+              "line": 351,
+              "text": "[submodule \"type_traits\"]"
+            },
+            {
+              "line": 356,
+              "text": "[submodule \"bind\"]"
+            },
+            {
+              "line": 361,
+              "text": "[submodule \"pool\"]"
+            },
+            {
+              "line": 366,
+              "text": "[submodule \"proto\"]"
+            },
+            {
+              "line": 371,
+              "text": "[submodule \"fusion\"]"
+            },
+            {
+              "line": 376,
+              "text": "[submodule \"function_types\"]"
+            },
+            {
+              "line": 381,
+              "text": "[submodule \"gil\"]"
+            },
+            {
+              "line": 386,
+              "text": "[submodule \"intrusive\"]"
+            },
+            {
+              "line": 391,
+              "text": "[submodule \"asio\"]"
+            },
+            {
+              "line": 396,
+              "text": "[submodule \"uuid\"]"
+            },
+            {
+              "line": 401,
+              "text": "[submodule \"litre\"]"
+            },
+            {
+              "line": 406,
+              "text": "[submodule \"circular_buffer\"]"
+            },
+            {
+              "line": 411,
+              "text": "[submodule \"mpi\"]"
+            },
+            {
+              "line": 416,
+              "text": "[submodule \"unordered\"]"
+            },
+            {
+              "line": 421,
+              "text": "[submodule \"signals2\"]"
+            },
+            {
+              "line": 426,
+              "text": "[submodule \"accumulators\"]"
+            },
+            {
+              "line": 431,
+              "text": "[submodule \"atomic\"]"
+            },
+            {
+              "line": 436,
+              "text": "[submodule \"scope_exit\"]"
+            },
+            {
+              "line": 441,
+              "text": "[submodule \"flyweight\"]"
+            },
+            {
+              "line": 446,
+              "text": "[submodule \"icl\"]"
+            },
+            {
+              "line": 451,
+              "text": "[submodule \"predef\"]"
+            },
+            {
+              "line": 456,
+              "text": "[submodule \"chrono\"]"
+            },
+            {
+              "line": 461,
+              "text": "[submodule \"polygon\"]"
+            },
+            {
+              "line": 466,
+              "text": "[submodule \"msm\"]"
+            },
+            {
+              "line": 471,
+              "text": "[submodule \"heap\"]"
+            },
+            {
+              "line": 476,
+              "text": "[submodule \"coroutine\"]"
+            },
+            {
+              "line": 481,
+              "text": "[submodule \"coroutine2\"]"
+            },
+            {
+              "line": 486,
+              "text": "[submodule \"ratio\"]"
+            },
+            {
+              "line": 491,
+              "text": "[submodule \"odeint\"]"
+            },
+            {
+              "line": 496,
+              "text": "[submodule \"geometry\"]"
+            },
+            {
+              "line": 501,
+              "text": "[submodule \"phoenix\"]"
+            },
+            {
+              "line": 506,
+              "text": "[submodule \"move\"]"
+            },
+            {
+              "line": 511,
+              "text": "[submodule \"locale\"]"
+            },
+            {
+              "line": 516,
+              "text": "[submodule \"auto_index\"]"
+            },
+            {
+              "line": 521,
+              "text": "[submodule \"container\"]"
+            },
+            {
+              "line": 526,
+              "text": "[submodule \"local_function\"]"
+            },
+            {
+              "line": 531,
+              "text": "[submodule \"context\"]"
+            },
+            {
+              "line": 536,
+              "text": "[submodule \"type_erasure\"]"
+            },
+            {
+              "line": 541,
+              "text": "[submodule \"multiprecision\"]"
+            },
+            {
+              "line": 546,
+              "text": "[submodule \"lockfree\"]"
+            },
+            {
+              "line": 551,
+              "text": "[submodule \"assert\"]"
+            },
+            {
+              "line": 556,
+              "text": "[submodule \"align\"]"
+            },
+            {
+              "line": 561,
+              "text": "[submodule \"type_index\"]"
+            },
+            {
+              "line": 566,
+              "text": "[submodule \"core\"]"
+            },
+            {
+              "line": 571,
+              "text": "[submodule \"throw_exception\"]"
+            },
+            {
+              "line": 576,
+              "text": "[submodule \"winapi\"]"
+            },
+            {
+              "line": 581,
+              "text": "[submodule \"boostdep\"]"
+            },
+            {
+              "line": 586,
+              "text": "[submodule \"lexical_cast\"]"
+            },
+            {
+              "line": 591,
+              "text": "[submodule \"sort\"]"
+            },
+            {
+              "line": 596,
+              "text": "[submodule \"convert\"]"
+            },
+            {
+              "line": 601,
+              "text": "[submodule \"endian\"]"
+            },
+            {
+              "line": 606,
+              "text": "[submodule \"vmd\"]"
+            },
+            {
+              "line": 611,
+              "text": "[submodule \"dll\"]"
+            },
+            {
+              "line": 616,
+              "text": "[submodule \"compute\"]"
+            },
+            {
+              "line": 621,
+              "text": "[submodule \"hana\"]"
+            },
+            {
+              "line": 626,
+              "text": "[submodule \"metaparse\"]"
+            },
+            {
+              "line": 631,
+              "text": "[submodule \"qvm\"]"
+            },
+            {
+              "line": 636,
+              "text": "[submodule \"fiber\"]"
+            },
+            {
+              "line": 641,
+              "text": "[submodule \"process\"]"
+            },
+            {
+              "line": 646,
+              "text": "[submodule \"stacktrace\"]"
+            },
+            {
+              "line": 651,
+              "text": "[submodule \"poly_collection\"]"
+            },
+            {
+              "line": 656,
+              "text": "[submodule \"beast\"]"
+            },
+            {
+              "line": 661,
+              "text": "[submodule \"mp11\"]"
+            },
+            {
+              "line": 666,
+              "text": "[submodule \"callable_traits\"]"
+            },
+            {
+              "line": 671,
+              "text": "[submodule \"contract\"]"
+            },
+            {
+              "line": 676,
+              "text": "[submodule \"check_build\"]"
+            },
+            {
+              "line": 681,
+              "text": "[submodule \"container_hash\"]"
+            },
+            {
+              "line": 686,
+              "text": "[submodule \"hof\"]"
+            },
+            {
+              "line": 691,
+              "text": "[submodule \"yap\"]"
+            },
+            {
+              "line": 696,
+              "text": "[submodule \"safe_numerics\"]"
+            },
+            {
+              "line": 701,
+              "text": "[submodule \"parameter_python\"]"
+            },
+            {
+              "line": 706,
+              "text": "[submodule \"headers\"]"
+            },
+            {
+              "line": 711,
+              "text": "[submodule \"boost_install\"]"
+            },
+            {
+              "line": 716,
+              "text": "[submodule \"outcome\"]"
+            },
+            {
+              "line": 721,
+              "text": "[submodule \"histogram\"]"
+            },
+            {
+              "line": 726,
+              "text": "[submodule \"variant2\"]"
+            },
+            {
+              "line": 731,
+              "text": "[submodule \"nowide\"]"
+            },
+            {
+              "line": 736,
+              "text": "[submodule \"docca\"]"
+            },
+            {
+              "line": 741,
+              "text": "[submodule \"cmake\"]"
+            },
+            {
+              "line": 746,
+              "text": "[submodule \"static_string\"]"
+            },
+            {
+              "line": 751,
+              "text": "[submodule \"stl_interfaces\"]"
+            },
+            {
+              "line": 756,
+              "text": "[submodule \"more\"]"
+            },
+            {
+              "line": 761,
+              "text": "[submodule \"leaf\"]"
+            },
+            {
+              "line": 766,
+              "text": "[submodule \"json\"]"
+            },
+            {
+              "line": 771,
+              "text": "[submodule \"pfr\"]"
+            },
+            {
+              "line": 776,
+              "text": "[submodule \"describe\"]"
+            },
+            {
+              "line": 781,
+              "text": "[submodule \"lambda2\"]"
+            },
+            {
+              "line": 786,
+              "text": "[submodule \"property_map_parallel\"]"
+            },
+            {
+              "line": 791,
+              "text": "[submodule \"url\"]"
+            },
+            {
+              "line": 796,
+              "text": "[submodule \"mysql\"]"
+            },
+            {
+              "line": 801,
+              "text": "[submodule \"compat\"]"
+            },
+            {
+              "line": 806,
+              "text": "[submodule \"redis\"]"
+            },
+            {
+              "line": 811,
+              "text": "[submodule \"cobalt\"]"
+            },
+            {
+              "line": 816,
+              "text": "[submodule \"charconv\"]"
+            },
+            {
+              "line": 821,
+              "text": "[submodule \"scope\"]"
+            },
+            {
+              "line": 826,
+              "text": "[submodule \"boostlook\"]"
+            },
+            {
+              "line": 831,
+              "text": "[submodule \"parser\"]"
+            },
+            {
+              "line": 836,
+              "text": "[submodule \"mqtt5\"]"
+            },
+            {
+              "line": 841,
+              "text": "[submodule \"hash2\"]"
+            },
+            {
+              "line": 846,
+              "text": "[submodule \"bloom\"]"
+            },
+            {
+              "line": 851,
+              "text": "[submodule \"openmethod\"]"
+            },
+            {
+              "line": 856,
+              "text": "[submodule \"decimal\"]"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/brotli-1.2.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/brotli-1.2.0/brotli.rb",
+      "recipeSha256": "2d0050036dfa720d8357fa8d7ddcbb2abb88cdc79f34b438a1f10dd4e1c72366",
+      "sources": [
+        {
+          "path": "native/brotli-1.2.0/source-0.archive",
+          "sha256": "816c96e8e8f193b40151dad7e8ff37b1221d019dbcb9c35cd3fadbfe6477dfec"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/cfitsio-4.7.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/cfitsio-4.7.0/cfitsio.rb",
+      "recipeSha256": "179cb55b028898429cdb90ce9c51282f075c7653d00e9a86b948fb356b8c7919",
+      "sources": [
+        {
+          "path": "native/cfitsio-4.7.0/source-0.archive",
+          "sha256": "ce573bbea8e75b429f8c3d3e86498741ba3dc9628a1530d2f65268397ad059e8"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/krb5-1.22.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/krb5-1.22.2/krb5.rb",
+      "recipeSha256": "10f451ddf80bdce35feba05aec3fcd9e38fa5ff10e123e63affccac31beefcc8",
+      "sources": [
+        {
+          "path": "native/krb5-1.22.2/source-0.archive",
+          "sha256": "3243ffbc8ea4d4ac22ddc7dd2a1dc54c57874c40648b60ff97009763554eaf13"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/openssl@3-3.6.3",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/openssl@3-3.6.3/openssl@3.rb",
+      "recipeSha256": "204067e3af016bba4246c64454f8a1a8d56916dd2f6d021b7bf5dcd13166374b",
+      "sources": [
+        {
+          "path": "native/openssl@3-3.6.3/source-0.archive",
+          "sha256": "243a86649cf6f23eeb6a2ff2456e09e5d77dd9018a54d3d96b0c6bdd6ba6c7f1"
+        },
+        {
+          "path": "native/openssl@3-3.6.3/source-1.archive",
+          "sha256": "8fe65cfc0261ed3c8a4395f0524286f5719669fe305f9b03b16cf3684d62cd70"
+        },
+        {
+          "path": "native/openssl@3-3.6.3/source-2.archive",
+          "sha256": "7cf84a18d6c9450e53ae8b4de5d5fa32c9fe99f3cebbe408fe59433f19921ec2"
+        },
+        {
+          "path": "native/openssl@3-3.6.3/source-3.archive",
+          "sha256": "43b33c20f8d82dba7cc48f8cd702f8fc9811e9d07880886dfd31b7077bd4a3a6"
+        },
+        {
+          "path": "native/openssl@3-3.6.3/source-4.archive",
+          "sha256": "9f68feae9abfaabe65f79d2877f3dde7aa0428c669ed6af45dc193544268438e"
+        },
+        {
+          "path": "native/openssl@3-3.6.3/source-5.archive",
+          "sha256": "543a5998951fe540444642123398ffaa6306938be573f95c0bc915f1e6af7a36"
+        },
+        {
+          "path": "native/openssl@3-3.6.3/source-6.archive",
+          "sha256": "05bb323a3495d68961fa8cf7a989edfb0fa6e6dcc7ccdcc4e55a4e3f946d2762"
+        },
+        {
+          "path": "native/openssl@3-3.6.3/source-7.archive",
+          "sha256": "fc34b4bf106c44a89ded746e35d587d73e8485393a93b52110ba95b06717dd69"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [
+        {
+          "source": "native/openssl@3-3.6.3/source-4.archive",
+          "scan": "not-a-tar-archive"
+        },
+        {
+          "source": "native/openssl@3-3.6.3/source-5.archive",
+          "scan": "not-a-tar-archive"
+        },
+        {
+          "source": "native/openssl@3-3.6.3/source-6.archive",
+          "scan": "not-a-tar-archive"
+        },
+        {
+          "source": "native/openssl@3-3.6.3/source-7.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libde265-1.1.1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libde265-1.1.1/libde265.rb",
+      "recipeSha256": "4d10a157ea137d3b530408fe814b02ddd693c06069bd8c73e3cc5c632479a9a3",
+      "sources": [
+        {
+          "path": "native/libde265-1.1.1/source-0.archive",
+          "sha256": "fd48a927e94ed74fc7ce8829d222b9d8599fcbfe8b6448ba66705babc56ab219"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libdeflate-1.25",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libdeflate-1.25/libdeflate.rb",
+      "recipeSha256": "110cf07dedd0231f86099f3282c82cd50c42924c5a24fb471969932bef73d6d9",
+      "sources": [
+        {
+          "path": "native/libdeflate-1.25/source-0.archive",
+          "sha256": "d11473c1ad4c57d874695e8026865e38b47116bbcb872bfc622ec8f37a86017d"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/fontconfig-2.18.3",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/fontconfig-2.18.3/fontconfig.rb",
+      "recipeSha256": "3487cc7274c480e70db8d4e8fee529c53d95da7e905d5f66b90e93d444c37c46",
+      "sources": [
+        {
+          "path": "native/fontconfig-2.18.3/source-0.archive",
+          "sha256": "9ae01e1d53acdef56010c5451cd34aa41d325b2faccd8606448d8fa01b2496b3"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "gettext",
+        "meson",
+        "ninja",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "meson",
+        "ninja",
+        "pkgconf"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/fontconfig-2.18.3/source-0.archive",
+          "file": "fontconfig-2.18.3/subprojects/expat.wrap",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/fontconfig-2.18.3/source-0.archive",
+          "file": "fontconfig-2.18.3/subprojects/libpng.wrap",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/fontconfig-2.18.3/source-0.archive",
+          "file": "fontconfig-2.18.3/subprojects/libxml2.wrap",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/fontconfig-2.18.3/source-0.archive",
+          "file": "fontconfig-2.18.3/subprojects/zlib.wrap",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[wrap-file]"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/freetype-2.14.3",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/freetype-2.14.3/freetype.rb",
+      "recipeSha256": "cc500226718264185ecf4b0560e0d9daee933c3e40622dd936b955536d025613",
+      "sources": [
+        {
+          "path": "native/freetype-2.14.3/source-0.archive",
+          "sha256": "36bc4f1cc413335368ee656c42afca65c5a3987e8768cc28cf11ba775e785a5f"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "pkgconf"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/freetype-2.14.3/source-0.archive",
+          "file": "freetype-2.14.3/subprojects/libpng.wrap",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/freetype-2.14.3/source-0.archive",
+          "file": "freetype-2.14.3/subprojects/zlib.wrap",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[wrap-file]"
+            }
+          ]
+        },
+        {
+          "source": "native/freetype-2.14.3/source-0.archive",
+          "file": "freetype-2.14.3/subprojects/harfbuzz.wrap",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[wrap-file]"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/freexl-2.0.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/freexl-2.0.0/freexl.rb",
+      "recipeSha256": "e063b0f5e6afe86239787e41c8e3c78877d2a574d58cf09fd60c6d62b508bd44",
+      "sources": [
+        {
+          "path": "native/freexl-2.0.0/source-0.archive",
+          "sha256": "176705f1de58ab7c1eebbf5c6de46ab76fcd8b856508dbd28f5648f7c6e1a7f0"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/geos-3.14.1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/geos-3.14.1/geos.rb",
+      "recipeSha256": "48a16b70303ee76b6f7b9a256a9c8c7b90ece884fbc5d795ba3ef67ebf01a15a",
+      "sources": [
+        {
+          "path": "native/geos-3.14.1/source-0.archive",
+          "sha256": "3c20919cda9a505db07b5216baa980bacdaa0702da715b43f176fb07eff7e716"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libgeotiff-1.7.4",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libgeotiff-1.7.4/libgeotiff.rb",
+      "recipeSha256": "3eb421f249b148735d9785393f412ee5b31dca72882d877afe4c7ac594c8a4e4",
+      "sources": [
+        {
+          "path": "native/libgeotiff-1.7.4/source-0.archive",
+          "sha256": "c598d04fdf2ba25c4352844dafa81dde3f7fd968daa7ad131228cd91e9d3dc47"
+        },
+        {
+          "path": "native/libgeotiff-1.7.4/source-1.archive",
+          "sha256": "35acd6aebc19843f1a2b3a63e880baceb0f5278ab1ace661e57a502d9d78c93c"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "libtool"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/libgeotiff-1.7.4/source-1.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/giflib-6.1.3",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/giflib-6.1.3/giflib.rb",
+      "recipeSha256": "d8231a366a1ff6dbab4b65f1129bb392d7134f67272571f483be06e860a390d5",
+      "sources": [
+        {
+          "path": "native/giflib-6.1.3/source-0.archive",
+          "sha256": "b65b66b99f0424b93525f987386f22fc5efb9da2bfc92ad4a532249aaffbab0e"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/gmp-6.3.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/gmp-6.3.0/gmp.rb",
+      "recipeSha256": "d458d70303d72cbd434e5d9b83adbd3b7cbdeb4d2567389fb512fd2d9cf5414a",
+      "sources": [
+        {
+          "path": "native/gmp-6.3.0/source-0.archive",
+          "sha256": "a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "libtool"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libgpg-error-1.61",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libgpg-error-1.61/libgpg-error.rb",
+      "recipeSha256": "ff00ce9602dbbd948f58e26009c038f1e33dec1223bc2f5c89e088c296973d09",
+      "sources": [
+        {
+          "path": "native/libgpg-error-1.61/source-0.archive",
+          "sha256": "7a85413f2bc354f4f8aa832b718af122e48965e9e0eb9012ee659c13c6385c93"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/gpgme-2.1.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/gpgme-2.1.2/gpgme.rb",
+      "recipeSha256": "04adb5488d80b5e403a4fcea6f6344dfabf9e9e61f48ebb844e3c064c6b6d638",
+      "sources": [
+        {
+          "path": "native/gpgme-2.1.2/source-0.archive",
+          "sha256": "0687a95b299871c4141f507c0f740de6b429c9ac067d0fa4e062e3264df5fb77"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/gpgmepp-2.1.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/gpgmepp-2.1.0/gpgmepp.rb",
+      "recipeSha256": "f8a2445945bea832b9544a7428e8471721be650e6e67e144eea7c20b89ecb250",
+      "sources": [
+        {
+          "path": "native/gpgmepp-2.1.0/source-0.archive",
+          "sha256": "57f804468f0204504b172c6b139cb05124b4263be7ad514932c7c4c5062a16e2"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "pkgconf"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/hdf5-2.2.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/hdf5-2.2.0/hdf5.rb",
+      "recipeSha256": "50b715eea9281385de33cbbfe37d9df9c072688f5a6e21fbc4a028d8ef8b851f",
+      "sources": [
+        {
+          "path": "native/hdf5-2.2.0/source-0.archive",
+          "sha256": "1a1ab8209b35586fbc1aa279ba76d102130b95badcb20ca329587219112d8c16"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/hdf5-2.2.0/source-0.archive",
+          "file": "./hdf5-2.2.0/CMakePlugins.cmake",
+          "markers": [
+            {
+              "line": 96,
+              "text": "FetchContent_Declare (HDF5_FILTER_PLUGINS"
+            },
+            {
+              "line": 135,
+              "text": "FetchContent_Declare (HDF5_FILTER_PLUGINS"
+            }
+          ]
+        },
+        {
+          "source": "native/hdf5-2.2.0/source-0.archive",
+          "file": "./hdf5-2.2.0/config/HDF5UseZLIB.cmake",
+          "markers": [
+            {
+              "line": 108,
+              "text": "FetchContent_Declare (HDF5_ZLIB"
+            },
+            {
+              "line": 132,
+              "text": "FetchContent_Declare (HDF5_ZLIB"
+            },
+            {
+              "line": 383,
+              "text": "FetchContent_Declare (HDF5_ZLIB"
+            },
+            {
+              "line": 407,
+              "text": "FetchContent_Declare (HDF5_ZLIB"
+            }
+          ]
+        },
+        {
+          "source": "native/hdf5-2.2.0/source-0.archive",
+          "file": "./hdf5-2.2.0/config/examples/HDF5AsSubdirMacros.cmake",
+          "markers": [
+            {
+              "line": 17,
+              "text": "# and build it.  The HDF5 options should be set after the FetchContent_Declare command and before"
+            },
+            {
+              "line": 53,
+              "text": "FetchContent_Declare (HDF5LIB"
+            },
+            {
+              "line": 59,
+              "text": "FetchContent_Declare (HDF5LIB"
+            }
+          ]
+        },
+        {
+          "source": "native/hdf5-2.2.0/source-0.archive",
+          "file": "./hdf5-2.2.0/config/HDF5UseLibaec.cmake",
+          "markers": [
+            {
+              "line": 106,
+              "text": "FetchContent_Declare (SZIP"
+            },
+            {
+              "line": 130,
+              "text": "FetchContent_Declare (SZIP"
+            }
+          ]
+        },
+        {
+          "source": "native/hdf5-2.2.0/source-0.archive",
+          "file": "./hdf5-2.2.0/test/API/driver/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 10,
+              "text": "FetchContent_Declare (KWSYS"
+            }
+          ]
+        },
+        {
+          "source": "native/hdf5-2.2.0/source-0.archive",
+          "file": "./hdf5-2.2.0/CMakeVOL.cmake",
+          "markers": [
+            {
+              "line": 182,
+              "text": "FetchContent_Declare (${hdf5_vol_depname}"
+            },
+            {
+              "line": 188,
+              "text": "FetchContent_Declare (${hdf5_vol_depname}"
+            }
+          ]
+        },
+        {
+          "source": "native/hdf5-2.2.0/source-0.archive",
+          "file": "./hdf5-2.2.0/HDF5Examples/config/cmake/HDFExampleMacros.cmake",
+          "markers": [
+            {
+              "line": 114,
+              "text": "EXTERNALPROJECT_ADD (h5py"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libheif-1.23.1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libheif-1.23.1/libheif.rb",
+      "recipeSha256": "76baef017eb4bcdbbe03dfbc191e603b459d4452aa1aa02307b5f568aeec54e2",
+      "sources": [
+        {
+          "path": "native/libheif-1.23.1/source-0.archive",
+          "sha256": "0de0327f60fcd47de90d5654c6fe152232738d60d84fe084ec3e0f35e03b166a"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "pkgconf"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/highway-1.4.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/highway-1.4.0/highway.rb",
+      "recipeSha256": "c2335618d744b3ca883127451289758a213c3b973d891f685539cb0ca6ad752a",
+      "sources": [
+        {
+          "path": "native/highway-1.4.0/source-0.archive",
+          "sha256": "e72241ac9524bb653ae52ced768b508045d4438726a303f10181a38f764a453c"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/highway-1.4.0/source-0.archive",
+          "file": "highway-1.4.0/subprojects/gtest.wrap",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[wrap-file]"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/gettext-1.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/gettext-1.0/gettext.rb",
+      "recipeSha256": "dd8d1b5914bb96c9c59140dd8cf76ad1d270f65a88111a395f79fe22106367c6",
+      "sources": [
+        {
+          "path": "native/gettext-1.0/source-0.archive",
+          "sha256": "85d99b79c981a404874c02e0342176cf75c7698e2b51fe41031cf6526d974f1a"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/jpeg-turbo-3.2.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/jpeg-turbo-3.2.0/jpeg-turbo.rb",
+      "recipeSha256": "b1937813c7c67fa8a44a7a958f1496e9e237d942052b52d421c41e61df4b526b",
+      "sources": [
+        {
+          "path": "native/jpeg-turbo-3.2.0/source-0.archive",
+          "sha256": "6f30092cef9fb839779646608f4ee14ae3cbac989c47fa05e841b0841f09878e"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "nasm"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "nasm"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/jpeg-turbo-3.2.0/source-0.archive",
+          "file": "libjpeg-turbo-3.2.0/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 64,
+              "text": "# ExternalProject_Add() function exists.  Downstream projects that wish to"
+            },
+            {
+              "line": 66,
+              "text": "# ExternalProject_Add() or make downstream modifications to the libjpeg-turbo"
+            },
+            {
+              "line": 70,
+              "text": "message(FATAL_ERROR \"The ${CMAKE_PROJECT_NAME} build system cannot be integrated into another build system using add_subdirectory().  Use ExternalProject_Add() instead.\")"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/json-c-0.19",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/json-c-0.19/json-c.rb",
+      "recipeSha256": "f3ea09b652510ccdd9b9460eaf7f4aa7b47cec2a918d71610fbe0477f231a580",
+      "sources": [
+        {
+          "path": "native/json-c-0.19/source-0.archive",
+          "sha256": "37ad0249902e301bd9052bf712e511fcc6acff4ecaad4b5900aad9ce564e26de"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/jpeg-xl-0.12.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/jpeg-xl-0.12.0/jpeg-xl.rb",
+      "recipeSha256": "ca1feee5f654e1c8005b8f6a3c0f5352fa3082c57d34dfb857f5ec600c39db4b",
+      "sources": [
+        {
+          "path": "native/jpeg-xl-0.12.0/source-0.archive",
+          "sha256": "03e9be69a30be4011f559da75328b6d7cea8ad921fabfbd551ce10bf45cdc992"
+        },
+        {
+          "path": "native/jpeg-xl-0.12.0/source-1.archive",
+          "sha256": "ac94917fe745a674eabf1e044f23ec55cd5a548c9869c06ec4b19da14ee0227d"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "asciidoc",
+        "cmake",
+        "docbook-xsl",
+        "doxygen",
+        "pkgconf",
+        "sphinx-doc",
+        "webp"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "asciidoc",
+        "cmake",
+        "docbook-xsl",
+        "doxygen",
+        "pkgconf",
+        "sphinx-doc"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/jpeg-xl-0.12.0/source-0.archive",
+          "file": "libjxl-0.12.0/.gitmodules",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[submodule \"third_party/brotli\"]"
+            },
+            {
+              "line": 4,
+              "text": "[submodule \"third_party/lcms\"]"
+            },
+            {
+              "line": 7,
+              "text": "[submodule \"third_party/googletest\"]"
+            },
+            {
+              "line": 10,
+              "text": "[submodule \"third_party/sjpeg\"]"
+            },
+            {
+              "line": 13,
+              "text": "[submodule \"third_party/skcms\"]"
+            },
+            {
+              "line": 16,
+              "text": "[submodule \"third_party/highway\"]"
+            },
+            {
+              "line": 19,
+              "text": "[submodule \"third_party/libpng\"]"
+            },
+            {
+              "line": 22,
+              "text": "[submodule \"third_party/zlib\"]"
+            },
+            {
+              "line": 25,
+              "text": "[submodule \"third_party/testdata\"]"
+            },
+            {
+              "line": 28,
+              "text": "[submodule \"third_party/libjpeg-turbo\"]"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libkml-1.3.0_1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libkml-1.3.0_1/libkml.rb",
+      "recipeSha256": "49b061a291d7765f3da9c360886fe84d148959b7de646308dedce3b15f9306ac",
+      "sources": [
+        {
+          "path": "native/libkml-1.3.0_1/source-0.archive",
+          "sha256": "8892439e5570091965aaffe30b08631fdf7ca7f81f6495b4648f0950d7ea7963"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "boost",
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/libkml-1.3.0_1/source-0.archive",
+          "file": "libkml-1.3.0/cmake/External_boost.cmake",
+          "markers": [
+            {
+              "line": 1,
+              "text": "ExternalProject_Add(BOOST"
+            }
+          ]
+        },
+        {
+          "source": "native/libkml-1.3.0_1/source-0.archive",
+          "file": "libkml-1.3.0/cmake/External_expat.cmake",
+          "markers": [
+            {
+              "line": 1,
+              "text": "ExternalProject_Add(EXPAT"
+            }
+          ]
+        },
+        {
+          "source": "native/libkml-1.3.0_1/source-0.archive",
+          "file": "libkml-1.3.0/cmake/External_minizip.cmake",
+          "markers": [
+            {
+              "line": 1,
+              "text": "ExternalProject_Add(MINIZIP"
+            }
+          ]
+        },
+        {
+          "source": "native/libkml-1.3.0_1/source-0.archive",
+          "file": "libkml-1.3.0/cmake/External_uriparser.cmake",
+          "markers": [
+            {
+              "line": 1,
+              "text": "ExternalProject_Add(URIPARSER"
+            }
+          ]
+        },
+        {
+          "source": "native/libkml-1.3.0_1/source-0.archive",
+          "file": "libkml-1.3.0/cmake/External_zlib.cmake",
+          "markers": [
+            {
+              "line": 1,
+              "text": "ExternalProject_Add(ZLIB"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/little-cms2-2.19",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/little-cms2-2.19/little-cms2.rb",
+      "recipeSha256": "5a7ce6ac8ad5c7f3ec86cd513ed1f19e009841f698bc42f5ebdb405f94d38bc3",
+      "sources": [
+        {
+          "path": "native/little-cms2-2.19/source-0.archive",
+          "sha256": "49e7e134e4299733dd0eda434fa468997a28ab3d33fa397c642b03644f552216"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libtool-2.6.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libtool-2.6.2/libtool.rb",
+      "recipeSha256": "725532b53263fa67aa5e9a660bcd498b312c13da54d34d42788e073ced587031",
+      "sources": [
+        {
+          "path": "native/libtool-2.6.2/source-0.archive",
+          "sha256": "2ef1067c16c97db930fd740cc9bc3d3ba9a583804ae5ac42cc3e8719e49e191e"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/lz4-1.10.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/lz4-1.10.0/lz4.rb",
+      "recipeSha256": "3b10c1f3e42ea2855214fb53ab884b68b48212495eb058116dc52a9e454a5598",
+      "sources": [
+        {
+          "path": "native/lz4-1.10.0/source-0.archive",
+          "sha256": "537512904744b35e232912055ccf8ec66d768639ff3abe5788d90d792ec5f48b"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/xz-5.8.3",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/xz-5.8.3/xz.rb",
+      "recipeSha256": "0812ffeca3c6631a261e87c76ff26368eee0df6ecedfe0f458d67494fdf6e9cc",
+      "sources": [
+        {
+          "path": "native/xz-5.8.3/source-0.archive",
+          "sha256": "3d3a1b973af218114f4f889bbaa2f4c037deaae0c8e815eec381c3d546b974a0"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/minizip-1.3.2_1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/minizip-1.3.2_1/minizip.rb",
+      "recipeSha256": "d15c8ec291dabe7b6c8c3639742799205cf08a203356e956368b12c2457adbde",
+      "sources": [
+        {
+          "path": "native/minizip-1.3.2_1/source-0.archive",
+          "sha256": "bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "libtool"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/mpfr-4.2.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/mpfr-4.2.2/mpfr.rb",
+      "recipeSha256": "9b076d1863d1e6cb638af14fa27a4d9c6da627f891d24223595114d02f186c38",
+      "sources": [
+        {
+          "path": "native/mpfr-4.2.2/source-0.archive",
+          "sha256": "b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "libtool",
+        "texinfo"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake",
+        "texinfo"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/netcdf-4.10.1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/netcdf-4.10.1/netcdf.rb",
+      "recipeSha256": "1af9c3040aca68147c7adc5aefbd5a7dd09c336f5ef6038d3814dc2c7a1ca0f6",
+      "sources": [
+        {
+          "path": "native/netcdf-4.10.1/source-0.archive",
+          "sha256": "33c27231c478c3b35da7c7758fbdd02da1fe407abcb16ddfe195f69d164f930d"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/nspr-4.40",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/nspr-4.40/nspr.rb",
+      "recipeSha256": "9c6909e003d0ffd513a520423d97491ab4ca9a083009ca76fcc739096941f154",
+      "sources": [
+        {
+          "path": "native/nspr-4.40/source-0.archive",
+          "sha256": "c0c1884c627f3db7a783f7c7314c695226b2043696791d15519e7e0578c19bdc"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/nss-3.127",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/nss-3.127/nss.rb",
+      "recipeSha256": "998147f486845d96c143d9e7a516a77ba65f177ef51e078827d3f63685ffd2cd",
+      "sources": [
+        {
+          "path": "native/nss-3.127/source-0.archive",
+          "sha256": "5a899cad21ae2c9d3c5132de79726eda8df3b7fdf18eeb239fc544d43b87338b"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/unixodbc-2.3.14",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/unixodbc-2.3.14/unixodbc.rb",
+      "recipeSha256": "d468f9e84c1047c2d2d31f56402fbf65ef2e0758a3712d021a047e8b16d24515",
+      "sources": [
+        {
+          "path": "native/unixodbc-2.3.14/source-0.archive",
+          "sha256": "4e2814de3e01fc30b0b9f75e83bb5aba91ab0384ee951286504bb70205524771"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/openjpeg-2.5.4",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/openjpeg-2.5.4/openjpeg.rb",
+      "recipeSha256": "145e519eaa322ba61a3291f030559cd4bb63d7d502c43e6a62317ea925030ebc",
+      "sources": [
+        {
+          "path": "native/openjpeg-2.5.4/source-0.archive",
+          "sha256": "a695fbe19c0165f295a8531b1e4e855cd94d0875d2f88ec4b61080677e27188a"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "doxygen"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "doxygen"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/openjpeg-2.5.4/source-0.archive",
+          "file": "openjpeg-2.5.4/cmake/JPIPTestDriver.cmake",
+          "markers": [
+            {
+              "line": 3,
+              "text": "file(DOWNLOAD"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/openjph-0.31.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/openjph-0.31.0/openjph.rb",
+      "recipeSha256": "20f55b651468efe01752f7a9d082005ebebd1d4d97132b6a24e9d6fe7a41e5d9",
+      "sources": [
+        {
+          "path": "native/openjph-0.31.0/source-0.archive",
+          "sha256": "fe169dbbaae71a169a0a6a68dccb346616193252c1ca044217afa0d5d1dc436f"
+        },
+        {
+          "path": "native/openjph-0.31.0/source-1.archive",
+          "sha256": "e4e36966d68a473a7f5f5719d9e41c8061f2d817f70a7de1c78d7e510a6391ff"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/openjph-0.31.0/source-0.archive",
+          "file": "OpenJPH-0.31.0/tests/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 4,
+              "text": "FetchContent_Declare("
+            },
+            {
+              "line": 16,
+              "text": "FetchContent_Declare("
+            }
+          ]
+        },
+        {
+          "source": "native/openjph-0.31.0/source-1.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/pcre2-10.47_1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/pcre2-10.47_1/pcre2.rb",
+      "recipeSha256": "40d07c0619cc42e570dfe34e22f02841254777c8a7eab72da2a4af5d60a5310e",
+      "sources": [
+        {
+          "path": "native/pcre2-10.47_1/source-0.archive",
+          "sha256": "47fe8c99461250d42f89e6e8fdaeba9da057855d06eb7fc08d9ca03fd08d7bc7"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "libtool"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libpng-1.6.58",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libpng-1.6.58/libpng.rb",
+      "recipeSha256": "c125a77d8263e0fb215f8f5d693c53324caabb63801df7093d9f3c8e42f4dd22",
+      "sources": [
+        {
+          "path": "native/libpng-1.6.58/source-0.archive",
+          "sha256": "28eb403f51f0f7405249132cecfe82ea5c0ef97f1b32c5a65828814ae0d34775"
+        },
+        {
+          "path": "native/libpng-1.6.58/source-1.archive",
+          "sha256": "f925a657a5343cfb724414c01e87afd4d60b1f82a46edc0e11f016a126f84064"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "libtool"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/libpng-1.6.58/source-1.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/poppler-26.08.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/poppler-26.08.0/poppler.rb",
+      "recipeSha256": "bc11bf911c5dfcf8d3e976d37d71c848470aa77a105e3c2102a9aa1a25aeed53",
+      "sources": [
+        {
+          "path": "native/poppler-26.08.0/source-0.archive",
+          "sha256": "dc906e68cea698109706ac6aa3d2c9d4512fcfcac42d90b8afcda486d1b9abd0"
+        },
+        {
+          "path": "native/poppler-26.08.0/source-1.archive",
+          "sha256": "c835b640a40ce357e1b83666aabd95edffa24ddddd49b8daff63adb851cdab74"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "gettext",
+        "gobject-introspection",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "gobject-introspection",
+        "pkgconf"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libpq-18.6",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libpq-18.6/libpq.rb",
+      "recipeSha256": "58919d9574c34e35fa98a7c224cbf9dae1696ed73e9142d8c86b0d3cf820d88b",
+      "sources": [
+        {
+          "path": "native/libpq-18.6/source-0.archive",
+          "sha256": "555610c24d53e4316da5b7d3fc25c279d96856d5e0e23ee308c328c5fa881d9f"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "docbook",
+        "docbook-xsl",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "docbook",
+        "docbook-xsl",
+        "pkgconf"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/qhull-2020.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/qhull-2020.2/qhull.rb",
+      "recipeSha256": "9e557ad7ade3a330e612c7a74ddaad3047bc8ca1fd5dcb8fab1b6394144f8547",
+      "sources": [
+        {
+          "path": "native/qhull-2020.2/source-0.archive",
+          "sha256": "b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/re2-2025-11-05_1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/re2-2025-11-05_1/re2.rb",
+      "recipeSha256": "56d3556e56e52f0009a3fe3da0eab3c499838749d40e6ed1a01fc7fad454ad06",
+      "sources": [
+        {
+          "path": "native/re2-2025-11-05_1/source-0.archive",
+          "sha256": "87f6029d2f6de8aa023654240a03ada90e876ce9a4676e258dd01ea4c26ffd67"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/librttopo-1.1.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/librttopo-1.1.0/librttopo.rb",
+      "recipeSha256": "9e0246e9762e648bd379ac995d1dede1b2590e47c0346c1d78048ed153d372e6",
+      "sources": [
+        {
+          "path": "native/librttopo-1.1.0/source-0.archive",
+          "sha256": "2e2fcabb48193a712a6c76ac9a9be2a53f82e32f91a2bc834d9f1b4fa9cd879f"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "libtool"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/s2n-1.7.7",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/s2n-1.7.7/s2n.rb",
+      "recipeSha256": "9d07cab5de44cc4fdae4d9a5522ebb929a46adedcc464370cb5eab5f9ef06f03",
+      "sources": [
+        {
+          "path": "native/s2n-1.7.7/source-0.archive",
+          "sha256": "a6f77d2e3343b554bfc2cce27e0407b3c758bb105533c8f0a56e233036b7541d"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/s2n-1.7.7/source-0.archive",
+          "file": "s2n-tls-1.7.7/.gitmodules",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[submodule \"tests/cbmc/aws-verification-model-for-libcrypto\"]"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/webp-1.6.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/webp-1.6.0/webp.rb",
+      "recipeSha256": "c2daf79de310f5aa1a3c8a2e412c6fcec1cc1ff47ba506e4bbddcaffbf7dc90c",
+      "sources": [
+        {
+          "path": "native/webp-1.6.0/source-0.archive",
+          "sha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/webp-1.6.0/source-0.archive",
+          "file": "libwebp-1.6.0/tests/fuzzer/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 36,
+              "text": "FetchContent_Declare("
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/snappy-1.2.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/snappy-1.2.2/snappy.rb",
+      "recipeSha256": "979d6b4ddf9ed8ae64b72b01f26cc2fe5f2a02bdaf06c9879c7ecb2ea86663f9",
+      "sources": [
+        {
+          "path": "native/snappy-1.2.2/source-0.archive",
+          "sha256": "90f74bc1fbf78a6c56b3c4a082a05103b3a56bb17bca1a27e052ea11723292dc"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "llvm",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "llvm",
+        "pkgconf"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/snappy-1.2.2/source-0.archive",
+          "file": "snappy-1.2.2/.gitmodules",
+          "markers": [
+            {
+              "line": 1,
+              "text": "[submodule \"third_party/benchmark\"]"
+            },
+            {
+              "line": 4,
+              "text": "[submodule \"third_party/googletest\"]"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libspatialite-5.1.0_4",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libspatialite-5.1.0_4/libspatialite.rb",
+      "recipeSha256": "11d80ce23c9db6b4c873fa79ed5f841fe5bb9f1ba280368f3b735ece02964702",
+      "sources": [
+        {
+          "path": "native/libspatialite-5.1.0_4/source-0.archive",
+          "sha256": "43be2dd349daffe016dd1400c5d11285828c22fea35ca5109f21f3ed50605080"
+        },
+        {
+          "path": "native/libspatialite-5.1.0_4/source-1.archive",
+          "sha256": "35acd6aebc19843f1a2b3a63e880baceb0f5278ab1ace661e57a502d9d78c93c"
+        },
+        {
+          "path": "native/libspatialite-5.1.0_4/source-2.archive",
+          "sha256": "477188c95b635e0abb97bc659ce9ba8883814f9c7d2466352491eabbe7f6a3f9"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "libtool",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake",
+        "pkgconf"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/libspatialite-5.1.0_4/source-1.archive",
+          "scan": "not-a-tar-archive"
+        },
+        {
+          "source": "native/libspatialite-5.1.0_4/source-2.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/sqlite-3.53.4",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/sqlite-3.53.4/sqlite.rb",
+      "recipeSha256": "d40ca89aaee8ae8817716049b576db517ab4505667aa0f431267450ab9496d2c",
+      "sources": [
+        {
+          "path": "native/sqlite-3.53.4/source-0.archive",
+          "sha256": "0e9483900e92cd5de8fd48d16bf9200145a61f7fd5be542a5ac81d8a9516eb9c"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/thrift-0.24.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/thrift-0.24.0/thrift.rb",
+      "recipeSha256": "5e1bd79a8b8c2c3a53c0a50845a10a232eae2b730cfd695b98cbb51b7aee94b8",
+      "sources": [
+        {
+          "path": "native/thrift-0.24.0/source-0.archive",
+          "sha256": "e0fa5839a4c5c1d631b0931cf2c554ebbfa4e2fee3a9fb3ffd4f82ce4396c6e4"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "bison",
+        "boost",
+        "libtool",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake",
+        "bison",
+        "pkgconf"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libtiff-4.7.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libtiff-4.7.2/libtiff.rb",
+      "recipeSha256": "62f7924e208a520ccca462253ef6d7a3390619c4a3bcceb0aa707ed401bf87e6",
+      "sources": [
+        {
+          "path": "native/libtiff-4.7.2/source-0.archive",
+          "sha256": "672bd7d10aee4606171afb864f3570b83340f6a33e2c186dc0512f7145ffdf6a"
+        }
+      ],
+      "declaredBuildDependencies": [],
+      "buildDependenciesOutsideRuntimeInventory": [],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/uriparser-1.0.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/uriparser-1.0.2/uriparser.rb",
+      "recipeSha256": "070cc1b20abcbbac5c7af8ec7772748dccb86237b5841581b8972b5743e6b567",
+      "sources": [
+        {
+          "path": "native/uriparser-1.0.2/source-0.archive",
+          "sha256": "dd2e4843f43de6f5aedf430e530f1e2d159eba8ca4d64c2787af1c20f707a9e4"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/utf8proc-2.11.3",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/utf8proc-2.11.3/utf8proc.rb",
+      "recipeSha256": "9b07a816fe00ebd203c04774f680d65587ab5be4de31e0e79b37f74924bbca32",
+      "sources": [
+        {
+          "path": "native/utf8proc-2.11.3/source-0.archive",
+          "sha256": "abfed50b6d4da51345713661370290f4f4747263ee73dc90356299dfc7990c78"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/utf8proc-2.11.3/source-0.archive",
+          "file": "utf8proc-2.11.3/CMakeLists.txt",
+          "markers": [
+            {
+              "line": 89,
+              "text": "file(DOWNLOAD https://www.unicode.org/Public/${UNICODE_VERSION}/ucd/NormalizationTest.txt ${CMAKE_BINARY_DIR}/data/NormalizationTest.txt SHOW_PROGRESS)"
+            },
+            {
+              "line": 90,
+              "text": "file(DOWNLOAD https://www.unicode.org/Public/${UNICODE_VERSION}/ucd/auxiliary/GraphemeBreakTest.txt ${CMAKE_BINARY_DIR}/data/GraphemeBreakTest.txt SHOW_PROGRESS)"
+            }
+          ]
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libvmaf-3.2.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libvmaf-3.2.0/libvmaf.rb",
+      "recipeSha256": "be78fefc186b3d539e7e3b20c6bbdb0fb12b50a039b15da274101cc0f34a9f79",
+      "sources": [
+        {
+          "path": "native/libvmaf-3.2.0/source-0.archive",
+          "sha256": "a28f93f3b4fa65601be324587072e32a6a704a304ba7b1aec9b70b3f709bc1dc"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "meson",
+        "nasm",
+        "ninja"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "meson",
+        "nasm",
+        "ninja"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/x265-4.2",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/x265-4.2/x265.rb",
+      "recipeSha256": "ade84e50acc434797a5902cfb186f5ce65eff5bb7c02d9318739d3b0ca9d175c",
+      "sources": [
+        {
+          "path": "native/x265-4.2/source-0.archive",
+          "sha256": "40b1ea0453e0309f0eba934e0ddf533f8f6295966679e8894e8f1c1c8d5e1210"
+        },
+        {
+          "path": "native/x265-4.2/source-1.archive",
+          "sha256": "ecd2ef466dd2975f4facc889e0ca128a6bea6645df61493a96d8e7763b6f3ae9"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake",
+        "nasm"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake",
+        "nasm"
+      ],
+      "downloadCandidates": [
+        {
+          "source": "native/x265-4.2/source-1.archive",
+          "scan": "not-a-tar-archive"
+        }
+      ],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/xerces-c-3.3.0",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/xerces-c-3.3.0/xerces-c.rb",
+      "recipeSha256": "61ef74b62e43a18a016280745a1401428aeb04dcea08fd5cbb395e813356c024",
+      "sources": [
+        {
+          "path": "native/xerces-c-3.3.0/source-0.archive",
+          "sha256": "9555f1d06f82987fbb4658862705515740414fd34b4db6ad2ed76a2dc08d3bde"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/libxml2-2.15.3",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/libxml2-2.15.3/libxml2.rb",
+      "recipeSha256": "f814c0263be76e62e619e9bea29ee0ec0d060aa054b6ea6bec08926f270e873f",
+      "sources": [
+        {
+          "path": "native/libxml2-2.15.3/source-0.archive",
+          "sha256": "78262a6e7ac170d6528ebfe2efccdf220191a5af6a6cd61ea4a9a9a5042c7a07"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "autoconf",
+        "automake",
+        "libtool",
+        "pkgconf"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "autoconf",
+        "automake",
+        "pkgconf"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    },
+    {
+      "id": "native/zstd-1.5.7_1",
+      "recipe": "src-tauri/resources/geospatial/compliance/provenance/zstd-1.5.7_1/zstd.rb",
+      "recipeSha256": "9a9b0183896886e82b915af4db576f27d34d1cee7757d6c5beb0e1eb74c68e0d",
+      "sources": [
+        {
+          "path": "native/zstd-1.5.7_1/source-0.archive",
+          "sha256": "37d7284556b20954e56e1ca85b80226768902e2edabd3b649e9e72c0c9012ee3"
+        }
+      ],
+      "declaredBuildDependencies": [
+        "cmake"
+      ],
+      "buildDependenciesOutsideRuntimeInventory": [
+        "cmake"
+      ],
+      "downloadCandidates": [],
+      "reconstruction": "pending"
+    }
+  ]
+}

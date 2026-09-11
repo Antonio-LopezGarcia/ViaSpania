@@ -1,0 +1,13 @@
+.movement-options { margin-bottom:12px; }
+.movement-options>b, .waypoint-panel>b { font-size:12px;color:#e5eee8; }
+.movement-options label, .waypoint-panel .point-list span, .waypoint-panel .point-list input, .waypoint-panel .point-list small { font-size:10px; }
+.movement-options .check { display:flex;align-items:center;gap:8px; }
+.movement-options input[type=checkbox] { width:auto; }
+.movement-options .comparison-model-disclosure { min-width:0; }
+.movement-options .comparison-model-disclosure summary { cursor:pointer;font-size:11px;line-height:1.5; }
+.movement-options .hint { display:block;line-height:1.5; }
+.movement-options .comparison-route-profiles input[type=checkbox] { appearance:none;flex:0 0 28px;width:28px;height:16px;padding:0;border-radius:10px;background:#35433c;cursor:pointer;position:relative; }
+.movement-options .comparison-route-profiles input[type=checkbox]::after { content:'';position:absolute;width:10px;height:10px;left:2px;top:2px;border-radius:50%;background:#e5eee8; }
+.movement-options .comparison-route-profiles input[type=checkbox]:checked { background:#d8ff55; }
+.movement-options .comparison-route-profiles input[type=checkbox]:checked::after { left:14px;background:#17201c; }
+.movement-options .comparison-route-profiles input[type=checkbox]:focus-visible { outline:2px solid #d8ff55;outline-offset:2px; }

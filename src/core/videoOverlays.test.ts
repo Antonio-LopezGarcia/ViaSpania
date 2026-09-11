@@ -13,3 +13,14 @@ it('usa W para el oeste en la exportación inglesa',async()=>{
  const fillText=vi.fn(),context=new Proxy({fillText},{get:(target,key)=>key==='fillText'?target.fillText:vi.fn(),set:()=>true}) as unknown as CanvasRenderingContext2D;
  drawVideoCompass(context,1280,720,90);expect(fillText).toHaveBeenCalledWith('W',expect.any(Number),expect.any(Number));expect(fillText).not.toHaveBeenCalledWith('O',expect.any(Number),expect.any(Number));setLanguage('es');
 });
+
+it('conserva todos los caracteres de una atribución larga sin comprimirla en una línea',async()=>{
+ const {drawVideoAttribution}=await import('./videoOverlays');const fillText=vi.fn(),context={save:vi.fn(),restore:vi.fn(),fillRect:vi.fn(),measureText:(text:string)=>({width:text.length*8}),fillText} as unknown as CanvasRenderingContext2D;
+ const credit='© Fuente cartográfica https://example.org/licencia '.repeat(3);drawVideoAttribution(context,320,240,credit);
+ expect(fillText.mock.calls.length).toBeGreaterThan(1);expect(fillText.mock.calls.map(call=>call[0]).join('')).toBe(credit);expect(fillText.mock.calls.every(call=>call.length===3)).toBe(true);
+});
+
+it('rechaza una salida que recortaría el crédito en lugar de guardarla incompleta',async()=>{
+ const {drawVideoAttribution}=await import('./videoOverlays');const context={save:vi.fn(),restore:vi.fn(),measureText:(s:string)=>({width:s.length*8})} as unknown as CanvasRenderingContext2D;
+ expect(()=>drawVideoAttribution(context,120,80,'© Fuente')).toThrow('demasiado pequeña');
+});

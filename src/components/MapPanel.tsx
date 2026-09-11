@@ -25,6 +25,7 @@ import ImageStatic from 'ol/source/ImageStatic';
 import WMTSTileGrid from 'ol/tilegrid/WMTS';
 import { fromLonLat, toLonLat, transformExtent } from 'ol/proj';
 import ScaleLine from 'ol/control/ScaleLine';
+import Attribution from 'ol/control/Attribution';
 import DragBox from 'ol/interaction/DragBox';
 import Draw from 'ol/interaction/Draw';
 import { Circle as CircleStyle, Fill, Stroke, Style, Text } from 'ol/style';
@@ -138,6 +139,9 @@ function populationTileSource(){const format=new MVT(),source=new VectorTileSour
 
 export function MapPanel(props: MapPanelProps) {
   const { kind, viewState, onViewChange, points = [], selectedPointId, pointMode = 'select', onPointMapAction, areaDrawing = false, studyExtent, onStudyExtent } = props;
+  const [pointNameEditorClosed,setPointNameEditorClosed]=useState(false);
+  useEffect(()=>setPointNameEditorClosed(false),[selectedPointId]);
+  const selectedPoint=points.find(point=>point.id===selectedPointId);
   const host = useRef<HTMLDivElement>(null);
   const mapRef = useRef<Map | null>(null);
   const pointSourceRef = useRef(new VectorSource());
@@ -254,7 +258,7 @@ export function MapPanel(props: MapPanelProps) {
       target: host.current,
       layers: [new TileLayer({ source }), ...referenceLayers, areaLayer, ...(isochroneSurfaceLayer?[isochroneSurfaceLayer]:[]), isochroneLayer, routeLayer, barrierLayer, facilitatorLayer, pointLayer,locationLayer,selectionMarkerLayer],
       view: new View({ center: viewState.center, resolution: viewState.resolution, rotation: viewState.rotation }),
-      controls: loadAppSettings().showScales ? [new ScaleLine()] : [],
+      controls: [new Attribution({collapsible:false}), ...(loadAppSettings().showScales ? [new ScaleLine()] : [])],
     });
     mapRef.current = map;
     if(kind==='osm'){
@@ -305,11 +309,13 @@ export function MapPanel(props: MapPanelProps) {
       if(['select','move','delete'].includes(currentMode)&&propsRef.current.onElementMapAction){
         const hit=map.forEachFeatureAtPixel(event.pixel,feature=>feature.get('elementKind')?feature:undefined,{hitTolerance:10});
         const coordinate=toLonLat(event.coordinate),element=hit?{kind:hit.get('elementKind'),id:hit.get('elementId')} as SelectableElement:undefined;
+        if(currentMode==='select'&&element?.kind==='point')setPointNameEditorClosed(false);
         propsRef.current.onElementMapAction({type:currentMode as 'select'|'move'|'delete',element,lon:coordinate[0],lat:coordinate[1]});
         return;
       }
       const hit = map.forEachFeatureAtPixel(event.pixel, feature => feature.get('pointId') ? feature : undefined, { hitTolerance: 8 });
       const coordinate = toLonLat(event.coordinate);
+      if(currentMode==='select'&&hit)setPointNameEditorClosed(false);
       if(currentMode==='poi'){window.dispatchEvent(new CustomEvent('viaspania-add-poi',{detail:{coordinate:[coordinate[0],coordinate[1]]}}));return}
       const pointId = hit?.get('pointId') as number | undefined;
       if (currentMode === 'select' && pointId) propsRef.current.onPointMapAction?.({ type: 'select', pointId, lon: coordinate[0], lat: coordinate[1] });
@@ -389,6 +395,10 @@ export function MapPanel(props: MapPanelProps) {
   return <>
     <div className={`map ${loadAppSettings().showCrosshairs?'map-crosshair':''}`} ref={host} />
     {props.expanded&&<div className="mdt-constraint-controls"><label><input type="checkbox" checked={showConstraints} onChange={event=>setShowConstraints(event.target.checked)}/>Mostrar barreras y facilitadores</label><label><input type="checkbox" checked={showLabels} onChange={event=>setShowLabels(event.target.checked)}/>Mostrar etiquetas</label></div>}
-    {kind==='pnoa'&&selectedPointId!=null&&points.find(point=>point.id===selectedPointId)&&<label className="point-name-editor"><span>Nombre del punto</span><input value={points.find(point=>point.id===selectedPointId)?.name??''} maxLength={20} onChange={event=>props.onPointNameChange?props.onPointNameChange(selectedPointId,event.target.value):window.dispatchEvent(new CustomEvent('viaspania-rename-point',{detail:{pointId:selectedPointId,name:event.target.value}}))}/><small>{Array.from(points.find(point=>point.id===selectedPointId)?.name??'').length}/20</small></label>}
+    {kind==='pnoa'&&selectedPoint&&!pointNameEditorClosed&&<div className="point-name-editor" onKeyDown={event=>{if(!event.nativeEvent.isComposing&&(event.key==='Enter'||event.key==='Escape')){event.preventDefault();event.stopPropagation();setPointNameEditorClosed(true)}}}>
+      <label><span>Nombre del punto</span><input value={selectedPoint.name} maxLength={20} onChange={event=>props.onPointNameChange?props.onPointNameChange(selectedPoint.id,event.target.value):window.dispatchEvent(new CustomEvent('viaspania-rename-point',{detail:{pointId:selectedPoint.id,name:event.target.value}}))}/></label>
+      <button type="button" className="point-name-close" aria-label="Cerrar nombre del punto" title="Cerrar nombre del punto" onClick={()=>setPointNameEditorClosed(true)}>×</button>
+      <small>{Array.from(selectedPoint.name).length}/20</small>
+    </div>}
   </>;
 }

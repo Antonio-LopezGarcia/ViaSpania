@@ -1,0 +1,21 @@
+-- Requiring C++17
+-- Requiring C++17 - done
+-- Requiring C99
+-- Requiring C99 - done
+-- Configuring PROJ:
+-- PROJ_VERSION                   = 9.8.1
+-- BUNDLEDIR                      = Applications/OSGEO
+-- PROJ_INSTALL_NAME_DIR          = @executable_path/../../Library/Frameworks
+-- FRAMEWORKDIR                   = Library/Frameworks
+-- nlohmann/json: internal
+-- Testing disabled
+-- Configuring proj library:
+-- ENABLE_IPO                     = OFF
+-- PROJ_OUTPUT_NAME               = proj
+-- BUILD_SHARED_LIBS              = ON
+-- PROJ_LIBRARIES                 = proj
+-- PROJ: Configured 'dist' target
+-- EMBED_RESOURCE_FILES=OFF
+-- Configuring done (0.2s)
+-- Generating done (0.1s)
+-- Build files have been written to: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/proj/build

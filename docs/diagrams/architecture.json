@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Arquitectura de ViaSpania",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1390,
+      865
+    ]
+  },
+  "components": [
+    {
+      "id": "app",
+      "type": "frontend",
+      "label": "ViaSpania",
+      "sublabel": "Web · escritorio Tauri",
+      "pos": [
+        480,
+        30
+      ],
+      "size": [
+        300,
+        85
+      ]
+    },
+    {
+      "id": "ui",
+      "type": "frontend",
+      "label": "Interfaz y mapas",
+      "sublabel": "src/components · React · OpenLayers",
+      "pos": [
+        480,
+        175
+      ],
+      "size": [
+        300,
+        85
+      ]
+    },
+    {
+      "id": "core",
+      "type": "backend",
+      "label": "Lógica geográfica",
+      "sublabel": "src/core · rutas e importación",
+      "pos": [
+        100,
+        350
+      ],
+      "size": [
+        300,
+        85
+      ]
+    },
+    {
+      "id": "services",
+      "type": "backend",
+      "label": "Adaptadores de servicios",
+      "sublabel": "src/services · metadatos y E/S",
+      "pos": [
+        860,
+        350
+      ],
+      "size": [
+        300,
+        85
+      ]
+    },
+    {
+      "id": "remote",
+      "type": "external",
+      "label": "Proveedores remotos",
+      "sublabel": "Mapas · elevación · topónimos",
+      "pos": [
+        670,
+        540
+      ],
+      "size": [
+        300,
+        85
+      ]
+    },
+    {
+      "id": "native",
+      "type": "backend",
+      "label": "Motor nativo Rust",
+      "sublabel": "src-tauri · GeoTIFF · archivos",
+      "pos": [
+        1050,
+        540
+      ],
+      "size": [
+        300,
+        85
+      ]
+    },
+    {
+      "id": "gdal",
+      "type": "backend",
+      "label": "GDAL / PROJ",
+      "sublabel": "Ráster y transformación de CRS",
+      "pos": [
+        1050,
+        725
+      ],
+      "size": [
+        300,
+        85
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "app",
+      "to": "ui",
+      "label": "comparte interfaz",
+      "labelDy": 35
+    },
+    {
+      "from": "ui",
+      "to": "core",
+      "label": "calcula",
+      "fromSide": "left",
+      "toSide": "top"
+    },
+    {
+      "from": "ui",
+      "to": "services",
+      "label": "solicita datos",
+      "fromSide": "right",
+      "toSide": "top"
+    },
+    {
+      "from": "services",
+      "to": "remote",
+      "label": "HTTP",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "from": "services",
+      "to": "native",
+      "label": "Tauri IPC",
+      "fromSide": "right",
+      "toSide": "top"
+    },
+    {
+      "from": "native",
+      "to": "gdal",
+      "label": "procesa en escritorio",
+      "labelDy": 45
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Contratos geográficos",
+      "items": [
+        "Coordenadas persistidas en WGS84; distancias en metros.",
+        "Datos inmutables en los límites de los módulos."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Calidad y procedencia",
+      "items": [
+        "public/fixtures: respuestas para pruebas deterministas.",
+        "Errores en español y atribuciones conservadas."
+      ]
+    }
+  ]
+}

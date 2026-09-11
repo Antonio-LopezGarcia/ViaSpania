@@ -46,6 +46,29 @@ def formula_sources(recipe):
     return [{'url': u, 'integrity': h} for u, h in dict.fromkeys(pairs) if '#{' not in u]
 
 
+def auxiliary_sources(document, native_components):
+    """Bind supplemental sources to the exact inventoried parent source."""
+    if document.get('schema') != 1:
+        raise ValueError('Versión desconocida del inventario de fuentes auxiliares.')
+    owners = {c['id']: c for c in native_components}
+    result, seen = [], set(owners)
+    for component in document.get('components', []):
+        owner = owners.get(component.get('owner'), {})
+        hashes = {s.get('integrity') for s in owner.get('sourceRequests', [])}
+        if not owner or component.get('ownerSourceSha256') not in hashes:
+            raise ValueError('Cambió o falta el componente padre de la fuente auxiliar: ' + component.get('id', '?'))
+        identifier = component.get('id', '')
+        if not re.fullmatch(r'native-aux/[A-Za-z0-9._+-]+', identifier) or identifier in seen:
+            raise ValueError('Identificador auxiliar inválido o duplicado: ' + identifier)
+        sources = component.get('sourceRequests', [])
+        if not sources or any(not s.get('url', '').startswith('https://') or
+                              not re.fullmatch(r'[a-f0-9]{64}', s.get('integrity', '')) for s in sources):
+            raise ValueError('Fuente auxiliar sin URL HTTPS/hash fijado: ' + identifier)
+        seen.add(identifier)
+        result.append(component)
+    return result
+
+
 def release_problems(manifest, current_hashes):
     problems = list(manifest.get('findings', []))
     if manifest.get('schema') != 1:
@@ -62,3 +85,13 @@ def release_problems(manifest, current_hashes):
         if not component.get('notices'):
             problems.append(f'{label}: faltan textos de licencia; REQUIERE REVISIÓN.')
     return problems
+
+
+def native_review_matches(review, native):
+    expected = review.get('reviewedRuntime', {})
+    actual = {item['path']: item['sha256'] for item in native.get('files', [])}
+    return bool(expected) and actual == expected and native.get('platform') == 'macos'
+
+
+def data_review_matches(review, data_files, implementation_files):
+    return bool(review.get('reviewedData')) and bool(review.get('reviewedImplementation')) and review['reviewedData'] == data_files and review['reviewedImplementation'] == implementation_files

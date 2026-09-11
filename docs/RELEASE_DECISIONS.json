@@ -4,32 +4,74 @@
     {
       "id": "rights",
       "requirement": "Documentar titularidad y mandato de publicación con los titulares/UGR.",
-      "status": "pending",
-      "evidence": []
+      "status": "resolved",
+      "evidence": [
+        {
+          "document": "docs/CODE_OWNERSHIP.md",
+          "sha256": "b661e6b241609b89cb477e35ee381069a79b2adfa1715efabff6f047257cdaab",
+          "basis": "Declaración expresa de Antonio López García y transcripción parcial de la autorización UGR aportadas en la conversación; sin autenticación independiente del correo original."
+        }
+      ]
     },
     {
       "id": "assets",
       "requirement": "Autorizar redistribución de assets oficiales e imagen institucional enumerados en ASSETS.md.",
-      "status": "pending",
-      "evidence": []
+      "status": "resolved",
+      "evidence": [
+        {
+          "document": "docs/ASSETS.md",
+          "sha256": "a445d1b93dec1ee00c282ca73858ae77dc396ad87caf9c0899dbffc780772eea",
+          "basis": "Declaración de autoría del logotipo y obligación de reconocimiento RYC aportadas por el responsable; permiso de reproducción delimitado e instrucciones oficiales AEI."
+        },
+        {
+          "document": "docs/funding.md"
+        }
+      ]
     },
     {
       "id": "native_scope",
       "requirement": "Revisar alcance de avisos nativos compuestos, incluido Kerberos, sobre los objetos distribuidos.",
-      "status": "pending",
-      "evidence": []
+      "status": "resolved",
+      "evidence": [
+        {
+          "document": "docs/NATIVE_LICENSE_REVIEW.md",
+          "sha256": "d4eda09d0acb8788d5341ccefc315757e67de53c6b227f6b0c678be81b670cd1",
+          "basis": "Cierre residual PB-2 limitado al runtime macOS exacto: fuentes 1.22.2, cabeceras, Makefile/configure, símbolos y enlaces. Avisos conservados; reapertura automática si cambia el inventario nativo."
+        },
+        {
+          "document": "docs/native-evidence/REVIEW.json"
+        }
+      ]
     },
     {
       "id": "data",
       "requirement": "Revisar términos de proj.db, rejillas y exportaciones según DATA_NOTICES.txt.",
-      "status": "pending",
-      "evidence": []
+      "status": "resolved",
+      "evidence": [
+        {
+          "document": "docs/DATA_LICENSE_REVIEW.md",
+          "sha256": "515bac7d15745a3ea81e820aad489d100366a809ddb004f483b767f23d59247e",
+          "basis": "Cierre condicionado al inventario exacto, avisos separados, procedencia conservadora, pruebas y app inspeccionada. No acredita derechos sobre importaciones sin origen."
+        },
+        {
+          "document": "docs/data-evidence/REVIEW.json"
+        },
+        {
+          "document": "docs/PROJ_DB_REVIEW.md"
+        }
+      ]
     },
     {
       "id": "corresponding_source",
       "requirement": "Cerrar recursos auxiliares de builds nativos y verificar reconstrucción desde las fuentes suministradas.",
       "status": "pending",
-      "evidence": []
+      "evidence": [
+        {
+          "document": "docs/CORRESPONDING_SOURCE_REVIEW.md",
+          "sha256": "5ca3ba676a61fec71b3933d2654d1fc464975ead58c474a58e050a422ffcb187",
+          "basis": "Avance parcial: mimalloc incorporado al expediente; PROJ, Arrow y GDAL reconstruidos y probados con dependencias locales. No cierra la cadena completa ni demuestra identidad de cabeceras con el build histórico."
+        }
+      ]
     }
   ]
 }

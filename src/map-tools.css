@@ -112,3 +112,5 @@
 
 .map-crosshair::before,.map-crosshair::after{content:"";position:absolute;z-index:9;left:50%;top:50%;pointer-events:none;background:#fff;box-shadow:0 0 2px #000,0 0 5px #000}.map-crosshair::before{width:17px;height:1px;transform:translate(-8px,0)}.map-crosshair::after{width:1px;height:17px;transform:translate(0,-8px)}
 .map .ol-scale-line,.mdt-map .ol-scale-line{left:auto;right:10px;bottom:10px;background:#101713c9}.map .ol-scale-line-inner,.mdt-map .ol-scale-line-inner{color:#fff;border-color:#fff}.tool-icon{width:14px;height:14px;vertical-align:-3px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.point-name-editor label{display:grid;gap:4px;min-width:0}.point-name-editor label span{grid-column:auto}.point-name-editor .point-name-close{align-self:start;padding:0;width:22px;height:22px;font-size:18px;line-height:1;background:transparent;color:#d8e2dc;border:0;cursor:pointer}.point-name-editor .point-name-close:hover{background:#35433c}.point-name-editor small{grid-column:1/-1;text-align:right}

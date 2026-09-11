@@ -4,7 +4,7 @@ ViaSpania
 Copyright © 2026 Antonio López García, Universidad de Granada  
 Este programa se distribuye bajo la licencia GPL-3.0-only.
 
-[LICENSE](../LICENSE) · Esta declaración se aplica al código original de ViaSpania. Los componentes de terceros y los datos conservan sus respectivos copyrights, licencias y condiciones. El logotipo y los assets gráficos originales de ViaSpania mantienen copyright separado y todos los derechos reservados; los símbolos institucionales conservan sus condiciones propias.
+[LICENCIA](../LICENSE) · Esta declaración se aplica al código original de ViaSpania. Los componentes de terceros y los datos conservan sus respectivos copyrights, licencias y condiciones. El logotipo y los assets gráficos originales de ViaSpania mantienen copyright separado y todos los derechos reservados; los símbolos institucionales conservan sus condiciones propias.
 
 ViaSpania permite explorar el relieve, calcular desplazamientos de coste mínimo y estudiar accesibilidad y visibilidad. Este manual explica cómo preparar un proyecto, elegir un análisis, interpretar sus resultados y guardarlos. Para consultar las ecuaciones y los supuestos de un perfil concreto, utilice el botón de ayuda contextual del cálculo.
 

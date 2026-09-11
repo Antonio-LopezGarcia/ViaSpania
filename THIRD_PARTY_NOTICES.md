@@ -4,7 +4,7 @@ ViaSpania
 Copyright © 2026 Antonio López García, Universidad de Granada
 Este programa se distribuye bajo la licencia GPL-3.0-only.
 
-Esta declaración se aplica al código original de ViaSpania. Los componentes de terceros y los datos conservan sus respectivos copyrights, licencias y condiciones. El logotipo y los assets gráficos originales de ViaSpania mantienen copyright separado y todos los derechos reservados; los símbolos institucionales conservan sus condiciones propias.
+Esta declaración se aplica al código original de ViaSpania. Los componentes de terceros y los datos conservan sus respectivos copyrights, licencias y condiciones. El logotipo y los assets gráficos originales de ViaSpania mantienen copyright separado, con permiso de reproducción del logotipo según docs/ASSETS.md (incluido como compliance/ASSETS.txt en la distribución); los símbolos institucionales conservan sus condiciones propias.
 
 Inventory reviewed on 7 September 2026 for ViaSpania 0.2.1. The JavaScript list comes from `pnpm licenses list --prod` against the installed production graph. The native list comes from `cargo tree --target <release-target> --edges normal,build --offline` and `Cargo.lock`. Build-only test and development tools are excluded from the application credits.
 
@@ -56,7 +56,7 @@ La selección se limita a estas identidades nombre-versión. No convierte en MIT
 
 Desktop packages include GDAL, PROJ, their command-line utilities, projection databases and the non-system dynamic libraries discovered by the platform packaging scripts. GDAL is MIT/X style and PROJ is MIT, but each dynamically bundled library retains its own terms. The release package must contain the copied licence files and `geospatial/THIRD_PARTY_MANIFEST.txt`. A release is not compliant when a non-system binary appears in that manifest without a corresponding notice.
 
-Unused GDAL logos and icons are excluded from the prepared runtime. ViaSpania's `VS` application icon and interface SVG symbols are original project assets. No institutional logo is bundled or used to imply endorsement. ViaSpania embeds no font files; it uses operating-system font families.
+Unused GDAL logos and icons are excluded from the prepared runtime. ViaSpania's `VS` application icon and interface SVG symbols are original project assets. MICIU/EU/AEI funding logos are bundled solely to acknowledge the original funding, under the applicable institutional guidelines; they do not imply endorsement of other products. ViaSpania embeds no font files; it uses operating-system font families.
 
 ## Data and network services
 

@@ -2626,6 +2626,32 @@ struct GeoPackageLayerRequest {
 }
 
 #[tauri::command]
+fn import_geopackage(path: String) -> Result<Vec<Value>, NativeError> {
+    let input = std::fs::canonicalize(&path).map_err(|_| NativeError::Io("No se pudo abrir el GeoPackage seleccionado".into()))?;
+    if input.extension().and_then(|v| v.to_str()).map(|v| v.eq_ignore_ascii_case("gpkg")) != Some(true) {
+        return Err(NativeError::Io("Seleccione un archivo con extensión .gpkg".into()));
+    }
+    let ogr = command_path("ogr2ogr").ok_or_else(|| NativeError::Gdal("ogr2ogr no está instalado".into()))?;
+    let read = |args: &[&str]| -> Result<Value, NativeError> {
+        let output = Command::new(&ogr).args(["-f", "GeoJSON", "/vsistdout/"]).arg(&input).args(args).output()
+            .map_err(|_| NativeError::Gdal("No se pudo leer el GeoPackage con GDAL".into()))?;
+        if !output.status.success() { return Err(NativeError::Gdal("No se pudo leer o transformar una capa del GeoPackage. Compruebe sus geometrías y su sistema de coordenadas".into())); }
+        serde_json::from_slice(&output.stdout).map_err(|_| NativeError::Gdal("GDAL devolvió datos GeoPackage no válidos".into()))
+    };
+    let catalog = read(&["-sql", "SELECT table_name FROM gpkg_contents WHERE data_type = 'features'", "-dialect", "SQLite"])?;
+    let names: Vec<&str> = catalog["features"].as_array().ok_or_else(|| NativeError::Io("El GeoPackage no contiene un catálogo válido".into()))?
+        .iter().filter_map(|f| f["properties"]["table_name"].as_str()).collect();
+    let mut layers = Vec::new();
+    for name in ["puntos", "barreras", "corredores", "puentes", "puntos_interes"] {
+        if names.contains(&name) {
+            let data = read(&[name, "-t_srs", "EPSG:4326", "-preserve_fid"])?;
+            layers.push(serde_json::json!({"name":name,"geoJson":data.to_string()}));
+        }
+    }
+    Ok(layers)
+}
+
+#[tauri::command]
 fn export_geopackage(
     path: String,
     layers: Vec<GeoPackageLayerRequest>,
@@ -2683,7 +2709,7 @@ fn export_geopackage(
             std::fs::write(&source, &layer.geo_json)
                 .map_err(|error| NativeError::Io(error.to_string()))?;
             let mut command = Command::new(&ogr2ogr);
-            command.args(["-f", "GPKG"]);
+            command.args(["-f", "GPKG", "-preserve_fid"]);
             if index == 0 {
                 command.arg("-overwrite");
             } else {
@@ -3433,6 +3459,7 @@ pub fn run() {
             video_export::video_export_cancel,
             export_raster_geotiff,
             export_geopackage,
+            import_geopackage,
             read_project_file
         ])
         .run(tauri::generate_context!())
@@ -3441,6 +3468,21 @@ pub fn run() {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn geopackage_elements_round_trip() {
+        let path = std::env::temp_dir().join(format!("viaspania-import-test-{}.gpkg", uuid::Uuid::new_v4()));
+        let source = serde_json::json!({"type":"FeatureCollection","features":[{"type":"Feature","id":7,"properties":{"nombre":"Inicio","rol":"inicio","comentarios":"Nota"},"geometry":{"type":"Point","coordinates":[-3.0,40.0]}}]});
+        super::export_geopackage(path.to_string_lossy().into_owned(), vec![super::GeoPackageLayerRequest{name:"puntos".into(),geo_json:source.to_string()}]).unwrap();
+        let result = super::import_geopackage(path.to_string_lossy().into_owned());
+        let _ = std::fs::remove_file(path);
+        let layers = result.unwrap();
+        assert_eq!(layers.len(), 1);
+        let data: serde_json::Value = serde_json::from_str(layers[0]["geoJson"].as_str().unwrap()).unwrap();
+        assert_eq!(data["features"][0]["id"], 7);
+        assert_eq!(data["features"][0]["properties"]["rol"], "inicio");
+        assert_eq!(data["features"][0]["geometry"]["coordinates"], serde_json::json!([-3.0,40.0]));
+    }
+
     use super::*;
 
     #[test]

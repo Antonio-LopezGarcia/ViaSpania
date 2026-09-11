@@ -1,4 +1,12 @@
+> Estado vigente 2026-09-10: revisión `data` resuelta para el alcance de [DATA_LICENSE_REVIEW.md](DATA_LICENSE_REVIEW.md), con reapertura por cambios en los hashes revisados. 388 pruebas y nueve controles del colector pasan; nueva `.app` compilada e inspeccionada (1012 archivos, cero fallos). **Solo `corresponding_source` permanece pendiente.** No se ha publicado una nueva release ni regenerado el DMG. Las cifras y estados restantes del documento son antecedentes históricos, sustituidos por esta actualización y `RELEASE_DECISIONS.json`.
+
 # Auditoría de licencias de ViaSpania 0.2.1
+
+> Actualización PB-2: alcance residual de Kerberos resuelto para el runtime macOS exacto según [NATIVE_LICENSE_REVIEW.md](NATIVE_LICENSE_REVIEW.md). Permanecen dos revisiones (datos y fuentes correspondientes). La sección PB-2 original se conserva como antecedente histórico.
+
+> Actualización de assets: revisión cerrada para los usos y condiciones de [ASSETS.md](ASSETS.md). Permanecen tres revisiones de distribución; las cifras anteriores son históricas.
+
+> Actualización documental: la revisión de titularidad y autorización del código propio se ha cerrado con la declaración del responsable y el extracto del correo UGR aportado; véase [CODE_OWNERSHIP.md](CODE_OWNERSHIP.md). Permanecen cuatro revisiones de distribución. Las conclusiones históricas siguientes deben leerse con esta actualización.
 
 > Actualización: las nueve selecciones/textos pendientes se han resuelto con evidencia, manteniendo la licencia BSD del archivo de V8 incluido en stackback. Véase [LICENSE_SELECTIONS.md](LICENSE_SELECTIONS.md). Las cifras anteriores describen el candidato histórico; el candidato y sus fuentes ya se han regenerado e inspeccionado con estas selecciones. Persisten cinco revisiones de distribución.
 

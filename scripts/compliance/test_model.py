@@ -6,10 +6,28 @@ import zipfile
 from pathlib import Path
 from release import archive_notices
 from selections import validate_selection
+from model import native_review_matches, data_review_matches
 from model import archive_name_safe, formula_sources, npm_lock_entries, release_problems, verify_integrity
 
 
 class ComplianceTests(unittest.TestCase):
+    def test_data_review_reopens_for_changed_missing_or_additional_data(self):
+        review = {'reviewedData': {'proj/proj.db': 'abc'}, 'reviewedImplementation': {'src/export.ts': 'def'}}
+        self.assertTrue(data_review_matches(review, review['reviewedData'], review['reviewedImplementation']))
+        for data in [{}, {'proj/proj.db': 'changed'}, {'proj/proj.db': 'abc', 'extra.tif': 'x'}]:
+            self.assertFalse(data_review_matches(review, data, review['reviewedImplementation']))
+        self.assertFalse(data_review_matches(review, review['reviewedData'], {'src/export.ts': None}))
+        self.assertFalse(data_review_matches({}, {}, {}))
+
+    def test_native_review_reopens_for_changes_or_other_targets(self):
+        review = {'reviewedRuntime': {'lib/a.dylib': 'abc'}}
+        native = {'platform':'macos', 'files':[{'path':'lib/a.dylib','sha256':'abc'}]}
+        self.assertTrue(native_review_matches(review, native))
+        self.assertFalse(native_review_matches(review, dict(native, platform='linux')))
+        self.assertFalse(native_review_matches(review, dict(native, files=native['files']+[{'path':'lib/b.dylib','sha256':'def'}])))
+        self.assertFalse(native_review_matches(review, dict(native, files=[{'path':'lib/a.dylib','sha256':'changed'}])))
+        self.assertFalse(native_review_matches({}, native))
+
     def test_licence_election_requires_permission_and_exact_archive(self):
         component = {'id':'cargo/example-1', 'name':'example', 'license':'MIT OR Apache-2.0', 'sources':[{'sha256':'abc'}]}
         selection = {'id':component['id'], 'declared':component['license'], 'selected':'MIT', 'archiveSha256':'abc'}

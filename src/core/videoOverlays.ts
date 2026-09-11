@@ -1,4 +1,5 @@
-import {getLanguage} from './i18n';
+import {exportWatermarkLayout} from './exportWatermark';
+import {getLanguage,translateText} from './i18n';
 /** Scene axes: +X east, -Z north. Returns a geographic bearing in degrees. */
 export function cameraHeading(x:number,z:number){return(Math.atan2(x,-z)*180/Math.PI+360)%360}
 export function drawVideoCompass(context:CanvasRenderingContext2D,width:number,height:number,heading:number){
@@ -13,5 +14,9 @@ export function drawVideoCompass(context:CanvasRenderingContext2D,width:number,h
 }
 export function drawVideoAttribution(context:CanvasRenderingContext2D,width:number,height:number,text:string){
  context.save();context.font=`${Math.max(10,Math.round(height/70))}px sans-serif`;context.textAlign='left';context.textBaseline='bottom';
- const maxWidth=width*.7;context.fillStyle='rgba(7,16,13,.8)';context.fillRect(8,height-29,Math.min(context.measureText(text).width+12,maxWidth+12),23);context.fillStyle='#ffffff';context.fillText(text,14,height-10,maxWidth);context.restore();
+ const maxWidth=exportWatermarkLayout(width,height).x-24,lineHeight=Math.max(14,Math.round(height/70)+4),lines:string[]=[];let line='';
+ if(maxWidth<40){context.restore();throw new Error('La imagen es demasiado pequeña para conservar las atribuciones. Aumente la resolución.')}
+ for(const character of translateText(text)){if(character==='\n'||(line&&context.measureText(line+character).width>maxWidth)){lines.push(line);line=''}if(character!=='\n')line+=character}if(line)lines.push(line);
+ if(lines.length*lineHeight>height-20){context.restore();throw new Error('Las atribuciones no caben en la imagen. Aumente la resolución o reduzca las capas.')}
+ context.fillStyle='rgba(7,16,13,.8)';context.fillRect(8,height-10-lines.length*lineHeight,maxWidth+12,lines.length*lineHeight+4);context.fillStyle='#ffffff';lines.forEach((value,index)=>context.fillText(value,14,height-10-(lines.length-1-index)*lineHeight));context.restore();return height-10-lines.length*lineHeight;
 }

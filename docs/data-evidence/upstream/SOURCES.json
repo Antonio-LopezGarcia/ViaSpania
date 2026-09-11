@@ -1,0 +1,53 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/Esri/projection-engine-db-doc/3d731f6b37e1cfa50d235886f6a26973ae17201b/license.txt",
+    "file": "Esri-pinned-license.txt",
+    "sha256": "0f0b36b3b0cfd0e515475992a95b105623d9c6e9d99d20c7ac48ee8d16c851bc",
+    "scope": "latest repository commit before registry metadata date; not proof of byte-identical source CSV"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/Esri/projection-engine-db-doc/3d731f6b37e1cfa50d235886f6a26973ae17201b/README.md",
+    "file": "Esri-pinned-README.md",
+    "sha256": "1ff703b5b200ce79c8ffc1d0c233a9989eef7e74b2ed2e6274f63a2d9a8286a1",
+    "scope": "latest repository commit before registry metadata date; not proof of byte-identical source CSV"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/NordicGeodesy/NordicTransformations/7303593512f0133cde17324496dddec4616bcdc7/LICENSE",
+    "file": "NordicGeodesy-pinned-LICENSE",
+    "sha256": "cce5d01fa4a83b794271bd2c28cffdf99afd43c803e6ddefddae39b591ea7448",
+    "scope": "latest repository commit before registry metadata date; not proof of byte-identical source CSV"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/NordicGeodesy/NordicTransformations/7303593512f0133cde17324496dddec4616bcdc7/README.md",
+    "file": "NordicGeodesy-pinned-README.md",
+    "sha256": "195f056c22a3d3a1e9285da4fde3fe2e115adc1eee3692ceb48b08dce73c85f0",
+    "scope": "latest repository commit before registry metadata date; not proof of byte-identical source CSV"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/rouault/proj-resources/master/IGNF.v3.1.0.xml",
+    "file": "IGNF.v3.1.0.xml",
+    "sha256": "5c5124123605c4b3ac2035466af9a01e369e538e8ccf6e242ec03c7b99a20657",
+    "retained": false,
+    "reason": "Inspected in temporary storage; full registry not added to the repository while licensing remains under review."
+  },
+  {
+    "url": "https://epsg.org/terms-of-use.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://epsg.org/terms-of-use.html",
+    "file": "EPSG-TERMS-OF-USE.txt",
+    "method": "Direct browser reading; full plain-text transcription including table; no account or acceptance action",
+    "accessed": "2026-09-10"
+  },
+  {
+    "url": "https://www.data.gouv.fr/api/1/datasets/repertoire-de-donnees-de-reference-geodesiques-et-des-codelists-iso-19115/",
+    "file": "IGNF-datagouv.json",
+    "declaredLicense": "fr-lo"
+  },
+  {
+    "url": "https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Licence_Ouverte.pdf",
+    "finalUrl": "https://static.data.gouv.fr/resources/licence-ouverte-2-0/20240711-152120/licence-ouverte.pdf",
+    "file": "IGNF-Licence-Ouverte.pdf"
+  }
+]

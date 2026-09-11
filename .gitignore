@@ -12,3 +12,8 @@ src-tauri/resources/geospatial/*
 # Expedientes locales de fuentes y candidatos de publicación
 release/
 __pycache__/
+
+# Archivos temporales y sesiones locales
+tmp/
+*.bak
+.Rhistory

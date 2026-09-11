@@ -5,9 +5,9 @@ export interface VideoProfileRoute{label:string;color:string;coordinates?:[numbe
 export interface VideoProfileSeries{routeIndex:number;label:string;color:string;samples:ElevationProfileSample[]}
 export function videoProfileSeries(routes:readonly VideoProfileRoute[]):VideoProfileSeries[]{return routes.map((route,index)=>({routeIndex:index,label:route.label||`Ruta ${index+1}`,color:route.color,samples:elevationProfileSamples(route)})).filter(item=>item.samples.length>1)}
 
-export function drawAnimatedElevationProfile(context:CanvasRenderingContext2D,width:number,height:number,series:readonly VideoProfileSeries[],progress:number){
+export function drawAnimatedElevationProfile(context:CanvasRenderingContext2D,width:number,height:number,series:readonly VideoProfileSeries[],progress:number,bottomInset=64){
  const extent=profileExtent(series.map(item=>item.samples));if(!extent)return;
- const boxW=Math.min(width*.58,680),boxH=Math.min(height*.27,230),x0=18,y0=height-boxH-42,padL=52,padR=14,padT=28,padB=31,plotW=boxW-padL-padR,plotH=boxH-padT-padB,p=Math.max(0,Math.min(1,progress));
+ const boxW=Math.min(width*.58,680),boxH=Math.min(height*.27,230),x0=18,y0=height-boxH-Math.max(64,bottomInset),padL=52,padR=14,padT=28,padB=31,plotW=boxW-padL-padR,plotH=boxH-padT-padB,p=Math.max(0,Math.min(1,progress));
  const x=(distance:number)=>x0+padL+distance/Math.max(1,extent.maxDistanceM)*plotW,y=(elevation:number)=>y0+padT+(extent.maxElevationM-elevation)/(extent.maxElevationM-extent.minElevationM)*plotH;
  context.save();context.fillStyle='rgba(7,16,13,.88)';context.strokeStyle='rgba(255,255,255,.55)';context.lineWidth=1;context.beginPath();context.roundRect(x0,y0,boxW,boxH,9);context.fill();context.stroke();
  context.font=`600 ${Math.max(10,Math.round(height/65))}px sans-serif`;context.fillStyle='#fff';context.textAlign='left';context.fillText(translateText('Perfil altimétrico'),x0+12,y0+18);

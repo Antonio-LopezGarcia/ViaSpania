@@ -4,7 +4,7 @@ ViaSpania
 Copyright © 2026 Antonio López García, Universidad de Granada
 Este programa se distribuye bajo la licencia GPL-3.0-only.
 
-Esta declaración se aplica al código original de ViaSpania. Los componentes de terceros y los datos conservan sus respectivos copyrights, licencias y condiciones. El logotipo y los assets gráficos originales de ViaSpania mantienen copyright separado y todos los derechos reservados; los símbolos institucionales conservan sus condiciones propias.
+Esta declaración se aplica al código original de ViaSpania. Los componentes de terceros y los datos conservan sus respectivos copyrights, licencias y condiciones. El logotipo y los assets gráficos originales de ViaSpania mantienen copyright separado, con permiso de reproducción del logotipo según docs/ASSETS.md (incluido como compliance/ASSETS.txt en la distribución); los símbolos institucionales conservan sus condiciones propias.
 
 The complete maintained inventory is THIRD_PARTY_NOTICES.md in the ViaSpania source distribution. Licence texts for native geospatial libraries are installed under geospatial/licenses in desktop packages.
 

@@ -13,3 +13,11 @@ it('traduce los títulos dibujados directamente en el vídeo',async()=>{
  drawAnimatedElevationProfile(context,1280,720,videoProfileSeries([{label:'A',color:'#fff',coordinates:[[0,0],[.01,0]],elevationsM:[10,20]}]),.5);
  expect(fillText).toHaveBeenCalledWith('Elevation profile',expect.any(Number),expect.any(Number));expect(fillText.mock.calls.some(call=>String(call[0]).startsWith('Distance ·'))).toBe(true);setLanguage('es');
 });
+
+it('reserva espacio bajo el perfil para créditos de varias líneas',()=>{
+ const roundRect=vi.fn(),context=new Proxy({roundRect},{get:(target,key)=>key==='roundRect'?target.roundRect:vi.fn(),set:()=>true}) as unknown as CanvasRenderingContext2D;
+ const series=videoProfileSeries([{label:'A',color:'#fff',coordinates:[[0,0],[.01,0]],elevationsM:[10,20]}]);
+ drawAnimatedElevationProfile(context,1280,720,series,.5,110);
+ const [,top,,height]=roundRect.mock.calls[0];
+ expect(top+height).toBeLessThanOrEqual(720-110);
+});

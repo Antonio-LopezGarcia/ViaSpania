@@ -6,7 +6,7 @@
   border: 1px solid #35433c;
   border-radius: 9px;
   background: #111916;
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .workspace.max-options .constraint-panel {
@@ -54,7 +54,7 @@
   border-radius: 50%;
   color: #d8ff55;
   background: #111916;
-  font-size: 15px;
+  font-size: 10px;
   font-weight: 800;
   line-height: 1;
 }
@@ -63,8 +63,8 @@
 .constraint-help-trigger:focus-visible { border-color: #d8ff55; background: #223027; }
 
 .constraint-panel-toggle span { display: grid; min-width: 0; gap: 1px; }
-.constraint-panel-toggle b { color: #e8eee8; font-size: 10px; line-height: 1.25; }
-.constraint-panel-toggle small { color: #91a097; font-size: 8px; line-height: 1.3; }
+.constraint-panel-toggle b { color: #e8eee8; font-size: 12px; line-height: 1.25; }
+.constraint-panel-toggle small { color: #91a097; font-size: 10px; line-height: 1.3; }
 .constraint-panel-toggle i { color: #d8ff55; font-size: 10px; font-style: normal; }
 .constraint-panel-body { padding: 5px; }
 
@@ -84,7 +84,7 @@
   border: 1px solid #35433c;
   border-radius: 7px;
   background: #141d19;
-  font-size: 8.5px;
+  font-size: 10px;
 }
 
 .constraint-card legend {
@@ -93,7 +93,7 @@
   gap: 5px;
   padding: 0 4px;
   color: #d8ff55;
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1.25;
 }
@@ -112,7 +112,7 @@
   min-width: 0;
   gap: 4px;
   color: #aab6ae;
-  font-size: 8.5px;
+  font-size: 10px;
   line-height: 1.25;
 }
 
@@ -124,13 +124,13 @@
   border-radius: 5px;
   background: #17201c;
   color: #fff;
-  font-size: 9px;
+  font-size: 10px;
   line-height: 1.25;
 }
 
 .constraint-card > .constraint-name {
   width: 100%;
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 600;
 }
 
@@ -138,8 +138,8 @@
 .constraint-card label > input:not([type=checkbox]) { width: 58px; }
 .constraint-card .constraint-category { grid-column: 1/-1; }
 .constraint-card .constraint-category > input { flex: 1; width: auto; }
-.constraint-card small { align-self: center; color: #7f8d85; font-size: 8px; line-height: 1.25; }
-.constraint-card button { padding: 3px 6px; font-size: 8.5px; line-height: 1.25; }
+.constraint-card small { align-self: center; color: #7f8d85; font-size: 10px; line-height: 1.25; }
+.constraint-card button { padding: 3px 6px; font-size: 10px; line-height: 1.25; }
 
 
 .constraint-empty {
@@ -148,7 +148,7 @@
   border: 1px dashed #35433c;
   border-radius: 7px;
   color: #91a097;
-  font-size: 9px;
+  font-size: 11px;
   line-height: 1.4;
   text-align: center;
 }

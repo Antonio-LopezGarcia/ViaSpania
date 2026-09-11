@@ -264,6 +264,16 @@ Los instaladores se generan en `src-tauri/target/release/bundle/`. Consulte los 
 
 Estructura: `src/components` contiene interfaz/mapas; `src/core`, lógica geográfica pura; `src/services`, adaptadores de proveedores y del motor nativo; `src-tauri`, el backend Rust; y `public/fixtures`, respuestas de servicios para pruebas deterministas. Consulte la [arquitectura](docs/architecture.md), la [auditoría de modelos](docs/model-audit.md) y las [notas científicas](docs/research.md).
 
+### Árbol de arquitectura
+
+Este árbol resume las capas descritas en [docs/architecture.md](docs/architecture.md): interfaz compartida entre web y escritorio, lógica geográfica, adaptadores de servicios y motor nativo Rust con GDAL/PROJ. Las flechas muestran las principales llamadas entre capas; el procesamiento nativo requiere el entorno de escritorio.
+
+[![Árbol de arquitectura de ViaSpania: interfaz React y OpenLayers, lógica geográfica, adaptadores HTTP y Tauri IPC, motor Rust y GDAL/PROJ](docs/diagrams/architecture.visual-check.2048x1320.light.png)](docs/diagrams/architecture.html)
+
+[Diagrama interactivo de Archify](docs/diagrams/architecture.html) · [Especificación editable](docs/diagrams/architecture.json) · [Validación y reproducción](docs/diagrams/README.md)
+
+Para utilizar el visor, descargue el HTML y ábralo en un navegador; GitHub muestra su código fuente. El contenido del diagrama está en español; los controles fijos del visor y su atributo de idioma utilizan el inglés predeterminado de Archify.
+
 ### Soporte, autoría y licencia
 
 Comunique problemas reproducibles en [Issues](https://github.com/traxtiber/ViaSpania/issues), indicando versión/compilación, sistema y arquitectura, pasos, fuente de datos y error exacto. Retire los datos privados antes de adjuntar archivos. Contacto: [Antonio López García](mailto:antonio.lopez@ugr.es).
@@ -285,3 +295,9 @@ Este programa es resultado de la ayuda RYC2022-037730-I financiada por MICIU/AEI
 ## Distribución GPL y fuentes correspondientes
 
 La preparación de instaladores y sus fuentes se documenta en [RELEASE_COMPLIANCE.md](docs/RELEASE_COMPLIANCE.md). `pnpm compliance:prepare --network` recopila fuentes verificadas y avisos; `pnpm compliance:check --strict` impide publicar mientras haya revisiones pendientes. Los candidatos locales no constituyen una certificación de cumplimiento. Los gráficos reservados se delimitan en [ASSETS.md](docs/ASSETS.md).
+
+### Autoría y autorización institucional
+
+La autoría de Antonio López García, la titularidad institucional declarada de la Universidad de Granada y la autorización comunicada para publicar en el GitHub personal se documentan en [docs/CODE_OWNERSHIP.md](docs/CODE_OWNERSHIP.md). Se mantiene el aviso de copyright conjunto solicitado por la UGR y GPL-3.0-only para el código propio. Las licencias y derechos de terceros se conservan separadamente.
+
+El logotipo propio conserva copyright separado, con permiso para redistribuirlo sin modificar junto con ViaSpania, también en copias comerciales y versiones modificadas claramente identificadas. Véanse [las condiciones de assets](docs/ASSETS.md). Los logotipos MICIU/UE/AEI se conservan como reconocimiento de la financiación original.

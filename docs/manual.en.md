@@ -2,9 +2,9 @@
 
 ViaSpania  
 Copyright © 2026 Antonio López García, Universidad de Granada  
-Este programa se distribuye bajo la licencia GPL-3.0-only.
+This program is distributed under the GPL-3.0-only license.
 
-[LICENSE](../LICENSE) · Esta declaración se aplica al código original de ViaSpania. Los componentes de terceros y los datos conservan sus respectivos copyrights, licencias y condiciones. El logotipo y los assets gráficos originales de ViaSpania mantienen copyright separado y todos los derechos reservados; los símbolos institucionales conservan sus condiciones propias.
+[LICENSE](../LICENSE) · This statement applies to the original ViaSpania code. Third-party components and data retain their respective copyrights, licenses and terms. The ViaSpania logo and original graphic assets remain separately copyrighted, with all rights reserved; institutional symbols remain subject to their own terms.
 
 ViaSpania helps you explore terrain, calculate least-cost travel and study accessibility and visibility. This manual explains how to prepare a project, choose an analysis, interpret its results and save them. For the equations and assumptions of a particular profile, use the calculation's contextual help button.
 

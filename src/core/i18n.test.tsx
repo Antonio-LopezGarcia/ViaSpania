@@ -36,3 +36,25 @@ describe('regresiones de la revisión inglesa',()=>{
   expect(translateText('así')).toBe('así');
  });
 });
+
+describe('mensajes de exportación 3D',()=>{
+ afterEach(()=>setLanguage('es'));
+ it.each([
+  ['Exportar fotograma PNG','Export frame'],
+  ['Creando AVI · 25 %','Creating AVI · 25 %'],
+  ['Creando GIF · 100 %','Creating GIF · 100 %'],
+  ['Guardado · 1920 × 1080 px · 20.0 s · 1× · AVI','Saved · 1920 × 1080 px · 20.0 s · 1× · AVI'],
+  ['Guardado · 1280 × 720 px · 20.0 s · 1× · GIF','Saved · 1280 × 720 px · 20.0 s · 1× · GIF'],
+  ['Guardado · 854 × 480 px · 10.5 s · 2× · AVI','Saved · 854 × 480 px · 10.5 s · 2× · AVI'],
+  ['Fotograma PNG guardado · 1920 × 1080 px','PNG frame saved · 1920 × 1080 px'],
+  ['Preparando fotograma PNG…','Preparing PNG frame…'],
+  ['Cargando capa base…','Loading base layer…'],
+  ['Guardado cancelado.','Save cancelled.'],
+  ['Exportación cancelada.','Export cancelled.'],
+  ['Exportación cancelada; recursos liberados.','Export cancelled; resources released.'],
+  ['No se pudo codificar el fotograma.','The frame could not be encoded.'],
+ ])('traduce sin alterar los datos: %s',(source,expected)=>{
+  setLanguage('en');expect(translateText(source)).toBe(expected);
+  setLanguage('es');expect(translateText(source)).toBe(source);
+ });
+});

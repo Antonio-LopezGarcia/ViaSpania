@@ -1,0 +1,1031 @@
+ViaSpania — rejillas PROJ-data 1.24, redistribuidas sin cambios respecto al runtime inventariado.
+Cada archivo conserva su licencia original. Este aviso no las sustituye por GPL.
+El catálogo copyright_and_licenses.csv y los README del proveedor acompañan los datos en geospatial/share/proj. Las conversiones previas de OSGeo se describen en esos README.
+
+Contains information licensed under the Open Government Licence – Canada.
+https://open.canada.ca/en/open-government-licence-canada
+
+ar_ign_GEOIDE-Ar16.tif — Instituto Geográfico Nacional (IGN) Argentina — CC-BY-4.0
+ar_ign_README.txt — Disclaimed — Public domain
+at_bev_AT_GIS_GRID.tif — Austria Bundesamt für Eich- und Vermessungswessen (BEV) — CC-BY-4.0
+at_bev_AT_GIS_GRID_2021_09_28.tif — Austria Bundesamt für Eich- und Vermessungswessen (BEV) — CC-BY-4.0
+at_bev_GEOID_BESSEL_Oesterreich.tif — Austria Bundesamt für Eich- und Vermessungswessen (BEV) — CC-BY-4.0
+at_bev_GEOID_GRS80_Oesterreich.tif — Austria Bundesamt für Eich- und Vermessungswessen (BEV) — CC-BY-4.0
+at_bev_GV_Hoehengrid_plus_Geoid_V2.tif — Austria Bundesamt für Eich- und Vermessungswessen (BEV) — CC-BY-4.0
+at_bev_GV_Hoehengrid_V1.tif — Austria Bundesamt für Eich- und Vermessungswessen (BEV) — CC-BY-4.0
+at_bev_README.txt — Disclaimed — Public domain
+au_ga_AGQG_20201120.tif — Geoscience Australia — CC-BY-4.0
+au_ga_AUSGeoid09_V1.01.tif — Geoscience Australia — CC-BY-4.0
+au_ga_AUSGeoid2020_20180201.tif — Geoscience Australia — CC-BY-4.0
+au_ga_AUSGeoid98.tif — Geoscience Australia — CC-BY-4.0
+au_ga_README.txt — Disclaimed — Public domain
+au_icsm_A66_National_13_09_01.tif — Intergovernmental Committee on Surveying and Mapping (ICSM) — CC-BY-4.0
+au_icsm_GDA94_GDA2020_conformal_and_distortion.tif — Intergovernmental Committee on Surveying and Mapping (ICSM) — CC-BY-4.0
+au_icsm_GDA94_GDA2020_conformal_christmas_island.tif — Intergovernmental Committee on Surveying and Mapping (ICSM) — CC-BY-4.0
+au_icsm_GDA94_GDA2020_conformal_cocos_island.tif — Intergovernmental Committee on Surveying and Mapping (ICSM) — CC-BY-4.0
+au_icsm_GDA94_GDA2020_conformal.tif — Intergovernmental Committee on Surveying and Mapping (ICSM) — CC-BY-4.0
+au_icsm_National_84_02_07_01.tif — Intergovernmental Committee on Surveying and Mapping (ICSM) — CC-BY-4.0
+au_icsm_README.txt — Disclaimed — Public domain
+be_ign_bd72lb72_etrs89lb08.tif — Institut Géographique National (IGN) Belgium — CC-BY-4.0
+be_ign_hBG18.tif — Institut Géographique National (IGN) Belgium — CC-BY-4.0
+be_ign_README.txt — Disclaimed — Public domain
+br_ibge_CA61_003.tif — Instituto Brasileiro de Geografia e Estatistica - IBGE — CC-BY-SA-4.0
+br_ibge_CA7072_003.tif — Instituto Brasileiro de Geografia e Estatistica - IBGE — CC-BY-SA-4.0
+br_ibge_README.txt — Disclaimed — Public domain
+br_ibge_SAD69_003.tif — Instituto Brasileiro de Geografia e Estatistica - IBGE — CC-BY-SA-4.0
+br_ibge_SAD96_003.tif — Instituto Brasileiro de Geografia e Estatistica - IBGE — CC-BY-SA-4.0
+ca_nrc_ABCSRSV4.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_BC_27_05.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_BC_93_05.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_CGG2013ai08.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_CGG2013an83.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_CGG2013i08.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_CGG2013n83.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_CQ77SCRS.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_CRD27_00.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_CRD93_00.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_GS7783.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_HT2_1997.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_HT2_2002v70.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_HT2_2010v70.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_HT2_1997_CGG2013a.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_HT2_2002v70_CGG2013a.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_HT2_2010v70_CGG2013a.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_MAY76V20.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_NA27SCRS.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_NA83SCRS.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_NAD83v6VG.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_NAD83v70VG.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_NB2783v2.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_NB7783v2.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_NS778302.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_ntv1_can.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_ntv2_0.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_NVI93_05.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_ON27CSv1.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_ON76CSv1.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_ON83CSv1.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_PE7783V2.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_README.txt — Disclaimed — Public domain
+ca_nrc_SK27-98.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_SK83-98.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_nrc_TO27CSv1.tif — Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada — OGL-Canada-2.0
+ca_que_mern_cq77na83.tif — Ministère de l'Énergie et des Ressources naturelles (MERN) du Québec — CC-BY-4.0
+ca_que_mern_na27na83.tif — Ministère de l'Énergie et des Ressources naturelles (MERN) du Québec — CC-BY-4.0
+ca_que_mern_README.txt — Disclaimed — Public domain
+ch_swisstopo_CHENyx06a.tif — 2007, Swisstopo — CC0-1.0
+ch_swisstopo_CHENyx06_ETRS.tif — 2007, Swisstopo — CC0-1.0
+ch_swisstopo_chgeo2004_ETRS89_LHN95.tif — Swisstopo — CC0-1.0
+ch_swisstopo_chgeo2004_ETRS89_LN02.tif — Swisstopo — CC0-1.0
+ch_swisstopo_README.txt — Disclaimed — Public domain
+cz_cuzk_CR-2005.tif — ČÚZK — CC-BY-4.0
+cz_cuzk_table_-y-x_3_v1710.tif — ČÚZK — CC-BY-4.0
+cz_cuzk_README.txt — Disclaimed — Public domain
+de_adv_BETA2007.tif — ADV — Free redistribution is allowed and welcome
+de_adv_README.txt — Disclaimed — Public domain
+de_bkg_gcg2016.tif — BKG — CC-BY-4.0
+de_bkg_README.txt — Disclaimed — Public domain
+de_geosn_NTv2_SN.tif — Staatsbetrieb Geobasisinformation und Vermessung Sachsen (GEOSN) — Data licence Germany - attribution - version 2.0
+de_geosn_README.txt — Disclaimed — Public domain
+de_hvbg_hessen_HeTA2010.tif — Hessisches Landesamt für Geoinformation und Bodenmanagement (HVBG) — Data licence Germany - attribution - version 2.0
+de_hvbg_README.txt — Disclaimed — Public domain
+de_lgl_bw_BWTA2017.tif — Landesamt für Geoinformation und Landentwicklung (LGL) Baden-Württemberg — Data licence Germany - attribution - version 2.0
+de_lgl_bw_README.txt — Disclaimed — Public domain
+de_lgvl_saarland_README.txt — Disclaimed — Public domain
+de_lgvl_saarland_SeTa2016.tif — Landesamt für Vermessung, Geoinformation und Landentwicklung (LVGL) Saarland — CC-BY-4.0
+de_tlbg_thueringen_NTv2gridTH.tif — Thüringer Landesamt für Bodenmanagement und Geoinformation — CC-BY-4.0
+de_tlbg_thueringen_README.txt — Disclaimed — Public domain
+DK — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_DK_bornholm.pol — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_DK_bridges.pol — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_DK_general.pol — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_DK_jutland.pol — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_DK_zealand.pol — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_dnn.tif — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_FO_fk89.pol — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_fvr09.tif — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_gvr2000.tif — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_gvr2016.tif — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+dk_sdfe_README.txt — Disclaimed — Public domain
+dk_sdfi_gs_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_gsb_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_kk_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_os_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_s34j_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_s34s_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_s45b_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_dvr90_2002.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_dvr90_2013.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_dvr90_2023.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_dklat_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_dklat_2023.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_dkmsl_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_dkmsl_2023.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_gllmsl_2022.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_gllat_2023.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_glmsl_2023.tif — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_sdfi_README.txt — Agency for Data Supply and Infrastructure (SDFI) — CC-BY-4.0
+dk_kds_README.txt — Agency for Climate Data (KDS) — CC-BY-4.0
+dk_kds_dvr90_evrf2019.tif — Agency for Climate Data (KDS) — CC-BY-4.0
+dk_kds_dvr90_evrf2019_mean_tide.tif — Agency for Climate Data (KDS) — CC-BY-4.0
+es_cat_icgc_100800401.tif — Institut Cartogràfic i Geològic de Catalunya (ICGC) — CC-BY-4.0
+es_cat_icgc_README.txt — Disclaimed — Public domain
+es_ign_egm08-rednap.tif — Instituto Geográfico Nacional (IGN) Spain — CC-BY-4.0
+es_ign_egm08-rednap-canarias.tif — Instituto Geográfico Nacional (IGN) Spain — CC-BY-4.0
+es_ign_README.txt — Disclaimed — Public domain
+es_ign_SPED2ETV2.tif — 2009, Instituto Geográfico Nacional (IGN) Spain — CC-BY-4.0
+eur_nkg_nkgrf03vel_realigned.tif — Nordic Geodetic Commission — CC-BY-4.0
+eur_nkg_nkgrf17vel.tif — Nordic Geodetic Commission — CC-BY-4.0
+eur_nkg_README.txt — Disclaimed — Public domain
+fi_nls_fin2000.tif — National Land Survey of Finland — CC-BY-4.0
+fi_nls_fin2005n00.tif — National Land Survey of Finland — CC-BY-4.0
+fi_nls_fin2023n2000.tif — National Land Survey of Finland — CC-BY-4.0
+fi_nls_n43_n60.json — National Land Survey of Finland — CC-BY-4.0
+fi_nls_n60_n2000.json — National Land Survey of Finland — CC-BY-4.0
+fi_nls_README.txt — Disclaimed — Public domain
+fi_nls_ykj_etrs35fin.json — National Land Survey of Finland — CC-BY-4.0
+FO — Agency for Data Supply and Efficiency (SDFE) — CC-BY-4.0
+fr_ign_CGVD2013RGSPM06.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_gg10_sbv2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_gg10_smv2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggg00_lsv2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggg00_mgv2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggg00_sbv2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggg00_smv2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggg00v2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggguy15.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggker08v2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggm00v2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggm04v1.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggm23v2.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf02-Bora.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf02-Huahine.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf02-Maiao.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf02-Maupiti.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf02-Raiatea.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf02-Tahaa.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf02-Tupai.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf05-HivaOa.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf05-Nuku.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf08-Fakarava.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf08-Gambier.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf08-Hao.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf08-Mataiva.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf08-Raivavae.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf08-Reao.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf08-Rurutu.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf08-Tikehau.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf08-Tubuai.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf10-Moorea.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggpf10-Tahiti.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ggspm06v1.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_gr3df97a.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_ntf_r93.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAC09.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAC23.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAF09.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAF18.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAF18b.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAF20.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAGTBT2016.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RALD2016.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RALDW842016.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RALS2016.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAMART2016.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAMG2016.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RAR07_bl.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_RASPM2018.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+fr_ign_README.txt — Disclaimed — Public domain
+fr_ign_RGM04versRGM23.tif — Institut Géographique National (IGN) France — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+hu_bme_geoid2014.tif — Budapest University of Technology and Economics - Department of Geodesy and Surveying — CC-BY-SA-4.0
+hu_bme_hd72corr.tif — Budapest University of Technology and Economics - Department of Geodesy and Surveying — CC-BY-SA-4.0
+hu_bme_README.txt — Disclaimed — Public domain
+ISL — 2017-2019, National Land Survey of Iceland — CC-BY-4.0
+is_lmi_Icegeoid_ISN2004.tif — 2017-2019, National Land Survey of Iceland — CC-BY-4.0
+is_lmi_Icegeoid_ISN2016.tif — 2017-2019, National Land Survey of Iceland — CC-BY-4.0
+is_lmi_Icegeoid_ISN93.tif — 2017-2019, National Land Survey of Iceland — CC-BY-4.0
+is_lmi_ISN2004_ISN2016.tif — 2017-2019, National Land Survey of Iceland — CC-BY-4.0
+is_lmi_ISN93_ISN2016.tif — 2017-2019, National Land Survey of Iceland — CC-BY-4.0
+is_lmi_ISN_vel_beta.tif — 2017-2019, National Land Survey of Iceland — CC-BY-4.0
+is_lmi_README.txt — Disclaimed — Public domain
+jp_gsi_gsigeo2011.tif — Geospatial Information Authority of Japan — CC-BY-4.0
+jp_gsi_jpgeo2024.tif — Geospatial Information Authority of Japan — CC-BY-4.0
+jp_gsi_README.txt — Disclaimed — Public domain
+lv_lgia_lv14.tif — Latvian Geospatial Information Agency — CC-BY-4.0
+lv_lgia_lks92to2020.tif — Latvian Geospatial Information Agency — CC-BY-4.0
+lv_lgia_README.txt — Disclaimed — Public domain
+mx_inegi_ggm10.tif — Instituto Nacional de Estadística Geografía e Informática (INEGI) Mexico — CC-BY-4.0
+mx_inegi_README.txt — Disclaimed — Public domain
+NKG — Nordic Geodetic Commission — CC-BY-4.0
+nc_dittt_gr3dnc01b.tif — Gouvernement de Nouvelle Calédonie - DITTT — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+nc_dittt_gr3dnc02b.tif — Gouvernement de Nouvelle Calédonie - DITTT — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+nc_dittt_gr3dnc03a.tif — Gouvernement de Nouvelle Calédonie - DITTT — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+nc_dittt_gr3dncI08.tif — Gouvernement de Nouvelle Calédonie - DITTT — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+nc_dittt_Ranc08_Circe.tif — Gouvernement de Nouvelle Calédonie - DITTT — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+nc_dittt_RANC15.tif — Gouvernement de Nouvelle Calédonie - DITTT — Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf
+nc_dittt_README.txt — Disclaimed — Public domain
+nl_nsgi_bongeo2004.tif — Disclaimed — Public domain
+nl_nsgi_nlgeo2018.tif — Nederlandse Samenwerking Geodetische Infrastructuur (NSGI) — CC-BY-4.0
+nl_nsgi_nllat2018.tif — Nederlandse Samenwerking Geodetische Infrastructuur (NSGI) — CC-BY-4.0
+nl_nsgi_rdcorr2018.tif — Nederlandse Samenwerking Geodetische Infrastructuur (NSGI) — CC-BY-4.0
+nl_nsgi_rdtrans2018.tif — Nederlandse Samenwerking Geodetische Infrastructuur (NSGI) — CC-BY-4.0
+nl_nsgi_README.txt — Disclaimed — Public domain
+no_kv_arcgp-2006-sk.tif — Kartverket (SK) — CC-BY-4.0
+no_kv_CD_above_Ell_ETRS89_v2021a.tif — Kartverket (SK) — CC-BY-4.0
+no_kv_CD_above_Ell_ETRS89_v2023b.tif — Kartverket (SK) — CC-BY-4.0
+no_kv_ETRS89NO_NGO48_TIN.json — Kartverket (SK) — CC-BY-4.0
+no_kv_href2008a.tif — Kartverket (SK) — CC-BY-4.0
+no_kv_HREF2018B_NN2000_EUREF89.tif — Kartverket (SK) — CC-BY-4.0
+no_kv_HREF2018B_NN54_NN2000.tif — Kartverket (SK) — CC-BY-4.0
+no_kv_NKGETRF14_EPSG7922_2000.tif — Kartverket (SK) — CC-BY-4.0
+no_kv_README.txt — Kartverket (SK) — CC-BY-4.0
+no_kv_Svalbard_EUREF89_SVD2024.tif — Kartverket (SK) — CC-BY-4.0
+nz_linz_auckht1946-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_blufht1955-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_dublht1960-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_duneht1958-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_gisbht1926-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_lyttht1937-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_motuht1953-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_napiht1962-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nelsht1955-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-20000101.json — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-20130801.json — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-20140201.json — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-20150101.json — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-20160701.json — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-20171201.json — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-20180701.json — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-c120100904-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-c220110222-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-c320110613-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-c420111223-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ch20160214-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-cs20130721-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-cs20130721-grid02.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ds20090715-grid011.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ds20090715-grid012.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ds20090715-grid013.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ds20090715-grid014.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-gs20071016-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid02.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid03.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid04.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid05.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid06.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid07.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid08.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid09.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid10.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid11.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ka20161114-grid12.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-lg20130816-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-lg20130816-grid02.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-mq20041223-grid011.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-mq20041223-grid012.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-mq20041223-grid013.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-mq20041223-grid014.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-mq20041223-grid015.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-mq20041223-grid016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ndm-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-ndm-grid02.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2000-si20030821-grid01.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgd2kgrid0005.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgeoid2009.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_nzgeoid2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_ontpht1964-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_README.txt — Disclaimed — Public domain
+nz_linz_stisht1977-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_taraht1970-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+nz_linz_wellht1953-nzvd2016.tif — Land Information New Zealand — CC-BY-4.0
+pl_gugik_geoid2011-PL-EVRF2007-NH.tif — Główny Urząd Geodezji i Kartografii — CC-BY-4.0
+pl_gugik_geoid2011-PL-KRON86-NH.tif — Główny Urząd Geodezji i Kartografii — CC-BY-4.0
+pl_gugik_geoid2021-PL-EVRF2007-NH.tif — Główny Urząd Geodezji i Kartografii — CC-BY-4.0
+pl_gugik_README.txt — Disclaimed — Public domain
+pt_dgt_D73_ETRS89_geo.tif — Direcao Geral de Territorio — CC-BY-4.0
+pt_dgt_DLx_ETRS89_geo.tif — Direcao Geral de Territorio — CC-BY-4.0
+pt_dgt_GeodPT08.tif — Direcao Geral de Territorio — CC-BY-4.0
+pt_dgt_README.txt — Disclaimed — Public domain
+README.DATA — Disclaimed — Public domain
+se_lantmateriet_README.txt — Disclaimed — Public domain
+se_lantmateriet_SWEN17_RH2000.tif — Lantmäteriet — CC0-1.0
+si_gurs_README.txt — Geodetska uprava Republika Slovenija (GURS) — CC-BY-4.0
+si_gurs_SLO-VRP2016-Koper.tif — Geodetska uprava Republika Slovenija (GURS) — CC-BY-4.0
+si_gurs_SLO-VTP2024.tif — Geodetska uprava Republika Slovenija (GURS) — CC-BY-4.0
+sk_gku_JTSK03_to_JTSK.tif — 2013, GKU Slovakia — CC-BY-4.0
+sk_gku_Slovakia_ETRS89h_to_Baltic1957.tif — 2005, GKU Slovakia — CC-BY-4.0
+sk_gku_Slovakia_ETRS89h_to_EVRF2007.tif — 2014, GKU Slovakia — CC-BY-4.0
+uk_os_OSGM15_Belfast.tif — Ordnance Survey UK — BSD-2-Clause
+uk_os_OSGM15_GB.tif — Ordnance Survey UK — BSD-2-Clause
+uk_os_OSGM15_Malin.tif — Ordnance Survey UK — BSD-2-Clause
+uk_os_OSTN15_NTv2_OSGBtoETRS.tif — Ordnance Survey UK — BSD-2-Clause
+uk_os_README.txt — Disclaimed — Public domain
+us_nga_egm08_25.tif — Disclaimed — Public domain
+us_nga_egm96_15.tif — Disclaimed — Public domain
+us_nga_README.txt — Disclaimed — Public domain
+us_noaa_alaska.tif — Disclaimed — Public domain
+us_noaa_alhpgn.tif — Disclaimed — Public domain
+us_noaa_arhpgn.tif — Disclaimed — Public domain
+us_noaa_azhpgn.tif — Disclaimed — Public domain
+us_noaa_c1hpgn.tif — Disclaimed — Public domain
+us_noaa_c2hpgn.tif — Disclaimed — Public domain
+us_noaa_cnhpgn.tif — Disclaimed — Public domain
+us_noaa_cohpgn.tif — Disclaimed — Public domain
+us_noaa_conus.tif — Disclaimed — Public domain
+us_noaa_cshpgn.tif — Disclaimed — Public domain
+us_noaa_emhpgn.tif — Disclaimed — Public domain
+us_noaa_eshpgn.tif — Disclaimed — Public domain
+us_noaa_ethpgn.tif — Disclaimed — Public domain
+us_noaa_flhpgn.tif — Disclaimed — Public domain
+us_noaa_FL.tif — Disclaimed — Public domain
+us_noaa_g1999a01.tif — Disclaimed — Public domain
+us_noaa_g1999a02.tif — Disclaimed — Public domain
+us_noaa_g1999a03.tif — Disclaimed — Public domain
+us_noaa_g1999a04.tif — Disclaimed — Public domain
+us_noaa_g1999h01.tif — Disclaimed — Public domain
+us_noaa_g1999p01.tif — Disclaimed — Public domain
+us_noaa_g1999u01.tif — Disclaimed — Public domain
+us_noaa_g1999u02.tif — Disclaimed — Public domain
+us_noaa_g1999u03.tif — Disclaimed — Public domain
+us_noaa_g1999u04.tif — Disclaimed — Public domain
+us_noaa_g1999u05.tif — Disclaimed — Public domain
+us_noaa_g1999u06.tif — Disclaimed — Public domain
+us_noaa_g1999u07.tif — Disclaimed — Public domain
+us_noaa_g1999u08.tif — Disclaimed — Public domain
+us_noaa_g2003a01.tif — Disclaimed — Public domain
+us_noaa_g2003a02.tif — Disclaimed — Public domain
+us_noaa_g2003a03.tif — Disclaimed — Public domain
+us_noaa_g2003a04.tif — Disclaimed — Public domain
+us_noaa_g2003h01.tif — Disclaimed — Public domain
+us_noaa_g2003p01.tif — Disclaimed — Public domain
+us_noaa_g2009g01.tif — Disclaimed — Public domain
+us_noaa_g2009h01.tif — Disclaimed — Public domain
+us_noaa_g2009p01.tif — Disclaimed — Public domain
+us_noaa_g2009s01.tif — Disclaimed — Public domain
+us_noaa_g2012ba0.tif — Disclaimed — Public domain
+us_noaa_g2012bg0.tif — Disclaimed — Public domain
+us_noaa_g2012bh0.tif — Disclaimed — Public domain
+us_noaa_g2012bp0.tif — Disclaimed — Public domain
+us_noaa_g2012bs0.tif — Disclaimed — Public domain
+us_noaa_g2012bu0.tif — Disclaimed — Public domain
+us_noaa_g2018p0.tif — Disclaimed — Public domain
+us_noaa_g2018u0.tif — Disclaimed — Public domain
+us_noaa_gahpgn.tif — Disclaimed — Public domain
+us_noaa_geoid03_conus.tif — Disclaimed — Public domain
+us_noaa_geoid06_ak.tif — Disclaimed — Public domain
+us_noaa_geoid09_ak.tif — Disclaimed — Public domain
+us_noaa_geoid09_conus.tif — Disclaimed — Public domain
+us_noaa_guhpgn.tif — Disclaimed — Public domain
+us_noaa_hawaii.tif — Disclaimed — Public domain
+us_noaa_hihpgn.tif — Disclaimed — Public domain
+us_noaa_iahpgn.tif — Disclaimed — Public domain
+us_noaa_ilhpgn.tif — Disclaimed — Public domain
+us_noaa_inhpgn.tif — Disclaimed — Public domain
+us_noaa_kshpgn.tif — Disclaimed — Public domain
+us_noaa_kyhpgn.tif — Disclaimed — Public domain
+us_noaa_lahpgn.tif — Disclaimed — Public domain
+us_noaa_mdhpgn.tif — Disclaimed — Public domain
+us_noaa_MD.tif — Disclaimed — Public domain
+us_noaa_mehpgn.tif — Disclaimed — Public domain
+us_noaa_mihpgn.tif — Disclaimed — Public domain
+us_noaa_mnhpgn.tif — Disclaimed — Public domain
+us_noaa_mohpgn.tif — Disclaimed — Public domain
+us_noaa_mshpgn.tif — Disclaimed — Public domain
+us_noaa_nbhpgn.tif — Disclaimed — Public domain
+us_noaa_nchpgn.tif — Disclaimed — Public domain
+us_noaa_ndhpgn.tif — Disclaimed — Public domain
+us_noaa_nehpgn.tif — Disclaimed — Public domain
+us_noaa_njhpgn.tif — Disclaimed — Public domain
+us_noaa_nmhpgn.tif — Disclaimed — Public domain
+us_noaa_nvhpgn.tif — Disclaimed — Public domain
+us_noaa_nyhpgn.tif — Disclaimed — Public domain
+us_noaa_ohhpgn.tif — Disclaimed — Public domain
+us_noaa_okhpgn.tif — Disclaimed — Public domain
+us_noaa_pahpgn.tif — Disclaimed — Public domain
+us_noaa_prvi.tif — Disclaimed — Public domain
+us_noaa_pvhpgn.tif — Disclaimed — Public domain
+us_noaa_README.txt — Disclaimed — Public domain
+us_noaa_schpgn.tif — Disclaimed — Public domain
+us_noaa_sdhpgn.tif — Disclaimed — Public domain
+us_noaa_stgeorge.tif — Disclaimed — Public domain
+us_noaa_stlrnc.tif — Disclaimed — Public domain
+us_noaa_stpaul.tif — Disclaimed — Public domain
+us_noaa_tnhpgn.tif — Disclaimed — Public domain
+us_noaa_TN.tif — Disclaimed — Public domain
+us_noaa_uthpgn.tif — Disclaimed — Public domain
+us_noaa_vahpgn.tif — Disclaimed — Public domain
+us_noaa_vertconc.tif — Disclaimed — Public domain
+us_noaa_vertcone.tif — Disclaimed — Public domain
+us_noaa_vertconw.tif — Disclaimed — Public domain
+us_noaa_wihpgn.tif — Disclaimed — Public domain
+us_noaa_WI.tif — Disclaimed — Public domain
+us_noaa_wmhpgn.tif — Disclaimed — Public domain
+us_noaa_wohpgn.tif — Disclaimed — Public domain
+us_noaa_WO.tif — Disclaimed — Public domain
+us_noaa_wshpgn.tif — Disclaimed — Public domain
+us_noaa_wthpgn.tif — Disclaimed — Public domain
+us_noaa_wvhpgn.tif — Disclaimed — Public domain
+us_noaa_wyhpgn.tif — Disclaimed — Public domain
+us_noaa_nadcon5_as62_nad83_1993_as.tif — Disclaimed — Public domain
+us_noaa_nadcon5_gu63_nad83_1993_guamcnmi.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad27_nad83_1986_alaska.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad27_nad83_1986_conus.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1986_nad83_1992_alaska.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1986_nad83_1993_hawaii.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1986_nad83_1993_prvi.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1986_nad83_harn_conus.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1992_nad83_2007_alaska.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1993_nad83_1997_prvi.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1993_nad83_2002_as.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1993_nad83_2002_guamcnmi.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1993_nad83_pa11_hawaii.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_1997_nad83_2002_prvi.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_2002_nad83_2007_prvi.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_2002_nad83_ma11_guamcnmi.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_2002_nad83_pa11_as.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_2007_nad83_2011_alaska.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_2007_nad83_2011_conus.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_2007_nad83_2011_prvi.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_fbn_nad83_2007_conus.tif — Disclaimed — Public domain
+us_noaa_nadcon5_nad83_harn_nad83_fbn_conus.tif — Disclaimed — Public domain
+us_noaa_nadcon5_ohd_nad83_1986_hawaii.tif — Disclaimed — Public domain
+us_noaa_nadcon5_pr40_nad83_1986_prvi.tif — Disclaimed — Public domain
+us_noaa_nadcon5_sg1952_nad83_1986_stgeorge.tif — Disclaimed — Public domain
+us_noaa_nadcon5_sl1952_nad83_1986_stlawrence.tif — Disclaimed — Public domain
+us_noaa_nadcon5_sp1952_nad83_1986_stpaul.tif — Disclaimed — Public domain
+za_cdngi_README.txt — Disclaimed — Public domain
+za_cdngi_sageoid2010.tif — Chief Directorate: National Geospatial Information (CD:NGI) South Africa — CC-BY-4.0
+
+============================================================
+BSD-2-Clause — texto estándar SPDX (los titulares se identifican arriba; no se asigna copyright a placeholders)
+Copyright (c) <year> <owner> 
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+============================================================
+OGL-Canada-2.0 — texto estándar SPDX (los titulares se identifican arriba; no se asigna copyright a placeholders)
+Open Government Licence - Canada
+
+You are encouraged to use the Information that is available under this licence with only a few conditions.
+
+Using Information under this licence
+* Use of any Information indicates your acceptance of the terms below.
+* The Information Provider grants you a worldwide, royalty-free, perpetual, non-exclusive licence to use the Information, including for commercial purposes, subject to the terms below.
+
+You are free to:
+* Copy, modify, publish, translate, adapt, distribute or otherwise use the Information in any medium, mode or format for any lawful purpose.
+
+You must, where you do any of the above:
+* Acknowledge the source of the Information by including any attribution statement specified by the Information Provider(s) and, where possible, provide a link to this licence.
+* If the Information Provider does not provide a specific attribution statement, or if you are using Information from several information providers and multiple attributions are not practical for your product or application, you must use the following attribution statement:
+     Contains information licensed under the Open Government Licence – Canada.
+
+The terms of this licence are important, and if you fail to comply with any of them, the rights granted to you under this licence, or any similar licence granted by the Information Provider, will end automatically.
+
+Exemptions
+This licence does not grant you any right to use:
+* Personal Information;
+* third party rights the Information Provider is not authorized to license;
+* the names, crests, logos, or other official symbols of the Information Provider; and
+* Information subject to other intellectual property rights, including patents, trade-marks and official marks.
+
+Non-endorsement
+This licence does not grant you any right to use the Information in a way that suggests any official status or that the Information Provider endorses you or your use of the Information.
+
+No Warranty
+The Information is licensed “as is”, and the Information Provider excludes all representations, warranties, obligations, and liabilities, whether express or implied, to the maximum extent permitted by law.
+
+The Information Provider is not liable for any errors or omissions in the Information, and will not under any circumstances be liable for any direct, indirect, special, incidental, consequential, or other loss, injury or damage caused by its use or otherwise arising in connection with this licence or the Information, even if specifically advised of the possibility of such loss, injury or damage.
+
+Governing Law
+This licence is governed by the laws of the province of Ontario and the applicable laws of Canada.
+
+Legal proceedings related to this licence may only be brought in the courts of Ontario or the Federal Court of Canada.
+
+Definitions
+In this licence, the terms below have the following meanings:
+
+"Information" means information resources protected by copyright or other information that is offered for use under the terms of this licence.
+
+"Information Provider" means Her Majesty the Queen in right of Canada.
+
+“Personal Information” means “personal information” as defined in section 3 of the Privacy Act, R.S.C. 1985, c. P-21.
+
+"You" means the natural or legal person, or body of persons corporate or incorporate, acquiring rights under this licence.
+
+Versioning
+This is version 2.0 of the Open Government Licence – Canada. The Information Provider may make changes to the terms of this licence from time to time and issue a new version of the licence. Your use of the Information will be governed by the terms of the licence in force as of the date you accessed the information.
+
+============================================================
+CC-BY-4.0 — texto estándar SPDX (los titulares se identifican arriba; no se asigna copyright a placeholders)
+Creative Commons Attribution 4.0 International
+
+ Creative Commons Corporation (“Creative Commons”) is not a law firm and does not provide legal services or legal advice. Distribution of Creative Commons public licenses does not create a lawyer-client or other relationship. Creative Commons makes its licenses and related information available on an “as-is” basis. Creative Commons gives no warranties regarding its licenses, any material licensed under their terms and conditions, or any related information. Creative Commons disclaims all liability for damages resulting from their use to the fullest extent possible.
+
+Using Creative Commons Public Licenses
+
+Creative Commons public licenses provide a standard set of terms and conditions that creators and other rights holders may use to share original works of authorship and other material subject to copyright and certain other rights specified in the public license below. The following considerations are for informational purposes only, are not exhaustive, and do not form part of our licenses.
+
+Considerations for licensors: Our public licenses are intended for use by those authorized to give the public permission to use material in ways otherwise restricted by copyright and certain other rights. Our licenses are irrevocable. Licensors should read and understand the terms and conditions of the license they choose before applying it. Licensors should also secure all rights necessary before applying our licenses so that the public can reuse the material as expected. Licensors should clearly mark any material not subject to the license. This includes other CC-licensed material, or material used under an exception or limitation to copyright. More considerations for licensors.
+
+Considerations for the public: By using one of our public licenses, a licensor grants the public permission to use the licensed material under specified terms and conditions. If the licensor’s permission is not necessary for any reason–for example, because of any applicable exception or limitation to copyright–then that use is not regulated by the license. Our licenses grant only permissions under copyright and certain other rights that a licensor has authority to grant. Use of the licensed material may still be restricted for other reasons, including because others have copyright or other rights in the material. A licensor may make special requests, such as asking that all changes be marked or described. Although not required by our licenses, you are encouraged to respect those requests where reasonable. More considerations for the public.
+
+Creative Commons Attribution 4.0 International Public License
+
+By exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution 4.0 International Public License ("Public License"). To the extent this Public License may be interpreted as a contract, You are granted the Licensed Rights in consideration of Your acceptance of these terms and conditions, and the Licensor grants You such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.
+
+Section 1 – Definitions.
+
+     a.	Adapted Material means material subject to Copyright and Similar Rights that is derived from or based upon the Licensed Material and in which the Licensed Material is translated, altered, arranged, transformed, or otherwise modified in a manner requiring permission under the Copyright and Similar Rights held by the Licensor. For purposes of this Public License, where the Licensed Material is a musical work, performance, or sound recording, Adapted Material is always produced where the Licensed Material is synched in timed relation with a moving image.
+
+     b.	Adapter's License means the license You apply to Your Copyright and Similar Rights in Your contributions to Adapted Material in accordance with the terms and conditions of this Public License.
+
+     c.	Copyright and Similar Rights means copyright and/or similar rights closely related to copyright including, without limitation, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.
+
+     d.	Effective Technological Measures means those measures that, in the absence of proper authority, may not be circumvented under laws fulfilling obligations under Article 11 of the WIPO Copyright Treaty adopted on December 20, 1996, and/or similar international agreements.
+
+     e.	Exceptions and Limitations means fair use, fair dealing, and/or any other exception or limitation to Copyright and Similar Rights that applies to Your use of the Licensed Material.
+
+     f.	Licensed Material means the artistic or literary work, database, or other material to which the Licensor applied this Public License.
+
+     g.	Licensed Rights means the rights granted to You subject to the terms and conditions of this Public License, which are limited to all Copyright and Similar Rights that apply to Your use of the Licensed Material and that the Licensor has authority to license.
+
+     h.	Licensor means the individual(s) or entity(ies) granting rights under this Public License.
+
+     i.	Share means to provide material to the public by any means or process that requires permission under the Licensed Rights, such as reproduction, public display, public performance, distribution, dissemination, communication, or importation, and to make material available to the public including in ways that members of the public may access the material from a place and at a time individually chosen by them.
+
+     j.	Sui Generis Database Rights means rights other than copyright resulting from Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of databases, as amended and/or succeeded, as well as other essentially equivalent rights anywhere in the world.
+
+     k.	You means the individual or entity exercising the Licensed Rights under this Public License. Your has a corresponding meaning.
+
+Section 2 – Scope.
+
+     a.	License grant.
+
+          1. Subject to the terms and conditions of this Public License, the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to exercise the Licensed Rights in the Licensed Material to:
+
+               A. reproduce and Share the Licensed Material, in whole or in part; and
+
+               B. produce, reproduce, and Share Adapted Material.
+
+          2. Exceptions and Limitations. For the avoidance of doubt, where Exceptions and Limitations apply to Your use, this Public License does not apply, and You do not need to comply with its terms and conditions.
+
+          3. Term. The term of this Public License is specified in Section 6(a).
+
+          4. Media and formats; technical modifications allowed. The Licensor authorizes You to exercise the Licensed Rights in all media and formats whether now known or hereafter created, and to make technical modifications necessary to do so. The Licensor waives and/or agrees not to assert any right or authority to forbid You from making technical modifications necessary to exercise the Licensed Rights, including technical modifications necessary to circumvent Effective Technological Measures. For purposes of this Public License, simply making modifications authorized by this Section 2(a)(4) never produces Adapted Material.
+
+          5. Downstream recipients.
+
+               A. Offer from the Licensor – Licensed Material. Every recipient of the Licensed Material automatically receives an offer from the Licensor to exercise the Licensed Rights under the terms and conditions of this Public License.
+
+               B. No downstream restrictions. You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, the Licensed Material if doing so restricts exercise of the Licensed Rights by any recipient of the Licensed Material.
+
+          6.  No endorsement. Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).
+
+b. Other rights.
+
+          1. Moral rights, such as the right of integrity, are not licensed under this Public License, nor are publicity, privacy, and/or other similar personality rights; however, to the extent possible, the Licensor waives and/or agrees not to assert any such rights held by the Licensor to the limited extent necessary to allow You to exercise the Licensed Rights, but not otherwise.
+
+          2. Patent and trademark rights are not licensed under this Public License.
+
+          3. To the extent possible, the Licensor waives any right to collect royalties from You for the exercise of the Licensed Rights, whether directly or through a collecting society under any voluntary or waivable statutory or compulsory licensing scheme. In all other cases the Licensor expressly reserves any right to collect such royalties.
+
+Section 3 – License Conditions.
+
+Your exercise of the Licensed Rights is expressly made subject to the following conditions.
+
+     a.	Attribution.
+
+          1. If You Share the Licensed Material (including in modified form), You must:
+
+               A. retain the following if it is supplied by the Licensor with the Licensed Material:
+
+                    i. identification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);
+
+                    ii. a copyright notice;
+
+                    iii. a notice that refers to this Public License;
+
+                    iv.	a notice that refers to the disclaimer of warranties;
+
+                    v. a URI or hyperlink to the Licensed Material to the extent reasonably practicable;
+
+               B. indicate if You modified the Licensed Material and retain an indication of any previous modifications; and
+
+               C. indicate the Licensed Material is licensed under this Public License, and include the text of, or the URI or hyperlink to, this Public License.
+
+          2. You may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.
+
+          3. If requested by the Licensor, You must remove any of the information required by Section 3(a)(1)(A) to the extent reasonably practicable.
+
+          4. If You Share Adapted Material You produce, the Adapter's License You apply must not prevent recipients of the Adapted Material from complying with this Public License.
+
+Section 4 – Sui Generis Database Rights.
+
+Where the Licensed Rights include Sui Generis Database Rights that apply to Your use of the Licensed Material:
+
+     a.	for the avoidance of doubt, Section 2(a)(1) grants You the right to extract, reuse, reproduce, and Share all or a substantial portion of the contents of the database;
+
+     b.	if You include all or a substantial portion of the database contents in a database in which You have Sui Generis Database Rights, then the database in which You have Sui Generis Database Rights (but not its individual contents) is Adapted Material; and
+
+     c.	You must comply with the conditions in Section 3(a) if You Share all or a substantial portion of the contents of the database.
+For the avoidance of doubt, this Section 4 supplements and does not replace Your obligations under this Public License where the Licensed Rights include other Copyright and Similar Rights.
+
+Section 5 – Disclaimer of Warranties and Limitation of Liability.
+
+     a.	Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You.
+
+     b.	To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You.
+
+     c.	The disclaimer of warranties and limitation of liability provided above shall be interpreted in a manner that, to the extent possible, most closely approximates an absolute disclaimer and waiver of all liability.
+
+Section 6 – Term and Termination.
+
+     a.	This Public License applies for the term of the Copyright and Similar Rights licensed here. However, if You fail to comply with this Public License, then Your rights under this Public License terminate automatically.
+
+     b.	Where Your right to use the Licensed Material has terminated under Section 6(a), it reinstates:
+
+          1. automatically as of the date the violation is cured, provided it is cured within 30 days of Your discovery of the violation; or
+
+          2. upon express reinstatement by the Licensor.
+
+     c.	For the avoidance of doubt, this Section 6(b) does not affect any right the Licensor may have to seek remedies for Your violations of this Public License.
+
+     d.	For the avoidance of doubt, the Licensor may also offer the Licensed Material under separate terms or conditions or stop distributing the Licensed Material at any time; however, doing so will not terminate this Public License.
+
+     e.	Sections 1, 5, 6, 7, and 8 survive termination of this Public License.
+
+Section 7 – Other Terms and Conditions.
+
+     a.	The Licensor shall not be bound by any additional or different terms or conditions communicated by You unless expressly agreed.
+
+     b.	Any arrangements, understandings, or agreements regarding the Licensed Material not stated herein are separate from and independent of the terms and conditions of this Public License.
+
+Section 8 – Interpretation.
+
+     a.	For the avoidance of doubt, this Public License does not, and shall not be interpreted to, reduce, limit, restrict, or impose conditions on any use of the Licensed Material that could lawfully be made without permission under this Public License.
+
+     b.	To the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.
+
+     c.	No term or condition of this Public License will be waived and no failure to comply consented to unless expressly agreed to by the Licensor.
+
+     d.	Nothing in this Public License constitutes or may be interpreted as a limitation upon, or waiver of, any privileges and immunities that apply to the Licensor or You, including from the legal processes of any jurisdiction or authority.
+
+Creative Commons is not a party to its public licenses. Notwithstanding, Creative Commons may elect to apply one of its public licenses to material it publishes and in those instances will be considered the “Licensor.” Except for the limited purpose of indicating that material is shared under a Creative Commons public license or as otherwise permitted by the Creative Commons policies published at creativecommons.org/policies, Creative Commons does not authorize the use of the trademark “Creative Commons” or any other trademark or logo of Creative Commons without its prior written consent including, without limitation, in connection with any unauthorized modifications to any of its public licenses or any other arrangements, understandings, or agreements concerning use of licensed material. For the avoidance of doubt, this paragraph does not form part of the public licenses.
+
+Creative Commons may be contacted at creativecommons.org.
+
+============================================================
+CC-BY-SA-4.0 — texto estándar SPDX (los titulares se identifican arriba; no se asigna copyright a placeholders)
+Creative Commons Attribution-ShareAlike 4.0 International
+
+ Creative Commons Corporation (“Creative Commons”) is not a law firm and does not provide legal services or legal advice. Distribution of Creative Commons public licenses does not create a lawyer-client or other relationship. Creative Commons makes its licenses and related information available on an “as-is” basis. Creative Commons gives no warranties regarding its licenses, any material licensed under their terms and conditions, or any related information. Creative Commons disclaims all liability for damages resulting from their use to the fullest extent possible.
+
+Using Creative Commons Public Licenses
+
+Creative Commons public licenses provide a standard set of terms and conditions that creators and other rights holders may use to share original works of authorship and other material subject to copyright and certain other rights specified in the public license below. The following considerations are for informational purposes only, are not exhaustive, and do not form part of our licenses.
+
+Considerations for licensors: Our public licenses are intended for use by those authorized to give the public permission to use material in ways otherwise restricted by copyright and certain other rights. Our licenses are irrevocable. Licensors should read and understand the terms and conditions of the license they choose before applying it. Licensors should also secure all rights necessary before applying our licenses so that the public can reuse the material as expected. Licensors should clearly mark any material not subject to the license. This includes other CC-licensed material, or material used under an exception or limitation to copyright. More considerations for licensors.
+
+Considerations for the public: By using one of our public licenses, a licensor grants the public permission to use the licensed material under specified terms and conditions. If the licensor’s permission is not necessary for any reason–for example, because of any applicable exception or limitation to copyright–then that use is not regulated by the license. Our licenses grant only permissions under copyright and certain other rights that a licensor has authority to grant. Use of the licensed material may still be restricted for other reasons, including because others have copyright or other rights in the material. A licensor may make special requests, such as asking that all changes be marked or described.
+
+Although not required by our licenses, you are encouraged to respect those requests where reasonable. More considerations for the public.
+
+Creative Commons Attribution-ShareAlike 4.0 International Public License
+
+By exercising the Licensed Rights (defined below), You accept and agree to be bound by the terms and conditions of this Creative Commons Attribution-ShareAlike 4.0 International Public License ("Public License"). To the extent this Public License may be interpreted as a contract, You are granted the Licensed Rights in consideration of Your acceptance of these terms and conditions, and the Licensor grants You such rights in consideration of benefits the Licensor receives from making the Licensed Material available under these terms and conditions.
+
+Section 1 – Definitions.
+
+     a.	Adapted Material means material subject to Copyright and Similar Rights that is derived from or based upon the Licensed Material and in which the Licensed Material is translated, altered, arranged, transformed, or otherwise modified in a manner requiring permission under the Copyright and Similar Rights held by the Licensor. For purposes of this Public License, where the Licensed Material is a musical work, performance, or sound recording, Adapted Material is always produced where the Licensed Material is synched in timed relation with a moving image.
+
+     b.	Adapter's License means the license You apply to Your Copyright and Similar Rights in Your contributions to Adapted Material in accordance with the terms and conditions of this Public License.
+
+     c.	BY-SA Compatible License means a license listed at creativecommons.org/compatiblelicenses, approved by Creative Commons as essentially the equivalent of this Public License.
+
+     d.	Copyright and Similar Rights means copyright and/or similar rights closely related to copyright including, without limitation, performance, broadcast, sound recording, and Sui Generis Database Rights, without regard to how the rights are labeled or categorized. For purposes of this Public License, the rights specified in Section 2(b)(1)-(2) are not Copyright and Similar Rights.
+
+     e.	Effective Technological Measures means those measures that, in the absence of proper authority, may not be circumvented under laws fulfilling obligations under Article 11 of the WIPO Copyright Treaty adopted on December 20, 1996, and/or similar international agreements.
+
+     f.	Exceptions and Limitations means fair use, fair dealing, and/or any other exception or limitation to Copyright and Similar Rights that applies to Your use of the Licensed Material.
+
+     g.	License Elements means the license attributes listed in the name of a Creative Commons Public License. The License Elements of this Public License are Attribution and ShareAlike.
+
+     h.	Licensed Material means the artistic or literary work, database, or other material to which the Licensor applied this Public License.
+
+     i.	Licensed Rights means the rights granted to You subject to the terms and conditions of this Public License, which are limited to all Copyright and Similar Rights that apply to Your use of the Licensed Material and that the Licensor has authority to license.
+
+     j.	Licensor means the individual(s) or entity(ies) granting rights under this Public License.
+
+     k.	Share means to provide material to the public by any means or process that requires permission under the Licensed Rights, such as reproduction, public display, public performance, distribution, dissemination, communication, or importation, and to make material available to the public including in ways that members of the public may access the material from a place and at a time individually chosen by them.
+
+     l.	Sui Generis Database Rights means rights other than copyright resulting from Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of databases, as amended and/or succeeded, as well as other essentially equivalent rights anywhere in the world.
+
+     m.	You means the individual or entity exercising the Licensed Rights under this Public License. Your has a corresponding meaning.
+
+Section 2 – Scope.
+
+     a.	License grant.
+
+          1. Subject to the terms and conditions of this Public License, the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to exercise the Licensed Rights in the Licensed Material to:
+
+               A. reproduce and Share the Licensed Material, in whole or in part; and
+
+               B. produce, reproduce, and Share Adapted Material.
+
+          2. Exceptions and Limitations. For the avoidance of doubt, where Exceptions and Limitations apply to Your use, this Public License does not apply, and You do not need to comply with its terms and conditions.
+
+          3. Term. The term of this Public License is specified in Section 6(a).
+
+          4. Media and formats; technical modifications allowed. The Licensor authorizes You to exercise the Licensed Rights in all media and formats whether now known or hereafter created, and to make technical modifications necessary to do so. The Licensor waives and/or agrees not to assert any right or authority to forbid You from making technical modifications necessary to exercise the Licensed Rights, including technical modifications necessary to circumvent Effective Technological Measures. For purposes of this Public License, simply making modifications authorized by this Section 2(a)(4) never produces Adapted Material.
+
+          5. Downstream recipients.
+
+               A. Offer from the Licensor – Licensed Material. Every recipient of the Licensed Material automatically receives an offer from the Licensor to exercise the Licensed Rights under the terms and conditions of this Public License.
+
+               B. Additional offer from the Licensor – Adapted Material. Every recipient of Adapted Material from You automatically receives an offer from the Licensor to exercise the Licensed Rights in the Adapted Material under the conditions of the Adapter’s License You apply.
+
+               C. No downstream restrictions. You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, the Licensed Material if doing so restricts exercise of the Licensed Rights by any recipient of the Licensed Material.
+
+          6. No endorsement. Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).
+
+     b.	Other rights.
+
+          1. Moral rights, such as the right of integrity, are not licensed under this Public License, nor are publicity, privacy, and/or other similar personality rights; however, to the extent possible, the Licensor waives and/or agrees not to assert any such rights held by the Licensor to the limited extent necessary to allow You to exercise the Licensed Rights, but not otherwise.
+
+          2. Patent and trademark rights are not licensed under this Public License.
+
+          3. To the extent possible, the Licensor waives any right to collect royalties from You for the exercise of the Licensed Rights, whether directly or through a collecting society under any voluntary or waivable statutory or compulsory licensing scheme. In all other cases the Licensor expressly reserves any right to collect such royalties.
+
+Section 3 – License Conditions.
+
+Your exercise of the Licensed Rights is expressly made subject to the following conditions.
+
+     a.	Attribution.
+
+          1. If You Share the Licensed Material (including in modified form), You must:
+
+               A. retain the following if it is supplied by the Licensor with the Licensed Material:
+
+                    i.	identification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);
+
+                    ii.	a copyright notice;
+
+                    iii. a notice that refers to this Public License;
+
+                    iv.	a notice that refers to the disclaimer of warranties;
+
+                    v.	a URI or hyperlink to the Licensed Material to the extent reasonably practicable;
+
+               B. indicate if You modified the Licensed Material and retain an indication of any previous modifications; and
+
+               C. indicate the Licensed Material is licensed under this Public License, and include the text of, or the URI or hyperlink to, this Public License.
+
+          2. You may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.
+
+          3. If requested by the Licensor, You must remove any of the information required by Section 3(a)(1)(A) to the extent reasonably practicable.
+
+     b.	ShareAlike.In addition to the conditions in Section 3(a), if You Share Adapted Material You produce, the following conditions also apply.
+
+          1. The Adapter’s License You apply must be a Creative Commons license with the same License Elements, this version or later, or a BY-SA Compatible License.
+
+          2. You must include the text of, or the URI or hyperlink to, the Adapter's License You apply. You may satisfy this condition in any reasonable manner based on the medium, means, and context in which You Share Adapted Material.
+
+          3. You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, Adapted Material that restrict exercise of the rights granted under the Adapter's License You apply.
+
+Section 4 – Sui Generis Database Rights.
+
+Where the Licensed Rights include Sui Generis Database Rights that apply to Your use of the Licensed Material:
+
+     a.	for the avoidance of doubt, Section 2(a)(1) grants You the right to extract, reuse, reproduce, and Share all or a substantial portion of the contents of the database;
+
+     b.	if You include all or a substantial portion of the database contents in a database in which You have Sui Generis Database Rights, then the database in which You have Sui Generis Database Rights (but not its individual contents) is Adapted Material, including for purposes of Section 3(b); and
+
+     c.	You must comply with the conditions in Section 3(a) if You Share all or a substantial portion of the contents of the database.
+For the avoidance of doubt, this Section 4 supplements and does not replace Your obligations under this Public License where the Licensed Rights include other Copyright and Similar Rights.
+
+Section 5 – Disclaimer of Warranties and Limitation of Liability.
+
+     a.	Unless otherwise separately undertaken by the Licensor, to the extent possible, the Licensor offers the Licensed Material as-is and as-available, and makes no representations or warranties of any kind concerning the Licensed Material, whether express, implied, statutory, or other. This includes, without limitation, warranties of title, merchantability, fitness for a particular purpose, non-infringement, absence of latent or other defects, accuracy, or the presence or absence of errors, whether or not known or discoverable. Where disclaimers of warranties are not allowed in full or in part, this disclaimer may not apply to You.
+
+     b.	To the extent possible, in no event will the Licensor be liable to You on any legal theory (including, without limitation, negligence) or otherwise for any direct, special, indirect, incidental, consequential, punitive, exemplary, or other losses, costs, expenses, or damages arising out of this Public License or use of the Licensed Material, even if the Licensor has been advised of the possibility of such losses, costs, expenses, or damages. Where a limitation of liability is not allowed in full or in part, this limitation may not apply to You.
+
+     c.	The disclaimer of warranties and limitation of liability provided above shall be interpreted in a manner that, to the extent possible, most closely approximates an absolute disclaimer and waiver of all liability.
+
+Section 6 – Term and Termination.
+
+     a.	This Public License applies for the term of the Copyright and Similar Rights licensed here. However, if You fail to comply with this Public License, then Your rights under this Public License terminate automatically.
+
+     b.	Where Your right to use the Licensed Material has terminated under Section 6(a), it reinstates:
+
+          1. automatically as of the date the violation is cured, provided it is cured within 30 days of Your discovery of the violation; or
+
+          2. upon express reinstatement by the Licensor.
+
+     c.	For the avoidance of doubt, this Section 6(b) does not affect any right the Licensor may have to seek remedies for Your violations of this Public License.
+
+     d.	For the avoidance of doubt, the Licensor may also offer the Licensed Material under separate terms or conditions or stop distributing the Licensed Material at any time; however, doing so will not terminate this Public License.
+
+     e.	Sections 1, 5, 6, 7, and 8 survive termination of this Public License.
+
+Section 7 – Other Terms and Conditions.
+
+     a.	The Licensor shall not be bound by any additional or different terms or conditions communicated by You unless expressly agreed.
+
+     b.	Any arrangements, understandings, or agreements regarding the Licensed Material not stated herein are separate from and independent of the terms and conditions of this Public License.
+
+Section 8 – Interpretation.
+
+     a.	For the avoidance of doubt, this Public License does not, and shall not be interpreted to, reduce, limit, restrict, or impose conditions on any use of the Licensed Material that could lawfully be made without permission under this Public License.
+
+     b.	To the extent possible, if any provision of this Public License is deemed unenforceable, it shall be automatically reformed to the minimum extent necessary to make it enforceable. If the provision cannot be reformed, it shall be severed from this Public License without affecting the enforceability of the remaining terms and conditions.
+
+     c.	No term or condition of this Public License will be waived and no failure to comply consented to unless expressly agreed to by the Licensor.
+
+     d.	Nothing in this Public License constitutes or may be interpreted as a limitation upon, or waiver of, any privileges and immunities that apply to the Licensor or You, including from the legal processes of any jurisdiction or authority.
+
+Creative Commons is not a party to its public licenses. Notwithstanding, Creative Commons may elect to apply one of its public licenses to material it publishes and in those instances will be considered the “Licensor.” Except for the limited purpose of indicating that material is shared under a Creative Commons public license or as otherwise permitted by the Creative Commons policies published at creativecommons.org/policies, Creative Commons does not authorize the use of the trademark “Creative Commons” or any other trademark or logo of Creative Commons without its prior written consent including, without limitation, in connection with any unauthorized modifications to any of its public licenses or any other arrangements, understandings, or agreements concerning use of licensed material. For the avoidance of doubt, this paragraph does not form part of the public licenses.
+
+Creative Commons may be contacted at creativecommons.org.
+
+============================================================
+CC0-1.0 — texto estándar SPDX (los titulares se identifican arriba; no se asigna copyright a placeholders)
+Creative Commons Legal Code
+
+CC0 1.0 Universal
+
+    CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
+    LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
+    ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
+    INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
+    REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
+    PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
+    THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
+    HEREUNDER.
+
+Statement of Purpose
+
+The laws of most jurisdictions throughout the world automatically confer
+exclusive Copyright and Related Rights (defined below) upon the creator
+and subsequent owner(s) (each and all, an "owner") of an original work of
+authorship and/or a database (each, a "Work").
+
+Certain owners wish to permanently relinquish those rights to a Work for
+the purpose of contributing to a commons of creative, cultural and
+scientific works ("Commons") that the public can reliably and without fear
+of later claims of infringement build upon, modify, incorporate in other
+works, reuse and redistribute as freely as possible in any form whatsoever
+and for any purposes, including without limitation commercial purposes.
+These owners may contribute to the Commons to promote the ideal of a free
+culture and the further production of creative, cultural and scientific
+works, or to gain reputation or greater distribution for their Work in
+part through the use and efforts of others.
+
+For these and/or other purposes and motivations, and without any
+expectation of additional consideration or compensation, the person
+associating CC0 with a Work (the "Affirmer"), to the extent that he or she
+is an owner of Copyright and Related Rights in the Work, voluntarily
+elects to apply CC0 to the Work and publicly distribute the Work under its
+terms, with knowledge of his or her Copyright and Related Rights in the
+Work and the meaning and intended legal effect of CC0 on those rights.
+
+1. Copyright and Related Rights. A Work made available under CC0 may be
+protected by copyright and related or neighboring rights ("Copyright and
+Related Rights"). Copyright and Related Rights include, but are not
+limited to, the following:
+
+  i. the right to reproduce, adapt, distribute, perform, display,
+     communicate, and translate a Work;
+ ii. moral rights retained by the original author(s) and/or performer(s);
+iii. publicity and privacy rights pertaining to a person's image or
+     likeness depicted in a Work;
+ iv. rights protecting against unfair competition in regards to a Work,
+     subject to the limitations in paragraph 4(a), below;
+  v. rights protecting the extraction, dissemination, use and reuse of data
+     in a Work;
+ vi. database rights (such as those arising under Directive 96/9/EC of the
+     European Parliament and of the Council of 11 March 1996 on the legal
+     protection of databases, and under any national implementation
+     thereof, including any amended or successor version of such
+     directive); and
+vii. other similar, equivalent or corresponding rights throughout the
+     world based on applicable law or treaty, and any national
+     implementations thereof.
+
+2. Waiver. To the greatest extent permitted by, but not in contravention
+of, applicable law, Affirmer hereby overtly, fully, permanently,
+irrevocably and unconditionally waives, abandons, and surrenders all of
+Affirmer's Copyright and Related Rights and associated claims and causes
+of action, whether now known or unknown (including existing as well as
+future claims and causes of action), in the Work (i) in all territories
+worldwide, (ii) for the maximum duration provided by applicable law or
+treaty (including future time extensions), (iii) in any current or future
+medium and for any number of copies, and (iv) for any purpose whatsoever,
+including without limitation commercial, advertising or promotional
+purposes (the "Waiver"). Affirmer makes the Waiver for the benefit of each
+member of the public at large and to the detriment of Affirmer's heirs and
+successors, fully intending that such Waiver shall not be subject to
+revocation, rescission, cancellation, termination, or any other legal or
+equitable action to disrupt the quiet enjoyment of the Work by the public
+as contemplated by Affirmer's express Statement of Purpose.
+
+3. Public License Fallback. Should any part of the Waiver for any reason
+be judged legally invalid or ineffective under applicable law, then the
+Waiver shall be preserved to the maximum extent permitted taking into
+account Affirmer's express Statement of Purpose. In addition, to the
+extent the Waiver is so judged Affirmer hereby grants to each affected
+person a royalty-free, non transferable, non sublicensable, non exclusive,
+irrevocable and unconditional license to exercise Affirmer's Copyright and
+Related Rights in the Work (i) in all territories worldwide, (ii) for the
+maximum duration provided by applicable law or treaty (including future
+time extensions), (iii) in any current or future medium and for any number
+of copies, and (iv) for any purpose whatsoever, including without
+limitation commercial, advertising or promotional purposes (the
+"License"). The License shall be deemed effective as of the date CC0 was
+applied by Affirmer to the Work. Should any part of the License for any
+reason be judged legally invalid or ineffective under applicable law, such
+partial invalidity or ineffectiveness shall not invalidate the remainder
+of the License, and in such case Affirmer hereby affirms that he or she
+will not (i) exercise any of his or her remaining Copyright and Related
+Rights in the Work or (ii) assert any associated claims and causes of
+action with respect to the Work, in either case contrary to Affirmer's
+express Statement of Purpose.
+
+4. Limitations and Disclaimers.
+
+ a. No trademark or patent rights held by Affirmer are waived, abandoned,
+    surrendered, licensed or otherwise affected by this document.
+ b. Affirmer offers the Work as-is and makes no representations or
+    warranties of any kind concerning the Work, express, implied,
+    statutory or otherwise, including without limitation warranties of
+    title, merchantability, fitness for a particular purpose, non
+    infringement, or the absence of latent or other defects, accuracy, or
+    the present or absence of errors, whether or not discoverable, all to
+    the greatest extent permissible under applicable law.
+ c. Affirmer disclaims responsibility for clearing rights of other persons
+    that may apply to the Work or any use thereof, including without
+    limitation any person's Copyright and Related Rights in the Work.
+    Further, Affirmer disclaims responsibility for obtaining any necessary
+    consents, permissions or other rights required for any use of the
+    Work.
+ d. Affirmer understands and acknowledges that Creative Commons is not a
+    party to this document and has no duty or obligation with respect to
+    this CC0 or use of the Work.
+
+============================================================
+DL-DE-BY-2.0 — texto estándar SPDX (los titulares se identifican arriba; no se asigna copyright a placeholders)
+DL-DE->BY-2.0
+Datenlizenz Deutschland – Namensnennung – Version 2.0
+
+(1) Jede Nutzung ist unter den Bedingungen dieser „Datenlizenz Deutschland – Namensnennung – Version 2.0" zulässig.
+
+Die bereitgestellten Daten und Metadaten dürfen für die kommerzielle und nicht kommerzielle Nutzung insbesondere
+
+    vervielfältigt, ausgedruckt, präsentiert, verändert, bearbeitet sowie an Dritte übermittelt werden;
+    mit eigenen Daten und Daten Anderer zusammengeführt und zu selbständigen neuen Datensätzen verbunden werden;
+    in interne und externe Geschäftsprozesse, Produkte und Anwendungen in öffentlichen und nicht öffentlichen elektronischen Netzwerken eingebunden werden.
+
+(2) Bei der Nutzung ist sicherzustellen, dass folgende Angaben als Quellenvermerk enthalten sind:
+
+    Bezeichnung des Bereitstellers nach dessen Maßgabe,
+    der Vermerk „Datenlizenz Deutschland – Namensnennung – Version 2.0" oder „dl-de/by-2-0" mit Verweis auf den Lizenztext unter www.govdata.de/dl-de/by-2-0 sowie
+    einen Verweis auf den Datensatz (URI).
+
+Dies gilt nur soweit die datenhaltende Stelle die Angaben 1. bis 3. zum Quellenvermerk bereitstellt.
+
+(3) Veränderungen, Bearbeitungen, neue Gestaltungen oder sonstige Abwandlungen sind im Quellenvermerk mit dem Hinweis zu versehen, dass die Daten geändert wurden.
+
+
+Data licence Germany – attribution – version 2.0
+
+(1) Any use will be permitted provided it fulfils the requirements of this "Data licence Germany – attribution – Version 2.0".
+
+The data and meta-data provided may, for commercial and non-commercial use, in particular
+
+    be copied, printed, presented, altered, processed and transmitted to third parties;
+    be merged with own data and with the data of others and be combined to form new and independent datasets;
+    be integrated in internal and external business processes, products and applications in public and non-public electronic networks.
+
+(2) The user must ensure that the source note contains the following information:
+
+    the name of the provider,
+    the annotation "Data licence Germany – attribution – Version 2.0" or "dl-de/by-2-0" referring to the licence text available at www.govdata.de/dl-de/by-2-0, and
+    a reference to the dataset (URI).
+
+This applies only if the entity keeping the data provides the pieces of information 1-3 for the source note.
+
+(3) Changes, editing, new designs or other amendments must be marked as such in the source note.
+
+
+
+URL: http://www.govdata.de/dl-de/by-2-0
+
+Licence Ouverte: texto conservado en PROJ_DB_NOTICES.txt; fr_ign_README.txt enlaza expresamente la versión francesa 2.0.
+AdV: de_adv_README.txt permite redistribución; no se afirma permiso de modificación de de_adv_BETA2007.tif.

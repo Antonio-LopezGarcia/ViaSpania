@@ -19,3 +19,10 @@
 .result-export-dialog>footer{height:auto;flex-shrink:0;padding:8px 12px;display:flex;flex-wrap:wrap;justify-content:flex-end;gap:7px;border-top:1px solid #33413a}
 @media(max-width:700px){.result-export-groups{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:460px){.result-export-groups{grid-template-columns:minmax(0,1fr)}.result-export-toolbar span{width:100%;margin-left:0}}
+
+.result-export-dialog.data-import-dialog{width:min(380px,calc(100vw - 28px));min-height:min(250px,calc(100dvh - 28px));overflow-y:auto}
+.data-import-dialog>.data-import-notice{margin:20px;padding:9px 11px}
+.result-export-dialog.data-import-dialog>footer{margin-top:auto;justify-content:center}
+.data-import-dialog>p[role="alert"]{margin:0;padding:0 24px 16px;color:#ffad55}
+
+.result-export-dialog.data-import-dialog,.result-export-dialog.data-import-dialog p,.result-export-dialog.data-import-dialog b,.result-export-dialog.data-import-dialog button{font-size:11px}

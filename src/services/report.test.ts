@@ -5,7 +5,7 @@ describe('informe de proyecto',()=>{
   it('exporta una página altimétrica por ruta con sus cotas aunque se desactiven las páginas opcionales',()=>{
     const route={model:'tobler' as const,direction:'A-B',path:[0,1],coordinates:[[-3.8,40.4],[-3.7,40.5]] as [number,number][],elevationsM:[620,700],cost:120,unit:'s',distanceM:1000,ascentM:80,descentM:0};
     const bytes=createProjectReport({...base,routes:[{result:route,color:'#00b9ff'},{result:{...route,elevationsM:[700,620]},color:'#ff5d6c'}]});
-    expect(new TextDecoder('latin1').decode(bytes)).toContain('/Count 2');
+    expect(new TextDecoder('latin1').decode(bytes)).toContain('/Count 3');
   });
   it('ajusta mapas al área disponible sin alterar su proporción',()=>{
     const rect=imageContainRect(1600,900,10,20,200,200);
@@ -27,7 +27,8 @@ describe('informe de proyecto',()=>{
     expect(configuration.match(/16 vecinos/g)).toHaveLength(1);
     expect(configuration).toContain('Pendiente crítica: no utilizada');
     expect(configuration).toContain('Velocidad configurable: no aplicable');
-    expect(configuration.match(/MDT05/g)).toHaveLength(1);
+    expect(configuration).toContain('REQUIERE REVISIÓN');
+    expect(configuration).not.toContain('MDT05');
     expect(configuration).not.toMatch(/Conectividad utilizada|Resolución del MDT|Fuente del MDT/);
     expect(sections[2].rows).toContain('Distancia: 2664,8 m · Coste acumulado: 3078,98 s');
     expect(sections[0].rows.filter(row=>row.startsWith('Referencia:'))).toHaveLength(1);
@@ -62,22 +63,22 @@ describe('informe de proyecto',()=>{
     const reverse={...route,direction:'final→inicio',cost:125};
     const bytes=createProjectReport({...base,routes:[{result:route,color:'#00b9ff'},{result:reverse,color:'#ff5d6c'}],analysis:{kind:'route-simple' as const,title:'Ruta simple',includeTechnicalPage:true}});
     const source=new TextDecoder('latin1').decode(bytes);
-    expect(source).toContain('/Count 4');
+    expect(source).toContain('/Count 5');
   });
   it('ordena resultado y perfil después de cada ruta comparada',()=>{
     const route={model:'tobler' as const,direction:'inicio→final',path:[0,1],coordinates:[[-3.8,40.4],[-3.7,40.5]] as [number,number][],cost:120,unit:'s',distanceM:100,ascentM:10,descentM:2,settings:{connectivity:8 as const}};
     const second={...route,model:'wheeled' as const,cost:140,unit:'coste relativo',settings:{connectivity:16 as const,criticalSlopePercent:11}};
     const bytes=createProjectReport({...base,routes:[{result:route,color:'#00b9ff'},{result:second,color:'#ff5d6c'}],analysis:{kind:'route-comparison' as const,title:'Comparación',includeIndividualPages:true,includeProfilePages:true}});
-    expect(new TextDecoder('latin1').decode(bytes)).toContain('/Count 6');
+    expect(new TextDecoder('latin1').decode(bytes)).toContain('/Count 7');
   });
   it('incluye matriz y ficha técnica en Multipunto',()=>{
     const route={model:'tobler' as const,direction:'A→B',path:[0,1],coordinates:[[-3.8,40.4],[-3.7,40.5]] as [number,number][],cost:120,unit:'s',distanceM:100,ascentM:10,descentM:2,settings:{connectivity:8 as const}};
     const bytes=createProjectReport({...base,routes:[{result:route,color:'#00b9ff'}],analysis:{kind:'multipoint' as const,title:'Multipunto',matrix:[[0,120],[100,0]],unit:'s',includeMatrixPage:true,includeTechnicalPage:true}});
-    expect(new TextDecoder('latin1').decode(bytes)).toContain('/Count 3');
+    expect(new TextDecoder('latin1').decode(bytes)).toContain('/Count 4');
   });
   it('incluye la ficha técnica de Multirruta',()=>{
     const route={model:'tobler' as const,direction:'A→B',path:[0,1],coordinates:[[-3.8,40.4],[-3.7,40.5]] as [number,number][],cost:120,unit:'s',distanceM:100,ascentM:10,descentM:2,settings:{connectivity:8 as const}};
     const bytes=createProjectReport({...base,routes:[{result:route,color:'#00b9ff'}],analysis:{kind:'multiroute' as const,title:'Multirruta',includeTechnicalPage:true}});
-    expect(new TextDecoder('latin1').decode(bytes)).toContain('/Count 2');
+    expect(new TextDecoder('latin1').decode(bytes)).toContain('/Count 3');
   });
 });

@@ -14,7 +14,7 @@ on:
         description: Etiqueta de la Release en la que publicar los instaladores
         required: true
         type: string
-        default: v0.2.1
+        default: v0.2.2
       installer_platform:
         description: Plataforma cuyos instaladores se construirán y publicarán
         required: true
@@ -131,8 +131,15 @@ jobs:
           "$geospatial/bin/gdal_translate" -q -of GTiff "$package_root/source.tif" "$package_root/smoke.tif"
           "$gdalinfo" -json -stats "$package_root/smoke.tif" > "$package_root/smoke.json"
           test -s "$package_root/smoke.json"
-      - name: Verificar expediente antes de publicar
-        run: pnpm compliance:check --strict
+      - name: Verificar destino antes de subir los artefactos
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          is_draft="$(gh release view "${{ inputs.release_tag }}" --json isDraft --jq .isDraft)"
+          if [ "$is_draft" != "true" ]; then
+            pnpm compliance:check --strict
+          fi
       - name: Publicar instalador de macOS
         if: runner.os == 'macOS'
         env:

@@ -30,12 +30,15 @@ export function sampleRoutePath(path:ReturnType<typeof prepareRoutePath>,progres
  const a=path.points[low-1],b=path.points[low],length=path.cumulative[low]-path.cumulative[low-1],t=length?(distance-path.cumulative[low-1])/length:0;
  return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
 }
+const smoothProgress=(t:number)=>{const x=Math.max(0,Math.min(1,t));return x*x*(3-2*x)};
+/** Route progress stays at the start during the flyover camera approach. */
+export function animationRouteProgress(mode:AnimationMode,progress:number){return mode==='flyover'?smoothProgress((progress-.15)/.85):Math.max(0,Math.min(1,progress))}
 /** Cinematic camera interpolation in scene metres; not a routing or travel-time model. */
 export function flyoverCamera(path:ReturnType<typeof prepareRoutePath>,progress:number,inclination:number,distance:number){
- const smooth=(t:number)=>{const x=Math.max(0,Math.min(1,t));return x*x*(3-2*x)},zoom=smooth(progress/.15),travel=smooth((progress-.15)/.85),target=sampleRoutePath(path,travel);
+ const zoom=smoothProgress(progress/.15),travel=animationRouteProgress('flyover',progress),target=sampleRoutePath(path,travel);
  const ahead=sampleRoutePath(path,Math.min(1,travel+.025)),behind=sampleRoutePath(path,Math.max(0,travel-.025)),start=sampleRoutePath(path,0),end=sampleRoutePath(path,1);
  const bearing=Math.atan2(end[0]-start[0],end[2]-start[2]),tangent=Math.atan2(ahead[0]-behind[0],ahead[2]-behind[2]);
- const delta=Math.atan2(Math.sin(tangent-bearing),Math.cos(tangent-bearing)),heading=bearing+delta*smooth((progress-.15)/.15);
+ const delta=Math.atan2(Math.sin(tangent-bearing),Math.cos(tangent-bearing)),heading=bearing+delta*smoothProgress((progress-.15)/.15);
  const dx=Math.sin(heading),dz=Math.cos(heading);
  const length=Math.hypot(dx,dz)||1,angle=Math.max(15,Math.min(85,inclination))*Math.PI/180,radius=distance*(3-2*zoom),horizontal=Math.cos(angle)*radius;
  return{target,position:[target[0]-dx/length*horizontal,target[1]+Math.sin(angle)*radius,target[2]-dz/length*horizontal] as [number,number,number],progress:travel};

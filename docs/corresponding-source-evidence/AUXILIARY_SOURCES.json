@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "basis": "apache-arrow-25.0.1/cpp/thirdparty/versions.txt",
+  "sources": [
+    {
+      "name": "rapidjson",
+      "version": "232389d4f1012dddec4ef84861face2d2ba85709",
+      "sha256": "b9290a9a6d444c8e049bd589ab804e0ccf2b05dc5984a19ed5ae75d090064806",
+      "url": "https://github.com/miloyip/rapidjson/archive/232389d4f1012dddec4ef84861face2d2ba85709.tar.gz",
+      "archive": "release/reconstruction/arrow/rapidjson.archive",
+      "purpose": "reconstruction probe only; historical Homebrew build version not established"
+    },
+    {
+      "name": "xsimd",
+      "version": "14.2.0",
+      "sha256": "21e841ab684b05331e81e7f782431753a029ef7b7d9d6d3ddab837e7782a40ee",
+      "url": "https://github.com/xtensor-stack/xsimd/archive/14.2.0.tar.gz",
+      "archive": "release/reconstruction/arrow/xsimd.archive",
+      "purpose": "reconstruction probe only; historical Homebrew build version not established"
+    },
+    {
+      "name": "gflags",
+      "version": "2.2.2",
+      "sha256": "34af2f15cf7367513b352bdcd2493ab14ce43692d2dcd9dfc499492966c64dcf",
+      "url": "https://github.com/gflags/gflags/archive/v2.2.2.tar.gz",
+      "archive": "release/reconstruction/arrow/gflags.archive",
+      "purpose": "reconstruction probe only; historical Homebrew build version not established"
+    },
+    {
+      "name": "mimalloc",
+      "version": "3.4.1",
+      "sha256": "37107a52c16baa80c5f74861dddda7b27bb9949e41a6637691867a94c88ca446",
+      "url": "https://github.com/microsoft/mimalloc/archive/v3.4.1.tar.gz",
+      "archive": "release/compliance/native-aux/mimalloc-3.4.1/source-0.archive",
+      "purpose": "Pinned internal dependency of Arrow, added to the source dossier"
+    }
+  ],
+  "distribution": "Not added to the release source package. RapidJSON full archive contains separately licensed JSON test fixtures; distribution scope requires review."
+}

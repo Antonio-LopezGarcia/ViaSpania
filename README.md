@@ -1,147 +1,7 @@
 # ViaSpania
 
-[English](#english) · [Español](#español) · [Downloads / Descargas](https://github.com/traxtiber/ViaSpania/releases) · [Issues](https://github.com/traxtiber/ViaSpania/issues)
+ [Español](#español) · [English](#english) · [Downloads / Descargas](https://github.com/traxtiber/ViaSpania/releases) · [Issues](https://github.com/traxtiber/ViaSpania/issues)
 
-## English
-
-ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic exploration, with integrated cartography and elevation services for Spain. It processes geographic data locally using Tauri, Rust, GDAL/PROJ, React, OpenLayers and Three.js.
-
-**Release status:** the latest published release verified on 8 September 2026 is [v0.2.1](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1). This README also describes subsequent development changes; those features are not necessarily included in the published installers.
-
-### Features
-
-- Four synchronised maps with expandable viewers, OpenStreetMap, PNOA, IGN/CNIG modern and historical cartography, Copernicus imagery and custom XYZ/WMS/WMTS layers.
-- Elevation-model download and local GeoTIFF/COG import, validation, reprojection and clipping. Terrain and surface models are distinguished; processing limits are configurable according to available memory.
-- Directional least-cost routes, profile comparison, multipoint connections, ordered multi-route itineraries and spatially distinct sub-optimal alternatives.
-- Least-cost corridors, isochrones, viewsheds, contour lines and elevation profiles.
-- Walking-time, energy, pastoral, caravan and wheeled cost profiles, with contextual documentation of parameters, units, assumptions and scientific references.
-- Editable barriers, preferred corridors, bridges/crossings and points of interest, including mandatory visits.
-- Local JSON projects, CSV/GeoJSON point import, vector and raster exports, and a PDF report composer with source attribution.
-- Interactive 3D terrain with analytical overlays and animation exports.
-
-### Changes since v0.2.1 — development version
-
-- Expanded English and Spanish localisation across the interface, tutorial, contextual help, reports, credits and status messages.
-- Revised empty-project creation, active-project identification, model-loading controls, study-area validation and expandable/detachable viewers.
-- Online place search through GeoNames, plus local parsing of WGS84 decimal coordinates (`latitude, longitude`).
-- More compact barrier/facilitator editing, contextual help, mandatory crossings and preservation of crossing metadata in project and GIS exports.
-- Shared background selection across calculation viewers, improved comparison controls, DTM overlays and external cartographic layers in 3D and reports.
-- Revised report composition and map rendering. Calculation maps are printed through the report composer; direct PNG/PDF export and printing have been removed from calculation viewers.
-- Deterministic 3D orbit and route-following exports to AVI/MJPEG and GIF, PNG frame export, video overlays and elevation profiles. AVI replaces the platform-dependent MP4/WebM capture path; desktop video is written progressively to disk without requiring FFmpeg.
-- More portable export filenames, improved cancellation/error handling, expanded tests, updated credits and funding acknowledgement, and third-party licence checks during packaging.
-
-For the changes already shipped in v0.2.1, see its [release notes](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1), including Linux ARM64 packages, Linux GDAL packaging fixes, Windows video fixes and 3D contour overlays.
-
-### Download and install
-
-Download an installer from the **Assets** section of [GitHub Releases](https://github.com/traxtiber/ViaSpania/releases). The automatically generated “Source code” archives are not installers. Choose the architecture of your computer:
-
-| System | Published v0.2.1 packages | Architecture |
-| --- | --- | --- |
-| macOS | `.dmg` | Apple Silicon (`aarch64`, M1 and later) |
-| Windows | `-setup.exe` or `.msi` | Intel/AMD 64-bit (`x64`) |
-| Linux | `.AppImage`, `.deb`, `.rpm` | Intel/AMD (`amd64`/`x86_64`) or ARM64 (`arm64`/`aarch64`) |
-
-There is no published Intel Mac installer in v0.2.1. Desktop packages include GDAL/PROJ; end users do not need Node.js, pnpm or Rust. System web runtimes are still required: WebView2 on Windows and compatible WebKitGTK/system libraries on Linux. See [Tauri runtime information](https://tauri.app/reference/webview-versions/).
-
-#### macOS: first launch of the unnotarized application
-
-The published DMG is not signed with an Apple Developer ID certificate or notarized by Apple. Local/ad hoc signing is not notarization.
-
-1. Open the DMG and drag `ViaSpania.app` into **Applications**.
-2. Try opening it. For an unidentified-developer/notarization warning, open **System Settings → Privacy & Security → Open Anyway**, then confirm. See [Apple's instructions](https://support.apple.com/en-us/102445).
-3. If the verified official copy remains blocked by quarantine, close it and run this command in Terminal, then reopen it:
-
-   ```bash
-   xattr -dr com.apple.quarantine "/Applications/ViaSpania.app"
-   ```
-
-This removes quarantine only from that application. A “damaged” message can also mean corruption or modification: download a fresh official copy first, and do not bypass a malware alert. If permissions or device policy prevent opening the app, contact the administrator; do not disable Gatekeeper globally.
-
-#### Windows: unsigned installer
-
-Run either the downloaded `-setup.exe` or `.msi`, then open ViaSpania from the Start menu. The published installers are unsigned, so SmartScreen may display **Windows protected your PC**. After checking the download's origin, choose **More info → Run anyway** if offered. An “Unknown publisher” UAC prompt does not verify the application's identity; approve only the installation you intentionally started. See [Microsoft's SmartScreen documentation](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
-
-If an organisational policy or Smart App Control blocks installation without an override, contact the administrator. Do not turn off Defender, SmartScreen or UAC. Windows uses code signing and reputation checks; Apple notarization does not apply.
-
-#### Linux: local package or AppImage
-
-Choose one format. From the download directory, replace each example filename with the exact file you downloaded, matching your architecture and version:
-
-```bash
-# AppImage: grant execution permission, then launch
-chmod +x ./ViaSpania_0.2.1_amd64.AppImage
-./ViaSpania_0.2.1_amd64.AppImage
-
-# Debian / Ubuntu
-sudo apt install ./ViaSpania_0.2.1_amd64.deb
-
-# Distributions using DNF / RPM
-sudo dnf install ./ViaSpania-0.2.1-1.x86_64.rpm
-```
-
-DEB/RPM installations add an application launcher. Linux packages do not carry a distribution signature; there is no Apple-style notarization. If local policy rejects an unsigned package, use an administrator-approved installation method rather than disabling signature checks. Compatibility depends on architecture, glibc and WebKitGTK. If AppImage reports missing FUSE, use the matching DEB/RPM or your distribution's FUSE instructions. The build workflow uses Ubuntu 24.04 for AMD64 and Ubuntu 22.04 for ARM64; this is not a guarantee of compatibility with every Linux distribution.
-
-### First analysis
-
-1. Create a project and choose a study area on the Navigation map.
-2. Download/process an elevation model or import a local GeoTIFF. Check resolution and estimated memory before processing.
-3. Add origins, destinations or multipoints; configure the travel profile and any barriers or facilitators.
-4. Run an analysis and inspect its map, tables and elevation profile or 3D view.
-5. Save the project and export the required products or compose a PDF report.
-
-See the [English manual](docs/manual.en.md) for the full workflow. Current development exports include project JSON, GeoJSON, GeoPackage, GeoTIFF, PDF reports, PNG frames, AVI video and animated GIF. Availability depends on the calculation and runtime; keep the project and its elevation files together.
-
-### Local processing and limitations
-
-Calculations run locally. Map tiles, elevation downloads and place-name searches require network access and contact their respective providers. GeoNames searches send the entered term and use a shared project quota; coordinate input is parsed locally. Custom layers have their own availability, attribution and access conditions.
-
-Results depend on elevation resolution, model assumptions, connectivity and configured constraints. Sub-optimal alternatives are not exact *k*-shortest paths; mandatory visits do not globally optimise visit order. Costs expressed in time, energy and relative units cannot be compared directly. Elevation does not establish paths, legal access, land cover or safe passage. ViaSpania is not an emergency-navigation system.
-
-### Development
-
-Use **Node.js 24** and **pnpm 11.19.0**, matching CI. Desktop development additionally requires stable Rust, the [Tauri platform prerequisites](https://tauri.app/start/prerequisites/) and native GDAL/PROJ tools available in `PATH`.
-
-```bash
-git clone https://github.com/traxtiber/ViaSpania.git
-cd ViaSpania
-pnpm install --frozen-lockfile
-pnpm desktop:dev
-```
-
-| Command | Purpose |
-| --- | --- |
-| `pnpm dev` | Web frontend development; native geospatial operations require the desktop app |
-| `pnpm test` | Deterministic TypeScript/React tests |
-| `pnpm build` | Type checking and production web build |
-| `pnpm preview` | Preview the web build |
-| `cargo test --manifest-path src-tauri/Cargo.toml` | Rust tests |
-| `pnpm desktop:build` | Prepare GDAL/PROJ resources and build native installers |
-| `pnpm desktop:build:macos` / `:windows` / `:linux` | Build platform-specific package formats on the corresponding host |
-
-Installers are written under `src-tauri/target/release/bundle/`. See the [packaging guide](docs/desktop-portability.md) for native requirements. `pnpm desktop:build:signed:macos` applies local ad hoc signing only. Packaging also checks third-party licence requirements; review the [release audit](docs/release-license-audit.md) before distribution.
-
-Code layout: `src/components` contains the UI/maps; `src/core` contains pure geographic logic; `src/services` contains provider/native adapters; `src-tauri` contains the Rust backend; `public/fixtures` contains deterministic service fixtures. See [architecture](docs/architecture.md), [model audit](docs/model-audit.md) and [research notes](docs/research.md).
-
-### Support, authorship and licence
-
-Report reproducible problems in [Issues](https://github.com/traxtiber/ViaSpania/issues), including version/build, OS and architecture, steps, data source and the exact error. Remove private project data before attaching files. Contact: [Antonio López García](mailto:antonio.lopez@ugr.es).
-
-ViaSpania
-
-Copyright © 2026 Antonio López García, Universidad de Granada
-
-Este programa se distribuye bajo la licencia GPL-3.0-only. See [LICENSE](LICENSE) for the full licence and the separate terms for graphical assets. Third-party software and data retain their own terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and in-app credits. Data credits include © OpenStreetMap contributors (ODbL 1.0), IGN/CNIG and GeoNames. Preserve the attribution of every source used.
-
-### Funding
-
-This application is a result of the grant RYC2022-037730-I funded by MICIU/AEI/10.13039/501100011033 and by ESF+.
-
-![MICIU · European Union · AEI](public/funding/miciu-ue-aei.jpg)
-
-[Funding acknowledgement and official sources](docs/funding.md).
-
----
 
 ## Español
 
@@ -288,8 +148,6 @@ Este programa se distribuye bajo la licencia GPL-3.0-only. Consulte el texto ín
 
 Este programa es resultado de la ayuda RYC2022-037730-I financiada por MICIU/AEI/10.13039/501100011033 y por ESF+.
 
-![MICIU · Unión Europea · AEI](public/funding/miciu-ue-aei.jpg)
-
 [Reconocimiento de financiación y fuentes oficiales](docs/funding.md).
 
 ## Distribución GPL y fuentes correspondientes
@@ -301,3 +159,143 @@ La preparación de instaladores y sus fuentes se documenta en [RELEASE_COMPLIANC
 La autoría de Antonio López García, la titularidad institucional declarada de la Universidad de Granada y la autorización comunicada para publicar en el GitHub personal se documentan en [docs/CODE_OWNERSHIP.md](docs/CODE_OWNERSHIP.md). Se mantiene el aviso de copyright conjunto solicitado por la UGR y GPL-3.0-only para el código propio. Las licencias y derechos de terceros se conservan separadamente.
 
 El logotipo propio conserva copyright separado, con permiso para redistribuirlo sin modificar junto con ViaSpania, también en copias comerciales y versiones modificadas claramente identificadas. Véanse [las condiciones de assets](docs/ASSETS.md). Los logotipos MICIU/UE/AEI se conservan como reconocimiento de la financiación original.
+
+## English
+
+ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic exploration, with integrated cartography and elevation services for Spain. It processes geographic data locally using Tauri, Rust, GDAL/PROJ, React, OpenLayers and Three.js.
+
+**Release status:** the latest published release verified on 8 September 2026 is [v0.2.1](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1). This README also describes subsequent development changes; those features are not necessarily included in the published installers.
+
+### Features
+
+- Four synchronised maps with expandable viewers, OpenStreetMap, PNOA, IGN/CNIG modern and historical cartography, Copernicus imagery and custom XYZ/WMS/WMTS layers.
+- Elevation-model download and local GeoTIFF/COG import, validation, reprojection and clipping. Terrain and surface models are distinguished; processing limits are configurable according to available memory.
+- Directional least-cost routes, profile comparison, multipoint connections, ordered multi-route itineraries and spatially distinct sub-optimal alternatives.
+- Least-cost corridors, isochrones, viewsheds, contour lines and elevation profiles.
+- Walking-time, energy, pastoral, caravan and wheeled cost profiles, with contextual documentation of parameters, units, assumptions and scientific references.
+- Editable barriers, preferred corridors, bridges/crossings and points of interest, including mandatory visits.
+- Local JSON projects, CSV/GeoJSON point import, vector and raster exports, and a PDF report composer with source attribution.
+- Interactive 3D terrain with analytical overlays and animation exports.
+
+### Changes since v0.2.1 — development version
+
+- Expanded English and Spanish localisation across the interface, tutorial, contextual help, reports, credits and status messages.
+- Revised empty-project creation, active-project identification, model-loading controls, study-area validation and expandable/detachable viewers.
+- Online place search through GeoNames, plus local parsing of WGS84 decimal coordinates (`latitude, longitude`).
+- More compact barrier/facilitator editing, contextual help, mandatory crossings and preservation of crossing metadata in project and GIS exports.
+- Shared background selection across calculation viewers, improved comparison controls, DTM overlays and external cartographic layers in 3D and reports.
+- Revised report composition and map rendering. Calculation maps are printed through the report composer; direct PNG/PDF export and printing have been removed from calculation viewers.
+- Deterministic 3D orbit and route-following exports to AVI/MJPEG and GIF, PNG frame export, video overlays and elevation profiles. AVI replaces the platform-dependent MP4/WebM capture path; desktop video is written progressively to disk without requiring FFmpeg.
+- More portable export filenames, improved cancellation/error handling, expanded tests, updated credits and funding acknowledgement, and third-party licence checks during packaging.
+
+For the changes already shipped in v0.2.1, see its [release notes](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1), including Linux ARM64 packages, Linux GDAL packaging fixes, Windows video fixes and 3D contour overlays.
+
+### Download and install
+
+Download an installer from the **Assets** section of [GitHub Releases](https://github.com/traxtiber/ViaSpania/releases). The automatically generated “Source code” archives are not installers. Choose the architecture of your computer:
+
+| System | Published v0.2.1 packages | Architecture |
+| --- | --- | --- |
+| macOS | `.dmg` | Apple Silicon (`aarch64`, M1 and later) |
+| Windows | `-setup.exe` or `.msi` | Intel/AMD 64-bit (`x64`) |
+| Linux | `.AppImage`, `.deb`, `.rpm` | Intel/AMD (`amd64`/`x86_64`) or ARM64 (`arm64`/`aarch64`) |
+
+There is no published Intel Mac installer in v0.2.1. Desktop packages include GDAL/PROJ; end users do not need Node.js, pnpm or Rust. System web runtimes are still required: WebView2 on Windows and compatible WebKitGTK/system libraries on Linux. See [Tauri runtime information](https://tauri.app/reference/webview-versions/).
+
+#### macOS: first launch of the unnotarized application
+
+The published DMG is not signed with an Apple Developer ID certificate or notarized by Apple. Local/ad hoc signing is not notarization.
+
+1. Open the DMG and drag `ViaSpania.app` into **Applications**.
+2. Try opening it. For an unidentified-developer/notarization warning, open **System Settings → Privacy & Security → Open Anyway**, then confirm. See [Apple's instructions](https://support.apple.com/en-us/102445).
+3. If the verified official copy remains blocked by quarantine, close it and run this command in Terminal, then reopen it:
+
+   ```bash
+   xattr -dr com.apple.quarantine "/Applications/ViaSpania.app"
+   ```
+
+This removes quarantine only from that application. A “damaged” message can also mean corruption or modification: download a fresh official copy first, and do not bypass a malware alert. If permissions or device policy prevent opening the app, contact the administrator; do not disable Gatekeeper globally.
+
+#### Windows: unsigned installer
+
+Run either the downloaded `-setup.exe` or `.msi`, then open ViaSpania from the Start menu. The published installers are unsigned, so SmartScreen may display **Windows protected your PC**. After checking the download's origin, choose **More info → Run anyway** if offered. An “Unknown publisher” UAC prompt does not verify the application's identity; approve only the installation you intentionally started. See [Microsoft's SmartScreen documentation](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
+
+If an organisational policy or Smart App Control blocks installation without an override, contact the administrator. Do not turn off Defender, SmartScreen or UAC. Windows uses code signing and reputation checks; Apple notarization does not apply.
+
+#### Linux: local package or AppImage
+
+Choose one format. From the download directory, replace each example filename with the exact file you downloaded, matching your architecture and version:
+
+```bash
+# AppImage: grant execution permission, then launch
+chmod +x ./ViaSpania_0.2.1_amd64.AppImage
+./ViaSpania_0.2.1_amd64.AppImage
+
+# Debian / Ubuntu
+sudo apt install ./ViaSpania_0.2.1_amd64.deb
+
+# Distributions using DNF / RPM
+sudo dnf install ./ViaSpania-0.2.1-1.x86_64.rpm
+```
+
+DEB/RPM installations add an application launcher. Linux packages do not carry a distribution signature; there is no Apple-style notarization. If local policy rejects an unsigned package, use an administrator-approved installation method rather than disabling signature checks. Compatibility depends on architecture, glibc and WebKitGTK. If AppImage reports missing FUSE, use the matching DEB/RPM or your distribution's FUSE instructions. The build workflow uses Ubuntu 24.04 for AMD64 and Ubuntu 22.04 for ARM64; this is not a guarantee of compatibility with every Linux distribution.
+
+### First analysis
+
+1. Create a project and choose a study area on the Navigation map.
+2. Download/process an elevation model or import a local GeoTIFF. Check resolution and estimated memory before processing.
+3. Add origins, destinations or multipoints; configure the travel profile and any barriers or facilitators.
+4. Run an analysis and inspect its map, tables and elevation profile or 3D view.
+5. Save the project and export the required products or compose a PDF report.
+
+See the [English manual](docs/manual.en.md) for the full workflow. Current development exports include project JSON, GeoJSON, GeoPackage, GeoTIFF, PDF reports, PNG frames, AVI video and animated GIF. Availability depends on the calculation and runtime; keep the project and its elevation files together.
+
+### Local processing and limitations
+
+Calculations run locally. Map tiles, elevation downloads and place-name searches require network access and contact their respective providers. GeoNames searches send the entered term and use a shared project quota; coordinate input is parsed locally. Custom layers have their own availability, attribution and access conditions.
+
+Results depend on elevation resolution, model assumptions, connectivity and configured constraints. Sub-optimal alternatives are not exact *k*-shortest paths; mandatory visits do not globally optimise visit order. Costs expressed in time, energy and relative units cannot be compared directly. Elevation does not establish paths, legal access, land cover or safe passage. ViaSpania is not an emergency-navigation system.
+
+### Development
+
+Use **Node.js 24** and **pnpm 11.19.0**, matching CI. Desktop development additionally requires stable Rust, the [Tauri platform prerequisites](https://tauri.app/start/prerequisites/) and native GDAL/PROJ tools available in `PATH`.
+
+```bash
+git clone https://github.com/traxtiber/ViaSpania.git
+cd ViaSpania
+pnpm install --frozen-lockfile
+pnpm desktop:dev
+```
+
+| Command | Purpose |
+| --- | --- |
+| `pnpm dev` | Web frontend development; native geospatial operations require the desktop app |
+| `pnpm test` | Deterministic TypeScript/React tests |
+| `pnpm build` | Type checking and production web build |
+| `pnpm preview` | Preview the web build |
+| `cargo test --manifest-path src-tauri/Cargo.toml` | Rust tests |
+| `pnpm desktop:build` | Prepare GDAL/PROJ resources and build native installers |
+| `pnpm desktop:build:macos` / `:windows` / `:linux` | Build platform-specific package formats on the corresponding host |
+
+Installers are written under `src-tauri/target/release/bundle/`. See the [packaging guide](docs/desktop-portability.md) for native requirements. `pnpm desktop:build:signed:macos` applies local ad hoc signing only. Packaging also checks third-party licence requirements; review the [release audit](docs/release-license-audit.md) before distribution.
+
+Code layout: `src/components` contains the UI/maps; `src/core` contains pure geographic logic; `src/services` contains provider/native adapters; `src-tauri` contains the Rust backend; `public/fixtures` contains deterministic service fixtures. See [architecture](docs/architecture.md), [model audit](docs/model-audit.md) and [research notes](docs/research.md).
+
+### Support, authorship and licence
+
+Report reproducible problems in [Issues](https://github.com/traxtiber/ViaSpania/issues), including version/build, OS and architecture, steps, data source and the exact error. Remove private project data before attaching files. Contact: [Antonio López García](mailto:antonio.lopez@ugr.es).
+
+ViaSpania
+
+Copyright © 2026 Antonio López García, Universidad de Granada
+
+Este programa se distribuye bajo la licencia GPL-3.0-only. See [LICENSE](LICENSE) for the full licence and the separate terms for graphical assets. Third-party software and data retain their own terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and in-app credits. Data credits include © OpenStreetMap contributors (ODbL 1.0), IGN/CNIG and GeoNames. Preserve the attribution of every source used.
+
+### Funding
+
+This application is a result of the grant RYC2022-037730-I funded by MICIU/AEI/10.13039/501100011033 and by ESF+.
+
+[Funding acknowledgement and official sources](docs/funding.md).
+
+---
+

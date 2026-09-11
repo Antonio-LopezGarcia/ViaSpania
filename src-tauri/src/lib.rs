@@ -2631,10 +2631,11 @@ fn import_geopackage(path: String) -> Result<Vec<Value>, NativeError> {
     if input.extension().and_then(|v| v.to_str()).map(|v| v.eq_ignore_ascii_case("gpkg")) != Some(true) {
         return Err(NativeError::Io("Seleccione un archivo con extensión .gpkg".into()));
     }
+    let external_input = platform_external_path(&input, cfg!(windows));
     let ogr = command_path("ogr2ogr").ok_or_else(|| NativeError::Gdal("ogr2ogr no está instalado".into()))?;
     let read = |options: &[&str], layer: Option<&str>| -> Result<Value, NativeError> {
         let mut command = Command::new(&ogr);
-        command.args(["-f", "GeoJSON"]).args(options).arg("/vsistdout/").arg(&input);
+        command.args(["-f", "GeoJSON"]).args(options).arg("/vsistdout/").arg(&external_input);
         if let Some(layer) = layer {
             command.arg(layer);
         }

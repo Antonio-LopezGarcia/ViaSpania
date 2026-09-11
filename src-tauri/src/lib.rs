@@ -2632,19 +2632,28 @@ fn import_geopackage(path: String) -> Result<Vec<Value>, NativeError> {
         return Err(NativeError::Io("Seleccione un archivo con extensión .gpkg".into()));
     }
     let ogr = command_path("ogr2ogr").ok_or_else(|| NativeError::Gdal("ogr2ogr no está instalado".into()))?;
-    let read = |args: &[&str]| -> Result<Value, NativeError> {
-        let output = Command::new(&ogr).args(["-f", "GeoJSON", "/vsistdout/"]).arg(&input).args(args).output()
+    let read = |options: &[&str], layer: Option<&str>| -> Result<Value, NativeError> {
+        let mut command = Command::new(&ogr);
+        command.args(["-f", "GeoJSON"]).args(options).arg("/vsistdout/").arg(&input);
+        if let Some(layer) = layer {
+            command.arg(layer);
+        }
+        let output = command.output()
             .map_err(|_| NativeError::Gdal("No se pudo leer el GeoPackage con GDAL".into()))?;
-        if !output.status.success() { return Err(NativeError::Gdal("No se pudo leer o transformar una capa del GeoPackage. Compruebe sus geometrías y su sistema de coordenadas".into())); }
+        if !output.status.success() {
+            let detail = String::from_utf8_lossy(&output.stderr).trim().to_owned();
+            let message = "No se pudo leer o transformar una capa del GeoPackage. Compruebe sus geometrías y su sistema de coordenadas";
+            return Err(NativeError::Gdal(if detail.is_empty() { message.into() } else { format!("{message}: {detail}") }));
+        }
         serde_json::from_slice(&output.stdout).map_err(|_| NativeError::Gdal("GDAL devolvió datos GeoPackage no válidos".into()))
     };
-    let catalog = read(&["-sql", "SELECT table_name FROM gpkg_contents WHERE data_type = 'features'", "-dialect", "SQLite"])?;
+    let catalog = read(&["-sql", "SELECT table_name FROM gpkg_contents WHERE data_type = 'features'", "-dialect", "SQLite"], None)?;
     let names: Vec<&str> = catalog["features"].as_array().ok_or_else(|| NativeError::Io("El GeoPackage no contiene un catálogo válido".into()))?
         .iter().filter_map(|f| f["properties"]["table_name"].as_str()).collect();
     let mut layers = Vec::new();
     for name in ["puntos", "barreras", "corredores", "puentes", "puntos_interes"] {
         if names.contains(&name) {
-            let data = read(&[name, "-t_srs", "EPSG:4326", "-preserve_fid"])?;
+            let data = read(&["-t_srs", "EPSG:4326", "-preserve_fid"], Some(name))?;
             layers.push(serde_json::json!({"name":name,"geoJson":data.to_string()}));
         }
     }

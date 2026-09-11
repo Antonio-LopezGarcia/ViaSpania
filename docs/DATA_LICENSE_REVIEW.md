@@ -1,6 +1,8 @@
 # Revisión de datos geográficos y exportaciones
 
-Fecha: 2026-09-10. **Cierre técnico y documental condicionado al inventario exacto revisado**, registrado en `docs/data-evidence/REVIEW.json`. Confianza media. No se han identificado condiciones de los datos examinados que impidan distribuir el código propio de ViaSpania como GPL-3.0-only conservando los datos bajo sus condiciones originales. Esto no convierte el conjunto de datos en GPL ni constituye una certificación jurídica de cualquier exportación del usuario.
+Fecha: 2026-09-11. **Cierre técnico y documental condicionado al inventario exacto revisado**, registrado en `docs/data-evidence/REVIEW.json`. Confianza media. No se han identificado condiciones de los datos examinados que impidan distribuir el código propio de ViaSpania como GPL-3.0-only conservando los datos bajo sus condiciones originales. Esto no convierte el conjunto de datos en GPL ni constituye una certificación jurídica de cualquier exportación del usuario.
+
+Recierre 0.2.2: los 626 archivos empaquetados conservan exactamente los hashes revisados. Se inspeccionaron los 17 archivos de implementación modificados: incorporan procedencia en más exportaciones, preservan atribuciones en capturas y vídeo, evitan truncarlas y sincronizan el perfil animado; los cambios restantes son versión, identificación HTTP, UI, estilos, traducciones y pruebas. No se observó ampliación de datos, proveedores ni derechos asumidos. Pasaron 81 pruebas focalizadas de exportación, atribución, vídeo, informes y terreno.
 
 ## Alcance y separación de derechos
 
@@ -53,7 +55,7 @@ Fuentes de condiciones: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/
 
 Pruebas de procedencia, migración, exportaciones, créditos largos y control de cambios; comprobación TypeScript y build. Revisión visual en navegador del compositor real a 640×480 y 320×240; rechazo explícito a 120×80. PDF sintético con 30 créditos, renderizado con Poppler: se identificó y corrigió desbordamiento al cambiar de página, y se revisó la continuación corregida. Son pruebas representativas del motor compartido, no una ejecución exhaustiva de todos los proveedores y combinaciones de UI. No se presentan datos sintéticos como geografía real.
 
-El expediente de release debe verificar los bytes de todos los datos de `share` y avisos dentro de la nueva `.app`; el inspector ahora comprueba también los datos, además de los binarios y licencias. El resultado de esa comprobación queda en `release/APP_INSPECTION.json`. Los instaladores anteriores no quedan validados retroactivamente. La autorización final de publicación sigue separada y depende del cierre de `corresponding_source`.
+El expediente de release debe verificar los bytes de todos los datos de `share` y avisos dentro de la nueva `.app`; el inspector ahora comprueba también los datos, además de los binarios y licencias. El resultado de esa comprobación queda en `release/APP_INSPECTION.json`. Los instaladores anteriores no quedan validados retroactivamente. La autorización final de publicación sigue separada.
 
 ### Resultado de la verificación final
 
@@ -62,4 +64,4 @@ El expediente de release debe verificar los bytes de todos los datos de `share` 
 - Prueba real GeoJSON → GeoPackage con el GDAL empaquetado y lectura SQLite: el JSON de procedencia del punto se conserva exactamente.
 - `git diff --check` sin errores. No se ha regenerado el DMG ni publicado una nueva release en esta fase. El DMG futuro debe construirse con este estado y verificarse antes de publicarlo.
 
-Con estas comprobaciones queda **resuelta la decisión `data` para este alcance**. Sigue pendiente `corresponding_source`. La ausencia de permisos de datos particulares del usuario sigue expresamente fuera de este cierre.
+Con estas comprobaciones queda **resuelta la decisión `data` para este alcance y para los hashes actuales de 0.2.2**. `corresponding_source` se cerró separadamente para el runtime inventariado. La ausencia de permisos de datos particulares del usuario sigue expresamente fuera de este cierre.

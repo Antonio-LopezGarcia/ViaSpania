@@ -5764,8 +5764,5 @@
       "selectedLicense": null
     }
   ],
-  "findings": [
-    "REQUIERE REVISIÓN: Cerrar recursos auxiliares de builds nativos y verificar reconstrucción desde las fuentes suministradas.",
-    "REQUIERE REVISIÓN: cambiaron los datos o la implementación respecto al cierre de datos/exportaciones."
-  ]
+  "findings": []
 }

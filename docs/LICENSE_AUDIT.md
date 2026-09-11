@@ -1,4 +1,4 @@
-> Estado vigente 2026-09-10: revisión `data` resuelta para el alcance de [DATA_LICENSE_REVIEW.md](DATA_LICENSE_REVIEW.md), con reapertura por cambios en los hashes revisados. 388 pruebas y nueve controles del colector pasan; nueva `.app` compilada e inspeccionada (1012 archivos, cero fallos). **Solo `corresponding_source` permanece pendiente.** No se ha publicado una nueva release ni regenerado el DMG. Las cifras y estados restantes del documento son antecedentes históricos, sustituidos por esta actualización y `RELEASE_DECISIONS.json`.
+> Estado vigente 2026-09-11: `corresponding_source` y `data` resueltos para los hashes inventariados del candidato macOS 0.2.2. No se ha publicado una nueva release ni regenerado el DMG. Las cifras y estados restantes del documento son antecedentes históricos, sustituidos por esta actualización y `RELEASE_DECISIONS.json`.
 
 # Auditoría de licencias de ViaSpania 0.2.1
 
@@ -2126,4 +2126,3 @@ Esta frase significa que **no se ha demostrado una incompatibilidad insalvable c
 ### Final answer
 
 **No todavía con esa formulación sin reservas.** Puedes comunicar a la OSL que la auditoría técnica no ha confirmado incompatibilidades de las dependencias principales con GPLv3 y que GDAL/PROJ se invocan por CLI, pero se redistribuyen con un runtime nativo que también debe cumplir sus licencias. Debes adjuntar este informe y señalar las revisiones pendientes de avisos nativos, titularidad, assets, datos y bundle final. Hasta cerrarlas, no está respaldada la afirmación de que la totalidad de ViaSpania está libre de impedimentos para su distribución bajo GPLv3.
-

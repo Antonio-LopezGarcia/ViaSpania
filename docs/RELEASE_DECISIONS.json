@@ -50,11 +50,12 @@
       "evidence": [
         {
           "document": "docs/DATA_LICENSE_REVIEW.md",
-          "sha256": "515bac7d15745a3ea81e820aad489d100366a809ddb004f483b767f23d59247e",
-          "basis": "Cierre condicionado al inventario exacto, avisos separados, procedencia conservadora, pruebas y app inspeccionada. No acredita derechos sobre importaciones sin origen."
+          "sha256": "962607feabde21006085f3e001e3e97f323ecfb8b4060afb9a801217a5a47594",
+          "basis": "Recierre 0.2.2: 626 datos sin cambios; 17 archivos de implementación revisados y 81 pruebas focalizadas aprobadas. Se preservan avisos y procedencia conservadora. No acredita derechos sobre importaciones sin origen."
         },
         {
-          "document": "docs/data-evidence/REVIEW.json"
+          "document": "docs/data-evidence/REVIEW.json",
+          "sha256": "4818dfa37a46526be947706be2df3de29d1335490920177e83444eba16619d4b"
         },
         {
           "document": "docs/PROJ_DB_REVIEW.md"
@@ -64,12 +65,12 @@
     {
       "id": "corresponding_source",
       "requirement": "Cerrar recursos auxiliares de builds nativos y verificar reconstrucción desde las fuentes suministradas.",
-      "status": "pending",
+      "status": "resolved",
       "evidence": [
         {
           "document": "docs/CORRESPONDING_SOURCE_REVIEW.md",
-          "sha256": "5ca3ba676a61fec71b3933d2654d1fc464975ead58c474a58e050a422ffcb187",
-          "basis": "Avance parcial: mimalloc incorporado al expediente; PROJ, Arrow y GDAL reconstruidos y probados con dependencias locales. No cierra la cadena completa ni demuestra identidad de cabeceras con el build histórico."
+          "sha256": "c58c8a6a21e251ac8a4456062f5240c60c3ddf4cd183a9ba997ad3d4c04f6a1c",
+          "basis": "Los 85 componentes nativos tienen fuentes verificadas y recetas conservadas; cuatro auxiliares están vinculados al padre. El paquete contiene código, locks, scripts, recetas, parches y recibos. Las reconstrucciones parciales son evidencia adicional; no se declara reproducibilidad bit a bit."
         }
       ]
     }

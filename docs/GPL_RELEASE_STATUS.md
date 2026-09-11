@@ -1,4 +1,4 @@
-> Estado vigente 2026-09-11: candidato 0.2.2 en preparación para GitHub como borrador; expediente con 823 componentes. Reconstrucciones parciales de PROJ, Arrow, GDAL, SFCGAL y otras bibliotecas documentadas en [CORRESPONDING_SOURCE_REVIEW.md](CORRESPONDING_SOURCE_REVIEW.md). Siguen pendientes la revisión integral de fuentes y la de datos/exportaciones. No se declara cumplimiento integral ni publicación aprobada.
+> Estado vigente 2026-09-11: candidato 0.2.2 en preparación para GitHub como borrador; expediente con 823 componentes. Las revisiones de fuentes correspondientes y de datos/exportaciones están cerradas para los hashes inventariados. No se declara publicación hasta regenerar y verificar los artefactos finales.
 
 # Estado de preparación GPL de ViaSpania 0.2.1
 

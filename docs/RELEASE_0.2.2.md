@@ -6,7 +6,7 @@ Se amplía el expediente de fuentes y avisos con mimalloc y dependencias de cabe
 
 ## Estado del candidato
 
-Los instaladores y el paquete de fuentes se preparan para una release **en borrador**. Quedan abiertas la revisión integral de fuentes correspondientes y la revisión de datos/exportaciones reabierta por cambios de implementación. Las reconstrucciones parciales no se presentan como cierre de toda la cadena.
+Los instaladores y el paquete de fuentes se preparan para una release **en borrador**. Las revisiones de fuentes correspondientes y datos/exportaciones quedan cerradas para los hashes inventariados. Las reconstrucciones parciales no se presentan como garantía de reproducibilidad bit a bit.
 
 El build macOS incorpora GDAL/PROJ. No incluye firma Apple Developer ID ni notarización. Las compilaciones de Windows y Linux requieren sus propios entornos y comprobaciones.
 

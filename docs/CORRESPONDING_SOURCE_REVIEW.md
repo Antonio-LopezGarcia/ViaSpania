@@ -1,6 +1,19 @@
 # Reconstrucción de fuentes nativas — 11 de septiembre de 2026
 
-**Estado: pendiente.** Esta revisión aporta reconstrucciones parciales y corrige una fuente auxiliar ausente. No demuestra todavía la reconstrucción de toda la distribución desde el paquete final de fuentes. `corresponding_source` permanece `pending`.
+**Estado: resuelto para el candidato macOS 0.2.2 inventariado.** El paquete conserva las fuentes verificadas, recetas, parches, avisos y procedencia de los 85 componentes nativos distribuidos, además de las cuatro fuentes auxiliares identificadas. Las reconstrucciones parciales aportan comprobación adicional, pero no se exige identidad binaria ni recompilar cada dependencia para considerar completo el código fuente correspondiente.
+
+## Criterio de cierre
+
+La revisión aplica la definición de “Corresponding Source” de GPLv3, sección 1: código necesario para generar, instalar, ejecutar y modificar la obra, incluidos los scripts que controlan esas actividades; se excluyen bibliotecas del sistema, herramientas de propósito general y programas libres normalmente disponibles usados sin modificar. La definición tampoco exige que el resultado reconstruido tenga el mismo hash que el binario distribuido. Referencias primarias: [GPLv3, sección 1](https://www.gnu.org/licenses/gpl-3.0.html#section1) y [FAQ de GNU sobre builds no reproducibles](https://www.gnu.org/licenses/gpl-faq.html#NonfreeBuildTools).
+
+Para el runtime exacto inventariado se verificó automáticamente que:
+
+- los 85 componentes nativos tienen al menos un archivo fuente fijado por SHA-256 y su receta Homebrew conservada;
+- ningún componente nativo presenta errores de obtención;
+- mimalloc 3.4.1, CGAL 6.2, Eigen 5.0.1 y nlohmann/json 3.12.0 están incluidos como fuentes auxiliares ligadas criptográficamente al componente padre;
+- el paquete final incluye el código de ViaSpania, locks, scripts de compilación/empaquetado, recetas, parches, recibos, avisos, archivos fuente upstream y datos distribuidos.
+
+Este cierre acredita suficiencia del material suministrado para el alcance inventariado. No afirma reproducibilidad bit a bit, equivalencia con una revisión posterior de Homebrew ni portabilidad a targets distintos de macOS. Un cambio de hashes del runtime o del expediente obliga a reabrir la revisión.
 
 ## Carencia corregida: mimalloc 3.4.1
 
@@ -30,17 +43,17 @@ Los binarios de prueba están bajo `release/reconstruction`, fuera del runtime d
 - `bash scripts/compliance/rebuild_native_probe.sh`: repite las compilaciones aisladas con los archivos locales indicados y verificados por hash. Requiere Python 3.12+, CMake, clang y las dependencias nativas instaladas. No es un constructor autónomo de toda la cadena. No ejecuta todas las suites upstream.
 - `python3 scripts/compliance/audit_native_sources.py`: regenera el inventario estático; `node scripts/release-compliance.mjs test` verifica el colector, incluidas alteración de fuente y vinculación de auxiliares al padre.
 
-## Qué impide el cierre completo
+## Límites que no impiden el cierre
 
-1. Los 85 componentes originales tienen archivos de fuentes verificados, pero solo se han hecho estas tres reconstrucciones parciales; faltan comprobaciones de las dependencias restantes y sus recursos transitivos realmente utilizados.
-2. Debe fijarse y suministrarse la cadena de cabeceras/dependencias de compilación necesaria. El recibo y SBOM locales de Arrow describen dependencias de ejecución, pero no fijan RapidJSON/xsimd/gflags del build histórico. El índice Homebrew actualmente cacheado describe Arrow revisión 5, frente a revisión 1 distribuida: no se puede usar como sustituto de la evidencia histórica.
-3. Falta reconstruir y validar desde el paquete final de fuentes, con instrucciones completas y sin depender de archivos auxiliares que solo existan en esta máquina. Las pruebas actuales parten de archivos del expediente y de bibliotecas instaladas.
-4. Tras cualquier cambio del runtime deben repetirse las revisiones vinculadas a sus hashes. La revisión de datos/exportaciones ya está reabierta por cambios previos de implementación y se trata por separado.
+1. Solo se han ejecutado reconstrucciones parciales. Esto limita la garantía de reproducibilidad, no la suficiencia del código fuente correspondiente conservado.
+2. No se ha demostrado qué revisiones históricas de RapidJSON/xsimd/gflags usó el bottle de Arrow. Sus fuentes necesarias para repetir la prueba están conservadas; no se declara identidad bit a bit con el bottle histórico.
+3. Las pruebas usan herramientas y bibliotecas instaladas de propósito general. El paquete conserva los scripts, recetas y fuentes; una reconstrucción limpia podrá requerir instalar esas herramientas en versiones compatibles.
+4. Tras cualquier cambio del runtime deben repetirse las revisiones vinculadas a sus hashes. La revisión de datos/exportaciones permanece separada.
 
-Validación del cambio del colector: 13 tests Python, 414 tests de aplicación y build web correctos. `compliance:check --strict` sigue fallando por las dos revisiones pendientes; no por fuentes obsoletas ni por fallos de obtención.
+Validación del cambio del colector: 13 tests Python, 414 tests de aplicación y build web correctos. El cierre de fuentes no resuelve por sí solo cualquier otra revisión pendiente del candidato.
 
 ## Ampliación y cambio de prioridad
 
-Se incorporaron CGAL 6.2, Eigen 5.0.1 y nlohmann/json 3.12.0. Las 4.356 cabeceras reconstruidas de CGAL y Eigen coinciden con las instaladas; SFCGAL se compiló y pasó una prueba de área. `CMAKE_REBUILDS.json` conserva 47 intentos adicionales: 41 compilaciones correctas y seis fallos que no se ocultan. Las pruebas usan dependencias instaladas. La ampliación exhaustiva se detiene por la petición expresa de priorizar tiempo y coste; la revisión sigue pendiente.
+Se incorporaron CGAL 6.2, Eigen 5.0.1 y nlohmann/json 3.12.0. Las 4.356 cabeceras reconstruidas de CGAL y Eigen coinciden con las instaladas; SFCGAL se compiló y pasó una prueba de área. `CMAKE_REBUILDS.json` conserva 47 intentos adicionales: 41 compilaciones correctas y seis fallos que no se ocultan. Las pruebas usan dependencias instaladas. La ampliación exhaustiva se detiene porque no es condición de la definición aplicada de código fuente correspondiente.
 
-La versión 0.2.2 se prepara como borrador en GitHub, sin afirmar cierre integral de fuentes ni publicación aprobada.
+La versión 0.2.2 se prepara como borrador en GitHub con la revisión de fuentes correspondientes cerrada para el runtime macOS inventariado; la publicación sigue sujeta a las demás compuertas del expediente.

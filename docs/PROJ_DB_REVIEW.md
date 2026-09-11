@@ -6,7 +6,7 @@ La verificación documental identifica condiciones que permiten la redistribuci�
 
 Se ha implementado la conservación de procedencia por resultado y una migración conservadora de proyectos antiguos. **No se puede recuperar con certeza información que un proyecto nunca guardó.** Esa ausencia se conserva como `REQUIERE REVISIÓN`, con la referencia histórica original si existe; se recomienda recalcular con una fuente documentada antes de redistribuir dichos resultados.
 
-La revisión general `data` queda cerrada para el alcance y las condiciones documentadas en `DATA_LICENSE_REVIEW.md`, con nueva `.app` local inspeccionada. No hay nueva release publicada; `corresponding_source` sigue pendiente.
+La revisión general `data` queda cerrada para los hashes actuales y las condiciones documentadas en `DATA_LICENSE_REVIEW.md`. No hay nueva release publicada; `corresponding_source` está cerrado para el runtime inventariado.
 
 ## Base examinada y evidencia
 

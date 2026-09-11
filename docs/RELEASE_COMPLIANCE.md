@@ -1,6 +1,6 @@
 # Preparación de una distribución GPL de ViaSpania
 
-Avance de reconstrucción nativa (11-09-2026): [CORRESPONDING_SOURCE_REVIEW.md](CORRESPONDING_SOURCE_REVIEW.md). Se incorporó mimalloc 3.4.1 al colector y se completaron pruebas parciales de PROJ, Arrow y GDAL; el cierre integral continúa pendiente.
+Revisión de fuentes correspondientes (11-09-2026): [CORRESPONDING_SOURCE_REVIEW.md](CORRESPONDING_SOURCE_REVIEW.md). Se verificaron fuentes y recetas para los 85 componentes nativos, se incorporaron cuatro auxiliares y se conservaron reconstrucciones parciales como evidencia adicional. El cierre no afirma reproducibilidad bit a bit.
 
 El código propio usa GPL-3.0-only. El expediente automatizado conserva fuentes y avisos; **no concede permisos de los titulares ni certifica automáticamente una release**. Los resultados con revisiones pendientes son candidatos locales y el control `--strict` impide su publicación automatizada.
 

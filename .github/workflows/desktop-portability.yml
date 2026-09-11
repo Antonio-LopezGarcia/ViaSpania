@@ -28,6 +28,7 @@ on:
 
 jobs:
   quality:
+  quality:
     name: Código compartido · ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -46,7 +47,27 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - name: Dependencias nativas de Linux
         if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev gdal-bin libgdal-dev
+      - name: GDAL/PROJ en macOS
+        if: runner.os == 'macOS'
+        run: brew install gdal
+      - uses: conda-incubator/setup-miniconda@v4
+        if: runner.os == 'Windows'
+        with:
+          activate-environment: viaspania-build
+          miniforge-version: latest
+          channels: conda-forge
+          conda-remove-defaults: true
+      - name: GDAL/PROJ en Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          conda install -n viaspania-build -c conda-forge gdal -y
+          $prefix = conda run -n viaspania-build python -c "import sys; print(sys.prefix)"
+          $prefix = $prefix.Trim()
+          "$prefix\Library\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
+          "GDAL_DATA=$prefix\Library\share\gdal" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "PROJ_DATA=$prefix\Library\share\proj" | Out-File -FilePath $env:GITHUB_ENV -Append
       - run: pnpm install --frozen-lockfile
       - run: pnpm test
       - run: pnpm build

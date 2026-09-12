@@ -7,7 +7,7 @@
 
 ViaSpania es una aplicación de escritorio para analizar costes de desplazamiento sobre el terreno, comparar rutas y explorar la topografía, con cartografía y servicios de elevación integrados. Procesa los datos geográficos localmente mediante Tauri, Rust, GDAL/PROJ, React, OpenLayers y Three.js.
 
-**Estado de publicación:** la última versión publicada comprobada el 8 de septiembre de 2026 es [v0.2.1](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1). Este README también describe cambios posteriores en desarrollo; esas funciones no están necesariamente incluidas en los instaladores publicados.
+**Estado de publicación:** [ViaSpania 0.2.2](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) está preparado como borrador/prerelease validado sobre `main`, con instaladores para macOS, Windows y Linux y sus fuentes correspondientes. Mientras el borrador no se publique, la última versión pública estable continúa siendo [v0.2.1](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1).
 
 ### Funciones
 
@@ -20,7 +20,7 @@ ViaSpania es una aplicación de escritorio para analizar costes de desplazamient
 - Proyectos JSON locales, importación de puntos CSV/GeoJSON, exportaciones vectoriales y ráster y compositor de informes PDF con atribución de fuentes.
 - Terreno 3D interactivo con superposición de resultados y exportación de animaciones.
 
-### Cambios desde v0.2.1 — versión en desarrollo
+### Novedades de v0.2.2
 
 - Ampliación de la traducción al inglés y español de interfaz, tutorial, ayuda contextual, informes, créditos y mensajes de estado.
 - Revisión de la creación de proyectos vacíos, identificación del proyecto activo, controles de carga del modelo, validación del área de estudio y visores ampliables/separables.
@@ -31,23 +31,23 @@ ViaSpania es una aplicación de escritorio para analizar costes de desplazamient
 - Exportación 3D determinista de órbitas y seguimiento de rutas a AVI/MJPEG y GIF, fotogramas PNG, superposiciones de vídeo y perfiles de elevación. AVI sustituye a la captura MP4/WebM dependiente de cada plataforma; el vídeo de escritorio se escribe progresivamente en disco sin requerir FFmpeg.
 - Nombres de exportación más portables, mejoras de cancelación y errores, ampliación de pruebas, actualización de créditos y financiación y comprobaciones de licencias de terceros durante el empaquetado.
 
-Los cambios ya distribuidos en v0.2.1 figuran en sus [notas de versión](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1): paquetes Linux ARM64, correcciones de GDAL en Linux y de vídeo en Windows y superposición de curvas en 3D.
+El candidato 0.2.2 se validó con 414 pruebas TypeScript/React, 31 pruebas Rust y 13 pruebas del colector de cumplimiento, además del build web y los paquetes nativos. Consulte el [resumen del candidato](docs/RELEASE_0.2.2.md) y el [manual en español](docs/manual.md).
 
 ### Descargar e instalar
 
 Descargue un instalador desde **Assets** en [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). Los archivos automáticos «Source code» no son instaladores. Elija la arquitectura de su equipo:
 
-| Sistema | Paquetes publicados en v0.2.1 | Arquitectura |
+| Sistema | Paquetes preparados para v0.2.2 | Arquitectura |
 | --- | --- | --- |
 | macOS | `.dmg` | Apple Silicon (`aarch64`, M1 y posteriores) |
 | Windows | `-setup.exe` o `.msi` | Intel/AMD de 64 bits (`x64`) |
 | Linux | `.AppImage`, `.deb`, `.rpm` | Intel/AMD (`amd64`/`x86_64`) o ARM64 (`arm64`/`aarch64`) |
 
-No hay instalador publicado para Mac Intel en v0.2.1. Los paquetes de escritorio incluyen GDAL/PROJ; el usuario no necesita Node.js, pnpm ni Rust. Sí se requieren los motores web del sistema: WebView2 en Windows y WebKitGTK/bibliotecas compatibles en Linux. Consulte la [información de Tauri sobre motores web](https://tauri.app/reference/webview-versions/).
+No hay instalador para Mac Intel en v0.2.2. Los paquetes de escritorio incluyen GDAL/PROJ; el usuario no necesita Node.js, pnpm ni Rust. Sí se requieren los motores web del sistema: WebView2 en Windows y WebKitGTK/bibliotecas compatibles en Linux. Consulte la [información de Tauri sobre motores web](https://tauri.app/reference/webview-versions/).
 
 #### macOS: primera apertura de la aplicación sin notarizar
 
-El DMG publicado no está firmado con un certificado Apple Developer ID ni notarizado por Apple. La firma local/ad hoc no equivale a notarización.
+El DMG de v0.2.2 no está firmado con un certificado Apple Developer ID ni notarizado por Apple. La firma local/ad hoc no equivale a notarización.
 
 1. Abra el DMG y arrastre `ViaSpania.app` a **Aplicaciones**.
 2. Intente abrirla. Ante un aviso de desarrollador no identificado o de notarización, vaya a **Ajustes del Sistema → Privacidad y seguridad → Abrir igualmente** y confirme. Consulte las [instrucciones de Apple](https://support.apple.com/es-es/102445).
@@ -61,7 +61,7 @@ Esto elimina la cuarentena únicamente de esa aplicación. Un aviso de aplicaci�
 
 #### Windows: instalador sin firma
 
-Ejecute el archivo `-setup.exe` o `.msi` descargado y abra ViaSpania desde Inicio. Los instaladores publicados no están firmados, por lo que SmartScreen puede mostrar **Windows protegió su PC**. Tras comprobar la procedencia, seleccione **Más información → Ejecutar de todas formas**, si aparece. Un aviso del Control de cuentas de usuario con «Editor desconocido» no verifica la identidad de la aplicación; autorice únicamente la instalación que acaba de iniciar. Consulte la [documentación de Microsoft sobre SmartScreen](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
+Ejecute el archivo `-setup.exe` o `.msi` descargado y abra ViaSpania desde Inicio. Los instaladores de v0.2.2 no están firmados, por lo que SmartScreen puede mostrar **Windows protegió su PC**. Tras comprobar la procedencia, seleccione **Más información → Ejecutar de todas formas**, si aparece. Un aviso del Control de cuentas de usuario con «Editor desconocido» no verifica la identidad de la aplicación; autorice únicamente la instalación que acaba de iniciar. Consulte la [documentación de Microsoft sobre SmartScreen](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
 
 Si una política corporativa o Smart App Control bloquea la instalación sin ofrecer una excepción, consulte al administrador. No desactive Defender, SmartScreen ni el Control de cuentas de usuario. Windows utiliza firma de código y comprobaciones de reputación; la notarización de Apple no se aplica.
 
@@ -71,14 +71,14 @@ Elija un formato. Desde la carpeta de descargas, sustituya cada nombre de ejempl
 
 ```bash
 # AppImage: conceder permiso de ejecución y abrir
-chmod +x ./ViaSpania_0.2.1_amd64.AppImage
-./ViaSpania_0.2.1_amd64.AppImage
+chmod +x ./ViaSpania_0.2.2_amd64.AppImage
+./ViaSpania_0.2.2_amd64.AppImage
 
 # Debian / Ubuntu
-sudo apt install ./ViaSpania_0.2.1_amd64.deb
+sudo apt install ./ViaSpania_0.2.2_amd64.deb
 
 # Distribuciones con DNF / RPM
-sudo dnf install ./ViaSpania-0.2.1-1.x86_64.rpm
+sudo dnf install ./ViaSpania-0.2.2-1.x86_64.rpm
 ```
 
 DEB/RPM añaden un lanzador de la aplicación. Los paquetes Linux no llevan firma de distribución; no existe la notarización de Apple. Si la política local rechaza paquetes sin firmar, use un método aprobado por el administrador en lugar de desactivar la verificación de firmas. La compatibilidad depende de arquitectura, glibc y WebKitGTK. Si AppImage indica que falta FUSE, utilice el DEB/RPM correspondiente o las instrucciones de FUSE de su distribución. El flujo de compilación usa Ubuntu 24.04 para AMD64 y Ubuntu 22.04 para ARM64; esto no garantiza compatibilidad con todas las distribuciones Linux.
@@ -91,7 +91,7 @@ DEB/RPM añaden un lanzador de la aplicación. Los paquetes Linux no llevan firm
 4. Ejecute un análisis e inspeccione el mapa, las tablas y el perfil de elevación o la vista 3D.
 5. Guarde el proyecto y exporte los productos necesarios o componga un informe PDF.
 
-Consulte el [manual en español](docs/manual.md) para el procedimiento completo. La versión en desarrollo exporta proyectos JSON, GeoJSON, GeoPackage, GeoTIFF, informes PDF, fotogramas PNG, vídeo AVI y GIF animado. La disponibilidad depende del cálculo y del entorno de ejecución; conserve juntos el proyecto y sus archivos de elevación.
+Consulte el [manual en español](docs/manual.md) para el procedimiento completo. ViaSpania 0.2.2 exporta proyectos JSON, GeoJSON, GeoPackage, GeoTIFF, informes PDF, fotogramas PNG, vídeo AVI y GIF animado. La disponibilidad depende del cálculo y del entorno de ejecución; conserve juntos el proyecto y sus archivos de elevación.
 
 ### Procesamiento local y limitaciones
 
@@ -122,11 +122,11 @@ pnpm desktop:dev
 
 Los instaladores se generan en `src-tauri/target/release/bundle/`. Consulte los requisitos nativos en la [guía de empaquetado](docs/desktop-portability.md). `pnpm desktop:build:signed:macos` solo aplica firma ad hoc local. El empaquetado también comprueba requisitos de licencias de terceros; revise la [auditoría de publicación](docs/release-license-audit.md) antes de distribuir.
 
-Estructura: `src/components` contiene interfaz/mapas; `src/core`, lógica geográfica pura; `src/services`, adaptadores de proveedores y del motor nativo; `src-tauri`, el backend Rust; y `public/fixtures`, respuestas de servicios para pruebas deterministas. Consulte la [arquitectura](docs/architecture.md), la [auditoría de modelos](docs/model-audit.md) y las [notas científicas](docs/research.md).
+Estructura: `src/components` contiene interfaz/mapas; `src/core`, lógica geográfica pura; `src/services`, adaptadores de proveedores y del motor nativo; `src-tauri`, el backend Rust; y `public/fixtures`, respuestas de servicios para pruebas deterministas. Consulte la [arquitectura](docs/ARCHITECTURE.md), la [auditoría de modelos](docs/model-audit.md) y las [notas científicas](docs/research.md).
 
 ### Árbol de arquitectura
 
-Este árbol resume las capas descritas en [docs/architecture.md](docs/architecture.md): interfaz compartida entre web y escritorio, lógica geográfica, adaptadores de servicios y motor nativo Rust con GDAL/PROJ. Las flechas muestran las principales llamadas entre capas; el procesamiento nativo requiere el entorno de escritorio.
+Este árbol resume las capas descritas en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): interfaz compartida entre web y escritorio, lógica geográfica, adaptadores de servicios y motor nativo Rust con GDAL/PROJ. Las flechas muestran las principales llamadas entre capas; el procesamiento nativo requiere el entorno de escritorio.
 
 [![Árbol de arquitectura de ViaSpania: interfaz React y OpenLayers, lógica geográfica, adaptadores HTTP y Tauri IPC, motor Rust y GDAL/PROJ](docs/diagrams/architecture.visual-check.2048x1320.light.png)](docs/diagrams/architecture.html)
 
@@ -152,11 +152,15 @@ Este programa es resultado de la ayuda RYC2022-037730-I financiada por MICIU/AEI
 
 ## Distribución GPL y fuentes correspondientes
 
-La preparación de instaladores y sus fuentes se documenta en [RELEASE_COMPLIANCE.md](docs/RELEASE_COMPLIANCE.md). `pnpm compliance:prepare --network` recopila fuentes verificadas y avisos; `pnpm compliance:check --strict` impide publicar mientras haya revisiones pendientes. Los candidatos locales no constituyen una certificación de cumplimiento. Los gráficos reservados se delimitan en [ASSETS.md](docs/ASSETS.md).
+La preparación de instaladores y sus fuentes se documenta en [RELEASE_COMPLIANCE.md](docs/RELEASE_COMPLIANCE.md). El expediente 0.2.2 inventaría 823 componentes y el control `pnpm compliance:check --strict` pasa con 0 revisiones pendientes para los hashes del candidato. Se cerraron y documentaron la autoría/autorización, los assets, las selecciones de licencia, el runtime nativo de macOS, las fuentes correspondientes y los datos/exportaciones. Estos cierres son específicos del material inventariado: cualquier cambio de dependencias, datos o binarios obliga a repetir las comprobaciones.
+
+El borrador ofrece el instalador junto con un paquete de fuentes verificable dividido en partes, su manifiesto SHA-256 y la inspección de la aplicación. Las reconstrucciones de PROJ, Apache Arrow, GDAL y SFCGAL aportan evidencia adicional, pero no se presentan como reproducibilidad bit a bit. Consulte [CORRESPONDING_SOURCE_REVIEW.md](docs/CORRESPONDING_SOURCE_REVIEW.md), [DATA_LICENSE_REVIEW.md](docs/DATA_LICENSE_REVIEW.md) y [NATIVE_LICENSE_REVIEW.md](docs/NATIVE_LICENSE_REVIEW.md).
 
 ### Autoría y autorización institucional
 
 La autoría de Antonio López García, la titularidad institucional declarada de la Universidad de Granada y la autorización comunicada para publicar en el GitHub personal se documentan en [docs/CODE_OWNERSHIP.md](docs/CODE_OWNERSHIP.md). Se mantiene el aviso de copyright conjunto solicitado por la UGR y GPL-3.0-only para el código propio. Las licencias y derechos de terceros se conservan separadamente.
+
+El repositorio principal se trasladó de la cuenta histórica `traxtiber` a [`Antonio-LopezGarcia/ViaSpania`](https://github.com/Antonio-LopezGarcia/ViaSpania). Este cambio de propietario en GitHub no altera la autoría ni la titularidad institucional documentadas, y los enlaces de clonación, incidencias y releases apuntan ya a la ubicación actual.
 
 El logotipo propio conserva copyright separado, con permiso para redistribuirlo sin modificar junto con ViaSpania, también en copias comerciales y versiones modificadas claramente identificadas. Véanse [las condiciones de assets](docs/ASSETS.md). Los logotipos MICIU/UE/AEI se conservan como reconocimiento de la financiación original.
 
@@ -164,7 +168,7 @@ El logotipo propio conserva copyright separado, con permiso para redistribuirlo 
 
 ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic exploration, with integrated cartography and elevation services. It processes geographic data locally using Tauri, Rust, GDAL/PROJ, React, OpenLayers and Three.js.
 
-**Release status:** the latest published release verified on 8 September 2026 is [v0.2.1](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1). This README also describes subsequent development changes; those features are not necessarily included in the published installers.
+**Release status:** [ViaSpania 0.2.2](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) is prepared as a validated draft/prerelease from `main`, with macOS, Windows and Linux installers and corresponding source. Until that draft is published, [v0.2.1](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1) remains the latest public stable release.
 
 ### Features
 
@@ -177,7 +181,7 @@ ViaSpania is a desktop application for terrain-based least-cost analysis, route 
 - Local JSON projects, CSV/GeoJSON point import, vector and raster exports, and a PDF report composer with source attribution.
 - Interactive 3D terrain with analytical overlays and animation exports.
 
-### Changes since v0.2.1 — development version
+### What's new in v0.2.2
 
 - Expanded English and Spanish localisation across the interface, tutorial, contextual help, reports, credits and status messages.
 - Revised empty-project creation, active-project identification, model-loading controls, study-area validation and expandable/detachable viewers.
@@ -188,23 +192,23 @@ ViaSpania is a desktop application for terrain-based least-cost analysis, route 
 - Deterministic 3D orbit and route-following exports to AVI/MJPEG and GIF, PNG frame export, video overlays and elevation profiles. AVI replaces the platform-dependent MP4/WebM capture path; desktop video is written progressively to disk without requiring FFmpeg.
 - More portable export filenames, improved cancellation/error handling, expanded tests, updated credits and funding acknowledgement, and third-party licence checks during packaging.
 
-For the changes already shipped in v0.2.1, see its [release notes](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1), including Linux ARM64 packages, Linux GDAL packaging fixes, Windows video fixes and 3D contour overlays.
+The 0.2.2 candidate was validated with 414 TypeScript/React tests, 31 Rust tests and 13 compliance-collector tests, together with the web build and native packages. See the [candidate summary](docs/RELEASE_0.2.2.md) and [English manual](docs/manual.en.md).
 
 ### Download and install
 
 Download an installer from the **Assets** section of [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). The automatically generated “Source code” archives are not installers. Choose the architecture of your computer:
 
-| System | Published v0.2.1 packages | Architecture |
+| System | Packages prepared for v0.2.2 | Architecture |
 | --- | --- | --- |
 | macOS | `.dmg` | Apple Silicon (`aarch64`, M1 and later) |
 | Windows | `-setup.exe` or `.msi` | Intel/AMD 64-bit (`x64`) |
 | Linux | `.AppImage`, `.deb`, `.rpm` | Intel/AMD (`amd64`/`x86_64`) or ARM64 (`arm64`/`aarch64`) |
 
-There is no published Intel Mac installer in v0.2.1. Desktop packages include GDAL/PROJ; end users do not need Node.js, pnpm or Rust. System web runtimes are still required: WebView2 on Windows and compatible WebKitGTK/system libraries on Linux. See [Tauri runtime information](https://tauri.app/reference/webview-versions/).
+There is no Intel Mac installer for v0.2.2. Desktop packages include GDAL/PROJ; end users do not need Node.js, pnpm or Rust. System web runtimes are still required: WebView2 on Windows and compatible WebKitGTK/system libraries on Linux. See [Tauri runtime information](https://tauri.app/reference/webview-versions/).
 
 #### macOS: first launch of the unnotarized application
 
-The published DMG is not signed with an Apple Developer ID certificate or notarized by Apple. Local/ad hoc signing is not notarization.
+The v0.2.2 DMG is not signed with an Apple Developer ID certificate or notarized by Apple. Local/ad hoc signing is not notarization.
 
 1. Open the DMG and drag `ViaSpania.app` into **Applications**.
 2. Try opening it. For an unidentified-developer/notarization warning, open **System Settings → Privacy & Security → Open Anyway**, then confirm. See [Apple's instructions](https://support.apple.com/en-us/102445).
@@ -218,7 +222,7 @@ This removes quarantine only from that application. A “damaged” message can 
 
 #### Windows: unsigned installer
 
-Run either the downloaded `-setup.exe` or `.msi`, then open ViaSpania from the Start menu. The published installers are unsigned, so SmartScreen may display **Windows protected your PC**. After checking the download's origin, choose **More info → Run anyway** if offered. An “Unknown publisher” UAC prompt does not verify the application's identity; approve only the installation you intentionally started. See [Microsoft's SmartScreen documentation](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
+Run either the downloaded `-setup.exe` or `.msi`, then open ViaSpania from the Start menu. The v0.2.2 installers are unsigned, so SmartScreen may display **Windows protected your PC**. After checking the download's origin, choose **More info → Run anyway** if offered. An “Unknown publisher” UAC prompt does not verify the application's identity; approve only the installation you intentionally started. See [Microsoft's SmartScreen documentation](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
 
 If an organisational policy or Smart App Control blocks installation without an override, contact the administrator. Do not turn off Defender, SmartScreen or UAC. Windows uses code signing and reputation checks; Apple notarization does not apply.
 
@@ -228,14 +232,14 @@ Choose one format. From the download directory, replace each example filename wi
 
 ```bash
 # AppImage: grant execution permission, then launch
-chmod +x ./ViaSpania_0.2.1_amd64.AppImage
-./ViaSpania_0.2.1_amd64.AppImage
+chmod +x ./ViaSpania_0.2.2_amd64.AppImage
+./ViaSpania_0.2.2_amd64.AppImage
 
 # Debian / Ubuntu
-sudo apt install ./ViaSpania_0.2.1_amd64.deb
+sudo apt install ./ViaSpania_0.2.2_amd64.deb
 
 # Distributions using DNF / RPM
-sudo dnf install ./ViaSpania-0.2.1-1.x86_64.rpm
+sudo dnf install ./ViaSpania-0.2.2-1.x86_64.rpm
 ```
 
 DEB/RPM installations add an application launcher. Linux packages do not carry a distribution signature; there is no Apple-style notarization. If local policy rejects an unsigned package, use an administrator-approved installation method rather than disabling signature checks. Compatibility depends on architecture, glibc and WebKitGTK. If AppImage reports missing FUSE, use the matching DEB/RPM or your distribution's FUSE instructions. The build workflow uses Ubuntu 24.04 for AMD64 and Ubuntu 22.04 for ARM64; this is not a guarantee of compatibility with every Linux distribution.
@@ -248,7 +252,7 @@ DEB/RPM installations add an application launcher. Linux packages do not carry a
 4. Run an analysis and inspect its map, tables and elevation profile or 3D view.
 5. Save the project and export the required products or compose a PDF report.
 
-See the [English manual](docs/manual.en.md) for the full workflow. Current development exports include project JSON, GeoJSON, GeoPackage, GeoTIFF, PDF reports, PNG frames, AVI video and animated GIF. Availability depends on the calculation and runtime; keep the project and its elevation files together.
+See the [English manual](docs/manual.en.md) for the full workflow. ViaSpania 0.2.2 exports project JSON, GeoJSON, GeoPackage, GeoTIFF, PDF reports, PNG frames, AVI video and animated GIF. Availability depends on the calculation and runtime; keep the project and its elevation files together.
 
 ### Local processing and limitations
 
@@ -279,7 +283,7 @@ pnpm desktop:dev
 
 Installers are written under `src-tauri/target/release/bundle/`. See the [packaging guide](docs/desktop-portability.md) for native requirements. `pnpm desktop:build:signed:macos` applies local ad hoc signing only. Packaging also checks third-party licence requirements; review the [release audit](docs/release-license-audit.md) before distribution.
 
-Code layout: `src/components` contains the UI/maps; `src/core` contains pure geographic logic; `src/services` contains provider/native adapters; `src-tauri` contains the Rust backend; `public/fixtures` contains deterministic service fixtures. See [architecture](docs/architecture.md), [model audit](docs/model-audit.md) and [research notes](docs/research.md).
+Code layout: `src/components` contains the UI/maps; `src/core` contains pure geographic logic; `src/services` contains provider/native adapters; `src-tauri` contains the Rust backend; `public/fixtures` contains deterministic service fixtures. See [architecture](docs/ARCHITECTURE.md), [model audit](docs/model-audit.md) and [research notes](docs/research.md).
 
 ### Support, authorship and licence
 
@@ -296,5 +300,17 @@ Este programa se distribuye bajo la licencia GPL-3.0-only. See [LICENSE](LICENSE
 This application is a result of the grant RYC2022-037730-I funded by MICIU/AEI/10.13039/501100011033 and by ESF+.
 
 [Funding acknowledgement and official sources](docs/funding.md).
+
+## GPL distribution and corresponding source
+
+Installer and source preparation is documented in [RELEASE_COMPLIANCE.md](docs/RELEASE_COMPLIANCE.md). The 0.2.2 record inventories 823 components, and `pnpm compliance:check --strict` passes with 0 pending reviews for the candidate hashes. Authorship/permission, assets, licence selections, the macOS native runtime, corresponding source, and data/exports have been reviewed and closed for that exact inventory. Dependency, data or binary changes require the checks to be repeated.
+
+The draft provides the installer together with a split, verifiable source package, its SHA-256 manifest and the application inspection record. Partial rebuilds of PROJ, Apache Arrow, GDAL and SFCGAL provide additional evidence but are not claimed as bit-for-bit reproducibility. See [CORRESPONDING_SOURCE_REVIEW.md](docs/CORRESPONDING_SOURCE_REVIEW.md), [DATA_LICENSE_REVIEW.md](docs/DATA_LICENSE_REVIEW.md) and [NATIVE_LICENSE_REVIEW.md](docs/NATIVE_LICENSE_REVIEW.md).
+
+### Authorship, institutional ownership and repository move
+
+[CODE_OWNERSHIP.md](docs/CODE_OWNERSHIP.md) records Antonio López García's authorship, the declared institutional ownership of the University of Granada, and the communicated permission to publish in the author's personal GitHub repository. The requested joint copyright notice and GPL-3.0-only licensing for original code are retained; third-party rights remain separate.
+
+The primary repository moved from the historical `traxtiber` account to [`Antonio-LopezGarcia/ViaSpania`](https://github.com/Antonio-LopezGarcia/ViaSpania). This GitHub ownership change does not alter the documented authorship or institutional ownership. Clone, issue and release links now use the current location.
 
 ---

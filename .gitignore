@@ -8,3 +8,12 @@ src-tauri/target/
 src-tauri/resources/geospatial/*
 !src-tauri/resources/geospatial/.gitkeep
 .DS_Store
+
+# Expedientes locales de fuentes y candidatos de publicación
+release/
+__pycache__/
+
+# Archivos temporales y sesiones locales
+tmp/
+*.bak
+.Rhistory

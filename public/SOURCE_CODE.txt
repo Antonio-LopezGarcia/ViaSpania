@@ -1,0 +1,24 @@
+ViaSpania
+Copyright © 2026 Antonio López García, Universidad de Granada
+Este programa se distribuye bajo la licencia GPL-3.0-only.
+
+Puede copiar, modificar y redistribuir el código bajo GNU GPL versión 3.
+No se ofrece garantía, en la medida permitida por la ley. Consulte LICENSE.txt.
+
+FUENTES CORRESPONDIENTES
+Esta compilación local es un candidato pendiente de revisión, no una release
+publicada con cumplimiento certificado. El expediente se prepara mediante
+pnpm compliance:prepare --network y pnpm compliance:package.
+
+El distribuidor debe ofrecer, junto a la descarga de cada instalador, su paquete
+de fuentes de esa misma versión, sin cargo adicional por obtenerlas. El candidato
+local usa el nombre ViaSpania-0.2.1-source-candidate.tar.gz. Un enlace a la rama
+principal no sustituye las fuentes de la versión descargada.
+
+El paquete incluye una instantánea del código propio, archivos fuente de las
+dependencias obtenidos y verificados, recetas nativas, manifiestos, avisos y datos
+geoespaciales empaquetados. STATUS.md identifica lo aún no verificado. Debe
+cerrarse esa revisión antes de publicarlo como fuente correspondiente completa.
+
+Los gráficos reservados y datos externos conservan sus condiciones separadas.
+Los componentes de terceros no cambian de titularidad ni de licencia por incluirse.

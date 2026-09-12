@@ -1,0 +1,32 @@
+ViaSpania — datos geográficos y exportaciones
+Revisión 2026-09-10; alcance y evidencias: docs/DATA_LICENSE_REVIEW.md en las fuentes.
+
+El código propio usa GPL-3.0-only. Los datos, parámetros geodésicos, mapas,
+rejillas y marcas conservan sus derechos y condiciones originales.
+proj.db: conservar PROJ_DB_NOTICES.txt, incluidos los términos EPSG/IOGP.
+Rejillas: conservar PROJ_GRID_NOTICES.txt y geospatial/share/proj/
+copyright_and_licenses.csv y todos los README de los proveedores.
+GDAL share: conservar LICENSE.TXT y cabeceras originales.
+No se han modificado estos datos respecto al runtime inventariado.
+AdV de_adv_BETA2007.tif se redistribuye bajo el permiso expreso de su README;
+no se afirma permiso para modificarlo o relicenciarlo.
+
+Las exportaciones incluyen atribuciones. Los archivos .attribution.txt deben
+acompañar a sus resultados; no equivalen a metadatos incrustados en GeoTIFF.
+La procedencia se registra por cálculo. La ausencia de origen en un resultado
+histórico o importado queda REQUIERE REVISIÓN: documente su origen/permisos o
+recalcule con una fuente documentada antes de redistribuirlo.
+
+Proveedores:
+IGN/CNIG: https://www.ign.es/web/politica-datos
+OpenStreetMap: https://www.openstreetmap.org/copyright
+Teselas OSM: https://operations.osmfoundation.org/policies/tiles/
+GeoNames: https://www.geonames.org/ (CC BY 4.0)
+Copernicus CLMS: https://land.copernicus.eu/en/data-policy
+Copernicus DEM: https://documentation.dataspace.copernicus.eu/APIs/SentinelHub/Data/DEM/resources/license/License-COPDEM-30.pdf
+
+Respete los créditos, enlaces, avisos de modificación y condiciones para
+receptores de cada proveedor. No atribuya respaldo institucional al programa.
+Una capa configurable o un archivo importado no tiene permiso de redistribución
+por el mero hecho de que ViaSpania pueda abrirlo. GPL no asigna automáticamente
+una licencia a los resultados. Este aviso no concede derechos de marca.

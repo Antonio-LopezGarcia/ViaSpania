@@ -1,0 +1,5 @@
+.study-area-error{margin:0 0 12px;padding:12px;border:1px solid #d7846b;border-radius:8px;background:#36221e;color:#ffe0d5;font-size:12px;line-height:1.5;max-height:180px;overflow:auto}
+.comparison-model-disclosure{margin:10px 0;border:1px solid #35433c;border-radius:8px;background:#151e1a}
+.comparison-model-disclosure summary{cursor:pointer;padding:10px;color:#dce7df;font-size:12px}
+.comparison-model-disclosure .comparison-route-profiles{margin:0;padding:10px;border-top:1px solid #35433c}
+.terrain-3d-stage>.elevation-profile-overlay{z-index:30}

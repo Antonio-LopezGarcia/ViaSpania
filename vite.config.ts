@@ -22,5 +22,15 @@ export default defineConfig({
     __VIASPANIA_BUILD_PLATFORM__:JSON.stringify(platform),
   },
   server: { port: 1420, strictPort: true },
-  build: {rollupOptions: {input: {app: 'index.html', web: 'web/index.html'}}},
+  build: {
+    chunkSizeWarningLimit:800,
+    rollupOptions: {
+      input: {app: 'index.html', web: 'web/index.html'},
+      output:{manualChunks(id){
+        if(id.includes('/node_modules/three/'))return'vendor-three';
+        if(id.includes('/node_modules/ol/'))return'vendor-openlayers';
+        if(id.includes('/node_modules/jspdf/')||id.includes('/node_modules/html2canvas/'))return'vendor-pdf';
+      }},
+    },
+  },
 });

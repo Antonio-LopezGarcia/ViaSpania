@@ -1,12 +1,13 @@
 {
   "name": "viaspania",
   "private": true,
-  "version": "0.2.1",
+  "version": "0.2.2",
+  "license": "GPL-3.0-only",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "test": "vitest run",
+    "test": "node scripts/run-tests.mjs",
     "test:watch": "vitest",
     "preview": "vite preview",
     "tauri": "tauri",
@@ -16,7 +17,14 @@
     "desktop:build:macos": "tauri build --bundles app,dmg",
     "desktop:build:windows": "tauri build --bundles msi,nsis",
     "desktop:build:linux": "tauri build --bundles deb,appimage,rpm",
-    "desktop:build:signed:macos": "pnpm desktop:build && ./scripts/sign-local-bundle.sh"
+    "desktop:build:signed:macos": "pnpm desktop:build && ./scripts/sign-local-bundle.sh",
+    "compliance:prepare": "node scripts/release-compliance.mjs prepare",
+    "compliance:check": "node scripts/release-compliance.mjs check",
+    "compliance:package": "node scripts/release-compliance.mjs package",
+    "compliance:inspect": "node scripts/release-compliance.mjs inspect-app",
+    "compliance:test": "node scripts/release-compliance.mjs test",
+    "compliance:record-build": "node scripts/release-compliance.mjs record-build",
+    "compliance:build": "tauri build --config src-tauri/tauri.compliance.conf.json --bundles app,dmg"
   },
   "dependencies": {
     "@tauri-apps/api": "^2.8.0",

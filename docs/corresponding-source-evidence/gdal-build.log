@@ -1,0 +1,1691 @@
+[  0%] Building CXX object frmts/mrf/LERCV1/CMakeFiles/liblercv1.dir/Lerc1Image.cpp.o
+[  0%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/blockdir/asciitiledir.cpp.o
+[  0%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/_getcell.c.o
+[  0%] Built target generate_gdal_version_h
+[  0%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/blockdir/asciitilelayer.cpp.o
+[  0%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/cellsize.c.o
+[  0%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/delattr.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gdattype.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gnrrows.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/legend.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/pminval.c.o
+[  1%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/blockdir/binarytiledir.cpp.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/rcomp.c.o
+[  1%] Built target liblercv1
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/setangle.c.o
+[  1%] Building CXX object ogr/ogrsf_frmts/shape/CMakeFiles/shapelib.dir/sbnsearch_wrapper.cpp.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/vsdef.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/_getrow.c.o
+[  1%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/blockdir/binarytilelayer.cpp.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/create2.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/dumconv.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/getattr.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gproj.c.o
+[  1%] Building CXX object ogr/ogrsf_frmts/shape/CMakeFiles/shapelib.dir/shpopen_wrapper.cpp.o
+[  1%] Building CXX object ogr/ogrsf_frmts/kml/CMakeFiles/ogr_KML.dir/ogrkmldriver.cpp.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/mclose.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/putallmv.c.o
+[  1%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/blockdir/blockdir.cpp.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/rcoords.c.o
+[  1%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/setmv.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/vsis.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/_gsomece.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/endian.c.o
+[  2%] Building CXX object ogr/ogrsf_frmts/shape/CMakeFiles/shapelib.dir/shptree_wrapper.cpp.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/getx0.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gputproj.c.o
+[  2%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/blockdir/blockfile.cpp.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/mopen.c.o
+[  2%] Building CXX object ogr/ogrsf_frmts/kml/CMakeFiles/ogr_KML.dir/ogrkmldatasource.cpp.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/putattr.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/rdup2.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/setvtmv.c.o
+[  2%] Building CXX object ogr/ogrsf_frmts/shape/CMakeFiles/shapelib.dir/dbfopen_wrapper.cpp.o
+[  2%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/blockdir/blocklayer.cpp.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/vsvers.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/_putcell.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/file.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gety0.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gvalscal.c.o
+[  2%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/moreattr.c.o
+[  3%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/putsomec.c.o
+[  4%] Building CXX object ogr/ogrsf_frmts/kml/CMakeFiles/ogr_KML.dir/ogrkmllayer.cpp.o
+[  4%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/blockdir/blocktiledir.cpp.o
+[  4%] Built target shapelib
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/reseterr.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/strconst.c.o
+[  4%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/blockdir/blocktilelayer.cpp.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/wattrblk.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/_rputrow.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/csfglob.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/filename.c.o
+[  4%] Building CXX object ogr/ogrsf_frmts/vrt/CMakeFiles/ogr_VRT.dir/ogrvrtdatasource.cpp.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/ggisfid.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gvartype.c.o
+[  4%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/channel/cbandinterleavedchannel.cpp.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/mperror.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/putx0.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/rextend.c.o
+[  4%] Building CXX object ogr/ogrsf_frmts/kml/CMakeFiles/ogr_KML.dir/kml.cpp.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/strpad.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/angle.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gattrblk.c.o
+[  4%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gmaxval.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gversion.c.o
+[  5%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/channel/cexternalchannel.cpp.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/puty0.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/rmalloc.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/swapio.c.o
+[  5%] Building CXX object ogr/ogrsf_frmts/vrt/CMakeFiles/ogr_VRT.dir/ogrvrtdriver.cpp.o
+[  5%] Building CXX object ogr/ogrsf_frmts/kml/CMakeFiles/ogr_KML.dir/kmlnode.cpp.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/attravai.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/csfsup.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gattridx.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gminval.c.o
+[  5%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/channel/cpcidskchannel.cpp.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/ismv.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/pgisfid.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/pvalscal.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/rrowcol.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/trackmm.c.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/attrsize.c.o
+[  5%] Building CXX object ogr/ogrsf_frmts/vrt/CMakeFiles/ogr_VRT.dir/ogrvrtlayer.cpp.o
+[  5%] Building CXX object ogr/ogrsf_frmts/kml/CMakeFiles/ogr_KML.dir/kmlvector.cpp.o
+[  5%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gcellrep.c.o
+[  6%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/gnrcols.c.o
+[  6%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/kernlcsf.c.o
+[  6%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/pmaxval.c.o
+[  6%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/rattrblk.c.o
+[  6%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/channel/cpixelinterleavedchannel.cpp.o
+[  6%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/ruseas.c.o
+[  6%] Built target ogr_KML
+[  6%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/avc_bin.cpp.o
+[  6%] Building C object frmts/pcraster/libcsf/CMakeFiles/csf.dir/vs2.c.o
+[  6%] Built target csf
+[  6%] Building CXX object ogr/ogrsf_frmts/gmlutils/CMakeFiles/gmlutils.dir/gmlfeature.cpp.o
+[  6%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/channel/ctiledchannel.cpp.o
+[  6%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/avc_rawbin.cpp.o
+[  6%] Built target ogr_VRT
+[  6%] Building CXX object ogr/ogrsf_frmts/gmlutils/CMakeFiles/gmlutils.dir/gmlfeatureclass.cpp.o
+[  6%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/gfstemplate.cpp.o
+[  7%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/clinksegment.cpp.o
+[  7%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/avc_e00gen.cpp.o
+[  7%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/cpcidskblockfile.cpp.o
+[  7%] Building CXX object ogr/ogrsf_frmts/gmlutils/CMakeFiles/gmlutils.dir/gmlpropertydefn.cpp.o
+[  7%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/gmlreadstate.cpp.o
+[  7%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/avc_e00parse.cpp.o
+[  7%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/cpcidskfile.cpp.o
+[  7%] Building CXX object ogr/ogrsf_frmts/gmlutils/CMakeFiles/gmlutils.dir/gmlutils.cpp.o
+[  7%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/ogrgmldriver.cpp.o
+[  7%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/avc_e00read.cpp.o
+[  7%] Building CXX object ogr/ogrsf_frmts/gmlutils/CMakeFiles/gmlutils.dir/parsexsd.cpp.o
+[  7%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/avc_mbyte.cpp.o
+[  7%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/edb_pcidsk.cpp.o
+[  8%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/resolvexlinks.cpp.o
+[  8%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/avc_misc.cpp.o
+[  8%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/libjpeg_io.cpp.o
+[  8%] Building CXX object ogr/ogrsf_frmts/gmlutils/CMakeFiles/gmlutils.dir/ogrwfsfilter.cpp.o
+[  8%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/gmlreader.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/ogravcbindatasource.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/metadataset_p.cpp.o
+[  9%] Built target gmlutils
+[  9%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/ogravcbindriver.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidsk_pubutils.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/ogravcbinlayer.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/gmlregistry.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidsk_raster.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/hugefileresolver.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/ogravce00datasource.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/ogravcdatasource.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidsk_scanint.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidsk_utils.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/ogrgmllayer.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/ogravce00driver.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/ogravce00layer.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidskbuffer.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidskcreate.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/csv/CMakeFiles/ogr_CSV.dir/ogrcsvdatasource.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/avc/CMakeFiles/ogr_AVC.dir/ogravclayer.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/gmlhandler.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidskexception.cpp.o
+[  9%] Built target ogr_AVC
+[  9%] Building CXX object ogr/ogrsf_frmts/dgn/CMakeFiles/ogr_DGN.dir/dgnhelp.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidskinterfaces.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/gml/CMakeFiles/ogr_GML.dir/ogrgmldatasource.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/csv/CMakeFiles/ogr_CSV.dir/ogrcsvdriver.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/dgn/CMakeFiles/ogr_DGN.dir/dgnopen.cpp.o
+[  9%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidskopen.cpp.o
+[  9%] Building CXX object ogr/ogrsf_frmts/dgn/CMakeFiles/ogr_DGN.dir/dgnread.cpp.o
+[ 10%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/core/pcidsk_mutex.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/csv/CMakeFiles/ogr_CSV.dir/ogrcsvlayer.cpp.o
+[ 10%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidsk_array.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/dgn/CMakeFiles/ogr_DGN.dir/dgnwrite.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/dgn/CMakeFiles/ogr_DGN.dir/dgnstroke.cpp.o
+[ 10%] Built target ogr_GML
+[ 10%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidsk_tex.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/gmt/CMakeFiles/ogr_GMT.dir/ogrgmtdatasource.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/dgn/CMakeFiles/ogr_DGN.dir/ogrdgndriver.cpp.o
+[ 10%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskbinarysegment.cpp.o
+[ 10%] Built target ogr_CSV
+[ 10%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ntffilereader.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/gmt/CMakeFiles/ogr_GMT.dir/ogrgmtdriver.cpp.o
+[ 10%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskbitmap.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/dgn/CMakeFiles/ogr_DGN.dir/ogrdgnlayer.cpp.o
+[ 10%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskblut.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/gmt/CMakeFiles/ogr_GMT.dir/ogrgmtlayer.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ntfrecord.cpp.o
+[ 10%] Building CXX object ogr/ogrsf_frmts/dgn/CMakeFiles/ogr_DGN.dir/ogrdgndatasource.cpp.o
+[ 10%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskpct.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ogrntfdatasource.cpp.o
+[ 11%] Built target ogr_GMT
+[ 11%] Building CXX object ogr/ogrsf_frmts/s57/CMakeFiles/ogr_S57.dir/ogrs57driver.cpp.o
+[ 11%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskephemerissegment.cpp.o
+[ 11%] Built target ogr_DGN
+[ 11%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerarealandmarks.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ogrntfdriver.cpp.o
+[ 11%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskgcp2segment.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/s57/CMakeFiles/ogr_S57.dir/ogrs57datasource.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigeridhistory.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ogrntflayer.cpp.o
+[ 11%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskgeoref.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/s57/CMakeFiles/ogr_S57.dir/ogrs57layer.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerpoint.cpp.o
+[ 11%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidsklut.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ntf_estlayers.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/s57/CMakeFiles/ogr_S57.dir/s57classregistrar.cpp.o
+[ 11%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskbpct.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerspatialmetadata.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ogrntffeatureclasslayer.cpp.o
+[ 11%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskpolymodel.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/s57/CMakeFiles/ogr_S57.dir/s57reader.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/ogrtigerdatasource.cpp.o
+[ 11%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskrpcmodel.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ntf_generic.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/s57/CMakeFiles/ogr_S57.dir/ddfrecordindex.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigercompletechain.cpp.o
+[ 11%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidsksegment.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ntf_raster.cpp.o
+[ 11%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidsktoutinmodel.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/s57/CMakeFiles/ogr_S57.dir/s57featuredefns.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerkeyfeatures.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ntf_codelist.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/s57/CMakeFiles/ogr_S57.dir/s57filecollector.cpp.o
+[ 11%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerpolychainlink.cpp.o
+[ 12%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskvectorsegment.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/ntf/CMakeFiles/ogr_NTF.dir/ntfstroke.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/s57/CMakeFiles/ogr_S57.dir/s57writer.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigertlidrange.cpp.o
+[ 12%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/cpcidskvectorsegment_consistencycheck.cpp.o
+[ 12%] Built target ogr_S57
+[ 12%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/ogrtigerdriver.cpp.o
+[ 12%] Built target ogr_NTF
+[ 12%] Building CXX object ogr/ogrsf_frmts/georss/CMakeFiles/ogr_GeoRSS.dir/ogrgeorssdatasource.cpp.o
+[ 12%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/metadatasegment_p.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerentitynames.cpp.o
+[ 12%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/systiledir.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/georss/CMakeFiles/ogr_GeoRSS.dir/ogrgeorssdriver.cpp.o
+[ 12%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/vecsegdataindex.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerlandmarks.cpp.o
+[ 12%] Building CXX object frmts/pcidsk/sdk/CMakeFiles/pcidsk_sdk.dir/segment/vecsegheader.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/georss/CMakeFiles/ogr_GeoRSS.dir/ogrgeorsslayer.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/intronurbs.cpp.o
+[ 12%] Built target pcidsk_sdk
+[ 12%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerpolygon.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/pgdump/CMakeFiles/ogr_PGDump.dir/ogrpgdumpdriver.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxfblockswriterlayer.cpp.o
+[ 12%] Built target ogr_GeoRSS
+[ 12%] Building CXX object ogr/ogrsf_frmts/gpsbabel/CMakeFiles/ogr_GPSBabel.dir/ogrgpsbabeldatasource.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/pgdump/CMakeFiles/ogr_PGDump.dir/ogrpgdumpdatasource.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerzerocellid.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxf_feature.cpp.o
+[ 12%] Building CXX object ogr/ogrsf_frmts/gpsbabel/CMakeFiles/ogr_GPSBabel.dir/ogrgpsbabeldriver.cpp.o
+[ 13%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/ogrtigerlayer.cpp.o
+[ 13%] Building CXX object ogr/ogrsf_frmts/pgdump/CMakeFiles/ogr_PGDump.dir/ogrpgdumplayer.cpp.o
+[ 13%] Building CXX object ogr/ogrsf_frmts/gpsbabel/CMakeFiles/ogr_GPSBabel.dir/ogrgpsbabelwritedatasource.cpp.o
+[ 14%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxf_polyline_smooth.cpp.o
+[ 14%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerfeatureids.cpp.o
+[ 14%] Built target ogr_PGDump
+[ 14%] Building CXX object ogr/ogrsf_frmts/edigeo/CMakeFiles/ogr_EDIGEO.dir/ogredigeodatasource.cpp.o
+[ 14%] Built target ogr_GPSBabel
+[ 14%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogr_autocad_services.cpp.o
+[ 14%] Building CXX object ogr/ogrsf_frmts/sxf/CMakeFiles/ogr_SXF.dir/ogrsxfdatasource.cpp.o
+[ 14%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigeroverunder.cpp.o
+[ 14%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxfdatasource.cpp.o
+[ 14%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerpolygoncorrections.cpp.o
+[ 14%] Building CXX object ogr/ogrsf_frmts/sxf/CMakeFiles/ogr_SXF.dir/ogrsxflayer.cpp.o
+[ 14%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerzipcodes.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/edigeo/CMakeFiles/ogr_EDIGEO.dir/ogredigeodriver.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/sxf/CMakeFiles/ogr_SXF.dir/ogrsxfdriver.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxf_hatch.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigeraltname.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/edigeo/CMakeFiles/ogr_EDIGEO.dir/ogredigeolayer.cpp.o
+[ 15%] Built target ogr_SXF
+[ 15%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/filegdbindex.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxfreader.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerfilebase.cpp.o
+[ 15%] Built target ogr_EDIGEO
+[ 15%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB_filegdbtable_write.dir/filegdbtable_write.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerpip.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/filegdbindex_write.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxf_blockmap.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerpolygoneconomic.cpp.o
+[ 15%] Built target ogr_OpenFileGDB_filegdbtable_write
+[ 15%] Building CXX object ogr/ogrsf_frmts/wasp/CMakeFiles/ogr_WAsP.dir/ogrwaspdatasource.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxf_dimension.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/tiger/CMakeFiles/ogr_Tiger.dir/tigerzipplus4.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/wasp/CMakeFiles/ogr_WAsP.dir/ogrwaspdriver.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxflayer.cpp.o
+[ 15%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/filegdbtable.cpp.o
+[ 15%] Built target ogr_Tiger
+[ 16%] Building CXX object ogr/ogrsf_frmts/selafin/CMakeFiles/ogr_Selafin.dir/io_selafin.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/wasp/CMakeFiles/ogr_WAsP.dir/ogrwasplayer.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/selafin/CMakeFiles/ogr_Selafin.dir/ogrselafindatasource.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/filegdbtable_write_fields.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/selafin/CMakeFiles/ogr_Selafin.dir/ogrselafindriver.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxfwriterds.cpp.o
+[ 16%] Built target ogr_WAsP
+[ 16%] Building CXX object ogr/ogrsf_frmts/jml/CMakeFiles/ogr_JML.dir/ogrjmldataset.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/selafin/CMakeFiles/ogr_Selafin.dir/ogrselafinlayer.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/filegdbtable_freelist.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/jml/CMakeFiles/ogr_JML.dir/ogrjmllayer.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxfblockslayer.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/ogropenfilegdbdatasource.cpp.o
+[ 16%] Built target ogr_Selafin
+[ 16%] Building CXX object ogr/ogrsf_frmts/vdv/CMakeFiles/ogr_VDV.dir/ogrvdvdatasource.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/jml/CMakeFiles/ogr_JML.dir/ogrjmlwriterlayer.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxfdriver.cpp.o
+[ 16%] Built target ogr_JML
+[ 16%] Building CXX object ogr/ogrsf_frmts/flatgeobuf/CMakeFiles/ogr_FlatGeobuf.dir/ogrflatgeobufdataset.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxf_leader.cpp.o
+[ 16%] Built target ogr_VDV
+[ 16%] Building CXX object ogr/ogrsf_frmts/mapml/CMakeFiles/ogr_MapML.dir/ogrmapmldataset.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/ogropenfilegdbdatasource_write.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/flatgeobuf/CMakeFiles/ogr_FlatGeobuf.dir/ogrflatgeobuflayer.cpp.o
+[ 16%] Built target ogr_MapML
+[ 16%] Building CXX object ogr/ogrsf_frmts/adbc/CMakeFiles/ogr_ADBC.dir/ogradbcdriver.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxfwriterlayer.cpp.o
+[ 16%] Building CXX object ogr/ogrsf_frmts/adbc/CMakeFiles/ogr_ADBC.dir/ogradbcdataset.cpp.o
+[ 17%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/ogropenfilegdb_generate_uuid.cpp.o
+[ 17%] Building CXX object ogr/ogrsf_frmts/dxf/CMakeFiles/ogr_DXF.dir/ogrdxf_ocstransformer.cpp.o
+[ 17%] Building CXX object ogr/ogrsf_frmts/flatgeobuf/CMakeFiles/ogr_FlatGeobuf.dir/packedrtree.cpp.o
+[ 17%] Building CXX object ogr/ogrsf_frmts/adbc/CMakeFiles/ogr_ADBC.dir/ogradbclayer.cpp.o
+[ 17%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/ogropenfilegdbdriver.cpp.o
+[ 17%] Built target ogr_DXF
+[ 17%] Building CXX object ogr/ogrsf_frmts/miramon/CMakeFiles/ogr_MiraMon.dir/ogrmiramondatasource.cpp.o
+[ 17%] Building CXX object ogr/ogrsf_frmts/miramon/CMakeFiles/ogr_MiraMon.dir/ogrmiramondriver.cpp.o
+[ 17%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/ogropenfilegdblayer.cpp.o
+[ 17%] Building CXX object ogr/ogrsf_frmts/adbc/CMakeFiles/ogr_ADBC.dir/ogradbcbigquerylayer.cpp.o
+[ 17%] Building CXX object ogr/ogrsf_frmts/flatgeobuf/CMakeFiles/ogr_FlatGeobuf.dir/geometryreader.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/miramon/CMakeFiles/ogr_MiraMon.dir/ogrmiramonlayer.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/ogropenfilegdblayer_write.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/flatgeobuf/CMakeFiles/ogr_FlatGeobuf.dir/geometrywriter.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/adbc/CMakeFiles/ogr_ADBC.dir/ogradbcdrivercore.cpp.o
+[ 18%] Building C object ogr/ogrsf_frmts/miramon/CMakeFiles/ogr_MiraMon.dir/mm_wrlayr.c.o
+[ 18%] Built target ogr_ADBC
+[ 18%] Building CXX object ogr/ogrsf_frmts/aivector/CMakeFiles/ogr_AIVector.dir/ograivectordriver.cpp.o
+[ 18%] Building C object ogr/ogrsf_frmts/miramon/CMakeFiles/ogr_MiraMon.dir/mm_rdlayr.c.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/flatgeobuf/CMakeFiles/ogr_FlatGeobuf.dir/ogrflatgeobufeditablelayer.cpp.o
+[ 18%] Built target ogr_MiraMon
+[ 18%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/gdalopenfilegdbrasterband.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/openfilegdb/CMakeFiles/ogr_OpenFileGDB.dir/ogropenfilegdbdrivercore.cpp.o
+[ 18%] Built target ogr_AIVector
+[ 18%] Building CXX object ogr/ogrsf_frmts/jsonfg/CMakeFiles/ogr_JSONFG.dir/ogrjsonfgdataset.cpp.o
+[ 18%] Built target ogr_FlatGeobuf
+[ 18%] Building CXX object ogr/ogrsf_frmts/gpx/CMakeFiles/ogr_GPX.dir/ogrgpxdatasource.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/jsonfg/CMakeFiles/ogr_JSONFG.dir/ogrjsonfgdriver.cpp.o
+[ 18%] Built target ogr_OpenFileGDB
+[ 18%] Building CXX object ogr/ogrsf_frmts/gpx/CMakeFiles/ogr_GPX.dir/ogrgpxdriver.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/jsonfg/CMakeFiles/ogr_JSONFG.dir/ogrjsonfgmemlayer.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasdatasource.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/gpx/CMakeFiles/ogr_GPX.dir/ogrgpxlayer.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/jsonfg/CMakeFiles/ogr_JSONFG.dir/ogrjsonfgreader.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/jsonfg/CMakeFiles/ogr_JSONFG.dir/ogrjsonfgstreamedlayer.cpp.o
+[ 18%] Built target ogr_GPX
+[ 18%] Building CXX object ogr/ogrsf_frmts/csw/CMakeFiles/ogr_CSW.dir/ogrcswdataset.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/jsonfg/CMakeFiles/ogr_JSONFG.dir/ogrjsonfgstreamingparser.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/jsonfg/CMakeFiles/ogr_JSONFG.dir/ogrjsonfgwritelayer.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlaslayer.cpp.o
+[ 18%] Built target ogr_CSW
+[ 18%] Building CXX object ogr/ogrsf_frmts/libkml/CMakeFiles/ogr_LIBKML.dir/ogrlibkmldriver.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasutils.cpp.o
+[ 18%] Built target ogr_JSONFG
+[ 18%] Building CXX object ogr/ogrsf_frmts/nas/CMakeFiles/ogr_NAS.dir/nashandler.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/libkml/CMakeFiles/ogr_LIBKML.dir/ogrlibkmlfeaturestyle.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/nas/CMakeFiles/ogr_NAS.dir/nasreader.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/plscenes/CMakeFiles/ogr_PLSCENES.dir/ogrplscenesdatav1dataset.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasxpatchmatcher.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/nas/CMakeFiles/ogr_NAS.dir/ogrnasdatasource.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/libkml/CMakeFiles/ogr_LIBKML.dir/ogrlibkmllayer.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/plscenes/CMakeFiles/ogr_PLSCENES.dir/ogrplscenesdatav1layer.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasdriver.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/nas/CMakeFiles/ogr_NAS.dir/ogrnasdriver.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/plscenes/CMakeFiles/ogr_PLSCENES.dir/ogrplscenesdriver.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasreader.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/nas/CMakeFiles/ogr_NAS.dir/ogrnaslayer.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/libkml/CMakeFiles/ogr_LIBKML.dir/ogrlibkmlfeature.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/plscenes/CMakeFiles/ogr_PLSCENES.dir/ogrplscenesdrivercore.cpp.o
+[ 18%] Built target ogr_NAS
+[ 18%] Building CXX object ogr/ogrsf_frmts/wfs/CMakeFiles/ogr_WFS.dir/ogrwfsdatasource.cpp.o
+[ 18%] Built target ogr_PLSCENES
+[ 18%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlaswriter.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/libkml/CMakeFiles/ogr_LIBKML.dir/ogrlibkmlgeometry.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasxsdcache.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/wfs/CMakeFiles/ogr_WFS.dir/ogrwfsdriver.cpp.o
+[ 18%] Building CXX object ogr/ogrsf_frmts/libkml/CMakeFiles/ogr_LIBKML.dir/ogrlibkmlstyle.cpp.o
+[ 19%] Building CXX object ogr/ogrsf_frmts/wfs/CMakeFiles/ogr_WFS.dir/ogrwfsjoinlayer.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasconf.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/oapif/CMakeFiles/ogr_OAPIF.dir/ogroapifdriver.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/libkml/CMakeFiles/ogr_LIBKML.dir/ogrlibkmldatasource.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/wfs/CMakeFiles/ogr_WFS.dir/ogrwfslayer.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasfeatureclass.cpp.o
+[ 20%] Built target ogr_WFS
+[ 20%] Building CXX object ogr/ogrsf_frmts/ngw/CMakeFiles/ogr_NGW.dir/ogrngwdriver.cpp.o
+[ 20%] Built target ogr_OAPIF
+[ 20%] Building CXX object ogr/ogrsf_frmts/libkml/CMakeFiles/ogr_LIBKML.dir/ogrlibkmlfield.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/elastic/CMakeFiles/ogr_Elastic.dir/ogrelasticdatasource.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasschemaanalyzer.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/ngw/CMakeFiles/ogr_NGW.dir/ogrngwlayer.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/elastic/CMakeFiles/ogr_Elastic.dir/ogrelasticdriver.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/libkml/CMakeFiles/ogr_LIBKML.dir/ogrlibkmldrivercore.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/elastic/CMakeFiles/ogr_Elastic.dir/ogrelasticlayer.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/ngw/CMakeFiles/ogr_NGW.dir/ngw_api.cpp.o
+[ 20%] Built target ogr_LIBKML
+[ 20%] Building CXX object ogr/ogrsf_frmts/idrisi/CMakeFiles/ogr_Idrisi.dir/ogridrisidatasource.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/idrisi/CMakeFiles/ogr_Idrisi.dir/ogridrisidriver.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/ngw/CMakeFiles/ogr_NGW.dir/gdalngwdataset.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasxlinkresolver.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/idrisi/CMakeFiles/ogr_Idrisi.dir/ogridrisilayer.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/elastic/CMakeFiles/ogr_Elastic.dir/ogrelasticaggregationlayer.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/ngw/CMakeFiles/ogr_NGW.dir/ogrngwfielddomain.cpp.o
+[ 20%] Built target ogr_Idrisi
+[ 20%] Building CXX object ogr/ogrsf_frmts/pds/CMakeFiles/ogr_PDS.dir/ogrpdsdatasource.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/gmlas/CMakeFiles/ogr_GMLAS.dir/ogrgmlasdrivercore.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/elastic/CMakeFiles/ogr_Elastic.dir/ogrelasticdrivercore.cpp.o
+[ 20%] Built target ogr_NGW
+[ 20%] Building CXX object ogr/ogrsf_frmts/pds/CMakeFiles/ogr_PDS.dir/ogrpdsdriver.cpp.o
+[ 20%] Built target ogr_GMLAS
+[ 20%] Building CXX object ogr/ogrsf_frmts/pds/CMakeFiles/ogr_PDS.dir/ogrpdslayer.cpp.o
+[ 20%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqlitedatasource.cpp.o
+[ 20%] Built target ogr_Elastic
+[ 20%] Building CXX object ogr/ogrsf_frmts/gpkg/CMakeFiles/ogr_GeoPackage.dir/ogrgeopackagedatasource.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqlitedriver.cpp.o
+[ 21%] Built target ogr_PDS
+[ 21%] Building CXX object ogr/ogrsf_frmts/osm/CMakeFiles/ogr_OSM.dir/ogrosmdatasource.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/gpkg/CMakeFiles/ogr_GeoPackage.dir/ogrgeopackagedriver.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqlitelayer.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/gpkg/CMakeFiles/ogr_GeoPackage.dir/ogrgeopackagelayer.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/osm/CMakeFiles/ogr_OSM.dir/ogrosmdriver.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqliteselectlayer.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/gpkg/CMakeFiles/ogr_GeoPackage.dir/ogrgeopackageselectlayer.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/osm/CMakeFiles/ogr_OSM.dir/ogrosmlayer.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/ogrvfkdatasource.cpp.o
+[ 21%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqlitesinglefeaturelayer.cpp.o
+[ 22%] Building CXX object ogr/ogrsf_frmts/gpkg/CMakeFiles/ogr_GeoPackage.dir/ogrgeopackagetablelayer.cpp.o
+[ 22%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/ogrvfkdriver.cpp.o
+[ 22%] Building CXX object ogr/ogrsf_frmts/osm/CMakeFiles/ogr_OSM.dir/osm_parser.cpp.o
+[ 22%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqlitetablelayer.cpp.o
+[ 22%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/ogrvfklayer.cpp.o
+[ 22%] Built target ogr_OSM
+[ 22%] Building CXX object ogr/ogrsf_frmts/mvt/CMakeFiles/ogr_MVT.dir/mvt_tile.cpp.o
+[ 22%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/vfkdatablock.cpp.o
+[ 22%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqlitevfs.cpp.o
+[ 22%] Building CXX object ogr/ogrsf_frmts/mvt/CMakeFiles/ogr_MVT.dir/mvtutils.cpp.o
+[ 22%] Building CXX object ogr/ogrsf_frmts/gpkg/CMakeFiles/ogr_GeoPackage.dir/ogrgeopackageutility.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/vfkdatablocksqlite.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqliteviewlayer.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/gpkg/CMakeFiles/ogr_GeoPackage.dir/gdalgeopackagerasterband.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/mvt/CMakeFiles/ogr_MVT.dir/ogrmvtdataset.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/vfkproperty.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqliteexecutesql.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/vfkpropertydefn.cpp.o
+[ 23%] Built target ogr_GeoPackage
+[ 23%] Building CXX object ogr/ogrsf_frmts/pmtiles/CMakeFiles/ogr_PMTiles.dir/ogrpmtilesdriver.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqlitevirtualogr.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/vfkreader.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/pmtiles/CMakeFiles/ogr_PMTiles.dir/ogrpmtilesdataset.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/vfkreadersqlite.cpp.o
+[ 23%] Built target ogr_MVT
+[ 23%] Building CXX object ogr/ogrsf_frmts/amigocloud/CMakeFiles/ogr_AmigoCloud.dir/ogramigoclouddatasource.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqliteutility.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/pmtiles/CMakeFiles/ogr_PMTiles.dir/ogrpmtilesvectorlayer.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/vfkfeature.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/amigocloud/CMakeFiles/ogr_AmigoCloud.dir/ogramigoclouddriver.cpp.o
+[ 23%] Building C object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/ogrsqliteapiroutines.c.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/rasterlite2.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/pmtiles/CMakeFiles/ogr_PMTiles.dir/ogrpmtilestileiterator.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/amigocloud/CMakeFiles/ogr_AmigoCloud.dir/ogramigocloudlayer.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/vfkfeaturesqlite.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/sqlite/CMakeFiles/ogr_SQLite.dir/sqlite_rtree_bulk_load/wrapper.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/pmtiles/CMakeFiles/ogr_PMTiles.dir/ogrpmtilesfrommbtiles.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/vfk/CMakeFiles/ogr_VFK.dir/ogrvfkdrivercore.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/amigocloud/CMakeFiles/ogr_AmigoCloud.dir/ogramigocloudresultlayer.cpp.o
+[ 23%] Built target ogr_SQLite
+[ 23%] Building CXX object ogr/ogrsf_frmts/carto/CMakeFiles/ogr_Carto.dir/ogrcartodatasource.cpp.o
+[ 23%] Built target ogr_VFK
+[ 23%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/ili1reader.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/amigocloud/CMakeFiles/ogr_AmigoCloud.dir/ogramigocloudtablelayer.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/pmtiles/CMakeFiles/ogr_PMTiles.dir/ogrpmtileswriterdataset.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/carto/CMakeFiles/ogr_Carto.dir/ogrcartodriver.cpp.o
+[ 23%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/ogrili1driver.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/carto/CMakeFiles/ogr_Carto.dir/ogrcartolayer.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/pmtiles/CMakeFiles/ogr_PMTiles.dir/vsipmtiles.cpp.o
+[ 25%] Built target ogr_AmigoCloud
+[ 25%] Building CXX object ogr/ogrsf_frmts/mssqlspatial/CMakeFiles/ogr_MSSQLSpatial.dir/ogrmssqlgeometryparser.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/ogrili1layer.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/carto/CMakeFiles/ogr_Carto.dir/ogrcartoresultlayer.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/mssqlspatial/CMakeFiles/ogr_MSSQLSpatial.dir/ogrmssqlgeometryvalidator.cpp.o
+[ 25%] Built target ogr_PMTiles
+[ 25%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/ogrili1datasource.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/carto/CMakeFiles/ogr_Carto.dir/ogrcartotablelayer.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/odbc/CMakeFiles/ogr_ODBC.dir/ogrodbcdatasource.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/mssqlspatial/CMakeFiles/ogr_MSSQLSpatial.dir/ogrmssqlgeometrywriter.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/ili2handler.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/odbc/CMakeFiles/ogr_ODBC.dir/ogrodbcdriver.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/mssqlspatial/CMakeFiles/ogr_MSSQLSpatial.dir/ogrmssqlspatialdatasource.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/ogrili2driver.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/carto/CMakeFiles/ogr_Carto.dir/ogrcartodrivercore.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/odbc/CMakeFiles/ogr_ODBC.dir/ogrodbclayer.cpp.o
+[ 25%] Built target ogr_Carto
+[ 25%] Building CXX object ogr/ogrsf_frmts/pgeo/CMakeFiles/ogr_PGeo.dir/ogrpgeodatasource.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/mssqlspatial/CMakeFiles/ogr_MSSQLSpatial.dir/ogrmssqlspatialdriver.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/ili2reader.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/odbc/CMakeFiles/ogr_ODBC.dir/ogrodbcselectlayer.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/mssqlspatial/CMakeFiles/ogr_MSSQLSpatial.dir/ogrmssqlspatiallayer.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/pgeo/CMakeFiles/ogr_PGeo.dir/ogrpgeodriver.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/ogrili2layer.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/odbc/CMakeFiles/ogr_ODBC.dir/ogrodbctablelayer.cpp.o
+[ 25%] Building CXX object ogr/ogrsf_frmts/mssqlspatial/CMakeFiles/ogr_MSSQLSpatial.dir/ogrmssqlspatialselectlayer.cpp.o
+[ 26%] Building CXX object ogr/ogrsf_frmts/pgeo/CMakeFiles/ogr_PGeo.dir/ogrpgeolayer.cpp.o
+[ 26%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/ogrili2datasource.cpp.o
+[ 26%] Building CXX object ogr/ogrsf_frmts/odbc/CMakeFiles/ogr_ODBC.dir/ogrodbcdrivercore.cpp.o
+[ 26%] Building CXX object ogr/ogrsf_frmts/mssqlspatial/CMakeFiles/ogr_MSSQLSpatial.dir/ogrmssqlspatialtablelayer.cpp.o
+[ 26%] Building CXX object ogr/ogrsf_frmts/pgeo/CMakeFiles/ogr_PGeo.dir/ogrpgeotablelayer.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/ili/CMakeFiles/ogr_ILI.dir/imdreader.cpp.o
+[ 27%] Built target ogr_ODBC
+[ 27%] Building CXX object ogr/ogrsf_frmts/xlsx/CMakeFiles/ogr_XLSX.dir/ogrxlsxdatasource.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/mssqlspatial/CMakeFiles/ogr_MSSQLSpatial.dir/ogrmssqlspatialdrivercore.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/pgeo/CMakeFiles/ogr_PGeo.dir/ogrpgeoselectlayer.cpp.o
+[ 27%] Built target ogr_ILI
+[ 27%] Built target ogr_MSSQLSpatial
+[ 27%] Building CXX object ogr/ogrsf_frmts/xls/CMakeFiles/ogr_XLS.dir/ogrxlsdatasource.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/CMakeFiles/ogr_CAD.dir/gdalcaddataset.cpp.o
+[ 27%] Built target ogr_PGeo
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/dwg/io.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/xlsx/CMakeFiles/ogr_XLSX.dir/ogrxlsxdriver.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/xls/CMakeFiles/ogr_XLS.dir/ogrxlsdriver.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/CMakeFiles/ogr_CAD.dir/ogrcaddriver.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/dwg/r2000.cpp.o
+[ 27%] Built target ogr_XLSX
+[ 27%] Building CXX object ogr/ogrsf_frmts/parquet/CMakeFiles/ogr_Parquet.dir/ogrparquetdriver.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/xls/CMakeFiles/ogr_XLS.dir/ogrxlslayer.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/CMakeFiles/ogr_CAD.dir/ogrcadlayer.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/xls/CMakeFiles/ogr_XLS.dir/ogrxlsdrivercore.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadclasses.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/CMakeFiles/ogr_CAD.dir/vsilfileio.cpp.o
+[ 27%] Built target ogr_XLS
+[ 27%] Building CXX object ogr/ogrsf_frmts/arrow/CMakeFiles/ogr_Arrow.dir/ogrfeatherdriver.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadcolors.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/caddictionary.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/CMakeFiles/ogr_CAD.dir/ogrcaddrivercore.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadfile.cpp.o
+[ 27%] Built target ogr_CAD
+[ 27%] Building CXX object ogr/ogrsf_frmts/gtfs/CMakeFiles/ogr_GTFS.dir/ogrgtfsdriver.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadfileio.cpp.o
+[ 27%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadgeometry.cpp.o
+[ 27%] Built target ogr_GTFS
+[ 28%] Building CXX object ogr/ogrsf_frmts/ods/CMakeFiles/ogr_ODS.dir/ods_formula_node.cpp.o
+[ 28%] Building CXX object ogr/ogrsf_frmts/arrow/CMakeFiles/ogr_Arrow.dir/ogrfeatherdataset.cpp.o
+[ 28%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadfilestreamio.cpp.o
+[ 28%] Building CXX object ogr/ogrsf_frmts/ods/CMakeFiles/ogr_ODS.dir/ods_formula.cpp.o
+[ 28%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadheader.cpp.o
+[ 28%] Building CXX object ogr/ogrsf_frmts/ods/CMakeFiles/ogr_ODS.dir/ogrodsdatasource.cpp.o
+[ 28%] Building CXX object ogr/ogrsf_frmts/parquet/CMakeFiles/ogr_Parquet.dir/ogrparquetdataset.cpp.o
+[ 28%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadlayer.cpp.o
+[ 29%] Building CXX object ogr/ogrsf_frmts/arrow/CMakeFiles/ogr_Arrow.dir/ogrfeatherlayer.cpp.o
+[ 29%] Building CXX object ogr/ogrsf_frmts/ods/CMakeFiles/ogr_ODS.dir/ogrodsdriver.cpp.o
+[ 29%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadobjects.cpp.o
+[ 29%] Built target ogr_ODS
+[ 29%] Building CXX object ogr/ogrsf_frmts/lvbag/CMakeFiles/ogr_LVBAG.dir/ogrlvbagdatasource.cpp.o
+[ 30%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/cadtables.cpp.o
+[ 30%] Building CXX object ogr/ogrsf_frmts/lvbag/CMakeFiles/ogr_LVBAG.dir/ogrlvbagdriver.cpp.o
+[ 31%] Building CXX object ogr/ogrsf_frmts/parquet/CMakeFiles/ogr_Parquet.dir/ogrparquetlayer.cpp.o
+[ 31%] Building CXX object ogr/ogrsf_frmts/cad/libopencad/CMakeFiles/libopencad.dir/opencad.cpp.o
+[ 32%] Building CXX object ogr/ogrsf_frmts/lvbag/CMakeFiles/ogr_LVBAG.dir/ogrlvbaglayer.cpp.o
+[ 32%] Built target libopencad
+[ 32%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrsfdriverregistrar.cpp.o
+[ 32%] Built target ogr_LVBAG
+[ 32%] Building CXX object gcore/CMakeFiles/gcore.dir/gdal_adbc.cpp.o
+[ 32%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrlayer.cpp.o
+[ 32%] Building CXX object ogr/ogrsf_frmts/arrow/CMakeFiles/ogr_Arrow.dir/ogrfeatherwriterdataset.cpp.o
+[ 32%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalalgorithm.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrlayerarrow.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/arrow/CMakeFiles/ogr_Arrow.dir/ogrfeatherwriterlayer.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/parquet/CMakeFiles/ogr_Parquet.dir/ogrparquetwriterdataset.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrdatasource.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrsfdriver.cpp.o
+[ 33%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalalgorithmregistry.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogr_gensql.cpp.o
+[ 33%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalcomputedrasterband.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogr_attrind.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogr_miattrind.cpp.o
+[ 33%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalopeninfo.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/parquet/CMakeFiles/ogr_Parquet.dir/ogrparquetwriterlayer.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/arrow/CMakeFiles/ogr_Arrow.dir/ogrfeatherdrivercore.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrwarpedlayer.cpp.o
+[ 33%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaldriver.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/arrow/CMakeFiles/ogr_Arrow.dir/vsifilesystemregistrar.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrunionlayer.cpp.o
+[ 33%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaldrivermanager.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrlayerpool.cpp.o
+[ 33%] Built target ogr_Arrow
+[ 33%] Building CXX object gcore/CMakeFiles/gcore_gdal_misc.dir/gdal_misc.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrlayerdecorator.cpp.o
+[ 33%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaldataset.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrlayerwithtranslatefeature.cpp.o
+[ 33%] Built target gcore_gdal_misc
+[ 33%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_alos.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogreditablelayer.cpp.o
+[ 33%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_digital_globe.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrmutexeddatasource.cpp.o
+[ 33%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_eros.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/parquet/CMakeFiles/ogr_Parquet.dir/ogrparquetdrivercore.cpp.o
+[ 33%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalrasterband.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ogrmutexedlayer.cpp.o
+[ 33%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_geo_eye.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/parquet/CMakeFiles/ogr_Parquet.dir/ogrparquetdatasetlayer.cpp.o
+[ 33%] Building CXX object ogr/ogrsf_frmts/generic/CMakeFiles/ogrsf_generic.dir/ograrrowarrayhelper.cpp.o
+[ 33%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_kompsat.cpp.o
+[ 33%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_landsat.cpp.o
+[ 33%] Built target ogrsf_generic
+[ 33%] Building CXX object apps/CMakeFiles/appslib.dir/gdalargumentparser.cpp.o
+[ 33%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_orb_view.cpp.o
+[ 33%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_pleiades.cpp.o
+[ 33%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalrasterblock.cpp.o
+[ 34%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_rapid_eye.cpp.o
+[ 34%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalcolortable.cpp.o
+[ 34%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_main.cpp.o
+[ 34%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_rdk1.cpp.o
+[ 34%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalmajorobject.cpp.o
+[ 34%] Building CXX object apps/CMakeFiles/appslib.dir/gdalgetgdalpath.cpp.o
+[ 34%] Building CXX object gcore/mdreader/CMakeFiles/gcore_mdreader.dir/reader_spot.cpp.o
+[ 34%] Built target ogr_Parquet
+[ 34%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaldefaultoverviews.cpp.o
+[ 34%] Building C object frmts/zlib/contrib/infback9/CMakeFiles/infback9.dir/infback9.c.o
+[ 34%] Building CXX object apps/CMakeFiles/appslib.dir/gdalinfo_lib.cpp.o
+[ 35%] Building C object frmts/zlib/contrib/infback9/CMakeFiles/infback9.dir/inftree9.c.o
+[ 35%] Building C object frmts/zlib/contrib/infback9/CMakeFiles/infback9.dir/minified_zutil.c.o
+[ 35%] Built target infback9
+[ 35%] Building CXX object port/CMakeFiles/cpl.dir/cpl_alibaba_oss.cpp.o
+[ 35%] Built target gcore_mdreader
+[ 35%] Building CXX object port/CMakeFiles/cpl_iconv.dir/cpl_recode_iconv.cpp.o
+[ 35%] Built target cpl_iconv
+[ 35%] Building CXX object alg/CMakeFiles/alg.dir/contour.cpp.o
+[ 35%] Building CXX object port/CMakeFiles/cpl.dir/cpl_azure.cpp.o
+[ 36%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalpamdataset.cpp.o
+[ 36%] Building CXX object apps/CMakeFiles/appslib.dir/gdalbuildvrt_lib.cpp.o
+[ 36%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalpamrasterband.cpp.o
+[ 36%] Building CXX object port/CMakeFiles/cpl.dir/cpl_conv.cpp.o
+[ 36%] Building C object alg/CMakeFiles/alg.dir/delaunay.c.o
+[ 36%] Building CXX object alg/CMakeFiles/alg.dir/gdal_crs.cpp.o
+[ 36%] Building CXX object port/CMakeFiles/cpl.dir/cpl_error.cpp.o
+[ 36%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaljp2metadata.cpp.o
+[ 36%] Building CXX object port/CMakeFiles/cpl.dir/cpl_string.cpp.o
+[ 36%] Building CXX object alg/CMakeFiles/alg.dir/gdal_homography.cpp.o
+[ 36%] Building CXX object port/CMakeFiles/cpl.dir/cplgetsymbol.cpp.o
+[ 36%] Building CXX object alg/CMakeFiles/alg.dir/gdal_octave.cpp.o
+[ 36%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaljp2box.cpp.o
+[ 37%] Building CXX object apps/CMakeFiles/appslib.dir/gdal_grid_lib.cpp.o
+[ 37%] Building CXX object port/CMakeFiles/cpl.dir/cplstringlist.cpp.o
+[ 38%] Building CXX object alg/CMakeFiles/alg.dir/gdal_rpc.cpp.o
+[ 38%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalmultidomainmetadata.cpp.o
+[ 38%] Building CXX object port/CMakeFiles/cpl.dir/cpl_strtod.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_path.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdal_rat.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdal_tps.cpp.o
+[ 39%] Building CXX object apps/CMakeFiles/appslib.dir/gdal_translate_lib.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_csv.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdalapplyverticalshiftgrid.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_findfile.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdal_rat_vat_dbf.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_minixml.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdalchecksum.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalpamproxydb.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_multiproc.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdalcutline.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_levenshtein.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalallvalidmaskband.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_list.cpp.o
+[ 39%] Building CXX object apps/CMakeFiles/appslib.dir/gdal_rasterize_lib.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_getexecpath.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdaldither.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalnodatamaskband.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cplstring.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdalgeoloc.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsisimple.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalnodatavaluesmaskband.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil.cpp.o
+[ 39%] Building CXX object apps/CMakeFiles/appslib.dir/gdal_contour_lib.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalproxydataset.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdalgeolocquadtree.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalproxypool.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsi_mem.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdalgrid.cpp.o
+[ 39%] Building CXX object apps/CMakeFiles/appslib.dir/gdalwarp_lib.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaldefaultasync.cpp.o
+[ 39%] Building CXX object port/CMakeFiles/cpl.dir/cpl_http.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdallinearsystem.cpp.o
+[ 39%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaldllmain.cpp.o
+[ 39%] Building CXX object alg/CMakeFiles/alg.dir/gdalmatching.cpp.o
+[ 40%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalexif.cpp.o
+[ 40%] Building CXX object port/CMakeFiles/cpl.dir/cpl_hash_set.cpp.o
+[ 40%] Building CXX object port/CMakeFiles/cpl.dir/cplgetcurrentthreadcount.cpp.o
+[ 40%] Building CXX object alg/CMakeFiles/alg.dir/gdalmediancut.cpp.o
+[ 40%] Building CXX object port/CMakeFiles/cpl.dir/cplkeywordparser.cpp.o
+[ 40%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalgeorefpamdataset.cpp.o
+[ 41%] Building CXX object port/CMakeFiles/cpl.dir/cpl_recode.cpp.o
+[ 41%] Building CXX object port/CMakeFiles/cpl.dir/cpl_recode_stub.cpp.o
+[ 41%] Building CXX object alg/CMakeFiles/alg.dir/gdalpansharpen.cpp.o
+[ 41%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaljp2abstractdataset.cpp.o
+[ 41%] Building CXX object port/CMakeFiles/cpl.dir/cpl_quad_tree.cpp.o
+[ 41%] Building CXX object port/CMakeFiles/cpl.dir/cpl_atomic_ops.cpp.o
+[ 41%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_subfile.cpp.o
+[ 41%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalvirtualmem.cpp.o
+[ 41%] Building CXX object apps/CMakeFiles/appslib.dir/commonutils.cpp.o
+[ 41%] Building CXX object apps/CMakeFiles/appslib.dir/ogrinfo_lib.cpp.o
+[ 41%] Building CXX object port/CMakeFiles/cpl.dir/cpl_time.cpp.o
+[ 41%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaloverviewdataset.cpp.o
+[ 41%] Building CXX object alg/CMakeFiles/alg.dir/gdalproximity.cpp.o
+[ 41%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_stdout.cpp.o
+[ 41%] Building CXX object alg/CMakeFiles/alg.dir/gdalrasterize.cpp.o
+[ 41%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalrescaledalphaband.cpp.o
+[ 41%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_sparsefile.cpp.o
+[ 41%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaljp2structure.cpp.o
+[ 41%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_abstract_archive.cpp.o
+[ 42%] Building CXX object alg/CMakeFiles/alg.dir/gdalrasterpolygonenumerator.cpp.o
+[ 42%] Building CXX object apps/CMakeFiles/appslib.dir/ogr2ogr_lib.cpp.o
+[ 42%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_tar.cpp.o
+[ 42%] Building CXX object gcore/CMakeFiles/gcore.dir/gdal_mdreader.cpp.o
+[ 42%] Building CXX object alg/CMakeFiles/alg.dir/gdalsievefilter.cpp.o
+[ 42%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_libarchive.cpp.o
+[ 42%] Building CXX object alg/CMakeFiles/alg.dir/gdalsimplewarp.cpp.o
+[ 42%] Building CXX object gcore/CMakeFiles/gcore.dir/gdaljp2metadatagenerator.cpp.o
+[ 42%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_stdin.cpp.o
+[ 42%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalabstractbandblockcache.cpp.o
+[ 42%] Building CXX object alg/CMakeFiles/alg.dir/gdaltransformer.cpp.o
+[ 42%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_buffered_reader.cpp.o
+[ 42%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalarraybandblockcache.cpp.o
+[ 42%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_plugin.cpp.o
+[ 42%] Building CXX object alg/CMakeFiles/alg.dir/gdaltransformgeolocs.cpp.o
+[ 42%] Building CXX object port/CMakeFiles/cpl.dir/cpl_base64.cpp.o
+[ 42%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalhashsetbandblockcache.cpp.o
+[ 43%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_curl.cpp.o
+[ 43%] Building CXX object alg/CMakeFiles/alg.dir/gdalwarper.cpp.o
+[ 43%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalrelationship.cpp.o
+[ 43%] Building CXX object apps/CMakeFiles/appslib.dir/gdaldem_lib.cpp.o
+[ 43%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalsubdatasetinfo.cpp.o
+[ 43%] Building CXX object alg/CMakeFiles/alg.dir/gdalwarpkernel.cpp.o
+[ 43%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalorienteddataset.cpp.o
+[ 43%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalthreadsafedataset.cpp.o
+[ 43%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_curl_streaming.cpp.o
+[ 43%] Building CXX object apps/CMakeFiles/appslib.dir/nearblack_lib.cpp.o
+[ 44%] Building CXX object gcore/CMakeFiles/gcore.dir/geoheif.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_cache.cpp.o
+[ 44%] Building CXX object gcore/CMakeFiles/gcore.dir/overview.cpp.o
+[ 44%] Building CXX object alg/CMakeFiles/alg.dir/gdalwarpoperation.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_xml_validate.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_spawn.cpp.o
+[ 44%] Building CXX object apps/CMakeFiles/appslib.dir/nearblack_lib_floodfill.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_google_oauth2.cpp.o
+[ 44%] Building CXX object alg/CMakeFiles/alg.dir/hilbert.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_progress.cpp.o
+[ 44%] Building CXX object alg/CMakeFiles/alg.dir/llrasterize.cpp.o
+[ 44%] Building CXX object apps/CMakeFiles/appslib.dir/gdal_footprint_lib.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_virtualmem.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_worker_thread_pool.cpp.o
+[ 44%] Building CXX object alg/CMakeFiles/alg.dir/los.cpp.o
+[ 44%] Building CXX object alg/CMakeFiles/alg.dir/polygonize.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_crypt.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_sha1.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_sha256.cpp.o
+[ 44%] Building CXX object alg/CMakeFiles/alg.dir/polygonize_polygonizer_impl.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_aws.cpp.o
+[ 44%] Building CXX object apps/CMakeFiles/appslib.dir/gdalmdiminfo_lib.cpp.o
+[ 44%] Building CXX object alg/CMakeFiles/alg.dir/rasterfill.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_aws_win32.cpp.o
+[ 44%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsi_error.cpp.o
+[ 44%] Building CXX object alg/CMakeFiles/alg.dir/thinplatespline.cpp.o
+[ 44%] Building CXX object gcore/CMakeFiles/gcore.dir/rasterio.cpp.o
+[ 45%] Building CXX object port/CMakeFiles/cpl.dir/cpl_cpu_features.cpp.o
+[ 45%] Building CXX object alg/CMakeFiles/alg.dir/gdal_simplesurf.cpp.o
+[ 45%] Building CXX object apps/CMakeFiles/appslib.dir/gdalmdimtranslate_lib.cpp.o
+[ 45%] Building CXX object port/CMakeFiles/cpl.dir/cpl_google_cloud.cpp.o
+[ 46%] Building CXX object alg/CMakeFiles/alg.dir/viewshed/combiner.cpp.o
+[ 46%] Building CXX object port/CMakeFiles/cpl.dir/cpl_json.cpp.o
+[ 46%] Building CXX object alg/CMakeFiles/alg.dir/viewshed/cumulative.cpp.o
+[ 46%] Building CXX object port/CMakeFiles/cpl.dir/cpl_json_streaming_parser.cpp.o
+[ 46%] Building CXX object port/CMakeFiles/cpl.dir/cpl_md5.cpp.o
+[ 46%] Building CXX object apps/CMakeFiles/appslib.dir/gdaltindex_lib.cpp.o
+[ 46%] Building CXX object alg/CMakeFiles/alg.dir/viewshed/progress.cpp.o
+[ 46%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_hdfs.cpp.o
+[ 46%] Building CXX object alg/CMakeFiles/alg.dir/viewshed/util.cpp.o
+[ 46%] Building CXX object port/CMakeFiles/cpl.dir/cpl_swift.cpp.o
+[ 46%] Building CXX object alg/CMakeFiles/alg.dir/viewshed/viewshed.cpp.o
+[ 46%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_adls.cpp.o
+[ 46%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_abstract_pipeline.cpp.o
+[ 46%] Building CXX object alg/CMakeFiles/alg.dir/viewshed/viewshed_executor.cpp.o
+[ 46%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_az.cpp.o
+[ 46%] Building CXX object alg/CMakeFiles/alg.dir/zonal.cpp.o
+[ 46%] Building CXX object gcore/CMakeFiles/gcore.dir/rawdataset.cpp.o
+[ 46%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_chunked_write_handle.cpp.o
+[ 47%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_clip_common.cpp.o
+[ 47%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_uploadonclose.cpp.o
+[ 47%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalpython.cpp.o
+[ 47%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_gs.cpp.o
+[ 47%] Building CXX object alg/CMakeFiles/alg.dir/gdalgenericinverse.cpp.o
+[ 47%] Building CXX object gcore/CMakeFiles/gcore.dir/gdalpythondriverloader.cpp.o
+[ 47%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_convert.cpp.o
+[ 47%] Building CXX object alg/CMakeFiles/alg.dir/gdal_interpolateatpoint.cpp.o
+[ 47%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_webhdfs.cpp.o
+[ 47%] Building CXX object gcore/CMakeFiles/gcore.dir/tilematrixset.cpp.o
+[ 47%] Building CXX object alg/CMakeFiles/alg.dir/gdalgridsse.cpp.o
+[ 47%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_info.cpp.o
+[ 47%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_s3.cpp.o
+[ 47%] Built target alg
+[ 47%] Building CXX object gcore/CMakeFiles/gcore.dir/gdal_thread_pool.cpp.o
+[ 47%] Building CXX object gcore/CMakeFiles/gcore.dir/nasakeywordhandler.cpp.o
+[ 47%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrgeometryfactory.cpp.o
+[ 47%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_dataset.cpp.o
+[ 47%] Building CXX object gcore/CMakeFiles/gcore.dir/tiff_common.cpp.o
+[ 47%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_dataset_identify.cpp.o
+[ 47%] Building CXX object gcore/CMakeFiles/gcore.dir/enviutils.cpp.o
+[ 47%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrpoint.cpp.o
+[ 47%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_oss.cpp.o
+[ 47%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_dataset_check.cpp.o
+[ 47%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_abstract_array.cpp.o
+[ 47%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrcurve.cpp.o
+[ 47%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_swift.cpp.o
+[ 47%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrlinestring.cpp.o
+[ 47%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array.cpp.o
+[ 47%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_dataset_copy.cpp.o
+[ 48%] Building CXX object port/CMakeFiles/cpl.dir/cpl_json_streaming_writer.cpp.o
+[ 48%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrlinearring.cpp.o
+[ 48%] Building CXX object port/CMakeFiles/cpl.dir/cpl_userfaultfd.cpp.o
+[ 48%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vax.cpp.o
+[ 48%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_bridge_classic.cpp.o
+[ 48%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_dataset_rename.cpp.o
+[ 48%] Building CXX object port/CMakeFiles/cpl.dir/cpl_compressor.cpp.o
+[ 48%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrpolygon.cpp.o
+[ 48%] Building CXX object port/CMakeFiles/cpl.dir/cpl_float.cpp.o
+[ 48%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_dataset_delete.cpp.o
+[ 48%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrtriangle.cpp.o
+[ 48%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_unix_stdio_64.cpp.o
+[ 48%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_gltorthorectification.cpp.o
+[ 50%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrutils.cpp.o
+[ 50%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_external.cpp.o
+[ 50%] Building CXX object port/CMakeFiles/cpl.dir/cpl_vsil_gzip.cpp.o
+[ 51%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_gridded.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrgeomcoordinateprecision.cpp.o
+[ 51%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_materialize.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrgeometry.cpp.o
+[ 51%] Building CXX object port/CMakeFiles/cpl.dir/cpl_minizip_ioapi.cpp.o
+[ 51%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_mask.cpp.o
+[ 51%] Building CXX object port/CMakeFiles/cpl.dir/cpl_minizip_unzip.cpp.o
+[ 51%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_mdim.cpp.o
+[ 51%] Building CXX object port/CMakeFiles/cpl.dir/cpl_minizip_zip.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrgeometrycollection.cpp.o
+[ 51%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_meshgrid.cpp.o
+[ 51%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_mdim_info.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrmultipolygon.cpp.o
+[ 51%] Building CXX object port/CMakeFiles/cpl.dir/cpl_odbc.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrsurface.cpp.o
+[ 51%] Built target cpl
+[ 51%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_regularly_spaced.cpp.o
+[ 51%] Building CXX object gnm/CMakeFiles/gnm.dir/gnmlayer.cpp.o
+[ 51%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_mdim_convert.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrpolyhedralsurface.cpp.o
+[ 51%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_resampled.cpp.o
+[ 51%] Building CXX object gnm/CMakeFiles/gnm.dir/gnmgenericnetwork.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrtriangulatedsurface.cpp.o
+[ 51%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_mdim_mosaic.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrmultipoint.cpp.o
+[ 51%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_transposed.cpp.o
+[ 51%] Building CXX object gnm/CMakeFiles/gnm.dir/gnmgraph.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrmultilinestring.cpp.o
+[ 51%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_unscaled.cpp.o
+[ 51%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrcircularstring.cpp.o
+[ 52%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_pipeline.cpp.o
+[ 52%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_array_view.cpp.o
+[ 53%] Building CXX object gnm/CMakeFiles/gnm.dir/gnmnetwork.cpp.o
+[ 53%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrcompoundcurve.cpp.o
+[ 53%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrcurvepolygon.cpp.o
+[ 53%] Building CXX object gnm/CMakeFiles/gnm.dir/gnmresultlayer.cpp.o
+[ 53%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_attribute.cpp.o
+[ 53%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrcurvecollection.cpp.o
+[ 53%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster.cpp.o
+[ 53%] Building CXX object gnm/CMakeFiles/gnm.dir/gnmrule.cpp.o
+[ 53%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrmulticurve.cpp.o
+[ 53%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_c_api_array.cpp.o
+[ 53%] Built target gnm
+[ 53%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_info.cpp.o
+[ 54%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrmultisurface.cpp.o
+[ 54%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_c_api_attribute.cpp.o
+[ 54%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_api.cpp.o
+[ 54%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_as_features.cpp.o
+[ 54%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_aspect.cpp.o
+[ 54%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_c_api_dimension.cpp.o
+[ 54%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrfeature.cpp.o
+[ 54%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_blend.cpp.o
+[ 54%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_c_api_extended_data_type.cpp.o
+[ 54%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrfeaturedefn.cpp.o
+[ 54%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrfeaturequery.cpp.o
+[ 54%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_c_api_group.cpp.o
+[ 54%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrfeaturestyle.cpp.o
+[ 54%] Building CXX object gnm/gnm_frmts/CMakeFiles/gnm_frmts.dir/gnmregisterall.cpp.o
+[ 54%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_calc.cpp.o
+[ 54%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_dimension.cpp.o
+[ 54%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrfielddefn.cpp.o
+[ 55%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_extended_data_type.cpp.o
+[ 55%] Built target gnm_frmts
+[ 55%] Building CXX object gnm/gnm_frmts/db/CMakeFiles/gnm_frmts_db.dir/gnmdbdriver.cpp.o
+[ 55%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrspatialreference.cpp.o
+[ 55%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_group.cpp.o
+[ 55%] Building CXX object gnm/gnm_frmts/db/CMakeFiles/gnm_frmts_db.dir/gnmdbnetwork.cpp.o
+[ 55%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_clean_collar.cpp.o
+[ 55%] Built target gnm_frmts_db
+[ 55%] Building CXX object gnm/gnm_frmts/file/CMakeFiles/gnm_frmts_file.dir/gnmfiledriver.cpp.o
+[ 55%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_misc.cpp.o
+[ 55%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srsnode.cpp.o
+[ 55%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_clip.cpp.o
+[ 55%] Building CXX object gnm/gnm_frmts/file/CMakeFiles/gnm_frmts_file.dir/gnmfilenetwork.cpp.o
+[ 55%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_pam.cpp.o
+[ 55%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_fromepsg.cpp.o
+[ 55%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrct.cpp.o
+[ 55%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_color_map.cpp.o
+[ 55%] Built target gnm_frmts_file
+[ 55%] Building CXX object frmts/iso8211/CMakeFiles/gdal_iso8211.dir/ddfmodule.cpp.o
+[ 55%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_subsetdimension.cpp.o
+[ 55%] Building CXX object frmts/iso8211/CMakeFiles/gdal_iso8211.dir/ddfutils.cpp.o
+[ 55%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srs_cf1.cpp.o
+[ 55%] Building CXX object frmts/iso8211/CMakeFiles/gdal_iso8211.dir/ddffielddefn.cpp.o
+[ 55%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_compare.cpp.o
+[ 55%] Building CXX object gcore/CMakeFiles/gcore.dir/multidim/gdalmultidim_rat.cpp.o
+[ 55%] Building CXX object frmts/iso8211/CMakeFiles/gdal_iso8211.dir/ddfrecord.cpp.o
+[ 55%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srs_esri.cpp.o
+[ 55%] Building CXX object gcore/CMakeFiles/gcore.dir/rasterio_ssse3.cpp.o
+[ 55%] Building CXX object frmts/iso8211/CMakeFiles/gdal_iso8211.dir/ddffield.cpp.o
+[ 55%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srs_pci.cpp.o
+[ 55%] Built target gcore
+[ 55%] Building C object frmts/miramon_common/CMakeFiles/miramon_common.dir/mm_gdal_functions.c.o
+[ 55%] Building CXX object frmts/iso8211/CMakeFiles/gdal_iso8211.dir/ddfsubfielddefn.cpp.o
+[ 55%] Built target miramon_common
+[ 55%] Building CXX object frmts/CMakeFiles/gdal_frmts.dir/gdalallregister.cpp.o
+[ 55%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srs_usgs.cpp.o
+[ 55%] Built target gdal_iso8211
+[ 55%] Building CXX object frmts/jpeg/CMakeFiles/gdal_JPEG.dir/vsidataio.cpp.o
+[ 55%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_convert.cpp.o
+[ 55%] Building CXX object frmts/jpeg/CMakeFiles/gdal_JPEG.dir/jpgdataset.cpp.o
+[ 55%] Built target gdal_frmts
+[ 55%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srs_dict.cpp.o
+[ 55%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/ace2dataset.cpp.o
+[ 56%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srs_panorama.cpp.o
+[ 56%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/atlsci_spheroid.cpp.o
+[ 56%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_create.cpp.o
+[ 56%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srs_ozi.cpp.o
+[ 57%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/btdataset.cpp.o
+[ 57%] Building CXX object frmts/jpeg/CMakeFiles/gdal_JPEG.dir/jpegdrivercore.cpp.o
+[ 57%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srs_erm.cpp.o
+[ 57%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_contour.cpp.o
+[ 57%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/cpgdataset.cpp.o
+[ 57%] Building CXX object ogr/CMakeFiles/ogr.dir/swq.cpp.o
+[ 57%] Building CXX object frmts/jpeg/CMakeFiles/gdal_JPEG.dir/jpgdataset_12.cpp.o
+[ 57%] Building CXX object ogr/CMakeFiles/ogr.dir/swq_expr_node.cpp.o
+[ 57%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/doq1dataset.cpp.o
+[ 57%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_edit.cpp.o
+[ 57%] Building CXX object frmts/jpeg/CMakeFiles/gdal_JPEG.dir/vsidataio_12.cpp.o
+[ 57%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/doq2dataset.cpp.o
+[ 57%] Built target gdal_JPEG
+[ 57%] Building CXX object ogr/CMakeFiles/ogr.dir/swq_parser.cpp.o
+[ 58%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_footprint.cpp.o
+[ 58%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/cogdriver.cpp.o
+[ 58%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/ehdrdataset.cpp.o
+[ 58%] Building CXX object ogr/CMakeFiles/ogr.dir/swq_select.cpp.o
+[ 58%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_fill_nodata.cpp.o
+[ 58%] Building CXX object ogr/CMakeFiles/ogr.dir/swq_op_registrar.cpp.o
+[ 58%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/eirdataset.cpp.o
+[ 58%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffbitmapband.cpp.o
+[ 58%] Building CXX object ogr/CMakeFiles/ogr.dir/swq_op_general.cpp.o
+[ 58%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_hillshade.cpp.o
+[ 58%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/envidataset.cpp.o
+[ 58%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffdataset.cpp.o
+[ 58%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_srs_xml.cpp.o
+[ 58%] Building CXX object ogr/CMakeFiles/ogr.dir/ograssemblepolygon.cpp.o
+[ 58%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_index.cpp.o
+[ 58%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/fastdataset.cpp.o
+[ 58%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffdataset_read.cpp.o
+[ 58%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr2gmlgeometry.cpp.o
+[ 58%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/genbindataset.cpp.o
+[ 58%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_mosaic.cpp.o
+[ 58%] Building CXX object ogr/CMakeFiles/ogr.dir/gml2ogrgeometry.cpp.o
+[ 58%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/gscdataset.cpp.o
+[ 58%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_mosaic_stack_common.cpp.o
+[ 58%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/gtxdataset.cpp.o
+[ 58%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_expat.cpp.o
+[ 58%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffdataset_write.cpp.o
+[ 58%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrpgeogeometry.cpp.o
+[ 58%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/hkvdataset.cpp.o
+[ 58%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_neighbors.cpp.o
+[ 58%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/krodataset.cpp.o
+[ 59%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_geocoding.cpp.o
+[ 59%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/iscedataset.cpp.o
+[ 59%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_schema_override.cpp.o
+[ 59%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_nodata_to_alpha.cpp.o
+[ 60%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffjpegoverviewds.cpp.o
+[ 60%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/landataset.cpp.o
+[ 60%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffoddbitsband.cpp.o
+[ 60%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_pipeline.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/lcpdataset.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrgeomfielddefn.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffrasterband.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ograpispy.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/loslasdataset.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffrasterband_read.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_xerces.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/mffdataset.cpp.o
+[ 61%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_pixel_info.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_geo_utils.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/ndfdataset.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffrasterband_write.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_proj_p.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/noaabdataset.cpp.o
+[ 61%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_polygonize.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr_wkb.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffrgbaband.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/ntv2dataset.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffsplitband.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrvrtgeometrytypes.cpp.o
+[ 61%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_proximity.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogr2kmlgeometry.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/pauxdataset.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gtiffsplitbitmapband.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrlibjsonutils.cpp.o
+[ 61%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_overview_add.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/pnmdataset.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrgeojsongeometry.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/geotiff.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/roipacdataset.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrgeojsonwriter.cpp.o
+[ 61%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_overview_delete.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gt_jpeg_copy.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/rrasterdataset.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogresrijsongeometry.cpp.o
+[ 61%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_overview_refresh.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gt_citation.cpp.o
+[ 61%] Building CXX object ogr/CMakeFiles/ogr.dir/ogrmitabspatialref.cpp.o
+[ 61%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/snodasdataset.cpp.o
+[ 61%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gt_overview.cpp.o
+[ 62%] Building CXX object ogr/CMakeFiles/ogr.dir/mitab_bounds.cpp.o
+[ 62%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_pansharpen.cpp.o
+[ 62%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/byndataset.cpp.o
+[ 62%] Built target ogr
+[ 62%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/gt_wkt_srs.cpp.o
+[ 62%] Building CXX object frmts/mem/CMakeFiles/gdal_MEM.dir/memdataset.cpp.o
+[ 62%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/nsidcbindataset.cpp.o
+[ 63%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_rgb_to_palette.cpp.o
+[ 63%] Building CXX object frmts/gtiff/CMakeFiles/gdal_GTIFF.dir/tifvsi.cpp.o
+[ 63%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/rawdrivers.cpp.o
+[ 63%] Building CXX object frmts/raw/CMakeFiles/gdal_raw.dir/cphddataset.cpp.o
+[ 63%] Built target gdal_GTIFF
+[ 63%] Built target check_swq_parser_md5
+[ 63%] Building CXX object frmts/mem/CMakeFiles/gdal_MEM.dir/ogrmemlayer.cpp.o
+[ 63%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_read.cpp.o
+[ 63%] Building C object ogr/ogrsf_frmts/sqlite/CMakeFiles/my_test_sqlite3_ext.dir/my_test_sqlite3_ext.c.o
+[ 63%] Built target gdal_MEM
+[ 63%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_reclassify.cpp.o
+[ 63%] Linking C shared module ../../../gdalplugins/my_test_sqlite3_ext.so
+[ 63%] Built target my_test_sqlite3_ext
+[ 63%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_reproject.cpp.o
+[ 63%] Built target check_ods_formula_parser_md5
+[ 63%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_resize.cpp.o
+[ 63%] Built target gdal_raw
+[ 64%] Building CXX object apps/CMakeFiles/utils_common.dir/gdalargumentparser.cpp.o
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_roughness.cpp.o
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_scale.cpp.o
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_select.cpp.o
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_set_type.cpp.o
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_sieve.cpp.o
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_slope.cpp.o
+[ 64%] Built target utils_common
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_stack.cpp.o
+[ 64%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtderivedrasterband.cpp.o
+[ 64%] Building CXX object frmts/derived/CMakeFiles/gdal_Derived.dir/deriveddataset.cpp.o
+[ 64%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtdriver.cpp.o
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_tile.cpp.o
+[ 64%] Building C object frmts/derived/CMakeFiles/gdal_Derived.dir/derivedlist.c.o
+[ 64%] Built target gdal_Derived
+[ 64%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtfilters.cpp.o
+[ 64%] Building CXX object frmts/gti/CMakeFiles/gdal_GTI.dir/gdaltileindexdataset.cpp.o
+[ 64%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtrasterband.cpp.o
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_tpi.cpp.o
+[ 64%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtsourcedrasterband.cpp.o
+[ 64%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_tri.cpp.o
+[ 64%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtsources.cpp.o
+[ 64%] Built target gdal_GTI
+[ 65%] Building CXX object frmts/libertiff/CMakeFiles/gdal_LIBERTIFF.dir/libertiffdataset.cpp.o
+[ 66%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_unscale.cpp.o
+[ 66%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtwarped.cpp.o
+[ 66%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_update.cpp.o
+[ 66%] Building CXX object frmts/hfa/CMakeFiles/gdal_HFA.dir/hfaband.cpp.o
+[ 66%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtdataset.cpp.o
+[ 66%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_viewshed.cpp.o
+[ 66%] Building CXX object frmts/hfa/CMakeFiles/gdal_HFA.dir/hfacompress.cpp.o
+[ 66%] Built target gdal_LIBERTIFF
+[ 66%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/pixelfunctions.cpp.o
+[ 66%] Building CXX object frmts/hfa/CMakeFiles/gdal_HFA.dir/hfadataset.cpp.o
+[ 66%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_write.cpp.o
+[ 66%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtpansharpened.cpp.o
+[ 66%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_raster_zonal_stats.cpp.o
+[ 66%] Building CXX object frmts/hfa/CMakeFiles/gdal_HFA.dir/hfadictionary.cpp.o
+[ 66%] Building CXX object frmts/hfa/CMakeFiles/gdal_HFA.dir/hfaentry.cpp.o
+[ 66%] Building C object frmts/nitf/CMakeFiles/gdal_NITF.dir/mgrs.c.o
+[ 66%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitfdataset.cpp.o
+[ 66%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtprocesseddataset.cpp.o
+[ 66%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_tee.cpp.o
+[ 66%] Building CXX object frmts/hfa/CMakeFiles/gdal_HFA.dir/hfafield.cpp.o
+[ 66%] Building CXX object frmts/hfa/CMakeFiles/gdal_HFA.dir/hfaopen.cpp.o
+[ 66%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtprocesseddatasetfunctions.cpp.o
+[ 66%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector.cpp.o
+[ 66%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/rpftocdataset.cpp.o
+[ 66%] Building CXX object frmts/hfa/CMakeFiles/gdal_HFA.dir/hfatype.cpp.o
+[ 66%] Building CXX object frmts/hfa/CMakeFiles/gdal_HFA.dir/hfa_overviews.cpp.o
+[ 66%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitfrasterband.cpp.o
+[ 67%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtmultidim.cpp.o
+[ 67%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_info.cpp.o
+[ 67%] Built target gdal_HFA
+[ 67%] Building C object frmts/gxf/CMakeFiles/gdal_GXF.dir/gxf_ogcwkt.c.o
+[ 68%] Building C object frmts/gxf/CMakeFiles/gdal_GXF.dir/gxf_proj4.c.o
+[ 69%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/ecrgtocdataset.cpp.o
+[ 69%] Building CXX object frmts/gxf/CMakeFiles/gdal_GXF.dir/gxfdataset.cpp.o
+[ 69%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_check_coverage.cpp.o
+[ 69%] Building C object frmts/gxf/CMakeFiles/gdal_GXF.dir/gxfopen.c.o
+[ 69%] Built target gdal_GXF
+[ 69%] Building CXX object frmts/aaigrid/CMakeFiles/gdal_AAIGrid.dir/aaigriddataset.cpp.o
+[ 69%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitffile.cpp.o
+[ 69%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_check_geometry.cpp.o
+[ 69%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtreclassifier.cpp.o
+[ 69%] Built target gdal_AAIGrid
+[ 70%] Building CXX object frmts/ceos/CMakeFiles/gdal_CEOS.dir/ceosdataset.cpp.o
+[ 70%] Building C object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitfimage.c.o
+[ 70%] Building CXX object frmts/vrt/CMakeFiles/gdal_vrt.dir/vrtrawrasterband.cpp.o
+[ 70%] Building C object frmts/ceos/CMakeFiles/gdal_CEOS.dir/ceosopen.c.o
+[ 70%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitfaridpcm.cpp.o
+[ 70%] Built target gdal_CEOS
+[ 70%] Building C object frmts/ceos2/CMakeFiles/gdal_SAR_CEOS.dir/ceos.c.o
+[ 70%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_clip.cpp.o
+[ 70%] Building C object frmts/ceos2/CMakeFiles/gdal_SAR_CEOS.dir/ceosrecipe.c.o
+[ 70%] Building C object frmts/ceos2/CMakeFiles/gdal_SAR_CEOS.dir/ceossar.c.o
+[ 70%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/rpftocfile.cpp.o
+[ 70%] Building C object frmts/ceos2/CMakeFiles/gdal_SAR_CEOS.dir/link.c.o
+[ 70%] Building CXX object frmts/ceos2/CMakeFiles/gdal_SAR_CEOS.dir/sar_ceosdataset.cpp.o
+[ 70%] Built target gdal_vrt
+[ 70%] Building C object frmts/dted/CMakeFiles/gdal_DTED.dir/dted_api.c.o
+[ 70%] Building C object frmts/dted/CMakeFiles/gdal_DTED.dir/dted_create.c.o
+[ 70%] Building C object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitfdes.c.o
+[ 70%] Building CXX object frmts/dted/CMakeFiles/gdal_DTED.dir/dteddataset.cpp.o
+[ 70%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitf_gcprpc.cpp.o
+[ 70%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_clean_coverage.cpp.o
+[ 70%] Built target gdal_SAR_CEOS
+[ 70%] Building CXX object frmts/jdem/CMakeFiles/gdal_JDEM.dir/jdemdataset.cpp.o
+[ 70%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitfwritejpeg.cpp.o
+[ 70%] Built target gdal_DTED
+[ 70%] Building C object frmts/envisat/CMakeFiles/gdal_Envisat.dir/EnvisatFile.c.o
+[ 70%] Building C object frmts/envisat/CMakeFiles/gdal_Envisat.dir/records.c.o
+[ 70%] Building CXX object frmts/envisat/CMakeFiles/gdal_Envisat.dir/adsrange.cpp.o
+[ 70%] Built target gdal_JDEM
+[ 70%] Building CXX object frmts/l1b/CMakeFiles/gdal_L1B.dir/l1bdataset.cpp.o
+[ 70%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_combine.cpp.o
+[ 70%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitfwritejpeg_12.cpp.o
+[ 70%] Building CXX object frmts/envisat/CMakeFiles/gdal_Envisat.dir/unwrapgcps.cpp.o
+[ 70%] Building CXX object frmts/envisat/CMakeFiles/gdal_Envisat.dir/envisatdataset.cpp.o
+[ 70%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/offsetpatcher.cpp.o
+[ 70%] Built target gdal_L1B
+[ 70%] Building CXX object frmts/rs2/CMakeFiles/gdal_RS2.dir/rs2dataset.cpp.o
+[ 70%] Built target gdal_Envisat
+[ 71%] Building CXX object frmts/ilwis/CMakeFiles/gdal_ILWIS.dir/ilwisdataset.cpp.o
+[ 71%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/rpfframewriter.cpp.o
+[ 71%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_concat.cpp.o
+[ 71%] Built target gdal_RS2
+[ 71%] Building CXX object frmts/rmf/CMakeFiles/gdal_RMF.dir/rmfdataset.cpp.o
+[ 71%] Building CXX object frmts/ilwis/CMakeFiles/gdal_ILWIS.dir/ilwiscoordinatesystem.cpp.o
+[ 71%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_concave_hull.cpp.o
+[ 71%] Building CXX object frmts/rmf/CMakeFiles/gdal_RMF.dir/rmfdem.cpp.o
+[ 71%] Built target gdal_ILWIS
+[ 71%] Building CXX object frmts/leveller/CMakeFiles/gdal_Leveller.dir/levellerdataset.cpp.o
+[ 71%] Building CXX object frmts/rmf/CMakeFiles/gdal_RMF.dir/rmflzw.cpp.o
+[ 71%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_convert.cpp.o
+[ 71%] Built target gdal_Leveller
+[ 71%] Building CXX object frmts/srtmhgt/CMakeFiles/gdal_SRTMHGT.dir/srtmhgtdataset.cpp.o
+[ 71%] Building CXX object frmts/rmf/CMakeFiles/gdal_RMF.dir/rmfjpeg.cpp.o
+[ 72%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_convex_hull.cpp.o
+[ 72%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/rpftocwriter.cpp.o
+[ 72%] Built target gdal_SRTMHGT
+[ 72%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_create.cpp.o
+[ 72%] Built target gdal_RMF
+[ 72%] Building CXX object frmts/idrisi/CMakeFiles/gdal_IDRISI.dir/IdrisiDataset.cpp.o
+[ 72%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitfdrivercore.cpp.o
+[ 72%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_dissolve.cpp.o
+[ 72%] Building CXX object frmts/gsg/CMakeFiles/gdal_GSG.dir/gs7bgdataset.cpp.o
+[ 72%] Built target gdal_IDRISI
+[ 72%] Building CXX object frmts/nitf/CMakeFiles/gdal_NITF.dir/nitfbilevel.cpp.o
+[ 73%] Building CXX object frmts/ers/CMakeFiles/gdal_ERS.dir/ersdataset.cpp.o
+[ 73%] Built target gdal_NITF
+[ 73%] Building CXX object frmts/jaxapalsar/CMakeFiles/gdal_PALSARJaxa.dir/jaxapalsardataset.cpp.o
+[ 73%] Building CXX object frmts/gsg/CMakeFiles/gdal_GSG.dir/gsagdataset.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_edit.cpp.o
+[ 73%] Building CXX object frmts/ers/CMakeFiles/gdal_ERS.dir/ershdrnode.cpp.o
+[ 73%] Built target gdal_PALSARJaxa
+[ 73%] Building CXX object frmts/dimap/CMakeFiles/gdal_DIMAP.dir/dimapdataset.cpp.o
+[ 73%] Building CXX object frmts/gsg/CMakeFiles/gdal_GSG.dir/gsbgdataset.cpp.o
+[ 73%] Built target gdal_ERS
+[ 73%] Building CXX object frmts/gff/CMakeFiles/gdal_GFF.dir/gff_dataset.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_export_schema.cpp.o
+[ 73%] Built target gdal_GSG
+[ 73%] Building CXX object frmts/cosar/CMakeFiles/gdal_COSAR.dir/cosar_dataset.cpp.o
+[ 73%] Built target gdal_DIMAP
+[ 73%] Building CXX object frmts/pds/CMakeFiles/gdal_PDS.dir/isis2dataset.cpp.o
+[ 73%] Built target gdal_GFF
+[ 73%] Building CXX object frmts/adrg/CMakeFiles/gdal_ADRG.dir/adrgdataset.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_pipeline.cpp.o
+[ 73%] Built target gdal_COSAR
+[ 73%] Building CXX object frmts/coasp/CMakeFiles/gdal_COASP.dir/coasp_dataset.cpp.o
+[ 73%] Building CXX object frmts/pds/CMakeFiles/gdal_PDS.dir/isis3dataset.cpp.o
+[ 73%] Building CXX object frmts/adrg/CMakeFiles/gdal_ADRG.dir/srpdataset.cpp.o
+[ 73%] Built target gdal_COASP
+[ 73%] Building CXX object frmts/tsx/CMakeFiles/gdal_TSX.dir/tsxdataset.cpp.o
+[ 73%] Built target gdal_ADRG
+[ 73%] Building CXX object frmts/terragen/CMakeFiles/gdal_Terragen.dir/terragendataset.cpp.o
+[ 73%] Built target gdal_TSX
+[ 73%] Building CXX object frmts/msgn/CMakeFiles/gdal_MSGN.dir/msg_basic_types.cpp.o
+[ 73%] Built target gdal_Terragen
+[ 73%] Building CXX object frmts/til/CMakeFiles/gdal_TIL.dir/tildataset.cpp.o
+[ 73%] Building CXX object frmts/msgn/CMakeFiles/gdal_MSGN.dir/msg_reader_core.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_rasterize.cpp.o
+[ 73%] Building CXX object frmts/pds/CMakeFiles/gdal_PDS.dir/pdsdataset.cpp.o
+[ 73%] Building CXX object frmts/msgn/CMakeFiles/gdal_MSGN.dir/msgndataset.cpp.o
+[ 73%] Built target gdal_TIL
+[ 73%] Building CXX object frmts/northwood/CMakeFiles/gdal_northwood.dir/grddataset.cpp.o
+[ 73%] Built target gdal_MSGN
+[ 73%] Building CXX object frmts/saga/CMakeFiles/gdal_SAGA.dir/sagadataset.cpp.o
+[ 73%] Building CXX object frmts/pds/CMakeFiles/gdal_PDS.dir/pds4dataset.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_read.cpp.o
+[ 73%] Building CXX object frmts/northwood/CMakeFiles/gdal_northwood.dir/grcdataset.cpp.o
+[ 73%] Built target gdal_SAGA
+[ 73%] Building CXX object frmts/pds/CMakeFiles/gdal_PDS.dir/pds4vector.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_filter.cpp.o
+[ 73%] Building CXX object frmts/northwood/CMakeFiles/gdal_northwood.dir/northwood.cpp.o
+[ 73%] Built target gdal_northwood
+[ 73%] Building CXX object frmts/xyz/CMakeFiles/gdal_XYZ.dir/xyzdataset.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_geom.cpp.o
+[ 73%] Building CXX object frmts/heif/CMakeFiles/gdal_HEIF.dir/heifdataset.cpp.o
+[ 73%] Building CXX object frmts/pds/CMakeFiles/gdal_PDS.dir/vicardataset.cpp.o
+[ 73%] Built target gdal_XYZ
+[ 73%] Building CXX object frmts/esric/CMakeFiles/gdal_ESRIC.dir/esric_dataset.cpp.o
+[ 73%] Building CXX object frmts/heif/CMakeFiles/gdal_HEIF.dir/heifdatasetcreatecopy.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_limit.cpp.o
+[ 73%] Building CXX object frmts/heif/CMakeFiles/gdal_HEIF.dir/heifdrivercore.cpp.o
+[ 73%] Building CXX object frmts/pds/CMakeFiles/gdal_PDS.dir/vicarkeywordhandler.cpp.o
+[ 73%] Built target gdal_ESRIC
+[ 73%] Building CXX object frmts/hf2/CMakeFiles/gdal_HF2.dir/hf2dataset.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_make_point.cpp.o
+[ 73%] Built target gdal_HEIF
+[ 73%] Building CXX object frmts/kmlsuperoverlay/CMakeFiles/gdal_KMLSUPEROVERLAY.dir/kmlsuperoverlaydataset.cpp.o
+[ 73%] Building CXX object frmts/pds/CMakeFiles/gdal_PDS.dir/pdsdrivercore.cpp.o
+[ 73%] Built target gdal_HF2
+[ 73%] Building CXX object frmts/ctg/CMakeFiles/gdal_CTG.dir/ctgdataset.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_set_geom_type.cpp.o
+[ 73%] Built target gdal_PDS
+[ 73%] Building CXX object frmts/zmap/CMakeFiles/gdal_ZMap.dir/zmapdataset.cpp.o
+[ 73%] Built target gdal_CTG
+[ 73%] Building CXX object frmts/ngsgeoid/CMakeFiles/gdal_NGSGEOID.dir/ngsgeoiddataset.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_explode_collections.cpp.o
+[ 73%] Built target gdal_NGSGEOID
+[ 73%] Building CXX object frmts/iris/CMakeFiles/gdal_IRIS.dir/irisdataset.cpp.o
+[ 73%] Built target gdal_KMLSUPEROVERLAY
+[ 73%] Built target gdal_ZMap
+[ 73%] Building CXX object frmts/cals/CMakeFiles/gdal_CALS.dir/calsdataset.cpp.o
+[ 73%] Building CXX object frmts/map/CMakeFiles/gdal_MAP.dir/mapdataset.cpp.o
+[ 73%] Built target gdal_IRIS
+[ 73%] Built target gdal_MAP
+[ 73%] Built target gdal_CALS
+[ 73%] Building CXX object frmts/safe/CMakeFiles/gdal_SAFE.dir/safedataset.cpp.o
+[ 73%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_make_valid.cpp.o
+[ 75%] Building CXX object frmts/sentinel2/CMakeFiles/gdal_SENTINEL2.dir/sentinel2dataset.cpp.o
+[ 76%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_segmentize.cpp.o
+[ 76%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_simplify.cpp.o
+[ 77%] Building CXX object frmts/prf/CMakeFiles/gdal_PRF.dir/phprfdataset.cpp.o
+[ 77%] Built target gdal_SAFE
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/marfa_dataset.cpp.o
+[ 77%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_simplify_coverage.cpp.o
+[ 77%] Built target gdal_PRF
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/mrf_band.cpp.o
+[ 77%] Built target gdal_SENTINEL2
+[ 77%] Building CXX object frmts/wmts/CMakeFiles/gdal_WMTS.dir/wmtsdataset.cpp.o
+[ 77%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_buffer.cpp.o
+[ 77%] Building CXX object frmts/wmts/CMakeFiles/gdal_WMTS.dir/wmtsdrivercore.cpp.o
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/mrf_overview.cpp.o
+[ 77%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_swap_xy.cpp.o
+[ 77%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/gribdataset.cpp.o
+[ 77%] Built target gdal_WMTS
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/mrf_util.cpp.o
+[ 77%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_grid.cpp.o
+[ 77%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_grid_average.cpp.o
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/Packer_RLE.cpp.o
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/Tif_band.cpp.o
+[ 77%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/gribcreatecopy.cpp.o
+[ 77%] Building CXX object frmts/bmp/CMakeFiles/gdal_BMP.dir/bmpdataset.cpp.o
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/mrfdrivercore.cpp.o
+[ 77%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_grid_data_metrics.cpp.o
+[ 77%] Built target gdal_BMP
+[ 77%] Building CXX object frmts/tga/CMakeFiles/gdal_TGA.dir/tgadataset.cpp.o
+[ 77%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/clock.c.o
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/JPEG_band.cpp.o
+[ 77%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/degrib1.cpp.o
+[ 77%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_grid_invdist.cpp.o
+[ 77%] Built target gdal_TGA
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/PNG_band.cpp.o
+[ 77%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/degrib2.cpp.o
+[ 77%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/JPNG_band.cpp.o
+[ 77%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/inventory.cpp.o
+[ 77%] Building CXX object frmts/stacta/CMakeFiles/gdal_STACTA.dir/stactadataset.cpp.o
+[ 77%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_grid_invdistnn.cpp.o
+[ 77%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/metaname.cpp.o
+[ 78%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/JPEG12_band.cpp.o
+[ 78%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/myerror.cpp.o
+[ 78%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/grib1tab.cpp.o
+[ 78%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_grid_linear.cpp.o
+[ 78%] Building CXX object frmts/mrf/CMakeFiles/gdal_MRF.dir/LERC_band.cpp.o
+[ 78%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/myutil.c.o
+[ 78%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/metaparse.cpp.o
+[ 78%] Built target gdal_STACTA
+[ 78%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_grid_nearest.cpp.o
+[ 78%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_index.cpp.o
+[ 78%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/weather.c.o
+[ 79%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/metaprint.cpp.o
+[ 79%] Built target gdal_MRF
+[ 79%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_layer_algebra.cpp.o
+[ 79%] Building CXX object frmts/snap_tiff/CMakeFiles/gdal_SNAP_TIFF.dir/snaptiffdriver.cpp.o
+[ 79%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/grib2api.c.o
+[ 79%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/myassert.c.o
+[ 79%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/scan.c.o
+[ 79%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/tendian.cpp.o
+[ 79%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/gridtemplates.c.o
+[ 79%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/drstemplates.c.o
+[ 79%] Building C object frmts/bsb/CMakeFiles/gdal_BSB.dir/bsb_read.c.o
+[ 79%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/pdstemplates.c.o
+[ 79%] Building CXX object frmts/bsb/CMakeFiles/gdal_BSB.dir/bsbdataset.cpp.o
+[ 79%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_output_abstract.cpp.o
+[ 79%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/gbits.c.o
+[ 79%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_free.c.o
+[ 79%] Built target gdal_SNAP_TIFF
+[ 80%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_partition.cpp.o
+[ 80%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_unpack1.c.o
+[ 80%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_unpack2.c.o
+[ 80%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_unpack3.c.o
+[ 80%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_unpack4.c.o
+[ 80%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_unpack5.c.o
+[ 80%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_unpack6.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_unpack7.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_info.c.o
+[ 81%] Built target gdal_BSB
+[ 81%] Building C object frmts/aigrid/CMakeFiles/gdal_AIGrid.dir/aigccitt.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/g2_getfld.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/simunpack.c.o
+[ 81%] Building CXX object frmts/aigrid/CMakeFiles/gdal_AIGrid.dir/aigdataset.cpp.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/comunpack.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/pack_gp.c.o
+[ 81%] Building CXX object frmts/usgsdem/CMakeFiles/gdal_USGSDEM.dir/usgsdemdataset.cpp.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/reduce.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/specunpack.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/rdieee.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/mkieee.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/int_power.c.o
+[ 81%] Building C object frmts/aigrid/CMakeFiles/gdal_AIGrid.dir/aigopen.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/simpack.c.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/compack.c.o
+[ 81%] Built target gdal_USGSDEM
+[ 81%] Building C object frmts/aigrid/CMakeFiles/gdal_AIGrid.dir/gridlib.c.o
+[ 81%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_rename_layer.cpp.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/cmplxpack.c.o
+[ 81%] Built target gdal_AIGrid
+[ 81%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_reproject.cpp.o
+[ 81%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/misspack.c.o
+[ 82%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/dec_jpeg2000.cpp.o
+[ 82%] Building CXX object frmts/airsar/CMakeFiles/gdal_AirSAR.dir/airsardataset.cpp.o
+[ 82%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/jpcunpack.c.o
+[ 82%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/degrib/hazard.c.o
+[ 83%] Building CXX object frmts/pcidsk/CMakeFiles/gdal_PCIDSK.dir/pcidskdataset2.cpp.o
+[ 83%] Built target gdal_AirSAR
+[ 83%] Building CXX object frmts/grib/CMakeFiles/gdal_GRIB.dir/gribdrivercore.cpp.o
+[ 83%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_select.cpp.o
+[ 83%] Building CXX object frmts/sigdem/CMakeFiles/gdal_SIGDEM.dir/sigdemdataset.cpp.o
+[ 83%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/pngunpack.c.o
+[ 83%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/dec_png.c.o
+[ 83%] Built target gdal_SIGDEM
+[ 83%] Building CXX object frmts/rik/CMakeFiles/gdal_RIK.dir/rikdataset.cpp.o
+[ 83%] Building C object frmts/grib/CMakeFiles/gdal_GRIB.dir/degrib/g2clib/aecunpack.c.o
+[ 83%] Built target gdal_GRIB
+[ 83%] Building CXX object frmts/stacit/CMakeFiles/gdal_STACIT.dir/stacitdataset.cpp.o
+[ 83%] Building CXX object frmts/pcidsk/CMakeFiles/gdal_PCIDSK.dir/gdal_edb.cpp.o
+[ 83%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_set_field_type.cpp.o
+[ 83%] Built target gdal_RIK
+[ 83%] Building CXX object frmts/pdf/CMakeFiles/gdal_PDF.dir/ogrpdflayer.cpp.o
+[ 83%] Building CXX object frmts/pcidsk/CMakeFiles/gdal_PCIDSK.dir/vsi_pcidsk_io.cpp.o
+[ 83%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_sort.cpp.o
+[ 83%] Building CXX object frmts/pcidsk/CMakeFiles/gdal_PCIDSK.dir/ogrpcidsklayer.cpp.o
+[ 83%] Built target gdal_STACIT
+[ 83%] Building CXX object frmts/pdf/CMakeFiles/gdal_PDF.dir/pdfcreatecopy.cpp.o
+[ 83%] Building CXX object frmts/pdf/CMakeFiles/gdal_PDF.dir/pdfdataset.cpp.o
+[ 83%] Building CXX object frmts/pcidsk/CMakeFiles/gdal_PCIDSK.dir/pcidskdrivercore.cpp.o
+[ 83%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_sql.cpp.o
+[ 83%] Built target gdal_PCIDSK
+[ 83%] Building CXX object frmts/rcm/CMakeFiles/gdal_RCM.dir/rcmdataset.cpp.o
+[ 83%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_update.cpp.o
+[ 83%] Building CXX object frmts/rcm/CMakeFiles/gdal_RCM.dir/rcmdrivercore.cpp.o
+[ 83%] Building CXX object frmts/gdalg/CMakeFiles/gdal_GDALG.dir/gdalgdriver.cpp.o
+[ 83%] Built target gdal_RCM
+[ 83%] Building CXX object frmts/e57/CMakeFiles/gdal_E57.dir/e57driver.cpp.o
+[ 83%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vector_write.cpp.o
+[ 83%] Building CXX object frmts/pdf/CMakeFiles/gdal_PDF.dir/pdfio.cpp.o
+[ 83%] Built target gdal_GDALG
+[ 83%] Building CXX object frmts/png/CMakeFiles/gdal_PNG.dir/pngdataset.cpp.o
+[ 83%] Built target gdal_E57
+[ 83%] Building CXX object frmts/gif/CMakeFiles/gdal_GIF.dir/gifabstractdataset.cpp.o
+[ 83%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vsi.cpp.o
+[ 84%] Building CXX object frmts/gif/CMakeFiles/gdal_GIF.dir/biggifdataset.cpp.o
+[ 84%] Building CXX object frmts/png/CMakeFiles/gdal_PNG.dir/pngdrivercore.cpp.o
+[ 84%] Building CXX object frmts/pdf/CMakeFiles/gdal_PDF.dir/pdfobject.cpp.o
+[ 84%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vsi_copy.cpp.o
+[ 84%] Built target gdal_PNG
+[ 84%] Building CXX object frmts/gif/CMakeFiles/gdal_GIF.dir/gifdataset.cpp.o
+[ 84%] Building CXX object frmts/wcs/CMakeFiles/gdal_WCS.dir/gmlcoverage.cpp.o
+[ 84%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vsi_delete.cpp.o
+[ 84%] Building CXX object frmts/wcs/CMakeFiles/gdal_WCS.dir/wcsdataset.cpp.o
+[ 84%] Building CXX object frmts/gif/CMakeFiles/gdal_GIF.dir/gifdrivercore.cpp.o
+[ 85%] Building CXX object frmts/pdf/CMakeFiles/gdal_PDF.dir/pdfreadvectors.cpp.o
+[ 85%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vsi_list.cpp.o
+[ 85%] Built target gdal_GIF
+[ 85%] Building CXX object frmts/http/CMakeFiles/gdal_HTTP.dir/httpdriver.cpp.o
+[ 85%] Building CXX object frmts/wcs/CMakeFiles/gdal_WCS.dir/wcsdataset100.cpp.o
+[ 85%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vsi_move.cpp.o
+[ 85%] Built target gdal_HTTP
+[ 85%] Building CXX object frmts/pdf/CMakeFiles/gdal_PDF.dir/pdfwritabledataset.cpp.o
+[ 85%] Building CXX object frmts/wcs/CMakeFiles/gdal_WCS.dir/wcsdataset110.cpp.o
+[ 85%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vsi_sozip.cpp.o
+[ 85%] Building CXX object frmts/pdf/CMakeFiles/gdal_PDF.dir/pdfcreatefromcomposition.cpp.o
+[ 85%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdfdataset.cpp.o
+[ 86%] Building CXX object frmts/wcs/CMakeFiles/gdal_WCS.dir/wcsdataset201.cpp.o
+[ 86%] Building CXX object apps/CMakeFiles/appslib.dir/gdalalg_vsi_sync.cpp.o
+[ 86%] Built target appslib
+[ 86%] Building CXX object frmts/wcs/CMakeFiles/gdal_WCS.dir/wcsrasterband.cpp.o
+[ 87%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_array.cpp.o
+[ 87%] Building CXX object frmts/wcs/CMakeFiles/gdal_WCS.dir/wcsutils.cpp.o
+[ 87%] Building CXX object frmts/pdf/CMakeFiles/gdal_PDF.dir/pdfdrivercore.cpp.o
+[ 87%] Building CXX object frmts/wcs/CMakeFiles/gdal_WCS.dir/wcsdrivercore.cpp.o
+[ 88%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdflayer.cpp.o
+[ 88%] Built target gdal_PDF
+[ 88%] Building CXX object frmts/daas/CMakeFiles/gdal_DAAS.dir/daasdataset.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v2_array.cpp.o
+[ 88%] Built target gdal_WCS
+[ 88%] Building CXX object frmts/eeda/CMakeFiles/gdal_EEDA.dir/eedaidataset.cpp.o
+[ 88%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdfwriterconfig.cpp.o
+[ 88%] Built target gdal_DAAS
+[ 88%] Building CXX object frmts/fits/CMakeFiles/gdal_FITS.dir/fitsdataset.cpp.o
+[ 88%] Building CXX object frmts/eeda/CMakeFiles/gdal_EEDA.dir/eedadataset.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_array.cpp.o
+[ 88%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdfsg.cpp.o
+[ 88%] Building CXX object frmts/eeda/CMakeFiles/gdal_EEDA.dir/eedacommon.cpp.o
+[ 88%] Building CXX object frmts/fits/CMakeFiles/gdal_FITS.dir/fitsdrivercore.cpp.o
+[ 88%] Built target gdal_EEDA
+[ 88%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/hdf5dataset.cpp.o
+[ 88%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdflayersg.cpp.o
+[ 88%] Built target gdal_FITS
+[ 88%] Building CXX object frmts/plmosaic/CMakeFiles/gdal_PLMOSAIC.dir/plmosaicdataset.cpp.o
+[ 88%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdfsgwriterutil.cpp.o
+[ 88%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/hdf5imagedataset.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_compressors.cpp.o
+[ 88%] Built target gdal_PLMOSAIC
+[ 88%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdfmultidim.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_filters.cpp.o
+[ 88%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/gh5_convenience.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/gdalhttp.cpp.o
+[ 88%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/iso19115_srs.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_attribute.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/gdalwmsrasterband.cpp.o
+[ 88%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/bagdataset.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_iiifimage.cpp.o
+[ 88%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdfvirtual.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_iip.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_abstract_compressor.cpp.o
+[ 88%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/hdf5multidim.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_tiled_wms.cpp.o
+[ 88%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdf_sentinel3_sral_mwr.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_blosc.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_tms.cpp.o
+[ 88%] Building CXX object frmts/netcdf/CMakeFiles/gdal_netCDF.dir/netcdfdrivercore.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_bytes.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_wms.cpp.o
+[ 88%] Built target gdal_netCDF
+[ 88%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/hdf5eosparser.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_crc32c.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/wmsdriver.cpp.o
+[ 88%] Building CXX object frmts/ogcapi/CMakeFiles/gdal_OGCAPI.dir/gdalogcapidataset.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_gzip.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/wmsutils.cpp.o
+[ 88%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/rat.cpp.o
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_sequence.cpp.o
+[ 88%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver.cpp.o
+[ 88%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/s100.cpp.o
+[ 88%] Built target gdal_OGCAPI
+[ 88%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_sharding.cpp.o
+[ 89%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/gdalwmscache.cpp.o
+[ 89%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_transpose.cpp.o
+[ 89%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/s102dataset.cpp.o
+[ 89%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_arcgis_server.cpp.o
+[ 89%] Building CXX object frmts/webp/CMakeFiles/gdal_WEBP.dir/webpdataset.cpp.o
+[ 90%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_vlen_utf8.cpp.o
+[ 90%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_mrf.cpp.o
+[ 90%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/s104dataset.cpp.o
+[ 90%] Building CXX object frmts/webp/CMakeFiles/gdal_WEBP.dir/webpdrivercore.cpp.o
+[ 90%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_codec_zstd.cpp.o
+[ 90%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_ogcapicoverage.cpp.o
+[ 90%] Built target gdal_WEBP
+[ 90%] Building CXX object frmts/mbtiles/CMakeFiles/gdal_MBTiles.dir/mbtilesdataset.cpp.o
+[ 90%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_ogcapimaps.cpp.o
+[ 90%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_dimension.cpp.o
+[ 90%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/s111dataset.cpp.o
+[ 90%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_tileservice.cpp.o
+[ 90%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_group.cpp.o
+[ 90%] Built target gdal_MBTiles
+[ 90%] Building CXX object frmts/openjpeg/CMakeFiles/gdal_JP2OpenJPEG.dir/openjpegdataset.cpp.o
+[ 90%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_virtualearth.cpp.o
+[ 91%] Building CXX object frmts/hdf5/CMakeFiles/gdal_HDF5.dir/hdf5drivercore.cpp.o
+[ 91%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/minidriver_worldwind.cpp.o
+[ 91%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v2_group.cpp.o
+[ 91%] Built target gdal_HDF5
+[ 91%] Building CXX object frmts/exr/CMakeFiles/gdal_EXR.dir/exrdataset.cpp.o
+[ 91%] Building CXX object frmts/openjpeg/CMakeFiles/gdal_JP2OpenJPEG.dir/openjpegdrivercore.cpp.o
+[ 91%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/wmsmetadataset.cpp.o
+[ 91%] Built target gdal_JP2OpenJPEG
+[ 91%] Building CXX object frmts/pcraster/CMakeFiles/gdal_PCRaster.dir/pcrasterdataset.cpp.o
+[ 91%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/gdalwmsdataset.cpp.o
+[ 91%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_v3_group.cpp.o
+[ 91%] Building CXX object frmts/exr/CMakeFiles/gdal_EXR.dir/exrdrivercore.cpp.o
+[ 91%] Building CXX object frmts/pcraster/CMakeFiles/gdal_PCRaster.dir/pcrastermisc.cpp.o
+[ 91%] Building CXX object frmts/wms/CMakeFiles/gdal_WMS.dir/wmsdrivercore.cpp.o
+[ 91%] Built target gdal_EXR
+[ 91%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarr_sharedresource.cpp.o
+[ 91%] Building CXX object frmts/pcraster/CMakeFiles/gdal_PCRaster.dir/pcrasterrasterband.cpp.o
+[ 91%] Built target gdal_WMS
+[ 91%] Building CXX object frmts/jpegxl/CMakeFiles/gdal_JPEGXL.dir/jpegxl.cpp.o
+[ 91%] Building CXX object frmts/pcraster/CMakeFiles/gdal_PCRaster.dir/pcrasterutil.cpp.o
+[ 91%] Building CXX object frmts/miramon/CMakeFiles/gdal_MiraMon.dir/miramon_band.cpp.o
+[ 91%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarrdriver.cpp.o
+[ 91%] Building CXX object frmts/pcraster/CMakeFiles/gdal_PCRaster.dir/pcrasterdrivercore.cpp.o
+[ 91%] Building CXX object frmts/jpegxl/CMakeFiles/gdal_JPEGXL.dir/jpegxldrivercore.cpp.o
+[ 91%] Building CXX object frmts/miramon/CMakeFiles/gdal_MiraMon.dir/miramon_rasterband.cpp.o
+[ 91%] Built target gdal_PCRaster
+[ 91%] Building CXX object ogr/ogrsf_frmts/CMakeFiles/ogrsf_frmts.dir/generic/ogrregisterall.cpp.o
+[ 91%] Built target gdal_JPEGXL
+[ 91%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrgeojsondatasource.cpp.o
+[ 91%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/vsikerchunk.cpp.o
+[ 91%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/vsikerchunk_json_ref.cpp.o
+[ 91%] Built target ogrsf_frmts
+[ 91%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_rawbinblock.cpp.o
+[ 91%] Building CXX object frmts/miramon/CMakeFiles/gdal_MiraMon.dir/miramon_rel.cpp.o
+[ 92%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrgeojsonlayer.cpp.o
+[ 92%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_mapheaderblock.cpp.o
+[ 92%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrgeojsonreader.cpp.o
+[ 92%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/vsikerchunk_parquet_ref.cpp.o
+[ 92%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_mapindexblock.cpp.o
+[ 92%] Building CXX object frmts/miramon/CMakeFiles/gdal_MiraMon.dir/miramon_dataset.cpp.o
+[ 92%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_mapobjectblock.cpp.o
+[ 92%] Building CXX object frmts/miramon/CMakeFiles/gdal_MiraMon.dir/miramon_palettes.cpp.o
+[ 92%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/crc32c.cpp.o
+[ 92%] Building CXX object frmts/zarr/CMakeFiles/gdal_Zarr.dir/zarrdrivercore.cpp.o
+[ 92%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrgeojsonutils.cpp.o
+[ 92%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_mapcoordblock.cpp.o
+[ 92%] Built target gdal_MiraMon
+[ 92%] Building CXX object ogr/ogrsf_frmts/shape/CMakeFiles/ogr_Shape.dir/shape2ogr.cpp.o
+[ 92%] Built target gdal_Zarr
+[ 92%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrgeojsonwritelayer.cpp.o
+[ 92%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_feature.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_feature_mif.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrgeojsondriver.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/shape/CMakeFiles/ogr_Shape.dir/shp_vsi.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrgeojsonseqdriver.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/shape/CMakeFiles/ogr_Shape.dir/ogrshapedatasource.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_mapfile.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/shape/CMakeFiles/ogr_Shape.dir/ogrshapedriver.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogresrijsonreader.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_idfile.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogresrijsondriver.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/shape/CMakeFiles/ogr_Shape.dir/ogrshapelayer.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_datfile.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_tabfile.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrtopojsonreader.cpp.o
+[ 93%] Built target ogr_Shape
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_miffile.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrtopojsondriver.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/geojson/CMakeFiles/ogr_GeoJSON.dir/ogrjsoncollectionstreamingparser.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_utils.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_imapinfofile.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_middatafile.cpp.o
+[ 93%] Built target ogr_GeoJSON
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_maptoolblock.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_tooldef.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_ogr_driver.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_indfile.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_tabview.cpp.o
+[ 93%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_ogr_datasource.cpp.o
+[ 94%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_geometry.cpp.o
+[ 94%] Building CXX object ogr/ogrsf_frmts/mitab/CMakeFiles/ogr_TAB.dir/mitab_tabseamless.cpp.o
+[ 94%] Built target ogr_TAB
+[ 94%] Linking CXX shared library libgdal.dylib
+ld: warning: ignoring duplicate libraries: '-lm'
+[ 94%] Built target GDAL
+[ 94%] Building CXX object apps/CMakeFiles/gdal_app.dir/gdal.cpp.o
+[ 94%] Building CXX object frmts/iso8211/CMakeFiles/8211dump.dir/8211dump.cpp.o
+[ 94%] Building CXX object frmts/iso8211/CMakeFiles/8211createfromxml.dir/8211createfromxml.cpp.o
+[ 94%] Building CXX object frmts/iso8211/CMakeFiles/8211view.dir/8211view.cpp.o
+[ 94%] Linking CXX executable 8211view
+[ 94%] Linking CXX executable 8211dump
+[ 94%] Built target 8211view
+[ 94%] Built target 8211dump
+[ 95%] Building CXX object apps/CMakeFiles/gdalinfo.dir/gdalinfo_bin.cpp.o
+[ 95%] Building CXX object apps/CMakeFiles/gdalbuildvrt.dir/gdalbuildvrt_bin.cpp.o
+[ 95%] Linking CXX executable 8211createfromxml
+[ 95%] Built target 8211createfromxml
+[ 95%] Building CXX object apps/CMakeFiles/gdaladdo.dir/gdaladdo.cpp.o
+[ 95%] Linking CXX executable gdal
+[ 95%] Built target gdal_app
+[ 95%] Building CXX object apps/CMakeFiles/gdal_grid.dir/gdal_grid_bin.cpp.o
+[ 95%] Linking CXX executable gdalbuildvrt
+[ 95%] Linking CXX executable gdalinfo
+[ 95%] Built target gdalbuildvrt
+[ 95%] Built target gdalinfo
+[ 96%] Building CXX object apps/CMakeFiles/gdal_translate.dir/gdal_translate_bin.cpp.o
+[ 96%] Building CXX object apps/CMakeFiles/gdalwarp.dir/gdalwarp_bin.cpp.o
+[ 96%] Linking CXX executable gdal_grid
+[ 96%] Built target gdal_grid
+[ 96%] Building CXX object apps/CMakeFiles/gdal_contour.dir/gdal_contour_bin.cpp.o
+[ 96%] Linking CXX executable gdalwarp
+[ 96%] Built target gdalwarp
+[ 96%] Building CXX object apps/CMakeFiles/gdalenhance.dir/gdalenhance.cpp.o
+[ 96%] Linking CXX executable gdal_translate
+[ 96%] Built target gdal_translate
+[ 96%] Building CXX object apps/CMakeFiles/gdallocationinfo.dir/gdallocationinfo.cpp.o
+[ 97%] Linking CXX executable gdal_contour
+[ 97%] Built target gdal_contour
+[ 97%] Building CXX object apps/CMakeFiles/gdalmanage.dir/gdalmanage.cpp.o
+[ 97%] Linking CXX executable gdalenhance
+[ 97%] Linking CXX executable gdaladdo
+[ 97%] Built target gdalenhance
+[ 97%] Building CXX object apps/CMakeFiles/gdalsrsinfo.dir/gdalsrsinfo.cpp.o
+[ 97%] Built target gdaladdo
+[ 97%] Building CXX object apps/CMakeFiles/gdaltindex.dir/gdaltindex_bin.cpp.o
+[ 97%] Linking CXX executable gdaltindex
+[ 97%] Linking CXX executable gdalsrsinfo
+[ 97%] Built target gdalsrsinfo
+[ 97%] Built target gdaltindex
+[ 97%] Building CXX object apps/CMakeFiles/gdal_rasterize.dir/gdal_rasterize_bin.cpp.o
+[ 97%] Building CXX object apps/CMakeFiles/gdaldem.dir/gdaldem_bin.cpp.o
+[ 97%] Linking CXX executable gdallocationinfo
+[ 97%] Built target gdallocationinfo
+[ 98%] Building CXX object apps/CMakeFiles/gdaltransform.dir/gdaltransform.cpp.o
+[ 98%] Linking CXX executable gdalmanage
+[ 98%] Built target gdalmanage
+[ 98%] Building CXX object apps/CMakeFiles/gdal_create.dir/gdal_create.cpp.o
+[ 98%] Linking CXX executable gdal_rasterize
+[ 98%] Linking CXX executable gdaldem
+[ 98%] Linking CXX executable gdaltransform
+[ 98%] Built target gdaldem
+[ 98%] Built target gdal_rasterize
+[ 98%] Built target gdaltransform
+[ 98%] Building CXX object apps/CMakeFiles/gdal_viewshed.dir/gdal_viewshed.cpp.o
+[ 98%] Building CXX object apps/CMakeFiles/gdal_footprint.dir/gdal_footprint_bin.cpp.o
+[ 98%] Building CXX object apps/CMakeFiles/ogrinfo.dir/ogrinfo_bin.cpp.o
+[ 98%] Linking CXX executable ogrinfo
+[ 98%] Linking CXX executable gdal_footprint
+[ 98%] Built target ogrinfo
+[ 98%] Built target gdal_footprint
+[ 98%] Building CXX object apps/CMakeFiles/ogrlineref.dir/ogrlineref.cpp.o
+[ 98%] Building CXX object apps/CMakeFiles/ogr2ogr.dir/ogr2ogr_bin.cpp.o
+[ 98%] Linking CXX executable gdal_create
+[ 98%] Built target gdal_create
+[100%] Building CXX object apps/CMakeFiles/ogrtindex.dir/ogrtindex.cpp.o
+[100%] Linking CXX executable ogr2ogr
+[100%] Built target ogr2ogr
+[100%] Linking CXX executable gdal_viewshed
+[100%] Building CXX object apps/CMakeFiles/nearblack.dir/nearblack_bin.cpp.o
+[100%] Built target gdal_viewshed
+[100%] Building CXX object apps/CMakeFiles/gdalmdiminfo.dir/gdalmdiminfo_bin.cpp.o
+[100%] Linking CXX executable nearblack
+[100%] Built target nearblack
+[100%] Linking CXX executable gdalmdiminfo
+[100%] Building CXX object apps/CMakeFiles/gdalmdimtranslate.dir/gdalmdimtranslate_bin.cpp.o
+[100%] Built target gdalmdiminfo
+[100%] Building CXX object apps/CMakeFiles/sozip.dir/sozip.cpp.o
+[100%] Linking CXX executable ogrlineref
+[100%] Built target ogrlineref
+[100%] Building CXX object apps/CMakeFiles/gnmanalyse.dir/gnmanalyse.cpp.o
+[100%] Linking CXX executable gdalmdimtranslate
+[100%] Built target gdalmdimtranslate
+[100%] Building CXX object apps/CMakeFiles/gnmmanage.dir/gnmmanage.cpp.o
+[100%] Linking CXX executable ogrtindex
+[100%] Built target ogrtindex
+[100%] Linking CXX executable gnmanalyse
+[100%] Built target gnmanalyse
+[100%] Linking CXX executable gnmmanage
+[100%] Built target gnmmanage
+[100%] Linking CXX executable sozip
+[100%] Built target sozip

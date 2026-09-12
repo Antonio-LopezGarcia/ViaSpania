@@ -3,3 +3,11 @@
 .mdt-map .ol-viewport { background:#060908; }
 .dem-panel > .terrain-label { bottom: 14px; }
 .dem-panel > .empty-terrain { inset:38px 0 0; }
+.open-3d-overlay{position:absolute;z-index:7;left:10px;top:44px;display:flex;align-items:center;gap:7px;min-height:33px;padding:6px 11px;border:1px solid #70883b;border-radius:6px;background:#101713e8;color:#eef5ef;font-size:10px;box-shadow:0 6px 18px #0009}
+.open-3d-overlay span{color:#d8ff55;font-size:19px;line-height:.7;text-shadow:0 0 8px #b9ff36}
+.open-3d-overlay:hover:not(:disabled),.open-3d-overlay:focus-visible{border-color:#d8ff55;background:#1c2923;outline:1px solid #d8ff55}
+.open-3d-overlay:disabled{opacity:.48}
+.dem-panel>.area-tool{top:91px}
+.mdt-constraint-controls{position:absolute;z-index:5;left:10px;bottom:10px;display:grid;gap:6px;max-width:calc(100% - 20px);padding:8px 10px;border:1px solid #46534c;border-radius:7px;background:#101713ed;font-size:11px;color:#fff}
+.mdt-constraint-controls label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.mdt-constraint-controls input{accent-color:#d8ff55}

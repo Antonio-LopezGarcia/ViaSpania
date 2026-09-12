@@ -1,2 +1,2 @@
 .brand{display:flex;align-items:center;min-width:0}
-.active-project{max-width:230px;margin-left:12px;padding-left:12px;border-left:1px solid #3a4740;color:#aebbb3;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.active-project{max-width:230px;margin-left:12px;padding-left:12px;border-left:1px solid #3a4740;color:#aebbb3;font-size:12px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.active-project-empty{display:grid;min-width:58px;white-space:normal;overflow:visible;text-overflow:clip}.active-project-empty span{display:block}@media(max-width:720px){.active-project{max-width:120px;margin-left:7px;padding-left:7px;font-size:10px}.active-project-empty{min-width:48px}}

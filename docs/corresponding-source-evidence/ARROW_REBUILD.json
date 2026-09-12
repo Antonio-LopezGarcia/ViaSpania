@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "component": "native/apache-arrow-25.0.1_1",
+  "result": "partial-reconstruction-passed",
+  "sourceSha256": "43d5de0a581f43cf63a2c06b4dcf13b9ff6fcd800f023324596e5781093bc500",
+  "libraries": {
+    "build/release/libarrow_dataset.2500.1.0.dylib": "e05fd06b61da83fb5aeb12403529dae6b7bd61bafe51b3a7ac788cb0375f68fe",
+    "build/release/libarrow_flight_sql.2500.1.0.dylib": "437aa1d3b2d0260acb9cd8780af9141651a079bd0a76309c5190bb1f9ee0df3c",
+    "build/release/libgandiva.2500.1.0.dylib": "4c16cec40fc8adeb23e14d1c718e7a90117735c86d7d291dbc3bd5a8341bf7fc",
+    "build/release/libarrow_acero.2500.1.0.dylib": "f273a442d6f82c6c940f6084d6a4a7785a589416dd680b3dd7af7378099cca9e",
+    "build/release/libarrow.2500.1.0.dylib": "a30f15e44a59bfe99f780f0c9de6c16cece7a9ff2188e49b7504b97339fb8dae",
+    "build/release/libarrow_compute.2500.1.0.dylib": "98540bfd11da646de44de9cffd96e02f73bb0e5760a081bb4f03a13b69c0da46",
+    "build/release/libparquet.2500.1.0.dylib": "d7ad6ae1c4cb8b6c18e1eee0d100651aa30b868cb20f63aae9ab8cd04b5bc974",
+    "build/release/libarrow_flight.2500.1.0.dylib": "6f38980063805e11d692b2e468e062be7c81562a4f87ba31f4433a395a16ba82"
+  },
+  "smoke": "[\n  42\n]\n",
+  "limits": [
+    "Uses installed dynamic dependencies, not a fully reconstructed dependency tree.",
+    "RapidJSON, xsimd and gflags use upstream-pinned versions, not verified historical Homebrew build versions.",
+    "No equivalence to the distributed bottle is asserted."
+  ]
+}

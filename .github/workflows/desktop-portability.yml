@@ -14,7 +14,7 @@ on:
         description: Etiqueta de la Release en la que publicar los instaladores
         required: true
         type: string
-        default: v0.2.1
+        default: v0.2.2
       installer_platform:
         description: Plataforma cuyos instaladores se construirán y publicarán
         required: true
@@ -44,25 +44,25 @@ jobs:
           node-version: 24
           cache: pnpm
       - uses: dtolnay/rust-toolchain@stable
-      - name: Dependencias nativas de Linux
-        if: runner.os == 'Linux'
-        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev gdal-bin libgdal-dev
-      - name: GDAL/PROJ en macOS
-        if: runner.os == 'macOS'
-        run: brew install gdal
       - uses: conda-incubator/setup-miniconda@v4
         if: runner.os == 'Windows'
         with:
-          activate-environment: viaspania-build
+          activate-environment: viaspania-test
           miniforge-version: latest
           channels: conda-forge
           conda-remove-defaults: true
+      - name: GDAL/PROJ en macOS
+        if: runner.os == 'macOS'
+        run: brew install gdal
+      - name: Dependencias nativas de Linux
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libayatana-appindicator3-dev librsvg2-dev gdal-bin libgdal-dev proj-bin
       - name: GDAL/PROJ en Windows
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          conda install -n viaspania-build -c conda-forge gdal -y
-          $prefix = conda run -n viaspania-build python -c "import sys; print(sys.prefix)"
+          conda install -n viaspania-test -c conda-forge gdal -y
+          $prefix = conda run -n viaspania-test python -c "import sys; print(sys.prefix)"
           $prefix = $prefix.Trim()
           "$prefix\Library\bin" | Out-File -FilePath $env:GITHUB_PATH -Append
           "GDAL_DATA=$prefix\Library\share\gdal" | Out-File -FilePath $env:GITHUB_ENV -Append
@@ -115,7 +115,21 @@ jobs:
           "GDAL_DATA=$prefix\Library\share\gdal" | Out-File -FilePath $env:GITHUB_ENV -Append
           "PROJ_DATA=$prefix\Library\share\proj" | Out-File -FilePath $env:GITHUB_ENV -Append
       - run: pnpm install --frozen-lockfile
+      - name: Preparar expediente de macOS
+        if: runner.os == 'macOS'
+        run: |
+          pnpm geospatial:prepare
+          pnpm compliance:prepare --network
+      - name: Construir candidato de macOS
+        if: runner.os == 'macOS'
+        env:
+          VIASPANIA_USE_PREPARED_GEOSPATIAL: '1'
+        run: |
+          pnpm compliance:build
+          pnpm compliance:inspect
+          pnpm compliance:package
       - run: ${{ matrix.command }}
+        if: runner.os != 'macOS'
       - name: Verificar GDAL empaquetado en Linux
         if: runner.os == 'Linux'
         shell: bash
@@ -137,11 +151,20 @@ jobs:
           "$geospatial/bin/gdal_translate" -q -of GTiff "$package_root/source.tif" "$package_root/smoke.tif"
           "$gdalinfo" -json -stats "$package_root/smoke.tif" > "$package_root/smoke.json"
           test -s "$package_root/smoke.json"
+      - name: Verificar destino antes de subir los artefactos
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          is_draft="$(gh release view "${{ inputs.release_tag }}" --json isDraft --jq .isDraft)"
+          if [ "$is_draft" != "true" ]; then
+            pnpm compliance:check --strict
+          fi
       - name: Publicar instalador de macOS
         if: runner.os == 'macOS'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ inputs.release_tag }}" src-tauri/target/release/bundle/dmg/*.dmg --clobber
+        run: gh release upload "${{ inputs.release_tag }}" src-tauri/target/release/bundle/dmg/*.dmg release/*-source-candidate.tar.gz release/SOURCE_ARTIFACT.json release/APP_INSPECTION.json --clobber
       - name: Publicar instaladores de Linux
         if: runner.os == 'Linux'
         env:

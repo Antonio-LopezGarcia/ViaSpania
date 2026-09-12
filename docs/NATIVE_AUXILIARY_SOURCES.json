@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "components": [
+    {
+      "id": "native-aux/mimalloc-3.4.1",
+      "name": "mimalloc",
+      "version": "3.4.1",
+      "license": "MIT",
+      "owner": "native/apache-arrow-25.0.1_1",
+      "ownerSourceSha256": "43d5de0a581f43cf63a2c06b4dcf13b9ff6fcd800f023324596e5781093bc500",
+      "evidence": "apache-arrow-25.0.1/cpp/thirdparty/versions.txt and cpp/cmake_modules/ThirdpartyToolchain.cmake; mimalloc_ep download observed during reconstruction",
+      "sourceRequests": [
+        {
+          "url": "https://github.com/microsoft/mimalloc/archive/v3.4.1.tar.gz",
+          "integrity": "37107a52c16baa80c5f74861dddda7b27bb9949e41a6637691867a94c88ca446"
+        }
+      ]
+    },
+    {
+      "id": "native-aux/cgal-6.2",
+      "name": "cgal",
+      "version": "6.2",
+      "license": "Véanse receta conservada y licencias originales por archivo",
+      "owner": "native/sfcgal-2.3.0_1",
+      "ownerSourceSha256": "5f6aa1838e5ae31523ebf410cde0240b7a88d7e062b7ffff945e4fae2aaba0fa",
+      "recipe": "docs/corresponding-source-evidence/provenance/cgal-6.2/cgal.rb",
+      "recipeSha256": "9109a4625479abaf06edc70f56c9ebcf5de12d249c36f48ac8b6331a5ec5aabe",
+      "evidence": "Version pinned by SFCGAL INSTALL_RECEIPT.json; header-only dependency omitted by Mach-O inventory",
+      "sourceRequests": [
+        {
+          "url": "https://github.com/CGAL/cgal/releases/download/v6.2/CGAL-6.2.tar.xz",
+          "integrity": "fbc32816745e871a5cbdeb6245317e9dbf10ae1a957b0ab1edb00b4fde00ba8d"
+        },
+        {
+          "url": "https://github.com/CGAL/cgal/commit/eb2257df4da4c52c75fe384e803d9a6376057b8a.patch?full_index=1",
+          "integrity": "2686aea78dc3a58180eb1744dea44f27bd4d692ae8cfc9a4fab2a616fd6b7535"
+        }
+      ]
+    },
+    {
+      "id": "native-aux/eigen-5.0.1",
+      "name": "eigen",
+      "version": "5.0.1",
+      "license": "Véanse receta conservada y licencias originales por archivo",
+      "owner": "native/sfcgal-2.3.0_1",
+      "ownerSourceSha256": "5f6aa1838e5ae31523ebf410cde0240b7a88d7e062b7ffff945e4fae2aaba0fa",
+      "recipe": "docs/corresponding-source-evidence/provenance/eigen-5.0.1/eigen.rb",
+      "recipeSha256": "79b58c036eaeeaca7ad09f3b016c84c54ecfa05025efab902703097e2b660595",
+      "evidence": "Version pinned by SFCGAL INSTALL_RECEIPT.json; header-only dependency omitted by Mach-O inventory",
+      "sourceRequests": [
+        {
+          "url": "https://gitlab.com/libeigen/eigen/-/archive/5.0.1/eigen-5.0.1.tar.gz",
+          "integrity": "e9c326dc8c05cd1e044c71f30f1b2e34a6161a3b6ecf445d56b53ff1669e3dec"
+        }
+      ]
+    },
+    {
+      "id": "native-aux/nlohmann-json-3.12.0",
+      "name": "nlohmann-json",
+      "version": "3.12.0",
+      "license": "MIT; véanse avisos originales",
+      "owner": "native/sfcgal-2.3.0_1",
+      "ownerSourceSha256": "5f6aa1838e5ae31523ebf410cde0240b7a88d7e062b7ffff945e4fae2aaba0fa",
+      "evidence": "SFCGAL binary ABI namespace json_abi_v3_12_0 identifies upstream version; URL/hash and optional backport retained from current Homebrew metadata. Historical patch application remains unverified.",
+      "sourceRequests": [
+        {
+          "url": "https://github.com/nlohmann/json/archive/refs/tags/v3.12.0.tar.gz",
+          "integrity": "4b92eb0c06d10683f7447ce9406cb97cd4b453be18d7279320f7b2f025c10187"
+        },
+        {
+          "url": "https://github.com/nlohmann/json/commit/34868f90149de02432ea758a29227a6ad74f098c.patch?full_index=1",
+          "integrity": "fb4db3640ce333b145b53acc64c78eb3011f57012dc4b9c6689d5d485d2434cd"
+        }
+      ]
+    }
+  ]
+}

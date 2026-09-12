@@ -1,0 +1,95 @@
+{
+  "homebrew_version": "6.0.9-127-g0eb3803",
+  "used_options": [],
+  "unused_options": [],
+  "built_as_bottle": true,
+  "poured_from_bottle": true,
+  "loaded_from_api": true,
+  "loaded_from_internal_api": true,
+  "installed_on_request": false,
+  "changed_files": [],
+  "time": 1786962923,
+  "source_modified_time": 1780772526,
+  "compiler": "gcc-13",
+  "aliases": [],
+  "runtime_dependencies": [
+    {
+      "full_name": "icu4c@78",
+      "version": "78.3",
+      "revision": 0,
+      "bottle_rebuild": 0,
+      "pkg_version": "78.3",
+      "declared_directly": false
+    },
+    {
+      "full_name": "xz",
+      "version": "5.8.3",
+      "revision": 0,
+      "bottle_rebuild": 0,
+      "pkg_version": "5.8.3",
+      "declared_directly": false
+    },
+    {
+      "full_name": "lz4",
+      "version": "1.10.0",
+      "revision": 0,
+      "bottle_rebuild": 1,
+      "pkg_version": "1.10.0",
+      "declared_directly": false
+    },
+    {
+      "full_name": "zstd",
+      "version": "1.5.7",
+      "revision": 1,
+      "bottle_rebuild": 0,
+      "pkg_version": "1.5.7_1",
+      "declared_directly": false
+    },
+    {
+      "full_name": "boost",
+      "version": "1.92.0",
+      "revision": 0,
+      "bottle_rebuild": 0,
+      "pkg_version": "1.92.0",
+      "declared_directly": true
+    },
+    {
+      "full_name": "eigen",
+      "version": "5.0.1",
+      "revision": 0,
+      "bottle_rebuild": 0,
+      "pkg_version": "5.0.1",
+      "declared_directly": true
+    },
+    {
+      "full_name": "gmp",
+      "version": "6.3.0",
+      "revision": 0,
+      "bottle_rebuild": 0,
+      "pkg_version": "6.3.0",
+      "declared_directly": true
+    },
+    {
+      "full_name": "mpfr",
+      "version": "4.2.2",
+      "revision": 0,
+      "bottle_rebuild": 0,
+      "pkg_version": "4.2.2",
+      "declared_directly": true
+    }
+  ],
+  "source": {
+    "spec": "stable",
+    "versions": {
+      "stable": "6.2",
+      "head": null,
+      "version_scheme": 0,
+      "compatibility_version": null
+    },
+    "path": "/Users/antoniolopezgarcia/Library/Caches/Homebrew/api/internal/packages.arm64_tahoe.jws.json",
+    "tap_git_head": null,
+    "tap": "homebrew/core"
+  },
+  "arch": "arm64",
+  "built_on": null
+}

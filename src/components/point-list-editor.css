@@ -1,0 +1,7 @@
+.waypoint-panel .point-list{margin-top:0;min-width:0}
+.waypoint-panel .point-list>div{min-width:0}
+.waypoint-panel .point-list span{min-width:0}
+.waypoint-panel .point-list i{flex-shrink:0}
+.waypoint-panel .point-list i.inicio{background:#ff796f}
+.waypoint-panel .point-list i.final{background:#59d2ff}
+.waypoint-panel .point-list i.multipunto{background:#d8ff55}

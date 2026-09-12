@@ -1,0 +1,31 @@
+-- The C compiler identification is AppleClang 21.0.0.21000101
+-- The CXX compiler identification is AppleClang 21.0.0.21000101
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Targeting Unix Makefiles
+-- Using /usr/bin/c++ compiler.
+-- Running in macOS DARWIN_VERSION=25
+-- Boost include dirs: /opt/homebrew/include
+-- Boost libraries:    
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- CGAL 6.2 found
+-- Copying headers from /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/sfcgal/SFCGAL-v2.3.0/src to /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/sfcgal/build/include/SFCGAL
+-- Boost_USE_STATIC_LIBS=OFF
+-- Boost_USE_MULTITHREAD=ON
+-- Found nlohmann_json: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/sfcgal/dependencies/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake (found suitable version "3.12.0", minimum required is "3.11")
+-- Eigen3 5.0.1 found
+-- EIGEN3_INCLUDE_DIR = /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/sfcgal/dependencies/include/eigen3
+-- removing OSG dependencies from the library
+-- Configuring done (1.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/sfcgal/build

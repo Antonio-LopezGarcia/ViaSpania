@@ -1,0 +1,7 @@
+{
+ "$schema":"../gen/schemas/desktop-schema.json",
+ "identifier":"terrain",
+ "description":"Ventana independiente del visor 3D",
+ "windows":["terrain-*"],
+ "permissions":["core:default","core:window:allow-close","dialog:allow-save"]
+}

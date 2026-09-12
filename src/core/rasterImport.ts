@@ -15,7 +15,7 @@ type JsonRecord=Record<string,unknown>;
 const record=(value:unknown):JsonRecord|null=>value&&typeof value==='object'&&!Array.isArray(value)?value as JsonRecord:null;
 const finite=(value:unknown)=>typeof value==='number'&&Number.isFinite(value)?value:null;
 
-function geographicExtent(metadata:JsonRecord):[number,number,number,number]|null{
+export function geographicExtent(metadata:JsonRecord):[number,number,number,number]|null{
   const geometry=record(metadata.wgs84Extent),coordinates=geometry?.coordinates;
   if(!Array.isArray(coordinates))return null;
   const points:number[][]=[];

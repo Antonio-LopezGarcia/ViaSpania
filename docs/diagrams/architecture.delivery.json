@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/docs/diagrams/architecture.json",
+  "output": "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/docs/diagrams/architecture.html",
+  "specification": {
+    "sha256": "ed6a6204cc7520a22cb4fe1a41df8de3a641c0dfdd4448b5a8f5cbbe7e9e6e7f",
+    "bytes": 3194
+  },
+  "artifact": {
+    "sha256": "d027f01b9034ceb7de2630262f899f51ab1a0232c7dff123940cfdf47a5a39d1",
+    "bytes": 708152
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

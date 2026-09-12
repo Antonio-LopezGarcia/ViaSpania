@@ -4,3 +4,8 @@
 .credits-build dt{color:#96a39b}
 .credits-build dd{margin:0;color:#e8eee8;overflow-wrap:anywhere}
 .credits-build code{font-size:10px;color:#d8ff55}
+
+.credits-funding{display:grid;gap:10px;padding:12px;border:1px solid #3e5147;border-radius:9px;background:#0b120e;min-width:0}
+.credits-funding a{display:block;background:#fff;padding:8px}
+.credits-funding img{display:block;width:100%;height:auto;object-fit:contain}
+.credits-funding a:focus-visible{outline:2px solid #d8ff55;outline-offset:3px}

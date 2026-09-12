@@ -14,3 +14,12 @@ describe('ayuda contextual de cálculos',()=>{
   it('permite cambiar el perfil explicado en una comparación y cerrar',()=>{const close=vi.fn();render(<CalculationHelp mode="comparar" model="tobler" availableModels={['tobler','ardigo']} onClose={close}/>);fireEvent.change(screen.getByLabelText('Perfil explicado'),{target:{value:'ardigo'}});expect(screen.getByRole('heading',{name:'Ardigò'})).toBeTruthy();expect(screen.getByText(/entre 0,2 y 15/)).toBeTruthy();fireEvent.click(screen.getByRole('button',{name:'Cerrar ayuda de cálculos'}));expect(close).toHaveBeenCalledOnce()});
   it('presenta ayuda topográfica sin atribuirle un perfil de desplazamiento',()=>{render(<CalculationHelp mode="viewshed" model="tobler" onClose={()=>{}}/>);expect(screen.getByRole('heading',{name:'Visibilidad'})).toBeTruthy();expect(screen.queryByLabelText('Perfil explicado')).toBeNull()});
 });
+
+it.each(Object.keys(MODELS) as (keyof typeof MODELS)[])('traduce la fórmula y la ayuda del perfil %s',async model=>{
+ const {setLanguage,LocalizationBoundary}=await import('../core/i18n');setLanguage('en');
+ const {container}=render(<LocalizationBoundary><CalculationHelp mode="ruta" model={model} onClose={()=>{}}/></LocalizationBoundary>);
+ expect(screen.getByRole('heading',{name:'Formulation used by ViaSpania'})).toBeTruthy();
+ expect(container.querySelector('code')?.textContent).not.toMatch(/distancia|terreno|energía|grados|si s|descenso|Parte de|con x/);
+ expect(container.textContent).not.toMatch(/Qué |Parámetros|Formulación|Variables consideradas|Limitaciones/);
+ cleanup();setLanguage('es');
+});

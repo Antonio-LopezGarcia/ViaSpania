@@ -1,0 +1,1753 @@
+{
+  "schema": 1,
+  "components": [
+    {
+      "id": "native/imath-3.2.2",
+      "sourceSha256": "b4275d83fb95521510e389b8d13af10298ed5bed1c8e13efd961d91b1105e462",
+      "recipeSha256": "b221441f27fd301264ff21e84174ba5aa0741d0b0763cdc2d155f097fa4f13bd",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/imath-3.2.2/source/Imath-3.2.2",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/imath-3.2.2/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/imath-3.2.2/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/imath-3.2.2/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/imath-3.2.2/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/imath-3.2.2/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libImath-3_2.30.3.2.2.dylib": "c427f550298a6fa9227bdd6fe23b13a0b9562aa66459bd927491cae5e2bde59b"
+      }
+    },
+    {
+      "id": "native/liblerc-4.2.0",
+      "sourceSha256": "a1fb593ed1fcb5b38800caf3c4454f872745202e961d00d745e53d81447e17c9",
+      "recipeSha256": "db860ee88c7ff26595acfafea14a68ddd979bf21d92943da93c68e0642346fd6",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/liblerc-4.2.0/source/lerc-4.2.0",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/liblerc-4.2.0/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/liblerc-4.2.0/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/liblerc-4.2.0/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/liblerc-4.2.0/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/liblerc-4.2.0/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libLerc.4.dylib": "11947a304dc345e999d732f9d1a23f7c81bb3b9ecc767487008c8f2d00c983da"
+      }
+    },
+    {
+      "id": "native/libaec-1.1.7",
+      "sourceSha256": "7cf0034eca8f53449252f2fab863d855aedc0520ceb8d3f3fcd3bd601ce4c85e",
+      "recipeSha256": "bc4db45e72031278033198d9ee91618b1b860a9c847b828196f66fb1915ac9bd",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libaec-1.1.7/source/libaec-v1.1.7",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libaec-1.1.7/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libaec-1.1.7/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libaec-1.1.7/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DBUILD_TESTING=ON"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libaec-1.1.7/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "ctest",
+          "--test-dir",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libaec-1.1.7/build",
+          "--output-on-failure"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libaec-1.1.7/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaec.0.1.7.dylib": "374b8d1071664086f60e0b06c28f4b5d30ca370d80f1491ebc48d397295a5e4d",
+        "lib/libsz.2.0.1.dylib": "ade88975ef94a7a024aaf89e2080bbb4d321bde0cafa50815b2f4e40e8e6af05"
+      }
+    },
+    {
+      "id": "native/aws-c-cal-0.9.15",
+      "sourceSha256": "215dd31c12ea49c4f40aa7882a800f9648e4095cfcb2d6abdd27e957574ad6e2",
+      "recipeSha256": "c8724e61fd70550e74c52d9788134e48d6fa30076b869811ed6212a8a6184f38",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-cal-0.9.15/source/aws-c-cal-0.9.15",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-cal-0.9.15/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-cal-0.9.15/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-cal-0.9.15/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-cal-0.9.15/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-cal-0.9.15/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-cal.1.0.0.dylib": "acdd772c50b5398156e8f1ca23080d24ce40405d3896f23907ff21375b81bff8"
+      }
+    },
+    {
+      "id": "native/aws-c-common-0.14.5",
+      "sourceSha256": "103273767fea478545b75a0835c7dc60842baee0a191a112c72f904d22693c84",
+      "recipeSha256": "6d8f40a87bbbbc733cb26765e0531237bf30872faa87a770f9b4d88e674adbb8",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-common-0.14.5/source/aws-c-common-0.14.5",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-common-0.14.5/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-common-0.14.5/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-common-0.14.5/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-common-0.14.5/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-common-0.14.5/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-common.0.14.5.dylib": "ec66b4ccc2d53a3e6ba74ae65d6f3f80f4395a7d517838f0a85288927c42450b"
+      }
+    },
+    {
+      "id": "native/aws-c-compression-0.3.2",
+      "sourceSha256": "f93f5a5d8b3fee3a6d97b14ba279efacd4d4016ef9cc7dc4be7d43519ecfbe93",
+      "recipeSha256": "b0d97281f38bce739401ec5a302f061b22b61a30542613bae8b346b63acb3d99",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-compression-0.3.2/source/aws-c-compression-0.3.2",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-compression-0.3.2/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-compression-0.3.2/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-compression-0.3.2/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-compression-0.3.2/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-compression-0.3.2/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-compression.1.0.0.dylib": "809cee3fe2245644719233bcf1581096d694710df385f37f59b06dcb596ec26f"
+      }
+    },
+    {
+      "id": "native/aws-c-sdkutils-0.2.9",
+      "sourceSha256": "14fe900f80c3b9f5e53a783d9ac0865ed9ba1ae63b67744b9f82a8b3194a4388",
+      "recipeSha256": "6788a64ddaa883ed35f92b7db97b93c15689d00ed767c5801fbc0fcd9be43df6",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-sdkutils-0.2.9/source/aws-c-sdkutils-0.2.9",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-sdkutils-0.2.9/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-sdkutils-0.2.9/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-sdkutils-0.2.9/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-sdkutils-0.2.9/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-sdkutils-0.2.9/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-sdkutils.1.0.0.dylib": "af3c9ff0067ade6fcf4e85edbf2ba2d28da7bc78b782e7a3a43614564431d497"
+      }
+    },
+    {
+      "id": "native/aws-checksums-0.2.10",
+      "sourceSha256": "cb6509f75e42ee25c372a6d379e8582ce5179e5335183842e808f7d8abb0c314",
+      "recipeSha256": "966da8c2c37cd7e0586ec8417588e613552ce089a46d303802047c16686d2578",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-checksums-0.2.10/source/aws-checksums-0.2.10",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-checksums-0.2.10/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-checksums-0.2.10/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-checksums-0.2.10/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-checksums-0.2.10/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-checksums-0.2.10/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-checksums.1.0.0.dylib": "f1dc30401ccbb4a09eb1043996f3bb060b2d35af025991f8178320144df55d06"
+      }
+    },
+    {
+      "id": "native/libde265-1.1.1",
+      "sourceSha256": "fd48a927e94ed74fc7ce8829d222b9d8599fcbfe8b6448ba66705babc56ab219",
+      "recipeSha256": "4d10a157ea137d3b530408fe814b02ddd693c06069bd8c73e3cc5c632479a9a3",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libde265-1.1.1/source/libde265-1.1.1",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libde265-1.1.1/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libde265-1.1.1/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libde265-1.1.1/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DENABLE_DECODER=OFF"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libde265-1.1.1/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libde265-1.1.1/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libde265.0.2.1.dylib": "c29a237150615d71b9789698b53fb26df9d5731c986191fb5390c4a07d324035"
+      }
+    },
+    {
+      "id": "native/libdeflate-1.25",
+      "sourceSha256": "d11473c1ad4c57d874695e8026865e38b47116bbcb872bfc622ec8f37a86017d",
+      "recipeSha256": "110cf07dedd0231f86099f3282c82cd50c42924c5a24fb471969932bef73d6d9",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libdeflate-1.25/source/libdeflate-1.25",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libdeflate-1.25/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libdeflate-1.25/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libdeflate-1.25/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libdeflate-1.25/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libdeflate-1.25/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libdeflate.0.dylib": "0e5f281a739ce865e51af3df18743872a37db655490ffad4c047eb1b4c3d1229"
+      }
+    },
+    {
+      "id": "native/geos-3.14.1",
+      "sourceSha256": "3c20919cda9a505db07b5216baa980bacdaa0702da715b43f176fb07eff7e716",
+      "recipeSha256": "48a16b70303ee76b6f7b9a256a9c8c7b90ece884fbc5d795ba3ef67ebf01a15a",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/geos-3.14.1/source/geos-3.14.1",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/geos-3.14.1/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/geos-3.14.1/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/geos-3.14.1/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/geos-3.14.1/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/geos-3.14.1/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libgeos.3.14.1.dylib": "143e311e1826b93e062a55b2055b3422cdd76dc758f5797c4b453ee116a39359",
+        "lib/libgeos_c.1.20.5.dylib": "99e6302d14657a11b4bcd25fc5a352a59b2c598990611e1a706cdea11df0bd5c"
+      }
+    },
+    {
+      "id": "native/highway-1.4.0",
+      "sourceSha256": "e72241ac9524bb653ae52ced768b508045d4438726a303f10181a38f764a453c",
+      "recipeSha256": "c2335618d744b3ca883127451289758a213c3b973d891f685539cb0ca6ad752a",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/highway-1.4.0/source/highway-1.4.0",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/highway-1.4.0/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/highway-1.4.0/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/highway-1.4.0/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DHWY_ENABLE_TESTS=OFF",
+          "-DHWY_ENABLE_EXAMPLES=OFF"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/highway-1.4.0/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/highway-1.4.0/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libhwy_contrib.1.4.0.dylib": "301f136564f01b24a4bb1f74b7e14c611c28118dd2d534d85a9f6e60c090b035",
+        "lib/libhwy.1.4.0.dylib": "462e226a4147d1bf287b1efb530dc69ab10538fc8fce81e8584c14661db21992"
+      }
+    },
+    {
+      "id": "native/json-c-0.19",
+      "sourceSha256": "37ad0249902e301bd9052bf712e511fcc6acff4ecaad4b5900aad9ce564e26de",
+      "recipeSha256": "f3ea09b652510ccdd9b9460eaf7f4aa7b47cec2a918d71610fbe0477f231a580",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/json-c-0.19/source/json-c-0.19",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/json-c-0.19/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/json-c-0.19/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/json-c-0.19/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DBUILD_APPS=OFF"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/json-c-0.19/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/json-c-0.19/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libjson-c.5.5.0.dylib": "9899d41ad99b36840e02ef75146f0ebe4584171cd2614cd64c047ab79747947b"
+      }
+    },
+    {
+      "id": "native/qhull-2020.2",
+      "sourceSha256": "b5c2d7eb833278881b952c8a52d20179eab87766b00b865000469a45c1838b7e",
+      "recipeSha256": "9e557ad7ade3a330e612c7a74ddaad3047bc8ca1fd5dcb8fab1b6394144f8547",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/qhull-2020.2/source/qhull-2020.2",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/qhull-2020.2/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/qhull-2020.2/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/qhull-2020.2/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/qhull-2020.2/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/qhull-2020.2/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libqhull_r.8.0.2.dylib": "4291c752d950d54accfd8203aba82fe555d8a3d851565694980d22ff8a7348a7"
+      }
+    },
+    {
+      "id": "native/snappy-1.2.2",
+      "sourceSha256": "90f74bc1fbf78a6c56b3c4a082a05103b3a56bb17bca1a27e052ea11723292dc",
+      "recipeSha256": "979d6b4ddf9ed8ae64b72b01f26cc2fe5f2a02bdaf06c9879c7ecb2ea86663f9",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/snappy-1.2.2/source/snappy-1.2.2",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/snappy-1.2.2/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/snappy-1.2.2/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/snappy-1.2.2/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DSNAPPY_BUILD_TESTS=OFF",
+          "-DSNAPPY_BUILD_BENCHMARKS=OFF"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/snappy-1.2.2/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/snappy-1.2.2/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libsnappy.1.2.2.dylib": "217eabce8ebb51744582dd026657ef02621ee69d4af8103b0d8ccce02403ec03"
+      }
+    },
+    {
+      "id": "native/uriparser-1.0.2",
+      "sourceSha256": "dd2e4843f43de6f5aedf430e530f1e2d159eba8ca4d64c2787af1c20f707a9e4",
+      "recipeSha256": "070cc1b20abcbbac5c7af8ec7772748dccb86237b5841581b8972b5743e6b567",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/uriparser-1.0.2/source/uriparser-1.0.2",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/uriparser-1.0.2/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/uriparser-1.0.2/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/uriparser-1.0.2/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DURIPARSER_BUILD_TESTS=OFF",
+          "-DURIPARSER_BUILD_DOCS=OFF"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/uriparser-1.0.2/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/uriparser-1.0.2/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/liburiparser.1.2.2.dylib": "58c39f75f5f42b33b398c9a0a748441dc469e4211dfb96a495558ca0e22523d8"
+      }
+    },
+    {
+      "id": "native/utf8proc-2.11.3",
+      "sourceSha256": "abfed50b6d4da51345713661370290f4f4747263ee73dc90356299dfc7990c78",
+      "recipeSha256": "9b07a816fe00ebd203c04774f680d65587ab5be4de31e0e79b37f74924bbca32",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/utf8proc-2.11.3/source/utf8proc-2.11.3",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/utf8proc-2.11.3/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/utf8proc-2.11.3/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/utf8proc-2.11.3/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/utf8proc-2.11.3/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/utf8proc-2.11.3/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libutf8proc.3.2.3.dylib": "7a3b43533b6d1ead8526dbf53823c487b7ad0bdbae267b409365218d65756c56"
+      }
+    },
+    {
+      "id": "native/zstd-1.5.7_1",
+      "sourceSha256": "37d7284556b20954e56e1ca85b80226768902e2edabd3b649e9e72c0c9012ee3",
+      "recipeSha256": "9a9b0183896886e82b915af4db576f27d34d1cee7757d6c5beb0e1eb74c68e0d",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/zstd-1.5.7_1/source/zstd-1.5.7/build/cmake",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/zstd-1.5.7_1/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/zstd-1.5.7_1/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/zstd-1.5.7_1/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DZSTD_PROGRAMS_LINK_SHARED=ON",
+          "-DZSTD_BUILD_CONTRIB=ON",
+          "-DZSTD_LEGACY_SUPPORT=ON",
+          "-DZSTD_ZLIB_SUPPORT=ON",
+          "-DZSTD_LZMA_SUPPORT=ON",
+          "-DZSTD_LZ4_SUPPORT=ON",
+          "-DCMAKE_CXX_STANDARD=11"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/zstd-1.5.7_1/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/zstd-1.5.7_1/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libzstd.1.5.7.dylib": "e502e3af6b7f5471ecda9f611cb233b7d128c02442e19f0ac63a4f01ffd3b529"
+      }
+    },
+    {
+      "id": "native/openexr-3.4.14",
+      "sourceSha256": "13c3327100a7b92e4c6a048db03ef07ee2db8e79baa4c517c6fae71e5b80034b",
+      "recipeSha256": "26214e2ad2054e396b30a35623eb657bc2f43bb5c08ad9f75f6763733b2948c0",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openexr-3.4.14/source/openexr-3.4.14",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openexr-3.4.14/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openexr-3.4.14/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openexr-3.4.14/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openexr-3.4.14/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openexr-3.4.14/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libOpenEXR-3_4.33.3.4.14.dylib": "b3b9ccddae8951f45752f3005bda19f97d4478181532a3069eba798f9920de19",
+        "lib/libOpenEXRUtil-3_4.33.3.4.14.dylib": "572d014ef99e16fb4140804c992a3c067e53dff2881ff2f98df57e44aaa3dbc1",
+        "lib/libIex-3_4.33.3.4.14.dylib": "b0a510b024b0138797c0355ed68b49b4bdc85576492b166a15da97421997108f",
+        "lib/libIlmThread-3_4.33.3.4.14.dylib": "800df4b35c429a428ee994c4fed88be776cd0e5d7021f98d95853d4eb77061fc",
+        "lib/libOpenEXRCore-3_4.33.3.4.14.dylib": "2a9bcb35a23d155d6536ccd50ec6d95a9ee00fa9513140c1df00f4def182081f"
+      }
+    },
+    {
+      "id": "native/aws-c-auth-0.10.4",
+      "sourceSha256": "6fb567f496a450d4b6d3f5749d735977a0156957e8ccbca9af7a5ee15d1ffda7",
+      "recipeSha256": "7687c9fb8ca3b407397150865f245f897bfad0b900a37738ecaeee883c2d6f79",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-auth-0.10.4/source/aws-c-auth-0.10.4",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-auth-0.10.4/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-auth-0.10.4/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-auth-0.10.4/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-dead_strip_dylibs"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-auth-0.10.4/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-auth-0.10.4/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-auth.1.0.0.dylib": "110c766ea09905ed79b2cb63c948eb8799d53412a9dfb50423f53acf60d5b46b"
+      }
+    },
+    {
+      "id": "native/aws-c-event-stream-0.7.1",
+      "sourceSha256": "334b2abfe0cb5c68d79d52525598fdd5f6052b93a17a78a4b1ada7fa1be252c0",
+      "recipeSha256": "c0bd02feee7ac5477de23221a6bb740d8e8623addecf9ff80c499a6d48bf52d2",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-event-stream-0.7.1/source/aws-c-event-stream-0.7.1",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-event-stream-0.7.1/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-event-stream-0.7.1/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-event-stream-0.7.1/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-dead_strip_dylibs"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-event-stream-0.7.1/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-event-stream-0.7.1/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-event-stream.1.0.0.dylib": "918986efb62ac26b177e42ee6566ad9d5df09a8eebad571e5c259b1ccf836742"
+      }
+    },
+    {
+      "id": "native/aws-c-http-0.11.0",
+      "sourceSha256": "4ccbdd33c798b590288330dec9e93abe2ff6cfb198b7a4db036c9d362f2e6506",
+      "recipeSha256": "67331dc0a9d4bc1813035afc9961a51576f401875aec62683837d56ed5fc98bc",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-http-0.11.0/source/aws-c-http-0.11.0",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-http-0.11.0/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-http-0.11.0/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-http-0.11.0/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-http-0.11.0/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-http-0.11.0/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-http.1.0.0.dylib": "11428befd4d092f56d4acfb3318a54b1f24454a02750b838aee0897799c6af60"
+      }
+    },
+    {
+      "id": "native/aws-c-io-0.27.6",
+      "sourceSha256": "2a6890715ccecaa0df6e9d074b186a7156b35360ded9db973064e2e00d45fcc3",
+      "recipeSha256": "f3ce2b8c164a58fa3f8dfc1bf90ab06d1f4726729607ebad793618c1bf249a66",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-io-0.27.6/source/aws-c-io-0.27.6",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-io-0.27.6/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-io-0.27.6/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-io-0.27.6/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-io-0.27.6/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-io-0.27.6/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-io.1.0.0.dylib": "354e242eb50b7ec402ee1f563bb99447fc7400160185e2fb4ae1c6a3e1aa0824"
+      }
+    },
+    {
+      "id": "native/aws-c-mqtt-0.16.1",
+      "sourceSha256": "48fd84e6ff51fdce5cdc4250593d7b0f10db91f8592737c0fe69e0177ee48144",
+      "recipeSha256": "b8fa559bf4f69b101690d164f0777135e0a674ab7793dabdfbb06540680d338f",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-mqtt-0.16.1/source/aws-c-mqtt-0.16.1",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-mqtt-0.16.1/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-mqtt-0.16.1/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-mqtt-0.16.1/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-dead_strip_dylibs"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-mqtt-0.16.1/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-mqtt-0.16.1/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-mqtt.1.0.0.dylib": "e253b5d6c486293d0c0767541ceafc53d7b0f7a4b8e3e09893746538b48423a1"
+      }
+    },
+    {
+      "id": "native/aws-c-s3-0.13.5",
+      "sourceSha256": "d61313aa30575141afd9dfb207b7594e30d0473885719417c7c8a2a53d3ebb5f",
+      "recipeSha256": "5e04a6552bbae9c8cc6ccc8b10cf200c17aab4f6cbe1bce4608dc0351e18332f",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-s3-0.13.5/source/aws-c-s3-0.13.5",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-s3-0.13.5/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-s3-0.13.5/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-s3-0.13.5/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-dead_strip_dylibs"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-s3-0.13.5/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-c-s3-0.13.5/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-c-s3.1.0.0.dylib": "a56f37ccd0f7cbf581eba8bfd40ac2ab1cb7d3036aea695f974afccb9e3e32dc"
+      }
+    },
+    {
+      "id": "native/aws-crt-cpp-0.43.5",
+      "sourceSha256": "8c83897fb827527b67377f08a5b349576c50add2406fa1ff372cf2dd16fc00f4",
+      "recipeSha256": "a4eb6dc10c9e228e0dfca7115878eab41c160d73ff824600733427107b3b909c",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-crt-cpp-0.43.5/source/aws-crt-cpp-0.43.5",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-crt-cpp-0.43.5/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-crt-cpp-0.43.5/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-crt-cpp-0.43.5/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DBUILD_DEPS=OFF",
+          "-DCMAKE_MODULE_PATH=/opt/homebrew/opt/aws-c-common/lib/cmake",
+          "-DCMAKE_SHARED_LINKER_FLAGS=-Wl,-dead_strip_dylibs"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-crt-cpp-0.43.5/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/aws-crt-cpp-0.43.5/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libaws-crt-cpp.dylib": "f074a676afc931ec73cfb956f3b4294d90a008291f0930bc23cd05cd610a8765"
+      }
+    },
+    {
+      "id": "native/libkml-1.3.0_1",
+      "sourceSha256": "8892439e5570091965aaffe30b08631fdf7ca7f81f6495b4648f0950d7ea7963",
+      "recipeSha256": "49b061a291d7765f3da9c360886fe84d148959b7de646308dedce3b15f9306ac",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libkml-1.3.0_1/source/libkml-1.3.0",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libkml-1.3.0_1/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libkml-1.3.0_1/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libkml-1.3.0_1/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+          "-DCMAKE_CXX_STANDARD=14"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libkml-1.3.0_1/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libkml-1.3.0_1/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libkmldom.1.3.0.dylib": "c3270e7083d51e11d32a6710265b509ae0be54aef3c21a22968871bb03e97ef9",
+        "lib/libkmlbase.1.3.0.dylib": "a1b7fd779099d3e35592ccdd25dfe105fef670c63363ed2537f88850ce7b0d9e",
+        "lib/libkmlxsd.1.3.0.dylib": "88123989ac6dbe5fda7ebaa7033e288fd022287db04284bc51946c7b8cbe29aa",
+        "lib/libkmlengine.1.3.0.dylib": "72e6f196aa0959aa188f2c1754855b1823ea139fa54621f3aa5d00ac38064e01",
+        "lib/libkmlconvenience.1.3.0.dylib": "4ec40f22e552572fe8b0bdbb5d80e7ba317beab62fb42fe6522cad21bd298fbf",
+        "lib/libkmlregionator.1.3.0.dylib": "87f60f7900f7bf6f676d6c5dac309da4d0211f5f8cf68ecbfed1c95d233bce5c"
+      }
+    },
+    {
+      "id": "native/netcdf-4.10.1",
+      "sourceSha256": "33c27231c478c3b35da7c7758fbdd02da1fe407abcb16ddfe195f69d164f930d",
+      "recipeSha256": "1af9c3040aca68147c7adc5aefbd5a7dd09c336f5ef6038d3814dc2c7a1ca0f6",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/netcdf-4.10.1/source/netcdf-c-4.10.1",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/netcdf-4.10.1/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/netcdf-4.10.1/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/netcdf-4.10.1/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DNETCDF_ENABLE_TESTS=OFF",
+          "-DNETCDF_ENABLE_HDF5=ON",
+          "-DNETCDF_ENABLE_DOXYGEN=OFF"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/netcdf-4.10.1/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/netcdf-4.10.1/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libnetcdf.22.dylib": "874b2507843ea9b0b76871e57633f4746b916a78a3421f72b2cc9e9653da847a"
+      }
+    },
+    {
+      "id": "native/re2-2025-11-05_1",
+      "sourceSha256": "87f6029d2f6de8aa023654240a03ada90e876ce9a4676e258dd01ea4c26ffd67",
+      "recipeSha256": "56d3556e56e52f0009a3fe3da0eab3c499838749d40e6ed1a01fc7fad454ad06",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/re2-2025-11-05_1/source/re2-2025-11-05",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/re2-2025-11-05_1/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/re2-2025-11-05_1/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/re2-2025-11-05_1/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DRE2_BUILD_TESTING=OFF"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/re2-2025-11-05_1/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/re2-2025-11-05_1/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libre2.11.0.0.dylib": "da29c1dc23150921320cc2b8dac156312f137dc86b655b501e4abd0ddfcc3dc8"
+      }
+    },
+    {
+      "id": "native/xerces-c-3.3.0",
+      "sourceSha256": "9555f1d06f82987fbb4658862705515740414fd34b4db6ad2ed76a2dc08d3bde",
+      "recipeSha256": "61ef74b62e43a18a016280745a1401428aeb04dcea08fd5cbb395e813356c024",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xerces-c-3.3.0/source/xerces-c-3.3.0",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xerces-c-3.3.0/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xerces-c-3.3.0/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xerces-c-3.3.0/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3",
+          "-DCMAKE_DISABLE_FIND_PACKAGE_ICU=ON"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xerces-c-3.3.0/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xerces-c-3.3.0/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libxerces-c-3.3.dylib": "e6bdca70a846c27f1bdecff8e465a9be8b47b70a5168e3677463756b54ca8afd"
+      }
+    },
+    {
+      "id": "native/libarchive-3.8.9",
+      "sourceSha256": "888c934f9d95648ecb9163dc8e23ab80a476ecb81a8f1154704a227b5b676dde",
+      "recipeSha256": "e13105c94497458268c28e4f3002ddd9495e1ddd59ccf7a4744880b53d6c9936",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libarchive-3.8.9/source/libarchive-3.8.9/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libarchive-3.8.9/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libarchive-3.8.9/install/etc",
+          "--without-lzo2",
+          "--without-nettle",
+          "--without-xml2",
+          "--without-openssl",
+          "--with-expat"
+        ],
+        [
+          "make",
+          "-j3"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "failed",
+      "error": "Fall\u00f3 build, c\u00f3digo 2: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libarchive-3.8.9/build.log"
+    },
+    {
+      "id": "native/libassuan-3.0.2",
+      "sourceSha256": "d2931cdad266e633510f9970e1a2f346055e351bb19f9b78912475b8074c36f6",
+      "recipeSha256": "6a1486e8358153b2f6ed1f1618b5f3f3c98b7b5cbeafdac82b10f89995267268",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libassuan-3.0.2/source/libassuan-3.0.2/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libassuan-3.0.2/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libassuan-3.0.2/install/etc",
+          "--disable-silent-rules",
+          "--enable-static"
+        ],
+        [
+          "make",
+          "-j3"
+        ],
+        [
+          "make",
+          "install"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4",
+        "CFLAGS": "-O2 -std=gnu89"
+      },
+      "status": "built",
+      "libraries": {
+        "lib/libassuan.9.dylib": "2ba33b03cd2c02402bf44aa8f812a0127f1daa818e9bbea3bd4840e49c99f6f4"
+      }
+    },
+    {
+      "id": "native/freetype-2.14.3",
+      "sourceSha256": "36bc4f1cc413335368ee656c42afca65c5a3987e8768cc28cf11ba775e785a5f",
+      "recipeSha256": "cc500226718264185ecf4b0560e0d9daee933c3e40622dd936b955536d025613",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/freetype-2.14.3/source/freetype-2.14.3/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/freetype-2.14.3/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/freetype-2.14.3/install/etc",
+          "--enable-freetype-config",
+          "--without-harfbuzz"
+        ],
+        [
+          "make",
+          "-j3"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "failed",
+      "error": "Fall\u00f3 build, c\u00f3digo 2: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/freetype-2.14.3/build.log"
+    },
+    {
+      "id": "native/freexl-2.0.0",
+      "sourceSha256": "176705f1de58ab7c1eebbf5c6de46ab76fcd8b856508dbd28f5648f7c6e1a7f0",
+      "recipeSha256": "e063b0f5e6afe86239787e41c8e3c78877d2a574d58cf09fd60c6d62b508bd44",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/freexl-2.0.0/source/freexl-2.0.0/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/freexl-2.0.0/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/freexl-2.0.0/install/etc",
+          "--disable-silent-rules"
+        ],
+        [
+          "make",
+          "-j3"
+        ],
+        [
+          "make",
+          "install"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "built",
+      "libraries": {
+        "lib/libfreexl.1.dylib": "1d781217601b57de68cc491d0faa9f3dce622746b4f5dea9b39ad1a16b650aa4"
+      }
+    },
+    {
+      "id": "native/libgpg-error-1.61",
+      "sourceSha256": "7a85413f2bc354f4f8aa832b718af122e48965e9e0eb9012ee659c13c6385c93",
+      "recipeSha256": "ff00ce9602dbbd948f58e26009c038f1e33dec1223bc2f5c89e088c296973d09",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libgpg-error-1.61/source/libgpg-error-1.61/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libgpg-error-1.61/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libgpg-error-1.61/install/etc",
+          "--disable-silent-rules",
+          "--enable-install-gpg-error-config",
+          "--enable-static"
+        ],
+        [
+          "make",
+          "-j3"
+        ],
+        [
+          "make",
+          "install"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "built",
+      "libraries": {
+        "lib/libgpg-error.0.dylib": "4867a8662c5fcedf7a78e05f73edd1830d79d5c24b6802b2f50e589187ed5130"
+      }
+    },
+    {
+      "id": "native/gpgme-2.1.2",
+      "sourceSha256": "0687a95b299871c4141f507c0f740de6b429c9ac067d0fa4e062e3264df5fb77",
+      "recipeSha256": "04adb5488d80b5e403a4fcea6f6344dfabf9e9e61f48ebb844e3c064c6b6d638",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgme-2.1.2/source/gpgme-2.1.2/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgme-2.1.2/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgme-2.1.2/install/etc",
+          "--disable-silent-rules",
+          "--enable-static"
+        ],
+        [
+          "make",
+          "-j3"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "failed",
+      "error": "Fall\u00f3 build, c\u00f3digo 2: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgme-2.1.2/build.log"
+    },
+    {
+      "id": "native/gpgmepp-2.1.0",
+      "sourceSha256": "57f804468f0204504b172c6b139cb05124b4263be7ad514932c7c4c5062a16e2",
+      "recipeSha256": "f8a2445945bea832b9544a7428e8471721be650e6e67e144eea7c20b89ecb250",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgmepp-2.1.0/source/gpgmepp-2.1.0",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgmepp-2.1.0/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgmepp-2.1.0/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgmepp-2.1.0/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgmepp-2.1.0/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/gpgmepp-2.1.0/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libgpgmepp.7.1.0.dylib": "8ea2bf64d001becf51924393fc63a5adad5a1cc21314dd893207c1f94f71b379"
+      }
+    },
+    {
+      "id": "native/little-cms2-2.19",
+      "sourceSha256": "49e7e134e4299733dd0eda434fa468997a28ab3d33fa397c642b03644f552216",
+      "recipeSha256": "5a7ce6ac8ad5c7f3ec86cd513ed1f19e009841f698bc42f5ebdb405f94d38bc3",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/little-cms2-2.19/source/lcms2-2.19/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/little-cms2-2.19/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/little-cms2-2.19/install/etc"
+        ],
+        [
+          "make",
+          "-j3"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "failed",
+      "error": "Fall\u00f3 build, c\u00f3digo 2: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/little-cms2-2.19/build.log"
+    },
+    {
+      "id": "native/libtool-2.6.2",
+      "sourceSha256": "2ef1067c16c97db930fd740cc9bc3d3ba9a583804ae5ac42cc3e8719e49e191e",
+      "recipeSha256": "725532b53263fa67aa5e9a660bcd498b312c13da54d34d42788e073ced587031",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libtool-2.6.2/source/libtool-2.6.2/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libtool-2.6.2/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libtool-2.6.2/install/etc",
+          "--disable-silent-rules",
+          "--enable-ltdl-install",
+          "--program-prefix=g"
+        ],
+        [
+          "make",
+          "-j3"
+        ],
+        [
+          "make",
+          "install"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "built",
+      "libraries": {
+        "lib/libltdl.7.dylib": "95a0cf7d63d09f15e2071fe68bf23621f752f50a21dca4d25d846b7fafb4c056"
+      }
+    },
+    {
+      "id": "native/xz-5.8.3",
+      "sourceSha256": "3d3a1b973af218114f4f889bbaa2f4c037deaae0c8e815eec381c3d546b974a0",
+      "recipeSha256": "0812ffeca3c6631a261e87c76ff26368eee0df6ecedfe0f458d67494fdf6e9cc",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xz-5.8.3/source/xz-5.8.3/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xz-5.8.3/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xz-5.8.3/install/etc",
+          "--disable-silent-rules",
+          "--disable-nls"
+        ],
+        [
+          "make",
+          "-j3"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "failed",
+      "error": "Fall\u00f3 build, c\u00f3digo 2: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/xz-5.8.3/build.log"
+    },
+    {
+      "id": "native/mpfr-4.2.2",
+      "sourceSha256": "b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01",
+      "recipeSha256": "9b076d1863d1e6cb638af14fa27a4d9c6da627f891d24223595114d02f186c38",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/mpfr-4.2.2/source/mpfr-4.2.2/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/mpfr-4.2.2/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/mpfr-4.2.2/install/etc",
+          "--disable-silent-rules"
+        ],
+        [
+          "make",
+          "-j3"
+        ],
+        [
+          "make",
+          "check"
+        ],
+        [
+          "make",
+          "install"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "built",
+      "libraries": {
+        "lib/libmpfr.6.dylib": "c144cadc66978f072ac3a2d6bc4409d30d1b7500a58085f19ee4d0e944519c34"
+      }
+    },
+    {
+      "id": "native/unixodbc-2.3.14",
+      "sourceSha256": "4e2814de3e01fc30b0b9f75e83bb5aba91ab0384ee951286504bb70205524771",
+      "recipeSha256": "d468f9e84c1047c2d2d31f56402fbf65ef2e0758a3712d021a047e8b16d24515",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/unixodbc-2.3.14/source/unixODBC-2.3.14/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/unixodbc-2.3.14/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/unixodbc-2.3.14/install/etc",
+          "--disable-debug",
+          "--disable-dependency-tracking",
+          "--enable-static",
+          "--enable-gui=no"
+        ],
+        [
+          "make",
+          "-j3"
+        ],
+        [
+          "make",
+          "install"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "built",
+      "libraries": {
+        "lib/libodbcinst.2.dylib": "042a1bd6ad21944b3c0da6bc80061fce56048b48a2944e3443d621a326b90159",
+        "lib/libodbc.2.dylib": "60190469d0a01137e6dc3856135510cd6d3d5d528d1966d8353efaadaabcbc8e",
+        "lib/libodbccr.2.dylib": "efbffff410f2f1b25a9b71feaed01a4ef543b97e69db69338d3aac98e056fcd3"
+      }
+    },
+    {
+      "id": "native/openjph-0.31.0",
+      "sourceSha256": "fe169dbbaae71a169a0a6a68dccb346616193252c1ca044217afa0d5d1dc436f",
+      "recipeSha256": "20f55b651468efe01752f7a9d082005ebebd1d4d97132b6a24e9d6fe7a41e5d9",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openjph-0.31.0/source/OpenJPH-0.31.0",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openjph-0.31.0/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openjph-0.31.0/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openjph-0.31.0/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openjph-0.31.0/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/openjph-0.31.0/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libopenjph.0.31.0.dylib": "28894086ff24a0a65d0f08951bbdf0cc228e9f686c01f825f183e0fb778b8a2a"
+      }
+    },
+    {
+      "id": "native/libpng-1.6.58",
+      "sourceSha256": "28eb403f51f0f7405249132cecfe82ea5c0ef97f1b32c5a65828814ae0d34775",
+      "recipeSha256": "c125a77d8263e0fb215f8f5d693c53324caabb63801df7093d9f3c8e42f4dd22",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libpng-1.6.58/source/libpng-1.6.58/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libpng-1.6.58/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libpng-1.6.58/install/etc",
+          "--disable-silent-rules"
+        ],
+        [
+          "make",
+          "-j3"
+        ],
+        [
+          "make",
+          "test"
+        ],
+        [
+          "make",
+          "install"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "built",
+      "libraries": {
+        "lib/libpng16.16.dylib": "6194479b2ba40a063487195a07a5574f58151a3f628645069af09d00425dc64f"
+      }
+    },
+    {
+      "id": "native/s2n-1.7.7",
+      "sourceSha256": "a6f77d2e3343b554bfc2cce27e0407b3c758bb105533c8f0a56e233036b7541d",
+      "recipeSha256": "9d07cab5de44cc4fdae4d9a5522ebb929a46adedcc464370cb5eab5f9ef06f03",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/s2n-1.7.7/source/s2n-tls-1.7.7",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/s2n-1.7.7/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/s2n-1.7.7/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/s2n-1.7.7/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/s2n-1.7.7/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/s2n-1.7.7/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libs2n.1.0.0.dylib": "4c457a38b268257604c802c8934051d40e4f92f507d6f0e5fcc2c6eb9f369664"
+      }
+    },
+    {
+      "id": "native/webp-1.6.0",
+      "sourceSha256": "e4ab7009bf0629fd11982d4c2aa83964cf244cffba7347ecd39019a9e38c4564",
+      "recipeSha256": "c2daf79de310f5aa1a3c8a2e412c6fcec1cc1ff47ba506e4bbddcaffbf7dc90c",
+      "commands": [
+        [
+          "cmake",
+          "-S",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/webp-1.6.0/source/libwebp-1.6.0",
+          "-B",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/webp-1.6.0/build",
+          "-DCMAKE_BUILD_TYPE=Release",
+          "-DBUILD_SHARED_LIBS=ON",
+          "-DBUILD_TESTING=OFF",
+          "-DCMAKE_INSTALL_PREFIX=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/webp-1.6.0/install",
+          "-DCMAKE_INSTALL_RPATH=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/webp-1.6.0/install/lib",
+          "-DCMAKE_PREFIX_PATH=/opt/homebrew",
+          "-DCMAKE_IGNORE_PREFIX_PATH=/opt/miniconda3"
+        ],
+        [
+          "cmake",
+          "--build",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/webp-1.6.0/build",
+          "--parallel",
+          "3"
+        ],
+        [
+          "cmake",
+          "--install",
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/webp-1.6.0/build"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "status": "built",
+      "libraries": {
+        "lib/libwebp.7.2.0.dylib": "303be29b372571c0626c4fff20ef7dd8456159b7a24b5372f5d701868d599863",
+        "lib/libwebpdemux.2.0.17.dylib": "6e7cb922aa04c5c32cb1f2e182f124dd171010effa4cb3cf55afea941e918dc5",
+        "lib/libwebpdecoder.3.2.0.dylib": "09abc14117df0c3f57fd46130f4fd9214c8759db0341cebaf0f5d0a14a09c5cc",
+        "lib/libwebpmux.3.1.2.dylib": "b581a2371919579ed4cc1481f912d4d79af968e8c09c19b336d45bea02f4af87",
+        "lib/libsharpyuv.0.1.2.dylib": "2251aab0f4f4e402c03eb31d2d54f6a8a44a3507818312925bc66434c352b694"
+      }
+    },
+    {
+      "id": "native/libxml2-2.15.3",
+      "sourceSha256": "78262a6e7ac170d6528ebfe2efccdf220191a5af6a6cd61ea4a9a9a5042c7a07",
+      "recipeSha256": "f814c0263be76e62e619e9bea29ee0ec0d060aa054b6ea6bec08926f270e873f",
+      "commands": [
+        [
+          "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libxml2-2.15.3/source/libxml2-2.15.3/configure",
+          "--prefix=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libxml2-2.15.3/install",
+          "--sysconfdir=/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libxml2-2.15.3/install/etc",
+          "--disable-silent-rules",
+          "--with-history",
+          "--with-legacy"
+        ]
+      ],
+      "scope": "shared-library probe with installed dependencies; not full dependency closure",
+      "environment": {
+        "CPPFLAGS": "-I/opt/homebrew/include",
+        "LDFLAGS": "-L/opt/homebrew/lib",
+        "PKG_CONFIG_PATH": "/opt/homebrew/lib/pkgconfig",
+        "M4": "/opt/homebrew/opt/m4/bin/m4"
+      },
+      "status": "failed",
+      "error": "Fall\u00f3 configure, c\u00f3digo 1: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/components/libxml2-2.15.3/configure.log"
+    }
+  ]
+}

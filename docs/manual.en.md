@@ -1,200 +1,319 @@
-# ViaSpania Manual
+# ViaSpania General Manual
 
-ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic interpretation. Persisted point coordinates use WGS84 (EPSG:4326); graph distances and raster resolution use metres.
+ViaSpania  
+Copyright © 2026 Antonio López García, Universidad de Granada  
+This program is distributed under the GPL-3.0-only license.
 
-## 1. Overview
+[LICENSE](../LICENSE) · This statement applies to the original ViaSpania code. Third-party components and data retain their respective copyrights, licenses and terms. The ViaSpania logo and original graphic assets remain separately copyrighted, with all rights reserved; institutional symbols remain subject to their own terms.
 
-The main workspace contains four synchronised map viewers and a calculation panel. The current project, study area, selected elevation model and available results determine which controls are enabled.
+ViaSpania helps you explore terrain, calculate least-cost travel and study accessibility and visibility. This manual explains how to prepare a project, choose an analysis, interpret its results and save them. For the equations and assumptions of a particular profile, use the calculation's contextual help button.
 
-### Header
+## 1. Start here
 
-- New project creates and saves an empty workspace.
-- Open project restores a saved ViaSpania JSON project.
-- Save project updates the current file or asks for a destination on first save.
-- Export results saves selected vector, raster and project products.
-- 3D viewer opens after an elevation model has been processed.
-- Settings contains language, display, data-source, processing, sound and tutorial preferences.
-- Compose report opens the PDF composer for the current calculation mode.
-- Help opens this manual; Credits shows authorship, licences, sources and exact build information.
+### What you need
 
-### Navigation
+To run analyses, you need the desktop application, an elevation model and the points required by your chosen tool. An Internet connection is needed to download models, view online maps and search for place names. You can import a local model; calculations run on your computer.
 
-Use the Navigation viewer to choose a base map, locate the work area and draw the rectangular study extent. The ↗ control expands or restores the viewer.
+A background map helps you find your bearings. The elevation model supplies the heights used in calculations. Replacing an orthophoto with another map does not change the terrain used for analysis.
 
-### Orthophoto and editing tools
+### Your first route, step by step
 
-The Selection viewer is the editing surface for start, end and multipoints, barriers, preferred corridors, enabled crossings and points of interest. Pan, select, move and delete modes are mutually exclusive. Coordinates shown and stored for points are longitude/latitude in EPSG:4326.
+1. Click **New project**, enter a name and choose where to save the JSON file.
+2. Find a familiar location in **Navigation**. You can move around the map or use **Search for a place**.
+3. Activate **Select area** and drag a small rectangle containing both ends of your journey, with space around them for possible alternatives.
+4. Choose a terrain model and check its resolution and estimated size. Download it and wait for processing to finish.
+5. In the **Selection** map, activate the Start tool and place the origin. Do the same with End for the destination. Both must lie inside the model on cells with valid elevation.
+6. Open **Simple route**, choose a travel profile and connectivity. For this first exercise, leave barriers and facilitators empty.
+7. Calculate the outbound route. Review its line, distance, cost and unit, and elevation profile.
+8. To study the return journey, calculate the independent return route. Then save the project and use **Compose report** or **Export results**, depending on what you want to keep.
 
-### DTM
+Start with a small area and a single profile. Once you understand the result, change just one condition and calculate again; this helps you identify what causes each difference.
 
-The Digital Model viewer displays the processed raster and analytical overlays. Its cursor can report cell position, elevation and values when the corresponding preference is enabled. Palette changes affect presentation, not source elevations.
+## 2. Get to know the workspace
 
-### Cartography
+### The four maps
 
-The Cartography viewer provides IGN/CNIG historical and modern sources and any user-configured XYZ, WMS or WMTS layers. External services remain responsible for availability, CORS policy, licence and attribution.
+- **Navigation**: locates your study and defines its extent.
+- **Selection**: lets you place and edit points, barriers and facilitators over a map or orthophoto.
+- **Digital model**: displays the loaded elevation and available overlays.
+- **Cartography**: provides modern and historical maps and other enabled sources.
 
-### Geographic calculations
+The main maps share navigation. Use the expand/restore control when you need more space, and return to the combined layout to compare backgrounds. The visible controls depend on the viewer and available data.
 
-Choose Simple route, Route comparison, Multipoint, Multi-route, Corridor, Isochrones, Viewshed or Contour lines. The ? button opens calculation-specific methodological help. Results never imply legal access, physical passability or safety.
+### Main actions
 
-### Barriers and facilitators panel
+**New project**, **Open project** and **Save project** manage your working file. The active project name appears beside ViaSpania. **Settings** contains preferences; **3D view** opens the terrain when a model is loaded; **Compose report** prepares a PDF and **Export results** saves analysis products.
 
-- Absolute barriers block intersected cells.
-- Penalty barriers multiply traversal cost.
-- Preferred corridors reduce cost within their configured width.
-- Bridges, fords and tunnels enable crossing through a linked barrier using a multiplier.
-- Points of interest can influence nearby cost, require a single visit or act as waypoints.
+The calculation panel shows the parameters for the selected tool. Contextual help buttons explain that analysis or profile. Also read the status messages: they tell you what is missing, how an operation is progressing or why an error occurred.
 
-Names, geometry and parameters remain editable. Review the list before recalculating because all enabled elements affect subsequent analyses.
+## 3. Create, save and recover projects
 
-### Current configuration
+### Create and save
 
-Travel profile, connectivity and profile-specific parameters are shared by the active calculation. Four-neighbour connectivity is restrictive, eight neighbours adds diagonals and sixteen neighbours adds extended directions. Higher connectivity generally produces smoother routes but requires more work.
+When no project has been created or opened, the header shows **Empty project** and Save is disabled. Creating a project asks for a name and destination; the new workspace starts without a model, points or results. Save your current work before starting another project.
 
-## 2. Preparing the elevation model
+**Save project** updates the associated file. If the last project was recovered automatically and has no associated destination in the session yet, you will be asked for a location. Save after editing points, changing conditions or completing an analysis you want to retain.
 
-1. Draw a study extent in the Navigation viewer.
-2. Choose an enabled elevation source and resolution.
-3. Check the estimated rows, columns, cell count, disk use and memory use.
-4. Download and process the model.
-5. Wait for completion before calculating routes or topographic products.
+### Open a project
 
-Routine processing uses deterministic provider adapters. ViaSpania reports source metadata and preserves attribution. Do not assume terrain, access or land-cover information that is not present in the selected elevation product.
+1. Click **Open project** and select a ViaSpania JSON file.
+2. Check the recovered name, points and conditions. If the project contains a valid study area, the maps fit to it.
+3. Download or import the elevation model again before recalculating.
 
-### Digital surface models
+The JSON keeps project data and settings and the results included when saving; it does not embed the elevation file. Saving the project is different from exporting all products. Keep the JSON, GeoTIFF and exports in an identifiable working folder.
 
-A DTM describes bare-earth elevation. A DSM may include vegetation and buildings. Surface products are therefore useful for some visibility studies but can produce unsuitable least-cost routes. ViaSpania displays a warning when a surface source is selected.
+## 4. Locate and define the study
 
-### Copernicus VHR 2021 imagery
+### Search for a place or coordinates
 
-Copernicus VHR 2021 is a European image mosaic with different date, resolution and coverage properties from PNOA. It is a visual background, not an elevation source and not a walkability layer.
+1. Click **Search for a place** in Navigation.
+2. Enter at least three characters of a place name and click Search or press Enter.
+3. Select a result with the mouse or arrow keys and Enter. The map centres on that location. Escape closes the window.
 
-## 3. Geographic calculations: operation and interpretation
+Place-name search uses GeoNames online and does not require an individual account setup. It only sends a request when you submit the search; quota limits or connection errors may occur. Centring the map does not replace placing calculation points in Selection.
 
-### Simple route
+You can also enter **latitude, longitude** in WGS84 decimal degrees, for example **40.4168, -3.7038**. Use a decimal point and a comma between values. This field does not accept UTM or degrees, minutes and seconds. Coordinates are parsed locally, and the window shows their transformation to the loaded model's or viewer's coordinate system.
 
-**Sub-optimal routes.** When enabled, rank 1 is the optimum. Later ranks reduce the conductance of edges incident to previously used cells and run Dijkstra again. A stronger separation uses a smaller multiplier and usually pushes routes farther apart. These are spatially distinct sub-optimal routes, not exact *k*-shortest paths. Every published cost is evaluated on the original unpenalised surface; the interface also reports its increase over the optimum and shared-cell percentage. Mandatory waypoints remain part of every rank.
+### Choose the area
 
-Simple route finds the minimum accumulated-cost path between start and end. Outbound and return are calculated independently because directional profiles may assign different costs to ascent and descent. The result includes geometry, cost, distance, ascent, descent, elevations and slopes. Open the route viewer to inspect the line and elevation profile.
+Activate **Select area** and draw a rectangle in Navigation. Include every location you need and leave room for a route to go around obstacles. An area that is too tight can exclude a useful alternative; an unnecessarily large one increases memory use.
 
-### Route comparison
+**Delete area** removes the extent and associated model but keeps points and barriers. You will then need to define or import the terrain again and recalculate analyses that depend on it.
 
-Route comparison repeats the same endpoints, raster, connectivity and facilitators with selected profiles. Compare geometry and behaviour carefully: numerical costs with different units—seconds, joules and relative cost—are not directly comparable. The dedicated viewer offers overlaid and side-by-side maps plus a results table.
+## 5. Prepare the elevation model
 
-### Multipoint
+### Terrain and surface: an important distinction
 
-Multipoint calculates directed least-cost connections among the first eight points. Each point becomes an origin in turn. The matrix may be asymmetric for directional profiles. Colours identify origins; use the matrix and synchronised maps to inspect from/to relationships.
+A **DTM** represents terrain without buildings or vegetation. It is the usual choice for studying travel and ground slopes. A **DSM** represents the upper surface and may include structures and treetops; it can be useful for visibility studies, but those heights also affect routes, slopes and contours.
 
-### Multi-route
+Choose the model type to match your study question. An aerial image does not itself supply building heights or information about passability. A DSM does not guarantee that every current obstacle is represented either.
 
-**Sub-optimal itineraries.** Every rank is a complete journey through all points in list order. ViaSpania joins all legs, penalises the cells of that complete itinerary, and then calculates the next rank. It does not arbitrarily combine unrelated partial routes from individual legs. Total cost is evaluated on the original surface and compared with rank 1.
+### Download a model
 
-Multi-route connects consecutive points strictly in list order: 1→2, 2→3 and so forth. It optimises each leg but does not optimise visit order. Reorder the point list before calculation when sequence matters.
+1. Define the area and select an enabled source in the model-loading panel.
+2. Check resolution, dimensions, cell count and resource estimates.
+3. Start downloading and processing. Wait for the model to appear before calculating.
+4. Check coverage and heights in the digital model viewer.
 
-### LCP corridor
+In **Settings → Digital models**, enable the sources you need. Available sources include terrain and surface models with different coverage and detail. A source appearing in the selector does not mean it covers every area.
 
-The least-cost corridor combines accumulated costs from both endpoints and retains cells whose combined cost is within the selected percentage above the optimum. A narrow threshold represents close alternatives; a broad threshold includes increasingly costly possibilities. It is not a legal or surveyed corridor.
+### Import a GeoTIFF
 
-### Isochrones
+Use the local model import option and specify whether it represents terrain or surface. The application checks its metadata and prepares the file for analysis. It must contain elevations and a recognisable coordinate system; an ungeoreferenced TIFF image is insufficient.
 
-Isochrones run accumulated-cost propagation from one or more origins and interpolate equal-cost lines at the chosen interval. Choose origins, interval and maximum number of levels. The coloured surface represents accumulated cost; opacity only changes display.
+After importing, check the area, resolution and assigned type. Saved points use WGS84; analysis distances and resolution are expressed in metres. You do not need to convert points manually to the file's projected coordinate system.
 
-### Viewshed
+### Resolution, memory and missing data
 
-Viewshed estimates line of sight from selected observers using the loaded raster and observer height. Choose a human, tripod, tower or custom height. The calculation does not include atmospheric refraction and cannot include vegetation or buildings unless they are represented by the loaded surface model.
+Each model cell represents part of the terrain. Smaller cells provide more detail if the source contains it, but increase data size and calculation work. Choosing a finer output resolution does not create new information in a coarse source.
 
-### Contour lines
+If you exceed the processing limit, reduce the area or choose a less detailed model. In **Settings → Processing**, apply the recommended limit for detected memory. Raising the limit allows more cells but does not add memory to your computer.
 
-Contours interpolate equal-elevation segments from raster cells at the selected vertical interval. A small interval creates more geometry and may suggest precision beyond the source resolution. Exported contours retain their elevation values.
+Cells without a valid elevation, called **NoData**, are not terrain at zero height. They can prevent a connection. If the cursor displays a dash, check whether it is outside the model or over missing data. Changing the palette only changes colours, not heights.
 
-## 4. Travel profiles
+## 6. Add points and crossing conditions
 
-ViaSpania includes walking-time, energetic, pastoral, caravan and wheeled relative-cost profiles. Each profile's contextual help states authorship, purpose, equation, variables, editable parameters, units, limitations and scientific reference.
+### Calculation points
 
-- Tobler profiles estimate walking time and distinguish slope direction.
-- Márquez-Pérez and Kondo–Seino are empirical walking formulations.
-- Rees and GKRS are symmetric slope-response functions.
-- Tripcevich represents llama caravans; Alberti represents pastoral movement.
-- Pandolf variants estimate metabolic expenditure with documented fixed assumptions.
-- Minetti, Herzog and Ardigò estimate energetic cost; Ardigò exposes speed.
-- Wheeled uses a configurable critical slope as a cost reference, not an absolute block.
-- Eastman produces an abstract relative-cost index.
+Place Start and End for a route between two endpoints. Use multipoints to study several locations or an itinerary with stops. Check names, positions and order in the list. The select, move and delete tools act on features in the Selection map; return to navigation mode to move the map without editing them.
 
-Never compare values across incompatible units. Equations, units and citations are shown in the calculation help and technical report pages.
+You can import points using CSV or GeoJSON. Use the application's CSV template as a guide to columns and formatting, and check the imported positions on the map before calculating. The search field uses latitude, longitude; GeoJSON uses longitude, latitude.
 
-## 5. Result viewers
+### Barriers and facilitators
 
-Dedicated viewers preserve the map context while presenting routes, surfaces, legends and tables. Map capture controls export PNG or PDF views with ViaSpania attribution. Selection, route and raster overlays use the same stored WGS84 project geometry.
+Draw features in Selection and edit their properties in the collapsible **Barriers and facilitators** panel. Its summary lets you review conditions without keeping every control open.
 
-## 6. 3D viewer
+- **Absolute barrier**: prevents crossing the affected cells.
+- **Permeable barrier**: increases cost using a multiplier.
+- **Preferred corridor**: reduces cost within its specified width.
+- **Bridge or crossing**: allows a barrier to be crossed along its geometry, with the configured cost.
+- **Point of interest**: can influence nearby cost or serve as a visit/waypoint, depending on its mode.
 
-The 3D viewer builds a terrain mesh locally from the processed raster. Vertical exaggeration changes visual interpretation only; 0 produces a flat display. Palettes and imagery are presentation layers.
+For example, to represent an obstacle that can only be crossed at a particular passage, draw the barrier and then the crossing through it. Check that the two overlap at the model's scale. A crossing does not fill NoData elevations or establish that real infrastructure exists.
 
-### Camera and orientation
+### Mandatory crossings
 
-Left drag orbits, right drag pans and the wheel zooms. Inclination and orientation can be entered in the animation panel. The compass and tilt indicators report the current camera view.
+Select **Required waypoint** if the route must visit that bridge or crossing. When unchecked, it remains available for crossing the barrier, but the route can choose another alternative. Mandatory crossings apply to simple routes, comparison, multipoint connections and alternatives.
 
-### Terrain and layers
+The application chains visits together; it does not globally optimise their order. In Multi-route, conditions apply to every leg and a crossing may be visited more than once. Isochrones and the corridor surface do not represent an itinerary of mandatory visits.
 
-Toggle points, labels, maximum elevation, scale, barriers, corridors, crossings, points of interest and available analytical results. Texture sources keep their required attribution. A raster surface displayed in 3D remains the result already calculated in 2D.
+### Display is different from activation or deletion
 
-### Video and GIF
+Hiding barriers, facilitators or labels in a viewer only changes their presentation. To change analysis conditions, edit or delete project features and calculate again. Always check the list before interpreting a new route.
 
-Choose orbit or route animation, speed, nominal duration, inclination, orientation and resolution. Video is captured at a planned 30 fps using the best MP4 or WebM format supported by the platform web engine. GIF export is generated deterministically, supports up to 1280 pixels in width and limits frame count to control memory. Long or high-resolution exports take more time. Cancelling releases capture resources.
+## 7. Choose an analysis
 
-## 7. Settings
+### Simple route: connect two places
 
-### Language
+Use this to find a route between Start and End. Load the model, place both points, choose profile and connectivity, and calculate the outbound journey. Least cost means the lowest cost according to that profile, not necessarily the shortest distance.
 
-Choose Español or English. Saving preferences applies the language to the interface, tutorial, contextual calculation help, integrated manual, credits, reports and generated messages. The preference is stored on this computer and shared by desktop builds on Windows, macOS and Linux.
+The result provides a line, distance, cost with unit, ascent, descent and elevation profile. The return journey is calculated independently: climbing and descending may produce different costs and routes. Calculate both to compare directions.
+
+### Route comparison: compare profiles
+
+Use this to explore how the route changes with your travel assumptions. Select several profiles and calculate while keeping endpoints, model and crossing conditions the same.
+
+Review the table and the overlaid or dual viewers. The overlaid view lets you show or hide profiles; the dual view lets you inspect two routes with synchronised navigation. Compare geometries and check units before comparing numerical values: seconds, joules and relative cost are not equivalent.
+
+### Multipoint: compare connections between locations
+
+Use this to study connections among the first eight points in the list. The result is a cost matrix and a set of directed routes. Read each cell from the origin in its row to the destination in its column.
+
+The A→B connection may differ from B→A. Multipoint answers what it costs to travel between pairs; it does not suggest an order for visiting all locations.
+
+### Multi-route: follow a sequence of stops
+
+Use this when the visit order is already decided. Order the points and calculate: A, B and C produce A→B followed by B→C. Review each leg and its joins.
+
+The application does not reorder stops or automatically add a return to the start. To try another itinerary, change the list and calculate again.
+
+### Sub-optimal alternatives
+
+In modes offering this option, enable alternatives before calculating. Rank 1 is the optimum; later ranks seek spatially different routes. Review the cost increase and percentage shared with the optimal route.
+
+Separation influences how far routes diverge. These are not the exact k-shortest paths, and not every alternative will be useful for your study. Displayed costs are evaluated under the original conditions. In Multi-route, each rank represents the complete itinerary through the stop list.
+
+### Corridor: explore a band of alternatives
+
+Use this to identify a potential passage zone between Start and End. Choose profile, connectivity and tolerance percentage, then calculate and inspect the surface.
+
+A 10% threshold includes cells through which a connection can pass at a cost up to 10% above the optimum. Increasing the percentage usually widens the corridor. It does not represent a physical path width or a probability of use.
+
+### Isochrones: study reach from one or more origins
+
+Select origins, the interval between levels and the maximum number of levels. Calculate and inspect the lines and accumulated surface. With several origins, each cell takes the lowest cost from any of them.
+
+Lines represent time only when the profile uses time units. Other profiles produce energy or relative-cost levels. For time profiles, enter the interface interval in minutes. Do not interpret the calculated reach as a guarantee of real access.
+
+### Viewshed: study visibility
+
+Select observers and their height above the surface, calculate, and inspect visible and non-visible areas. Observer height can represent a person, tripod, tower or custom value.
+
+Visibility depends on the loaded model. A DTM does not automatically include trees or buildings; a DSM only includes what its surface records. The analysis does not include atmospheric refraction or reconstruct historical conditions.
+
+### Contour lines: read elevations
+
+Choose vertical spacing in metres and generate contours. Use their elevation values to recognise slopes, ridges and valley bottoms. Smaller spacing produces more lines but does not improve source accuracy.
+
+Calculated contours can be overlaid in supporting viewers, including 3D. On a DSM they describe the upper surface, not necessarily the ground.
+
+## 8. Choose parameters and interpret results
+
+### Travel profile
+
+The profile defines what is minimised: time, energy or relative cost. Choose one suited to your question and consult its contextual help for assumptions. Some profiles offer their own parameters, such as speed or critical slope; these are not universal controls.
+
+A wheeled profile does not itself incorporate roads, road surfaces or permissions. Its critical slope is a cost reference, not an absolute barrier. Represent known restrictions through project conditions.
+
+### Connectivity
+
+Connectivity defines available directions between cells: 4 allows orthogonal movement, 8 adds diagonals and 16 adds extended directions. Higher connectivity can soften the grid effect at the cost of more calculation work. Keep it constant when comparing profiles if you want to isolate the profile's effect.
+
+### How to review a result
+
+1. Check the model's source, area and resolution.
+2. Review points, profile, unit, connectivity and crossing conditions.
+3. Examine the route and elevation profile, not just total cost.
+4. Check whether the result approaches the area boundary or NoData zones.
+5. After changing analysis data or parameters, calculate again before exporting a conclusion.
+
+Changing a background, palette, opacity or label visibility does not recalculate the analysis. A modelled route does not establish a path, permission, passability or safety. ViaSpania must not be used for emergency navigation.
+
+## 9. Explore results in 2D and 3D
 
 ### 2D viewers
 
-Configure crosshairs, synchronized pointers, scales, cursor coordinates, feature labels, administrative boundaries, default navigation map, default orthophoto and DTM palette.
+Open the result viewer to explore maps, legends, tables and profiles. The background selector lets you place results over different sources and saved external layers. Historical backgrounds provide visual context; they do not turn the current elevation model into historical terrain.
+
+In the expanded digital model viewer, you can control barriers, facilitators and labels. Hiding them does not change their role in the calculation. Calculation viewers have no direct PNG/PDF export or printing: use the report composer.
 
 ### 3D viewer
 
-Configure default vertical exaggeration, palette, maximum-elevation marker and scale visibility.
+With a model loaded, click **3D view**. Drag with the left button to orbit, the right button to pan, and use the wheel to zoom. The compass and inclination indicator help you find your bearings.
 
-### Digital models
+Adjust vertical exaggeration, palette or texture, and enable available points, routes, contours and other results. Exaggeration changes only the display; zero flattens the view. The 3D mesh is a simplified representation, not an additional elevation source.
 
-Enable or disable terrain and surface sources. At least one digital model must remain enabled.
+### Create images and animations
 
-### Cartography
+1. Prepare visible layers and wait for the background to finish loading.
+2. In **Animated export**, choose Camera orbit, Route traversal or Bird’s-eye route tracking.
+3. To follow a route, keep a calculated route visible and select which one to follow. Adjust camera distance, inclination and available controls.
+4. Choose duration, speed and resolution. Enable the compass or elevation profile if needed and available.
+5. Click **Export video**, **Export GIF animation** or **Export PNG frame** and wait for save confirmation.
 
-Enable built-in navigation, orthophoto and historical sources. At least one source in each required viewer group must remain active. Add external XYZ, WMS or WMTS services only when their address, layer definition, CORS policy, licence and attribution are known.
+Video is saved as AVI/MJPEG at 30 frames per second, with a maximum of 90 seconds and 1.5 GB per file. Effective duration depends on duration and speed: 20 seconds at 2× produces 10 seconds. Generating the file may take longer than its playback duration.
 
-### Processing
+GIF adapts resolution and frame count to control memory. PNG captures the initial frame of the configured mode. Videos can be large; allow disk space for the temporary file and final output. You can cancel export. If your player does not support AVI/MJPEG, open the file with a compatible player.
 
-The detected-memory recommendation controls the maximum raster-cell count accepted before native allocation. Larger limits permit larger studies but increase memory and calculation time. Model comparison, sixteen-neighbour connectivity and multipoint analysis are particularly demanding.
+## 10. Save results and compose a report
 
-### Sounds
+### Which option to use
 
-Enable completion sounds and choose a notification. Sounds play only after successful calculations, loads and exports—not after cancellation or failure.
+- **Save project**: continue editing your work in ViaSpania.
+- **Export results**: retain geographic data for archiving or GIS use.
+- **Compose report**: present maps, metrics and parameters in PDF.
+- **3D viewer export**: create an image or animation of the scene.
 
-## 8. PDF report composer and export
+### Export data
 
-The composer exposes sections appropriate to the current calculation: navigation overview, orthophoto, individual routes, 3D terrain, historical cartography, point and barrier lists, technical pages, analytical maps and custom text. Choose page size and visual options before export.
+Open **Export results**, select available products and choose a folder. The application organises files using descriptive names. Depending on the analysis, these may include elevation models, routes, surfaces, contours, points, barriers and facilitators.
 
-Reports preserve source attributions, calculation profile, effective parameters, units and limitations. A report documents a computation; it does not validate access, terrain safety or source completeness.
+GeoJSON preserves vector geometries; GeoPackage groups layers and attributes; GeoTIFF preserves raster data and georeferencing. The elevation GeoTIFF does not include the preview palette. Check the final message and generated files before moving or closing your work.
 
-## 9. Files and exports
+### Prepare the PDF
 
-- Project JSON stores editable state and WGS84 features.
-- GeoJSON exports vector routes, isochrones and contours.
-- GeoPackage groups project feature layers and attributes.
-- GeoTIFF preserves the selected elevation raster bytes and georeferencing.
-- PNG and PDF capture map or analytical views.
-- GIF, MP4 and WebM export 3D animations according to platform support.
+1. Calculate the results you want to include and select the corresponding analysis mode.
+2. Click **Compose report**. Options vary with the analysis and available results.
+3. Select the maps, routes, tables and technical pages offered. Choose the background and page size.
+4. Adjust visual options. If using the 3D model, check inclination and orientation before generating the document.
+5. Click **Generate PDF**, choose the destination and check the saved document.
 
-Exported filenames are normalised for portability. Saving can be cancelled without changing the project. Keep the project file and exported products together when reproducibility matters.
+Include parameters and units if another person needs to interpret the calculation. A PDF communicates a result; it does not replace the editable project or geographic data.
 
-## 10. Limitations
+## 11. Adapt the application to your work
 
-Elevation alone does not describe land cover, paths, ownership, permission, hazards, weather, seasonal conditions or accessibility. Remote services can change or become unavailable. Results depend on source resolution, extent, profile assumptions, connectivity and every configured barrier or facilitator. ViaSpania is not an emergency-navigation system.
+### Language and help
 
-## 11. Credits, sources and contact
+In **Settings**, choose Español or English and save preferences. The selection applies to the interface and general help, along with associated text. Use the tutorial to find your way around the controls and contextual help to explore each calculation in depth.
 
-ViaSpania was created and is maintained by Antonio López García. Credits lists software licences, IGN/CNIG, Copernicus and OpenStreetMap attributions, the methodological acknowledgement to Gianmarco Alberti's movecost package, and the exact version/build currently running.
+### Maps and display
 
-Contact: antonio-lopez-garcia@hotmail.com
+**2D viewers** lets you adjust pointers, coordinates, scales, labels, boundaries and default backgrounds. **3D viewer** contains terrain display preferences. These options affect how you read the map, not the original elevations.
+
+### Sources and external layers
+
+In **Digital models**, enable the elevation sources you want offered in the selector. In **Cartography**, manage backgrounds and add XYZ, WMS or WMTS services. Check the service address, layer and requested configuration before saving. A service may have limited coverage or prevent access from the application.
+
+### Processing and sounds
+
+In **Processing**, review detected memory and apply the recommended limit. In **Sounds**, enable, choose and test the completion notification. The sound signals a successful operation; still check the status message and result.
+
+## 12. Solve common problems
+
+### I cannot start a calculation
+
+Check that a model is loaded, the area is valid and the required points exist. Review whether points lie inside coverage and whether a parameter is missing. Read the status message; a disabled control often indicates an unmet requirement.
+
+### No route is found
+
+Review NoData cells, absolute barriers and mandatory crossings. Check that crossings connect both sides of the obstacle at the model's resolution. Expand the area if an alternative may lie outside it, reload the model and calculate again.
+
+### A download or map will not load
+
+Check the connection and source coverage. Try a smaller area or another background. If the service fails or reaches its quota, try again later. To continue with an available model, use local GeoTIFF import.
+
+### A calculation uses too many resources
+
+Reduce the area, use a less detailed model, or first try a single profile and fewer points. Comparisons, alternatives and connectivity 16 may require more time. Do not raise the cell limit without reviewing available memory.
+
+### I opened a project but the terrain is missing
+
+The project JSON does not contain the elevation file. Download or import the model again and check that it matches the study before recalculating.
+
+### Video export fails or the file will not play
+
+Wait for textures to finish loading, check that a route is visible if the mode requires one, and reduce duration or resolution. Review disk space and export limits. The file is AVI/MJPEG; it needs a player supporting that format.
+
+### I need to report a problem
+
+Record version and build, operating system, steps taken and the complete error message. Include the model's source and resolution, and attach only data you can share. Support contact: antonio.lopez@ugr.es.

@@ -1,0 +1,4101 @@
+{
+  "scope": "macOS runtime local; no certification of all data licences",
+  "database": {
+    "sha256": "ba59d662d0e3e4d46b3b43e72dba5d25b8bbd1e1441c80f03cb70572aa8862b4",
+    "metadata": {
+      "DATABASE.LAYOUT.VERSION.MAJOR": "1",
+      "DATABASE.LAYOUT.VERSION.MINOR": "6",
+      "EPSG.DATE": "2025-10-02",
+      "EPSG.VERSION": "v12.029",
+      "ESRI.DATE": "2025-12-01",
+      "ESRI.VERSION": "ArcGIS Pro 3.6",
+      "IGNF.DATE": "2019-05-24",
+      "IGNF.SOURCE": "https://raw.githubusercontent.com/rouault/proj-resources/master/IGNF.v3.1.0.xml",
+      "IGNF.VERSION": "3.1.0",
+      "NKG.DATE": "2025-02-13",
+      "NKG.SOURCE": "https://github.com/NordicGeodesy/NordicTransformations",
+      "NKG.VERSION": "1.0.w",
+      "PROJ.VERSION": "9.8.1",
+      "PROJ_DATA.VERSION": "1.24"
+    }
+  },
+  "catalogue": [
+    {
+      "filename": "ar_ign_GEOIDE-Ar16.tif",
+      "copyright": "Instituto Geográfico Nacional (IGN) Argentina",
+      "license": "CC-BY-4.0",
+      "version_added": "1.15",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5781d63c97f1348a6a4a3adf68dd98f2b9b0430271a0ce45d8e0b002394875a6"
+    },
+    {
+      "filename": "ar_ign_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.15",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4df6e6e9ab6bb673c6a609f7cb49a3b8c2090092a9d06d989953fdfd9651df7e"
+    },
+    {
+      "filename": "at_bev_AT_GIS_GRID.tif",
+      "copyright": "Austria Bundesamt für Eich- und Vermessungswessen (BEV)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "852d58612498f7ef08541e65f25f52f2a7f35f6020fd7e8250f7fa6eaa5ac599"
+    },
+    {
+      "filename": "at_bev_AT_GIS_GRID_2021_09_28.tif",
+      "copyright": "Austria Bundesamt für Eich- und Vermessungswessen (BEV)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.12",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c5862ce7ad4c16b1c234838d3dd4945bc641057d4238b02cb71a2077811ad30f"
+    },
+    {
+      "filename": "at_bev_GEOID_BESSEL_Oesterreich.tif",
+      "copyright": "Austria Bundesamt für Eich- und Vermessungswessen (BEV)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "50d2624aae11ba486eb9dbe5a81aa835fe5ce06e5d662ce859bf51bd0b7589bb"
+    },
+    {
+      "filename": "at_bev_GEOID_GRS80_Oesterreich.tif",
+      "copyright": "Austria Bundesamt für Eich- und Vermessungswessen (BEV)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "68682d850399d8d21a606a1b56b9d7372c06aa71c0de55379a48dff57f810377"
+    },
+    {
+      "filename": "at_bev_GV_Hoehengrid_plus_Geoid_V2.tif",
+      "copyright": "Austria Bundesamt für Eich- und Vermessungswessen (BEV)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "334fa70a877b0fa66026bb52540e7776669bedce58fb6050794f37a4ae0e7f3e"
+    },
+    {
+      "filename": "at_bev_GV_Hoehengrid_V1.tif",
+      "copyright": "Austria Bundesamt für Eich- und Vermessungswessen (BEV)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f4623c0d37f6dddf0fbfe6230ebd42b40a8744bec94b240075f4f97b90e5dae0"
+    },
+    {
+      "filename": "at_bev_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7fbec3bdc1680dd2cea0da2ca599e719dfd429471ec469ab1567f0ccc59f398a"
+    },
+    {
+      "filename": "au_ga_AGQG_20191107.tif",
+      "copyright": "Geoscience Australia",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "1.7",
+      "present": false,
+      "sha256": null
+    },
+    {
+      "filename": "au_ga_AGQG_20201120.tif",
+      "copyright": "Geoscience Australia",
+      "license": "CC-BY-4.0",
+      "version_added": "1.7",
+      "version_removed": "",
+      "present": true,
+      "sha256": "922b28c44bdb99d57a72fa66a142986c2a02b8b95d0152ef68a7a6119d6ec2cc"
+    },
+    {
+      "filename": "au_ga_AUSGeoid09_V1.01.tif",
+      "copyright": "Geoscience Australia",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "47e75b3e609e0551a9cabd3a9c7a1e37b50df2e92ce5457fe188298ea3e75ef4"
+    },
+    {
+      "filename": "au_ga_AUSGeoid2020_20180201.tif",
+      "copyright": "Geoscience Australia",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1eb8bc33f6bf27e6f16d277ad4f38d92ffaec33a7e6e355b6f840a7ab79998af"
+    },
+    {
+      "filename": "au_ga_AUSGeoid98.tif",
+      "copyright": "Geoscience Australia",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "66f560291721f662dc3975883b140ddcc6ed131a7c9f58539d4ca1dcbd6e6c53"
+    },
+    {
+      "filename": "au_ga_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "82b411bb563187a5ac2c6ba6c2755a6277b6ab17841d56c91e60c6a163e0fc50"
+    },
+    {
+      "filename": "au_icsm_A66_National_13_09_01.tif",
+      "copyright": "Intergovernmental Committee on Surveying and Mapping (ICSM)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3734a647f24ae6424ffd55253d6b28df9035c04e530b54f66011d1abd2e924ca"
+    },
+    {
+      "filename": "au_icsm_GDA94_GDA2020_conformal_and_distortion.tif",
+      "copyright": "Intergovernmental Committee on Surveying and Mapping (ICSM)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "89bb9e5c55a714c8925ddc134bf4c191be8df2607b229a05efb778f5f6166ee0"
+    },
+    {
+      "filename": "au_icsm_GDA94_GDA2020_conformal_christmas_island.tif",
+      "copyright": "Intergovernmental Committee on Surveying and Mapping (ICSM)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b67dfed1a58e8717458a314d9b621c7a1e77a404fcb715f042f931196f1da6c8"
+    },
+    {
+      "filename": "au_icsm_GDA94_GDA2020_conformal_cocos_island.tif",
+      "copyright": "Intergovernmental Committee on Surveying and Mapping (ICSM)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9ba8194157bbbbae238db5ebc9b01caf20109f078978b72f11ed1ea3c53ee4a3"
+    },
+    {
+      "filename": "au_icsm_GDA94_GDA2020_conformal.tif",
+      "copyright": "Intergovernmental Committee on Surveying and Mapping (ICSM)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "92b39b4898aff9e9921dce83daed4f942da0c1e714905612fa7ffdc0081dcc9c"
+    },
+    {
+      "filename": "au_icsm_National_84_02_07_01.tif",
+      "copyright": "Intergovernmental Committee on Surveying and Mapping (ICSM)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e15e4c2d91be51d4b6fb238cd8e0eddbf8033d7ed5cb24f146ba26e679b79e0f"
+    },
+    {
+      "filename": "au_icsm_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f97dad940d281b3171e36cd8d1f1b88374b7068c5d78c0d5da48c5da9dc2ec7c"
+    },
+    {
+      "filename": "be_ign_bd72lb72_etrs89lb08.tif",
+      "copyright": "Institut Géographique National (IGN) Belgium",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "eb5cb1823e66971189dfd20c65f3a2c507d600403772e9cc01c04f88d7e68cfa"
+    },
+    {
+      "filename": "be_ign_hBG18.tif",
+      "copyright": "Institut Géographique National (IGN) Belgium",
+      "license": "CC-BY-4.0",
+      "version_added": "1.9",
+      "version_removed": "",
+      "present": true,
+      "sha256": "882340af95eaf5dbd46f7988092fbb84cde8dcbb712ce9764c667e64ead6aa4c"
+    },
+    {
+      "filename": "be_ign_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "712f71d4db3510ba9d9b5b29873491c4d6a369fadf71f2b8253a90160aee1461"
+    },
+    {
+      "filename": "br_ibge_CA61_003.tif",
+      "copyright": "Instituto Brasileiro de Geografia e Estatistica - IBGE",
+      "license": "CC-BY-SA-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f37e955bc988f1ea126cb2a7f40b4caed0d679c209f2a56a4a131a22e8ad9b3b"
+    },
+    {
+      "filename": "br_ibge_CA7072_003.tif",
+      "copyright": "Instituto Brasileiro de Geografia e Estatistica - IBGE",
+      "license": "CC-BY-SA-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "caa2ef8e1193b7ce292a634c6a70c1cb4daeb06c80192e9b4a8c02d49525c5e5"
+    },
+    {
+      "filename": "br_ibge_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "24593e79cf98df2e909dc2776a2212bd72446f22862cd6d3d1071a8e916b1c66"
+    },
+    {
+      "filename": "br_ibge_SAD69_003.tif",
+      "copyright": "Instituto Brasileiro de Geografia e Estatistica - IBGE",
+      "license": "CC-BY-SA-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "350fff6403c561253249a5cc5f6fd83f8b17dfd775df521aab6b3895d5288e81"
+    },
+    {
+      "filename": "br_ibge_SAD96_003.tif",
+      "copyright": "Instituto Brasileiro de Geografia e Estatistica - IBGE",
+      "license": "CC-BY-SA-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "18fb81306468c2a069a35fb4b99c451e1f60398a471858692570972ae427c6fc"
+    },
+    {
+      "filename": "ca_nrc_ABCSRSV4.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0953dcb19f00ab35c5563a445ff966e92701e23801370259c9fee8599e780032"
+    },
+    {
+      "filename": "ca_nrc_BC_27_05.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "666198c33d5b771bad5e33e03589d7b1e20e11cf64c2816cd005e9664ca8ce49"
+    },
+    {
+      "filename": "ca_nrc_BC_93_05.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2945f9b6391d1821d11174ffea009742c9f2040dfec4a2f2314e6ca71e5ede93"
+    },
+    {
+      "filename": "ca_nrc_CGG2013ai08.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b194542fc82658eac1f45b2f799f0aae89600c12d75eafcd54dca75efd8fdb1d"
+    },
+    {
+      "filename": "ca_nrc_CGG2013an83.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a129e9e9b023bb5c7133b3a91e41f1d528892fc28e99dcecb251cd71292968cb"
+    },
+    {
+      "filename": "ca_nrc_CGG2013i08.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "266184106409b014995080eb65996883defbbf24e6992d95574bddeb58f7943d"
+    },
+    {
+      "filename": "ca_nrc_CGG2013n83.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9c3e31dceb26b999131d55d396c46af0b153489e3b42a4273f565d1bdefd059c"
+    },
+    {
+      "filename": "ca_nrc_CQ77SCRS.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "cd2315562e9ec1878a3b00cb4bcd07f8a6c04f68ae795eb48d547e619e2ec267"
+    },
+    {
+      "filename": "ca_nrc_CRD27_00.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8c8a5d32c6478fd0716c65524a56566107cc7819ef552354680da4d33a2b0195"
+    },
+    {
+      "filename": "ca_nrc_CRD93_00.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "624f0f2389416216f994d9733d0baa6e26d3b623ef8cfcd6de523fba051b8aaf"
+    },
+    {
+      "filename": "ca_nrc_GS7783.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "30497cc7e1fc5de091f03102addd2dca1156066ee82a5d63cf66166e66e6cd3e"
+    },
+    {
+      "filename": "ca_nrc_HT2_1997.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "1.15",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a82ca1aa105323350d165cda46ba69804c1b0cbd43461faaa28b8e38df373fac"
+    },
+    {
+      "filename": "ca_nrc_HT2_2002v70.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "1.15",
+      "version_removed": "",
+      "present": true,
+      "sha256": "eeabc319fcf50b2ad36194f47f45640759b0b9f5c32096a8cedc4c07448f5206"
+    },
+    {
+      "filename": "ca_nrc_HT2_2010v70.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5033fa377cb734a99a849b11bf6f8e99ec998b131224969f00f22f966456b773"
+    },
+    {
+      "filename": "ca_nrc_HT2_1997_CGG2013a.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "1.15",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4572fd92571b20f0919480a76f08a0b5917a45c3c6046b25473a4322ff63f563"
+    },
+    {
+      "filename": "ca_nrc_HT2_2002v70_CGG2013a.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "1.15",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e7e70f4809babc625d95c392f87767085ed0f424741aa6644d60d9622ef7c777"
+    },
+    {
+      "filename": "ca_nrc_HT2_2010v70_CGG2013a.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "1.11",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6f1f405626f6b132d42b84584f31cadb88e038026ca692b5b3a61cd82fb92e11"
+    },
+    {
+      "filename": "ca_nrc_MAY76V20.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "92e4e472a70ef05543fc9c852a8950113d2107739fa20270eb194381c315f9c0"
+    },
+    {
+      "filename": "ca_nrc_NA27SCRS.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b6bba85b3eb8115ca643172edd8fcf3c21a9610152954772e2ae0ed5c9251099"
+    },
+    {
+      "filename": "ca_nrc_NA83SCRS.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "67a09bf04e05458308cfc4236a9188fd9e99c20ca6191f2b6cfa5da64c9a9dfc"
+    },
+    {
+      "filename": "ca_nrc_NAD83v6VG.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5f2f41ac873b60187da9ae779bf7106e1b7c4b65a9ddef730744c0e2b04e26c9"
+    },
+    {
+      "filename": "ca_nrc_NAD83v70VG.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bfa4f958bd8ff287736fd2595bb524d874de88e6fa0670846abdb8394ab7587b"
+    },
+    {
+      "filename": "ca_nrc_NB2783v2.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f43d6c23fa3d9225d70c13e9d0252f4005902f21917c8c78582a41213de392fe"
+    },
+    {
+      "filename": "ca_nrc_NB7783v2.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0c745be698713b309f30a554d17f39edce1e7f036e5a9d14d478ec9981babc14"
+    },
+    {
+      "filename": "ca_nrc_NS778302.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6242780f3d2b5ab00ee8d6f75c09378196c21de9a91cd1fd7fcfb97c841e4d51"
+    },
+    {
+      "filename": "ca_nrc_ntv1_can.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ee6aec1b395e3bd8c92f2596d72bd912f63b0ef1eadb84eed98ce01f9cf3fd5a"
+    },
+    {
+      "filename": "ca_nrc_ntv2_0.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1c71996385fc51b4bcfb0d9119ebf4f14d632987cb116127c2110840cdbc0897"
+    },
+    {
+      "filename": "ca_nrc_NVI93_05.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4abc8c6a292b54574697069789b7d2b4307428a7890c09f274eeafdf2237f2cb"
+    },
+    {
+      "filename": "ca_nrc_ON27CSv1.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a0b093f9629baa6c6903b1cace03e7dd567372c71ab7d4af9a738feaf0c0d119"
+    },
+    {
+      "filename": "ca_nrc_ON76CSv1.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e84c3b4a9b1de4fe6b4ebefcf36044bc4d3298054e0b8c1ea037304d557210c5"
+    },
+    {
+      "filename": "ca_nrc_ON83CSv1.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ef4f1e670797f3983b5b298eb73c72a0d05a89bf582e1f3bfc0b59b30bf81e73"
+    },
+    {
+      "filename": "ca_nrc_PE7783V2.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b53fb7f76152baa128eff9aa16477f3206adc2021887bb3879dd1aa5ef8baa46"
+    },
+    {
+      "filename": "ca_nrc_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "35d787e3b4b1895ce71f62c2bd162744918397c5230ebbfcbae991fe4b2eeaef"
+    },
+    {
+      "filename": "ca_nrc_SK27-98.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9bda5887ad117c9af580ebea0e35912d137e3aebca5195f8a9b9e08507abeb5c"
+    },
+    {
+      "filename": "ca_nrc_SK83-98.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "03c3ba83d438e58e664b5870bbbc7683a3bf72dafdaa4808b9f37417ee6d8eed"
+    },
+    {
+      "filename": "ca_nrc_TO27CSv1.tif",
+      "copyright": "Her Majesty the Queen in right of Canada as represented by the Canadian Geodetic Survey, Natural Resources Canada",
+      "license": "OGL-Canada-2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "106e59e5bf3ac855ef68ac10e328ccd5dedb00636366ea0404a13970e1c75bcc"
+    },
+    {
+      "filename": "ca_que_mern_cq77na83.tif",
+      "copyright": "Ministère de l'Énergie et des Ressources naturelles (MERN) du Québec",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "982eecbd1842513c26468450c55536d41e72a89256e7b5e10d28010843e043dc"
+    },
+    {
+      "filename": "ca_que_mern_na27na83.tif",
+      "copyright": "Ministère de l'Énergie et des Ressources naturelles (MERN) du Québec",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "98accd143a743d75a112e9b2685bfcc946b1ca41df36bd4db2c1e562210052b6"
+    },
+    {
+      "filename": "ca_que_mern_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d7631f53e57a142456fce8bc0d24d73b70447ca8c1a91bdd8f389f95a508e9a7"
+    },
+    {
+      "filename": "ch_swisstopo_CHENyx06a.tif",
+      "copyright": "2007, Swisstopo",
+      "license": "CC0-1.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "986d81da9445bdd4cbc3b5e36d8ccdad757d7e09246da68040dd21e53bdfbe40"
+    },
+    {
+      "filename": "ch_swisstopo_CHENyx06_ETRS.tif",
+      "copyright": "2007, Swisstopo",
+      "license": "CC0-1.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2b12094e8c043645d85ae5f08a475bdd342249a1ff3c15e38fef0090cd4c4723"
+    },
+    {
+      "filename": "ch_swisstopo_chgeo2004_ETRS89_LHN95.tif",
+      "copyright": "Swisstopo",
+      "license": "CC0-1.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "459e317ba9bf1f744ad920b3fe0d6ee0b1bdfc960cad7d4ea428db7bb229280f"
+    },
+    {
+      "filename": "ch_swisstopo_chgeo2004_ETRS89_LN02.tif",
+      "copyright": "Swisstopo",
+      "license": "CC0-1.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ec9638c152f4519278b3e7a781d1a7c2769bd54de39accec099bd5036f4fd214"
+    },
+    {
+      "filename": "ch_swisstopo_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e42b7857149120a37ea25cc5ec96996d68d1bc0af027cb1dad639c138ce99498"
+    },
+    {
+      "filename": "cz_cuzk_CR-2005.tif",
+      "copyright": "ČÚZK",
+      "license": "CC-BY-4.0",
+      "version_added": "1.17",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2fba4e5bcd3e48f737b3655d5a7c196de1c56e199967f7e12311710646d4f0a1"
+    },
+    {
+      "filename": "cz_cuzk_table_-y-x_3_v1710.tif",
+      "copyright": "ČÚZK",
+      "license": "CC-BY-4.0",
+      "version_added": "1.24",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9f7b519e8928ec9663b916c07708d956821d09a0e25b61c742e31995d183148c"
+    },
+    {
+      "filename": "cz_cuzk_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.17",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7205bdacf892620f54c14a1abfb0538447206b733445164706ccdeadda0608e6"
+    },
+    {
+      "filename": "de_adv_BETA2007.tif",
+      "copyright": "ADV",
+      "license": "Free redistribution is allowed and welcome",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "46e681fcc7d022dde1db1f9d0a3426a9bfb1d4a151af69a81b3c30104c9388e2"
+    },
+    {
+      "filename": "de_adv_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "69c387720cba6f596671de999d8a9683194fa5787294d2e10f81ed90e04ba11c"
+    },
+    {
+      "filename": "de_bkg_gcg2016.tif",
+      "copyright": "BKG",
+      "license": "CC-BY-4.0",
+      "version_added": "1.16",
+      "version_removed": "",
+      "present": true,
+      "sha256": "598f18324dea7f8e72421d18add7ac6228259adf91eeb335cc9c27d98484f7ac"
+    },
+    {
+      "filename": "de_bkg_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.16",
+      "version_removed": "",
+      "present": true,
+      "sha256": "032f7f735dd47f381488cc9476b4ff491caea4e094fbe8d4688da3e88515be51"
+    },
+    {
+      "filename": "de_geosn_NTv2_SN.tif",
+      "copyright": "Staatsbetrieb Geobasisinformation und Vermessung Sachsen (GEOSN)",
+      "license": "Data licence Germany - attribution - version 2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "211caa07476e351146117beb9281184b97caeae58ff9724517b4630ac03f7028"
+    },
+    {
+      "filename": "de_geosn_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0c3da042e030577eba00a41575706d3bb40449b7a92dc62e86e104e94772f51e"
+    },
+    {
+      "filename": "de_hvbg_hessen_HeTA2010.tif",
+      "copyright": "Hessisches Landesamt für Geoinformation und Bodenmanagement (HVBG)",
+      "license": "Data licence Germany - attribution - version 2.0",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0e1fcc1cc7ca8251c56433c8822e21cca2f1de5b6359ca828b70d477e12fb4ed"
+    },
+    {
+      "filename": "de_hvbg_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b7815d9872c089f82027120d63202faf159d55582a92268c0b742fb83c3e4e95"
+    },
+    {
+      "filename": "de_lgl_bw_BWTA2017.tif",
+      "copyright": "Landesamt für Geoinformation und Landentwicklung (LGL) Baden-Württemberg",
+      "license": "Data licence Germany - attribution - version 2.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "83adfea14dbe037f1dc3f717949b6f23304f362eccdc198cf31d4cd5e54be9b6"
+    },
+    {
+      "filename": "de_lgl_bw_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3065d38fb80c7af75f3087496ee6f073e18a202f73a5e53e80446fae79e36c12"
+    },
+    {
+      "filename": "de_lgvl_saarland_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8db9566b7426795872a4312de610056b77c6ef0c52e7cdc6e9b36b58af2d02d6"
+    },
+    {
+      "filename": "de_lgvl_saarland_SeTa2016.tif",
+      "copyright": "Landesamt für Vermessung, Geoinformation und Landentwicklung (LVGL) Saarland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "529acdef6f5634669087de3dfc7923ab0100a9a7d94fa5e5b4aadb7ec4226c6c"
+    },
+    {
+      "filename": "de_tlbg_thueringen_NTv2gridTH.tif",
+      "copyright": "Thüringer Landesamt für Bodenmanagement und Geoinformation",
+      "license": "CC-BY-4.0",
+      "version_added": "1.20",
+      "version_removed": "",
+      "present": true,
+      "sha256": "32249e46cdaa97cbd2cea723a413d73a04a8420b11ed81ebe48be18034fa6354"
+    },
+    {
+      "filename": "de_tlbg_thueringen_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.20",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8649ff910ad3d3537ccf292c6e62d08985059e0db452ba98fcc7a3b83721d2b0"
+    },
+    {
+      "filename": "DK",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d77b1bb517965a1e8afd2ada0cb552379ffd7c606f9d7fde71f3bb9f64fab041"
+    },
+    {
+      "filename": "dk_sdfe_DK_bornholm.pol",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3e3d09b80fe9e3ab8a4f0dccf2cd470edb86ade215343ce563a67be11e999519"
+    },
+    {
+      "filename": "dk_sdfe_DK_bridges.pol",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b5c7e9c42b006eb5e90da2828bb90a2fc59b6a5a2c8a289bdc1b2748d71b547f"
+    },
+    {
+      "filename": "dk_sdfe_DK_general.pol",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "935c5611fc929e555306bad0f176359408b2cd163270a820e2d095352d0fb169"
+    },
+    {
+      "filename": "dk_sdfe_DK_jutland.pol",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "91a6a8da9b829bf494530d3ffcb73ca652090951f644aebd143748663b5fc484"
+    },
+    {
+      "filename": "dk_sdfe_DK_zealand.pol",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "cd02992e723e76dbf5ba7170ccaf83e1c302c514e60b16281b79652ad7107b25"
+    },
+    {
+      "filename": "dk_sdfe_dnn.tif",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4c7da68e1ca635af45e23c099e897404be30b566d97258670933a4213885d88c"
+    },
+    {
+      "filename": "dk_sdfe_dvr90.tif",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "1.17",
+      "present": false,
+      "sha256": null
+    },
+    {
+      "filename": "dk_sdfe_FO_fk89.pol",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0b6b18973eb630f1788325404ffd1f3df802b5c0ee902722714cdbeed4a8779d"
+    },
+    {
+      "filename": "dk_sdfe_fvr09.tif",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "85d2033cb9c96ab16b49365aeeb652350732f4f33f661faa5e9b7d420b18ed40"
+    },
+    {
+      "filename": "dk_sdfe_gvr2000.tif",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ab2f408fbd16e27cefaa8a123a45fab36ccd1c87dcf75925ce8c4ea30b073172"
+    },
+    {
+      "filename": "dk_sdfe_gvr2016.tif",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4810524d01cdbc0939c11b9a4be0bdfe22024cbae616512ec6037235c41c930e"
+    },
+    {
+      "filename": "dk_sdfe_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "16cbd36b7b62d2faa275265afa163ca3da20724513220c34445c5368d6a33ca1"
+    },
+    {
+      "filename": "dk_sdfi_gs_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "565419916e6ebf32a9ab786a91e0d1e60554929ca3068f4c6ef143777e6aa076"
+    },
+    {
+      "filename": "dk_sdfi_gsb_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9d9e540ee54670390e1a28465be734129a60174a5a29fc1ddeed6a6699a71164"
+    },
+    {
+      "filename": "dk_sdfi_kk_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b5122135e76b36900c0747ed7b48833c84e1ebbe44facdc9e47595c685a4d4a1"
+    },
+    {
+      "filename": "dk_sdfi_os_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f824bca6ba0ca56f92f4dc6c9816fac84dacfde73d66f46ee82bbd737ec40dec"
+    },
+    {
+      "filename": "dk_sdfi_s34j_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4d6a2e1126fb3feefa508937e088304eac6d6f547dd88f1aee362850fec1586a"
+    },
+    {
+      "filename": "dk_sdfi_s34s_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "157eefcbbe60d634cd0772fa57e04ba22ec37bdaa67562b0c0eb0bb3ae4ab5c2"
+    },
+    {
+      "filename": "dk_sdfi_s45b_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5c99ad4a0a007c4a009b05b602c7d7e21ed114d619e5ec7e24fea6588ca99d43"
+    },
+    {
+      "filename": "dk_sdfi_dvr90_2002.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.17",
+      "version_removed": "",
+      "present": true,
+      "sha256": "cb2b9a17d7804e89af70d052ca31791d09c40a5e9115f8dc2af06148daa8f002"
+    },
+    {
+      "filename": "dk_sdfi_dvr90_2013.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.17",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e1230b6642b85f866e6ac05cf3925c71618955a9ab30dd5c1619150e1eee695e"
+    },
+    {
+      "filename": "dk_sdfi_dvr90_2023.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.17",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1c70c23d34b58261a3df68b359e64e87f32b225655c3649151f6eab2976cf40f"
+    },
+    {
+      "filename": "dk_sdfi_dklat_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.18",
+      "version_removed": "",
+      "present": true,
+      "sha256": "305594da7402f4cfb05492b962adad79b668ddab238c233e37b0f2c135d0c306"
+    },
+    {
+      "filename": "dk_sdfi_dklat_2023.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.18",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e59022f6ab373e30cd0a5675b41b3a93dddfb6788327c1b7461e8073cb3803bb"
+    },
+    {
+      "filename": "dk_sdfi_dkmsl_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.18",
+      "version_removed": "",
+      "present": true,
+      "sha256": "69698dbe8fd5ee38e36d4991187f858a72020ffc1535fa736ef28d4ce4ad2da1"
+    },
+    {
+      "filename": "dk_sdfi_dkmsl_2023.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.18",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ecdc722295e18fa61192921314652c60ccdd10f91d07be9ad0b2bb5db067f0cc"
+    },
+    {
+      "filename": "dk_sdfi_gllmsl_2022.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.18",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5cee229f95e82e69cbc3c28284e629aa3676685bc4ce3ed099f3130171be7e7f"
+    },
+    {
+      "filename": "dk_sdfi_gllat_2023.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.19",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8c8e612d433f3ba4d0d35375a54b246d6d601975e99ce92e7b16bf6f6cf5189f"
+    },
+    {
+      "filename": "dk_sdfi_glmsl_2023.tif",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.19",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ef0e06fc95a41d502265487692052b7fb977f6d04c5845435b907f589f0fd0f3"
+    },
+    {
+      "filename": "dk_sdfi_README.txt",
+      "copyright": "Agency for Data Supply and Infrastructure (SDFI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4056db94c279768c814b2650578896900a6a8e635194b8799011416cfe2ca0f9"
+    },
+    {
+      "filename": "dk_kds_README.txt",
+      "copyright": "Agency for Climate Data (KDS)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.22",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f6f656b4c90f7108d6e4d86ac1b0380636ef74aa3763d9b192a7fdbe69ae7d2a"
+    },
+    {
+      "filename": "dk_kds_dvr90_evrf2019.tif",
+      "copyright": "Agency for Climate Data (KDS)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.22",
+      "version_removed": "",
+      "present": true,
+      "sha256": "eefa27633123c70ac2e608aec8750b9b9d730809d8da48ef469e37636f09eba6"
+    },
+    {
+      "filename": "dk_kds_dvr90_evrf2019_mean_tide.tif",
+      "copyright": "Agency for Climate Data (KDS)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.22",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3e8cd0fb4dfe0093cbacf5cdd1c98925a9cdf6349ea5b202e5e3a28f0fd5dbf8"
+    },
+    {
+      "filename": "es_cat_icgc_100800401.tif",
+      "copyright": "Institut Cartogràfic i Geològic de Catalunya (ICGC)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "fc80f51c96139987077f233d47bf3543d59991871261832a3c93f005c9b72efe"
+    },
+    {
+      "filename": "es_cat_icgc_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "38b938b70503c8f6098e260d3da729ad6e39bb5a9ab2b784f0ea90574870d08b"
+    },
+    {
+      "filename": "es_ign_egm08-rednap.tif",
+      "copyright": "Instituto Geográfico Nacional (IGN) Spain",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d1758a580c2acc7cddcb814c2aebe1e5ab83f74dfaed8c1a885355bb3f85df58"
+    },
+    {
+      "filename": "es_ign_egm08-rednap-canarias.tif",
+      "copyright": "Instituto Geográfico Nacional (IGN) Spain",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ef545116102c73860fe364061b75f17caf15431a992dc9b3ed2fbe250619373f"
+    },
+    {
+      "filename": "es_ign_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2f502dc4a68676208b2e2353dea18ff7db87fec6178c25bb7c898cc97e5dae7e"
+    },
+    {
+      "filename": "es_ign_SPED2ETV2.tif",
+      "copyright": "2009, Instituto Geográfico Nacional (IGN) Spain",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "61896f5d74bdc7c1d5850839ae743b08e19f9a627e8febb4ac93353ded835961"
+    },
+    {
+      "filename": "eur_nkg_nkgrf03vel_realigned.tif",
+      "copyright": "Nordic Geodetic Commission",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a646bd863c427c7623eb2b365878351bab9a0a9b67aa6792b2dd31c3ef58e0b9"
+    },
+    {
+      "filename": "eur_nkg_nkgrf17vel.tif",
+      "copyright": "Nordic Geodetic Commission",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "515f68aeb59f659a3f3c340626cd060f58de6f93b4546df67732b906949e0d66"
+    },
+    {
+      "filename": "eur_nkg_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e6cc615bc164c1065aae20b20b4fbf8caa6e47d02df8f675bf9dbcd21535d2aa"
+    },
+    {
+      "filename": "fi_nls_fin2000.tif",
+      "copyright": "National Land Survey of Finland",
+      "license": "CC-BY-4.0",
+      "version_added": "1.21",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e9a54beb1ed06cc623212f89eb3b30f06db06743ae91d6a99e6751b8fcb948ed"
+    },
+    {
+      "filename": "fi_nls_fin2005n00.tif",
+      "copyright": "National Land Survey of Finland",
+      "license": "CC-BY-4.0",
+      "version_added": "1.21",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c9418ffcd050ca57b95207b4aa05b229f833cd13afcaea7de566d9cefab2b8ac"
+    },
+    {
+      "filename": "fi_nls_fin2023n2000.tif",
+      "copyright": "National Land Survey of Finland",
+      "license": "CC-BY-4.0",
+      "version_added": "1.21",
+      "version_removed": "",
+      "present": true,
+      "sha256": "82ce62ed36910a61fc79010702b3e48fdb45cdfc90a248114ac90a7cb5e30cf7"
+    },
+    {
+      "filename": "fi_nls_n43_n60.json",
+      "copyright": "National Land Survey of Finland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b0c0c5eecfd8455ea51ae8a06554e522daecb7e5362fde04de9866e7f1bfd21b"
+    },
+    {
+      "filename": "fi_nls_n60_n2000.json",
+      "copyright": "National Land Survey of Finland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "761f54ed3d14f8da6ce8d376e18ebba6bc7c227cb9fda034960b0cf124f9194c"
+    },
+    {
+      "filename": "fi_nls_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "05708b917dd04f8704911c48c6aa0b3eb26643eaa9403bea7157c3563f0223e5"
+    },
+    {
+      "filename": "fi_nls_ykj_etrs35fin.json",
+      "copyright": "National Land Survey of Finland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2ce793e4fc215d479da916d0888fe6e45cfdc91c4d41b0aa79351be4dac723dc"
+    },
+    {
+      "filename": "FO",
+      "copyright": "Agency for Data Supply and Efficiency (SDFE)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9cec499def4678cefdfc924c931c78f6a5c7505824f6e0c6ae4f964701f223fb"
+    },
+    {
+      "filename": "fr_ign_CGVD2013RGSPM06.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ae264da1e06c7d6f7177aa68db463ea9e7614e53805edc1d8596ea78881d6429"
+    },
+    {
+      "filename": "fr_ign_gg10_sbv2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b5695bb9ef48a8d97ce2acf075a33a61e7717552d389301489d1cdb147104105"
+    },
+    {
+      "filename": "fr_ign_gg10_smv2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2c2abb2362b90281239074a2552b7692959434e1722b33d04498c2a5bac3ed91"
+    },
+    {
+      "filename": "fr_ign_ggg00_lsv2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c67cab5d85d33ca23f82a2d8d0cc619bf5ee04bcc5f845174dd21813b13a8dbc"
+    },
+    {
+      "filename": "fr_ign_ggg00_mgv2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d6863e69643ef41e244db73e4b64bd52a25d57297ccb32fe7439d6699c84eba2"
+    },
+    {
+      "filename": "fr_ign_ggg00_sbv2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3f02ce75aeedc6c974c087f29ad4d5434be4e7caf52352212ef1e69106f31ed9"
+    },
+    {
+      "filename": "fr_ign_ggg00_smv2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "73eb5c601e4a0e4c29ccfa9d2e2caeb9e3332585164c7a8ec3c0fbf72ad687be"
+    },
+    {
+      "filename": "fr_ign_ggg00v2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d603c7beb2f62f9c9463f29410706d4e3d628a8186b3e7e893151cb3e1677f5f"
+    },
+    {
+      "filename": "fr_ign_ggguy15.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "577d18e74ae6f15ee66db245deb9c9837cab0ab460c28bbc40e0f0dbb7a83c49"
+    },
+    {
+      "filename": "fr_ign_ggker08v2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "70605c6de41a9fc2857e462d59d5664d1674cd8cba5d24938c4c5735e6c78e33"
+    },
+    {
+      "filename": "fr_ign_ggm00v2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "27a2147da4ce1b9062f24dd03f3f5a54ae50de17b2fb9df515d022cb0187b7e3"
+    },
+    {
+      "filename": "fr_ign_ggm04v1.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c6d6fa020f0f9fb0f88a2709c41495b561f93e8570ce93ef6af97857be5670eb"
+    },
+    {
+      "filename": "fr_ign_ggm23v2.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "1.24",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4d927c643d9718228ae2b29b48f076cc900b3a7dfe383ff57a80a00e3e7fb663"
+    },
+    {
+      "filename": "fr_ign_ggpf02-Bora.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "581c5e3036476139fd5bb67bfd0240d8ea95d001563a1f7053b691011270c804"
+    },
+    {
+      "filename": "fr_ign_ggpf02-Huahine.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "040cbed304c1021d16335430bff7e3e4437b99dfa1acbe0e57678c51693b7218"
+    },
+    {
+      "filename": "fr_ign_ggpf02-Maiao.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "57f82d929337a07b797f2b18009248004ba37915fbf221b8a8934b9e1e353b0f"
+    },
+    {
+      "filename": "fr_ign_ggpf02-Maupiti.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3cd50bc4559ff523f3dd5556cc54e77ff5442c86d4dc7ecdb7a3c9e597c1814d"
+    },
+    {
+      "filename": "fr_ign_ggpf02-Raiatea.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "82dd761f599f8cbedc36923446948591b47fd1df5c5511d19ca0f1605b1c47e2"
+    },
+    {
+      "filename": "fr_ign_ggpf02-Tahaa.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2b9996781a4f1c3ad9b6e70e4ad10252b138ac1690c951ac575e4774a96d3fa1"
+    },
+    {
+      "filename": "fr_ign_ggpf02-Tupai.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9581c4311de0af48fb67715dd03a7647fcd942c3ee55917fdeb6e6b2995c4c2d"
+    },
+    {
+      "filename": "fr_ign_ggpf05-HivaOa.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f6509d2a1e8317b4ae57df7284b0104affa4bfb6ea977db36e6ceeef3299399a"
+    },
+    {
+      "filename": "fr_ign_ggpf05-Nuku.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d44c5baa231fa272e70bdd4f46a9e5d09ac064985ea286b1166f9f24157ddb0c"
+    },
+    {
+      "filename": "fr_ign_ggpf08-Fakarava.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e8ebb480dbb425fc3def798238a62a3250223882dd0ea9f20de23d3392ade37b"
+    },
+    {
+      "filename": "fr_ign_ggpf08-Gambier.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "509a3e9fbb246c9a96cac1e4dd8dff8d86688a4f87926f139b1a8b8c03717bc9"
+    },
+    {
+      "filename": "fr_ign_ggpf08-Hao.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e1c0cff6a9afa60ae8af08b84a1a4af57805734b9a3d1f0b1c8f5c580955e1ae"
+    },
+    {
+      "filename": "fr_ign_ggpf08-Mataiva.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e661a7d97d4d638e2184396adab8a22e5bc1a767b41d685909ec4086f0e9313e"
+    },
+    {
+      "filename": "fr_ign_ggpf08-Raivavae.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e12da85a6bdc8dfbe15118245880587289ddbb961353d6cb680d5c761d3050b4"
+    },
+    {
+      "filename": "fr_ign_ggpf08-Reao.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ab3089286285e907c5d300c226002d6972dd6774124f9fff7629c50a991eac35"
+    },
+    {
+      "filename": "fr_ign_ggpf08-Rurutu.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c0ab0a17d9eb3ebec4d865b24a78cc60dace5427e2843acdd613df8d08478d74"
+    },
+    {
+      "filename": "fr_ign_ggpf08-Tikehau.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9dc8a6de91efebb59270ee54d557d6a212f6a68e513b8bef016175a05164e0e6"
+    },
+    {
+      "filename": "fr_ign_ggpf08-Tubuai.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5f70d181778631bb72838bbbcd4d8e455e91e31df94932c46d000aa3abf8fc01"
+    },
+    {
+      "filename": "fr_ign_ggpf10-Moorea.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "32a183b8ad20eb7c90cb87ed88afea29e511a954681ece8e06b30f8a0ed60d80"
+    },
+    {
+      "filename": "fr_ign_ggpf10-Tahiti.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a9e7bb6186f9227c6c700f30b4a4cefae74c632a7cf1b94c76199d7d95c010c6"
+    },
+    {
+      "filename": "fr_ign_ggspm06v1.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9e5bc902d0cec1324fadf3c8e3534c87fe989049c2c1b8befabd1e786b84c215"
+    },
+    {
+      "filename": "fr_ign_gr3df97a.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "63a13d7a38f9e0fc1edcbff8fc2248cc4e1a80a8df5fe3b43a0c11a6393c5544"
+    },
+    {
+      "filename": "fr_ign_ntf_r93.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0aa738b3e00fd2d64f8e3cd0e76034d4792374624fa0e133922433c9491bbf2a"
+    },
+    {
+      "filename": "fr_ign_RAC09.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a1519cc41df3e1a6dbd8135782cca0cd6359f0cb5ec5e52cb531e4f567e59cdd"
+    },
+    {
+      "filename": "fr_ign_RAC23.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "1.17",
+      "version_removed": "",
+      "present": true,
+      "sha256": "075c061558c091f0e188256d62523e95b00deb90e2436550581f041b60811bab"
+    },
+    {
+      "filename": "fr_ign_RAF09.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7396144b7fe903e42f0f28a4f55bf1e01e2947c8cb134af7f13a403d64db9927"
+    },
+    {
+      "filename": "fr_ign_RAF18.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7001e9140f266e0ddcaffa6e5c2feb77bf9444fa229cf46d1ce3172c15fec79b"
+    },
+    {
+      "filename": "fr_ign_RAF18b.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "1.7",
+      "version_removed": "",
+      "present": true,
+      "sha256": "59522db6682a42dd0fa25edd7b6b18c92ae3224324809051d80ab960a76b67e9"
+    },
+    {
+      "filename": "fr_ign_RAF20.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "1.11",
+      "version_removed": "",
+      "present": true,
+      "sha256": "dc0cc2a38f0ea1029fe72cca3b5b7ed6dfe7e1db2a8d8482b7326ce3d6f25605"
+    },
+    {
+      "filename": "fr_ign_RAGTBT2016.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5984c1565e9a65b88d5608c7bd3cdbf39f7f13c84b453e1984feab56384d1baa"
+    },
+    {
+      "filename": "fr_ign_RALD2016.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "60bc9eca05bd39f5b2f38dfbd0c7e86f4d9a858bb49455343b482caa2c512f6e"
+    },
+    {
+      "filename": "fr_ign_RALDW842016.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "52e0cd958d2b89df0c0ea3cc012242082d9492c366b0c4b3e8c1711b51ee4cb8"
+    },
+    {
+      "filename": "fr_ign_RALS2016.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2500026baa9f04bf87503f3ce8b63b8f13343d82465922057642764379a182f7"
+    },
+    {
+      "filename": "fr_ign_RAMART2016.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "350a9cd98b5ab68566870c99c698490630ac9d221c34e7595c75afaf4c435243"
+    },
+    {
+      "filename": "fr_ign_RAMG2016.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2aa7dde4ed1008a965689455fda7be624e0f0657206bc0b181a64793ddcea25a"
+    },
+    {
+      "filename": "fr_ign_RAR07_bl.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "730aea12ee8642561d5c3bf26ffc023222e349bfcdf6ee676f999a875531d4a4"
+    },
+    {
+      "filename": "fr_ign_RASPM2018.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "93f500295f175aa9b69092f169e8ea70173021c3a2b4d3623c4eedc49b1fbcbb"
+    },
+    {
+      "filename": "fr_ign_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "db75d88c68f6890adee027234f8bf72faf38cc776006fa115f0761ff374acd6b"
+    },
+    {
+      "filename": "fr_ign_RGM04versRGM23.tif",
+      "copyright": "Institut Géographique National (IGN) France",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "1.21",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0ad51d816048e8ef0e2d419e45f0f71777e8396f3511a6907130373d7da8a7a8"
+    },
+    {
+      "filename": "hu_bme_geoid2014.tif",
+      "copyright": "Budapest University of Technology and Economics - Department of Geodesy and Surveying",
+      "license": "CC-BY-SA-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0be6c660f98b5a3bf6281c44000d87e4f1d4a53a18f780931a76338c3dac1ad2"
+    },
+    {
+      "filename": "hu_bme_hd72corr.tif",
+      "copyright": "Budapest University of Technology and Economics - Department of Geodesy and Surveying",
+      "license": "CC-BY-SA-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7a56680fd21dd24bd869a6898b300f061b91723b21df78010f35ab1e23a77a67"
+    },
+    {
+      "filename": "hu_bme_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a0782c4490c40eacd3523c5e5ef7c1b22594568b9a9423f5fd7522c0f8c1cf6c"
+    },
+    {
+      "filename": "ISL",
+      "copyright": "2017-2019, National Land Survey of Iceland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "86a8931e2adb200278952b27e1a2c08d3180e7a6e247cf3cb533156772e6184e"
+    },
+    {
+      "filename": "is_lmi_Icegeoid_ISN2004.tif",
+      "copyright": "2017-2019, National Land Survey of Iceland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bd28276ff09bd3c2fa4cd7feccc1253e994d442b4f7a757e2ebbef0a82e37a7b"
+    },
+    {
+      "filename": "is_lmi_Icegeoid_ISN2016.tif",
+      "copyright": "2017-2019, National Land Survey of Iceland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "13fb17328c0eb14fc9bb62c8bfcfb5c47e24a7b6f3407e8365f2853d92ddc4d7"
+    },
+    {
+      "filename": "is_lmi_Icegeoid_ISN93.tif",
+      "copyright": "2017-2019, National Land Survey of Iceland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8a588b926307ddaf1213e8b35c7b5c7e671105631cb4027a82f1488d39681631"
+    },
+    {
+      "filename": "is_lmi_ISN2004_ISN2016.tif",
+      "copyright": "2017-2019, National Land Survey of Iceland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2f611a5dc2dac1f1b75c934bcd4f1c9c53f07f845f16f3307a8d18592c93ef56"
+    },
+    {
+      "filename": "is_lmi_ISN93_ISN2016.tif",
+      "copyright": "2017-2019, National Land Survey of Iceland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "89522e94ec23918a638b5c17b42bf5b605c8010d9bfc968f2ef984f1d4ff6f02"
+    },
+    {
+      "filename": "is_lmi_ISN_vel_beta.tif",
+      "copyright": "2017-2019, National Land Survey of Iceland",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ede47ae4e9cda90ab6e878a2013929cd30729105f112f985e827888a303fb686"
+    },
+    {
+      "filename": "is_lmi_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "75e39e5affc9c74c923e053259501242e260f9c016612c8d0b5a7790ff332de3"
+    },
+    {
+      "filename": "jp_gsi_gsigeo2011.tif",
+      "copyright": "Geospatial Information Authority of Japan",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1b17b754224e1a7ffc8e281591bb33840832b2a04876c51ce50959181b4102e5"
+    },
+    {
+      "filename": "jp_gsi_jpgeo2024.tif",
+      "copyright": "Geospatial Information Authority of Japan",
+      "license": "CC-BY-4.0",
+      "version_added": "1.22",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0b09d82aa466293107da2ec99b9308e154a7114f9abf0ae10d813504b951352a"
+    },
+    {
+      "filename": "jp_gsi_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1143272775277b99e7deba562af67c0ae7eceb88a31b2b7fff30c6d772e82c01"
+    },
+    {
+      "filename": "lv_lgia_lv14.tif",
+      "copyright": "Latvian Geospatial Information Agency",
+      "license": "CC-BY-4.0",
+      "version_added": "1.21",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d87637fa7fb05d9fb66de49a219b08657b2901ce7a579b63672477207ff2151e"
+    },
+    {
+      "filename": "lv_lgia_lks92to2020.tif",
+      "copyright": "Latvian Geospatial Information Agency",
+      "license": "CC-BY-4.0",
+      "version_added": "1.22",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6be363d4796bb3038e751da00e2344593edbb149ed193fc31b9c200688b31498"
+    },
+    {
+      "filename": "lv_lgia_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "419fbc8534201a5745d577b1eba3b65bde94166c7e748431d3167e278db686e2"
+    },
+    {
+      "filename": "mx_inegi_ggm10.tif",
+      "copyright": "Instituto Nacional de Estadística Geografía e Informática (INEGI) Mexico",
+      "license": "CC-BY-4.0",
+      "version_added": "1.8",
+      "version_removed": "",
+      "present": true,
+      "sha256": "39b1ea1e2505f140655c3ee4aae65fa19e180008cc96dda79ded191a9988d651"
+    },
+    {
+      "filename": "mx_inegi_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.8",
+      "version_removed": "",
+      "present": true,
+      "sha256": "be5ed155dbee5fc982c6e0ee386189473df9c44d46a090622fae001d3975985d"
+    },
+    {
+      "filename": "NKG",
+      "copyright": "Nordic Geodetic Commission",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d5fa2d2e0c2089cf01972d7ad8662f3843a8ff63bf0068199a2c1146b81afc25"
+    },
+    {
+      "filename": "nc_dittt_gr3dnc01b.tif",
+      "copyright": "Gouvernement de Nouvelle Calédonie - DITTT",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "faa139ee4e26c2bdae75c6cf652427f42e2ea60228369c620c7707596176e477"
+    },
+    {
+      "filename": "nc_dittt_gr3dnc02b.tif",
+      "copyright": "Gouvernement de Nouvelle Calédonie - DITTT",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "75c3a56ca1b06dd605147862229a32a47d1bd2d8c36973a91b75ec46d566faf8"
+    },
+    {
+      "filename": "nc_dittt_gr3dnc03a.tif",
+      "copyright": "Gouvernement de Nouvelle Calédonie - DITTT",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6da3b7ec4b1c1a20f21f49523be6d4470c7c992cdeeb16aaba86258bee57c222"
+    },
+    {
+      "filename": "nc_dittt_gr3dncI08.tif",
+      "copyright": "Gouvernement de Nouvelle Calédonie - DITTT",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "972c1640dee4dcab3f48c453216ebe9178a67f38688b1e47c1d42a12ae446edf"
+    },
+    {
+      "filename": "nc_dittt_Ranc08_Circe.tif",
+      "copyright": "Gouvernement de Nouvelle Calédonie - DITTT",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "acd4056eb83253589d7dccd633350cef2fd65da3e48e5eff91df06d705621955"
+    },
+    {
+      "filename": "nc_dittt_RANC15.tif",
+      "copyright": "Gouvernement de Nouvelle Calédonie - DITTT",
+      "license": "Open License France - https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf",
+      "version_added": "1.14",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f3dda72de7f1893f141603e5beaadb3f4d98077ac23864e39ace328a39027827"
+    },
+    {
+      "filename": "nc_dittt_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c21366e63e45f5e335d5d9d35d3379590bc1d213114164799753d427f4083c81"
+    },
+    {
+      "filename": "nl_nsgi_bongeo2004.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.22",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e3221ab1b1a0ae567f5e6f7e3200342b84fba4db8560b3813fbdf735dad7291f"
+    },
+    {
+      "filename": "nl_nsgi_nlgeo2018.tif",
+      "copyright": "Nederlandse Samenwerking Geodetische Infrastructuur (NSGI)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f8e32c56bf8940fc3fefbc0e413eb4546633ed598b669c63856cddf8328992c0"
+    },
+    {
+      "filename": "nl_nsgi_nllat2018.tif",
+      "copyright": "Nederlandse Samenwerking Geodetische Infrastructuur (NSGI)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.22",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c6d69cd5b13e7c8d6e2c2f5cff1dee92a603481d1d25c5532bf2a0b618535c09"
+    },
+    {
+      "filename": "nl_nsgi_rdcorr2018.tif",
+      "copyright": "Nederlandse Samenwerking Geodetische Infrastructuur (NSGI)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "978fb0caf0026a4ddd65eb211f797d7240a7dc6810462a66f60b61d5df615bab"
+    },
+    {
+      "filename": "nl_nsgi_rdtrans2018.tif",
+      "copyright": "Nederlandse Samenwerking Geodetische Infrastructuur (NSGI)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7653831191b424e715a906468962fc60071cfb71a3186b2a58f098bab8bf41de"
+    },
+    {
+      "filename": "nl_nsgi_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2a1f55174691905470e60214dfd13dbcea1f2850ba29089678484d0226f67f62"
+    },
+    {
+      "filename": "no_kv_arcgp-2006-sk.tif",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.11",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9b5adc09bab6616ad21bc135146d34d08a284a4eea532859c742854bc28de25a"
+    },
+    {
+      "filename": "no_kv_CD_above_Ell_ETRS89_v2021a.tif",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.9",
+      "version_removed": "",
+      "present": true,
+      "sha256": "dfdd67509636636435a72628782be0c8818a3b417f6da8668e73377fbb8ed843"
+    },
+    {
+      "filename": "no_kv_CD_above_Ell_ETRS89_v2023b.tif",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.17",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4cfa3faaccd8e33a54cca404f5cf533b905648893772c81cc755f82ab83f912a"
+    },
+    {
+      "filename": "no_kv_ETRS89NO_NGO48_TIN.json",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9b2c376f8ff0c91400015d84b0158e16a86f270cb2b5af03f3d50260da39b1e9"
+    },
+    {
+      "filename": "no_kv_href2008a.tif",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c93cf10e5aac7292fd8618496cb512094c91cb9568986a598c79b092a507d0cb"
+    },
+    {
+      "filename": "no_kv_HREF2018B_NN2000_EUREF89.tif",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "112a42506e079a9c3f7a7a134729e4160494b101f5a9a8bcd6f5e99852b52275"
+    },
+    {
+      "filename": "no_kv_HREF2018B_NN54_NN2000.tif",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.24",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e5ec1d7114c6ba3ace224503b3d23f38050210865ee04d747384aafc79f67c3f"
+    },
+    {
+      "filename": "no_kv_NKGETRF14_EPSG7922_2000.tif",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4f198074a4940171e130edbd7ec59cb1a3ba024c39f18a94404a13f285ef35c6"
+    },
+    {
+      "filename": "no_kv_README.txt",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c102ecb7b8fd1a40c9702642757625857675ff8f74cfd5ae51021c0182c38720"
+    },
+    {
+      "filename": "no_kv_Svalbard_EUREF89_SVD2024.tif",
+      "copyright": "Kartverket (SK)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.23",
+      "version_removed": "",
+      "present": true,
+      "sha256": "01a1f422924fbe888cdfcf94feea42dde875460ce19fd695fcec75a1781d8dff"
+    },
+    {
+      "filename": "nz_linz_auckht1946-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e6ec7c1f30f6ff65d106d31a98a68c02d59b7894ed969fa9896a4b1ad4b4d233"
+    },
+    {
+      "filename": "nz_linz_blufht1955-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8f091e6d5e1ffceae5a711dba3b2e810e60ae21d25538ee4f16fbc654bf83ac5"
+    },
+    {
+      "filename": "nz_linz_dublht1960-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "095e8a82b1696e994bdd43c6aadfacc91ad58ec4401daa411529b5b4c4bfc2e4"
+    },
+    {
+      "filename": "nz_linz_duneht1958-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "65f29290b0d77bd95b15f7ff9ed3c8bc99f41b6236d885a40b3ffadb312a6366"
+    },
+    {
+      "filename": "nz_linz_gisbht1926-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "733a63f25bdc37a68b9ff921afbfdfc8e620a6e7f1d7a424f703c9ba216475ea"
+    },
+    {
+      "filename": "nz_linz_lyttht1937-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "781b58da5986a8e03115359a57dc1c65151cc03f330a9d4a2b8de30bae9fb0fc"
+    },
+    {
+      "filename": "nz_linz_motuht1953-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "abff0dfe9081c6d516dd73aaf55249b18f91d8c67247c80d030e793775abf6e2"
+    },
+    {
+      "filename": "nz_linz_napiht1962-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "07698b02de627d5eddfc005bc1769cc0ba358c6fbdc385fa66bc43ecd48764ad"
+    },
+    {
+      "filename": "nz_linz_nelsht1955-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a64092ab7cb39cbf2241cc323d4e08f79ea30810d2ac5a814b4d0f32c9433091"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-20000101.json",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "158ec88c2e6a9e806cd96d3c5fe8032561879414dc8c2662355becc6fa8fdfb4"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-20130801.json",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bceaa9cbcb03cb6a5a4f9f8745e8ba92582ab9a1f225ee776a4265f228059e51"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-20140201.json",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6a8b17fce9d13ffdaa55b155361e5f029e64a20fbb5212179c3b132d24978499"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-20150101.json",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "891ed6623be3166c125bc214618dc1bc522bef0715900e3e16e5ae0336badf8d"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-20160701.json",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b29f0a965a0b01fee3e989e9e2779efad93504c0d5a57bf5b3500dcb12d5f19f"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-20171201.json",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "fcafd82f21b1d27c180aacb8ce2a4926c0a5d5a3fefa3e16fb4dce118c4057cd"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-20180701.json",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "212e3fc3d8f3a2351c18b5663e0d20d5fbed8d9f3e78ce6fa02c871dd78af0ff"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-c120100904-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "64e38f95da5891bcb5a58d76fe3a7214aa05b71653449bc09cf51aefd41f02ab"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-c220110222-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "fd79a3c9b6c5cb5dbb29e7d354e9c9de1c7be0d52b1df98939d52b64d6f67496"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-c320110613-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "78819cb7a781a458ae6e796c2ea747dbc8cf45bc34fecbbe419b778f875e12c5"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-c420111223-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f49e05adf245172c9095ccde57d1be77e0b0fd4b1e2e68a6159da3d17ee08cbe"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ch20160214-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2f0ae7f8d0f57b4b402c6700d786bed081a3d87032e3d94a149bb154618599ba"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-cs20130721-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c338c5f673cf6728630231385607dd05fb6afdca92fb5a7772c3147f0cf3904f"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-cs20130721-grid02.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5113ea523c9200042a88a096b3cb778fe3495222e66f46b0d0807f2c8f284874"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ds20090715-grid011.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3df4728fb38bf34ba369d542a805700fc4da14350f195330f3138a3bba1e403e"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ds20090715-grid012.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6e4fd8171da84ae4ffd125c3ba2f4639ed293d4ba700771e6b9e4ce95a4f5b96"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ds20090715-grid013.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4a312b91c08d6a5d6205609cdf30741ee70888e0cc255cbf0b6e6347da5edf80"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ds20090715-grid014.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "fb21b14d1459206856ab23a20d693867fa1bce0c3a3abe4b87856c4d62ec8b6d"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-gs20071016-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8fdfedbc9bf9475aac9ce13191f2062edeab5ca4985d73c0fbec39e24bb4c1f1"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e4b106554a40419707b75070e9f1b94472601d707382fa241c67098b5dd2f994"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid02.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d3ce47180a485fe6bebb8d3497cd42633c1f5c1d8f51273fab1bbad4bff04ddc"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid03.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "163bbc34b4da48c1a7baa8c36f7e883f0a144fef49e0d5c6e31fd031425cd56d"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid04.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bafc45cbb36506d020dee2437348b976f74538acb82919b4754368e6883b7802"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid05.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "00e5ed570f429f0bdfb42fdd6e6b44fe93918baf32cd784466ca34c018ca4e9d"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid06.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "727b8d9ac63e777a3ccdf01ac578e4caee105ab33405b6ecee1fdcdba8a910d2"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid07.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "04bdad18f8cf564216ba074c8945ec8c893d9f74d6599712eb06d9018e25a5bf"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid08.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "81cbb8478a2fb02a96ef3a3ebcdd455d8e33185c9da55f1365b4a1d1a26f2f35"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid09.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "49ddfde7ced31085fb74b7744fe813952dc7500864003a7bedb8e895f67ced07"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid10.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "46e8b0adddf2365e9e2dce16786f7f21a316c7f4ed6aa30d9b5e1d823a443153"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid11.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "fe7a634090ba079f096271e9bbfaaedb754d713b0ee38b65fb0219086a5bb77e"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ka20161114-grid12.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "aacab2d60260c8a822a693ea6dabed160321e40b7c79b2405da312a2e1e9ca8c"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-lg20130816-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c22948f2412969a0d25119c72553acccc2330f9f3534555c081d8c0411538513"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-lg20130816-grid02.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "63bf9ca9ed4e092e4f8d7e58cd5c93ce8ee903e211cff045f216fa33e95245cc"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-mq20041223-grid011.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e0217320c6a6c33e2a34031f1b0243186383fc4bb9b15779040ed69a07f262b2"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-mq20041223-grid012.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2ec0ff4adbf449e2db6235dfc795e5451b57fde5d9e0959389c49002b78c945c"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-mq20041223-grid013.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "96a2b879bceab0e4e08229179d3f07e77933cb2f798de0162897c3a4492a8c19"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-mq20041223-grid014.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "37bbea54c8d7a8bdce7874a125a179ab10a7595a540a987f4b7e7ce53bce90f0"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-mq20041223-grid015.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c29d0a8637547d4048a8f837249599888fb386610ab57c3a126b97d645967807"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-mq20041223-grid016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2894b33c82c168f8619b684d04ce33c03d7308f5991320838b8ddbe0c42e681b"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ndm-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b37de803fa00c6f21100ecc3154a3f23b4fc47745ee6151f6c4121d3c0043df7"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-ndm-grid02.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1472b55d07ccfa7b205c79e6a4f6fdac8a6e97a8be7ed06301f7ab4b8a9c972d"
+    },
+    {
+      "filename": "nz_linz_nzgd2000-si20030821-grid01.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e4dd4cb4b8742c372b5ad54bec80291b36361b96a422cb617ed21f33c5db767a"
+    },
+    {
+      "filename": "nz_linz_nzgd2kgrid0005.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d4d9649bfbc55bbbeb7636fa26f300045123d97a3ab01dec3bf2982eae86cbb2"
+    },
+    {
+      "filename": "nz_linz_nzgeoid2009.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d3b60ad5ad1066a72bab43a29c8d50f55d750665bd8dc516511aef1f1cbc58d6"
+    },
+    {
+      "filename": "nz_linz_nzgeoid2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b986261d778e30b52b7d9ae24280c704c280c13bb02e51f3dca65fa862d1f027"
+    },
+    {
+      "filename": "nz_linz_ontpht1964-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "092fd6a3ff3b6d8065b38373a4e3ed91884651226277bc4d67c78dcfc322a553"
+    },
+    {
+      "filename": "nz_linz_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "818e58d8817a403c678d69b9d0e72ad56349f1c932fb87de4015a556d6c85f12"
+    },
+    {
+      "filename": "nz_linz_stisht1977-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f1018025ee18707b9330f9f73efaba72028b4c7dd98341cce0f37312f225efe3"
+    },
+    {
+      "filename": "nz_linz_taraht1970-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6b0018eb2e0e1c0f413707c6a9116b4377f8fe0b7bcbfb1f94239e3372d627cf"
+    },
+    {
+      "filename": "nz_linz_wellht1953-nzvd2016.tif",
+      "copyright": "Land Information New Zealand",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7dfd7f545692301956338387982f5ba4e65fb41217883486347d0965cea04824"
+    },
+    {
+      "filename": "pl_gugik_geoid2011-PL-EVRF2007-NH.tif",
+      "copyright": "Główny Urząd Geodezji i Kartografii",
+      "license": "CC-BY-4.0",
+      "version_added": "1.9",
+      "version_removed": "",
+      "present": true,
+      "sha256": "345a7fb62adffab6c8e864b18239d64e519d19b815418c5af522a254630e3182"
+    },
+    {
+      "filename": "pl_gugik_geoid2011-PL-KRON86-NH.tif",
+      "copyright": "Główny Urząd Geodezji i Kartografii",
+      "license": "CC-BY-4.0",
+      "version_added": "1.9",
+      "version_removed": "",
+      "present": true,
+      "sha256": "16bb69272fdce5e812f7d1c81facd3fb0bf1489e298cbdf82abfe7e73690daa8"
+    },
+    {
+      "filename": "pl_gugik_geoid2021-PL-EVRF2007-NH.tif",
+      "copyright": "Główny Urząd Geodezji i Kartografii",
+      "license": "CC-BY-4.0",
+      "version_added": "1.15",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8b806d084296c0b8070a9cc9ad6d28218141e089e3ff0573254870447f361788"
+    },
+    {
+      "filename": "pl_gugik_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.9",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8b03a28591398872146786f1dfef0938c885d2d26d31625dab6569f3bcaf58b5"
+    },
+    {
+      "filename": "pt_dgt_D73_ETRS89_geo.tif",
+      "copyright": "Direcao Geral de Territorio",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "802c7f4702e2fcf68b8720028182513efdd2af3d5154487ac2e225c188e02e07"
+    },
+    {
+      "filename": "pt_dgt_DLx_ETRS89_geo.tif",
+      "copyright": "Direcao Geral de Territorio",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a2581158f257b86712d884d003a3d55f013f5fed07a2afc9865a35b08e462d9a"
+    },
+    {
+      "filename": "pt_dgt_GeodPT08.tif",
+      "copyright": "Direcao Geral de Territorio",
+      "license": "CC-BY-4.0",
+      "version_added": "1.17",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8c006ae3afa037c214d30e7ec97736452705773ccb663274e003ced1d08ccaa0"
+    },
+    {
+      "filename": "pt_dgt_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b727d2a6b170286042fa015f5978b7627cb47ba331dace8ca631b99af78bf1ac"
+    },
+    {
+      "filename": "README.DATA",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e0995ff3baab1e050e0ca37e485710f3e8cf961ecfe08b510b99cbc2a8b34a55"
+    },
+    {
+      "filename": "se_lantmateriet_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3cc363d80243ed9a464e243706df93f6ef0fbb39e1bb372a70851267a974164f"
+    },
+    {
+      "filename": "se_lantmateriet_SWEN17_RH2000.tif",
+      "copyright": "Lantmäteriet",
+      "license": "CC0-1.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c5160019c9d2f64e0379e7725be795952b5005759e6f51e5322f6607af92a5a3"
+    },
+    {
+      "filename": "si_gurs_README.txt",
+      "copyright": "Geodetska uprava Republika Slovenija (GURS)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "67b7e71e639f218754611469ef0feac614b5fa2de4a46867c57abb519c454e0b"
+    },
+    {
+      "filename": "si_gurs_SLO-VRP2016-Koper.tif",
+      "copyright": "Geodetska uprava Republika Slovenija (GURS)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "abb9ab27b06c803a53a89e195889d8ff3225ef9f1c9241fc3747fb2cd4d7ca23"
+    },
+    {
+      "filename": "si_gurs_SLO-VTP2024.tif",
+      "copyright": "Geodetska uprava Republika Slovenija (GURS)",
+      "license": "CC-BY-4.0",
+      "version_added": "1.23",
+      "version_removed": "",
+      "present": true,
+      "sha256": "33c2d774b20bd9531a0a980165ea570510e242058029c3d7008b17b918aef20c"
+    },
+    {
+      "filename": "sk_gku_JTSK03_to_JTSK.tif",
+      "copyright": "2013, GKU Slovakia",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e51fea1de2103b80cb843a01b168e4613f9ec0165d4aecbb93c389db6946078e"
+    },
+    {
+      "filename": "sk_gku_Slovakia_ETRS89h_to_Baltic1957.tif",
+      "copyright": "2005, GKU Slovakia",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d280e6f7f6c84714d4c060519cf2213a43c0f9064f2cd3de23265a2671c7e865"
+    },
+    {
+      "filename": "sk_gku_Slovakia_ETRS89h_to_EVRF2007.tif",
+      "copyright": "2014, GKU Slovakia",
+      "license": "CC-BY-4.0",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5aaa74996dbf0aab2d2eed82679541e735817f7cb5163500b4e350bde7ecc3e5"
+    },
+    {
+      "filename": "uk_os_OSGM15_Belfast.tif",
+      "copyright": "Ordnance Survey UK",
+      "license": "BSD-2-Clause",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5ea798dd6f1a5f9e566fc03945777cef95b8bc6730e49c0e54ef801f570e98b4"
+    },
+    {
+      "filename": "uk_os_OSGM15_GB.tif",
+      "copyright": "Ordnance Survey UK",
+      "license": "BSD-2-Clause",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bf0ac81f1c0c33332693d7d606f335b793c3c2995b8e69eeb1350bd94adcde3b"
+    },
+    {
+      "filename": "uk_os_OSGM15_Malin.tif",
+      "copyright": "Ordnance Survey UK",
+      "license": "BSD-2-Clause",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "97db4aede0707ca91721a7d43973a4d27df6b50b96568b901bd56e441818c508"
+    },
+    {
+      "filename": "uk_os_OSTN15_NTv2_OSGBtoETRS.tif",
+      "copyright": "Ordnance Survey UK",
+      "license": "BSD-2-Clause",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5d6ed64d2119952c4c559fa1fccbc594b6520fc3ec3ef2fc10be13202c4384fa"
+    },
+    {
+      "filename": "uk_os_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4ff34537d6b8456a1deb1537838ee2768c2b52f947e54380f985f5af45700d16"
+    },
+    {
+      "filename": "us_nga_egm08_25.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4191d471eefebf24091b56dbc604353cb3b8cf8cc70e448bb9ae56a272bef17a"
+    },
+    {
+      "filename": "us_nga_egm96_15.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "db493027562c9b004d7220fa881f5603adada4e1c5029b933fa7de4547b0e78d"
+    },
+    {
+      "filename": "us_nga_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "73bf524a13a3b38b27ab3f1748128445aed1d247ab87e4312b84fa58a085ac12"
+    },
+    {
+      "filename": "us_noaa_alaska.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9d29d595b66e2316411af73993fbb6cc298e2917ef3ca88ab2f80b22b147d653"
+    },
+    {
+      "filename": "us_noaa_alhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bc633833c2b03ec4c9776c7b89952e6a50e926f9cc1202302bb9e36df8e93383"
+    },
+    {
+      "filename": "us_noaa_arhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "32f78e3c67f2b694da36b8b9b2e1354f9922454e13a56ae9ac35995c8fe03954"
+    },
+    {
+      "filename": "us_noaa_azhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8f68eab36ba65b54e87b850a83f14eddab08b9a0d85abf70c912838beb06d038"
+    },
+    {
+      "filename": "us_noaa_c1hpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d6f4d97ed6be5df957d97b6efaad3587ff345fd544454cca604b0d8c3c52e477"
+    },
+    {
+      "filename": "us_noaa_c2hpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0a8fbdae79524e93d19a5d471939c8270c1a907b770daf5b6b6493a58d71d7b1"
+    },
+    {
+      "filename": "us_noaa_cnhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b9e16220b797202ef9bdc32b7854d57612eb3574dbb2c19ee8dbe940c1663d6f"
+    },
+    {
+      "filename": "us_noaa_cohpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0d002da6a77b8a15196d76fe459bab0a4e70591d049d5e66a7da489bbd00c001"
+    },
+    {
+      "filename": "us_noaa_conus.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "44611d823c48e5347500ee6afe40ff33d2b88cf817bf59f705ed4a4c3bd687d7"
+    },
+    {
+      "filename": "us_noaa_cshpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d54183c832e0366fc558147961bd8ae7d0dd3b5ae945069afd6a37a5a5c604c9"
+    },
+    {
+      "filename": "us_noaa_emhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9f3134f54561b40f5a6ca0ca9516f3d12c08fd328786e5bb29488ab207c3e83a"
+    },
+    {
+      "filename": "us_noaa_eshpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a46f8bc94c30e0200f3f90a9c62f3c3980a1e06f328e0cb9f20be95f1dd974c4"
+    },
+    {
+      "filename": "us_noaa_ethpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e8770d6987bd9afd6136870edc9793389a1d0037da784af1f02186af39c1a6da"
+    },
+    {
+      "filename": "us_noaa_flhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1ee37eab19060d15d7dbfe59635ebf303b2648ee201cb0d5aea8b6ec8cb63082"
+    },
+    {
+      "filename": "us_noaa_FL.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "73b385448f09e6c1122a87b5b3137a5b5775585af9445889e0a3a8c4c5951f54"
+    },
+    {
+      "filename": "us_noaa_g1999a01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6fff04234bb8ac16ac9b064458b3089d548a4a911f15e18289e4a01919d88108"
+    },
+    {
+      "filename": "us_noaa_g1999a02.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bd2d27c4a60eb3509c535ca7ad8f3eecbddf89d38920020ba3d12ca538326872"
+    },
+    {
+      "filename": "us_noaa_g1999a03.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c0a74cc218d918894f270f07328feeeab5d32d85492c490a7748ebad7911e66a"
+    },
+    {
+      "filename": "us_noaa_g1999a04.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "d784cfe74bb7abcafea3125ff0482e73f9794919622655ff3257ea26e8e20eaf"
+    },
+    {
+      "filename": "us_noaa_g1999h01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5f75aeef2563af2ad7e13f70f7ebcadab2f0baf896b494bbc94af53ad108fa7a"
+    },
+    {
+      "filename": "us_noaa_g1999p01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7d6b707eb49bbb6efd6632fb39a65bb690794c3b37e5f7ce2e61e71455f52b0d"
+    },
+    {
+      "filename": "us_noaa_g1999u01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0024a06903adf1d28f369071dae83b42ccb8acf2003cedea66a810ca42ef374e"
+    },
+    {
+      "filename": "us_noaa_g1999u02.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "083a22c0e537974e01b86e1005787aadc95b5e1d0848d306e64010f870089554"
+    },
+    {
+      "filename": "us_noaa_g1999u03.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "02f374fa1622d5c801e9594e33909924b706d7e385892896f73cbdef638672c7"
+    },
+    {
+      "filename": "us_noaa_g1999u04.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bec9499a44c9b064241d47940a7cda606dbe46264344dd262fac4e708aab7ade"
+    },
+    {
+      "filename": "us_noaa_g1999u05.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3b9325111c21b42e4e254ff1455db825587abc530188a94f9628321969797139"
+    },
+    {
+      "filename": "us_noaa_g1999u06.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "290f3c6480473d7ab5b533bf96e922c390a3b358460796512baaf5a4039a6c8e"
+    },
+    {
+      "filename": "us_noaa_g1999u07.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e4440be31dd0cc714d9b87466d86d1e9aca5a508b4ea5723a97ec183854ec21c"
+    },
+    {
+      "filename": "us_noaa_g1999u08.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3744635a744d94dbce1e31b2f4147788ff1942d6731864e2b1be70246c9c240b"
+    },
+    {
+      "filename": "us_noaa_g2003a01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ad4128cc5b99696220c4f52680e5bf608830313ff830cf6bf7e621fbab4f0b80"
+    },
+    {
+      "filename": "us_noaa_g2003a02.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e64ddec688bfc4a36160cc55301def0f4f7e513aec9e6ba1c639f8a875c2c6f0"
+    },
+    {
+      "filename": "us_noaa_g2003a03.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "428e7bd959422802b3a636524701c3e5a32c7bc4cf897686fb6e7d75fe837394"
+    },
+    {
+      "filename": "us_noaa_g2003a04.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "640920827bf55723e26cadde5ea6bb0eb8cbdb47d5410b71c6b3b22e33f1a2fa"
+    },
+    {
+      "filename": "us_noaa_g2003h01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1ccabf59e65de121d41c75e5e2fc1bc4c037be6f304dcc854ca52e40fa81f427"
+    },
+    {
+      "filename": "us_noaa_g2003p01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "291b3a708d841da78dfa273e14caa0406863c485a7fcdf67b9c9f3e9bb30e9da"
+    },
+    {
+      "filename": "us_noaa_g2009g01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8f998bacda5ae1d63064cddb6da633ef8187aaa14fb54555cd8889f6c993d38e"
+    },
+    {
+      "filename": "us_noaa_g2009h01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b4634bc2e4fa663b34266a3d1e2f7ca850e836d858a9bae29318df60116b3ecb"
+    },
+    {
+      "filename": "us_noaa_g2009p01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f55ba5c66b1c425175fc59d9421f773171276736438df13d74152bffd422f7bd"
+    },
+    {
+      "filename": "us_noaa_g2009s01.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "94aed68e731cd450a02431afe2b4fe40587b25984af4ec992f5fb981d8fb7790"
+    },
+    {
+      "filename": "us_noaa_g2012ba0.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3b854ebf5aac8442426665a033bea918249c570cd355d99b812e3ec59b4b9e41"
+    },
+    {
+      "filename": "us_noaa_g2012bg0.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a4a80f1762b18418f32f44cf27ee911403e9d67def6e1948de74f0f5e8958e1a"
+    },
+    {
+      "filename": "us_noaa_g2012bh0.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7365e5bd205a2ab20a905d635b82981f8d34a1907d06c3b71e7f26eefea9da8a"
+    },
+    {
+      "filename": "us_noaa_g2012bp0.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "63f7950759f97a226848f92469504c3e55ed97e45edb6993e48fe4c401db4ed6"
+    },
+    {
+      "filename": "us_noaa_g2012bs0.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "df47cd60d5d658b02c594159c9c70eaa5eaf99f62716547d49dd79dd31c9c43e"
+    },
+    {
+      "filename": "us_noaa_g2012bu0.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "954b4959720955ba781a015b8001017ce0c3c0895953991fc731594d58db4af1"
+    },
+    {
+      "filename": "us_noaa_g2018p0.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a654a89cfc0d220620cad4e41fc076f9b4ed6e46edbf2ce373f6a0e75746cee8"
+    },
+    {
+      "filename": "us_noaa_g2018u0.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "fa9a407ac7ee3f5a3694008e4bcd09ce9cc250452f0c3b11700a4960340abce2"
+    },
+    {
+      "filename": "us_noaa_gahpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3a3c92152c78a672e5db5a547cb88d99fb507df7a4eae28094c6b850f4e3ada5"
+    },
+    {
+      "filename": "us_noaa_geoid03_conus.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "817ef0ffc124bfb32865f61faa3da8a739e3b8e350b3adad0bba681c04ef53d8"
+    },
+    {
+      "filename": "us_noaa_geoid06_ak.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "64dfa3784540d0173f9e27f62452ac78f1cd463107e1cc6f04e0114d21ec47b8"
+    },
+    {
+      "filename": "us_noaa_geoid09_ak.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "821ecf64d7d778f17732ff691f50596f6d14c0e60aca7bed62d57c7b7ca6a8db"
+    },
+    {
+      "filename": "us_noaa_geoid09_conus.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "242fc647f18faaa5705bd30900bcdd37fc62310f026ae9891fe634b3d565a253"
+    },
+    {
+      "filename": "us_noaa_guhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "60247e948b1b2b3c2b49a08a4538023eae3e1f3764a937e8d99247556f268f4e"
+    },
+    {
+      "filename": "us_noaa_hawaii.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9b6ea84f0d1e8cbf619aec5eb361bb735b95bf42c5f5085c3342d2e53d2bbfe6"
+    },
+    {
+      "filename": "us_noaa_hihpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a2edd930e712b354a2ed17007f7b169aa6fd5c1be469fbf08d65c5a2e0a637ca"
+    },
+    {
+      "filename": "us_noaa_iahpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9ac4e2b746f62c6c2f144ecfd40140fb8ede9a04463f69f5ac9a6039cff40bac"
+    },
+    {
+      "filename": "us_noaa_ilhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8f38ea4e748bf04f055b9d4a7e050a44a8459e32406c04b79e8c4e9f4af82c0a"
+    },
+    {
+      "filename": "us_noaa_inhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b63480641873db4f809bf215a9b674062a266b5e323b2cded297185da0f0062d"
+    },
+    {
+      "filename": "us_noaa_kshpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3432226d84cb4a4d50ef845c7421383114d17e8c7cc8d1fe10956b8a793b535b"
+    },
+    {
+      "filename": "us_noaa_kyhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "65f84e74139f94172d1d36f69318606ee4a48955cc0da1d606c0353b688a359a"
+    },
+    {
+      "filename": "us_noaa_lahpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c9d6b199efe85542284aa4a8e60f535622b255ee0308e7302cbccd39dc4531c8"
+    },
+    {
+      "filename": "us_noaa_mdhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "cb45884c0696bb5fbec19f146510bdfadf9376e5d98fa9019abe72429cf570b0"
+    },
+    {
+      "filename": "us_noaa_MD.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5fbd598aae641ea71da6a195e95f53326fe3e91fab0e4fefe571281543ef70d4"
+    },
+    {
+      "filename": "us_noaa_mehpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "cd1acafba5df39ec7223a0ba85e3bb9f7c9920db97d9c3edf745312e82f96d29"
+    },
+    {
+      "filename": "us_noaa_mihpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e95779ef4a9fd68bcd581c2619ec3d655de42745df94ae22dc2c329f664e91e3"
+    },
+    {
+      "filename": "us_noaa_mnhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e6b5da45fea4fa0f050a5656e34379e81c5175e90bf535b8a8498dbdb1e4554c"
+    },
+    {
+      "filename": "us_noaa_mohpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b48ba99bb4d5700867e818d39133ab3690e236179aa99389b12f44d8607013f6"
+    },
+    {
+      "filename": "us_noaa_mshpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4ad12861689b8c71e0b11b5b47c7ea033d195dcf1dd433e6b20facbb54df7159"
+    },
+    {
+      "filename": "us_noaa_nbhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c35441d18f474326541d6c8b5063cc19d406a964ac1f6bdaa3cdbd76cf61408d"
+    },
+    {
+      "filename": "us_noaa_nchpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "73b99e6f483ce2b93c870503342061b44729b76eb3ec61cc780d93b21a18a8fd"
+    },
+    {
+      "filename": "us_noaa_ndhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "fda3136270832d54029fde5697724efa3ac6029196ce66e832818812ea6e24f7"
+    },
+    {
+      "filename": "us_noaa_nehpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e243921d524576f4fd2826eb25da4cda278acb62702ff5e8115620661961af6d"
+    },
+    {
+      "filename": "us_noaa_njhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ecd22a5fa116c7a63d4f34402990a246e0253867ccf8a262b3a19e9513dabb3e"
+    },
+    {
+      "filename": "us_noaa_nmhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "095d44d817f6cf784af8f0e98a22160c5600b6d4313904592ce3f06c0accccdf"
+    },
+    {
+      "filename": "us_noaa_nvhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b50f3fb0d463157c29d19fc62cc4d21000312ba41b816bdfb39b227570e500c7"
+    },
+    {
+      "filename": "us_noaa_nyhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "0ad8982a7c3aff423aff0c29cfbaba3505486b36fd16c4920db0fb24685bb31b"
+    },
+    {
+      "filename": "us_noaa_ohhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6f19a47530304b267b7755ece44bff786007282358444fb50718f740cb805bef"
+    },
+    {
+      "filename": "us_noaa_okhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f3342bfe56e98fff0a58b7f9f4b35d953062ecddabe5e94c6c2352c3208f23e5"
+    },
+    {
+      "filename": "us_noaa_pahpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "13343c65f159496e5d2bafa5e0e24c813bbcce457fa77c2da3a53a024433b2c2"
+    },
+    {
+      "filename": "us_noaa_prvi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b2d96872b2600324eb1df8edd2af61cac747f4732e10bbde0152bb0857a657e2"
+    },
+    {
+      "filename": "us_noaa_pvhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "a6db010f956526a011ba719c45fe32e5aff987eeb1cb03f2b8338208a77c619d"
+    },
+    {
+      "filename": "us_noaa_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "38561c43f20756a77d33406c54cda8c250d18b6b30bff1e00ff51578e3682723"
+    },
+    {
+      "filename": "us_noaa_schpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "398eca90b8d681903bfe55fae7169f4218f310e1d68ee829976036f31949522c"
+    },
+    {
+      "filename": "us_noaa_sdhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "49e3e666fe2440ca48183269025d35ccf662f08f3bd41d1ba96679de61f31ebb"
+    },
+    {
+      "filename": "us_noaa_stgeorge.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8d34c59a8f0d700b1b723b146c6a24ca6634fc6773beede4219e4ddd7c92f07b"
+    },
+    {
+      "filename": "us_noaa_stlrnc.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "f4d4ea213072b7c02bd463ee2a1305479a60c7eba2615f008df65a3b29ace749"
+    },
+    {
+      "filename": "us_noaa_stpaul.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c293a6c1ac33d3cfe41dd911c1c0ea813c429c29e0d56574048318c5392b58df"
+    },
+    {
+      "filename": "us_noaa_tnhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ab3faaab7bc0902b2e67bdc5f26c7cd6382ac197abf025b50492161ecbcdddc5"
+    },
+    {
+      "filename": "us_noaa_TN.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ced4122db495b5fa8e85e50814ef1a25751fb5ae213f55f7d4bc45a62657082e"
+    },
+    {
+      "filename": "us_noaa_uthpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bcfa3dcb9f0e09093c3040ba5d0ea6f46d97b9eff105fdb4d7545044b27da774"
+    },
+    {
+      "filename": "us_noaa_vahpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bc2e580f1995f3d3c15ea666db6cde24c42dcff35e51713af384826489e83dcf"
+    },
+    {
+      "filename": "us_noaa_vertconc.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2e56823c84d9e191e3c5157da37e31ce6489e9e750f162524173ba3a940916c9"
+    },
+    {
+      "filename": "us_noaa_vertcone.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "867f1a943bce71a8c8ed5b43cce0c3590d49f94c1054793497e083cc53f3d3b0"
+    },
+    {
+      "filename": "us_noaa_vertconw.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c9f314340de964cbe21f499b20615475ef3f73a2a02bab3a3f80a6d21af55522"
+    },
+    {
+      "filename": "us_noaa_wihpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c773bcab3581b0f653b59ca73bb9da199ff79ec740ee16438c43a7906699cd45"
+    },
+    {
+      "filename": "us_noaa_WI.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "510dd3b23199908be7505f595ee1dbcbaad7035e2d6ab5c2895c99bd10c10113"
+    },
+    {
+      "filename": "us_noaa_wmhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2aa20b5f626de83639c1be455760b4c274bd4e6c53b35c667de7b244fe77fffd"
+    },
+    {
+      "filename": "us_noaa_wohpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "82671b47a4b46935a8ef0b4c5aef4d45fe5b71ea0a45461c2390cb8d8e762f62"
+    },
+    {
+      "filename": "us_noaa_WO.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e6380daed501df8cfbb38149accb8b731e7b00e21368b2a8f6f696ac4eeb5f06"
+    },
+    {
+      "filename": "us_noaa_wshpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "fffe46133cce0b3274a91381028113dec272fe14ab8bf0a3ded63cd0cab83aad"
+    },
+    {
+      "filename": "us_noaa_wthpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "02b8eef84fc115386673a60757db3b64c324c14e00137a129176753b5438b356"
+    },
+    {
+      "filename": "us_noaa_wvhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "31e156295321a3a07f0107fbb50714637d721e3da924b522172a73f20b9c5e81"
+    },
+    {
+      "filename": "us_noaa_wyhpgn.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "",
+      "version_removed": "",
+      "present": true,
+      "sha256": "8e139820659ce2ae6d6fd6c05183e2676fd6a9475559a9e6d8ca792688890d8c"
+    },
+    {
+      "filename": "us_noaa_nadcon5_as62_nad83_1993_as.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "917ea0277d17829326eb44e6114c92fe24cfafdedf4e7e4b87e8b985f1dbf0b0"
+    },
+    {
+      "filename": "us_noaa_nadcon5_gu63_nad83_1993_guamcnmi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "b52ce61a85307ae2efe8229df27fe6169c74bec2da82973e47117f2d06e50291"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad27_nad83_1986_alaska.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "5a71a9bcd73ad0011561d72288e100917bfe6295673e524008b295acbef2447c"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad27_nad83_1986_conus.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c7d587e0d0b39b9f46c7de850b9a6a468c17b7139f82a313aa43aa4a64d94fa8"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1986_nad83_1992_alaska.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4aa27b7bac1a6828f1b173606074f6fba23d3d089a6d4d9eee6ddad555598ea6"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1986_nad83_1993_hawaii.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1f3b03ff38b254b69f770905b2eec21f53fecf01e4eb10484e0a1376618f40fb"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1986_nad83_1993_prvi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "535c1b64e7074a0cf981f09c68f33ce13d44f7e0dadbc273dc3425c7390af1f7"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1986_nad83_harn_conus.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "e12ac2e886edafe616e0994c610ad3daa01db17c00d0e9938145d956f249fc2f"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1992_nad83_2007_alaska.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "cbc1b934f36c23f59fabb912fb1a3993e6d07e161d04066bccce2805380e632d"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1993_nad83_1997_prvi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "942f9b75f5f77eb1c870be7a1fe1c5427d097929eb4bb853c16c68af4fc2187e"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1993_nad83_2002_as.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "ef20c49a88543c3c8032aa467870865d2e4d2fc5da6ac8e6406317d80c9f4bec"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1993_nad83_2002_guamcnmi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "721259f197e50304051c4511b0aaddb846aaabcc7cf29399a08cb8204bc90ccd"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1993_nad83_pa11_hawaii.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "c037823e79fc2fa344b8c85c93f5053018e2b127dee33c409a47ce26e9be6511"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_1997_nad83_2002_prvi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "6310b6f3553da92f051ecf50f1e11c29896a50a15de78d20a295a8827babd4ae"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_2002_nad83_2007_prvi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "4580ebe074560c70b7b1b51eb368209e9a6a35f484863109c774cd4b322b1b07"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_2002_nad83_ma11_guamcnmi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "657363b09b5b77a580a45a66a32dbd121476c70afe5b16d7989becd43770f4d6"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_2002_nad83_pa11_as.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "15f34f246fc1e011a7907743077e9fda0b199a951d1a371fd90bc58cd028cee7"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_2007_nad83_2011_alaska.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "9cc635c2f220b94c765ee917cd713c9707a113a83fb708e50136e9d90afa463f"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_2007_nad83_2011_conus.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "560d65e871afdcfed3d736074f5b3b82cb2fd74d25f988cc556824eceeafce96"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_2007_nad83_2011_prvi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "930e76e3ee98403f2851b976844933707d959ec3ed948b15dc603987d59eabc9"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_fbn_nad83_2007_conus.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "73ea6609fcdbc971771dc0481be19f4d6aa5118ddbd3e0734ff1cf0facf0f40a"
+    },
+    {
+      "filename": "us_noaa_nadcon5_nad83_harn_nad83_fbn_conus.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "703434db8e87dd5c35579151410a9e5892d5769f4f2f9c6b0e2b700ae537e2ff"
+    },
+    {
+      "filename": "us_noaa_nadcon5_ohd_nad83_1986_hawaii.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "2f1679167e4343f0585448e9f1afb29f53f2fe6534c1be2075c5482fcba7c33d"
+    },
+    {
+      "filename": "us_noaa_nadcon5_pr40_nad83_1986_prvi.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "91a00353598a30ffc24d3d00e3295da0a95ee378cc3dbcc1d149c6c75ace3931"
+    },
+    {
+      "filename": "us_noaa_nadcon5_sg1952_nad83_1986_stgeorge.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "bf11ee3e7c2ac25113cdc4cd919284b39448b7b3e2d65dd320180a2c6994e852"
+    },
+    {
+      "filename": "us_noaa_nadcon5_sl1952_nad83_1986_stlawrence.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "1daf1b12b009815d831743590fd0d1b85b9ac6a32175f354000487a0462b407f"
+    },
+    {
+      "filename": "us_noaa_nadcon5_sp1952_nad83_1986_stpaul.tif",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.13",
+      "version_removed": "",
+      "present": true,
+      "sha256": "7aafd2b9b0ed2bb798da5a8a1ee7a254acf308561e2c2d2684d4ad84d1d966b9"
+    },
+    {
+      "filename": "za_cdngi_README.txt",
+      "copyright": "Disclaimed",
+      "license": "Public domain",
+      "version_added": "1.8",
+      "version_removed": "",
+      "present": true,
+      "sha256": "947ce63e507bfc5fd0fc0b9f08b57c119a8f38c52bdd50ba385624bab799a5d3"
+    },
+    {
+      "filename": "za_cdngi_sageoid2010.tif",
+      "copyright": "Chief Directorate: National Geospatial Information (CD:NGI) South Africa",
+      "license": "CC-BY-4.0",
+      "version_added": "1.8",
+      "version_removed": "",
+      "present": true,
+      "sha256": "3e13e63b3c4b8f09792898bfaf6f8510f9a590d3af366f8eec169d2acbc59a1e"
+    }
+  ]
+}

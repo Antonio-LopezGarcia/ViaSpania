@@ -1,0 +1,242 @@
+ARCHIVO ORIGINAL: package/LercDecode.js [cabecera; código completo en archivo original]
+﻿/* jshint forin: false, bitwise: false */
+/*
+Copyright 2015-2021 Esri
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+A copy of the license and additional notices are located with the
+source distribution at:
+
+http://github.com/Esri/lerc/
+
+Contributors:  Johannes Schmid, (LERC v1)
+               Chayanika Khatua, (LERC v1)
+               Wenxue Ju (LERC v1, v2.x)
+*/
+
+/* Copyright 2015-2021 Esri. Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 @preserve */
+
+/**
+ * a module for decoding LERC blobs
+ * @module Lerc
+ */
+(function() {
+  //this decoder supports all lerc versions, each version has its own class (LercDecode and Lerc2Decode). 
+  //the exported module handles format variation autoamtically.
+
+  //the original LercDecode for Version 1
+  var LercDecode = (function() {
+
+    // Note: currently, this module only has an implementation for decoding LERC data, not encoding. The name of
+    // the class was chosen to be future proof.
+
+    var CntZImage = {};
+
+    CntZImage.defaultNoDataValue = -3.4027999387901484e+38; // smallest Float32 value
+
+    /**
+     * Decode a LERC byte stream and return an object containing the pixel data and some required and optional
+     * information about it, such as the image's width and height.
+     *
+     * @param {ArrayBuffer} input The LERC input byte stream
+     * @param {object} [options] Decoding options, containing any of the following properties:
+     * @config {number} [inputOffset = 0]
+     *        Skip the first inputOffset bytes of the input byte stream. A valid LERC file is expected at that position.
+     * @config {Uint8Array} [encodedMask = null]
+     *        If specified, the decoder will not read mask information from the input and use the specified encoded
+     *        mask data instead. Mask header/data must not be present in the LERC byte stream in this case.
+     * @config {number} [noDataValue = LercCode.defaultNoDataValue]
+     *        Pixel value to use for masked pixels.
+     * @config {ArrayBufferView|Array} [pixelType = Float32Array]
+     *        The desired type of the pixelData array in the return value. Note that it is the caller's responsibility to
+     *        provide an appropriate noDataValue if the default pixelType is overridden.
+     * @config {boolean} [returnMask = false]
+     *        If true, the return value will contain a maskData property of type Uint8Array which has one element per
+     *        pixel, the value of which is 1 or 0 depending on whether that pixel's data is present or masked. If the
+     *        input LERC data does not contain a mask, maskData will not be returned.
+     * @config {boolean} [returnEncodedMask = false]
+     *        If true, the return value will contain a encodedMaskData property, which can be passed into encode() as
+     *        encodedMask.
+     * @config {boolean} [returnFileInfo = false]
+     *        If true, the return value will have a fileInfo property that contains metadata obtained from the
+     *        LERC headers and the decoding process.
+     * @config {boolean} [computeUsedBitDepths = false]
+     *        If true, the fileInfo property in the return value will contain the set of all block bit depths
+     *        encountered during decoding. Will only have an effect if returnFileInfo option is true.
+     * @returns {{width, height, pixelData, minValue, maxValue, noDataValue, maskData, encodedMaskData, fileInfo}}
+     */
+    CntZImage.decode = function(input, options) {
+      options = options || {};
+
+      var skipMask = options.encodedMaskData || (options.encodedMaskData === null);
+      var parsedData = parse(input, options.inputOffset || 0, skipMask);
+
+      var noDataValue = (options.noDataValue !== null) ? options.noDataValue : CntZImage.defaultNoDataValue;
+
+      var uncompressedData = uncompressPixelValues(parsedData, options.pixelType || Float32Array,
+        options.encodedMaskData, noDataValue, options.returnMask);
+
+      var result = {
+        width: parsedData.width,
+        height: parsedData.height,
+        pixelData: uncompressedData.resultPixels,
+        minValue: uncompressedData.minValue,
+        maxValue: parsedData.pixels.maxValue,
+        noDataValue: noDataValue
+      };
+
+      if (uncompressedData.resultMask) {
+        result.maskData = uncompressedData.resultMask;
+      }
+
+      if (options.returnEncodedMask && parsedData.mask) {
+
+
+ARCHIVO ORIGINAL: package/LercDecode.min.js [cabecera; código completo en archivo original]
+/* Copyright 2015-2021 Esri. Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 @preserve */
+(function(){var LercDecode=function(){var CntZImage={};CntZImage.defaultNoDataValue=-34027999387901484e22;CntZImage.decode=function(input,options){options=options||{};var skipMask=options.encodedMaskData||options.encodedMaskData===null;var parsedData=parse(input,options.inputOffset||0,skipMask);var noDataValue=options.noDataValue!==null?options.noDataValue:CntZImage.defaultNoDataValue;var uncompressedData=uncompressPixelValues(parsedData,options.pixelType||Float32Array,options.encodedMaskData,noDataValue,options.returnMask);var result={width:parsedData.width,height:parsedData.height,pixelData:uncompressedData.resultPixels,minValue:uncompressedData.minValue,maxValue:parsedData.pixels.maxValue,noDataValue:noDataValue};if(uncompressedData.resultMask){result.maskData=uncompressedData.resultMask}if(options.returnEncodedMask&&parsedData.mask){result.encodedMaskData=parsedData.mask.bitset?parsedData.mask.bitset:null}if(options.returnFileInfo){result.fileInfo=formatFileInfo(parsedData);if(options.computeUsedBitDepths){result.fileInfo.bitDepths=computeUsedBitDepths(parsedData)}}return result};var uncompressPixelValues=function(data,TypedArrayClass,maskBitset,noDataValue,storeDecodedMask){var blockIdx=0;var numX=data.pixels.numBlocksX;var numY=data.pixels.numBlocksY;var blockWidth=Math.floor(data.width/numX);var blockHeight=Math.floor(data.height/numY);var scale=2*data.maxZError;var minValue=Number.MAX_VALUE,currentValue;maskBitset=maskBitset||(data.mask?data.mask.bitset:null);var resultPixels,resultMask;resultPixels=new TypedArrayClass(data.width*data.height);if(storeDecodedMask&&maskBitset){resultMask=new Uint8Array(data.width*data.height)}var blockDataBuffer=new Float32Array(blockWidth*blockHeight);var xx,yy;for(var y=0;y<=numY;y++){var thisBlockHeight=y!==numY?blockHeight:data.height%numY;if(thisBlockHeight===0){continue}for(var x=0;x<=numX;x++){var thisBlockWidth=x!==numX?blockWidth:data.width%numX;if(thisBlockWidth===0){continue}var outPtr=y*data.width*blockHeight+x*blockWidth;var outStride=data.width-thisBlockWidth;var block=data.pixels.blocks[blockIdx];var blockData,blockPtr,constValue;if(block.encoding<2){if(block.encoding===0){blockData=block.rawData}else{unstuff(block.stuffedData,block.bitsPerPixel,block.numValidPixels,block.offset,scale,blockDataBuffer,data.pixels.maxValue);blockData=blockDataBuffer}blockPtr=0}else if(block.encoding===2){constValue=0}else{constValue=block.offset}var maskByte;if(maskBitset){for(yy=0;yy<thisBlockHeight;yy++){if(outPtr&7){maskByte=maskBitset[outPtr>>3];maskByte<<=outPtr&7}for(xx=0;xx<thisBlockWidth;xx++){if(!(outPtr&7)){maskByte=maskBitset[outPtr>>3]}if(maskByte&128){if(resultMask){resultMask[outPtr]=1}currentValue=block.encoding<2?blockData[blockPtr++]:constValue;minValue=minValue>currentValue?currentValue:minValue;resultPixels[outPtr++]=currentValue}else{if(resultMask){resultMask[outPtr]=0}resultPixels[outPtr++]=noDataValue}maskByte<<=1}outPtr+=outStride}}else{if(block.encoding<2){for(yy=0;yy<thisBlockHeight;yy++){for(xx=0;xx<thisBlockWidth;xx++){currentValue=blockData[blockPtr++];minValue=minValue>currentValue?currentValue:minValue;resultPixels[outPtr++]=currentValue}outPtr+=outStride}}else{minValue=minValue>constValue?constValue:minValue;for(yy=0;yy<thisBlockHeight;yy++){for(xx=0;xx<thisBlockWidth;xx++){resultPixels[outPtr++]=constValue}outPtr+=outStride}}}if(block.encoding===1&&blockPtr!==block.numValidPixels){throw"Block and Mask do not match"}blockIdx++}}return{resultPixels:resultPixels,resultMask:resultMask,minValue:minValue}};var formatFileInfo=function(data){return{fileIdentifierString:data.fileIdentifierString,fileVersion:data.fileVersion,imageType:data.imageType,height:data.height,width:data.width,maxZError:data.maxZError,eofOffset:data.eofOffset,mask:data.mask?{numBlocksX:data.mask.numBlocksX,numBlocksY:data.mask.numBlocksY,numBytes:data.mask.numBytes,maxValue:data.mask.maxValue}:null,pixels:{numBlocksX:data.pixels.numBlocksX,numBlocksY:data.pixels.numBlocksY,numBytes:data.pixels.numBytes,maxValue:data.pixels.maxValue,noDataValue:data.noDataValue}}};var computeUsedBitDepths=function(data){var numBlocks=data.pixels.numBlocksX*data.pixels.numBlocksY;var bitDepths={};for(var i=0;i<numBlocks;i++){var block=data.pixels.blocks[i];if(block.encoding===0){bitDepths.float32=true}else if(block.encoding===1){bitDepths[block.bitsPerPixel]=true}else{bitDepths[0]=true}}return Object.keys(bitDepths)};var parse=function(input,fp,skipMask){var data={};var fileIdView=new Uint8Array(input,fp,10);data.fileIdentifierString=String.fromCharCode.apply(null,fileIdView);if(data.fileIdentifierString.trim()!=="CntZImage"){throw"Unexpected file identifier string: "+data.fileIdentifierString}fp+=10;var view=new DataView(input,fp,24);data.fileV
+
+ARCHIVO ORIGINAL: package/package.json
+{
+  "name": "lerc",
+  "browser": "LercDecode.js",
+  "bugs": {
+    "url": "https://github.com/esri/lerc/issues"
+  },
+  "description": "Rapid decoding of Lerc compressed raster data for any standard pixel type.",
+  "version": "3.0.0",
+  "author": "Esri <dev_tools@esri.com> (http://developers.arcgis.com)",
+  "contributors": [
+    "Johannes Schmid",
+    "Chayanika Khatua",
+    "Wenxue Ju"
+  ],
+  "devDependencies": {
+    "gh-release": "^2.2.1",
+    "jsdoc-to-markdown": "^2.0.1",
+    "jshint": "^2.13.0",
+    "uglify-js": "^3.14.0"
+  },
+  "files": [
+    "LercDecode.js",
+    "LercDecode.min.js"
+  ],
+  "homepage": "https://github.com/Esri/lerc",
+  "license": "Apache-2.0",
+  "main": "LercDecode.js",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Esri/lerc.git"
+  },
+  "scripts": {
+    "lint": "jshint LercDecode.js",
+    "build": "uglifyjs LercDecode.js -o LercDecode.min.js --comments",
+    "docs": "jsdoc2md --template README.hbs --files LercDecode.js",
+    "release": "./release.sh"
+  }
+}
+
+
+ARCHIVO ORIGINAL: package/README.md
+[![npm version][npm-img]][npm-url]
+
+[npm-img]: https://img.shields.io/npm/v/lerc.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/lerc
+
+# Lerc JS
+
+> Rapid decoding of Lerc compressed raster data for any standard pixel type, not just rgb or byte
+
+## Browser
+
+```html
+<script type="text/javascript" src="https://unpkg.com/lerc"></script>
+```
+```js
+Lerc.decode(xhrResponse, {
+  inputOffset: 10, // start from the 10th byte (default is 0)
+  pixelType: "U8", // only needed for lerc1 (default is F32)
+  returnPixelInterleavedDims: false // only applicable to n-dim lerc2 blobs (default is false)
+});
+```
+
+## Node
+
+```js
+npm install lerc && npm install node-fetch
+```
+```js
+const fetch = require('node-fetch');
+const Lerc = require('lerc');
+
+fetch('http://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer/tile/0/0/0')
+  .then(response => response.arrayBuffer())
+  .then(body => {
+    const image = Lerc.decode(body);
+    image.width // 257
+  });
+```
+
+## API Reference
+
+<a name="module_Lerc"></a>
+
+## Lerc
+a module for decoding LERC blobs
+
+<a name="exp_module_Lerc--decode"></a>
+
+### decode(input, [options]) ⇒ <code>Object</code> ⏏
+A wrapper for decoding both LERC1 and LERC2 byte streams capable of handling multiband pixel blocks for various pixel types.
+
+**Kind**: Exported function
+
+| Param | Type | Description |
+| --- | --- | --- |
+| input | <code>ArrayBuffer</code> | The LERC input byte stream |
+| [options] | <code>object</code> | The decoding options below are optional. |
+| [options.inputOffset] | <code>number</code> | The number of bytes to skip in the input byte stream. A valid Lerc file is expected at that position. |
+| [options.pixelType] | <code>string</code> | (LERC1 only) Default value is F32. Valid pixel types for input are U8/S8/S16/U16/S32/U32/F32. |
+| [options.noDataValue] | <code>number</code> | (LERC1 only). It is recommended to use the returned mask instead of setting this value. |
+
+**Result Object Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| width | <code>number</code> | Width of decoded image. |
+| height | <code>number</code> | Height of decoded image. |
+| pixels | <code>array</code> | [band1, band2, …] Each band is a typed array of width*height. |
+| pixelType | <code>string</code> | The type of pixels represented in the output. |
+| mask | <code>mask</code> | Typed array with a size of width*height, or null if all pixels are valid. |
+| statistics | <code>array</code> | [statistics_band1, statistics_band2, …] Each element is a statistics object representing min and max values |
+
+* * *
+
+## Licensing
+
+Copyright &copy; 2017-2021 Esri
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.
+
+A local copy of the license and additional notices are located with the source distribution at:
+
+http://github.com/Esri/lerc/

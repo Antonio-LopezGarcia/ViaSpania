@@ -1,0 +1,308 @@
+[  0%] Performing download step (verify and extract) for 'mimalloc_ep'
+[  6%] Built target arrow_vendored
+-- mimalloc_ep download command succeeded.  See also /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/build/mimalloc_ep-prefix/src/mimalloc_ep-stamp/mimalloc_ep-download-*.log
+[  8%] Built target arrow_io
+[  8%] No update step for 'mimalloc_ep'
+[  8%] No patch step for 'mimalloc_ep'
+[  8%] Performing configure step for 'mimalloc_ep'
+[ 13%] Built target arrow_array
+[ 15%] Built target arrow_csv
+[ 16%] Built target arrow_filesystem
+[ 17%] Built target arrow_ipc
+[ 23%] Built target arrow_compute_core
+[ 23%] Built target flight_grpc_gen
+[ 24%] Built target flight_sql_protobuf_gen
+[ 27%] Built target arrow_json
+[ 34%] Built target precompiled
+[ 43%] Built target arrow_util
+-- mimalloc_ep configure command succeeded.  See also /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/build/mimalloc_ep-prefix/src/mimalloc_ep-stamp/mimalloc_ep-configure-*.log
+[ 43%] Performing build step for 'mimalloc_ep'
+-- mimalloc_ep build command succeeded.  See also /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/build/mimalloc_ep-prefix/src/mimalloc_ep-stamp/mimalloc_ep-build-*.log
+[ 43%] Performing install step for 'mimalloc_ep'
+-- mimalloc_ep install command succeeded.  See also /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/build/mimalloc_ep-prefix/src/mimalloc_ep-stamp/mimalloc_ep-install-*.log
+[ 44%] Completed 'mimalloc_ep'
+[ 45%] Built target mimalloc_ep
+[ 45%] Building CXX object src/arrow/CMakeFiles/arrow_memory_pool.dir/memory_pool_mimalloc.cc.o
+[ 45%] Bundling /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/build/release/libarrow_bundled_dependencies.a
+[ 46%] Building CXX object src/arrow/CMakeFiles/arrow_memory_pool.dir/memory_pool.cc.o
+[ 46%] Built target arrow_bundled_dependencies_merge
+[ 46%] Built target arrow_memory_pool
+[ 47%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/chunk_resolver.cc.o
+[ 47%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/builder.cc.o
+[ 47%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/buffer.cc.o
+[ 47%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/chunked_array.cc.o
+[ 47%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/compare.cc.o
+[ 47%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/config.cc.o
+[ 47%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/datum.cc.o
+[ 48%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/device.cc.o
+[ 48%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/device_allocation_type_set.cc.o
+[ 48%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/extension_type.cc.o
+[ 48%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/extension/bool8.cc.o
+[ 48%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/extension/json.cc.o
+[ 49%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/extension/parquet_variant.cc.o
+[ 49%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/extension/uuid.cc.o
+[ 49%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/pretty_print.cc.o
+[ 49%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/record_batch.cc.o
+[ 49%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/result.cc.o
+[ 50%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/scalar.cc.o
+[ 50%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/sparse_tensor.cc.o
+[ 50%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/status.cc.o
+[ 50%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/table.cc.o
+[ 51%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/table_builder.cc.o
+[ 51%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/tensor.cc.o
+[ 51%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/tensor/coo_converter.cc.o
+[ 51%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/tensor/csf_converter.cc.o
+[ 51%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/tensor/csx_converter.cc.o
+[ 52%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/type.cc.o
+[ 52%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/type_traits.cc.o
+[ 52%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/visitor.cc.o
+[ 52%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/c/bridge.cc.o
+[ 53%] Building CXX object src/arrow/CMakeFiles/arrow_objlib.dir/c/dlpack.cc.o
+[ 53%] Built target arrow_objlib
+[ 53%] Linking CXX static library ../../release/libarrow.a
+[ 53%] Linking CXX shared library ../../release/libarrow.dylib
+[ 53%] Built target arrow_static
+[ 53%] Built target arrow_shared
+[ 54%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/arrow/fuzz_encoding_internal.cc.o
+[ 55%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/annotator.cc.o
+[ 55%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/Flight.pb.cc.o
+[ 55%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/initialize.cc.o
+[ 55%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/aggregate_basic.cc.o
+[ 55%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/bitmap_accumulator.cc.o
+[ 55%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/client.cc.o
+[ 55%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/cache.cc.o
+[ 55%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/arrow/fuzz_internal.cc.o
+[ 55%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/cast_time.cc.o
+[ 55%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/client_cookie_middleware.cc.o
+[ 56%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/arrow/path_internal.cc.o
+[ 56%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/client_tracing_middleware.cc.o
+[ 57%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/cookie_internal.cc.o
+[ 58%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/configuration.cc.o
+[ 58%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/arrow/reader.cc.o
+[ 58%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/context_helper.cc.o
+[ 58%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/middleware.cc.o
+[ 58%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/serialization_internal.cc.o
+[ 58%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/decimal_ir.cc.o
+[ 58%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/aggregate_mode.cc.o
+[ 58%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/arrow/reader_internal.cc.o
+[ 58%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/server.cc.o
+[ 58%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/server_auth.cc.o
+[ 58%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/decimal_type_util.cc.o
+[ 59%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/server_tracing_middleware.cc.o
+[ 60%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/decimal_xlarge.cc.o
+[ 60%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/aggregate_pivot.cc.o
+[ 60%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/arrow/schema.cc.o
+[ 60%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport.cc.o
+[ 60%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport_server.cc.o
+[ 60%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/aggregate_quantile.cc.o
+[ 60%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/engine.cc.o
+[ 61%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/arrow/schema_internal.cc.o
+[ 61%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/grpc_client.cc.o
+[ 61%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/arrow/writer.cc.o
+[ 61%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/bloom_filter.cc.o
+[ 62%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/aggregate_tdigest.cc.o
+[ 62%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/grpc_server.cc.o
+[ 62%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/date_utils.cc.o
+[ 62%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/bloom_filter_reader.cc.o
+[ 62%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/aggregate_var_std.cc.o
+[ 62%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/bloom_filter_writer.cc.o
+[ 62%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/encrypt_utils.cc.o
+[ 62%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/expr_decomposer.cc.o
+[ 63%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/serialization_internal.cc.o
+[ 64%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/chunker_internal.cc.o
+[ 64%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/hash_aggregate.cc.o
+[ 64%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/column_reader.cc.o
+[ 65%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/expr_validator.cc.o
+[ 65%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/protocol_grpc_internal.cc.o
+[ 65%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/expression.cc.o
+[ 65%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/expression_registry.cc.o
+[ 65%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/column_scanner.cc.o
+[ 65%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/transport/grpc/util_internal.cc.o
+[ 65%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/column_writer.cc.o
+[ 65%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/exported_funcs_registry.cc.o
+[ 65%] Building CXX object src/arrow/flight/CMakeFiles/arrow_flight_objlib.dir/types.cc.o
+[ 66%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/exported_funcs.cc.o
+[ 66%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/hash_aggregate_numeric.cc.o
+[ 67%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/decoder.cc.o
+[ 67%] Built target arrow_flight_objlib
+[ 67%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/external_c_functions.cc.o
+[ 67%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/filter.cc.o
+[ 67%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_holder_maker_registry.cc.o
+[ 67%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_ir_builder.cc.o
+[ 68%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/hash_aggregate_pivot.cc.o
+[ 68%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/encoder.cc.o
+[ 69%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_registry.cc.o
+[ 69%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/pivot_internal.cc.o
+[ 69%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_registry_arithmetic.cc.o
+[ 69%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/encryption/encryption.cc.o
+[ 69%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/ree_util_internal.cc.o
+[ 69%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/encryption/internal_file_decryptor.cc.o
+[ 70%] Linking CXX shared library ../../../release/libarrow_flight.dylib
+[ 70%] Built target arrow_flight_shared
+[ 71%] Linking CXX static library ../../../release/libarrow_flight.a
+[ 71%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_arithmetic.cc.o
+[ 71%] Built target arrow_flight_static
+[ 71%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/encryption/internal_file_encryptor.cc.o
+[ 72%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/exception.cc.o
+[ 72%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/file_reader.cc.o
+[ 72%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_registry_datetime.cc.o
+[ 72%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/file_writer.cc.o
+[ 72%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_registry_hash.cc.o
+[ 73%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_registry_math_ops.cc.o
+[ 73%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/geospatial/statistics.cc.o
+[ 73%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_registry_string.cc.o
+[ 74%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/geospatial/util_internal.cc.o
+[ 74%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_registry_timestamp_arithmetic.cc.o
+[ 74%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/geospatial/util_json_internal.cc.o
+[ 74%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/level_comparison.cc.o
+[ 74%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/function_signature.cc.o
+[ 74%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/gandiva_object_cache.cc.o
+[ 74%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/level_conversion.cc.o
+[ 75%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/gdv_function_stubs.cc.o
+[ 75%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/metadata.cc.o
+[ 75%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/gdv_string_function_stubs.cc.o
+[ 75%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_boolean.cc.o
+[ 75%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/gdv_hash_function_stubs.cc.o
+[ 76%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/xxhasher.cc.o
+[ 76%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/page_index.cc.o
+[ 77%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_compare.cc.o
+[ 77%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/hash_utils.cc.o
+[ 77%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/interval_holder.cc.o
+[ 77%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/__/generated/parquet_types.cpp.o
+[ 77%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_if_else.cc.o
+[ 78%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/llvm_generator.cc.o
+[ 78%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/platform.cc.o
+[ 78%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/printer.cc.o
+[ 79%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/properties.cc.o
+[ 79%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/llvm_types.cc.o
+[ 79%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/schema.cc.o
+[ 79%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_nested.cc.o
+[ 79%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_random.cc.o
+[ 79%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/literal_holder.cc.o
+[ 79%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/size_statistics.cc.o
+[ 79%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/projector.cc.o
+[ 79%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/statistics.cc.o
+[ 80%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_round.cc.o
+[ 81%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/stream_reader.cc.o
+[ 82%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/regex_util.cc.o
+[ 82%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/stream_writer.cc.o
+[ 82%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/regex_functions_holder.cc.o
+[ 82%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/types.cc.o
+[ 82%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_set_lookup.cc.o
+[ 82%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/selection_vector.cc.o
+[ 82%] Building CXX object src/parquet/CMakeFiles/parquet_objlib.dir/encryption/encryption_internal_nossl.cc.o
+[ 82%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/tree_expr_builder.cc.o
+[ 82%] Built target parquet_objlib
+[ 82%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_string_ascii.cc.o
+[ 82%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_string_utf8.cc.o
+[ 82%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/to_date_holder.cc.o
+[ 83%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/random_generator_holder.cc.o
+[ 83%] Building CXX object src/gandiva/CMakeFiles/gandiva_objlib.dir/precompiled_bitcode.cc.o
+[ 83%] Built target gandiva_objlib
+[ 83%] Building CXX object src/arrow/flight/sql/CMakeFiles/arrow_flight_sql_objlib.dir/server.cc.o
+[ 83%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_temporal_binary.cc.o
+[ 83%] Building CXX object src/arrow/flight/sql/CMakeFiles/arrow_flight_sql_objlib.dir/sql_info_internal.cc.o
+[ 84%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_temporal_unary.cc.o
+[ 84%] Building CXX object src/arrow/flight/sql/CMakeFiles/arrow_flight_sql_objlib.dir/column_metadata.cc.o
+[ 84%] Building CXX object src/arrow/flight/sql/CMakeFiles/arrow_flight_sql_objlib.dir/client.cc.o
+[ 84%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/scalar_validity.cc.o
+[ 85%] Building CXX object src/arrow/flight/sql/CMakeFiles/arrow_flight_sql_objlib.dir/protocol_internal.cc.o
+[ 85%] Linking CXX shared library ../../release/libgandiva.dylib
+[ 85%] Built target gandiva_shared
+[ 85%] Linking CXX static library ../../release/libgandiva.a
+[ 85%] Built target gandiva_static
+[ 85%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/util_internal.cc.o
+[ 85%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_array_sort.cc.o
+[ 85%] Building CXX object src/arrow/flight/sql/CMakeFiles/arrow_flight_sql_objlib.dir/server_session_middleware.cc.o
+[ 85%] Built target arrow_flight_sql_objlib
+[ 85%] Linking CXX shared library ../../release/libparquet.dylib
+[ 85%] Built target parquet_shared
+[ 86%] Linking CXX static library ../../release/libparquet.a
+[ 86%] Built target parquet_static
+[ 86%] Linking CXX shared library ../../../../release/libarrow_flight_sql.dylib
+[ 86%] Built target arrow_flight_sql_shared
+[ 86%] Linking CXX static library ../../../../release/libarrow_flight_sql.a
+[ 86%] Built target arrow_flight_sql_static
+[ 87%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_cumulative_ops.cc.o
+[ 87%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_nested.cc.o
+[ 87%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_pairwise.cc.o
+[ 87%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_rank.cc.o
+[ 87%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_replace.cc.o
+[ 88%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_run_end_encode.cc.o
+[ 88%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_select_k.cc.o
+[ 88%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_sort.cc.o
+[ 88%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/kernels/vector_statistics.cc.o
+[ 88%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/key_hash_internal.cc.o
+[ 89%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/key_map_internal.cc.o
+[ 89%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/light_array_internal.cc.o
+[ 89%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/row/encode_internal.cc.o
+[ 89%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/row/compare_internal.cc.o
+[ 90%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/row/grouper.cc.o
+[ 90%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/row/row_encoder_internal.cc.o
+[ 90%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/row/row_internal.cc.o
+[ 90%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/util.cc.o
+[ 90%] Building CXX object src/arrow/CMakeFiles/arrow_compute_objlib.dir/compute/util_internal.cc.o
+[ 90%] Built target arrow_compute_objlib
+[ 90%] Linking CXX static library ../../release/libarrow_compute.a
+[ 91%] Linking CXX shared library ../../release/libarrow_compute.dylib
+[ 91%] Built target arrow_compute_static
+[ 91%] Built target arrow_compute_shared
+[ 91%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/groupby_aggregate_node.cc.o
+[ 91%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/scalar_aggregate_node.cc.o
+[ 91%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/accumulation_queue.cc.o
+[ 91%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/aggregate_internal.cc.o
+[ 92%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/asof_join_node.cc.o
+[ 92%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/bloom_filter.cc.o
+[ 92%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/exec_plan.cc.o
+[ 92%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/fetch_node.cc.o
+[1m/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/apache-arrow-25.0.1/cpp/src/arrow/acero/asof_join_node.cc:794:17: [0m[0;1;35mwarning: [0m[1mprivate field 'node_' is not used [-Wunused-private-field][0m
+  794 |   AsofJoinNode* node_;[0m
+      | [0;1;32m                ^
+[0m[1m/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/apache-arrow-25.0.1/cpp/src/arrow/acero/asof_join_node.cc:796:10: [0m[0;1;35mwarning: [0m[1mprivate field 'index_' is not used [-Wunused-private-field][0m
+  796 |   size_t index_;[0m
+      | [0;1;32m         ^
+[0m[ 92%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/filter_node.cc.o
+[ 93%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/hash_join.cc.o
+2 warnings generated.
+[ 93%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/hash_join_dict.cc.o
+[ 93%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/hash_join_node.cc.o
+[ 93%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/map_node.cc.o
+[ 94%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/options.cc.o
+[ 94%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/order_by_node.cc.o
+[ 94%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/order_by_impl.cc.o
+[ 94%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/partition_util.cc.o
+[ 94%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/pivot_longer_node.cc.o
+[ 95%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/project_node.cc.o
+[ 95%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/query_context.cc.o
+[ 95%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/sink_node.cc.o
+[ 95%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/sorted_merge_node.cc.o
+[ 96%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/source_node.cc.o
+[ 96%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/swiss_join.cc.o
+[ 96%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/task_util.cc.o
+[ 96%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/time_series_util.cc.o
+[ 96%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/tpch_node.cc.o
+[ 97%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/union_node.cc.o
+[ 97%] Building CXX object src/arrow/acero/CMakeFiles/arrow_acero_objlib.dir/util.cc.o
+[ 97%] Built target arrow_acero_objlib
+[ 97%] Linking CXX static library ../../../release/libarrow_acero.a
+[ 97%] Linking CXX shared library ../../../release/libarrow_acero.dylib
+[ 97%] Built target arrow_acero_static
+[ 97%] Built target arrow_acero_shared
+[ 97%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/dataset.cc.o
+[ 97%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/dataset_writer.cc.o
+[ 98%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/discovery.cc.o
+[ 98%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/file_base.cc.o
+[ 98%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/file_ipc.cc.o
+[ 98%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/partition.cc.o
+[ 98%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/plan.cc.o
+[ 98%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/projector.cc.o
+[ 99%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/scanner.cc.o
+[ 99%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/scan_node.cc.o
+[ 99%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/file_csv.cc.o
+[ 99%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/file_json.cc.o
+[ 99%] Building CXX object src/arrow/dataset/CMakeFiles/arrow_dataset_objlib.dir/file_parquet.cc.o
+[ 99%] Built target arrow_dataset_objlib
+[ 99%] Linking CXX static library ../../../release/libarrow_dataset.a
+[100%] Linking CXX shared library ../../../release/libarrow_dataset.dylib
+[100%] Built target arrow_dataset_static
+[100%] Built target arrow_dataset_shared

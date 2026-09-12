@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "component": "native/proj-9.8.1",
+  "result": "partial-reconstruction-passed",
+  "sourceSha256": "af5b731c145c1d13c4e3b4eeb7d167e94e845e440f71e3496b4ed8dae0291960",
+  "configuration": {
+    "BUILD_TESTING": "OFF",
+    "NLOHMANN_JSON_ORIGIN": "internal",
+    "CMAKE_BUILD_TYPE": "Release"
+  },
+  "forward": "500000.000\t4427757.219 0.000",
+  "inverse": "40.00000000\t-3.00000000 0.00000000",
+  "links": "/Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/proj/install/lib/libproj.dylib:\n\t@rpath/libproj.25.dylib (compatibility version 25.0.0, current version 25.9.8)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1356.0.0)\n\t/usr/lib/libsqlite3.dylib (compatibility version 9.0.0, current version 382.0.0)\n\t/opt/homebrew/opt/libtiff/lib/libtiff.6.dylib (compatibility version 10.0.0, current version 10.0.0)\n\t/usr/lib/libcurl.4.dylib (compatibility version 7.0.0, current version 9.0.0)\n\t/usr/lib/libc++.1.dylib (compatibility version 1.0.0, current version 2100.43.0)\n",
+  "limitations": [
+    "Uses installed TIFF and system SDK, not a reconstructed full dependency tree.",
+    "No bitwise equivalence to the distributed Homebrew binary established.",
+    "Initial external Miniconda header discovery superseded by forced internal header rebuild.",
+    "This is a source archive probe, not reconstruction from the final release source package."
+  ]
+}

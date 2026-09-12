@@ -1,0 +1,485 @@
+-- Building using CMake version: 4.4.2
+-- Arrow version: 25.0.1 (full: '25.0.1')
+-- Arrow SO version: 2500 (full: 2500.1.0)
+-- System processor: arm64
+-- Arrow build warning level: PRODUCTION
+-- Build Type: Release
+-- Using SYSTEM approach to find dependencies
+-- ARROW_ABSL_BUILD_VERSION: 20250127.0
+-- ARROW_ABSL_BUILD_SHA256_CHECKSUM: 16242f394245627e508ec6bb296b433c90f8d914f73b9c026fddb905e27276e8
+-- ARROW_AWS_C_AUTH_BUILD_VERSION: v0.10.1
+-- ARROW_AWS_C_AUTH_BUILD_SHA256_CHECKSUM: 85d737f0f735256f1931e85e4cadbe228d88698f7b59a9b390b49ef5d0778a43
+-- ARROW_AWS_C_CAL_BUILD_VERSION: v0.9.13
+-- ARROW_AWS_C_CAL_BUILD_SHA256_CHECKSUM: 80b7c6087b0af461b4483e4c9483aea2e0dac5d9fb2289b057159ea6032409e1
+-- ARROW_AWS_C_COMMON_BUILD_VERSION: v0.12.6
+-- ARROW_AWS_C_COMMON_BUILD_SHA256_CHECKSUM: 138822ecdcaff1d702f37d4751f245847d088592724921cc6bf61c232b198d6b
+-- ARROW_AWS_C_COMPRESSION_BUILD_VERSION: v0.3.2
+-- ARROW_AWS_C_COMPRESSION_BUILD_SHA256_CHECKSUM: f93f5a5d8b3fee3a6d97b14ba279efacd4d4016ef9cc7dc4be7d43519ecfbe93
+-- ARROW_AWS_C_EVENT_STREAM_BUILD_VERSION: v0.7.0
+-- ARROW_AWS_C_EVENT_STREAM_BUILD_SHA256_CHECKSUM: 88835b4c78462547917f622fd9dda45c991b7e356d9c07e2f0537d4d97fbd4fb
+-- ARROW_AWS_C_HTTP_BUILD_VERSION: v0.10.13
+-- ARROW_AWS_C_HTTP_BUILD_SHA256_CHECKSUM: d8352e7a1fb1996694a4dc31219ce03452882abf8d0858c104727f975e11b9c7
+-- ARROW_AWS_C_IO_BUILD_VERSION: v0.26.3
+-- ARROW_AWS_C_IO_BUILD_SHA256_CHECKSUM: 521fd0848fca661130bbb7278a414d7a38bdcb9bc8ffa89f6660d84e5838a303
+-- ARROW_AWS_C_MQTT_BUILD_VERSION: v0.15.2
+-- ARROW_AWS_C_MQTT_BUILD_SHA256_CHECKSUM: 66f3f5edff4ad1f765a86d3342b6017d0f29f950c1c24f8c1edacdc895202edc
+-- ARROW_AWS_C_S3_BUILD_VERSION: v0.12.0
+-- ARROW_AWS_C_S3_BUILD_SHA256_CHECKSUM: 1a8a8ceda0585d52028a1f3daa5861f924e7d8d2f6a17bec05813dc0b74d6eed
+-- ARROW_AWS_C_SDKUTILS_BUILD_VERSION: v0.2.4
+-- ARROW_AWS_C_SDKUTILS_BUILD_SHA256_CHECKSUM: 493cbed4fa57e0d4622fcff044e11305eb4fc12445f32c8861025597939175fc
+-- ARROW_AWS_CHECKSUMS_BUILD_VERSION: v0.2.10
+-- ARROW_AWS_CHECKSUMS_BUILD_SHA256_CHECKSUM: cb6509f75e42ee25c372a6d379e8582ce5179e5335183842e808f7d8abb0c314
+-- ARROW_AWS_CRT_CPP_BUILD_VERSION: v0.38.0
+-- ARROW_AWS_CRT_CPP_BUILD_SHA256_CHECKSUM: f57b82f0a9e6890e4d47aa1c48b9324b5beb5b58000715c4c6ef9f147be13891
+-- ARROW_AWS_LC_BUILD_VERSION: v1.71.0
+-- ARROW_AWS_LC_BUILD_SHA256_CHECKSUM: 31b1eed775294825f084c0d4e09df53e1cf036fb98a202a8c2c342543828a985
+-- ARROW_AWSSDK_BUILD_VERSION: 1.11.778
+-- ARROW_AWSSDK_BUILD_SHA256_CHECKSUM: 06371849792f1a8633c3e0592a17b4700f39c748ad374f4e9a6592739ecc4d9c
+-- ARROW_AZURE_SDK_BUILD_VERSION: azure-identity_1.9.0
+-- ARROW_AZURE_SDK_BUILD_SHA256_CHECKSUM: 97065bfc971ac8df450853ce805f820f52b59457bd7556510186a1569502e4a1
+-- ARROW_BOOST_BUILD_VERSION: 1.88.0
+-- ARROW_BOOST_BUILD_SHA256_CHECKSUM: dcea50f40ba1ecfc448fdf886c0165cf3e525fef2c9e3e080b9804e8117b9694
+-- ARROW_BROTLI_BUILD_VERSION: v1.0.9
+-- ARROW_BROTLI_BUILD_SHA256_CHECKSUM: f9e8d81d0405ba66d181529af42a3354f838c939095ff99930da6aa9cdf6fe46
+-- ARROW_BZIP2_BUILD_VERSION: 1.0.8
+-- ARROW_BZIP2_BUILD_SHA256_CHECKSUM: ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269
+-- ARROW_CARES_BUILD_VERSION: 1.34.6
+-- ARROW_CARES_BUILD_SHA256_CHECKSUM: 912dd7cc3b3e8a79c52fd7fb9c0f4ecf0aaa73e45efda880266a2d6e26b84ef5
+-- ARROW_GBENCHMARK_BUILD_VERSION: v1.8.3
+-- ARROW_GBENCHMARK_BUILD_SHA256_CHECKSUM: 6bc180a57d23d4d9515519f92b0c83d61b05b5bab188961f36ac7b06b0d9e9ce
+-- ARROW_GFLAGS_BUILD_VERSION: v2.2.2
+-- ARROW_GFLAGS_BUILD_SHA256_CHECKSUM: 34af2f15cf7367513b352bdcd2493ab14ce43692d2dcd9dfc499492966c64dcf
+-- ARROW_GLOG_BUILD_VERSION: v0.5.0
+-- ARROW_GLOG_BUILD_SHA256_CHECKSUM: eede71f28371bf39aa69b45de23b329d37214016e2055269b3b5e7cfd40b59f5
+-- ARROW_GOOGLE_CLOUD_CPP_BUILD_VERSION: v3.2.0
+-- ARROW_GOOGLE_CLOUD_CPP_BUILD_SHA256_CHECKSUM: 79ed6303d5b0c46f627bf8b38b5bd6b007c85e76c88722eb570a495bc2b579a0
+-- ARROW_GRPC_BUILD_VERSION: v1.76.0
+-- ARROW_GRPC_BUILD_SHA256_CHECKSUM: 0af37b800953130b47c075b56683ee60bdc3eda3c37fc6004193f5b569758204
+-- ARROW_GTEST_BUILD_VERSION: 1.17.0
+-- ARROW_GTEST_BUILD_SHA256_CHECKSUM: 65fab701d9829d38cb77c14acdc431d2108bfdbf8979e40eb8ae567edf10b27c
+-- ARROW_JEMALLOC_BUILD_VERSION: 5.3.0
+-- ARROW_JEMALLOC_BUILD_SHA256_CHECKSUM: 2db82d1e7119df3e71b7640219b6dfe84789bc0537983c3b7ac4f7189aecfeaa
+-- ARROW_LZ4_BUILD_VERSION: v1.10.0
+-- ARROW_LZ4_BUILD_SHA256_CHECKSUM: 537512904744b35e232912055ccf8ec66d768639ff3abe5788d90d792ec5f48b
+-- ARROW_MIMALLOC_BUILD_VERSION: v3.4.1
+-- ARROW_MIMALLOC_BUILD_SHA256_CHECKSUM: 37107a52c16baa80c5f74861dddda7b27bb9949e41a6637691867a94c88ca446
+-- ARROW_NLOHMANN_JSON_BUILD_VERSION: v3.12.0
+-- ARROW_NLOHMANN_JSON_BUILD_SHA256_CHECKSUM: 4b92eb0c06d10683f7447ce9406cb97cd4b453be18d7279320f7b2f025c10187
+-- ARROW_OPENTELEMETRY_BUILD_VERSION: v1.21.0
+-- ARROW_OPENTELEMETRY_BUILD_SHA256_CHECKSUM: 98e5546f577a11b52a57faed1f4cc60d8c1daa44760eba393f43eab5a8ec46a2
+-- ARROW_OPENTELEMETRY_PROTO_BUILD_VERSION: v1.7.0
+-- ARROW_OPENTELEMETRY_PROTO_BUILD_SHA256_CHECKSUM: 11330d850f5e24d34c4246bc8cb21fcd311e7565d219195713455a576bb11bed
+-- ARROW_ORC_BUILD_VERSION: 2.2.1
+-- ARROW_ORC_BUILD_SHA256_CHECKSUM: 52fc762332442e8b05d7182f8c035f9e04d945b9a52be22ab69f28b3f37d4500
+-- ARROW_PROTOBUF_BUILD_VERSION: v31.1
+-- ARROW_PROTOBUF_BUILD_SHA256_CHECKSUM: 12bfd76d27b9ac3d65c00966901609e020481b9474ef75c7ff4601ac06fa0b82
+-- ARROW_RAPIDJSON_BUILD_VERSION: 232389d4f1012dddec4ef84861face2d2ba85709
+-- ARROW_RAPIDJSON_BUILD_SHA256_CHECKSUM: b9290a9a6d444c8e049bd589ab804e0ccf2b05dc5984a19ed5ae75d090064806
+-- ARROW_RE2_BUILD_VERSION: 2023-03-01
+-- ARROW_RE2_BUILD_SHA256_CHECKSUM: 7a9a4824958586980926a300b4717202485c4b4115ac031822e29aa4ef207e48
+-- ARROW_SNAPPY_BUILD_VERSION: 1.2.2
+-- ARROW_SNAPPY_BUILD_SHA256_CHECKSUM: 90f74bc1fbf78a6c56b3c4a082a05103b3a56bb17bca1a27e052ea11723292dc
+-- ARROW_SUBSTRAIT_BUILD_VERSION: v0.44.0
+-- ARROW_SUBSTRAIT_BUILD_SHA256_CHECKSUM: f989a862f694e7dbb695925ddb7c4ce06aa6c51aca945105c075139aed7e55a2
+-- ARROW_S2N_TLS_BUILD_VERSION: v1.7.0
+-- ARROW_S2N_TLS_BUILD_SHA256_CHECKSUM: a6e8228e238239bb3c17b1eda3ed702bcbb2eaebc792eac4d754cc5619b0ea06
+-- ARROW_THRIFT_BUILD_VERSION: 0.22.0
+-- ARROW_THRIFT_BUILD_SHA256_CHECKSUM: 794a0e455787960d9f27ab92c38e34da27e8deeda7a5db0e59dc64a00df8a1e5
+-- ARROW_UTF8PROC_BUILD_VERSION: v2.10.0
+-- ARROW_UTF8PROC_BUILD_SHA256_CHECKSUM: 6f4f1b639daa6dca9f80bc5db1233e9cbaa31a67790887106160b33ef743f136
+-- ARROW_WIL_BUILD_VERSION: v1.0.250325.1
+-- ARROW_WIL_BUILD_SHA256_CHECKSUM: c9e667d5f86ded43d17b5669d243e95ca7b437e3a167c170805ffd4aa8a9a786
+-- ARROW_XSIMD_BUILD_VERSION: 14.2.0
+-- ARROW_XSIMD_BUILD_SHA256_CHECKSUM: 21e841ab684b05331e81e7f782431753a029ef7b7d9d6d3ddab837e7782a40ee
+-- ARROW_ZLIB_BUILD_VERSION: 1.3.1
+-- ARROW_ZLIB_BUILD_SHA256_CHECKSUM: 9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23
+-- ARROW_ZSTD_BUILD_VERSION: 1.5.7
+-- ARROW_ZSTD_BUILD_SHA256_CHECKSUM: eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3
+-- Boost include dir: /opt/homebrew/include
+-- Providing CMake module for FindSnappyAlt as part of Arrow CMake package
+-- pkg-config package for snappy that is used by arrow for static link isn't found
+-- Providing CMake module for FindBrotliAlt as part of Arrow CMake package
+-- Using pkg-config package for libbrotlidec that is used by arrow for static link
+-- Using pkg-config package for libbrotlienc that is used by arrow for static link
+-- Providing CMake module for FindOpenSSLAlt as part of Arrow CMake package
+-- Found OpenSSL Crypto Library: /opt/homebrew/opt/openssl@3/lib/libcrypto.dylib
+-- Building with OpenSSL (Version: 3.6.3) support
+CMake Warning at cmake_modules/FindThriftAlt.cmake:42 (find_package):
+  By not providing "FindThrift.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "Thrift", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "Thrift" (requested
+  version 0.11.0) with any of the following names:
+
+    Thrift.cps
+    thrift.cps
+    ThriftConfig.cmake
+    thrift-config.cmake
+
+  Add the installation prefix of "Thrift" to CMAKE_PREFIX_PATH or set
+  "Thrift_DIR" to a directory containing one of the above files.  If "Thrift"
+  provides a separate development package or SDK, be sure it has been
+  installed.
+Call Stack (most recent call first):
+  cmake_modules/ThirdpartyToolchain.cmake:310 (find_package)
+  cmake_modules/ThirdpartyToolchain.cmake:1865 (resolve_dependency)
+  CMakeLists.txt:529 (include)
+
+
+-- Providing CMake module for FindThriftAlt as part of Parquet CMake package
+-- Using pkg-config package for thrift that is used by parquet for static link
+-- Providing CMake module for FindabslAlt as part of ArrowFlight CMake package
+-- Providing CMake module for FindProtobufAlt as part of ArrowFlight CMake package
+-- Using pkg-config package for protobuf that is used by arrow-flight for static link
+-- Found protoc: /opt/homebrew/bin/protoc-35.1.0
+-- Building (vendored) mimalloc from source
+CMake Warning at cmake_modules/FindRapidJSONAlt.cmake:31 (find_package):
+  By not providing "FindRapidJSON.cmake" in CMAKE_MODULE_PATH this project
+  has asked CMake to find a package configuration file provided by
+  "RapidJSON", but CMake did not find one.
+
+  Could not find a package configuration file provided by "RapidJSON"
+  (requested version 1.1.0) with any of the following names:
+
+    RapidJSON.cps
+    rapidjson.cps
+    RapidJSONConfig.cmake
+    rapidjson-config.cmake
+
+  Add the installation prefix of "RapidJSON" to CMAKE_PREFIX_PATH or set
+  "RapidJSON_DIR" to a directory containing one of the above files.  If
+  "RapidJSON" provides a separate development package or SDK, be sure it has
+  been installed.
+Call Stack (most recent call first):
+  cmake_modules/ThirdpartyToolchain.cmake:310 (find_package)
+  cmake_modules/ThirdpartyToolchain.cmake:2828 (resolve_dependency)
+  CMakeLists.txt:529 (include)
+
+
+-- xsimd found. Headers: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/dependencies/include
+-- Using pkg-config package for zlib that is used by arrow for static link
+CMake Warning at cmake_modules/Findlz4Alt.cmake:29 (find_package):
+  By not providing "Findlz4.cmake" in CMAKE_MODULE_PATH this project has
+  asked CMake to find a package configuration file provided by "lz4", but
+  CMake did not find one.
+
+  Could not find a package configuration file provided by "lz4" with any of
+  the following names:
+
+    lz4.cps
+    lz4Config.cmake
+    lz4-config.cmake
+
+  Add the installation prefix of "lz4" to CMAKE_PREFIX_PATH or set "lz4_DIR"
+  to a directory containing one of the above files.  If "lz4" provides a
+  separate development package or SDK, be sure it has been installed.
+Call Stack (most recent call first):
+  cmake_modules/ThirdpartyToolchain.cmake:310 (find_package)
+  cmake_modules/ThirdpartyToolchain.cmake:2980 (resolve_dependency)
+  CMakeLists.txt:529 (include)
+
+
+-- Providing CMake module for Findlz4Alt as part of Arrow CMake package
+-- Using pkg-config package for liblz4 that is used by arrow for static link
+-- Providing CMake module for FindzstdAlt as part of Arrow CMake package
+-- Using pkg-config package for libzstd that is used by arrow for static link
+-- Found Zstandard: zstd::libzstd_shared
+-- Providing CMake module for Findre2Alt as part of Arrow CMake package
+-- Using pkg-config package for re2 that is used by arrow for static link
+-- Using pkg-config package for bzip2 that is used by arrow for static link
+-- Providing CMake module for Findutf8proc as part of Arrow CMake package
+-- Using pkg-config package for libutf8proc that is used by arrow for static link
+-- Providing CMake module for FindgRPCAlt as part of ArrowFlight CMake package
+-- Using pkg-config package for grpc++ that is used by arrow-flight for static link
+-- Found hdfs.h at: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/apache-arrow-25.0.1/cpp/thirdparty/hadoop/include/hdfs.h
+-- Found AWS SDK for C++, Version: 1.11.870, Install Root:/opt/homebrew, Platform Prefix:, Platform Dependent Libraries: pthread;curl
+-- Components specified for AWSSDK: config;s3;transfer;identity-management;sts, application will be depending on libs: aws-cpp-sdk-config;aws-cpp-sdk-transfer;aws-cpp-sdk-identity-management;aws-cpp-sdk-cognito-identity;aws-cpp-sdk-sts;aws-cpp-sdk-s3;aws-cpp-sdk-core
+-- Try finding aws-cpp-sdk-core
+-- LibCrypto Include Dir: /opt/homebrew/include
+-- LibCrypto Shared Lib:  /opt/homebrew/lib/libcrypto.dylib
+-- LibCrypto Static Lib:  /opt/homebrew/lib/libcrypto.a
+-- Found aws-cpp-sdk-core
+-- Try finding aws-cpp-sdk-s3
+-- Found aws-cpp-sdk-s3
+-- Try finding aws-cpp-sdk-sts
+-- Found aws-cpp-sdk-sts
+-- Try finding aws-cpp-sdk-cognito-identity
+-- Found aws-cpp-sdk-cognito-identity
+-- Try finding aws-cpp-sdk-identity-management
+-- Found aws-cpp-sdk-identity-management
+-- Try finding aws-cpp-sdk-transfer
+-- Found aws-cpp-sdk-transfer
+-- Try finding aws-cpp-sdk-config
+-- Found aws-cpp-sdk-config
+-- Providing CMake module for FindAWSSDKAlt as part of Arrow CMake package
+-- Found AWS SDK headers: /opt/homebrew/include
+-- Found AWS SDK libraries: aws-cpp-sdk-config;aws-cpp-sdk-transfer;aws-cpp-sdk-identity-management;aws-cpp-sdk-cognito-identity;aws-cpp-sdk-sts;aws-cpp-sdk-s3;aws-cpp-sdk-core
+-- All bundled static libraries: mimalloc::mimalloc
+-- CMAKE_C_FLAGS:  -Qunused-arguments  -Wall -Wno-unknown-warning-option -Wno-pass-failed -march=armv8-a 
+-- CMAKE_CXX_FLAGS:  -fno-aligned-new  -Qunused-arguments -fcolor-diagnostics  -Wall -Wno-unknown-warning-option -Wno-pass-failed -march=armv8-a 
+-- CMAKE_C_FLAGS_RELEASE: -O3 -DNDEBUG -O2 
+-- CMAKE_CXX_FLAGS_RELEASE: -O3 -DNDEBUG -O2 
+-- Creating bundled static library target arrow_bundled_dependencies at /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/build/release/libarrow_bundled_dependencies.a
+CMake Warning (policy) at src/arrow/CMakeLists.txt:1231 (install):
+  Policy CMP0177 is not set: install() DESTINATION paths are normalized.  Run
+  "cmake --help-policy CMP0177" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+This warning is for project developers.  Use -Wno-author or -Wno-policy to
+suppress it.
+
+-- Using LLVMConfig.cmake in: /opt/homebrew/opt/llvm/lib/cmake/llvm
+-- Found llvm-link /opt/homebrew/Cellar/llvm/22.1.8_1/bin/llvm-link
+-- Found clang /opt/homebrew/Cellar/llvm/22.1.8_1/bin/clang-22
+-- Providing CMake module for FindLLVMAlt as part of Gandiva CMake package
+-- Providing CMake module for FindzstdAlt as part of Gandiva CMake package
+-- Providing CMake module for GandivaAddBitcode as part of Gandiva CMake package
+-- ---------------------------------------------------------------------
+-- Arrow version:                                 25.0.1
+-- 
+-- Build configuration summary:
+--   Generator: Unix Makefiles
+--   Build type: Release
+--   Source directory: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/apache-arrow-25.0.1/cpp
+--   Install prefix: /usr/local
+-- 
+-- Compile and link options:
+-- 
+--   ARROW_CXXFLAGS="" [default=""]
+--       Compiler flags to append when compiling Arrow
+--   ARROW_BUILD_STATIC=ON [default=ON]
+--       Build static libraries
+--   ARROW_BUILD_SHARED=ON [default=ON]
+--       Build shared libraries
+--   ARROW_PACKAGE_KIND="" [default=""]
+--       Arbitrary string that identifies the kind of package
+--       (for informational purposes)
+--   ARROW_GIT_ID=b81cae84daa65dc05513468d115381ad8402e9f4 [default=""]
+--       The Arrow git commit id (if any)
+--   ARROW_GIT_DESCRIPTION="" [default=""]
+--       The Arrow git commit description (if any)
+--   ARROW_POSITION_INDEPENDENT_CODE=ON [default=ON]
+--       Whether to create position-independent target
+--   ARROW_USE_CCACHE=ON [default=ON]
+--       Use ccache when compiling (if available)
+--   ARROW_USE_SCCACHE=ON [default=ON]
+--       Use sccache when compiling (if available),
+--       takes precedence over ccache if a storage backend is configured
+--   ARROW_USE_LLD=OFF [default=OFF]
+--       Use the LLVM lld for linking (if available)
+--   ARROW_USE_MOLD=OFF [default=OFF]
+--       Use mold for linking on Linux (if available)
+--   ARROW_SIMD_LEVEL=NEON [default=DEFAULT|NONE|SSE4_2|AVX2|AVX512|NEON|SVE|SVE128|SVE256|SVE512]
+--       Compile-time SIMD optimization level
+--   ARROW_RUNTIME_SIMD_LEVEL=NONE [default=MAX|NONE|SSE4_2|AVX2|AVX512|SVE128|SVE256|SVE512]
+--       Max runtime SIMD optimization level
+--   ARROW_ALTIVEC=ON [default=ON]
+--       Build with Altivec if compiler has support
+--   ARROW_RPATH_ORIGIN=OFF [default=OFF]
+--       Build Arrow libraries with RATH set to $ORIGIN
+--   ARROW_INSTALL_NAME_RPATH=ON [default=ON]
+--       Build Arrow libraries with install_name set to @rpath
+--   ARROW_GGDB_DEBUG=ON [default=ON]
+--       Pass -ggdb flag to debug builds
+--   ARROW_WITH_MUSL=OFF [default=OFF]
+--       Whether the system libc is musl or not
+--   ARROW_ENABLE_THREADING=ON [default=ON]
+--       Enable threading in Arrow core
+-- 
+-- Tests and benchmarks options:
+-- 
+--   ARROW_BUILD_EXAMPLES=OFF [default=OFF]
+--       Build the Arrow examples
+--   ARROW_BUILD_TESTS=OFF [default=OFF]
+--       Build the Arrow googletest unit tests
+--   ARROW_ENABLE_TIMING_TESTS=ON [default=ON]
+--       Enable timing-sensitive tests
+--   ARROW_BUILD_INTEGRATION=OFF [default=OFF]
+--       Build the Arrow integration test executables
+--   ARROW_BUILD_BENCHMARKS=OFF [default=OFF]
+--       Build the Arrow micro benchmarks
+--   ARROW_BUILD_BENCHMARKS_REFERENCE=OFF [default=OFF]
+--       Build the Arrow micro reference benchmarks
+--   ARROW_BUILD_DETAILED_BENCHMARKS=OFF [default=OFF]
+--       Build benchmarks that do a longer exploration of performance
+--   ARROW_TEST_LINKAGE=shared [default=shared|static]
+--       Linkage of Arrow libraries with unit tests executables.
+--   ARROW_BUILD_FUZZING_UTILITIES=OFF [default=OFF]
+--       Build command line utilities for fuzzing
+--   ARROW_FUZZING=OFF [default=OFF]
+--       Build Arrow fuzz targets
+--   ARROW_LARGE_MEMORY_TESTS=OFF [default=OFF]
+--       Enable unit tests which use large memory
+-- 
+-- Coverage options:
+-- 
+--   ARROW_GENERATE_COVERAGE=OFF [default=OFF]
+--       Build with C++ code coverage enabled
+-- 
+-- Checks options:
+-- 
+--   ARROW_TEST_MEMCHECK=OFF [default=OFF]
+--       Run the test suite using valgrind --tool=memcheck
+--   ARROW_USE_ASAN=OFF [default=OFF]
+--       Enable Address Sanitizer checks
+--   ARROW_USE_TSAN=OFF [default=OFF]
+--       Enable Thread Sanitizer checks
+--   ARROW_USE_UBSAN=OFF [default=OFF]
+--       Enable Undefined Behavior sanitizer checks
+-- 
+-- Project component options:
+-- 
+--   ARROW_ACERO=ON [default=OFF]
+--       Build the Arrow Acero Engine Module
+--   ARROW_AZURE=OFF [default=OFF]
+--       Build Arrow with Azure support (requires the Azure SDK for C++)
+--   ARROW_BUILD_UTILITIES=OFF [default=OFF]
+--       Build Arrow command line utilities
+--   ARROW_COMPUTE=ON [default=OFF]
+--       Build all Arrow Compute kernels
+--   ARROW_CSV=ON [default=OFF]
+--       Build the Arrow CSV Parser Module
+--   ARROW_CUDA=OFF [default=OFF]
+--       Build the Arrow CUDA extensions (requires CUDA toolkit)
+--   ARROW_DATASET=ON [default=OFF]
+--       Build the Arrow Dataset Modules
+--   ARROW_FILESYSTEM=ON [default=OFF]
+--       Build the Arrow Filesystem Layer
+--   ARROW_FLIGHT=ON [default=OFF]
+--       Build the Arrow Flight RPC System (requires GRPC, Protocol Buffers)
+--   ARROW_FLIGHT_SQL=ON [default=OFF]
+--       Build the Arrow Flight SQL extension
+--   ARROW_FLIGHT_SQL_ODBC=OFF [default=OFF]
+--       Build the Arrow Flight SQL ODBC extension
+--   ARROW_GANDIVA=ON [default=OFF]
+--       Build the Gandiva libraries
+--   ARROW_GCS=OFF [default=C++ Client Libraries)]
+--       Build Arrow with GCS support (requires the Google Cloud Platform 
+--   ARROW_HDFS=ON [default=OFF]
+--       Build the Arrow HDFS bridge
+--   ARROW_IPC=ON [default=ON]
+--       Build the Arrow IPC extensions
+--   ARROW_JEMALLOC=OFF [default=OFF]
+--       Build the Arrow jemalloc-based allocator
+--   ARROW_JSON=ON [default=OFF]
+--       Build Arrow with JSON support (requires RapidJSON)
+--   ARROW_MIMALLOC=ON [default=ON]
+--       Build the Arrow mimalloc-based allocator
+--   ARROW_PARQUET=ON [default=OFF]
+--       Build the Parquet libraries
+--   ARROW_ORC=OFF [default=OFF]
+--       Build the Arrow ORC adapter
+--   ARROW_PYTHON=OFF [default=OFF]
+--       Build some components needed by PyArrow.
+--       (This is a deprecated option. Use CMake presets instead.)
+--   ARROW_S3=ON [default=OFF]
+--       Build Arrow with S3 support (requires the AWS SDK for C++)
+--   ARROW_S3_MODULE=OFF [default=OFF]
+--       Build the Arrow S3 filesystem as a dynamic module
+--   ARROW_SUBSTRAIT=OFF [default=OFF]
+--       Build the Arrow Substrait Consumer Module
+--   ARROW_TENSORFLOW=OFF [default=OFF]
+--       Build Arrow with TensorFlow support enabled
+--   ARROW_TESTING=OFF [default=OFF]
+--       Build the Arrow testing libraries
+-- 
+-- Thirdparty toolchain options:
+-- 
+--   ARROW_DEPENDENCY_SOURCE=SYSTEM [default=CONDA|AUTO|BUNDLED|SYSTEM|VCPKG|BREW]
+--       Method to use for acquiring arrow's build dependencies
+--   ARROW_VERBOSE_THIRDPARTY_BUILD=OFF [default=OFF]
+--       Show output from ExternalProjects rather than just logging to files
+--   ARROW_DEPENDENCY_USE_SHARED=ON [default=ON]
+--       Link to shared libraries
+--   ARROW_BOOST_USE_SHARED=ON [default=ON]
+--       Rely on Boost shared libraries where relevant
+--   ARROW_BROTLI_USE_SHARED=ON [default=ON]
+--       Rely on Brotli shared libraries where relevant
+--   ARROW_BZ2_USE_SHARED=ON [default=ON]
+--       Rely on Bz2 shared libraries where relevant
+--   ARROW_GFLAGS_USE_SHARED=ON [default=ON]
+--       Rely on GFlags shared libraries where relevant
+--   ARROW_GRPC_USE_SHARED=ON [default=ON]
+--       Rely on gRPC shared libraries where relevant
+--   ARROW_JEMALLOC_USE_SHARED=ON [default=ON]
+--       Rely on jemalloc shared libraries where relevant
+--   ARROW_LLVM_USE_SHARED=ON [default=ON]
+--       Rely on LLVM shared libraries where relevant
+--   ARROW_LZ4_USE_SHARED=ON [default=ON]
+--       Rely on lz4 shared libraries where relevant
+--   ARROW_OPENSSL_USE_SHARED=ON [default=ON]
+--       Rely on OpenSSL shared libraries where relevant
+--   ARROW_PROTOBUF_USE_SHARED=ON [default=ON]
+--       Rely on Protocol Buffers shared libraries where relevant
+--   ARROW_SNAPPY_USE_SHARED=ON [default=ON]
+--       Rely on snappy shared libraries where relevant
+--   ARROW_THRIFT_USE_SHARED=ON [default=ON]
+--       Rely on thrift shared libraries where relevant
+--   ARROW_UTF8PROC_USE_SHARED=ON [default=ON]
+--       Rely on utf8proc shared libraries where relevant
+--   ARROW_ZSTD_USE_SHARED=ON [default=ON]
+--       Rely on zstd shared libraries where relevant
+--   ARROW_USE_GLOG=OFF [default=OFF]
+--       Build libraries with glog support for pluggable logging
+--   ARROW_WITH_BACKTRACE=ON [default=ON]
+--       Build with backtrace support
+--   ARROW_WITH_OPENTELEMETRY=OFF [default=OFF]
+--       Build libraries with OpenTelemetry support for distributed tracing
+--   ARROW_WITH_BROTLI=ON [default=OFF]
+--       Build with Brotli compression
+--   ARROW_WITH_BZ2=ON [default=OFF]
+--       Build with BZ2 compression
+--   ARROW_WITH_LZ4=ON [default=OFF]
+--       Build with lz4 compression
+--   ARROW_WITH_SNAPPY=ON [default=OFF]
+--       Build with Snappy compression
+--   ARROW_WITH_ZLIB=ON [default=OFF]
+--       Build with zlib compression
+--   ARROW_WITH_ZSTD=ON [default=OFF]
+--       Build with zstd compression
+--   ARROW_WITH_UTF8PROC=ON [default=ON]
+--       Build with support for Unicode properties using the utf8proc library
+--       (only used if ARROW_COMPUTE is ON or ARROW_GANDIVA is ON)
+--   ARROW_WITH_RE2=ON [default=ON]
+--       Build with support for regular expressions using the re2 library
+--       (only used if ARROW_COMPUTE or ARROW_GANDIVA is ON)
+-- 
+-- Parquet options:
+-- 
+--   PARQUET_BUILD_EXECUTABLES=OFF [default=OFF]
+--       Build the Parquet executable CLI tools.
+--   PARQUET_BUILD_EXAMPLES=OFF [default=OFF]
+--       Build the Parquet examples.
+--   PARQUET_REQUIRE_ENCRYPTION=OFF [default=OFF]
+--       Build support for encryption. Fail if OpenSSL is not found
+-- 
+-- Gandiva options:
+-- 
+--   ARROW_GANDIVA_STATIC_LIBSTDCPP=OFF [default=OFF]
+--       Include -static-libstdc++ -static-libgcc when linking with
+--       Gandiva static libraries
+--   ARROW_GANDIVA_PC_CXX_FLAGS="" [default=""]
+--       Compiler flags to append when pre-compiling Gandiva operations
+-- 
+-- Cross compiling options:
+-- 
+--   ARROW_GRPC_CPP_PLUGIN="" [default=""]
+--       grpc_cpp_plugin path to be used
+-- 
+-- Advanced developer options:
+-- 
+--   ARROW_EXTRA_ERROR_CONTEXT=OFF [default=OFF]
+--       Compile with extra error context (line numbers, code)
+--   ARROW_OPTIONAL_INSTALL=OFF [default=OFF]
+--       If enabled install ONLY targets that have already been built. Please be
+--       advised that if this is enabled 'install' will fail silently on components
+--       that have not been built
+--   ARROW_GDB_INSTALL_DIR="" [default=""]
+--       Use a custom install directory for GDB plugin.
+--       In general, you don't need to specify this because the default
+--       (CMAKE_INSTALL_FULL_BINDIR on Windows, CMAKE_INSTALL_FULL_LIBDIR otherwise)
+--       is reasonable.
+--   Outputting build configuration summary to /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/build/cmake_summary.json
+-- Configuring done (0.8s)
+-- Generating done (0.3s)
+-- Build files have been written to: /Users/antoniolopezgarcia/Documents/ChatGPT/GeoCost/release/reconstruction/arrow/build

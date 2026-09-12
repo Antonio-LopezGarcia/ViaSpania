@@ -1,0 +1,228 @@
+{
+  "access_audiences": [],
+  "access_type": "open",
+  "access_type_reason": null,
+  "access_type_reason_category": null,
+  "acronym": null,
+  "archived": null,
+  "authorization_request_url": null,
+  "badges": [],
+  "contact_points": [],
+  "created_at": "2016-02-22T17:54:11.281000+00:00",
+  "deleted": null,
+  "description": "L'IGN propose deux fichiers de référence :\n\n\n- un fichier qui présente la liste et la description des différentes références géodésiques de l’IGN : http://librairies.ign.fr/geoportail/resources/IGNF.xml\n\n\n- un fichier qui présente la liste et la description des valeurs de métadonnées proposées par la norme ISO 19115 : http://librairies.ign.fr/geoportail/resources/CodeLists.xml\n\nLes fichiers présentés ci-dessous sont librement réutilisables.",
+  "description_short": null,
+  "extras": {},
+  "featured": false,
+  "frequency": "irregular",
+  "frequency_date": "2016-02-22T00:00:00+00:00",
+  "harvest": null,
+  "id": "56cb3d3388ee382495fa79d0",
+  "internal": {
+    "created_at_internal": "2016-02-22T17:54:11.281000+00:00",
+    "last_modified_internal": "2025-08-13T09:20:38.632000+00:00"
+  },
+  "last_modified": "2025-08-13T09:20:38.632000+00:00",
+  "last_update": "2026-07-15T10:05:10.690000+00:00",
+  "license": "fr-lo",
+  "metrics": {
+    "dataservices": 0,
+    "discussions": 2,
+    "discussions_open": 0,
+    "followers": 0,
+    "followers_by_months": {
+      "2024-08": 0,
+      "2024-09": 0,
+      "2024-10": 0,
+      "2024-11": 0,
+      "2024-12": 0,
+      "2025-01": 0,
+      "2025-02": 0,
+      "2025-03": 0,
+      "2025-04": 0,
+      "2025-05": 0,
+      "2025-06": 0,
+      "2025-07": 0,
+      "2025-08": 0
+    },
+    "resources_downloads": 1106,
+    "reuses": 0,
+    "reuses_by_months": {
+      "2024-08": 0,
+      "2024-09": 0,
+      "2024-10": 0,
+      "2024-11": 0,
+      "2024-12": 0,
+      "2025-01": 0,
+      "2025-02": 0,
+      "2025-03": 0,
+      "2025-04": 0,
+      "2025-05": 0,
+      "2025-06": 0,
+      "2025-07": 0,
+      "2025-08": 0
+    },
+    "views": 4207
+  },
+  "organization": {
+    "acronym": "IGN",
+    "badges": [
+      {
+        "kind": "public-service"
+      },
+      {
+        "kind": "certified"
+      }
+    ],
+    "class": "Organization",
+    "id": "534fff80a3a7292c64a77e41",
+    "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/81/98295ded66449e80a960b8bc20e527.jpg",
+    "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/81/98295ded66449e80a960b8bc20e527-100.jpg",
+    "name": "Institut national de l'information géographique et forestière",
+    "page": "https://www.data.gouv.fr/organizations/institut-national-de-linformation-geographique-et-forestiere",
+    "permissions": {
+      "delete": false,
+      "edit": false,
+      "harvest": false,
+      "members": false,
+      "private": false
+    },
+    "slug": "institut-national-de-linformation-geographique-et-forestiere",
+    "uri": "https://www.data.gouv.fr/api/1/organizations/institut-national-de-linformation-geographique-et-forestiere/"
+  },
+  "owner": null,
+  "page": "https://www.data.gouv.fr/datasets/repertoire-de-donnees-de-reference-geodesiques-et-des-codelists-iso-19115",
+  "permissions": {
+    "delete": false,
+    "edit": false,
+    "edit_resources": false
+  },
+  "private": false,
+  "quality": {
+    "all_resources_available": true,
+    "dataset_description_quality": true,
+    "has_open_format": true,
+    "has_resources": true,
+    "license": true,
+    "resources_documentation": true,
+    "score": 1.0,
+    "spatial": true,
+    "temporal_coverage": true,
+    "update_frequency": true,
+    "update_fulfilled_in_time": true
+  },
+  "resources": [
+    {
+      "checksum": null,
+      "created_at": "2016-02-22T17:55:44.504000+00:00",
+      "description": null,
+      "extras": {
+        "analysis:checksum": "a51dd48494e7536e71b86879b7e85753941ba26b",
+        "analysis:content-length": 343012,
+        "analysis:last-modified-at": "2020-03-02T12:51:49+00:00",
+        "analysis:last-modified-detection": "last-modified-header",
+        "analysis:mime-type": "text/xml",
+        "check:available": true,
+        "check:cors:status": 200,
+        "check:count-availability": 708,
+        "check:date": "2026-02-20T00:49:30.088194+00:00",
+        "check:headers:charset": "utf-8",
+        "check:headers:content-length": 343012,
+        "check:headers:content-type": "application/xml",
+        "check:id": 42089645,
+        "check:status": 200,
+        "check:timeout": false,
+        "check:url": "http://librairies.ign.fr/geoportail/resources/CodeLists.xml"
+      },
+      "filesize": null,
+      "filetype": "remote",
+      "format": "xml",
+      "harvest": null,
+      "id": "e2381a5c-8e1a-4ec6-9bc0-b842b2feab3b",
+      "internal": {
+        "created_at_internal": "2016-02-22T17:55:44.504000+00:00",
+        "last_modified_internal": "2025-08-13T09:19:04.471000+00:00"
+      },
+      "last_modified": "2020-03-02T12:51:49+00:00",
+      "latest": "https://www.data.gouv.fr/api/1/datasets/r/e2381a5c-8e1a-4ec6-9bc0-b842b2feab3b",
+      "metrics": {
+        "nb_hits": 0,
+        "nb_uniq_visitors": 0,
+        "nb_visits": 0,
+        "views": 648
+      },
+      "mime": null,
+      "preview_url": null,
+      "schema": null,
+      "title": "Description des valeurs de métadonnées proposées par la norme ISO 19115",
+      "type": "main",
+      "url": "https://standards.iso.org/iso/19115/resources/Codelists/cat/codelists.xml"
+    },
+    {
+      "checksum": null,
+      "created_at": "2016-02-22T17:54:42.534000+00:00",
+      "description": "Le registre IGN-F décrit les systèmes de références de coordonnées utilisés par les produits de l’IGN, dans le même but que le fichier 'RIG' qu'il remplace, avec des données actualisées. Le cas échéant, il fournit en outre les correspondances avec la codification EPSG.\n",
+      "extras": {
+        "analysis:check_id": 50027380,
+        "analysis:checksum": "aa0c5b0227d85d5d93bb4399e3b72483c13cfaf1",
+        "analysis:content-length": 81825,
+        "analysis:last-modified-at": "2026-07-15T10:05:10.690801+00:00",
+        "analysis:last-modified-detection": "content-length-header",
+        "analysis:mime-type": "text/html",
+        "check:available": true,
+        "check:cors:status": 200,
+        "check:count-availability": 702,
+        "check:date": "2026-07-15T10:05:10.697849+00:00",
+        "check:headers:charset": "utf-8",
+        "check:headers:content-length": 81825,
+        "check:headers:content-type": "text/html",
+        "check:id": 50027380,
+        "check:status": 200,
+        "check:timeout": false,
+        "check:url": "http://librairies.ign.fr/geoportail/resources/IGNF.xml"
+      },
+      "filesize": null,
+      "filetype": "remote",
+      "format": "xml",
+      "harvest": null,
+      "id": "cb468e3c-d023-478f-959a-ee049157bb89",
+      "internal": {
+        "created_at_internal": "2016-02-22T17:54:42.534000+00:00",
+        "last_modified_internal": "2025-08-13T09:16:49.361000+00:00"
+      },
+      "last_modified": "2026-07-15T10:05:10.690801+00:00",
+      "latest": "https://www.data.gouv.fr/api/1/datasets/r/cb468e3c-d023-478f-959a-ee049157bb89",
+      "metrics": {
+        "nb_hits": 0,
+        "nb_uniq_visitors": 0,
+        "nb_visits": 0,
+        "views": 594
+      },
+      "mime": null,
+      "preview_url": null,
+      "schema": null,
+      "title": "Le registre IGN-F au format XML",
+      "type": "main",
+      "url": "https://geodesie.ign.fr/le-registre-ign-f-au-format-xml"
+    }
+  ],
+  "schema": null,
+  "slug": "repertoire-de-donnees-de-reference-geodesiques-et-des-codelists-iso-19115",
+  "spatial": {
+    "geom": null,
+    "granularity": "other",
+    "zones": []
+  },
+  "tags": [
+    "codelists",
+    "geodesie",
+    "metadonnees",
+    "systemes-de-reference"
+  ],
+  "temporal_coverage": {
+    "end": "2025-03-19",
+    "start": "2025-03-19"
+  },
+  "title": "Répertoire de données de référence géodésiques et des codelists ISO 19115",
+  "uri": "https://www.data.gouv.fr/api/1/datasets/repertoire-de-donnees-de-reference-geodesiques-et-des-codelists-iso-19115/"
+}

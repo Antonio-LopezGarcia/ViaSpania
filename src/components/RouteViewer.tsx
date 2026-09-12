@@ -4,7 +4,7 @@ import type { SharedMapView, StudyExtent } from './MapPanel';
 import { SurfaceAnalysisViewer } from './SurfaceAnalysisViewer';
 
 interface DisplayRoute {result:RouteResult;color:string;label:string}
-interface Props {title:string;fileBase:string;points:GeoPoint[];selectedPointId:number|null;barriers:Barrier[];corridors:PreferredCorridor[];crossings:EnabledCrossing[];routes:DisplayRoute[];showElevationProfile?:boolean;routeLegendTitle?:string;initialView:SharedMapView;studyExtent:StudyExtent;mdtImageUrl:string;onClose:()=>void}
+interface Props {title:string;points:GeoPoint[];selectedPointId:number|null;barriers:Barrier[];corridors:PreferredCorridor[];crossings:EnabledCrossing[];routes:DisplayRoute[];showElevationProfile?:boolean;routeLegendTitle?:string;initialView:SharedMapView;studyExtent:StudyExtent;mdtImageUrl:string;onClose:()=>void}
 
 export function RouteViewer({routes,showElevationProfile=true,routeLegendTitle='Rutas visibles',...props}:Props){
   const [hidden,setHidden]=useState<Set<number>>(()=>new Set()),visible=routes.filter((_,index)=>!hidden.has(index)),toggle=(index:number)=>setHidden(current=>{const next=new Set(current);if(next.has(index))next.delete(index);else next.add(index);return next});

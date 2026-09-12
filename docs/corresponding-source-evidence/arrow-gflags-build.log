@@ -1,0 +1,10 @@
+[ 12%] Building CXX object CMakeFiles/gflags_shared.dir/src/gflags.cc.o
+[ 50%] Building CXX object CMakeFiles/gflags_shared.dir/src/gflags_reporting.cc.o
+[ 50%] Building CXX object CMakeFiles/gflags_nothreads_shared.dir/src/gflags_reporting.cc.o
+[ 50%] Building CXX object CMakeFiles/gflags_nothreads_shared.dir/src/gflags.cc.o
+[ 75%] Building CXX object CMakeFiles/gflags_nothreads_shared.dir/src/gflags_completions.cc.o
+[ 75%] Building CXX object CMakeFiles/gflags_shared.dir/src/gflags_completions.cc.o
+[100%] Linking CXX shared library lib/libgflags_nothreads.dylib
+[100%] Linking CXX shared library lib/libgflags.dylib
+[100%] Built target gflags_shared
+[100%] Built target gflags_nothreads_shared

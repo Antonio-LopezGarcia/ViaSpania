@@ -250,3 +250,7 @@ The draft provides the installer together with a split, verifiable source packag
 The primary repository moved from the historical `traxtiber` account to [`Antonio-LopezGarcia/ViaSpania`](https://github.com/Antonio-LopezGarcia/ViaSpania). This GitHub ownership change does not alter the documented authorship or institutional ownership. Clone, issue and release links now use the current location.
 
 ---
+
+## Arquitectura de ViaSpania
+
+![Arquitectura de ViaSpania: interfaz y mapas, lógica geográfica, adaptadores de servicios, proveedores remotos y motor nativo Rust con GDAL/PROJ](docs/diagrams/architecture-overview.png)

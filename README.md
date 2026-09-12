@@ -1,13 +1,13 @@
 # ViaSpania
 
- [Español](#español) · [English](#english) · [Downloads / Descargas](https://github.com/traxtiber/ViaSpania/releases) · [Issues](https://github.com/traxtiber/ViaSpania/issues)
+ [Español](#español) · [English](#english) · [Downloads / Descargas](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) · [Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues)
 
 
 ## Español
 
 ViaSpania es una aplicación de escritorio para analizar costes de desplazamiento sobre el terreno, comparar rutas y explorar la topografía, con cartografía y servicios de elevación integrados. Procesa los datos geográficos localmente mediante Tauri, Rust, GDAL/PROJ, React, OpenLayers y Three.js.
 
-**Estado de publicación:** la última versión publicada comprobada el 8 de septiembre de 2026 es [v0.2.1](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1). Este README también describe cambios posteriores en desarrollo; esas funciones no están necesariamente incluidas en los instaladores publicados.
+**Estado de publicación:** la última versión publicada comprobada el 8 de septiembre de 2026 es [v0.2.1](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1). Este README también describe cambios posteriores en desarrollo; esas funciones no están necesariamente incluidas en los instaladores publicados.
 
 ### Funciones
 
@@ -31,11 +31,11 @@ ViaSpania es una aplicación de escritorio para analizar costes de desplazamient
 - Exportación 3D determinista de órbitas y seguimiento de rutas a AVI/MJPEG y GIF, fotogramas PNG, superposiciones de vídeo y perfiles de elevación. AVI sustituye a la captura MP4/WebM dependiente de cada plataforma; el vídeo de escritorio se escribe progresivamente en disco sin requerir FFmpeg.
 - Nombres de exportación más portables, mejoras de cancelación y errores, ampliación de pruebas, actualización de créditos y financiación y comprobaciones de licencias de terceros durante el empaquetado.
 
-Los cambios ya distribuidos en v0.2.1 figuran en sus [notas de versión](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1): paquetes Linux ARM64, correcciones de GDAL en Linux y de vídeo en Windows y superposición de curvas en 3D.
+Los cambios ya distribuidos en v0.2.1 figuran en sus [notas de versión](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1): paquetes Linux ARM64, correcciones de GDAL en Linux y de vídeo en Windows y superposición de curvas en 3D.
 
 ### Descargar e instalar
 
-Descargue un instalador desde **Assets** en [GitHub Releases](https://github.com/traxtiber/ViaSpania/releases). Los archivos automáticos «Source code» no son instaladores. Elija la arquitectura de su equipo:
+Descargue un instalador desde **Assets** en [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). Los archivos automáticos «Source code» no son instaladores. Elija la arquitectura de su equipo:
 
 | Sistema | Paquetes publicados en v0.2.1 | Arquitectura |
 | --- | --- | --- |
@@ -104,7 +104,7 @@ Los resultados dependen de la resolución, los supuestos del modelo, la conectiv
 Utilice **Node.js 24** y **pnpm 11.19.0**, como en CI. El desarrollo de escritorio requiere además Rust estable, los [requisitos de Tauri para cada plataforma](https://tauri.app/start/prerequisites/) y herramientas nativas GDAL/PROJ disponibles en `PATH`.
 
 ```bash
-git clone https://github.com/traxtiber/ViaSpania.git
+git clone https://github.com/Antonio-LopezGarcia/ViaSpania.git
 cd ViaSpania
 pnpm install --frozen-lockfile
 pnpm desktop:dev
@@ -136,7 +136,7 @@ Para utilizar el visor, descargue el HTML y ábralo en un navegador; GitHub mues
 
 ### Soporte, autoría y licencia
 
-Comunique problemas reproducibles en [Issues](https://github.com/traxtiber/ViaSpania/issues), indicando versión/compilación, sistema y arquitectura, pasos, fuente de datos y error exacto. Retire los datos privados antes de adjuntar archivos. Contacto: [Antonio López García](mailto:antonio.lopez@ugr.es).
+Comunique problemas reproducibles en [Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues), indicando versión/compilación, sistema y arquitectura, pasos, fuente de datos y error exacto. Retire los datos privados antes de adjuntar archivos. Contacto: [Antonio López García](mailto:antonio.lopez@ugr.es).
 
 ViaSpania
 
@@ -164,7 +164,7 @@ El logotipo propio conserva copyright separado, con permiso para redistribuirlo 
 
 ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic exploration, with integrated cartography and elevation services. It processes geographic data locally using Tauri, Rust, GDAL/PROJ, React, OpenLayers and Three.js.
 
-**Release status:** the latest published release verified on 8 September 2026 is [v0.2.1](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1). This README also describes subsequent development changes; those features are not necessarily included in the published installers.
+**Release status:** the latest published release verified on 8 September 2026 is [v0.2.1](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1). This README also describes subsequent development changes; those features are not necessarily included in the published installers.
 
 ### Features
 
@@ -188,11 +188,11 @@ ViaSpania is a desktop application for terrain-based least-cost analysis, route 
 - Deterministic 3D orbit and route-following exports to AVI/MJPEG and GIF, PNG frame export, video overlays and elevation profiles. AVI replaces the platform-dependent MP4/WebM capture path; desktop video is written progressively to disk without requiring FFmpeg.
 - More portable export filenames, improved cancellation/error handling, expanded tests, updated credits and funding acknowledgement, and third-party licence checks during packaging.
 
-For the changes already shipped in v0.2.1, see its [release notes](https://github.com/traxtiber/ViaSpania/releases/tag/v0.2.1), including Linux ARM64 packages, Linux GDAL packaging fixes, Windows video fixes and 3D contour overlays.
+For the changes already shipped in v0.2.1, see its [release notes](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1), including Linux ARM64 packages, Linux GDAL packaging fixes, Windows video fixes and 3D contour overlays.
 
 ### Download and install
 
-Download an installer from the **Assets** section of [GitHub Releases](https://github.com/traxtiber/ViaSpania/releases). The automatically generated “Source code” archives are not installers. Choose the architecture of your computer:
+Download an installer from the **Assets** section of [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). The automatically generated “Source code” archives are not installers. Choose the architecture of your computer:
 
 | System | Published v0.2.1 packages | Architecture |
 | --- | --- | --- |
@@ -261,7 +261,7 @@ Results depend on elevation resolution, model assumptions, connectivity and conf
 Use **Node.js 24** and **pnpm 11.19.0**, matching CI. Desktop development additionally requires stable Rust, the [Tauri platform prerequisites](https://tauri.app/start/prerequisites/) and native GDAL/PROJ tools available in `PATH`.
 
 ```bash
-git clone https://github.com/traxtiber/ViaSpania.git
+git clone https://github.com/Antonio-LopezGarcia/ViaSpania.git
 cd ViaSpania
 pnpm install --frozen-lockfile
 pnpm desktop:dev
@@ -283,7 +283,7 @@ Code layout: `src/components` contains the UI/maps; `src/core` contains pure geo
 
 ### Support, authorship and licence
 
-Report reproducible problems in [Issues](https://github.com/traxtiber/ViaSpania/issues), including version/build, OS and architecture, steps, data source and the exact error. Remove private project data before attaching files. Contact: [Antonio López García](mailto:antonio.lopez@ugr.es).
+Report reproducible problems in [Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues), including version/build, OS and architecture, steps, data source and the exact error. Remove private project data before attaching files. Contact: [Antonio López García](mailto:antonio.lopez@ugr.es).
 
 ViaSpania
 

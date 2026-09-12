@@ -2,7 +2,7 @@
 
 ## Alcance y método
 
-Este documento reconstruye el desarrollo de ViaSpania anterior a su primera publicación en GitHub. El periodo documentado comienza el 17 de agosto de 2026, cuando se inició la construcción de una herramienta llamada **GeoCost**, y termina el 27 de agosto de 2026, fecha del primer commit público y de la preparación de ViaSpania 0.2.0.
+Este documento reconstruye el desarrollo de ViaSpania anterior a su primera publicación en GitHub. El periodo documentado comienza el 17 de agosto de 2026, cuando se inició la construcción de una herramienta llamada provisionalmente **GeoCost**, y termina el 27 de agosto de 2026, fecha del primer commit público y de la preparación de ViaSpania 0.2.0.
 
 Durante este periodo no se mantuvo un historial Git incremental. El primer commit (`d5ded69`, *Initial commit*) incorporó de una vez 208 archivos y aproximadamente 20.000 líneas. Por ello, la secuencia se ha reconstruido a partir de:
 
@@ -38,7 +38,7 @@ La etapa 0.1.0 duró aproximadamente diez días y fue mucho más que un prototip
 - configuración persistente, ayuda, tutorial, créditos y una primera web de presentación;
 - un bundle macOS autónomo con sus dependencias geoespaciales.
 
-El nombre **GeoCost** se utilizó hasta el 25 de agosto. Ese día el producto, los identificadores internos, iconos, documentación y extensiones propias se renombraron como **ViaSpania**.
+El nombre provisional **GeoCost** se utilizó hasta el 25 de agosto. Ese día el producto, los identificadores internos, iconos, documentación y extensiones propias se renombraron como **ViaSpania**.
 
 ## Cronología reconstruida
 
@@ -213,7 +213,7 @@ Los informes recibieron prefijos por modo (`RSimple`, `RComp`, `MultiPn`, `Multi
 
 Se corrigió un cierre de WebKit al mostrar curvas de nivel densas. En lugar de crear un objeto Three.js por segmento, las curvas pasaron a agruparse por cota en geometrías compartidas. La visualización se limitó a 120.000 segmentos muestreados uniformemente, mientras el cálculo y las exportaciones conservaron todos los datos.
 
-#### Cambio de nombre GeoCost → ViaSpania — confirmado
+#### Cambio de nombre provisional GeoCost a ViaSpania — confirmado
 
 El 25 de agosto se cambió el nombre del producto en:
 
@@ -314,34 +314,3 @@ No se conservan todos los binarios intermedios, pero las sesiones permiten ident
 | 25 ago. | `ViaSpania.app` | Renombrado completo, 72 pruebas web y 15 Rust | Confirmado |
 | 25 ago. | `ViaSpania.app` autónomo | GDAL/PROJ incluidos, unos 959 MB, 81 pruebas web y 15 Rust | Confirmado |
 | 26 ago. | ViaSpania en desarrollo | MDS, Copernicus, WMS/WMTS, sonidos, ayuda y web; hasta 96 pruebas | Confirmado |
-
-Los tamaños citados proceden de compilaciones concretas y no deben interpretarse como tamaños oficiales de una release.
-
-## Funciones solicitadas cuya finalización no debe darse por supuesta
-
-El historial contiene propuestas y exploraciones que no equivalen necesariamente a una implementación cerrada. Entre ellas:
-
-- soporte regional completo para numerosos países europeos;
-- actualización automática de la aplicación;
-- firma Developer ID y notarización de macOS;
-- distribución pública plenamente auditada desde el punto de vista de licencias;
-- modo combinatorio de visita única para puntos de interés;
-- fuentes históricas nacionales italianas incorporadas de fábrica;
-- paridad nativa completamente probada en Windows y Linux antes de 0.2.0.
-
-Estas líneas no deben figurar como características terminadas de la 0.1.0 sin evidencia adicional.
-
-## Limitaciones de la reconstrucción
-
-1. El repositorio no conserva commits anteriores al snapshot del 27 de agosto.
-2. Las sucesivas compilaciones sobrescribían normalmente el bundle anterior.
-3. Los mensajes de sesión prueban que se ejecutaron determinadas acciones, pero no sustituyen un artefacto firmado con checksum.
-4. Una función pudo incorporarse, corregirse y volver a modificarse dentro de una misma jornada.
-5. El primer commit permite confirmar el estado final, pero no siempre asignar cada línea a una compilación concreta.
-6. La denominación 0.1.0 se mantuvo durante todo el periodo; los hitos descritos no fueron releases SemVer independientes.
-
-## Conclusión
-
-La 0.1.0 fue una fase privada de desarrollo acelerado comprendida entre el 17 y el 27 de agosto de 2026. Comenzó como una aplicación web llamada GeoCost y terminó como ViaSpania: una aplicación de escritorio con backend geoespacial nativo, análisis de coste y terreno, múltiples visores, persistencia, exportaciones, ayuda y empaquetado autónomo para macOS.
-
-La evidencia disponible permite reconstruir con confianza alta las grandes etapas y muchas compilaciones concretas. No permite recuperar todos los binarios ni establecer una numeración retrospectiva exacta. Si se desea etiquetar estos hitos en documentación pública, sería más riguroso usar nombres como **prototipo inicial**, **primera compilación nativa**, **GeoCost 0.1.0 tardía** y **ViaSpania 0.1.0**, evitando inventar versiones que nunca constaron en los manifiestos.

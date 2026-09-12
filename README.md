@@ -7,8 +7,6 @@
 
 ViaSpania es una aplicación de escritorio para analizar costes de desplazamiento sobre el terreno, comparar rutas y explorar la topografía, con cartografía y servicios de elevación integrados. Procesa los datos geográficos localmente mediante Tauri, Rust, GDAL/PROJ, React, OpenLayers y Three.js.
 
-**Estado de publicación:** [ViaSpania 0.2.2](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) está preparado como borrador/prerelease validado sobre `main`, con instaladores para macOS, Windows y Linux y sus fuentes correspondientes. Mientras el borrador no se publique, la última versión pública estable continúa siendo [v0.2.1](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1).
-
 ### Funciones
 
 - Cuatro mapas sincronizados con visores ampliables, OpenStreetMap, PNOA, cartografía moderna e histórica del IGN/CNIG, imágenes Copernicus y capas XYZ/WMS/WMTS personalizadas.
@@ -99,41 +97,6 @@ Los cálculos se ejecutan localmente. Los mapas, las descargas de elevación y l
 
 Los resultados dependen de la resolución, los supuestos del modelo, la conectividad y las restricciones configuradas. Las alternativas subóptimas no son las *k* rutas más cortas exactas; las visitas obligatorias no optimizan globalmente el orden de visita. Los costes en tiempo, energía y unidades relativas no son directamente comparables. La elevación no acredita caminos, permisos, cobertura del suelo ni condiciones seguras de paso. ViaSpania no sirve para navegación de emergencia.
 
-### Desarrollo
-
-Utilice **Node.js 24** y **pnpm 11.19.0**, como en CI. El desarrollo de escritorio requiere además Rust estable, los [requisitos de Tauri para cada plataforma](https://tauri.app/start/prerequisites/) y herramientas nativas GDAL/PROJ disponibles en `PATH`.
-
-```bash
-git clone https://github.com/Antonio-LopezGarcia/ViaSpania.git
-cd ViaSpania
-pnpm install --frozen-lockfile
-pnpm desktop:dev
-```
-
-| Comando | Función |
-| --- | --- |
-| `pnpm dev` | Desarrollo del frontend web; las operaciones geoespaciales nativas requieren la aplicación de escritorio |
-| `pnpm test` | Pruebas deterministas de TypeScript/React |
-| `pnpm build` | Comprobación de tipos y compilación web de producción |
-| `pnpm preview` | Previsualización de la compilación web |
-| `cargo test --manifest-path src-tauri/Cargo.toml` | Pruebas Rust |
-| `pnpm desktop:build` | Preparar recursos GDAL/PROJ y generar instaladores nativos |
-| `pnpm desktop:build:macos` / `:windows` / `:linux` | Generar formatos de cada plataforma en su sistema correspondiente |
-
-Los instaladores se generan en `src-tauri/target/release/bundle/`. Consulte los requisitos nativos en la [guía de empaquetado](docs/desktop-portability.md). `pnpm desktop:build:signed:macos` solo aplica firma ad hoc local. El empaquetado también comprueba requisitos de licencias de terceros; revise la [auditoría de publicación](docs/release-license-audit.md) antes de distribuir.
-
-Estructura: `src/components` contiene interfaz/mapas; `src/core`, lógica geográfica pura; `src/services`, adaptadores de proveedores y del motor nativo; `src-tauri`, el backend Rust; y `public/fixtures`, respuestas de servicios para pruebas deterministas. Consulte la [arquitectura](docs/ARCHITECTURE.md), la [auditoría de modelos](docs/model-audit.md) y las [notas científicas](docs/research.md).
-
-### Árbol de arquitectura
-
-Este árbol resume las capas descritas en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): interfaz compartida entre web y escritorio, lógica geográfica, adaptadores de servicios y motor nativo Rust con GDAL/PROJ. Las flechas muestran las principales llamadas entre capas; el procesamiento nativo requiere el entorno de escritorio.
-
-[![Árbol de arquitectura de ViaSpania: interfaz React y OpenLayers, lógica geográfica, adaptadores HTTP y Tauri IPC, motor Rust y GDAL/PROJ](docs/diagrams/architecture.visual-check.2048x1320.light.png)](docs/diagrams/architecture.html)
-
-[Diagrama interactivo de Archify](docs/diagrams/architecture.html) · [Especificación editable](docs/diagrams/architecture.json) · [Validación y reproducción](docs/diagrams/README.md)
-
-Para utilizar el visor, descargue el HTML y ábralo en un navegador; GitHub muestra su código fuente. El contenido del diagrama está en español; los controles fijos del visor y su atributo de idioma utilizan el inglés predeterminado de Archify.
-
 ### Soporte, autoría y licencia
 
 Comunique problemas reproducibles en [Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues), indicando versión/compilación, sistema y arquitectura, pasos, fuente de datos y error exacto. Retire los datos privados antes de adjuntar archivos. Contacto: [Antonio López García](mailto:antonio.lopez@ugr.es).
@@ -167,8 +130,6 @@ El logotipo propio conserva copyright separado, con permiso para redistribuirlo 
 ## English
 
 ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic exploration, with integrated cartography and elevation services. It processes geographic data locally using Tauri, Rust, GDAL/PROJ, React, OpenLayers and Three.js.
-
-**Release status:** [ViaSpania 0.2.2](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) is prepared as a validated draft/prerelease from `main`, with macOS, Windows and Linux installers and corresponding source. Until that draft is published, [v0.2.1](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.1) remains the latest public stable release.
 
 ### Features
 
@@ -259,31 +220,6 @@ See the [English manual](docs/manual.en.md) for the full workflow. ViaSpania 0.2
 Calculations run locally. Map tiles, elevation downloads and place-name searches require network access and contact their respective providers. GeoNames searches send the entered term and use a shared project quota; coordinate input is parsed locally. Custom layers have their own availability, attribution and access conditions.
 
 Results depend on elevation resolution, model assumptions, connectivity and configured constraints. Sub-optimal alternatives are not exact *k*-shortest paths; mandatory visits do not globally optimise visit order. Costs expressed in time, energy and relative units cannot be compared directly. Elevation does not establish paths, legal access, land cover or safe passage. ViaSpania is not an emergency-navigation system.
-
-### Development
-
-Use **Node.js 24** and **pnpm 11.19.0**, matching CI. Desktop development additionally requires stable Rust, the [Tauri platform prerequisites](https://tauri.app/start/prerequisites/) and native GDAL/PROJ tools available in `PATH`.
-
-```bash
-git clone https://github.com/Antonio-LopezGarcia/ViaSpania.git
-cd ViaSpania
-pnpm install --frozen-lockfile
-pnpm desktop:dev
-```
-
-| Command | Purpose |
-| --- | --- |
-| `pnpm dev` | Web frontend development; native geospatial operations require the desktop app |
-| `pnpm test` | Deterministic TypeScript/React tests |
-| `pnpm build` | Type checking and production web build |
-| `pnpm preview` | Preview the web build |
-| `cargo test --manifest-path src-tauri/Cargo.toml` | Rust tests |
-| `pnpm desktop:build` | Prepare GDAL/PROJ resources and build native installers |
-| `pnpm desktop:build:macos` / `:windows` / `:linux` | Build platform-specific package formats on the corresponding host |
-
-Installers are written under `src-tauri/target/release/bundle/`. See the [packaging guide](docs/desktop-portability.md) for native requirements. `pnpm desktop:build:signed:macos` applies local ad hoc signing only. Packaging also checks third-party licence requirements; review the [release audit](docs/release-license-audit.md) before distribution.
-
-Code layout: `src/components` contains the UI/maps; `src/core` contains pure geographic logic; `src/services` contains provider/native adapters; `src-tauri` contains the Rust backend; `public/fixtures` contains deterministic service fixtures. See [architecture](docs/ARCHITECTURE.md), [model audit](docs/model-audit.md) and [research notes](docs/research.md).
 
 ### Support, authorship and licence
 

@@ -259,4 +259,4 @@ The primary repository moved from the historical `traxtiber` account to [`Antoni
 
 Vista de un recorrido sobre el terreno con su perfil de elevación, exportada desde ViaSpania.
 
-![Animación de un recorrido 3D en ViaSpania con perfil de elevación y atribución del MDT25 del IGN/CNIG](docs/images/terrain-flyover.gif)
+https://github.com/user-attachments/assets/de505214-9d69-454b-a74c-b7692f360993

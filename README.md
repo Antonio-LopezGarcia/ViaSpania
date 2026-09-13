@@ -2,6 +2,7 @@
 
  [Español](#español) · [English](#english) · [Downloads / Descargas](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) · [Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues)
 
+https://github.com/user-attachments/assets/de505214-9d69-454b-a74c-b7692f360993
 
 ## Español
 
@@ -254,9 +255,3 @@ The primary repository moved from the historical `traxtiber` account to [`Antoni
 ## Arquitectura de ViaSpania
 
 ![Arquitectura de ViaSpania: interfaz y mapas, lógica geográfica, adaptadores de servicios, proveedores remotos y motor nativo Rust con GDAL/PROJ](docs/diagrams/architecture-overview.png)
-
-## Recorrido 3D animado
-
-Vista de un recorrido sobre el terreno con su perfil de elevación, exportada desde ViaSpania.
-
-https://github.com/user-attachments/assets/de505214-9d69-454b-a74c-b7692f360993

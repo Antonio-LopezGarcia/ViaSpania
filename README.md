@@ -2,8 +2,6 @@
 
  [Español](#español) · [English](#english) · [Downloads / Descargas](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) · [Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues)
 
-https://github.com/user-attachments/assets/de505214-9d69-454b-a74c-b7692f360993
-
 https://github.com/user-attachments/assets/ee2ea6d8-2c74-4082-ab1c-d10cbf481d35
 
 ## Español
@@ -131,6 +129,8 @@ El repositorio principal se trasladó de la cuenta histórica `traxtiber` a [`An
 El logotipo propio conserva copyright separado, con permiso para redistribuirlo sin modificar junto con ViaSpania, también en copias comerciales y versiones modificadas claramente identificadas. Véanse [las condiciones de assets](docs/ASSETS.md). Los logotipos MICIU/UE/AEI se conservan como reconocimiento de la financiación original.
 
 ## English
+
+https://github.com/user-attachments/assets/de505214-9d69-454b-a74c-b7692f360993
 
 ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic exploration, with integrated cartography and elevation services. It processes geographic data locally using Tauri, Rust, GDAL/PROJ, React, OpenLayers and Three.js.
 

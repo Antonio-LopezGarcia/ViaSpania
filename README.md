@@ -4,6 +4,8 @@
 
 https://github.com/user-attachments/assets/de505214-9d69-454b-a74c-b7692f360993
 
+https://github.com/user-attachments/assets/ee2ea6d8-2c74-4082-ab1c-d10cbf481d35
+
 ## Español
 
 ViaSpania es una aplicación de escritorio para analizar costes de desplazamiento sobre el terreno, comparar rutas y explorar la topografía, con cartografía y servicios de elevación integrados. Procesa los datos geográficos localmente mediante Tauri, Rust, GDAL/PROJ, React, OpenLayers y Three.js.

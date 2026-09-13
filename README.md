@@ -130,7 +130,7 @@ El logotipo propio conserva copyright separado, con permiso para redistribuirlo 
 
 ## English
 
-https://github.com/user-attachments/assets/de505214-9d69-454b-a74c-b7692f360993
+https://github.com/user-attachments/assets/30de8dae-7c5e-4916-ad62-112b4db818fd
 
 ViaSpania is a desktop application for terrain-based least-cost analysis, route comparison and topographic exploration, with integrated cartography and elevation services. It processes geographic data locally using Tauri, Rust, GDAL/PROJ, React, OpenLayers and Three.js.
 

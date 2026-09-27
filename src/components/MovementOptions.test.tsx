@@ -5,7 +5,7 @@ import {MovementOptions} from './MovementOptions';
 import {MODELS} from '../core/costModels';
 import type {ModelId} from '../types';
 afterEach(cleanup);
-const defaults={model:'tobler' as const,onModel:vi.fn(),onComparisonModels:vi.fn(),connectivity:8 as const,onConnectivity:vi.fn(),rankEnabled:false,onRankEnabled:vi.fn(),rankCount:3,onRankCount:vi.fn(),rankPenalty:0.01,onRankPenalty:vi.fn(),criticalSlope:10,onCriticalSlope:vi.fn(),ardigoSpeed:1.2,onArdigoSpeed:vi.fn()};
+const defaults={model:'tobler' as const,onModel:vi.fn(),onComparisonModels:vi.fn(),connectivity:8 as const,onConnectivity:vi.fn(),rankEnabled:false,onRankEnabled:vi.fn(),rankCount:3,onRankCount:vi.fn(),rankPenalty:0.01,onRankPenalty:vi.fn(),criticalSlope:10,onCriticalSlope:vi.fn(),ardigoSpeed:1.2,onArdigoSpeed:vi.fn(),icSex:'male' as const,onIcSex:vi.fn(),icContext:'paths' as const,onIcContext:vi.fn()};
 it('ofrece todos los perfiles y las tres conectividades en el panel',()=>{
  render(<MovementOptions {...defaults}/>);
  expect(screen.getByRole('region',{name:'Opciones de desplazamiento'})).toBeTruthy();
@@ -15,6 +15,13 @@ it('ofrece todos los perfiles y las tres conectividades en el panel',()=>{
  expect(screen.queryByLabelText(/Velocidad Ardigò/)).toBeNull();
  fireEvent.click(screen.getByLabelText('Calcular rutas subóptimas'));
  expect(defaults.onRankEnabled).toHaveBeenCalledWith(true);
+});
+it('solo muestra las opciones específicas de Irmischer–Clarke y las oculta al cambiar de perfil',()=>{
+ const {rerender}=render(<MovementOptions {...defaults} model="irmischer-clarke"/>);
+ expect(screen.getByLabelText('Sexo/modelo')).toBeTruthy();expect(screen.getByLabelText('Contexto de desplazamiento')).toBeTruthy();
+ fireEvent.change(screen.getByLabelText('Sexo/modelo'),{target:{value:'female'}});expect(defaults.onIcSex).toHaveBeenCalledWith('female');
+ fireEvent.change(screen.getByLabelText('Contexto de desplazamiento'),{target:{value:'off-path'}});expect(defaults.onIcContext).toHaveBeenCalledWith('off-path');
+ rerender(<MovementOptions {...defaults}/>);expect(screen.queryByLabelText('Sexo/modelo')).toBeNull();expect(screen.queryByLabelText('Contexto de desplazamiento')).toBeNull();
 });
 it('ordena las alternativas antes de pendiente y velocidad y aplica la separación',()=>{
  render(<MovementOptions {...defaults} rankEnabled comparisonModels={['wheeled','ardigo']}/>);
@@ -31,6 +38,15 @@ it('en comparación ignora el perfil individual y muestra solo opciones de perfi
  rerender(<MovementOptions {...defaults} comparisonModels={Object.keys(MODELS) as ModelId[]}/>);
  expect(screen.getByLabelText(/Velocidad Ardigò/)).toBeTruthy();
  expect(screen.getByLabelText(/Pendiente crítica/)).toBeTruthy();
+ expect(screen.getByLabelText('Sexo/modelo')).toBeTruthy();
+ expect(screen.getByLabelText('Contexto de desplazamiento')).toBeTruthy();
+ fireEvent.change(screen.getByLabelText('Sexo/modelo'),{target:{value:'female'}});
+ fireEvent.change(screen.getByLabelText('Contexto de desplazamiento'),{target:{value:'off-path'}});
+ expect(defaults.onIcSex).toHaveBeenCalledWith('female');
+ expect(defaults.onIcContext).toHaveBeenCalledWith('off-path');
+ rerender(<MovementOptions {...defaults} comparisonModels={['wheeled','ardigo']}/>);
+ expect(screen.queryByLabelText('Sexo/modelo')).toBeNull();
+ expect(screen.queryByLabelText('Contexto de desplazamiento')).toBeNull();
 });
 it('aplica las tres velocidades y limita el valor configurable a 0,2–15 m/s',()=>{
  const onArdigoSpeed=vi.fn();render(<MovementOptions {...defaults} model="ardigo" onArdigoSpeed={onArdigoSpeed}/>);

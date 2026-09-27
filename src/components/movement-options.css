@@ -6,6 +6,22 @@
 .movement-options .comparison-model-disclosure { min-width:0; }
 .movement-options .comparison-model-disclosure summary { cursor:pointer;font-size:11px;line-height:1.5; }
 .movement-options .hint { display:block;line-height:1.5; }
+.movement-options>.movement-option-group { display:grid;gap:7px;padding-top:8px;border-top:1px solid rgba(255,255,255,.1); }
+.movement-options .movement-alternatives { padding-top:8px; }
+.movement-options .movement-profile-parameters>b { color:#e5eee8;font-size:12px;font-weight:700; }
+.movement-options .movement-profile-parameters-grid { display:grid;grid-template-columns:minmax(0,1fr);gap:8px;align-items:start;justify-items:stretch; }
+.movement-options .movement-profile-parameters-grid>label { min-width:0; }
+.movement-options .movement-parameter-card { display:grid;gap:6px;width:100%;min-width:0;justify-self:stretch;padding:8px;border:1px solid rgba(255,255,255,.08);border-radius:6px;background:rgba(255,255,255,.025); }
+.movement-options .movement-parameter-card>b { color:#c5d0c9;font-size:10px;font-weight:700; }
+.movement-options .movement-parameter-card>b { text-align:left; }
+.movement-options .movement-parameter-card>label { grid-template-columns:minmax(0,1fr) 80px 32px;justify-items:stretch; }
+.movement-options .movement-parameter-card>label input { grid-column:2;justify-self:stretch;width:100%; }
+.movement-options .movement-parameter-card>label span { grid-column:3;justify-self:start; }
+.movement-options .movement-ardigo .speed-presets { margin-top:5px; }
+.movement-options .movement-ardigo .speed-presets { display:grid;grid-template-columns:repeat(3,minmax(0,1fr)); }
+.movement-options .movement-ardigo .speed-presets button { min-width:0;padding-inline:4px;line-height:1.35; }
+.movement-options .movement-ardigo .hint { margin-top:2px;color:#aab6ae; }
+.movement-options .movement-ardigo .hint { text-align:left; }
 .movement-options .comparison-route-profiles input[type=checkbox] { appearance:none;flex:0 0 28px;width:28px;height:16px;padding:0;border-radius:10px;background:#35433c;cursor:pointer;position:relative; }
 .movement-options .comparison-route-profiles input[type=checkbox]::after { content:'';position:absolute;width:10px;height:10px;left:2px;top:2px;border-radius:50%;background:#e5eee8; }
 .movement-options .comparison-route-profiles input[type=checkbox]:checked { background:#d8ff55; }
@@ -15,3 +31,4 @@
 .movement-profile-control{display:flex;align-items:center;gap:8px}.movement-profile-control>label{flex:1;min-width:0}.profile-help-trigger{flex:none;width:25px;height:25px;padding:0;border:1px solid #617067;border-radius:50%;color:#d8ff55;font-size:15px;font-weight:800}
 
 .comparison-profile-selection .movement-profile-control>label{padding-bottom:0;border-bottom:0;font-weight:400}
+.comparison-profile-category{display:grid;gap:.35rem}.comparison-profile-category>b{padding-top:.45rem;color:#d8ff55;font-size:10px}.comparison-profile-category+.comparison-profile-category{margin-top:.35rem;border-top:1px solid rgba(255,255,255,.12)}

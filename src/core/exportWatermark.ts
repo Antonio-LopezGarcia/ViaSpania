@@ -2,7 +2,7 @@ export interface WatermarkLayout {x:number;y:number;width:number;height:number;p
 
 export function exportWatermarkLayout(width:number,height:number):WatermarkLayout{
   const shortest=Math.max(1,Math.min(width,height)),scale=Math.max(.55,Math.min(1.5,shortest/720)),padding=Math.round(8*scale),logoSize=Math.round(28*scale),fontSize=Math.round(15*scale),watermarkWidth=Math.round(128*scale),watermarkHeight=logoSize+padding*2,margin=Math.round(12*scale);
-  return{x:Math.max(0,width-watermarkWidth-margin),y:Math.max(0,height-watermarkHeight-margin),width:Math.min(width,watermarkWidth),height:Math.min(height,watermarkHeight),padding,logoSize,fontSize};
+  return{x:Math.max(0,width-watermarkWidth-margin),y:Math.max(0,height-watermarkHeight-margin),width:Math.min(width,watermarkWidth),height:watermarkHeight,padding,logoSize,fontSize};
 }
 
 export function drawViaSpaniaWatermark(context:CanvasRenderingContext2D,width:number,height:number){
@@ -30,4 +30,3 @@ export function drawViaSpaniaWatermark(context:CanvasRenderingContext2D,width:nu
   context.fillText('ViaSpania',logoX+layout.logoSize+layout.padding,layout.y+layout.height/2);
   context.restore();
 }
-

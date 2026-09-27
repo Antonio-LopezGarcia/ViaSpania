@@ -1,7 +1,7 @@
 .point-tools {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
   width: 148px;
   max-width: calc(100% - 20px);
   padding: 6px;
@@ -21,6 +21,17 @@
   border-color: #46534c;
   background: #121b17;
   font-size: 10px;
+}
+
+.point-tool-symbol {
+  display: inline-block;
+  width: 18px;
+  margin-right: 4px;
+  text-align: center;
+}
+
+.point-tool-symbol .tool-icon {
+  vertical-align: -2px;
 }
 
 .point-tools button.active,
@@ -80,6 +91,17 @@
   font-size: 10px;
 }
 
+.nav-tool-symbol {
+  display: inline-block;
+  width: 18px;
+  margin-right: 4px;
+  text-align: center;
+}
+
+.nav-tool-symbol svg {
+  vertical-align: -2px;
+}
+
 .nav-area-tools .area-tool.active {
   background: #d8ff55;
   color: #111;
@@ -87,6 +109,7 @@
 }
 
 .nav-area-tools .model-load-toggle {
+  width: auto;
   font-size: 10px;
 }
 

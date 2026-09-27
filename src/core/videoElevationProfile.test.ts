@@ -11,7 +11,7 @@ it('traduce los títulos dibujados directamente en el vídeo',async()=>{
  const {setLanguage}=await import('./i18n');setLanguage('en');
  const fillText=vi.fn(),context=new Proxy({fillText},{get:(target,key)=>key==='fillText'?target.fillText:vi.fn(),set:()=>true}) as unknown as CanvasRenderingContext2D;
  drawAnimatedElevationProfile(context,1280,720,videoProfileSeries([{label:'A',color:'#fff',coordinates:[[0,0],[.01,0]],elevationsM:[10,20]}]),.5);
- expect(fillText).toHaveBeenCalledWith('Elevation profile',expect.any(Number),expect.any(Number));expect(fillText.mock.calls.some(call=>String(call[0]).startsWith('Distance ·'))).toBe(true);setLanguage('es');
+ expect(fillText).toHaveBeenCalledWith('Elevation profile',expect.any(Number),expect.any(Number));expect(fillText.mock.calls.some(call=>String(call[0])==='Distance (km)')).toBe(true);setLanguage('es');
 });
 
 it('reserva espacio bajo el perfil para créditos de varias líneas',()=>{

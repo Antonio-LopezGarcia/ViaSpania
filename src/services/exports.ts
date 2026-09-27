@@ -65,7 +65,9 @@ export async function savePngExport(dataUrl:string,defaultName:string) {
   const image=await new Promise<HTMLImageElement>((resolve,reject)=>{const value=new Image();value.onload=()=>resolve(value);value.onerror=()=>reject(new Error('No se pudo preparar la imagen exportada'));value.src=dataUrl}),canvas=document.createElement('canvas'),context=canvas.getContext('2d');
   if(!context||!image.naturalWidth)throw new Error('El visor no produjo una imagen PNG válida');
   canvas.width=image.naturalWidth;canvas.height=image.naturalHeight;context.drawImage(image,0,0);drawViaSpaniaWatermark(context,canvas.width,canvas.height);
-  const base64=canvas.toDataURL('image/png').split(',')[1];
+  const blob=await new Promise<Blob|null>(resolve=>canvas.toBlob(resolve,'image/png'));
+  if(!blob)throw new Error('No se pudo codificar la imagen PNG');
+  const base64=await new Promise<string>((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(',')[1]??'');reader.onerror=()=>reject(new Error('No se pudo codificar la imagen PNG'));reader.readAsDataURL(blob)});
   if(!base64)throw new Error('No se pudo codificar la imagen PNG');
   return invoke<string>('save_export_file',{path,text:null,base64});
 }

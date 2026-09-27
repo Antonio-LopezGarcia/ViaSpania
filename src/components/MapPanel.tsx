@@ -79,7 +79,7 @@ interface MapPanelProps {
   routeCoordinates?: [number, number][];
   routeSlopesPercent?: number[];
   routeOverlays?: { id: string; coordinates: [number,number][]; color: string }[];
-  isochroneLines?: { level:number; coordinates:[number,number][] }[];
+  isochroneLines?: { level:number; coordinates:[number,number][]; color?:string }[];
   isochroneSurface?: {imageUrl:string;extent:StudyExtent;opacity:number};
   barriers?: Barrier[];
   corridors?: PreferredCorridor[];
@@ -380,7 +380,7 @@ export function MapPanel(props: MapPanelProps) {
   useEffect(()=>{
     const source=isochroneSourceRef.current;source.clear();
     const lines=props.isochroneLines??[],levels=[...new Set(lines.map(line=>line.level))].sort((a,b)=>a-b);
-    for(const [index,level] of levels.entries()){const segments=lines.filter(line=>line.level===level&&line.coordinates.length>=2).map(line=>line.coordinates.map(coordinate=>fromLonLat(coordinate)));if(!segments.length)continue;const feature=new Feature(new MultiLineString(segments));const ratio=levels.length<2?1:index/(levels.length-1);feature.set('color',`hsl(${205-ratio*165} 95% 58%)`);source.addFeature(feature)}
+    for(const [index,level] of levels.entries()){const segments=lines.filter(line=>line.level===level&&line.coordinates.length>=2).map(line=>line.coordinates.map(coordinate=>fromLonLat(coordinate)));if(!segments.length)continue;const feature=new Feature(new MultiLineString(segments));const lineColor=lines.find(line=>line.level===level)?.color,ratio=levels.length<2?1:index/(levels.length-1);feature.set('color',lineColor??`hsl(${205-ratio*165} 95% 58%)`);source.addFeature(feature)}
   },[props.isochroneLines]);
 
   useEffect(() => {

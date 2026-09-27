@@ -19,9 +19,9 @@ ViaSpania es una aplicación de escritorio para analizar costes de desplazamient
 - Proyectos JSON locales, importación de puntos CSV/GeoJSON, exportaciones vectoriales y ráster y compositor de informes PDF con atribución de fuentes.
 - Terreno 3D interactivo con superposición de resultados y exportación de animaciones.
 
-### Próxima versión · cambios desde v0.2.2 (v0.2.3)
+### Novedades de v0.2.3
 
-La próxima versión está en preparación. Estas novedades describen el estado actual del repositorio; los instaladores y las instrucciones de instalación de abajo corresponden a v0.2.2.
+Esta versión reúne los cambios posteriores a v0.2.2. Descargue los instaladores de v0.2.3 desde **Assets** en [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases); si una plataforma todavía no tiene paquete 0.2.3, use el instalador 0.2.2 indicado en la tabla de descargas.
 
 - **Modelos y análisis de mayor tamaño.** Descarga WCS por bloques para MDT05, MDT25, MDT200 y MDS05, con un máximo común de **67.928.064 celdas** para modelos descargados o importados, rutas, isócronas, pasillos, visibilidad y curvas de nivel. Se optimiza el uso de memoria sin reducir la resolución del análisis para ajustarse al límite. La preferencia de procesado puede imponer un máximo inferior y se comprueba la RAM disponible; las preferencias existentes no se elevan automáticamente. Véanse los [límites de elevación](docs/design-notes/elevation-model-limits.md) y los [análisis grandes](docs/design-notes/large-raster-analyses.md).
 - **Flujo de puntos y autoguardado.** «Crear punto» unifica los puntos iniciales, finales y multipunto: añade puntos numerados y de distintos colores, reordenables con Subir/Bajar. Ruta secuencial es el análisis predeterminado y conecta puntos consecutivos; la Matriz de conexiones utiliza todos los puntos, eliminando el antiguo tope de ocho. Se conserva la compatibilidad con proyectos anteriores y el orden de importación CSV/GeoJSON; los PDI se crean por separado. Los proyectos se guardan automáticamente para reducir la pérdida de trabajo.
@@ -29,9 +29,12 @@ La próxima versión está en preparación. Estas novedades describen el estado 
 - **Mapa LiDAR del IGN.** Nuevo fondo disponible en mapas, cálculos, comparación, texturas 3D e informes, con atribución IGN/CNIG y PNOA-LiDAR. Es cartografía de referencia visual; no añade clasificación automática de barreras o facilitadores. Véanse las [notas del mapa LiDAR](docs/design-notes/ign-lidar-map.md).
 - **Exportación MP4.** El diálogo de vídeo permite elegir AVI o MP4; la conversión a MP4/H.264 utiliza el FFmpeg incluido en la aplicación. Si falla la conversión, se conserva el AVI para recuperarlo. Continúan las exportaciones GIF y PNG. La compilación y prueba real del conversor están verificadas en macOS ARM64; falta validar Linux y Windows. Véanse [exportación de vídeo y dependencias](docs/VIDEO_EXPORT.md).
 - **Visualización y exportación revisadas.** Corrección de bordes artificiales a cota cero al reproyectar modelos, mejoras de paletas y colores del cálculo de pasillos, representación del *viewshed* en 3D, etiquetas de isócronas y leyendas de curvas de nivel en mapas y de colores en vídeo. Los informes usan nombres únicos y una cabecera más limpia; también se corrigen las etiquetas de texto de «Exportar resultados». Los rásteres antiguos afectados por los bordes deben reprocesarse o descargarse de nuevo; no se corrigen automáticamente. Véase el [diagnóstico de bordes 3D](docs/design-notes/terrain-3d-edges.md).
+- **Modelos de coste ampliados.** Se incorporan Irmischer–Clarke (con variantes de sexo y desplazamiento por sendero/fuera de sendero), Uriarte González, Marín Arroyo y Llobera–Sluckin. Los nuevos parámetros y categorías de perfil se muestran en la configuración y en la ayuda contextual; se conserva la información del modelo en los análisis y resultados exportados.
+- **Superficies acumuladas y capturas 3D.** El visor 3D permite ajustar la opacidad de las superficies acumuladas. Se mejoran las dimensiones mostradas para modelos rectangulares y la captura PNG del estado visible, con nombres de archivo de captura más claros.
+- **Robustez de tareas nativas.** Se refuerzan la cancelación de cálculos, el seguimiento de tareas y el uso de memoria en análisis de cuadrícula, rutas e importación/descarga de MDT; la descarga de elevación por bloques gestiona mejor respuestas parciales y fallos de transferencia.
 - **Inicio, tareas y experiencia de uso.** Pantalla de bienvenida con idioma y tutorial en el primer inicio, tutorial actualizado, autoguardado, controles para cancelar cálculos en ejecución y seguimiento de procesos. Se revisan títulos de modelos importados, la ventana de descarga de MDT/MDS, formularios Linux con fondos oscuros, traducciones de elementos y pequeños ajustes de diseño.
 
-El [manual en español](docs/manual.md) recoge el nuevo flujo de puntos. Las cifras de validación y el expediente de cumplimiento de v0.2.2 que se conservan más abajo son históricos y no certifican la próxima versión.
+El [manual en español](docs/manual.md) recoge el nuevo flujo de puntos. Las cifras de validación y el expediente de cumplimiento de v0.2.2 que se conservan más abajo son históricos y no certifican v0.2.3.
 
 ### Novedades de v0.2.2
 
@@ -159,9 +162,9 @@ ViaSpania is a desktop application for terrain-based least-cost analysis, route 
 - Local JSON projects, CSV/GeoJSON point import, vector and raster exports, and a PDF report composer with source attribution.
 - Interactive 3D terrain with analytical overlays and animation exports.
 
-### Next release · changes since v0.2.2 (v0.2.3)
+### What's new in v0.2.3
 
-The next release is in preparation. These changes describe the current repository; the installers and installation instructions below refer to v0.2.2.
+This release brings together changes since v0.2.2. Download v0.2.3 installers from **Assets** in [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases); if a platform does not yet have a v0.2.3 package, use the v0.2.2 installer listed in the download table.
 
 - **Larger models and analyses.** Block-based WCS downloads for MDT05, MDT25, MDT200 and MDS05, with a shared maximum of **67,928,064 cells** for downloaded or imported models, routes, isochrones, corridors, viewsheds and contours. Memory use is optimised without lowering analysis resolution to fit the limit. Processing preferences can impose a lower maximum and available RAM is checked; existing preferences are not raised automatically. See [elevation limits](docs/design-notes/elevation-model-limits.md) and [large-raster analyses](docs/design-notes/large-raster-analyses.md).
 - **Point workflow and autosave.** “Create point” unifies start, end and multipoint creation: it adds numbered, distinctly coloured points that can be reordered with Move up/Move down. Sequential route is the default analysis and connects consecutive points; the Connection matrix uses all points, removing the previous eight-point cap. Older projects remain compatible and CSV/GeoJSON input order is preserved; POIs are created separately. Projects are saved automatically to reduce lost work.
@@ -169,9 +172,12 @@ The next release is in preparation. These changes describe the current repositor
 - **IGN LiDAR map.** A new background for maps, calculations, comparison, 3D textures and reports, with IGN/CNIG and PNOA-LiDAR attribution. It provides visual reference cartography without automatically classifying barriers or facilitators. See [LiDAR map notes](docs/design-notes/ign-lidar-map.md).
 - **MP4 export.** The video dialog offers AVI or MP4; MP4/H.264 conversion uses FFmpeg bundled with the application. Conversion failures preserve the AVI for recovery. GIF and PNG exports remain available. The converter build and real conversion test have been verified on macOS ARM64; Linux and Windows validation remains pending. See [video export and dependencies](docs/VIDEO_EXPORT.md).
 - **Revised visualisation and exports.** Fixed artificial zero-elevation edges when reprojecting models, with improved palettes and corridor colours, 3D viewshed rendering, isochrone labels, contour legends, video colour legends, unique report names and cleaner report headers. Export-result text labels were also corrected. Older rasters affected by the edge issue must be reprocessed or downloaded again; they are not repaired automatically. See [3D edge diagnosis](docs/design-notes/terrain-3d-edges.md).
+- **Expanded cost models.** Added Irmischer–Clarke (with sex and on-path/off-path variants), Uriarte González, Marín Arroyo and Llobera–Sluckin. New parameters and profile categories appear in setup and contextual help; model details are retained in analyses and exported results.
+- **Accumulated surfaces and 3D captures.** The 3D viewer now adjusts accumulated-surface opacity. Displayed dimensions work for rectangular models, and PNG capture records the visible state with clearer screenshot filenames.
+- **Native task robustness.** Calculation cancellation, task tracking and memory use are strengthened across grid analyses, routes and DTM import/download; block-based elevation downloads handle partial responses and transfer failures more reliably.
 - **Startup, tasks and usability.** A welcome screen with first-run language and tutorial options, an updated tutorial, autosave, calculation cancellation controls and process tracking. Imported-model titles, the DTM/DSM download window, Linux dark form backgrounds, element translations and minor interface details were reviewed.
 
-The [English manual](docs/manual.en.md) covers the new point workflow. The v0.2.2 validation counts and compliance record retained below are historical and do not certify the next release.
+The [English manual](docs/manual.en.md) covers the new point workflow. The v0.2.2 validation counts and compliance record retained below are historical and do not certify v0.2.3.
 
 ### What's new in v0.2.2
 

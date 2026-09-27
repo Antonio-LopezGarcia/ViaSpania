@@ -147,6 +147,10 @@ struct RouteRequest {
     critical_slope_percent: f64,
     #[serde(default = "default_ardigo_speed")]
     ardigo_speed_ms: f64,
+    #[serde(default = "default_ic_sex")]
+    ic_sex: String,
+    #[serde(default = "default_ic_context")]
+    ic_context: String,
     #[serde(default = "default_route_cells")]
     max_cells: usize,
     /// Cells used by previously ranked itineraries. This transient search
@@ -198,6 +202,8 @@ fn default_critical_slope() -> f64 {
 fn default_ardigo_speed() -> f64 {
     1.2
 }
+fn default_ic_sex() -> String { "male".to_owned() }
+fn default_ic_context() -> String { "paths".to_owned() }
 fn default_route_cells() -> usize {
     MAX_ROUTE_CELLS
 }
@@ -247,6 +253,10 @@ struct IsochroneRequest {
     critical_slope_percent: f64,
     #[serde(default = "default_ardigo_speed")]
     ardigo_speed_ms: f64,
+    #[serde(default = "default_ic_sex")]
+    ic_sex: String,
+    #[serde(default = "default_ic_context")]
+    ic_context: String,
     #[serde(default = "default_route_cells")]
     max_cells: usize,
     interval: f64,
@@ -269,6 +279,8 @@ struct IsochroneLine {
 #[serde(rename_all = "camelCase")]
 struct IsochroneResult {
     model: String,
+    ic_sex: Option<String>,
+    ic_context: Option<String>,
     unit: String,
     interval: f64,
     max_cost: f64,
@@ -293,6 +305,8 @@ struct LcpCorridorRequest {
 #[serde(rename_all = "camelCase")]
 struct LcpCorridorResult {
     model: String,
+    ic_sex: Option<String>,
+    ic_context: Option<String>,
     unit: String,
     optimal_cost: f64,
     threshold_percent: f64,
@@ -1000,6 +1014,8 @@ fn transition_cost(
     terrain_multiplier: f64,
     critical_slope_percent: f64,
     ardigo_speed_ms: f64,
+    ic_sex: &str,
+    ic_context: &str,
 ) -> Result<(f64, &'static str), NativeError> {
     // Tobler (1993): walking velocity in km/h; converted to m/s and seconds per edge.
     // Pandolf et al. (1977): metabolic power in watts; integrated over traversal seconds to joules.
@@ -1094,6 +1110,16 @@ fn transition_cost(
             surface * (0.031 * degrees.powi(2) - 0.025 * degrees + 1.0) * terrain_multiplier,
             "coste relativo",
         )),
+        // MoveCost's N factor is represented by terrain_multiplier: use N=1 here and apply it once.
+        "irmischer-clarke" => {
+            let p=slope.abs()*100.0; let off=ic_context=="off-path"; let female=ic_sex=="female";
+            let center=if off {2.0}else{5.0}; let amplitude=if off {0.67}else{1.0};
+            let speed=(0.11+amplitude*(-((p+center).powi(2)/(2.0*30.0_f64.powi(2)))).exp())*3.6*if female {0.95}else{1.0};
+            Ok((seconds(speed)*terrain_multiplier,"s"))
+        }
+        "uriarte-gonzalez" => Ok((surface*(0.0277*slope.abs()*100.0+0.6115)*terrain_multiplier,"s")),
+        "marin-arroyo" => {let p=slope.abs()*100.0;let divisor=if slope<0.0 {23.0}else{11.0};Ok((surface*0.6*(p/divisor+1.0)*terrain_multiplier,"s"))}
+        "llobera-sluckin" => {let a=slope.abs();let rate=2.635+17.37*a+42.37*a.powi(2)-21.43*a.powi(3)+14.93*a.powi(4);Ok((rate*surface*terrain_multiplier,"kJ"))}
         _ => Err(NativeError::Gdal(
             "Modelo de coste no reconocido".to_owned(),
         )),
@@ -1208,6 +1234,8 @@ fn lcp_distances(
                 surface.penalties[position].max(surface.penalties[next]),
                 request.critical_slope_percent,
                 request.ardigo_speed_ms,
+                &request.ic_sex,
+                &request.ic_context,
             )?;
             unit = edge_unit;
             let candidate = cost + edge * surface.discounts[position].min(surface.discounts[next]);
@@ -1310,7 +1338,9 @@ fn calculate_lcp_corridor_from_path(
         }
     }
     Ok(LcpCorridorResult {
-        model: request.route.model,
+        model: request.route.model.clone(),
+        ic_sex: (request.route.model=="irmischer-clarke").then(||request.route.ic_sex.clone()),
+        ic_context: (request.route.model=="irmischer-clarke").then(||request.route.ic_context.clone()),
         unit,
         optimal_cost: optimal,
         threshold_percent: request.threshold_percent,
@@ -1979,6 +2009,8 @@ fn calculate_route_from_path(
                 penalties[position].max(penalties[next]),
                 request.critical_slope_percent,
                 request.ardigo_speed_ms,
+                &request.ic_sex,
+                &request.ic_context,
             )?;
             unit = edge_unit;
             // mc_rank semantics: a conductance multiplier p is equivalent to
@@ -2039,6 +2071,8 @@ fn calculate_route_from_path(
             penalties[a].max(penalties[b]),
             request.critical_slope_percent,
             request.ardigo_speed_ms,
+            &request.ic_sex,
+            &request.ic_context,
         )?;
         original_cost += edge_cost * discounts[a].min(discounts[b]);
         if rise > 0.0 {
@@ -2153,6 +2187,8 @@ fn calculate_isochrones_from_path(
         connectivity: request.connectivity,
         critical_slope_percent: request.critical_slope_percent,
         ardigo_speed_ms: request.ardigo_speed_ms,
+        ic_sex: request.ic_sex.clone(),
+        ic_context: request.ic_context.clone(),
         max_cells: request.max_cells.min(MAX_ANALYSIS_CELLS),
         rank_penalized_cells: Vec::new(),
         rank_penalty: 1.0,
@@ -2294,6 +2330,8 @@ fn calculate_isochrones_from_path(
                 surface.penalties[position].max(surface.penalties[next]),
                 request.critical_slope_percent,
                 request.ardigo_speed_ms,
+                &request.ic_sex,
+                &request.ic_context,
             )?;
             unit = edge_unit;
             let candidate = cost + edge * surface.discounts[position].min(surface.discounts[next]);
@@ -2434,7 +2472,9 @@ fn calculate_isochrones_from_path(
     }
     report_isochrone_progress(progress, "Completado", 100.0, cells, cells)?;
     Ok(IsochroneResult {
-        model: request.model,
+        model: request.model.clone(),
+        ic_sex: (request.model=="irmischer-clarke").then(||request.ic_sex.clone()),
+        ic_context: (request.model=="irmischer-clarke").then(||request.ic_context.clone()),
         unit: unit.to_owned(),
         interval: request.interval,
         max_cost,
@@ -3242,6 +3282,8 @@ fn topographic_surface(
         connectivity: 8,
         critical_slope_percent: 10.0,
         ardigo_speed_ms: 1.2,
+        ic_sex: "male".into(),
+        ic_context: "paths".into(),
         max_cells: max_cells.min(MAX_ANALYSIS_CELLS),
         rank_penalized_cells: vec![],
         rank_penalty: 1.0,
@@ -3639,6 +3681,8 @@ fn legacy_lcp_distances_for_test(
                 surface.penalties[position].max(surface.penalties[next]),
                 request.critical_slope_percent,
                 request.ardigo_speed_ms,
+                &request.ic_sex,
+                &request.ic_context,
             )?;
             unit = edge_unit;
             let candidate = cost + edge * surface.discounts[position].min(surface.discounts[next]);
@@ -3664,7 +3708,7 @@ fn legacy_lcp_distances_for_test(
 
     fn grid_route_request(width: usize, height: usize) -> RouteRequest {
         let endpoints = transform_points(&[[500002.5,4499997.5],[500000.0+(width as f64-0.5)*5.0,4500000.0-(height as f64-0.5)*5.0]],"EPSG:25830","EPSG:4326").unwrap();
-        RouteRequest {raster_path:String::new(), start:endpoints[0],end:endpoints[1],model:"tobler".into(),barriers:vec![],corridors:vec![],crossings:vec![],points_of_interest:vec![],connectivity:8,critical_slope_percent:10.0,ardigo_speed_ms:1.2,max_cells:MAX_ROUTE_CELLS,rank_penalized_cells:vec![],rank_penalty:1.0}
+        RouteRequest {raster_path:String::new(), start:endpoints[0],end:endpoints[1],model:"tobler".into(),barriers:vec![],corridors:vec![],crossings:vec![],points_of_interest:vec![],connectivity:8,critical_slope_percent:10.0,ardigo_speed_ms:1.2,ic_sex:"male".into(),ic_context:"paths".into(),max_cells:MAX_ROUTE_CELLS,rank_penalized_cells:vec![],rank_penalty:1.0}
     }
 
     #[test]
@@ -3704,7 +3748,7 @@ fn legacy_lcp_distances_for_test(
         assert_eq!(route.path.last(),Some(&(width*height-1)));
         let expected_distance=(width-1) as f64*5.0_f64.hypot(5.0)+(height-width) as f64*5.0;
         assert!((route.distance_m-expected_distance).abs()<1e-5);
-        let (expected_cost,_) = transition_cost("tobler",expected_distance,0.0,1.0,10.0,1.2).unwrap();
+        let (expected_cost,_) = transition_cost("tobler",expected_distance,0.0,1.0,10.0,1.2,"male","paths").unwrap();
         assert!((route.cost-expected_cost).abs()<1e-5);
         let guard=cache.0.lock().unwrap();
         let surface=&guard.as_ref().unwrap().surface;
@@ -3831,7 +3875,7 @@ fn legacy_lcp_distances_for_test(
         let (from_end,_)=legacy_lcp_distances_for_test(&surface,width*height-1,&request,false).unwrap();
         let expected:Vec<f64>=forward.iter().zip(from_end).map(|(a,b)|a.min(b)).collect();
         let maximum=expected.iter().copied().fold(0.0,f64::max);
-        let isochrones=calculate_isochrones_from_path(input,IsochroneRequest{raster_path:String::new(),origins:vec![request.start,request.end],model:request.model,barriers:vec![],corridors:vec![],crossings:vec![],points_of_interest:vec![],connectivity:8,critical_slope_percent:10.0,ardigo_speed_ms:1.2,max_cells:MAX_ANALYSIS_CELLS,interval:maximum/3.0,max_levels:2},&cache,None).unwrap();
+        let isochrones=calculate_isochrones_from_path(input,IsochroneRequest{raster_path:String::new(),origins:vec![request.start,request.end],model:request.model,barriers:vec![],corridors:vec![],crossings:vec![],points_of_interest:vec![],connectivity:8,critical_slope_percent:10.0,ardigo_speed_ms:1.2,ic_sex:"male".into(),ic_context:"paths".into(),max_cells:MAX_ANALYSIS_CELLS,interval:maximum/3.0,max_levels:2},&cache,None).unwrap();
         assert_eq!(isochrones.reachable_cells,width*height);
         assert_eq!(isochrones.max_cost,maximum);
         assert_eq!(isochrones.surface_values,expected.into_iter().map(|v|v as f32).collect::<Vec<_>>());
@@ -3859,7 +3903,7 @@ fn legacy_lcp_distances_for_test(
         let request=grid_route_request(width,height);
         let cache=SurfaceCache::default();
         let time=std::time::Instant::now();
-        let isochrones=calculate_isochrones_from_path(input.clone(),IsochroneRequest{raster_path:String::new(),origins:vec![request.start],model:"tobler".into(),barriers:vec![],corridors:vec![],crossings:vec![],points_of_interest:vec![],connectivity:8,critical_slope_percent:10.0,ardigo_speed_ms:1.2,max_cells:MAX_ANALYSIS_CELLS,interval:15000.0,max_levels:2},&cache,None).unwrap();
+        let isochrones=calculate_isochrones_from_path(input.clone(),IsochroneRequest{raster_path:String::new(),origins:vec![request.start],model:"tobler".into(),barriers:vec![],corridors:vec![],crossings:vec![],points_of_interest:vec![],connectivity:8,critical_slope_percent:10.0,ardigo_speed_ms:1.2,ic_sex:"male".into(),ic_context:"paths".into(),max_cells:MAX_ANALYSIS_CELLS,interval:15000.0,max_levels:2},&cache,None).unwrap();
         assert_eq!(isochrones.reachable_cells,width*height);
         assert!(!isochrones.lines.is_empty());
         println!("Isócronas: {} celdas accesibles, {} segmentos, {:?}",isochrones.reachable_cells,isochrones.lines.len(),time.elapsed());
@@ -3868,7 +3912,7 @@ fn legacy_lcp_distances_for_test(
         let corridor=calculate_lcp_corridor_from_path(input.clone(),LcpCorridorRequest{route:request.clone(),threshold_percent:10.0},&cache).unwrap();
         assert!(corridor.corridor_cells>0);
         let distance=(width-1) as f64*5.0_f64.hypot(5.0)+(height-width) as f64*5.0;
-        assert!((corridor.optimal_cost-transition_cost("tobler",distance,0.0,1.0,10.0,1.2).unwrap().0).abs()<1e-5);
+        assert!((corridor.optimal_cost-transition_cost("tobler",distance,0.0,1.0,10.0,1.2,"male","paths").unwrap().0).abs()<1e-5);
         println!("Pasillo LCP: {} celdas, {:?}",corridor.corridor_cells,time.elapsed());
         drop(corridor);
         let time=std::time::Instant::now();
@@ -4112,6 +4156,8 @@ fn legacy_lcp_distances_for_test(
             connectivity: 8,
             critical_slope_percent: 10.0,
             ardigo_speed_ms: 1.2,
+            ic_sex: "male".into(),
+            ic_context: "paths".into(),
             max_cells: MAX_ROUTE_CELLS,
             rank_penalized_cells: Vec::new(),
             rank_penalty: 1.0,
@@ -4146,6 +4192,8 @@ fn legacy_lcp_distances_for_test(
                 connectivity: 8,
                 critical_slope_percent: 10.0,
                 ardigo_speed_ms: 1.2,
+                ic_sex: "male".into(),
+                ic_context: "paths".into(),
                 max_cells: MAX_ROUTE_CELLS,
                 interval: 300.0,
                 max_levels: 5,
@@ -4183,6 +4231,8 @@ fn legacy_lcp_distances_for_test(
             connectivity: 8,
             critical_slope_percent: 10.0,
             ardigo_speed_ms: 1.2,
+            ic_sex: "male".into(),
+            ic_context: "paths".into(),
             max_cells: MAX_ROUTE_CELLS,
             rank_penalized_cells: Vec::new(),
             rank_penalty: 1.0,
@@ -4322,7 +4372,7 @@ fn legacy_lcp_distances_for_test(
                     raster_path: String::new(), start: [0.0, 0.0], end: [0.0, 0.0],
                     model: "tobler".into(), barriers: vec![], corridors: vec![], crossings: vec![],
                     points_of_interest: vec![], connectivity, critical_slope_percent: 20.0,
-                    ardigo_speed_ms: 1.0, max_cells: 81, rank_penalized_cells: vec![], rank_penalty: 1.0,
+                    ardigo_speed_ms: 1.0, ic_sex:"male".into(),ic_context:"paths".into(), max_cells: 81, rank_penalized_cells: vec![], rank_penalty: 1.0,
                 };
                 let start = 4 * 9 + 1;
                 let end = 4 * 9 + 7;
@@ -4386,9 +4436,13 @@ fn legacy_lcp_distances_for_test(
             "ardigo",
             "wheeled",
             "eastman",
+            "irmischer-clarke",
+            "uriarte-gonzalez",
+            "marin-arroyo",
+            "llobera-sluckin",
         ] {
             let (cost, _) =
-                transition_cost(model, 5.0, 0.5, 1.0, 10.0, 1.2).expect("modelo registrado");
+                transition_cost(model, 5.0, 0.5, 1.0, 10.0, 1.2,"male","paths").expect("modelo registrado");
             assert!(
                 cost.is_finite() && cost > 0.0,
                 "coste inválido para {model}"
@@ -4398,20 +4452,42 @@ fn legacy_lcp_distances_for_test(
 
     #[test]
     fn kondo_and_corrected_pandolf_are_directional() {
-        let uphill = transition_cost("kondo-seino", 10.0, 1.0, 1.0, 10.0, 1.2)
+        let uphill = transition_cost("kondo-seino", 10.0, 1.0, 1.0, 10.0, 1.2,"male","paths")
             .unwrap()
             .0;
-        let downhill = transition_cost("kondo-seino", 10.0, -1.0, 1.0, 10.0, 1.2)
+        let downhill = transition_cost("kondo-seino", 10.0, -1.0, 1.0, 10.0, 1.2,"male","paths")
             .unwrap()
             .0;
         assert_ne!(uphill, downhill);
-        let pandolf_up = transition_cost("pandolf-corrected", 10.0, 1.0, 1.0, 10.0, 1.2)
+        let pandolf_up = transition_cost("pandolf-corrected", 10.0, 1.0, 1.0, 10.0, 1.2,"male","paths")
             .unwrap()
             .0;
-        let pandolf_down = transition_cost("pandolf-corrected", 10.0, -1.0, 1.0, 10.0, 1.2)
+        let pandolf_down = transition_cost("pandolf-corrected", 10.0, -1.0, 1.0, 10.0, 1.2,"male","paths")
             .unwrap()
             .0;
         assert_ne!(pandolf_up, pandolf_down);
+    }
+
+    #[test]
+    fn added_profiles_match_reference_rates_and_variants() {
+        let rate = |model: &str, slope: f64, sex: &str, context: &str| {
+            transition_cost(model, 1.0, slope, 1.0, 10.0, 1.2, sex, context).unwrap().0
+                / (1.0 + slope * slope).sqrt()
+        };
+        for (slope, expected) in [(0.0, 0.6115), (0.1, 0.8885), (-0.1, 0.8885), (0.3, 1.4425)] {
+            assert!((rate("uriarte-gonzalez", slope, "male", "paths") - expected).abs() < 1e-9);
+        }
+        for (slope, expected) in [(0.0, 0.6), (-0.1, 0.8608695652), (0.1, 1.1454545455)] {
+            assert!((rate("marin-arroyo", slope, "male", "paths") - expected).abs() < 1e-9);
+        }
+        assert!(rate("marin-arroyo", 0.1, "male", "paths") > rate("marin-arroyo", -0.1, "male", "paths"));
+        for (slope, expected) in [(0.0, 2.635), (0.1, 4.775763), (0.3, 11.201623)] {
+            assert!((rate("llobera-sluckin", slope, "male", "paths") - expected).abs() < 1e-5);
+            assert!((rate("llobera-sluckin", -slope, "male", "paths") - expected).abs() < 1e-5);
+        }
+        for (sex, context, speed) in [("male", "paths", 3.9463456203), ("male", "off-path", 2.8026459511), ("female", "paths", 3.7490283393), ("female", "off-path", 2.6625136536)] {
+            assert!((3.6 / rate("irmischer-clarke", 0.0, sex, context) - speed).abs() < 1e-8);
+        }
     }
 
     #[test]

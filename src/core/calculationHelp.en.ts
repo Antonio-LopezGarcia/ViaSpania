@@ -27,6 +27,10 @@ export const MODEL_HELP_EN:Record<ModelId,MT>={
  ardigo:{author:'Luca P. Ardigò, Francesco Saibene and Alberto E. Minetti analysed human locomotion cost.',purpose:'Models walking, running or cycling using slope and speed.',variables:['Absolute slope.','Speed from 0.2 to 15 m/s.'],editable:['Free speed or walking, running and cycling presets.','Connectivity, barriers and facilitators.'],limits:['Uses absolute slope symmetrically.','Presets are not personal calibrations.']},
  wheeled:{author:'Vehicle function documented by Irmela Herzog in optimal-path literature.',purpose:'Produces relative cost that grows quadratically beyond a reference slope.',variables:['Absolute slope, distance and critical slope.'],editable:['Critical slope from 1% to 100%.','Connectivity, barriers and facilitators.'],limits:['Critical slope raises cost; it does not block a cell.','Does not model a specific vehicle, traction or turning radius.']},
  eastman:{author:'J. Ronald Eastman developed GIS multi-criteria and cost formulations.',purpose:'Assigns quadratic relative cost from slope angle.',variables:['Absolute slope angle, distance and terrain.'],editable:['Connectivity, barriers and facilitators.'],limits:['An abstract index, not direct time or energy.']},
+ 'irmischer-clarke':{author:'Katja Irmischer and Keith C. Clarke compared speed functions for recreational walking.',purpose:'Estimates symmetric walking speed, with sex/model and travel context variants.',variables:['Absolute signed slope, as a percentage.','Sex/model and on-path or off-path context.','3D step distance and general terrain multiplier applied once.'],editable:['Male or female; on paths or off path.','Connectivity, barriers and facilitators.'],limits:['The MoveCost-compatible variants are symmetric for ascent and descent.','Does not represent individual physiology or specific surfaces.']},
+ 'uriarte-gonzalez':{author:'Walking-time model attributed to Uriarte González.',purpose:'Calculates temporal cost per metre from absolute slope magnitude.',variables:['Absolute slope percentage.','3D distance and general multipliers.'],editable:['Connectivity, barriers and facilitators.'],limits:['Symmetric; does not distinguish ascent and descent.']},
+ 'marin-arroyo':{author:'Walking-time model attributed to Marín Arroyo.',purpose:'Calculates temporal cost while distinguishing ascent and descent.',variables:['Signed slope chooses descent versus level/ascent; absolute slope sets the percentage.','3D distance and general multipliers.'],editable:['Connectivity, barriers and facilitators.'],limits:['Does not include fatigue or individual variation.']},
+ 'llobera-sluckin':{author:'Marcos Llobera and T. J. Sluckin developed a theoretical model of movement strategies on slopes.',purpose:'Estimates symmetric energy cost from absolute slope.',variables:['Absolute slope.','3D distance and general multipliers.'],editable:['Connectivity, barriers and facilitators.'],limits:['The MoveCost implementation is symmetric.','Energy model; results are not minutes or hours.']},
 };
 
 /** Same equations and units as the Spanish definitions; only notation and prose are localised. */
@@ -46,4 +50,8 @@ export const MODEL_FORMULAS_EN:Record<ModelId,string>={
   "ardigo": "C = 1.866e^(4.911x)V² − 3.773e^(3.416x)V + 45.71x² + 18.9x + 4.456 J/(kg·m).",
   "wheeled": "C = distance · (1 + (100|s|/p)²) · terrain; p is the critical slope in %.",
   "eastman": "C = distance · (0.031a² − 0.025a + 1) · terrain; a = arctan(|s|) in degrees."
+  ,"irmischer-clarke":"p=100|s|. On paths: v=(0.11+exp(−(p+5)²/(2·30²)))·3.6 km/h. Off path: v=(0.11+0.67exp(−(p+2)²/(2·30²)))·3.6 km/h. Female variants multiply speed by 0.95."
+  ,"uriarte-gonzalez":"tₘ = (0.0277·p + 0.6115) s/m; p=100|s|."
+  ,"marin-arroyo":"p=100|s|. If s<0: tₘ=0.6·(p/23+1) s/m. If s≥0: tₘ=0.6·(p/11+1) s/m."
+  ,"llobera-sluckin":"E=(2.635+17.37a+42.37a²−21.43a³+14.93a⁴) kJ/m; a=|s|."
 };

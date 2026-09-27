@@ -33,7 +33,7 @@ interface MdtMapPanelProps {
   points: GeoPoint[];
   selectedPointId: number | null;
   routes: { coordinates: [number, number][]; color: string }[];
-  isochroneLines?: {level:number;coordinates:[number,number][]}[];
+  isochroneLines?: {level:number;coordinates:[number,number][];color?:string}[];
   isochroneSurface?: {imageUrl:string;opacity:number};
   onHover: (coordinate: [number, number] | null) => void;
   userLocation?: { lon:number; lat:number; accuracyM:number } | null;
@@ -74,7 +74,7 @@ export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,c
     const coverageSource=new VectorSource({features:[new Feature(polygonFromExtent(imageExtent))]});
     if(userLocation){const center=fromLonLat([userLocation.lon,userLocation.lat]),radius=userLocation.accuracyM/Math.max(.1,Math.cos(userLocation.lat*Math.PI/180));locationSource.addFeatures([new Feature(new Circle(center,radius)),new Feature(new Point(center))])}
     for(const route of routes){if(route.coordinates.length<2)continue;const feature=new Feature(new LineString(route.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.set('color',route.color);routeSource.addFeature(feature)}
-    for(const [index,level] of levels.entries()){const segments=isochroneLines.filter(line=>line.level===level&&line.coordinates.length>=2).map(line=>line.coordinates.map(coordinate=>fromLonLat(coordinate)));if(!segments.length)continue;const feature=new Feature(new MultiLineString(segments));const ratio=levels.length<2?1:index/(levels.length-1);feature.set('color',`hsl(${205-ratio*165} 95% 58%)`);isochroneSource.addFeature(feature)}
+    for(const [index,level] of levels.entries()){const segments=isochroneLines.filter(line=>line.level===level&&line.coordinates.length>=2).map(line=>line.coordinates.map(coordinate=>fromLonLat(coordinate)));if(!segments.length)continue;const feature=new Feature(new MultiLineString(segments));const lineColor=isochroneLines.find(line=>line.level===level)?.color,ratio=levels.length<2?1:index/(levels.length-1);feature.set('color',lineColor??`hsl(${205-ratio*165} 95% 58%)`);isochroneSource.addFeature(feature)}
     const map=new Map({target:host.current,layers:[constraintLayer.current,
       new ImageLayer({source:new ImageStatic({url:imageUrl,imageExtent,projection:'EPSG:3857'}),zIndex:1}),
       new VectorLayer({source:coverageSource,zIndex:2,style:new Style({fill:new Fill({color:'rgba(216,255,85,.04)'}),stroke:new Stroke({color:'#d8ff55',width:2,lineDash:[7,5]})})}),

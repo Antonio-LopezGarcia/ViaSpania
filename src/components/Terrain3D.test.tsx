@@ -175,7 +175,7 @@ describe('exportación del visor 3D',()=>{
  it('usa la resolución máxima por defecto y exporta un fotograma PNG',async()=>{
   render(<Terrain3D projectName="Guadix" mesh={mesh} points={[]} routes={routes} exaggeration={1} palette="terrain" onSnapshotReady={()=>{}} resetToken={0}/>);
   expect((screen.getByLabelText(/^Resolución/) as HTMLSelectElement).value).toBe('1920x1080');expect(screen.queryByText(/px · 20/)).toBeNull();
-  fireEvent.click(screen.getByText('Exportar fotograma PNG'));await waitFor(()=>expect(state.png).toHaveBeenCalledWith('data:image/png;base64,test',expect.stringMatching(/^Guadix_frame_\d{6}(?:_\d+)?\.png$/)));expect(screen.getByText(/Fotograma PNG guardado/)).toBeTruthy();
+  fireEvent.click(screen.getByText('Exportar fotograma PNG'));await waitFor(()=>expect(state.png).toHaveBeenCalledWith('data:image/png;base64,test',expect.stringMatching(/^Guadix_captura_\d{6}(?:_\d+)?\.png$/)));expect(screen.getByText(/Captura guardada/)).toBeTruthy();
  });
  it.each(['854x480','1280x720','1920x1080'])('mantiene escena, líneas y cámara al exportar %s',async(resolution)=>{
   render(<Terrain3D mesh={mesh} points={[]} routes={routes} exaggeration={1} palette="terrain" onSnapshotReady={()=>{}} resetToken={0}/>);

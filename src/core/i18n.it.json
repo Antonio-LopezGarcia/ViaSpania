@@ -1,5 +1,15 @@
 {
   "messages": {
+    "Sexo/modelo": "Sesso/modello",
+    "Contexto de desplazamiento": "Contesto di spostamento",
+    "Masculino": "Maschile",
+    "Femenino": "Femminile",
+    "Por caminos": "Su sentieri",
+    "Campo a través": "Fuori sentiero",
+    "Irmischer–Clarke": "Irmischer–Clarke",
+    "Uriarte González": "Uriarte González",
+    "Marín Arroyo": "Marín Arroyo",
+    "Llobera–Sluckin": "Llobera–Sluckin",
     "Reproyectado/remuestreado por ViaSpania.": "Riproiettato/ricampionato da ViaSpania.",
     "Reproyectado por ViaSpania.": "Riproiettato da ViaSpania.",
     "— EPSG:4326 (latitud, longitud)": "— EPSG:4326 (latitudine, longitudine)",
@@ -1577,6 +1587,10 @@
     "Opacidad del viewshed 3D": "Opacità del viewshed 3D",
     "Opcional · se usará el título del servicio": "Facoltativo · verrà usato il titolo del servizio",
     "Opciones de desplazamiento": "Opzioni di spostamento",
+    "Parámetros específicos del perfil": "Parametri specifici del profilo",
+    "Parámetros vehículo con pendiente crítica": "Parametri del veicolo con pendenza critica",
+    "Parámetros Ardigò": "Parametri Ardigò",
+    "Parámetros Irmischer–Clarke": "Parametri Irmischer–Clarke",
     "Opciones de procesado": "Opzioni di elaborazione",
     "Opciones de guardado": "Opzioni di salvataggio",
     "Solo se activa después de guardar un proyecto en una ubicación. Durante los cálculos queda pausado. Cada autoguardado conserva la versión inmediatamente anterior como copia de seguridad.": "Si attiva solo dopo aver salvato un progetto in una posizione. Durante i calcoli viene sospeso. Ogni salvataggio automatico conserva la versione immediatamente precedente come copia di sicurezza.",
@@ -2281,7 +2295,13 @@
     "Ya hay un cálculo en curso": "È già in corso un calcolo",
     "Ya hay una exportación en curso.": "È già in corso un’esportazione.",
     "Zoom al área seleccionada": "Zoom sull’area selezionata",
-    "Zoom área seleccionada": "Zoom area selezionata"
+    "Zoom área seleccionada": "Zoom area selezionata",
+    "Ancho · {0} / Largo · {1}": "Larghezza · {0} / Lunghezza · {1}",
+    "Dimensiones del modelo: {0} de ancho por {1} de largo": "Dimensioni del modello: {0} di larghezza per {1} di lunghezza",
+    "Ancho": "Larghezza",
+    "Largo": "Lunghezza",
+    "Dimensiones del modelo:": "Dimensioni del modello:",
+    " de ancho por ": " di larghezza per "
   },
   "patterns": [
     {

@@ -5736,6 +5736,20 @@
       "selectedLicense": null
     },
     {
+      "id": "video/ffmpeg-8.0.1",
+      "name": "FFmpeg",
+      "version": "8.0.1",
+      "license": "GPL-3.0-or-later",
+      "selectedLicense": "GPL-3.0-only"
+    },
+    {
+      "id": "video/x264-c24e06c2e184345ceb33eb20a15d1024d9fd3497",
+      "name": "libx264",
+      "version": "c24e06c2e184345ceb33eb20a15d1024d9fd3497",
+      "license": "GPL-2.0-or-later",
+      "selectedLicense": "GPL-3.0-only"
+    },
+    {
       "id": "native-aux/mimalloc-3.4.1",
       "name": "mimalloc",
       "version": "3.4.1",

@@ -27,3 +27,20 @@ it('sincroniza ediciones y borrados y controla capa y etiquetas sin reconstruir 
  rerender(<MdtMapPanel {...props} crossings={[]} expanded={false}/>);
  expect(layer.getSource()?.getFeatures()).toHaveLength(0);expect(screen.queryByLabelText('Mostrar etiquetas')).toBeNull();
 });
+
+it('mantiene el triángulo del lugar independiente del cursor y permite borrarlo',()=>{
+ const props={imageUrl:'modelo.png',studyExtent:[-4,39,-2,41] as [number,number,number,number],viewState:{center:[0,0] as [number,number],resolution:10,rotation:0},onViewChange:()=>{},onHover:()=>{},points:[],selectedPointId:null,routes:[]};
+ const place={lon:-3,lat:40};
+ const {rerender}=render(<MdtMapPanel {...props} placeMarkerCoordinates={[place,{lon:3,lat:43}]} selectionMarkerCoordinate={{lon:-2,lat:41}}/>);
+ const placeSource=maps[0].layers.find(layer=>layer.getZIndex()===7)!.getSource()!;
+ const cursorSource=maps[0].layers.find(layer=>layer.getZIndex()===8)!.getSource()!;
+ expect(placeSource.getFeatures()).toHaveLength(2);
+ const fixed=placeSource.getFeatures()[0].getGeometry()!.getExtent();
+ const cursor=cursorSource.getFeatures()[0].getGeometry()!.getExtent();
+ rerender(<MdtMapPanel {...props} placeMarkerCoordinates={[place,{lon:3,lat:43}]} selectionMarkerCoordinate={{lon:1,lat:42}}/>);
+ expect(placeSource.getFeatures()[0].getGeometry()!.getExtent()).toEqual(fixed);
+ expect(cursorSource.getFeatures()[0].getGeometry()!.getExtent()).not.toEqual(cursor);
+ rerender(<MdtMapPanel {...props} placeMarkerCoordinates={[]} selectionMarkerCoordinate={{lon:1,lat:42}}/>);
+ expect(placeSource.getFeatures()).toHaveLength(0);
+ expect(cursorSource.getFeatures()).toHaveLength(1);
+});

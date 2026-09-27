@@ -1,6 +1,13 @@
+mod calculation_cancel;
+use calculation_cancel::CancellableOutput;
 use base64::{engine::general_purpose::STANDARD as BASE64, Engine as _};
 mod video_export;
 mod gazetteer;
+mod mdt_download;
+mod route_memory;
+mod raster_limits;
+mod analysis_grid;
+use route_memory::{Factors, Frontier};
 use futures_util::StreamExt;
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
@@ -21,7 +28,10 @@ use tokio::io::AsyncWriteExt;
 use url::Url;
 
 const MAX_DOWNLOAD_BYTES: u64 = 1_500_000_000;
-const MAX_ROUTE_CELLS: usize = 5_000_000;
+const MAX_ROUTE_CELLS: usize = route_memory::MAX_CELLS;
+const MAX_ANALYSIS_CELLS: usize = raster_limits::MAX_CELLS;
+// Serialize graph searches so comparisons cannot multiply the memory budget.
+static GRAPH_CALCULATION: Mutex<()> = Mutex::new(());
 const ALLOWED_HOSTS: &[&str] = &[
     "servicios.idee.es",
     "wcs-mds.idee.es",
@@ -56,8 +66,8 @@ struct PreparedSurface {
     nodata: Option<f32>,
     elevations: Vec<f32>,
     blocked: Vec<bool>,
-    penalties: Vec<f64>,
-    discounts: Vec<f64>,
+    penalties: Factors,
+    discounts: Factors,
 }
 
 #[derive(Debug, thiserror::Error)]
@@ -72,6 +82,8 @@ enum NativeError {
     Gdal(String),
     #[error("La descarga fue cancelada")]
     Cancelled,
+    #[error("Cálculo cancelado")]
+    CalculationCancelled,
     #[error("La respuesta supera el límite de 1,5 GB")]
     TooLarge,
     #[error("El servicio devolvió XML en lugar de un GeoTIFF: {0}")]
@@ -295,6 +307,8 @@ struct LcpCorridorResult {
 #[derive(Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ContourRequest {
+    #[serde(default = "default_route_cells")]
+    max_cells: usize,
     raster_path: String,
     interval_m: f64,
 }
@@ -323,6 +337,8 @@ struct ViewshedObserver {
 #[derive(Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ViewshedRequest {
+    #[serde(default = "default_route_cells")]
+    max_cells: usize,
     raster_path: String,
     observers: Vec<ViewshedObserver>,
     observer_height_m: f64,
@@ -526,9 +542,10 @@ fn gdal_json(path: &Path) -> Result<Value, NativeError> {
     let executable = command_path("gdalinfo")
         .ok_or_else(|| NativeError::Gdal("gdalinfo no está instalado".to_owned()))?;
     let output = Command::new(executable)
+        .env("GDAL_CACHEMAX", "64")
         .args(["-json", "-stats"])
         .arg(path)
-        .output()
+        .cancellable_output()
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
     if !output.status.success() {
         return Err(NativeError::Gdal(
@@ -544,7 +561,7 @@ fn gdal_json_basic(path: &Path) -> Result<Value, NativeError> {
     let output = Command::new(executable)
         .arg("-json")
         .arg(path)
-        .output()
+        .cancellable_output()
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
     if !output.status.success() {
         return Err(NativeError::Gdal(
@@ -558,13 +575,23 @@ fn auxiliary_metadata_path(path: &Path) -> PathBuf {
     PathBuf::from(format!("{}.aux.xml", path.to_string_lossy()))
 }
 
+fn raster_preview_dimensions(path: &Path) -> Result<[String; 2], NativeError> {
+    let metadata = gdal_json_basic(path)?;
+    let width = metadata["size"][0].as_f64().unwrap_or(1.0);
+    let height = metadata["size"][1].as_f64().unwrap_or(1.0);
+    let scale = (1400.0 / width.max(height)).min(1.0);
+    Ok([(width * scale).round().max(1.0).to_string(), (height * scale).round().max(1.0).to_string()])
+}
+
 fn raster_preview_data_url(path: &Path) -> Result<String, NativeError> {
     let executable = command_path("gdal_translate")
         .ok_or_else(|| NativeError::Gdal("gdal_translate no está instalado".to_owned()))?;
     let preview_path = path.with_extension(format!("preview-{}.png", uuid::Uuid::new_v4()));
+    let [preview_width, preview_height] = raster_preview_dimensions(path)?;
     let output = Command::new(executable)
+        .env("GDAL_CACHEMAX", "64")
         .args([
-            "-of", "PNG", "-ot", "Byte", "-outsize", "1400", "0", "-scale",
+            "-of", "PNG", "-ot", "Byte", "-outsize", &preview_width, &preview_height, "-scale",
         ])
         .arg(path)
         .arg(&preview_path)
@@ -585,8 +612,10 @@ fn colored_preview_data_url(path: &Path) -> Result<String, NativeError> {
     let executable = command_path("gdal_translate")
         .ok_or_else(|| NativeError::Gdal("gdal_translate no está instalado".to_owned()))?;
     let preview_path = path.with_extension(format!("preview-{}.png", uuid::Uuid::new_v4()));
+    let [preview_width, preview_height] = raster_preview_dimensions(path)?;
     let output = Command::new(executable)
-        .args(["-of", "PNG", "-outsize", "1400", "0"])
+        .env("GDAL_CACHEMAX", "64")
+        .args(["-of", "PNG", "-outsize", &preview_width, &preview_height])
         .arg(path)
         .arg(&preview_path)
         .output()
@@ -649,7 +678,7 @@ fn raster_epsg(path: &Path) -> Result<String, NativeError> {
     let output = Command::new(executable)
         .args(["-o", "epsg"])
         .arg(path)
-        .output()
+        .cancellable_output()
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
     if !output.status.success() {
         return Err(NativeError::Gdal(
@@ -695,8 +724,7 @@ fn transform_points(
         }
         Ok(())
     });
-    let output = child
-        .wait_with_output()
+    let output = calculation_cancel::wait(child)
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
     writer
         .join()
@@ -806,9 +834,9 @@ fn rasterize_barriers(
     origin_y: f64,
     pixel_x: f64,
     pixel_y: f64,
-) -> (Vec<bool>, Vec<f64>) {
+) -> Result<(Vec<bool>, Factors), NativeError> {
     let mut blocked = vec![false; width * height];
-    let mut penalties = vec![1.0_f64; width * height];
+    let mut penalties = Factors::new(width * height);
     let to_pixel = |point: [f64; 2]| {
         (
             ((point[0] - origin_x) / pixel_x).floor() as isize,
@@ -829,6 +857,7 @@ fn rasterize_barriers(
             let sy = if y0 < y1 { 1 } else { -1 };
             let mut error = dx + dy;
             loop {
+                calculation_cancel::check()?;
                 for oy in -BARRIER_RASTER_MARGIN..=BARRIER_RASTER_MARGIN {
                     for ox in -BARRIER_RASTER_MARGIN..=BARRIER_RASTER_MARGIN {
                         let x = x0 + ox;
@@ -858,7 +887,7 @@ fn rasterize_barriers(
             }
         }
     }
-    (blocked, penalties)
+    Ok((blocked, penalties))
 }
 
 fn rasterize_facilitators(
@@ -872,15 +901,15 @@ fn rasterize_facilitators(
     origin_y: f64,
     pixel_x: f64,
     pixel_y: f64,
-) -> Vec<f64> {
-    let mut discounts = vec![1.0_f64; width * height];
+) -> Result<Factors, NativeError> {
+    let mut discounts = Factors::new(width * height);
     let to_pixel = |p: [f64; 2]| {
         (
             ((p[0] - origin_x) / pixel_x).floor() as isize,
             ((p[1] - origin_y) / pixel_y).floor() as isize,
         )
     };
-    let mut paint = |coordinates: &[[f64; 2]], radius: isize, multiplier: f64, reopen: bool| {
+    let mut paint = |coordinates: &[[f64; 2]], radius: isize, multiplier: f64, reopen: bool| -> Result<(),NativeError> {
         for segment in coordinates.windows(2) {
             let (mut x0, mut y0) = to_pixel(segment[0]);
             let (x1, y1) = to_pixel(segment[1]);
@@ -890,7 +919,9 @@ fn rasterize_facilitators(
             let sy = if y0 < y1 { 1 } else { -1 };
             let mut error = dx + dy;
             loop {
+                calculation_cancel::check()?;
                 for oy in -radius..=radius {
+                    calculation_cancel::check()?;
                     for ox in -radius..=radius {
                         let x = x0 + ox;
                         let y = y0 + oy;
@@ -917,6 +948,7 @@ fn rasterize_facilitators(
                 }
             }
         }
+        Ok(())
     };
     for corridor in corridors {
         let radius = (corridor.width_m / (2.0 * pixel_x.abs().max(pixel_y.abs())))
@@ -927,7 +959,7 @@ fn rasterize_facilitators(
             radius,
             corridor.cost_multiplier,
             false,
-        );
+        )?;
     }
     for crossing in crossings {
         paint(
@@ -935,13 +967,14 @@ fn rasterize_facilitators(
             BARRIER_RASTER_MARGIN,
             crossing.crossing_cost_multiplier,
             true,
-        );
+        )?;
     }
     for point in points.iter().filter(|point| point.mode == "influence") {
         let (cx, cy) = to_pixel(point.coordinate);
         let rx = (point.influence_radius_m / pixel_x.abs()).ceil() as isize;
         let ry = (point.influence_radius_m / pixel_y.abs()).ceil() as isize;
         for y in (cy - ry)..=(cy + ry) {
+            calculation_cancel::check()?;
             for x in (cx - rx)..=(cx + rx) {
                 if x < 0 || y < 0 || x >= width as isize || y >= height as isize {
                     continue;
@@ -957,7 +990,7 @@ fn rasterize_facilitators(
             }
         }
     }
-    discounts
+    Ok(discounts)
 }
 
 fn transition_cost(
@@ -1068,13 +1101,17 @@ fn transition_cost(
 }
 
 #[tauri::command]
-fn calculate_raster_route(
+async fn calculate_raster_route(
     app: tauri::AppHandle,
     cache: State<'_, SurfaceCache>,
     request: RouteRequest,
+    calculation_id: Option<String>,
 ) -> Result<NativeRouteResult, NativeError> {
+    let cancellation=calculation_cancel::token(calculation_id.as_deref());
     let raster = ensure_app_raster(&app, &request.raster_path)?;
-    calculate_route_from_path(raster, request, &cache)
+    let cache = cache.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || calculation_cancel::run(cancellation,||calculate_route_from_path(raster, request, &cache)))
+        .await.map_err(|e| NativeError::Gdal(format!("El cálculo de ruta terminó inesperadamente: {e}")))?
 }
 
 fn lcp_distances(
@@ -1120,15 +1157,13 @@ fn lcp_distances(
         }
     };
     let cells = surface.width * surface.height;
-    let mut distance = vec![f64::INFINITY; cells];
-    let mut queue = BinaryHeap::new();
+    let mut distance = route_memory::filled(cells, f64::INFINITY)?;
+    let mut queue = Frontier::new(cells)?;
     let mut unit = "s";
     distance[start] = 0.0;
-    queue.push(QueueState {
-        cost: 0.0,
-        position: start,
-    });
-    while let Some(QueueState { cost, position }) = queue.pop() {
+    queue.decrease(start, &distance);
+    while let Some((cost, position)) = queue.pop(&distance) {
+        calculation_cancel::check()?;
         if cost > distance[position] {
             continue;
         }
@@ -1178,10 +1213,7 @@ fn lcp_distances(
             let candidate = cost + edge * surface.discounts[position].min(surface.discounts[next]);
             if candidate < distance[next] {
                 distance[next] = candidate;
-                queue.push(QueueState {
-                    cost: candidate,
-                    position: next,
-                })
+                queue.decrease(next, &distance)
             }
         }
     }
@@ -1190,9 +1222,11 @@ fn lcp_distances(
 
 fn calculate_lcp_corridor_from_path(
     raster: PathBuf,
-    request: LcpCorridorRequest,
+    mut request: LcpCorridorRequest,
     cache: &SurfaceCache,
 ) -> Result<LcpCorridorResult, NativeError> {
+    let _calculation = GRAPH_CALCULATION.lock().map_err(|_| NativeError::Gdal("El motor de análisis está bloqueado".into()))?;
+    request.route.max_cells = request.route.max_cells.min(MAX_ANALYSIS_CELLS);
     if !request.threshold_percent.is_finite()
         || request.threshold_percent < 0.0
         || request.threshold_percent > 500.0
@@ -1263,6 +1297,7 @@ fn calculate_lcp_corridor_from_path(
         .count();
     let mut values = Vec::with_capacity(surface_width * surface_height);
     for y in (0..surface.height).step_by(sample_step) {
+        calculation_cancel::check()?;
         for x in (0..surface.width).step_by(sample_step) {
             let index = y * surface.width + x;
             let combined = forward[index] + backward[index];
@@ -1292,13 +1327,17 @@ fn calculate_lcp_corridor_from_path(
 }
 
 #[tauri::command]
-fn calculate_raster_lcp_corridor(
+async fn calculate_raster_lcp_corridor(
     app: tauri::AppHandle,
     cache: State<'_, SurfaceCache>,
     request: LcpCorridorRequest,
+    calculation_id: Option<String>,
 ) -> Result<LcpCorridorResult, NativeError> {
+    let cancellation=calculation_cancel::token(calculation_id.as_deref());
     let raster = ensure_app_raster(&app, &request.route.raster_path)?;
-    calculate_lcp_corridor_from_path(raster, request, &cache)
+    let cache = cache.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || calculation_cancel::run(cancellation,||calculate_lcp_corridor_from_path(raster, request, &cache)))
+        .await.map_err(|e| NativeError::Gdal(format!("El análisis terminó inesperadamente: {e}")))?
 }
 
 #[tauri::command]
@@ -1307,13 +1346,15 @@ async fn calculate_raster_isochrones(
     cache: State<'_, SurfaceCache>,
     state: State<'_, IsochroneState>,
     request: IsochroneRequest,
+    calculation_id: Option<String>,
 ) -> Result<IsochroneResult, NativeError> {
+    let cancellation=calculation_cancel::token(calculation_id.as_deref());
     let raster = ensure_app_raster(&app, &request.raster_path)?;
     state.0.store(false, Ordering::Relaxed);
     let cache = cache.inner().clone();
     let cancelled = Arc::clone(&state.0);
     tauri::async_runtime::spawn_blocking(move || {
-        calculate_isochrones_from_path(raster, request, &cache, Some((&app, &cancelled)))
+        calculation_cancel::run(cancellation,||calculate_isochrones_from_path(raster, request, &cache, Some((&app, &cancelled))))
     })
     .await
     .map_err(|error| {
@@ -1436,6 +1477,10 @@ fn generate_terrain_mesh(
     max_size: Option<usize>,
 ) -> Result<TerrainMesh, NativeError> {
     let raster = ensure_app_raster(&app, &raster_path)?;
+    terrain_mesh_from_path(&raster, max_size)
+}
+
+fn terrain_mesh_from_path(raster: &Path, max_size: Option<usize>) -> Result<TerrainMesh, NativeError> {
     let metadata = gdal_json_basic(&raster)?;
     let source_width = metadata_number(&metadata, "size", 0)? as usize;
     let source_height = metadata_number(&metadata, "size", 1)? as usize;
@@ -1681,32 +1726,29 @@ fn build_prepared_surface(
     let identifier = uuid::Uuid::new_v4();
     let binary = raster.with_extension(format!("route-{identifier}.bin"));
     let header = binary.with_extension("hdr");
+    struct TemporarySurface(Vec<PathBuf>);
+    impl Drop for TemporarySurface { fn drop(&mut self){for path in &self.0 {let _=std::fs::remove_file(path);}} }
+    let _temporary=TemporarySurface(vec![binary.clone(),header.clone(),auxiliary_metadata_path(&binary)]);
     let executable = command_path("gdal_translate")
         .ok_or_else(|| NativeError::Gdal("gdal_translate no está instalado".to_owned()))?;
     let output = Command::new(executable)
+        .env("GDAL_CACHEMAX", "64")
         .args(["-of", "ENVI", "-ot", "Float32"])
         .arg(&raster)
         .arg(&binary)
-        .output()
+        .cancellable_output()
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
     if !output.status.success() {
         return Err(NativeError::Gdal(
             String::from_utf8_lossy(&output.stderr).trim().to_owned(),
         ));
     }
-    let bytes = std::fs::read(&binary).map_err(|error| NativeError::Io(error.to_string()))?;
+    let elevations = route_memory::read_elevations(&binary, cells);
     let _ = std::fs::remove_file(&binary);
     let _ = std::fs::remove_file(&header);
     let _ = std::fs::remove_file(auxiliary_metadata_path(&binary));
-    if bytes.len() != cells * 4 {
-        return Err(NativeError::Gdal(
-            "GDAL produjo una matriz de elevaciones con tamaño inesperado".to_owned(),
-        ));
-    }
-    let elevations: Vec<f32> = bytes
-        .chunks_exact(4)
-        .map(|chunk| f32::from_le_bytes(chunk.try_into().expect("cuatro bytes")))
-        .collect();
+    let elevations = elevations?;
+    calculation_cancel::check()?;
     let (mut blocked, penalties) = rasterize_barriers(
         &projected_barriers,
         width,
@@ -1715,7 +1757,7 @@ fn build_prepared_surface(
         origin_y,
         pixel_x,
         pixel_y,
-    );
+    )?;
     let discounts = rasterize_facilitators(
         &projected_corridors?,
         &projected_crossings?,
@@ -1727,7 +1769,7 @@ fn build_prepared_surface(
         origin_y,
         pixel_x,
         pixel_y,
-    );
+    )?;
     Ok(PreparedSurface {
         raster_crs,
         width,
@@ -1749,26 +1791,24 @@ fn prepared_surface(
     request: &RouteRequest,
     cache: &SurfaceCache,
 ) -> Result<(Arc<PreparedSurface>, bool), NativeError> {
-    let key = surface_cache_key(raster, request)?;
-    if let Some(surface) = cache
-        .0
-        .lock()
-        .map_err(|_| NativeError::Gdal("La caché de superficies está bloqueada".to_owned()))?
-        .as_ref()
-        .filter(|cached| cached.key == key)
-        .map(|cached| Arc::clone(&cached.surface))
-    {
-        return Ok((surface, true));
+    let metadata = gdal_json_basic(raster)?;
+    let width = metadata_number(&metadata, "size", 0)? as usize;
+    let height = metadata_number(&metadata, "size", 1)? as usize;
+    let cells = width.checked_mul(height).filter(|cells| *cells > 0)
+        .ok_or_else(|| NativeError::Gdal("Dimensiones de MDT no válidas".into()))?;
+    let configured_limit = request.max_cells.clamp(100_000, MAX_ROUTE_CELLS);
+    if cells > configured_limit {
+        return Err(NativeError::Gdal(format!("El MDT contiene {cells} celdas; el límite de procesado configurado es {configured_limit}. Cambie las Opciones de procesado o reduzca el área sin cambiar la resolución")));
     }
+    let key = surface_cache_key(raster, request)?;
+    let mut guard = cache.0.lock().map_err(|_| NativeError::Gdal("La caché de superficies está bloqueada".into()))?;
+    if guard.as_ref().is_some_and(|cached| cached.key != key) { *guard = None; }
+    if cells > 5_000_000 {
+        route_memory::check_memory(cells, total_memory_bytes(), route_memory::available_bytes())?;
+    }
+    if let Some(cached) = guard.as_ref() { return Ok((Arc::clone(&cached.surface), true)); }
     let surface = Arc::new(build_prepared_surface(raster, request)?);
-    let mut guard = cache
-        .0
-        .lock()
-        .map_err(|_| NativeError::Gdal("La caché de superficies está bloqueada".to_owned()))?;
-    *guard = Some(CachedSurface {
-        key,
-        surface: Arc::clone(&surface),
-    });
+    *guard = Some(CachedSurface {key, surface: Arc::clone(&surface)});
     Ok((surface, false))
 }
 
@@ -1777,6 +1817,7 @@ fn calculate_route_from_path(
     request: RouteRequest,
     cache: &SurfaceCache,
 ) -> Result<NativeRouteResult, NativeError> {
+    let _calculation = GRAPH_CALCULATION.lock().map_err(|_| NativeError::Gdal("El motor de rutas está bloqueado".into()))?;
     let (surface, reused) = prepared_surface(&raster, &request, cache)?;
     let raster_crs = &surface.raster_crs;
     let width = surface.width;
@@ -1796,7 +1837,7 @@ fn calculate_route_from_path(
             "La penalización de alternativas debe estar entre 0 (excluido) y 1".to_owned(),
         ));
     }
-    let mut rank_penalized = vec![false; cells];
+    let mut rank_penalized = route_memory::filled(cells, false)?;
     for &index in &request.rank_penalized_cells {
         if index < cells {
             rank_penalized[index] = true;
@@ -1855,14 +1896,11 @@ fn calculate_route_from_path(
         })?;
     let step_x_m = pixel_x.abs();
     let step_y_m = pixel_y.abs();
-    let mut distance = vec![f64::INFINITY; cells];
-    let mut previous = vec![usize::MAX; cells];
-    let mut queue = BinaryHeap::new();
+    let mut distance = route_memory::filled(cells, f64::INFINITY)?;
+    let mut previous = route_memory::filled(cells, u32::MAX)?;
+    let mut queue = Frontier::new(cells)?;
     distance[start] = 0.0;
-    queue.push(QueueState {
-        cost: 0.0,
-        position: start,
-    });
+    queue.decrease(start, &distance);
     let directions: &[(isize, isize)] = match request.connectivity {
         4 => &[(0, -1), (-1, 0), (1, 0), (0, 1)],
         8 => &[
@@ -1900,7 +1938,8 @@ fn calculate_route_from_path(
         }
     };
     let mut unit = "s";
-    while let Some(QueueState { cost, position }) = queue.pop() {
+    while let Some((cost, position)) = queue.pop(&distance) {
+        calculation_cancel::check()?;
         if position == end {
             break;
         }
@@ -1954,11 +1993,8 @@ fn calculate_route_from_path(
             let candidate = cost + edge_cost * discounts[position].min(discounts[next]) * rank_multiplier;
             if candidate < distance[next] {
                 distance[next] = candidate;
-                previous[next] = position;
-                queue.push(QueueState {
-                    cost: candidate,
-                    position: next,
-                });
+                previous[next] = position as u32;
+                queue.decrease(next, &distance);
             }
         }
     }
@@ -1967,6 +2003,8 @@ fn calculate_route_from_path(
             "No existe una ruta transitable entre los puntos con el modelo seleccionado".to_owned(),
         ));
     }
+    drop(queue);
+    drop(distance);
     let mut path = Vec::new();
     let mut cursor = end;
     loop {
@@ -1974,13 +2012,14 @@ fn calculate_route_from_path(
         if cursor == start {
             break;
         }
-        cursor = previous[cursor];
-        if cursor == usize::MAX {
+        cursor = previous[cursor] as usize;
+        if cursor == u32::MAX as usize {
             return Err(NativeError::Gdal(
                 "No se pudo reconstruir la ruta".to_owned(),
             ));
         }
     }
+    drop(previous);
     path.reverse();
     let mut distance_m = 0.0;
     let mut ascent_m = 0.0;
@@ -2090,6 +2129,7 @@ fn calculate_isochrones_from_path(
     cache: &SurfaceCache,
     progress: Option<(&tauri::AppHandle, &AtomicBool)>,
 ) -> Result<IsochroneResult, NativeError> {
+    let _calculation = GRAPH_CALCULATION.lock().map_err(|_| NativeError::Gdal("El motor de análisis está bloqueado".into()))?;
     if request.origins.is_empty() || request.origins.len() > 50 {
         return Err(NativeError::Gdal(
             "Seleccione entre uno y cincuenta orígenes para las isócronas".to_owned(),
@@ -2113,14 +2153,14 @@ fn calculate_isochrones_from_path(
         connectivity: request.connectivity,
         critical_slope_percent: request.critical_slope_percent,
         ardigo_speed_ms: request.ardigo_speed_ms,
-        max_cells: request.max_cells,
+        max_cells: request.max_cells.min(MAX_ANALYSIS_CELLS),
         rank_penalized_cells: Vec::new(),
         rank_penalty: 1.0,
     };
     let (surface, reused) = prepared_surface(&raster, &route_request, cache)?;
     let cells = surface.width * surface.height;
     report_isochrone_progress(progress, "Superficie preparada", 8.0, 0, cells)?;
-    let configured_limit = request.max_cells.clamp(100_000, MAX_ROUTE_CELLS);
+    let configured_limit = request.max_cells.clamp(100_000, MAX_ANALYSIS_CELLS);
     if cells > configured_limit {
         return Err(NativeError::Gdal(format!(
             "El MDT contiene {cells} celdas; el límite de procesado configurado es {configured_limit}."
@@ -2195,18 +2235,16 @@ fn calculate_isochrones_from_path(
             ))
         }
     };
-    let mut distance = vec![f64::INFINITY; cells];
-    let mut queue = BinaryHeap::new();
+    let mut distance = route_memory::filled(cells, f64::INFINITY)?;
+    let mut queue = Frontier::new(cells)?;
     for start in starts {
         distance[start] = 0.0;
-        queue.push(QueueState {
-            cost: 0.0,
-            position: start,
-        });
+        queue.decrease(start, &distance);
     }
     let mut unit = "s";
     let mut settled = 0_usize;
-    while let Some(QueueState { cost, position }) = queue.pop() {
+    while let Some((cost, position)) = queue.pop(&distance) {
+        calculation_cancel::check()?;
         if cost > distance[position] {
             continue;
         }
@@ -2261,13 +2299,11 @@ fn calculate_isochrones_from_path(
             let candidate = cost + edge * surface.discounts[position].min(surface.discounts[next]);
             if candidate < distance[next] {
                 distance[next] = candidate;
-                queue.push(QueueState {
-                    cost: candidate,
-                    position: next,
-                });
+                queue.decrease(next, &distance);
             }
         }
     }
+    drop(queue);
     let reachable_cells = distance.iter().filter(|value| value.is_finite()).count();
     report_isochrone_progress(progress, "Extrayendo contornos", 76.0, 0, surface.height)?;
     let max_cost = distance
@@ -2285,6 +2321,7 @@ fn calculate_isochrones_from_path(
     }
     let mut raw_lines: Vec<(f64, [[f64; 2]; 2])> = Vec::new();
     for y in 0..surface.height.saturating_sub(1) {
+        calculation_cancel::check()?;
         if y % 100 == 0 {
             report_isochrone_progress(
                 progress,
@@ -2376,6 +2413,7 @@ fn calculate_isochrones_from_path(
     let surface_height = surface.height.div_ceil(sample_step);
     let mut surface_values = Vec::with_capacity(surface_width * surface_height);
     for y in (0..surface.height).step_by(sample_step) {
+        calculation_cancel::check()?;
         if y % (sample_step * 50) == 0 {
             report_isochrone_progress(
                 progress,
@@ -2431,6 +2469,7 @@ fn raster_color_preview(
     std::fs::write(&colors, palette_definition(&palette)?)
         .map_err(|error| NativeError::Io(error.to_string()))?;
     let result = Command::new(gdaldem)
+        .env("GDAL_CACHEMAX", "64")
         .args(["color-relief"])
         .arg(&raster)
         .arg(&colors)
@@ -2953,42 +2992,7 @@ fn process_raster(
         .join("rasters");
     std::fs::create_dir_all(&directory).map_err(|error| NativeError::Io(error.to_string()))?;
     let output = directory.join(safe_filename(&request.output_name));
-    let executable = command_path("gdalwarp")
-        .ok_or_else(|| NativeError::Gdal("gdalwarp no está instalado".to_owned()))?;
-    let mut command = Command::new(executable);
-    command.args(["-overwrite", "-of", "COG", "-t_srs", &request.target_crs]);
-    if let Some(resolution) = request.resolution_m {
-        if !resolution.is_finite() || resolution <= 0.0 || resolution > 10_000.0 {
-            return Err(NativeError::Gdal(
-                "La resolución métrica no es válida".to_owned(),
-            ));
-        }
-        let value = resolution.to_string();
-        command.args(["-tr", &value, &value, "-tap", "-r", "bilinear"]);
-    }
-    if let Some(cutline) = request.cutline_path {
-        let path = PathBuf::from(&cutline);
-        if !path.is_file() {
-            return Err(NativeError::Io("La máscara vectorial no existe".to_owned()));
-        }
-        command.args([
-            "-cutline",
-            &cutline,
-            "-crop_to_cutline",
-            "-dstnodata",
-            "-9999",
-        ]);
-    }
-    let result = command
-        .arg(&input)
-        .arg(&output)
-        .output()
-        .map_err(|error| NativeError::Gdal(error.to_string()))?;
-    if !result.status.success() {
-        return Err(NativeError::Gdal(
-            String::from_utf8_lossy(&result.stderr).trim().to_owned(),
-        ));
-    }
+    reproject_elevation_raster(&input, &output, &request)?;
     let metadata = gdal_json(&output)?;
     let preview_data_url = raster_preview_data_url(&output)?;
     let bytes = std::fs::metadata(&output)
@@ -3002,6 +3006,74 @@ fn process_raster(
     })
 }
 
+fn reproject_elevation_raster(
+    input: &Path,
+    output: &Path,
+    request: &RasterProcessRequest,
+) -> Result<(), NativeError> {
+    raster_limits::check(&gdal_json_basic(input)?)?;
+    // Check the exact target grid with a VRT before creating the full COG.
+    let virtual_output = output.with_extension(format!("check-{}.vrt", uuid::Uuid::new_v4()));
+    let preflight = (|| {
+        let status = elevation_warp_command(input, &virtual_output, request, "VRT")?.output()
+            .map_err(|e| NativeError::Gdal(e.to_string()))?;
+        if !status.status.success() { return Err(NativeError::Gdal(String::from_utf8_lossy(&status.stderr).trim().into())); }
+        raster_limits::check(&gdal_json_basic(&virtual_output)?)
+    })();
+    let _ = std::fs::remove_file(&virtual_output);
+    let _ = std::fs::remove_file(auxiliary_metadata_path(&virtual_output));
+    preflight?;
+    let result = elevation_warp_command(input, output, request, "COG")?
+        .output()
+        .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    if !result.status.success() {
+        return Err(NativeError::Gdal(String::from_utf8_lossy(&result.stderr).trim().to_owned()));
+    }
+    let size = gdal_json_basic(output).and_then(|metadata| raster_limits::check(&metadata));
+    if size.is_err() { let _ = std::fs::remove_file(output); }
+    size
+}
+
+fn elevation_warp_command(input: &Path, output: &Path, request: &RasterProcessRequest, format: &str) -> Result<Command, NativeError> {
+    let executable = command_path("gdalwarp")
+        .ok_or_else(|| NativeError::Gdal("gdalwarp no está instalado".to_owned()))?;
+    let mut command = Command::new(executable);
+    // Reprojection creates uncovered cells around the rotated source footprint.
+    // Always mark them as NoData: GDAL otherwise fills them with valid-looking
+    // zeroes when the WCS source has no NoData metadata. Float32 also supports
+    // the negative sentinel for unsigned sources and preserves interpolated heights.
+    // https://gdal.org/en/stable/programs/gdalwarp.html#cmdoption-gdalwarp-dstnodata
+    command.env("GDAL_CACHEMAX", "64");
+    command.args(["-wm", "64"]);
+    if format == "COG" { command.args(["-co", "NUM_THREADS=1"]); }
+    command.args([
+        "-overwrite", "-of", format, "-ot", "Float32", "-dstnodata", "-9999",
+        "-t_srs", &request.target_crs,
+    ]);
+    if let Some(resolution) = request.resolution_m {
+        if !resolution.is_finite() || resolution <= 0.0 || resolution > 10_000.0 {
+            return Err(NativeError::Gdal(
+                "La resolución métrica no es válida".to_owned(),
+            ));
+        }
+        let value = resolution.to_string();
+        command.args(["-tr", &value, &value, "-tap", "-r", "bilinear"]);
+    }
+    if let Some(cutline) = &request.cutline_path {
+        let path = PathBuf::from(&cutline);
+        if !path.is_file() {
+            return Err(NativeError::Io("La máscara vectorial no existe".to_owned()));
+        }
+        command.args([
+            "-cutline",
+            &cutline,
+            "-crop_to_cutline",
+        ]);
+    }
+    command.arg(input).arg(output);
+    Ok(command)
+}
+
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct RemoteCogProcessRequest {
@@ -3012,13 +3084,25 @@ struct RemoteCogProcessRequest {
     bounds_wgs84: [f64; 4],
 }
 
+fn remote_cog_warp_command(inputs: &[PathBuf], output: &Path, request: &RemoteCogProcessRequest, format: &str) -> Result<Command, NativeError> {
+    let executable=command_path("gdalwarp").ok_or_else(|| NativeError::Gdal("gdalwarp no está instalado".into()))?;
+    let [west,south,east,north]=request.bounds_wgs84;
+    let resolution=request.resolution_m.to_string();
+    let mut command=Command::new(executable);
+    command.env("GDAL_CACHEMAX","64");
+    command.args(["-overwrite","-wm","64","-of",format,"-t_srs",&request.target_crs,"-te_srs","EPSG:4326","-te",&west.to_string(),&south.to_string(),&east.to_string(),&north.to_string(),"-tr",&resolution,&resolution,"-tap","-r","bilinear"]);
+    if format=="COG" {command.args(["-co","NUM_THREADS=1"]);}
+    command.args(inputs).arg(output);
+    Ok(command)
+}
+
 #[tauri::command]
 async fn process_remote_cogs(
     app: tauri::AppHandle,
     state: State<'_, DownloadState>,
     request: RemoteCogProcessRequest,
 ) -> Result<RasterResult, NativeError> {
-    if request.urls.is_empty() || request.urls.len() > 16 {
+    if request.urls.is_empty() || request.urls.len() > 128 {
         return Err(NativeError::Network(
             "El área requiere un número de teselas no válido".to_owned(),
         ));
@@ -3089,14 +3173,16 @@ async fn process_remote_cogs(
             gdal_json_basic(&path)?;
             inputs.push(path);
         }
-        let executable = command_path("gdalwarp").ok_or_else(|| NativeError::Gdal("gdalwarp no está instalado".to_owned()))?;
-        let [west, south, east, north] = request.bounds_wgs84;
-        let resolution = request.resolution_m.to_string();
-        let mut command = Command::new(executable);
-        command.args(["-overwrite","-of","COG","-t_srs",&request.target_crs,"-te_srs","EPSG:4326","-te",&west.to_string(),&south.to_string(),&east.to_string(),&north.to_string(),"-tr",&resolution,&resolution,"-tap","-r","bilinear"]);
-        for input in &inputs { command.arg(input); }
-        let executed = command.arg(&output).output().map_err(|error| NativeError::Gdal(error.to_string()))?;
+        let virtual_output = temporary.join("projected.vrt");
+        let executed = remote_cog_warp_command(&inputs[..1], &virtual_output, &request, "VRT")?.output()
+            .map_err(|error| NativeError::Gdal(error.to_string()))?;
         if !executed.status.success() { return Err(NativeError::Gdal(String::from_utf8_lossy(&executed.stderr).trim().to_owned())); }
+        raster_limits::check(&gdal_json_basic(&virtual_output)?)?;
+        if state.0.load(Ordering::SeqCst) { return Err(NativeError::Cancelled); }
+        let executed = remote_cog_warp_command(&inputs, &output, &request, "COG")?.output()
+            .map_err(|error| NativeError::Gdal(error.to_string()))?;
+        if !executed.status.success() { return Err(NativeError::Gdal(String::from_utf8_lossy(&executed.stderr).trim().to_owned())); }
+        raster_limits::check(&gdal_json_basic(&output)?)?;
         let metadata = gdal_json(&output)?;
         let preview_data_url = raster_preview_data_url(&output)?;
         let bytes = std::fs::metadata(&output).map_err(|error| NativeError::Io(error.to_string()))?.len();
@@ -3142,6 +3228,7 @@ fn inspect_geospatial_file(path: String) -> Result<Value, NativeError> {
 fn topographic_surface(
     raster: &Path,
     cache: &SurfaceCache,
+    max_cells: usize,
 ) -> Result<(Arc<PreparedSurface>, bool), NativeError> {
     let request = RouteRequest {
         raster_path: raster.to_string_lossy().into_owned(),
@@ -3155,7 +3242,7 @@ fn topographic_surface(
         connectivity: 8,
         critical_slope_percent: 10.0,
         ardigo_speed_ms: 1.2,
-        max_cells: MAX_ROUTE_CELLS,
+        max_cells: max_cells.min(MAX_ANALYSIS_CELLS),
         rank_penalized_cells: vec![],
         rank_penalty: 1.0,
     };
@@ -3190,97 +3277,85 @@ fn contour_segments(
     }
     let margin = terrain_border_margin(surface.width, surface.height);
     let nodata_cells = surface.elevations.iter().filter(|v| !valid_elevation(surface, **v)).count();
-    let valid: Vec<f64> = surface
-        .elevations
-        .iter()
-        .copied()
-        .enumerate()
-        .filter(|(i,v)| {
-            let row = i / surface.width;
-            let col = i % surface.width;
-            row >= margin && row < surface.height - margin && col >= margin && col < surface.width - margin && valid_elevation(surface, *v)
-        })
-        .map(|(_,v)| v)
-        .map(f64::from)
-        .collect();
-    if valid.is_empty() {
-        return Err(NativeError::Gdal(
-            "El MDT no contiene elevaciones válidas".into(),
-        ));
+    let mut min = f64::INFINITY;
+    let mut max = f64::NEG_INFINITY;
+    for row in margin..surface.height.saturating_sub(margin) {
+        calculation_cancel::check()?;
+        for col in margin..surface.width.saturating_sub(margin) {
+            let z=surface.elevations[row*surface.width+col];
+            if valid_elevation(surface,z) {min=min.min(z as f64);max=max.max(z as f64);}
+        }
     }
-    let min = valid.iter().copied().fold(f64::INFINITY, f64::min);
-    let max = valid.iter().copied().fold(f64::NEG_INFINITY, f64::max);
+    if !min.is_finite() {return Err(NativeError::Gdal("El MDT no contiene elevaciones válidas".into()));}
+    const MAX_SEGMENTS: usize = 250_000;
+    let too_complex=||NativeError::Gdal("Las curvas generan demasiados segmentos; aumente el intervalo de curvas".into());
     let mut projected: Vec<(f64, [[f64; 2]; 2])> = vec![];
-    let first = (min / interval).ceil() * interval;
-    let mut level = first;
-    while level <= max {
-        for row in margin..surface.height.saturating_sub(1 + margin) {
-            for col in margin..surface.width.saturating_sub(1 + margin) {
-                let ids = [
-                    row * surface.width + col,
-                    row * surface.width + col + 1,
-                    (row + 1) * surface.width + col + 1,
-                    (row + 1) * surface.width + col,
-                ];
-                let z = ids.map(|i| surface.elevations[i]);
-                if z.iter().any(|v| !valid_elevation(surface, *v)) {
-                    continue;
-                }
-                let xy = [
-                    [col as f64 + 0.5, row as f64 + 0.5],
-                    [col as f64 + 1.5, row as f64 + 0.5],
-                    [col as f64 + 1.5, row as f64 + 1.5],
-                    [col as f64 + 0.5, row as f64 + 1.5],
-                ];
-                let mut hits = vec![];
-                for (a, b) in [(0, 1), (1, 2), (2, 3), (3, 0)] {
-                    let za = z[a] as f64;
-                    let zb = z[b] as f64;
-                    if (za <= level && zb > level) || (zb <= level && za > level) {
-                        let t = (level - za) / (zb - za);
-                        hits.push([
-                            xy[a][0] + t * (xy[b][0] - xy[a][0]),
-                            xy[a][1] + t * (xy[b][1] - xy[a][1]),
-                        ]);
+    // Visit each native square once and examine only the levels crossing it.
+    // Preserve the previous edge order and interpolation (including saddles).
+    for row in margin..surface.height.saturating_sub(1 + margin) {
+        calculation_cancel::check()?;
+        for col in margin..surface.width.saturating_sub(1 + margin) {
+            let ids=[row*surface.width+col,row*surface.width+col+1,(row+1)*surface.width+col+1,(row+1)*surface.width+col];
+            let z=ids.map(|i|surface.elevations[i]);
+            if z.iter().any(|v|!valid_elevation(surface,*v)) {continue;}
+            let low=z.iter().copied().fold(f32::INFINITY,f32::min) as f64;
+            let high=z.iter().copied().fold(f32::NEG_INFINITY,f32::max) as f64;
+            if low==high {continue;}
+            let first=(low/interval).ceil();
+            let last=(high/interval).floor();
+            if first>last {continue;}
+            if last-first>MAX_SEGMENTS as f64 {return Err(too_complex());}
+            let xy=[[col as f64+0.5,row as f64+0.5],[col as f64+1.5,row as f64+0.5],[col as f64+1.5,row as f64+1.5],[col as f64+0.5,row as f64+1.5]];
+            for offset in 0..=(last-first) as usize {
+                let level=(first+offset as f64)*interval;
+                let mut hits=[[0.0;2];4];
+                let mut count=0;
+                for (a,b) in [(0,1),(1,2),(2,3),(3,0)] {
+                    let (za,zb)=(z[a] as f64,z[b] as f64);
+                    if (za<=level && zb>level)||(zb<=level && za>level) {
+                        let t=(level-za)/(zb-za);
+                        hits[count]=[xy[a][0]+t*(xy[b][0]-xy[a][0]),xy[a][1]+t*(xy[b][1]-xy[a][1])];
+                        count+=1;
                     }
                 }
-                for pair in hits.chunks_exact(2) {
-                    let map = |p: [f64; 2]| {
-                        [
-                            surface.origin_x + p[0] * surface.pixel_x,
-                            surface.origin_y + p[1] * surface.pixel_y,
-                        ]
-                    };
-                    projected.push((level, [map(pair[0]), map(pair[1])]));
+                for pair in hits[..count].chunks_exact(2) {
+                    if projected.len()>=MAX_SEGMENTS {return Err(too_complex());}
+                    let map=|p:[f64;2]|[surface.origin_x+p[0]*surface.pixel_x,surface.origin_y+p[1]*surface.pixel_y];
+                    projected.push((level,[map(pair[0]),map(pair[1])]));
                 }
             }
         }
-        level += interval;
     }
-    let flat: Vec<[f64; 2]> = projected
-        .iter()
-        .flat_map(|(_, s)| s.iter().copied())
-        .collect();
-    let geographic = transform_points(&flat, &surface.raster_crs, "EPSG:4326")?;
-    let lines = projected
-        .into_iter()
-        .enumerate()
-        .map(|(i, (level, _))| IsochroneLine {
-            level,
-            coordinates: vec![geographic[i * 2], geographic[i * 2 + 1]],
-        })
-        .collect();
+    // Keep the established level-first output order, without another raster copy.
+    projected.sort_by(|a,b|a.0.total_cmp(&b.0));
+    let mut lines=Vec::with_capacity(projected.len());
+    for chunk in projected.chunks(10_000) {
+        calculation_cancel::check()?;
+        let flat:Vec<[f64;2]>=chunk.iter().flat_map(|(_,line)|line.iter().copied()).collect();
+        let geographic=transform_points(&flat,&surface.raster_crs,"EPSG:4326")?;
+        lines.extend(chunk.iter().enumerate().map(|(i,(level,_))|IsochroneLine{level:*level,coordinates:vec![geographic[i*2],geographic[i*2+1]]}));
+    }
     Ok((lines, min, max, nodata_cells))
 }
 
 #[tauri::command]
-fn calculate_contours(
+async fn calculate_contours(
     app: tauri::AppHandle,
     cache: State<'_, SurfaceCache>,
     request: ContourRequest,
+    calculation_id: Option<String>,
 ) -> Result<ContourResult, NativeError> {
+    let cancellation=calculation_cancel::token(calculation_id.as_deref());
     let raster = ensure_app_raster(&app, &request.raster_path)?;
-    let (surface, _) = topographic_surface(&raster, &cache)?;
+    let cache = cache.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || calculation_cancel::run(cancellation,||calculate_contours_from_path(raster, request, &cache)))
+        .await.map_err(|e| NativeError::Gdal(format!("El análisis terminó inesperadamente: {e}")))?
+}
+
+fn calculate_contours_from_path(raster: PathBuf, request: ContourRequest, cache: &SurfaceCache) -> Result<ContourResult, NativeError> {
+    let _calculation = GRAPH_CALCULATION.lock().map_err(|_| NativeError::Gdal("El motor de análisis está bloqueado".into()))?;
+    calculation_cancel::check()?;
+    let (surface, _) = topographic_surface(&raster, &cache, request.max_cells)?;
     let (lines, min, max, nodata) = contour_segments(&surface, request.interval_m)?;
     Ok(ContourResult {
         interval_m: request.interval_m,
@@ -3325,48 +3400,30 @@ fn viewshed_for(
     let step = ((surface.width.max(surface.height) + max_side - 1) / max_side).max(1);
     let width = (surface.width + step - 1) / step;
     let height = (surface.height + step - 1) / step;
-    let sx = (ox as usize / step).min(width - 1);
-    let sy = (oy as usize / step).min(height - 1);
     let bins = 7200usize;
-    let mut cells = Vec::with_capacity(width * height);
-    for y in 0..height {
-        for x in 0..width {
-            let dx = x as f64 - sx as f64;
-            let dy = y as f64 - sy as f64;
-            cells.push((dx * dx + dy * dy, x, y));
-        }
-    }
-    cells.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(CmpOrdering::Equal));
+    let cells = analysis_grid::RadialCells::new(surface.width,surface.height,ox as usize,oy as usize,surface.pixel_x,surface.pixel_y)?;
     let mut horizon = vec![f64::NEG_INFINITY; bins];
-    let mut values = vec![0f32; width * height];
+    let mut values = vec![-1f32; width * height];
     let mut visible = 0;
     let mut valid_cells = 0;
-    for (d2, x, y) in cells {
-        let rx = (x * step).min(surface.width - 1);
-        let ry = (y * step).min(surface.height - 1);
-        let z = surface.elevations[ry * surface.width + rx];
-        let out = y * width + x;
-        if !valid_elevation(surface, z) {
-            values[out] = -1.0;
-            continue;
-        }
+    for (x, y, d2) in cells {
+        calculation_cancel::check()?;
+        let z = surface.elevations[y * surface.width + x];
+        if !valid_elevation(surface, z) { continue; }
         valid_cells += 1;
-        if d2 == 0.0 {
-            values[out] = 1.0;
-            visible += 1;
-            continue;
-        }
-        let angle = (y as f64 - sy as f64).atan2(x as f64 - sx as f64);
-        let bin = (((angle + std::f64::consts::PI) / (2.0 * std::f64::consts::PI) * bins as f64)
-            .floor() as usize)
-            .min(bins - 1);
-        let distance = ((x as f64 - sx as f64) * surface.pixel_x * step as f64)
-            .hypot((y as f64 - sy as f64) * surface.pixel_y * step as f64);
-        let vertical = ((z as f64) - (ground as f64 + observer_height)) / distance;
-        if vertical >= horizon[bin] - 1e-9 {
-            values[out] = 1.0;
-            visible += 1;
-            horizon[bin] = horizon[bin].max(vertical)
+        let seen = if d2 == 0.0 { true } else {
+            let dx = (x as f64 - ox as f64) * surface.pixel_x;
+            let dy = (y as f64 - oy as f64) * surface.pixel_y;
+            let angle = dy.atan2(dx);
+            let bin = (((angle + std::f64::consts::PI) / (2.0 * std::f64::consts::PI) * bins as f64).floor() as usize).min(bins - 1);
+            let vertical = ((z as f64) - (ground as f64 + observer_height)) / d2.sqrt();
+            let seen = vertical >= horizon[bin] - 1e-9;
+            horizon[bin] = horizon[bin].max(vertical);
+            seen
+        };
+        if seen { visible += 1; }
+        if x % step == 0 && y % step == 0 {
+            values[(y / step) * width + x / step] = if seen { 1.0 } else { 0.0 };
         }
     }
     Ok(ViewshedObserverResult {
@@ -3384,18 +3441,26 @@ fn viewshed_for(
 }
 
 #[tauri::command]
-fn calculate_viewshed(
+async fn calculate_viewshed(
     app: tauri::AppHandle,
     cache: State<'_, SurfaceCache>,
     request: ViewshedRequest,
+    calculation_id: Option<String>,
 ) -> Result<ViewshedResult, NativeError> {
-    if request.observers.is_empty() {
-        return Err(NativeError::Gdal(
-            "Seleccione al menos un punto de observación".into(),
-        ));
-    }
+    let cancellation=calculation_cancel::token(calculation_id.as_deref());
     let raster = ensure_app_raster(&app, &request.raster_path)?;
-    let (surface, _) = topographic_surface(&raster, &cache)?;
+    let cache = cache.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || calculation_cancel::run(cancellation,||calculate_viewshed_from_path(raster, request, &cache)))
+        .await.map_err(|e| NativeError::Gdal(format!("El análisis terminó inesperadamente: {e}")))?
+}
+
+fn calculate_viewshed_from_path(raster: PathBuf, request: ViewshedRequest, cache: &SurfaceCache) -> Result<ViewshedResult, NativeError> {
+    let _calculation = GRAPH_CALCULATION.lock().map_err(|_| NativeError::Gdal("El motor de análisis está bloqueado".into()))?;
+    if request.observers.is_empty() || request.observers.len() > 50 {
+        return Err(NativeError::Gdal("Seleccione entre uno y cincuenta observadores para la visibilidad".into()));
+    }
+    calculation_cancel::check()?;
+    let (surface, _) = topographic_surface(&raster, &cache, request.max_cells)?;
     let observers = request
         .observers
         .iter()
@@ -3446,6 +3511,7 @@ pub fn run() {
             native_status,
             fetch_capabilities,
             download_wcs,
+            mdt_download::download_mdt_tiles,
             cancel_wcs,
             process_raster,
             process_remote_cogs,
@@ -3459,6 +3525,8 @@ pub fn run() {
             calculate_contours,
             calculate_viewshed,
             cancel_raster_isochrones,
+            calculation_cancel::cancel_calculation,
+            calculation_cancel::release_calculation,
             sample_raster_elevation,
             sample_raster_elevation_at,
             generate_terrain_mesh,
@@ -3478,6 +3546,346 @@ pub fn run() {
 
 #[cfg(test)]
 mod tests {
+fn legacy_lcp_distances_for_test(
+    surface: &PreparedSurface,
+    start: usize,
+    request: &RouteRequest,
+    reverse: bool,
+) -> Result<(Vec<f64>, String), NativeError> {
+    let directions: &[(isize, isize)] = match request.connectivity {
+        4 => &[(0, -1), (-1, 0), (1, 0), (0, 1)],
+        8 => &[
+            (-1, -1),
+            (0, -1),
+            (1, -1),
+            (-1, 0),
+            (1, 0),
+            (-1, 1),
+            (0, 1),
+            (1, 1),
+        ],
+        16 => &[
+            (-1, -1),
+            (0, -1),
+            (1, -1),
+            (-1, 0),
+            (1, 0),
+            (-1, 1),
+            (0, 1),
+            (1, 1),
+            (-2, -1),
+            (-1, -2),
+            (1, -2),
+            (2, -1),
+            (-2, 1),
+            (-1, 2),
+            (1, 2),
+            (2, 1),
+        ],
+        _ => {
+            return Err(NativeError::Gdal(
+                "La conectividad debe ser 4, 8 o 16".to_owned(),
+            ))
+        }
+    };
+    let cells = surface.width * surface.height;
+    let mut distance = vec![f64::INFINITY; cells];
+    let mut queue = BinaryHeap::new();
+    let mut unit = "s";
+    distance[start] = 0.0;
+    queue.push(QueueState{cost:0.0,position:start});
+    while let Some(QueueState{cost,position}) = queue.pop() {
+        if cost > distance[position] {
+            continue;
+        }
+        let x = (position % surface.width) as isize;
+        let y = (position / surface.width) as isize;
+        for &(dx, dy) in directions {
+            let nx = x + dx;
+            let ny = y + dy;
+            if nx < 0 || ny < 0 || nx >= surface.width as isize || ny >= surface.height as isize {
+                continue;
+            }
+            let next = ny as usize * surface.width + nx as usize;
+            if surface.blocked[next] {
+                continue;
+            }
+            if dx != 0 && dy != 0 {
+                let horizontal = y as usize * surface.width + nx as usize;
+                let vertical = ny as usize * surface.width + x as usize;
+                if surface.blocked[horizontal] || surface.blocked[vertical] {
+                    continue;
+                }
+            }
+            let next_elevation = surface.elevations[next];
+            if !next_elevation.is_finite()
+                || surface
+                    .nodata
+                    .is_some_and(|value| (next_elevation - value).abs() <= 0.001)
+            {
+                continue;
+            }
+            let horizontal =
+                (surface.pixel_x.abs() * dx as f64).hypot(surface.pixel_y.abs() * dy as f64);
+            let rise = if reverse {
+                (surface.elevations[position] - next_elevation) as f64
+            } else {
+                (next_elevation - surface.elevations[position]) as f64
+            };
+            let (edge, edge_unit) = transition_cost(
+                &request.model,
+                horizontal,
+                rise,
+                surface.penalties[position].max(surface.penalties[next]),
+                request.critical_slope_percent,
+                request.ardigo_speed_ms,
+            )?;
+            unit = edge_unit;
+            let candidate = cost + edge * surface.discounts[position].min(surface.discounts[next]);
+            if candidate < distance[next] {
+                distance[next] = candidate;
+                queue.push(QueueState{cost:candidate,position:next})
+            }
+        }
+    }
+    Ok((distance, unit.to_owned()))
+}
+
+    fn synthetic_route_grid(width: usize, height: usize) -> (PathBuf, PathBuf) {
+        let directory = std::env::temp_dir().join(format!("route-grid-{}", uuid::Uuid::new_v4()));
+        std::fs::create_dir_all(&directory).unwrap();
+        // Sparse zero-filled file: a full-resolution, flat, traversable DEM.
+        // No reduced test window, resampling or invented proxy graph.
+        std::fs::File::create(directory.join("grid.raw")).unwrap().set_len((width*height*4) as u64).unwrap();
+        let input = directory.join("grid.vrt");
+        std::fs::write(&input,format!(r#"<VRTDataset rasterXSize="{width}" rasterYSize="{height}"><SRS>EPSG:25830</SRS><GeoTransform>500000,5,0,4500000,0,-5</GeoTransform><VRTRasterBand dataType="Float32" band="1" subClass="VRTRawRasterBand"><SourceFilename relativeToVRT="1">grid.raw</SourceFilename><ImageOffset>0</ImageOffset><PixelOffset>4</PixelOffset><LineOffset>{}</LineOffset><ByteOrder>LSB</ByteOrder></VRTRasterBand></VRTDataset>"#,width*4)).unwrap();
+        (directory,input)
+    }
+
+    fn grid_route_request(width: usize, height: usize) -> RouteRequest {
+        let endpoints = transform_points(&[[500002.5,4499997.5],[500000.0+(width as f64-0.5)*5.0,4500000.0-(height as f64-0.5)*5.0]],"EPSG:25830","EPSG:4326").unwrap();
+        RouteRequest {raster_path:String::new(), start:endpoints[0],end:endpoints[1],model:"tobler".into(),barriers:vec![],corridors:vec![],crossings:vec![],points_of_interest:vec![],connectivity:8,critical_slope_percent:10.0,ardigo_speed_ms:1.2,max_cells:MAX_ROUTE_CELLS,rank_penalized_cells:vec![],rank_penalty:1.0}
+    }
+
+    #[test]
+    fn bounded_route_matches_reference_dijkstra_and_checks_cached_limit() {
+        let (directory,input) = synthetic_route_grid(401,301);
+        let cache = SurfaceCache::default();
+        let mut request = grid_route_request(401,301);
+        // A soft barrier exercises the lazily allocated factor pages.
+        let barrier = transform_points(&[[501000.0,4500000.0],[501000.0,4498495.0]],"EPSG:25830","EPSG:4326").unwrap();
+        request.barriers.push(BarrierRequest {coordinates:barrier,kind:"penalty".into(),value:3.25});
+        for connectivity in [4,8,16] {
+            request.connectivity=connectivity;
+            let route=calculate_route_from_path(input.clone(),request.clone(),&cache).unwrap();
+            let (surface,_) = prepared_surface(&input,&request,&cache).unwrap();
+            let (reference,_) = legacy_lcp_distances_for_test(&surface,0,&request,false).unwrap();
+            assert!((route.cost-reference[401*301-1]).abs()<1e-7);
+            assert_eq!(route.path.first(),Some(&0));
+            assert_eq!(route.path.last(),Some(&(401*301-1)));
+            assert_eq!(surface.pixel_x,5.0);
+            assert_eq!(surface.pixel_y,-5.0);
+        }
+        request.max_cells=100_000;
+        assert!(calculate_route_from_path(input,request,&cache).err().unwrap().to_string().contains("100000"));
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    #[ignore = "Prueba de capacidad: rejilla completa de 67.928.064 celdas; ejecutar en release con memoria disponible"]
+    fn route_on_full_8192_by_8292_grid() {
+        let (width,height)=(8192,8292);
+        let (directory,input)=synthetic_route_grid(width,height);
+        let request=grid_route_request(width,height);
+        let cache=SurfaceCache::default();
+        let started=std::time::Instant::now();
+        let route=calculate_route_from_path(input,request,&cache).unwrap();
+        assert_eq!(route.path.first(),Some(&0));
+        assert_eq!(route.path.last(),Some(&(width*height-1)));
+        let expected_distance=(width-1) as f64*5.0_f64.hypot(5.0)+(height-width) as f64*5.0;
+        assert!((route.distance_m-expected_distance).abs()<1e-5);
+        let (expected_cost,_) = transition_cost("tobler",expected_distance,0.0,1.0,10.0,1.2).unwrap();
+        assert!((route.cost-expected_cost).abs()<1e-5);
+        let guard=cache.0.lock().unwrap();
+        let surface=&guard.as_ref().unwrap().surface;
+        assert_eq!(surface.width,width);
+        assert_eq!(surface.height,height);
+        assert_eq!((surface.pixel_x,surface.pixel_y),(5.0,-5.0));
+        println!("Ruta sobre {} celdas: {} celdas en el recorrido; distancia {:.3} m; coste {:.3} s; tiempo {:?}",width*height,route.path.len(),route.distance_m,route.cost,started.elapsed());
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    #[ignore = "MDT real local: definir VIASPANIA_ROUTE_RASTER y ejecutar en release"]
+    fn route_on_large_real_mdt_and_reuse_surface() {
+        let input=PathBuf::from(std::env::var("VIASPANIA_ROUTE_RASTER").expect("VIASPANIA_ROUTE_RASTER"));
+        let metadata=gdal_json_basic(&input).unwrap();
+        let width=metadata["size"][0].as_u64().unwrap() as usize;
+        let height=metadata["size"][1].as_u64().unwrap() as usize;
+        assert!(width*height>5_000_000);
+        let crs=raster_epsg(&input).unwrap();
+        let x=metadata["geoTransform"][0].as_f64().unwrap();
+        let y=metadata["geoTransform"][3].as_f64().unwrap();
+        let dx=metadata["geoTransform"][1].as_f64().unwrap();
+        let dy=metadata["geoTransform"][5].as_f64().unwrap();
+        let endpoints=transform_points(&[[x+width as f64*dx*0.25,y+height as f64*dy*0.25],[x+width as f64*dx*0.75,y+height as f64*dy*0.75]],&crs,"EPSG:4326").unwrap();
+        let mut request=grid_route_request(width,height);
+        request.start=endpoints[0];request.end=endpoints[1];
+        let cache=SurfaceCache::default();
+        let route=calculate_route_from_path(input.clone(),request.clone(),&cache).unwrap();
+        assert!(route.cost.is_finite() && route.cost>0.0);
+        assert!(route.distance_m>1000.0);
+        assert!(!route.surface_reused);
+        let repeated=calculate_route_from_path(input,request,&cache).unwrap();
+        assert!(repeated.surface_reused);
+        assert_eq!(route.path,repeated.path);
+        assert_eq!(route.cost,repeated.cost);
+        println!("MDT real {width} × {height}: {} celdas de ruta, distancia {:.3} m, coste {:.3} s; repetición idéntica",route.path.len(),route.distance_m,route.cost);
+    }
+
+    #[test]
+    fn imported_models_keep_their_resolution_and_obey_the_common_ceiling() {
+        let (directory,input)=synthetic_route_grid(5001,50);
+        for resolution in [1.0,25.0,30.0,200.0] {
+            let source=std::fs::read_to_string(&input).unwrap();
+            let start=source.find("<GeoTransform>").unwrap();
+            let end=source.find("</GeoTransform>").unwrap()+"</GeoTransform>".len();
+            let mut updated=source.clone();
+            updated.replace_range(start..end,&format!("<GeoTransform>500000,{resolution},0,4500000,0,-{resolution}</GeoTransform>"));
+            std::fs::write(&input,updated).unwrap();
+            let output=directory.join(format!("import-{resolution}.tif"));
+            let request=RasterProcessRequest {input_path:input.to_string_lossy().into_owned(),output_name:"import".into(),target_crs:"EPSG:25830".into(),resolution_m:None,cutline_path:None};
+            reproject_elevation_raster(&input,&output,&request).unwrap();
+            let metadata=gdal_json_basic(&output).unwrap();
+            assert_eq!(metadata["size"],serde_json::json!([5001,50]));
+            assert_eq!(metadata["geoTransform"],serde_json::json!([500000.0,resolution,0.0,4500000.0,0.0,-resolution]));
+        }
+        std::fs::remove_dir_all(directory).unwrap();
+        let (directory,input)=synthetic_route_grid(8192,8293);
+        let output=directory.join("too-large.tif");
+        let request=RasterProcessRequest {input_path:input.to_string_lossy().into_owned(),output_name:"large".into(),target_crs:"EPSG:25830".into(),resolution_m:None,cutline_path:None};
+        assert!(reproject_elevation_raster(&input,&output,&request).is_err());
+        assert!(!output.exists());
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    fn copernicus_warp_uses_common_limit_and_thirty_metre_cells() {
+        let (directory,input)=synthetic_route_grid(5000,4200);
+        let source=std::fs::read_to_string(&input).unwrap().replace("500000,5,0,4500000,0,-5","500000,30,0,4500000,0,-30");
+        std::fs::write(&input,source).unwrap();
+        let bounds=transform_points(&[[500000.0,4500000.0-4200.0*30.0],[500000.0+5000.0*30.0,4500000.0]],"EPSG:25830","EPSG:4326").unwrap();
+        let request=RemoteCogProcessRequest {urls:vec![],output_name:"test".into(),target_crs:"EPSG:25830".into(),resolution_m:30.0,bounds_wgs84:[bounds[0][0],bounds[0][1],bounds[1][0],bounds[1][1]]};
+        let preflight=directory.join("preflight.vrt");
+        let result=remote_cog_warp_command(&[input.clone()],&preflight,&request,"VRT").unwrap().output().unwrap();
+        assert!(result.status.success(),"{}",String::from_utf8_lossy(&result.stderr));
+        let expected=gdal_json_basic(&preflight).unwrap();
+        raster_limits::check(&expected).unwrap();
+        let output=directory.join("copernicus.tif");
+        let result=remote_cog_warp_command(&[input],&output,&request,"COG").unwrap().output().unwrap();
+        assert!(result.status.success());
+        let metadata=gdal_json_basic(&output).unwrap();
+        assert!(metadata["size"][0].as_u64().unwrap()>4096);
+        assert!(metadata["size"][1].as_u64().unwrap()>4096);
+        assert_eq!(metadata["size"],expected["size"]);
+        assert_eq!(metadata["geoTransform"][1],30.0);
+        assert_eq!(metadata["geoTransform"][5],-30.0);
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    fn visibility_detects_a_native_cell_obstacle_between_preview_samples() {
+        let mut surface=tiny_topographic_surface();
+        surface.width=1001;surface.height=1;surface.elevations=vec![0.0;1001];
+        surface.blocked=vec![false;1001];surface.penalties=Factors::new(1001);surface.discounts=Factors::new(1001);
+        surface.elevations[1]=100.0;
+        let point=transform_points(&[[surface.origin_x+surface.pixel_x*0.5,surface.origin_y+surface.pixel_y*0.5]],&surface.raster_crs,"EPSG:4326").unwrap()[0];
+        let result=viewshed_for(&surface,&ViewshedObserver{id:"p".into(),name:"p".into(),coordinate:point},2.0).unwrap();
+        assert_eq!(result.valid_cells,1001);
+        assert_eq!(result.visible_cells,2);
+        assert_eq!(result.surface_values[0],1.0);
+        assert_eq!(result.surface_values[1],0.0);
+    }
+
+    #[test]
+    fn isochrones_and_lcp_match_legacy_costs_on_an_asymmetric_dem() {
+        let (width,height)=(31,23);
+        let (directory,input)=synthetic_route_grid(width,height);
+        let elevations:Vec<f32>=(0..width*height).map(|i|((i%width)*(i%width)) as f32*0.1+(i/width) as f32*2.5).collect();
+        std::fs::write(directory.join("grid.raw"),elevations.iter().flat_map(|z|z.to_le_bytes()).collect::<Vec<_>>()).unwrap();
+        let request=grid_route_request(width,height);
+        let cache=SurfaceCache::default();
+        let (surface,_)=prepared_surface(&input,&request,&cache).unwrap();
+        let (forward,_)=legacy_lcp_distances_for_test(&surface,0,&request,false).unwrap();
+        let (backward,_)=legacy_lcp_distances_for_test(&surface,width*height-1,&request,true).unwrap();
+        let corridor=calculate_lcp_corridor_from_path(input.clone(),LcpCorridorRequest{route:request.clone(),threshold_percent:10.0},&cache).unwrap();
+        assert_eq!(corridor.optimal_cost,forward[width*height-1]);
+        let limit=corridor.optimal_cost*1.1;
+        assert_eq!(corridor.corridor_cells,forward.iter().zip(&backward).filter(|(a,b)|**a+**b<=limit).count());
+        let (from_end,_)=legacy_lcp_distances_for_test(&surface,width*height-1,&request,false).unwrap();
+        let expected:Vec<f64>=forward.iter().zip(from_end).map(|(a,b)|a.min(b)).collect();
+        let maximum=expected.iter().copied().fold(0.0,f64::max);
+        let isochrones=calculate_isochrones_from_path(input,IsochroneRequest{raster_path:String::new(),origins:vec![request.start,request.end],model:request.model,barriers:vec![],corridors:vec![],crossings:vec![],points_of_interest:vec![],connectivity:8,critical_slope_percent:10.0,ardigo_speed_ms:1.2,max_cells:MAX_ANALYSIS_CELLS,interval:maximum/3.0,max_levels:2},&cache,None).unwrap();
+        assert_eq!(isochrones.reachable_cells,width*height);
+        assert_eq!(isochrones.max_cost,maximum);
+        assert_eq!(isochrones.surface_values,expected.into_iter().map(|v|v as f32).collect::<Vec<_>>());
+        assert!(!isochrones.lines.is_empty());
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    fn topographic_analysis_honours_a_lower_saved_limit_even_with_a_cache() {
+        let (directory,input)=synthetic_route_grid(401,301);
+        let cache=SurfaceCache::default();
+        let (surface,_)=topographic_surface(&input,&cache,MAX_ANALYSIS_CELLS).unwrap();
+        assert_eq!(surface.width*surface.height,401*301);
+        assert!(calculate_contours_from_path(input.clone(),ContourRequest{raster_path:String::new(),interval_m:10.0,max_cells:100_000},&cache).is_err());
+        let point=grid_route_request(401,301).start;
+        assert!(calculate_viewshed_from_path(input,ViewshedRequest{raster_path:String::new(),observers:vec![ViewshedObserver{id:"p".into(),name:"p".into(),coordinate:point}],observer_height_m:2.0,max_cells:100_000},&cache).is_err());
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    #[ignore = "Capacidad de los cuatro análisis sobre 67.928.064 celdas: ejecutar en release con memoria disponible"]
+    fn all_analyses_on_full_8192_by_8292_grid() {
+        let (width,height)=(8192,8292);
+        let (directory,input)=synthetic_route_grid(width,height);
+        let request=grid_route_request(width,height);
+        let cache=SurfaceCache::default();
+        let time=std::time::Instant::now();
+        let isochrones=calculate_isochrones_from_path(input.clone(),IsochroneRequest{raster_path:String::new(),origins:vec![request.start],model:"tobler".into(),barriers:vec![],corridors:vec![],crossings:vec![],points_of_interest:vec![],connectivity:8,critical_slope_percent:10.0,ardigo_speed_ms:1.2,max_cells:MAX_ANALYSIS_CELLS,interval:15000.0,max_levels:2},&cache,None).unwrap();
+        assert_eq!(isochrones.reachable_cells,width*height);
+        assert!(!isochrones.lines.is_empty());
+        println!("Isócronas: {} celdas accesibles, {} segmentos, {:?}",isochrones.reachable_cells,isochrones.lines.len(),time.elapsed());
+        drop(isochrones);
+        let time=std::time::Instant::now();
+        let corridor=calculate_lcp_corridor_from_path(input.clone(),LcpCorridorRequest{route:request.clone(),threshold_percent:10.0},&cache).unwrap();
+        assert!(corridor.corridor_cells>0);
+        let distance=(width-1) as f64*5.0_f64.hypot(5.0)+(height-width) as f64*5.0;
+        assert!((corridor.optimal_cost-transition_cost("tobler",distance,0.0,1.0,10.0,1.2).unwrap().0).abs()<1e-5);
+        println!("Pasillo LCP: {} celdas, {:?}",corridor.corridor_cells,time.elapsed());
+        drop(corridor);
+        let time=std::time::Instant::now();
+        let visibility=calculate_viewshed_from_path(input.clone(),ViewshedRequest{raster_path:String::new(),observers:vec![ViewshedObserver{id:"p".into(),name:"p".into(),coordinate:request.start}],observer_height_m:2.0,max_cells:MAX_ANALYSIS_CELLS},&cache).unwrap();
+        assert_eq!(visibility.observers[0].valid_cells,width*height);
+        assert_eq!(visibility.observers[0].visible_cells,width*height);
+        assert!(visibility.observers[0].surface_width<=500);
+        println!("Visibilidad: {} celdas nativas visibles, {:?}",visibility.observers[0].visible_cells,time.elapsed());
+        drop(visibility);
+        // Now give each row a different elevation; output real contour geometry,
+        // rather than testing only the trivial empty contours of a flat grid.
+        let mut raw=std::fs::File::create(directory.join("grid.raw")).unwrap();
+        for row in 0..height {let bytes=(row as f32/1000.0).to_le_bytes().repeat(width);raw.write_all(&bytes).unwrap();}
+        drop(raw);
+        *cache.0.lock().unwrap()=None;
+        let time=std::time::Instant::now();
+        let contours=calculate_contours_from_path(input,ContourRequest{raster_path:String::new(),interval_m:1.0,max_cells:MAX_ANALYSIS_CELLS},&cache).unwrap();
+        assert_eq!(contours.lines.len(),8*(width-3));
+        assert_eq!(contours.resolution_m,5.0);
+        println!("Curvas de nivel: {} segmentos a 5 m, {:?}",contours.lines.len(),time.elapsed());
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
     #[test]
     fn geopackage_elements_round_trip() {
         let path = std::env::temp_dir().join(format!("viaspania-import-test-{}.gpkg", uuid::Uuid::new_v4()));
@@ -3494,6 +3902,65 @@ mod tests {
     }
 
     use super::*;
+
+    #[test]
+    fn reprojected_wcs_mesh_excludes_uncovered_edges_and_preserves_valid_zero() {
+        // Deterministic local WCS-like rasters: geographic grid with no NoData
+        // metadata, including UInt16 (the destination sentinel must stay negative).
+        let directory = std::env::temp_dir().join(format!("viaspania-terrain-test-{}", uuid::Uuid::new_v4()));
+        std::fs::create_dir_all(&directory).unwrap();
+        for (case, elevation, source_nodata) in [("terrain", 750_i16, None), ("sea-level", 0, None), ("surface-with-hole", 750, Some(-32768_i16))] {
+            let input = directory.join(format!("{case}.vrt"));
+            let output = directory.join(format!("{case}.tif"));
+            let mut values = vec![elevation; 557 * 214];
+            if let Some(nodata) = source_nodata {
+                for row in 80..130 {
+                    for column in 220..300 { values[row * 557 + column] = nodata; }
+                }
+            }
+            std::fs::write(directory.join(format!("{case}.raw")), values.iter().flat_map(|v| v.to_le_bytes()).collect::<Vec<_>>()).unwrap();
+            let data_type = if source_nodata.is_some() { "Int16" } else { "UInt16" };
+            let nodata_xml = source_nodata.map(|n| format!("<NoDataValue>{n}</NoDataValue>")).unwrap_or_default();
+            std::fs::write(&input, format!(r#"<VRTDataset rasterXSize="557" rasterYSize="214">
+                <SRS>EPSG:4258</SRS>
+                <GeoTransform>-2.165,0.0000450326972435,0,39.36944,0,-0.0000451447777937</GeoTransform>
+                <VRTRasterBand dataType="{data_type}" band="1" subClass="VRTRawRasterBand">
+                    {nodata_xml}<SourceFilename relativeToVRT="1">{case}.raw</SourceFilename>
+                    <ImageOffset>0</ImageOffset><PixelOffset>2</PixelOffset><LineOffset>1114</LineOffset><ByteOrder>LSB</ByteOrder>
+                </VRTRasterBand></VRTDataset>"#)).unwrap();
+            let request = RasterProcessRequest {
+                input_path: input.to_string_lossy().into_owned(), output_name: format!("{case}.tif"),
+                target_crs: "EPSG:25830".into(), resolution_m: Some(5.0), cutline_path: None,
+            };
+            reproject_elevation_raster(&input, &output, &request).unwrap();
+            let metadata = gdal_json_basic(&output).unwrap();
+            assert_eq!(metadata["bands"][0]["noDataValue"], -9999.0);
+            assert_eq!(metadata["bands"][0]["type"], "Float32");
+            // Exercise the actual mesh pipeline both at full size and downsampled.
+            for size in [450, 100] {
+                let mesh = terrain_mesh_from_path(&output, Some(size)).unwrap();
+                assert!(mesh.valid_cells.iter().any(|valid| *valid));
+                assert!((mesh.min_elevation_m - elevation as f32).abs() < 0.01, "{case}: false low elevations");
+                assert!((mesh.max_elevation_m - elevation as f32).abs() < 0.01);
+                let edges: [Vec<usize>; 4] = [
+                    (0..mesh.width).collect(),
+                    ((mesh.height - 1) * mesh.width..mesh.height * mesh.width).collect(),
+                    (0..mesh.height).map(|row| row * mesh.width).collect(),
+                    (0..mesh.height).map(|row| row * mesh.width + mesh.width - 1).collect(),
+                ];
+                // At reduced resolution GDAL may legitimately interpolate a
+                // boundary sample from covered neighbours; it must stay at the
+                // real elevation, as checked above, rather than slope to zero.
+                if size == 450 {
+                    for edge in edges { assert!(edge.iter().any(|&i| !mesh.valid_cells[i]), "{case}: uncovered edge treated as terrain"); }
+                }
+                if source_nodata.is_some() {
+                    assert!(!mesh.valid_cells[(mesh.height / 2) * mesh.width + mesh.width / 2]);
+                }
+            }
+        }
+        std::fs::remove_dir_all(directory).unwrap();
+    }
 
     #[test]
     fn terrain_edges_preserve_real_zero_and_nodata_metadata() {
@@ -3754,7 +4221,7 @@ mod tests {
             10.0,
             1.0,
             -1.0,
-        );
+        ).unwrap();
         assert!(blocked[1 * 10 + 1]);
         assert!(blocked[5 * 10 + 5]);
         assert!(blocked[5 * 10 + 4]);
@@ -3776,7 +4243,7 @@ mod tests {
             10.0,
             1.0,
             -1.0,
-        );
+        ).unwrap();
         assert!(blocked[3 * 10 + 1], "primer tramo vertical");
         assert!(blocked[5 * 10 + 6], "segundo tramo horizontal");
         assert!(!blocked[8 * 10 + 8], "celda ajena a la polilínea");
@@ -3796,7 +4263,7 @@ mod tests {
             10.0,
             1.0,
             -1.0,
-        );
+        ).unwrap();
         assert!(!blocked[5 * 10 + 5]);
         assert_eq!(penalties[5 * 10 + 5], 4.0);
     }
@@ -3824,7 +4291,7 @@ mod tests {
             0.0,
             1.0,
             -1.0,
-        );
+        ).unwrap();
         assert_eq!(discounts[7], 0.4);
         assert_eq!(discounts[12], 0.4);
         assert!(!blocked[12]);
@@ -3836,14 +4303,14 @@ mod tests {
         let (blocked, penalties) = rasterize_barriers(
             &[BarrierRequest { coordinates: vec![[4.5, -0.5], [4.5, -8.5]], kind: "absolute".into(), value: 1.0 }],
             9, 9, 0.0, 0.0, 1.0, -1.0,
-        );
+        ).unwrap();
         for connectivity in [4, 8, 16] {
             for reverse_geometry in [false, true] {
                 let mut surface = PreparedSurface {
                     raster_crs: "EPSG:25830".into(), width: 9, height: 9,
                     origin_x: 0.0, origin_y: 0.0, pixel_x: 1.0, pixel_y: -1.0,
                     nodata: None, elevations: vec![0.0; 81], blocked: blocked.clone(),
-                    penalties: penalties.clone(), discounts: vec![1.0; 81],
+                    penalties: penalties.clone(), discounts: Factors::new(81),
                 };
                 let request = RouteRequest {
                     raster_path: String::new(), start: [0.0, 0.0], end: [0.0, 0.0],
@@ -3860,7 +4327,7 @@ mod tests {
                     &[/* Corridors do not reopen barriers. */],
                     &[CrossingRequest { coordinates, crossing_cost_multiplier: 1.0 }],
                     &[], &mut surface.blocked, 9, 9, 0.0, 0.0, 1.0, -1.0,
-                );
+                ).unwrap();
                 assert!(lcp_distances(&surface, start, &request, false).unwrap().0[end].is_finite());
                 assert!(lcp_distances(&surface, end, &request, false).unwrap().0[start].is_finite());
                 assert!(surface.blocked[4]);
@@ -3888,7 +4355,7 @@ mod tests {
             0.0,
             1.0,
             -1.0,
-        );
+        ).unwrap();
         assert!((discounts[12] - 0.5).abs() < 1e-9);
         assert!((discounts[11] - 0.75).abs() < 1e-9);
         assert_eq!(discounts[10], 1.0);
@@ -3985,9 +4452,28 @@ mod tests {
             nodata: Some(-9999.0),
             elevations: vec![0.0, 20.0, 20.0, 0.0],
             blocked: vec![false; 4],
-            penalties: vec![1.0; 4],
-            discounts: vec![1.0; 4],
+            penalties: Factors::new(4),
+            discounts: Factors::new(4),
         }
+    }
+
+    #[test]
+    fn analysis_kernels_stop_when_cancellation_arrives() {
+        let id = "kernel-cancellation-test";
+        // Prepare GDAL-backed coordinates before cancelling the calculation.
+        let request = grid_route_request(2, 2);
+        let result = calculation_cancel::run(calculation_cancel::token(Some(id)), || {
+            calculation_cancel::cancel_calculation(id.into());
+            let surface = tiny_topographic_surface();
+            assert!(matches!(contour_segments(&surface, 10.0), Err(NativeError::CalculationCancelled)));
+            let observer = ViewshedObserver { id: "1".into(), name: "Observador".into(), coordinate: [-2.9995,39.9995] };
+            assert!(matches!(viewshed_for(&surface, &observer, 1.7), Err(NativeError::CalculationCancelled)));
+            assert!(matches!(lcp_distances(&surface, 0, &request, false), Err(NativeError::CalculationCancelled)));
+            assert!(matches!(route_memory::filled(100_000, 0_u32), Err(NativeError::CalculationCancelled)));
+            Ok(())
+        });
+        assert!(matches!(result, Err(NativeError::CalculationCancelled)));
+        calculation_cancel::release_calculation(id.into());
     }
 
     #[test]

@@ -1,3 +1,4 @@
+import {pointColor} from '../core/points';
 import {constraintMapFeatures,barrierMapStyle,facilitatorMapStyle} from './constraintMapFeatures';
 import { useEffect, useRef, useState } from 'react';
 import Feature from 'ol/Feature';
@@ -19,6 +20,7 @@ import type { GeoPoint,Barrier,PreferredCorridor,EnabledCrossing,PointOfInterest
 import type { SharedMapView, StudyExtent } from './MapPanel';
 import '../mdt-map.css';
 import { loadAppSettings } from '../core/appSettings';
+import {placeMarkerStyle} from './placeMarkerStyle';
 import {selectionMarkerStyle} from './selectionMarkerStyle';
 
 interface MdtMapPanelProps {
@@ -38,6 +40,7 @@ interface MdtMapPanelProps {
   zoomToStudyExtentToken?: number|null;
   hoverEnabled?: boolean;
   onPointerCoordinate?: (coordinate:{lon:number;lat:number}|null)=>void;
+  placeMarkerCoordinates?: readonly {lon:number;lat:number}[];
   selectionMarkerCoordinate?: {lon:number;lat:number}|null;
 }
 
@@ -49,16 +52,17 @@ function sameView(view: View, next: SharedMapView) {
   return Boolean(center && resolution && Math.abs(center[0]-next.center[0])<.01 && Math.abs(center[1]-next.center[1])<.01 && Math.abs(resolution-next.resolution)<.001 && Math.abs(view.getRotation()-next.rotation)<.00001);
 }
 
-export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,crossings=EMPTY_CROSSINGS,pointsOfInterest=EMPTY_POIS,expanded=false,imageUrl,studyExtent,viewState,onViewChange,points,selectedPointId,routes,isochroneLines=EMPTY_ISOCHRONE_LINES,isochroneSurface,onHover,userLocation,zoomToStudyExtentToken,hoverEnabled=true,onPointerCoordinate,selectionMarkerCoordinate}:MdtMapPanelProps){
+export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,crossings=EMPTY_CROSSINGS,pointsOfInterest=EMPTY_POIS,expanded=false,imageUrl,studyExtent,viewState,onViewChange,points,selectedPointId,routes,isochroneLines=EMPTY_ISOCHRONE_LINES,isochroneSurface,onHover,userLocation,zoomToStudyExtentToken,hoverEnabled=true,onPointerCoordinate,selectionMarkerCoordinate,placeMarkerCoordinates}:MdtMapPanelProps){
   const [showConstraints,setShowConstraints]=useState(true),[showLabels,setShowLabels]=useState(false);
   const [preferencesVersion,setPreferencesVersion]=useState(0),preferences=loadAppSettings();
   const constraintSource=useRef(new VectorSource()),constraintLayer=useRef(new VectorLayer({source:constraintSource.current,zIndex:2.5}));
   const pointSource=useRef(new VectorSource()),pointLayer=useRef(new VectorLayer({source:pointSource.current,zIndex:3}));
   useEffect(()=>{constraintSource.current.clear();constraintSource.current.addFeatures(constraintMapFeatures(barriers,corridors,crossings,pointsOfInterest))},[barriers,corridors,crossings,pointsOfInterest]);
   useEffect(()=>{const size=loadAppSettings().labelTextSizePx??11;constraintLayer.current.setVisible(showConstraints);constraintLayer.current.setStyle(feature=>['absolute','penalty'].includes(feature.get('kind'))?barrierMapStyle(feature,showLabels,size):facilitatorMapStyle(feature,showLabels,size))},[showConstraints,showLabels,preferencesVersion]);
-  useEffect(()=>{pointSource.current.clear();pointSource.current.addFeatures(points.map(point=>new Feature({geometry:new Point(fromLonLat([point.lon,point.lat])),point})))},[points]);
-  useEffect(()=>{const size=loadAppSettings().labelTextSizePx??11;pointLayer.current.setStyle(feature=>{const point=feature.get('point') as GeoPoint,selected=point.id===selectedPointId,color=point.role==='inicio'?'#59d2ff':point.role==='final'?'#ff796f':'#d8ff55';return new Style({image:new CircleStyle({radius:selected?9:7,fill:new Fill({color}),stroke:new Stroke({color:selected?'#fff':'#101713',width:selected?3:2})}),text:showLabels?new Text({text:point.name,offsetY:-(size+6),font:`600 ${size}px sans-serif`,fill:new Fill({color:'#fff'}),stroke:new Stroke({color:'#101713',width:3})}):undefined})})},[selectedPointId,showLabels,preferencesVersion]);
+  useEffect(()=>{pointSource.current.clear();pointSource.current.addFeatures(points.map((point,index)=>new Feature({geometry:new Point(fromLonLat([point.lon,point.lat])),point,order:index})))},[points]);
+  useEffect(()=>{const size=loadAppSettings().labelTextSizePx??11;pointLayer.current.setStyle(feature=>{const point=feature.get('point') as GeoPoint,selected=point.id===selectedPointId,color=pointColor(feature.get('order')??0);return new Style({image:new CircleStyle({radius:selected?9:7,fill:new Fill({color}),stroke:new Stroke({color:selected?'#fff':'#101713',width:selected?3:2})}),text:showLabels?new Text({text:point.name,offsetY:-(size+6),font:`600 ${size}px sans-serif`,fill:new Fill({color:'#fff'}),stroke:new Stroke({color:'#101713',width:3})}):undefined})})},[selectedPointId,showLabels,preferencesVersion]);
   useEffect(()=>{const refresh=()=>setPreferencesVersion(value=>value+1);window.addEventListener('viaspania-settings',refresh);return()=>window.removeEventListener('viaspania-settings',refresh)},[]);
+  const placeMarkerSourceRef=useRef(new VectorSource());
   const host=useRef<HTMLDivElement>(null),mapRef=useRef<Map|null>(null),syncing=useRef(false),onViewChangeRef=useRef(onViewChange),onHoverRef=useRef(onHover),onPointerCoordinateRef=useRef(onPointerCoordinate),selectionMarkerSourceRef=useRef(new VectorSource());
   onViewChangeRef.current=onViewChange;onHoverRef.current=onHover;onPointerCoordinateRef.current=onPointerCoordinate;
   useEffect(()=>{
@@ -79,6 +83,7 @@ export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,c
       new VectorLayer({source:routeSource,zIndex:2,style:feature=>[new Style({stroke:new Stroke({color:'rgba(5,15,18,.92)',width:9,lineCap:'round',lineJoin:'round'})}),new Style({stroke:new Stroke({color:String(feature.get('color')??'#00f0ff'),width:4,lineCap:'round',lineJoin:'round'})})]}),
       pointLayer.current,
       new VectorLayer({source:locationSource,zIndex:4,style:feature=>feature.getGeometry()?.getType()==='Circle'?new Style({fill:new Fill({color:'rgba(60,150,255,.16)'}),stroke:new Stroke({color:'rgba(90,180,255,.8)',width:2})}):new Style({image:new CircleStyle({radius:7,fill:new Fill({color:'#168cff'}),stroke:new Stroke({color:'#fff',width:3})})})}),
+      new VectorLayer({source:placeMarkerSourceRef.current,zIndex:7,style:placeMarkerStyle()}),
       new VectorLayer({source:selectionMarkerSourceRef.current,zIndex:8,style:selectionMarkerStyle()}),
     ],view:new View({center:viewState.center,resolution:viewState.resolution,rotation:viewState.rotation}),controls:preferences.showScales?[new ScaleLine()]:[]});
     mapRef.current=map;
@@ -87,6 +92,7 @@ export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,c
     const leave=()=>{onPointerCoordinateRef.current?.(null);if(hoverEnabled)onHoverRef.current(null)};map.getViewport().addEventListener('mouseleave',leave);
     return()=>{map.getViewport().removeEventListener('mouseleave',leave);mapRef.current=null;map.setTarget(undefined)};
   },[imageUrl,studyExtent,routes,isochroneLines,isochroneSurface?.imageUrl,isochroneSurface?.opacity,userLocation,preferencesVersion,hoverEnabled]);
+  useEffect(()=>{const source=placeMarkerSourceRef.current;source.clear();source.addFeatures((placeMarkerCoordinates??[]).map(coordinate=>new Feature(new Point(fromLonLat([coordinate.lon,coordinate.lat])))))},[placeMarkerCoordinates]);
   useEffect(()=>{const source=selectionMarkerSourceRef.current;source.clear();if(selectionMarkerCoordinate)source.addFeature(new Feature(new Point(fromLonLat([selectionMarkerCoordinate.lon,selectionMarkerCoordinate.lat]))))},[selectionMarkerCoordinate]);
   useEffect(()=>{const map=mapRef.current;if(!map||sameView(map.getView(),viewState))return;syncing.current=true;map.getView().setCenter(viewState.center);map.getView().setResolution(viewState.resolution);map.getView().setRotation(viewState.rotation)},[viewState]);
   useEffect(()=>{const map=mapRef.current;if(!map||zoomToStudyExtentToken==null)return;map.getView().fit(transformExtent(studyExtent,'EPSG:4326','EPSG:3857'),{padding:[36,36,36,36],duration:250})},[zoomToStudyExtentToken,studyExtent]);

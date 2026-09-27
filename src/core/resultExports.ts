@@ -2,7 +2,7 @@ import {resultProvenance} from './resultProvenance';
 import {MOVECOST_CODES,safeExportBaseName} from './geospatialExports';
 import type {Barrier,ContourResult,EnabledCrossing,GeoPoint,IsochroneResult,ModelId,PointOfInterest,PreferredCorridor} from '../types';
 
-export type ResultExportGroup='Datos del proyecto'|'Rutas simples'|'Rutas comparativas'|'Multipunto'|'Multirruta'|'Pasillos'|'Isócronas'|'Visibilidad'|'Curvas de nivel';
+export type ResultExportGroup='Datos del proyecto'|'Rutas simples'|'Rutas comparativas'|'Matriz de conexiones'|'Ruta Secuencial'|'Pasillos'|'Isócronas'|'Visibilidad'|'Curvas de nivel';
 export interface ResultExportItem{id:string;group:ResultExportGroup;label:string;fileName:string;format:'GeoJSON'|'PNG'|'GeoPackage'|'GeoTIFF'}
 export interface GeoPackageLayer {name:string;geoJson:string}
 

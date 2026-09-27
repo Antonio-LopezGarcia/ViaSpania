@@ -4,6 +4,7 @@ import {BUILT_IN_MAP_SOURCES} from './mapSources';
 // Keep the comparison viewer's order and identifiers in every calculation viewer.
 export const calculationBackgrounds=[
  {id:'pnoa',source:'pnoa'}, {id:'copernicus-vhr-2021',source:'copernicus-vhr-2021'},
+ {id:'ign-lidar',source:'ign-lidar'},
  {id:'osm',source:'osm'}, {id:'topographic',source:'ign-topographic'},
  {id:'mtn50',source:'MTN50'}, {id:'mtn25',source:'MTN25'},
  {id:'catastrones',source:'catastrones'}, {id:'minutas',source:'Minutas'},

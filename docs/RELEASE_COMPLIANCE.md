@@ -15,7 +15,7 @@ Se necesita Python 3.11+ (solo biblioteca estándar), Node/pnpm, Rust y las herr
 5. `VIASPANIA_USE_PREPARED_GEOSPATIAL=1 pnpm compliance:build`. La reutilización exige que todos los binarios coincidan con el expediente; no omite esa comprobación.
 6. `pnpm compliance:inspect` compara la `.app` con el inventario y avisos y registra hashes del producto.
 7. `pnpm compliance:package` genera el paquete de fuentes local en `release/`. Incluye el código actual (también modificaciones aún no committeadas), pero excluye `tmp/`, backups, configuraciones privadas y archivos .env. No es una copia automática de la rama principal. No distribuye `.git`, herramientas del sistema ni archivos fuera del proyecto.
-8. `pnpm compliance:check --strict` debe pasar **antes de publicar**. Actualmente las revisiones humanas/documentales siguen pendientes. Ofrecer instalador y paquete de fuentes de esa versión juntos, con hashes e instrucciones claras. No se ha configurado una oferta escrita ni publicado fuentes en nombre de los titulares.
+8. `pnpm compliance:check --strict` debe pasar **antes de publicar**. Ofrecer instalador y paquete de fuentes de esa versión juntos, con hashes e instrucciones claras. No se ha configurado una oferta escrita ni publicado fuentes en nombre de los titulares.
 
 Cambiar las fuentes después de generar el paquete exige regenerarlo y repetir su correspondencia con la compilación. Las recetas nativas originales, parámetros/recibos de Homebrew y scripts del proyecto se conservan; comprobar también recursos descargados transitivamente por CMake u otros builds. Archivos fuente obtenidos no equivalen a reconstrucción demostrada ni a cierre automático de Corresponding Source.
 
@@ -32,7 +32,7 @@ Cambiar las fuentes después de generar el paquete exige regenerarlo y repetir s
 
 Los textos de fuentes de build u otros sistemas se incluyen para no perder sus avisos cuando se ofrece el código; su inclusión en el expediente no afirma que todos esos componentes estén enlazados en macOS. Las licencias de datos permanecen bajo `geospatial/share` y sus términos no pasan a GPL.
 
-## Revisión humana/documental pendiente
+## Límites de la revisión humana/documental
 
 Confirmar titularidad/mandato institucional; aprobar términos precisos de assets oficiales ([ASSETS.md](ASSETS.md)); revisar alcance de licencias nativas compuestas con fuentes/objetos; completar términos de bases/rejillas y todas las salidas; cerrar descargas auxiliares de builds nativos y reconstruir desde el paquete. La autorización de publicación se documentará con evidencia concreta, no borrando avisos ni ignorando el control.
 

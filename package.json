@@ -1,7 +1,7 @@
 {
   "name": "viaspania",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.2.3",
   "license": "GPL-3.0-only",
   "type": "module",
   "scripts": {
@@ -13,6 +13,8 @@
     "tauri": "tauri",
     "desktop:dev": "tauri dev",
     "geospatial:prepare": "node ./scripts/prepare-geospatial-bundle.mjs",
+    "video:prepare": "node scripts/prepare-video.mjs",
+    "video:check": "node scripts/prepare-video.mjs --check",
     "desktop:build": "tauri build",
     "desktop:build:macos": "tauri build --bundles app,dmg",
     "desktop:build:windows": "tauri build --bundles msi,nsis",

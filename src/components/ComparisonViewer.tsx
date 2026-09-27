@@ -1,3 +1,5 @@
+import {createLidarMapSource} from '../services/lidarMap';
+import {pointColor} from '../core/points';
 import {CalculationBackgroundSelect,useCalculationBackgrounds} from './CalculationBackgroundSelect';
 import {calculationBackgroundOptions} from '../core/calculationBackgrounds';
 import type {ExternalMapLayer} from '../core/externalMapLayers';
@@ -39,6 +41,7 @@ const resolutions=Array.from({length:20},(_,zoom)=>156543.03392804097/2**zoom),m
 function wmts(url:string,layer:string,format='image/jpeg'){return new WMTS({url,layer,matrixSet:'GoogleMapsCompatible',format,projection:'EPSG:3857',style:'default',crossOrigin:'anonymous',tileGrid:new WMTSTileGrid({origin:[-20037508.342789244,20037508.342789244],resolutions,matrixIds}),attributions:'IGN/CNIG'})}
 function backgroundSource(background:Background,externalLayers:readonly ExternalMapLayer[]){
   const external=externalLayers.find(layer=>`external:${layer.id}`===background);if(external)return createExternalMapSource(external);
+  if(background==='ign-lidar')return createLidarMapSource();
   if(background==='osm')return new OSM({crossOrigin:'anonymous'});
   if(background==='pnoa')return wmts('https://www.ign.es/wmts/pnoa-ma','OI.OrthoimageCoverage');
   if(background==='copernicus-vhr-2021')return new TileWMS({url:COPERNICUS_VHR_2021_WMS,params:{LAYERS:COPERNICUS_VHR_2021_LAYER,TILED:true,FORMAT:'image/jpeg',TRANSPARENT:false},projection:'EPSG:4326',crossOrigin:'anonymous',attributions:'Copernicus Land Monitoring Service · EEA · VHR 2021 · 2 m'});
@@ -47,14 +50,14 @@ function backgroundSource(background:Background,externalLayers:readonly External
   return new TileWMS({url:aerial?'https://www.ign.es/wms/pnoa-historico':plan?'https://www.ign.es/wms/minutas-cartograficas':'https://www.ign.es/wms/primera-edicion-mtn',params:{LAYERS:background==='mtn50'?'MTN50':background==='mtn25'?'MTN25':background==='catastrones'?'catastrones':background==='minutas'?'Minutas':background==='american'?'AMS_1956-1957':'Interministerial_1973-1986',TILED:true,FORMAT:aerial?'image/jpeg':'image/png',TRANSPARENT:!aerial},projection:'EPSG:3857',crossOrigin:'anonymous',attributions:'IGN/CNIG'});
 }
 function sameView(view:View,next:SharedMapView){const center=view.getCenter(),resolution=view.getResolution();return Boolean(center&&resolution&&Math.abs(center[0]-next.center[0])<.01&&Math.abs(center[1]-next.center[1])<.01&&Math.abs(resolution-next.resolution)<.001&&Math.abs(view.getRotation()-next.rotation)<.00001)}
-function pointStyle(feature:Feature,labels:boolean){const role=feature.get('role'),color=role==='inicio'?'#59d2ff':role==='final'?'#ff796f':'#d8ff55';return new Style({image:new CircleStyle({radius:6,fill:new Fill({color}),stroke:new Stroke({color:'#fff',width:2})}),text:labels?new Text({text:String(feature.get('name')??''),offsetY:-16,font:'600 11px sans-serif',fill:new Fill({color:'#fff'}),stroke:new Stroke({color:'#101713',width:3})}):undefined})}
+function pointStyle(feature:Feature,labels:boolean){const color=pointColor(feature.get('order')??0);return new Style({image:new CircleStyle({radius:6,fill:new Fill({color}),stroke:new Stroke({color:'#fff',width:2})}),text:labels?new Text({text:String(feature.get('name')??''),offsetY:-16,font:'600 11px sans-serif',fill:new Fill({color:'#fff'}),stroke:new Stroke({color:'#101713',width:3})}):undefined})}
 
 interface MapProps {routes:RouteResult[];colors:Map<ModelId,string>;points:GeoPoint[];barriers:Barrier[];corridors:PreferredCorridor[];crossings:EnabledCrossing[];pointsOfInterest:PointOfInterest[];layers:Layers;background:Background;externalLayers:readonly ExternalMapLayer[];viewState:SharedMapView;onViewChange:(view:SharedMapView)=>void;label:string;studyExtent:StudyExtent}
 function ComparisonMap({routes,colors,points,barriers,corridors,crossings,pointsOfInterest,layers,background,externalLayers,viewState,onViewChange,label,studyExtent}:MapProps){
   const host=useRef<HTMLDivElement>(null),mapRef=useRef<OLMap|null>(null),syncing=useRef(false),onViewChangeRef=useRef(onViewChange);onViewChangeRef.current=onViewChange;
   useEffect(()=>{if(!host.current)return;const routeSource=new VectorSource(),pointSource=new VectorSource(),auxiliarySource=new VectorSource();
     for(const route of routes){if(!route.coordinates||route.coordinates.length<2)continue;const feature=new Feature(new LineString(route.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.set('model',route.model);routeSource.addFeature(feature)}
-    for(const point of points){const feature=new Feature(new Point(fromLonLat([point.lon,point.lat])));feature.setProperties({role:point.role,name:point.name,kind:'route-point'});pointSource.addFeature(feature)}
+    for(const point of points){const feature=new Feature(new Point(fromLonLat([point.lon,point.lat])));feature.setProperties({order:points.indexOf(point),name:point.name,kind:'route-point'});pointSource.addFeature(feature)}
     if(layers.barriers)for(const [index,barrier] of barriers.entries()){const feature=new Feature(new LineString(barrier.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.setProperties({kind:'barrier',barrierKind:barrier.kind,name:barrier.name?.trim()||`Barrera ${index+1}`});auxiliarySource.addFeature(feature)}
     if(layers.corridors)for(const corridor of corridors){const feature=new Feature(new LineString(corridor.coordinates.map(coordinate=>fromLonLat([...coordinate]))));feature.setProperties({kind:'corridor',name:corridor.name});auxiliarySource.addFeature(feature)}
     if(layers.crossings)for(const crossing of crossings){const feature=new Feature(new LineString(crossing.coordinates.map(coordinate=>fromLonLat([...coordinate]))));feature.setProperties({kind:'crossing',name:crossing.name});auxiliarySource.addFeature(feature)}

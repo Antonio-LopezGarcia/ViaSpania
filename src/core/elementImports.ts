@@ -22,7 +22,7 @@ export function parseElementLayers(layers:readonly GeoPackageLayer[]):ImportedEl
     const c=point?coordinate(g.coordinates):null;
     const line=()=>{if(!Array.isArray(g.coordinates)||g.coordinates.length<2)throw Error('La línea necesita dos vértices.');return g.coordinates.map(coordinate)};
     if(layer.name==='puntos'){
-     const role=choice(p.rol,['inicio','final','multipunto']);if(role!=='multipunto'&&result.points.some(item=>item.role===role))throw Error('Hay más de un punto de inicio o final.');
+     const role=choice(p.rol,['inicio','final','multipunto']);
      let provenance:PlaceProvenance|undefined;
      if(p.provenance!=null){const v=object(JSON.parse(str(p.provenance))),projected=object(v.projected);if(v.originalCrs!=='EPSG:4326')throw Error('Procedencia no válida.');const xy=projected.coordinate;if(!Array.isArray(xy)||xy.length!==2)throw Error('Procedencia no válida.');provenance={source:str(v.source),sourceId:str(v.sourceId),displayName:str(v.displayName),original:coordinate(v.original),originalCrs:'EPSG:4326',projected:{crs:str(projected.crs),coordinate:[num(xy[0],-Infinity),num(xy[1],-Infinity)]}}}
      const numericId=Number(id);if(!Number.isSafeInteger(numericId)||numericId<1||result.points.some(item=>item.id===numericId))throw Error('Identificador de punto no válido.');

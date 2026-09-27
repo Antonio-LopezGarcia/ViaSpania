@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
@@ -13,6 +13,8 @@ const platform=(process.env.TAURI_ENV_PLATFORM||process.env.RUNNER_OS||process.p
 const buildId=`${tauriConfig.version}+${commit.slice(0,12)}${dirty?'.dirty':''}.${builtAt.replace(/[-:]/g,'').replace('.000','')}.${platform}`;
 export default defineConfig({
   plugins: [react()],
+  // Exercise the real stylesheet imported as text by the Linux controls.
+  test: {css: {include: [/linux-form-controls\.css(?:\?|$)/]}},
   define: {
     __VIASPANIA_VERSION__:JSON.stringify(tauriConfig.version),
     __VIASPANIA_BUILD_ID__:JSON.stringify(buildId),

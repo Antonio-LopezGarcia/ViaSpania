@@ -1,12 +1,12 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "ViaSpania",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "identifier": "es.viaspania.desktop",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
-    "beforeBuildCommand": "npm run geospatial:prepare && npm run build",
+    "beforeBuildCommand": "npm run geospatial:prepare && npm run video:prepare && npm run build",
     "frontendDist": "../dist"
   },
   "app": {
@@ -18,7 +18,7 @@
         "minWidth": 900,
         "minHeight": 650,
         "resizable": true,
-        "userAgent": "ViaSpania/0.2.2 (https://github.com/traxtiber/ViaSpania)"
+        "userAgent": "ViaSpania/0.2.3 (https://github.com/traxtiber/ViaSpania)"
       }
     ],
     "security": {
@@ -30,6 +30,7 @@
     "targets": "all",
     "resources": {
       "resources/geospatial/": "geospatial/",
+      "resources/video/": "video/",
       "../public/compliance/": "compliance/",
       "../public/SOURCE_CODE.txt": "SOURCE_CODE.txt"
     },

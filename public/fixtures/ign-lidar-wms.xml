@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WMS_Capabilities xmlns:srv="http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd" xmlns:gmd="http://schemas.opengis.net/iso/19139/20060504/gmd/gmd.xsd" xmlns:gco="http://schemas.opengis.net/iso/19139/20060504/gco/gco.xsd" xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" xmlns:gml="http://schemas.opengis.net/gml" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" version="1.3.0" updateSequence="2619" xmlns="http://www.opengis.net/wms" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/wms http://inspire.ec.europa.eu/schemas/inspire_vs/1.0/inspire_vs.xsd">   
+  <Service>
+    <Name>WMS</Name>
+    <Title>Modelo Digital de Superficies LiDAR de España</Title>
+    <Abstract>Modelo Digital de Superficies LiDAR generado por composición de cuatro capas: A partir de las nubes de puntos LiDAR correspondientes a la primera cobertura del proyecto PNOA-LiDAR, debidamente clasificadas, se genera un modelo digital de superficies al que se le aplica un sombreado. Sobre este sombreado se superponen tres capas: dos modelos digitales de superficies normalizados, uno de la clase vegetación y otro de la clase edificación, y la rasterización de la capa de hidrografía de la Información Geográfica de Referencia del Sistema Cartográfico Nacional. Se aplica una paleta de color a cada capa, estableciendo un degradado en la información correspondiente a la vegetación y a la edificación en función de su altura sobre el terreno. El producto final se almacena en formato .ecw. Se puede consultar la altura de los edificios y la vegetación a partir de una escala aproximada 1:20.000. Estos datos se engloban en el tema Elevaciones del Anexo II de la Directiva Inspire. Servicio de visualización WMS 1.3.0 conforme al perfil Inspire de ISO 19128:2005.
+	</Abstract>
+    <KeywordList>
+	  <Keyword>Infraestructura de Datos Espaciales</Keyword>
+	 <Keyword>MDS</Keyword>
+	  <Keyword>IDEE</Keyword>
+	  <Keyword>SCNE</Keyword>
+	  <Keyword>LiDAR</Keyword>
+      <Keyword>Sistema Cartográfico Nacional</Keyword>
+	  <Keyword vocabulary="ISO 19119 geographic services taxonomy, version 2.3">infoMapAccessService</Keyword>
+      <Keyword vocabulary="ISO 19119 geographic services taxonomy, version 2.3">infoManagementService</Keyword>
+	  <Keyword vocabulary="GEMET - INSPIRE themes, version 1.0">Elevaciones</Keyword>
+    </KeywordList>
+    <OnlineResource xlink:type="simple" xlink:href="http://www.ign.es"/>
+		<ContactInformation>
+			<ContactPersonPrimary>
+				<ContactPerson/>
+				<ContactOrganization>Infraestructura de Datos Espaciales</ContactOrganization>
+			</ContactPersonPrimary>
+			<ContactPosition>pointOfContact</ContactPosition>
+			<ContactElectronicMailAddress>ign@fomento.es</ContactElectronicMailAddress>
+		</ContactInformation>
+    <Fees>no se aplican condiciones</Fees>
+	<AccessConstraints>CC BY 4.0 http://www.scne.es/#Mapa-LiDAR</AccessConstraints>
+	<MaxWidth>4096</MaxWidth>
+	<MaxHeight>4096</MaxHeight>
+  </Service>
+  <Capability>
+    <Request>
+      <GetCapabilities>
+        <Format>text/xml</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://wms-mapa-lidar.idee.es/lidar?SERVICE=WMS&amp;"/>
+            </Get>
+            <Post>
+              <OnlineResource xlink:type="simple" xlink:href="https://wms-mapa-lidar.idee.es/lidar?SERVICE=WMS&amp;"/>
+            </Post>
+          </HTTP>
+        </DCPType>
+      </GetCapabilities>
+      <GetMap>
+		<Format>image/png</Format>
+		<Format>image/jpeg</Format>
+		<Format>image/gif</Format>
+		<Format>image/png; mode=8bit</Format>
+		<Format>application/x-pdf</Format>
+		<Format>image/svg+xml</Format>
+		<Format>image/tiff</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xlink:type="simple" xlink:href="https://wms-mapa-lidar.idee.es/lidar?SERVICE=WMS&amp;"/>
+            </Get>
+          </HTTP>
+        </DCPType>
+      </GetMap>
+	  <GetFeatureInfo>
+        <Format>text/html</Format>
+		<Format>text/xml</Format>
+		<Format>application/vnd.ogc.gml</Format>
+		<Format>application/json</Format>
+		<Format>text/plain</Format>
+        <DCPType>
+          <HTTP>
+            <Get>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://wms-mapa-lidar.idee.es/lidar?SERVICE=WMS&amp;"/> 
+            </Get>
+            <Post>
+              <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://wms-mapa-lidar.idee.es/lidar?SERVICE=WMS&amp;"/> 
+            </Post>
+          </HTTP>
+        </DCPType>
+      </GetFeatureInfo>
+    </Request>
+    <Exception>
+      <Format>XML</Format>
+	  <Format>INIMAGE</Format>
+	  <Format>BLANK</Format>	  
+    </Exception>
+	<inspire_vs:ExtendedCapabilities>
+		<inspire_common:MetadataUrl xsi:type="inspire_common:resourceLocatorType">
+			<inspire_common:URL>https://www.ign.es/csw-inspire/srv/spa/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;ElementSetName=full&amp;ID=spaignwms_mapa_lidar</inspire_common:URL> 
+			<inspire_common:MediaType>application/vnd.iso.19139+xml</inspire_common:MediaType> 
+		</inspire_common:MetadataUrl>
+		<inspire_common:SupportedLanguages xsi:type="inspire_common:supportedLanguagesType">
+			<inspire_common:DefaultLanguage>
+				<inspire_common:Language>spa</inspire_common:Language> 
+			</inspire_common:DefaultLanguage>
+			<inspire_common:SupportedLanguage>
+				<inspire_common:Language>spa</inspire_common:Language>
+			</inspire_common:SupportedLanguage>
+		</inspire_common:SupportedLanguages>
+		<inspire_common:ResponseLanguage>
+			<inspire_common:Language>spa</inspire_common:Language> 
+		</inspire_common:ResponseLanguage>
+	</inspire_vs:ExtendedCapabilities>
+    <Layer>
+      <Title>Modelo Digital de Superficies LiDAR</Title>
+      <Abstract>Modelo Digital de Superficies LiDAR que ofrece la altura de los edificios y la vegetación a partir de una escala aproximada 1:20.000. Producto compuesto por un sombreado del Modelo Digital de Superficies al que se la ha superpuesto la rasterización de las clases edificación y vegetación procedentes de la nube de puntos LiDAR en formato .las y la hidrografía procedente de la Información Geográfica de Referencia.</Abstract>    
+	  <CRS>EPSG:3857</CRS>
+	  <CRS>EPSG:25829</CRS>
+	  <CRS>EPSG:25830</CRS>
+	  <CRS>EPSG:25831</CRS>
+	  <CRS>EPSG:25828</CRS>
+	  <CRS>EPSG:4326</CRS>
+	  <CRS>EPSG:4258</CRS>
+	  <CRS>EPSG:32629</CRS>
+	  <CRS>EPSG:32630</CRS>
+	  <CRS>EPSG:32631</CRS>
+	  <CRS>EPSG:32628</CRS>
+	  <CRS>CRS:84</CRS>
+	  <CRS>EPSG:3035</CRS>
+	  <CRS>EPSG:4083</CRS>
+      <EX_GeographicBoundingBox>
+        <westBoundLongitude>-19</westBoundLongitude>
+        <eastBoundLongitude>5</eastBoundLongitude>
+        <southBoundLatitude>27</southBoundLatitude>
+        <northBoundLatitude>44</northBoundLatitude>
+      </EX_GeographicBoundingBox>
+	  <BoundingBox CRS="EPSG:3857" minx="-2.11507e+06" miny="3.12347e+06" maxx="556597" maxy="5.46544e+06"/>
+	  <BoundingBox CRS="EPSG:25829" minx="-495136" miny="2.98644e+06" maxx="1.8972e+06" maxy="4.96814e+06"/>
+	  <BoundingBox CRS="EPSG:25830" minx="-1.09967e+06" miny="2.98644e+06" maxx="1.29525e+06" maxy="4.99801e+06"/>
+	  <BoundingBox CRS="EPSG:25831" minx="-1.71455e+06" miny="2.98644e+06" maxx="698454" maxy="5.11326e+06"/>
+	  <BoundingBox CRS="EPSG:25828" minx="102948" miny="2.98644e+06" maxx="2.5082e+06" maxy="5.07048e+06"/>
+	  <BoundingBox CRS="EPSG:4326" minx="27" miny="-19" maxx="44" maxy="5"/>
+	  <BoundingBox CRS="EPSG:4258" minx="27" miny="-19" maxx="44" maxy="5"/>
+	  <BoundingBox CRS="EPSG:32629" minx="-495136" miny="2.98644e+06" maxx="1.8972e+06" maxy="4.96814e+06"/>
+	  <BoundingBox CRS="EPSG:32630" minx="-1.09967e+06" miny="2.98644e+06" maxx="1.29525e+06" maxy="4.99801e+06"/>
+	  <BoundingBox CRS="EPSG:32631" minx="-1.71455e+06" miny="2.98644e+06" maxx="698454" maxy="5.11326e+06"/>
+	  <BoundingBox CRS="EPSG:32628" minx="102948" miny="2.98644e+06" maxx="2.5082e+06" maxy="5.07048e+06"/>
+	  <BoundingBox CRS="CRS:84" minx="-19" miny="27" maxx="5" maxy="44"/>
+	  <BoundingBox CRS="EPSG:3035" minx="471469" miny="1.44589e+06" maxx="2.76882e+06" maxy="3.91939e+06"/>
+	  <BoundingBox CRS="EPSG:4083" minx="102948" miny="2.98644e+06" maxx="2.5082e+06" maxy="5.07048e+06"/>	  
+	  <AuthorityURL name="SCNE">
+		<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://www.scne.es"/>
+	  </AuthorityURL>
+		<Layer queryable="1">
+        <Name>EL.GridCoverage</Name>
+        <Title>Mapa LiDAR</Title>
+        <Abstract>Modelo Digital de Superficies LiDAR con información de alturas de edificaciones y vegetación a partir de una escala aproximada de 1:20.000</Abstract>
+        <KeywordList>
+          <Keyword>Mapa LiDAR</Keyword>
+        </KeywordList>
+<CRS>EPSG:3857</CRS>
+<CRS>EPSG:25829</CRS>
+<CRS>EPSG:25830</CRS>
+<CRS>EPSG:25831</CRS>
+<CRS>EPSG:25828</CRS>
+<CRS>EPSG:4326</CRS>
+<CRS>EPSG:4258</CRS>
+<CRS>EPSG:32629</CRS>
+<CRS>EPSG:32630</CRS>
+<CRS>EPSG:32631</CRS>
+<CRS>EPSG:32628</CRS>
+<CRS>CRS:84</CRS>
+<CRS>EPSG:3035</CRS>
+<CRS>EPSG:4083</CRS>
+<EX_GeographicBoundingBox>
+<westBoundLongitude>-19</westBoundLongitude>
+<eastBoundLongitude>5</eastBoundLongitude>
+<southBoundLatitude>27</southBoundLatitude>
+<northBoundLatitude>44</northBoundLatitude>
+</EX_GeographicBoundingBox>
+<BoundingBox CRS="EPSG:3857" minx="-2.11507e+06" miny="3.12347e+06" maxx="556597" maxy="5.46544e+06"/>
+<BoundingBox CRS="EPSG:25829" minx="-495136" miny="2.98644e+06" maxx="1.8972e+06" maxy="4.96814e+06"/>
+<BoundingBox CRS="EPSG:25830" minx="-1.09967e+06" miny="2.98644e+06" maxx="1.29525e+06" maxy="4.99801e+06"/>
+<BoundingBox CRS="EPSG:25831" minx="-1.71455e+06" miny="2.98644e+06" maxx="698454" maxy="5.11326e+06"/>
+<BoundingBox CRS="EPSG:25828" minx="102948" miny="2.98644e+06" maxx="2.5082e+06" maxy="5.07048e+06"/>
+<BoundingBox CRS="EPSG:4326" minx="27" miny="-19" maxx="44" maxy="5"/>
+<BoundingBox CRS="EPSG:4258" minx="27" miny="-19" maxx="44" maxy="5"/>
+<BoundingBox CRS="EPSG:32629" minx="-495136" miny="2.98644e+06" maxx="1.8972e+06" maxy="4.96814e+06"/>
+<BoundingBox CRS="EPSG:32630" minx="-1.09967e+06" miny="2.98644e+06" maxx="1.29525e+06" maxy="4.99801e+06"/>
+<BoundingBox CRS="EPSG:32631" minx="-1.71455e+06" miny="2.98644e+06" maxx="698454" maxy="5.11326e+06"/>
+<BoundingBox CRS="EPSG:32628" minx="102948" miny="2.98644e+06" maxx="2.5082e+06" maxy="5.07048e+06"/>
+<BoundingBox CRS="CRS:84" minx="-19" miny="27" maxx="5" maxy="44"/>
+<BoundingBox CRS="EPSG:3035" minx="471469" miny="1.44589e+06" maxx="2.76882e+06" maxy="3.91939e+06"/>
+<BoundingBox CRS="EPSG:4083" minx="102948" miny="2.98644e+06" maxx="2.5082e+06" maxy="5.07048e+06"/>
+		<Attribution>
+			<Title>Sistema Cartográfico Nacional</Title>
+			<OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://www.scne.es"/>
+		</Attribution>
+	    <Identifier authority="SCNE">mapa_lidar</Identifier>
+		<MetadataURL type="ISO19115:2003">
+			<Format>text/plain</Format> 
+			<OnlineResource xlink:type="simple" xlink:href="https://www.ign.es/csw-inspire/srv/spa/csw?SERVICE=CSW&amp;VERSION=2.0.2&amp;REQUEST=GetRecordById&amp;outputSchema=http://www.isotc211.org/2005/gmd&amp;ElementSetName=full&amp;ID=spaign_mapa_lidar" /> 
+		</MetadataURL>
+		<Style>
+		  <Name>default</Name>
+		  <Title>Estilo por defecto del mapa lidar</Title>
+		  <Abstract>Modelo Digital de Superficies renderizado como datos raster</Abstract>
+		  <LegendURL width="500" height="263">
+			<Format>image/png</Format>
+			<OnlineResource xlink:type="simple" xlink:href="https://wms-mapa-lidar.idee.es/lidar/leyendas/MapaLidar.png"/>
+		  </LegendURL>
+		</Style>
+		</Layer>
+    </Layer>
+  </Capability>
+</WMS_Capabilities>

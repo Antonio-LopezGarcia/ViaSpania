@@ -1,3 +1,4 @@
+import {elevationSizeAllowed} from './elevationLimits';
 export type ImportedElevationKind='terrain'|'surface';
 
 export interface RasterImportDetails {
@@ -32,6 +33,7 @@ export function geographicExtent(metadata:JsonRecord):[number,number,number,numb
 export function parseElevationRasterMetadata(metadata:JsonRecord):RasterImportDetails{
   const size=metadata.size,bands=metadata.bands,coordinateSystem=record(metadata.coordinateSystem),geoTransform=metadata.geoTransform;
   if(!Array.isArray(size)||size.length!==2||!Number.isInteger(size[0])||!Number.isInteger(size[1])||(size[0] as number)<=0||(size[1] as number)<=0)throw new Error('El GeoTIFF no contiene dimensiones de raster válidas.');
+  if(!elevationSizeAllowed(size[0] as number,size[1] as number))throw new Error('El modelo supera el límite de 67.928.064 celdas. Reduzca el área sin cambiar la resolución.');
   if(!Array.isArray(bands)||bands.length!==1)throw new Error('El modelo debe contener exactamente una banda de elevación.');
   const band=record(bands[0]);if(!band)throw new Error('GDAL no pudo leer la banda de elevación.');
   const crs=typeof coordinateSystem?.wkt==='string'?coordinateSystem.wkt:'';

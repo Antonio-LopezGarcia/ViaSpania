@@ -1,8 +1,10 @@
+import {createLidarMapSource} from './lidarMap';
 import Map from 'ol/Map';import View from 'ol/View';import TileLayer from 'ol/layer/Tile';import OSM from 'ol/source/OSM';import TileWMS from 'ol/source/TileWMS';import WMTS from 'ol/source/WMTS';import WMTSTileGrid from 'ol/tilegrid/WMTS';import {transformExtent} from 'ol/proj';
 import type {StudyExtent} from '../components/MapPanel';import type {BuiltInMapSourceId} from '../core/appSettings';import type {ReportMapSource} from '../core/reportMapSources';import {createExternalMapSource} from './externalMapLayers';
 import {COPERNICUS_VHR_2021_LAYER,COPERNICUS_VHR_2021_WMS} from './ogc';
 const resolutions=Array.from({length:20},(_,zoom)=>156543.03392804097/2**zoom),matrixIds=resolutions.map((_,zoom)=>String(zoom));
 function builtInSource(id:BuiltInMapSourceId){
+ if(id==='ign-lidar')return createLidarMapSource();
  if(id==='osm')return new OSM({crossOrigin:'anonymous'});
  if(id==='ign-topographic')return new WMTS({url:'https://www.ign.es/wmts/mapa-raster',layer:'MTN',matrixSet:'GoogleMapsCompatible',format:'image/jpeg',projection:'EPSG:3857',tileGrid:new WMTSTileGrid({origin:[-20037508.342789244,20037508.342789244],resolutions,matrixIds}),style:'default',crossOrigin:'anonymous'});
  if(id==='pnoa')return new WMTS({url:'https://www.ign.es/wmts/pnoa-ma',layer:'OI.OrthoimageCoverage',matrixSet:'GoogleMapsCompatible',format:'image/jpeg',projection:'EPSG:3857',tileGrid:new WMTSTileGrid({origin:[-20037508.342789244,20037508.342789244],resolutions,matrixIds}),style:'default',crossOrigin:'anonymous'});

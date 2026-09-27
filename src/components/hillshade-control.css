@@ -1,0 +1,4 @@
+.hillshade-control{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:11px;color:#dce7df}
+.hillshade-control input{flex:1 1 80px;min-width:0;max-width:130px;accent-color:auto}
+.hillshade-control span{font-variant-numeric:tabular-nums;white-space:nowrap}
+.dem-view-controls .hillshade-control{box-sizing:border-box;padding:7px 9px;border:1px solid #46534c;border-radius:6px;background:#101713ed}

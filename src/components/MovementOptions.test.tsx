@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import {cleanup,fireEvent,render,screen} from '@testing-library/react';
+import {cleanup,fireEvent,render,screen,within} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
 import {MovementOptions} from './MovementOptions';
 import {MODELS} from '../core/costModels';
@@ -45,4 +45,21 @@ it('omite las rutas subóptimas en los modos de superficie aunque estén activad
  expect(screen.queryByLabelText('Calcular rutas subóptimas')).toBeNull();
  expect(screen.queryByLabelText('Número de rutas subóptimas')).toBeNull();
  expect(screen.getByLabelText('Conectividad')).toBeTruthy();
+});
+
+it('abre la ayuda del perfil seleccionado junto al selector',()=>{
+ const {rerender}=render(<MovementOptions {...defaults}/>);
+ fireEvent.click(screen.getByRole('button',{name:'Ayuda del perfil de desplazamiento'}));
+ expect(screen.getByRole('dialog')).toBeTruthy();
+ expect(screen.getByText(/Waldo R. Tobler/)).toBeTruthy();
+ rerender(<MovementOptions {...defaults} model="ardigo"/>);
+ expect(within(screen.getByRole('dialog')).getByText(/entre 0,2 y 15/)).toBeTruthy();
+ expect(screen.queryByText(/Waldo R. Tobler/)).toBeNull();
+ fireEvent.keyDown(window,{key:'Escape'});
+ expect(screen.queryByRole('dialog')).toBeNull();
+});
+it('abre la ayuda individual en la comparación sin cambiar la selección',()=>{
+ const onComparisonModels=vi.fn();render(<MovementOptions {...defaults} comparisonModels={['tobler','ardigo']} onComparisonModels={onComparisonModels}/>);
+ fireEvent.click(screen.getByRole('button',{name:'Ayuda del perfil de desplazamiento: Ardigò',hidden:true}));
+ expect(within(screen.getByRole('dialog')).getByText(/entre 0,2 y 15/)).toBeTruthy();expect(onComparisonModels).not.toHaveBeenCalled();
 });

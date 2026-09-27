@@ -1,5 +1,5 @@
 {
   "build": {
-    "beforeBuildCommand": "npm run geospatial:prepare && npm run compliance:check && npm run build && npm run compliance:record-build"
+    "beforeBuildCommand": "npm run geospatial:prepare && npm run video:prepare && npm run compliance:check && npm run build && npm run compliance:record-build"
   }
 }

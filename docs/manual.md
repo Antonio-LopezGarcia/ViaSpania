@@ -22,7 +22,7 @@ Un mapa de fondo sirve para orientarse. El modelo de elevación proporciona las 
 2. Localice una zona conocida en **Navegación**. Puede desplazarse por el mapa o utilizar **Buscar lugar**.
 3. Active **Seleccionar área** y arrastre un rectángulo pequeño que incluya los dos extremos de su recorrido y espacio alrededor para posibles alternativas.
 4. Elija un modelo del terreno y revise su resolución y el tamaño estimado. Descárguelo y espere a que termine el procesamiento.
-5. En el mapa de **Selección**, active la herramienta de Inicio y coloque el origen. Haga lo mismo con Final para el destino. Ambos deben quedar dentro del modelo y sobre celdas con elevación válida.
+5. En el mapa de **Selección**, active **＋ Crear punto** y añada dos puntos. Ambos deben quedar dentro del modelo y sobre celdas con elevación válida.
 6. Abra **Ruta simple**, seleccione un perfil de desplazamiento y una conectividad. Para este primer ejercicio, deje las barreras y los facilitadores vacíos.
 7. Calcule la ida. Revise el trazado, su distancia, el coste y su unidad, y el perfil de elevación.
 8. Si desea estudiar el regreso, calcule la vuelta independiente. Después guarde el proyecto y utilice **Componer informe** o **Exportar resultados** según lo que necesite conservar.
@@ -115,7 +115,7 @@ Las celdas sin elevación válida, llamadas **NoData**, no son terreno de altura
 
 ### Puntos del cálculo
 
-Coloque Inicio y Final para una ruta entre dos extremos. Utilice multipuntos para estudiar varias localizaciones o un itinerario con paradas. Revise nombres, posiciones y orden en la lista. Las herramientas de seleccionar, mover y eliminar actúan sobre los elementos del mapa de Selección; vuelva al modo de navegación para desplazar el mapa sin editarlos.
+Use **＋ Crear punto**: cada clic añade un punto al final sin sustituir otros. La lista muestra Punto 1, Punto 2, etc., con colores distintos. Cambie el orden con **Subir** y **Bajar**; al mover o eliminar un punto se conserva el orden restante. **Crear PDI** sigue siendo una herramienta independiente. Las herramientas de seleccionar, mover y eliminar actúan sobre los elementos del mapa de Selección; vuelva al modo de navegación para desplazar el mapa sin editarlos.
 
 Puede importar puntos mediante CSV o GeoJSON. Use la plantilla CSV de la aplicación como referencia de columnas y formato, y compruebe en el mapa el resultado antes de calcular. El orden de coordenadas del buscador es latitud, longitud; GeoJSON utiliza longitud, latitud.
 
@@ -145,7 +145,7 @@ Ocultar barreras, facilitadores o etiquetas en un visor solo cambia su presentac
 
 ### Ruta simple: conectar dos lugares
 
-Utilícela para buscar una ruta entre Inicio y Final. Cargue el modelo, coloque ambos puntos, elija perfil y conectividad y calcule la ida. El coste mínimo es el menor coste según ese perfil, no necesariamente la distancia más corta.
+Utilícela para buscar una ruta entre Punto 1 y Punto 2. Cargue el modelo, coloque ambos puntos, elija perfil y conectividad y calcule la ida. El coste mínimo es el menor coste según ese perfil, no necesariamente la distancia más corta.
 
 El resultado ofrece trazado, distancia, coste con unidad, ascenso, descenso y perfil de elevación. La vuelta se calcula de forma independiente: subir y bajar pueden producir costes y rutas diferentes. Para comparar sentidos, calcule ambos.
 
@@ -155,13 +155,13 @@ Utilícela para estudiar cómo cambia el trazado al cambiar la hipótesis de des
 
 Revise la tabla y los visores superpuesto o dual. En el superpuesto puede mostrar u ocultar perfiles; el dual permite inspeccionar dos rutas con navegación sincronizada. Compare geometrías y compruebe las unidades antes de comparar valores numéricos: segundos, julios y coste relativo no son equivalentes.
 
-### Multipunto: comparar conexiones entre localizaciones
+### Matriz de conexiones (Multipunto): comparar conexiones entre localizaciones
 
-Utilícelo para estudiar conexiones entre los primeros ocho puntos de la lista. El resultado es una matriz de costes y un conjunto de rutas dirigidas. Lea cada casilla desde el origen de la fila hacia el destino de la columna.
+Utilícelo para estudiar conexiones entre todos los puntos de la lista. El resultado es una matriz de costes y un conjunto de rutas dirigidas. Lea cada casilla desde el origen de la fila hacia el destino de la columna.
 
 La conexión A→B puede diferir de B→A. Multipunto responde qué cuesta ir entre pares; no propone un orden para visitar todos los lugares.
 
-### Multirruta: seguir una secuencia de paradas
+### Ruta secuencial (Multirruta): seguir una secuencia de paradas
 
 Utilícela cuando el orden de visita ya está decidido. Ordene los puntos y calcule: con A, B y C se obtiene A→B y después B→C. Revise cada tramo y sus uniones.
 
@@ -175,7 +175,7 @@ La separación influye en cuánto se apartan los trazados. No son las k rutas m�
 
 ### Pasillo: explorar una franja de alternativas
 
-Utilícelo para reconocer una zona de paso potencial entre Inicio y Final. Elija perfil, conectividad y porcentaje de tolerancia; después calcule y revise la superficie.
+Utilícelo para reconocer una zona de paso potencial entre Punto 1 y Punto 2. Elija perfil, conectividad y porcentaje de tolerancia; después calcule y revise la superficie.
 
 Un umbral del 10 % admite celdas por las que puede pasar una conexión con un coste hasta un 10 % superior al óptimo. Aumentar el porcentaje suele ampliar el pasillo. No representa una anchura física de camino ni una probabilidad de uso.
 
@@ -241,9 +241,9 @@ Ajuste exageración vertical, paleta o textura y active los puntos, rutas, curva
 4. Elija duración, velocidad y resolución. Active brújula o perfil altimétrico si los necesita y están disponibles.
 5. Pulse **Exportar vídeo**, **Exportar animación GIF** o **Exportar fotograma PNG** y espere a la confirmación de guardado.
 
-El vídeo se guarda como AVI/MJPEG a 30 fotogramas por segundo, con un máximo de 90 segundos y 1,5 GB por archivo. La duración efectiva depende de duración y velocidad: 20 segundos a 2× producen 10 segundos. El tiempo necesario para generar el archivo puede ser mayor que su duración de reproducción.
+El vídeo puede guardarse como AVI/MJPEG o MP4/H.264 a 30 fotogramas por segundo, con un máximo de 90 segundos y 1,5 GB por archivo. MP4 se convierte a partir del AVI ya compuesto con el FFmpeg incluido; si la conversión falla, se conserva el AVI para recuperarlo. La duración efectiva depende de duración y velocidad: 20 segundos a 2× producen 10 segundos. El tiempo necesario para generar el archivo puede ser mayor que su duración de reproducción.
 
-GIF adapta la resolución y el número de fotogramas para controlar memoria. El PNG corresponde al fotograma inicial del modo configurado. Los vídeos pueden ocupar mucho espacio; reserve disco para el temporal y el archivo final. Puede cancelar la exportación. Si el reproductor no admite AVI/MJPEG, abra el archivo con uno compatible.
+GIF adapta la resolución y el número de fotogramas para controlar memoria. El PNG corresponde al fotograma inicial del modo configurado. Los vídeos pueden ocupar mucho espacio; reserve disco para el temporal y el archivo final. Puede cancelar la exportación. Si el reproductor no admite AVI/MJPEG o MP4/H.264, abra el archivo con un reproductor compatible.
 
 ## 10. Guardar resultados y componer un informe
 
@@ -312,8 +312,14 @@ El proyecto JSON no contiene el archivo de elevación. Vuelva a descargar o impo
 
 ### El vídeo falla o no se reproduce
 
-Espere a que las texturas terminen de cargar, compruebe que hay una ruta visible si el modo la requiere y reduzca duración o resolución. Revise el espacio de disco y los límites de exportación. El archivo es AVI/MJPEG; necesita un reproductor que admita ese formato.
+Espere a que las texturas terminen de cargar, compruebe que hay una ruta visible si el modo la requiere y reduzca duración o resolución. Revise el espacio de disco y los límites de exportación. Pruebe primero AVI/MJPEG si MP4/H.264 falla: la aplicación conserva el AVI intermedio y muestra el detalle del error.
 
 ### Necesito comunicar un problema
 
 Anote versión y compilación, sistema operativo, pasos realizados y mensaje de error completo. Indique la fuente y resolución del modelo y adjunte solo datos que pueda compartir. Contacto de soporte: antonio.lopez@ugr.es.
+
+### Orden y compatibilidad de puntos
+
+**Ruta secuencial** es el análisis predeterminado y recomendado: conecta Punto 1 → Punto 2 → Punto 3, con un tramo por pareja consecutiva. Requiere al menos dos puntos, coordenadas válidas, todos dentro del área de estudio y un modelo de elevación cargado. La matriz de conexiones es otro análisis: calcula todas las parejas dirigidas y su trabajo crece con el número de puntos. Ruta simple, comparación y pasillo utilizan los dos primeros puntos. En isócronas elija un punto por identificador o todos; visibilidad conserva la selección individual de observadores.
+
+Los proyectos JSON antiguos conservan todos sus datos y resultados: se ordenan primero los antiguos inicios, después los multipuntos en su orden original y finalmente los finales. Al guardar se marca el orden del array para respetar futuras reordenaciones. CSV y GeoJSON conservan el orden de entrada y siguen leyendo y exportando el campo `role`/`rol` antiguo, que ya no decide la secuencia.

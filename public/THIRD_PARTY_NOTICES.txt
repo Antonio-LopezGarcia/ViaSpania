@@ -416,3 +416,10 @@ Con ello quedan resueltas las nueve faltas de texto/selección del control, con 
 - [MPL-2.0, especialmente §§1.5, 1.12 y 3.3](https://www.mozilla.org/en-US/MPL/2.0/).
 
 Los textos estándar conservados proceden de los JSON oficiales `spdx/license-list-data/json/details/{MIT,Apache-2.0,MPL-2.0}.json`; sus copias locales están sujetas a los hashes de entrada del expediente.
+
+## Conversor MP4: FFmpeg/libx264
+
+- FFmpeg 8.0.1: GPL-3.0-or-later; opción utilizada GPL-3.0-only. Fuente: https://ffmpeg.org/releases/ffmpeg-8.0.1.tar.xz
+- libx264 c24e06c2e184345ceb33eb20a15d1024d9fd3497: GPL-2.0-or-later; opción utilizada GPL-3.0-only. Fuente: https://codeload.github.com/mirror/x264/tar.gz/c24e06c2e184345ceb33eb20a15d1024d9fd3497
+
+Compilación mínima estática, sin componentes nonfree ni bibliotecas externas autodetectadas. This software is based in part on the work of the Independent JPEG Group. Textos: compliance/VIDEO_LICENSES.txt. Fuentes exactas y receta: video/sources en la distribución.

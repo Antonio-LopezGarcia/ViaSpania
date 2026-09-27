@@ -15,7 +15,7 @@ it('traduce créditos combinados de ortofoto y elevación y restaura el español
 });
 it('traduce los avisos de MDT, Copernicus y cartografía sin perder autores o enlaces',()=>{
  setLanguage('en');
- for(const id of ['mdt5','mdt25','mdt200'] as const)expect(translateText(ELEVATION_SOURCES[id].attribution)).toBe('IGN/CNIG · WCS DTM of Spain · https://www.ign.es/web/politica-datos');
+ for(const id of ['mdt5','mdt25','mdt200'] as const)expect(translateText(ELEVATION_SOURCES[id].attribution)).toBe('IGN/CNIG · Spanish DTM WCS · https://www.ign.es/web/politica-datos');
  const copernicus=translateText(ELEVATION_SOURCES.copernicus30.attribution);
  expect(copernicus).toContain('Conditions for subsequent users: https://documentation.dataspace.copernicus.eu/');expect(copernicus).toContain('accept no liability');expect(copernicus).toContain('© DLR e.V. 2010–2014');expect(copernicus).not.toContain('Las organizaciones');
  expect(translateText(builtInMapAttribution('AMS_1956-1957'))).toBe('© Instituto Geográfico Nacional de España · Historical PNOA · CC BY 4.0');

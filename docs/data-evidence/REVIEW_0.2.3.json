@@ -1,0 +1,313 @@
+{
+  "schema": 1,
+  "date": "2026-09-20",
+  "scope": "Revisión técnica de datos y exportaciones del árbol local posterior a 0.2.2, en preparación de 0.2.3; no acredita instaladores nuevos ni otros sistemas.",
+  "baseCommit": "9158fc2af0a1941cfb1cea02cd54b012b32e0909",
+  "dataFilesUnchanged": 626,
+  "changedPreviouslyReviewedFiles": {
+    "src/App.tsx": {
+      "previous": "6dc684e22fab0d491b91696d60a58b21ae76dff17ed64739ebc3e1aadd03c762",
+      "current": "41e41a2856fd8e005dab308bd1ce62e35aa51df30c116ca844cf74eb4bf79ead"
+    },
+    "src/main.tsx": {
+      "previous": "a612d3e50618cff45e7dd8ad9baab21da902b24cd3d6c54e63c2efae8b6f2c37",
+      "current": "c8ec1ecc135109164e05accf86937ddf71550bfbff9bada028d6f07b786762bf"
+    },
+    "src/terrain-3d.css": {
+      "previous": "2b86d25fb65dad6a526eec833f4a843aacdd16a5d11b5c10cec0ac0435484116",
+      "current": "37c760d5c6cef590f399dd1757daa0cf7e7bc74034acf05a1487b0a1e14527e4"
+    },
+    "src/surface-models.css": {
+      "previous": "04f74ed78bdca8f26fc2cc68900788b6b0311ea73596a297d39c338b303d4ea9",
+      "current": "acba6a6e62fa32d066850753503a89b8f77697ce9ef57bffe2dd52c6e003fc85"
+    },
+    "src/mdt-map.css": {
+      "previous": "67ba1e1ecd6162a474a33a3ffe76a8d335d2d1325aa69c160883d82806ff344e",
+      "current": "1be0d6355c152b0bf1306095f0b38c05ab99e1152f4bf429fd05eb2806c630c1"
+    },
+    "src/map-tools.css": {
+      "previous": "880f2dba0ae15f2eb5b57c111dffb29d2f8eab85f0583c36c9e866808a550583",
+      "current": "a3a657647a902bb9077bbd8bbab2cf084913241dc0afbdfe5cd913deecea2883"
+    },
+    "src/core/i18n.en.json": {
+      "previous": "d9ddc990e44db5ce77fdcd14e0c8b268b30e2aabd4118a78bccc83020fba9f05",
+      "current": "9daa89eeb995715280ca3c32415575c119f2a5dc203df8a4ca4ee55656dde4c1"
+    },
+    "src/core/terrain3d.test.ts": {
+      "previous": "ec1100454dfd49f9b18c744673383f3c935a881a83e908a963cc66957f023e44",
+      "current": "a960a9aa8d7fa8ee2a45fa629fffd8c87ff9c02921a2c0dec6e75d5ef2f89086"
+    },
+    "src/core/rasterImport.test.ts": {
+      "previous": "eb3ff3a9dcaf98846f6a9c0d9a4bc99d54db02bc5930a222aa5913b22f9b6b08",
+      "current": "d93f5cfe33fca0fe8ab904809678440f74ed29c1e8ef49630f24758fc7dd9234"
+    },
+    "src/core/appSettings.ts": {
+      "previous": "33df19625121a46c67b8cca7b0d279841fbf67a79ee85455c2f528228dafb55a",
+      "current": "83df91c6dce61befdcf6247eb7a7d0deff1980fee4e96ba4c2f0b68be5b894ab"
+    },
+    "src/core/i18n.test.tsx": {
+      "previous": "c84d4dbe22fccc1e8549d0988af6b8efffc75c0fcb156b8d7f1d991f5babb03e",
+      "current": "ce98cef4b427d506d27f2083b0c2d1199a9f9826ba668a60002f400609699bb9"
+    },
+    "src/core/calculationBackgrounds.ts": {
+      "previous": "9ede2036ef8bc179e1200d2a86492b2ff79fa6dd295f77653a3052e3f3ef8175",
+      "current": "10a592a5686503c06f39403d61f8fdaa518d21e50938e19ecea8c63957619f57"
+    },
+    "src/core/mapSources.ts": {
+      "previous": "3ded99313f721856766194ee378487560cc74738f9a244cc7a311622c65dea4b",
+      "current": "2b9e21648ea0aa2f30a6b9e511faeb8f3a32b47c24f60cd5106280c532554f78"
+    },
+    "src/core/multiroute.ts": {
+      "previous": "5def78fb7b27f7d048d515beb8ef873df3687c0a211342e667995ad9f2288585",
+      "current": "102f52418ad4def733568fc7f6e4070f9df0239651ae6594181bee18e9b2f94f"
+    },
+    "src/core/rasterImport.ts": {
+      "previous": "8f6f05c3b16b85c0e9150937b46f96f0757f325159d968cbf7f4d667a1b290ce",
+      "current": "614b016fc3fa51049a8bc27689bddbcab59c0e5fb897ae53fecb06fe632c9e96"
+    },
+    "src/core/i18nPatterns.ts": {
+      "previous": "1adc80db566dbf625c4b4718d601623a84e19960e5c0c6bca2fb3d8761bfdace",
+      "current": "5a77baa75d0c33d020260cd0997a7b2e3b223b666ecc2b66c30bc4cb73a2bf08"
+    },
+    "src/core/calculationHelp.ts": {
+      "previous": "68820ae551412c12193483fb7b1c12cba0fa8ed694b2d2a622a95cba5b6b696b",
+      "current": "ecdabc380ba487d15f51bd2b73d21204f29257dd341efcf8bcc8575952b78b23"
+    },
+    "src/core/i18n.tsx": {
+      "previous": "318437461f6bb1b7e9136786520cb0c743c69f9c2a7626a9a311c848edce8c9c",
+      "current": "8cecbfa43b35476f828019f1c716aec089fca107d94063708de4fb6bbb2d5bf5"
+    },
+    "src/core/importers.ts": {
+      "previous": "2a9a0cf94df366f799b471335eb36edd03cff39dec37b6e9a77f9fb534ab39c8",
+      "current": "4e6ca92fd56a7bbee74c0dfae12791eca418625729a125cee4911222e558ae2b"
+    },
+    "src/core/facilitators.test.ts": {
+      "previous": "d9acc5a1d26336fa978e0b4a3d4b9ac7857d271919ba0d1cd80043ff9c9e1977",
+      "current": "6a94ab5d97b8f726ae92f953bdc23fd32813405c7f9417b4bb138ae71929fca8"
+    },
+    "src/core/calculationHelp.en.ts": {
+      "previous": "7d53ba938bdc9a357315fd89a73f776c12fb89fbabb3ecbf0b4730b20a636ac8",
+      "current": "51af18eab6d3ae1ba45b69e2ab268b5b6b90f85c1d4fc6f4bf5069182d8f0076"
+    },
+    "src/core/projectFiles.ts": {
+      "previous": "e1dcde0155cc36400a17e31abc8cbc5bdb196e7c8eccc9a2f92192eb9cf2900f",
+      "current": "b9d583db824fa0d313f18907794e5948c1ecaad8a92c907cd0060bd99517b093"
+    },
+    "src/core/facilitators.ts": {
+      "previous": "cfd09dadf712b41b7ceb5221981e8acbfbbc8ae406a32e8ce904e7ff5022d8f0",
+      "current": "4e7b00ff09d78f46dea96b15d1407c9f7614ae11cbc8e0ab2b1f9e578eb5ebe3"
+    },
+    "src/core/nativeMessages.english.test.ts": {
+      "previous": "c586faf842d8d42ccb64e007fa0b2b8590a71de4597131d71011bd0b553a103e",
+      "current": "4b4b53ef66771ad3238f813276b8a4462c00707bd493bf6119a7593ab2e2b83e"
+    },
+    "src/core/appSettings.test.ts": {
+      "previous": "95b4ff448577ba61020a5b3fb87ac8ddac9d5d36839270892de1356887b6beef",
+      "current": "c7485dc3c01673bf4e64ea94f420c66bd3b0def5daeebb7e04586b2088b3914a"
+    },
+    "src/core/projectFiles.test.ts": {
+      "previous": "0d342ab84c4e234b0992fa1312797641b3fd67928b11e29e33d5be5a94f73e28",
+      "current": "0c1dcbd8bd6799246ca5ac47b3ff17e1983338639fb79056e5a269d31454091a"
+    },
+    "src/components/PointListEditor.test.tsx": {
+      "previous": "e71a2f265f17b855e89a61276ececd316f3ee462be851690a7e343b5c3a8afb8",
+      "current": "0385e3eb4faf37cbe8c8f3519efbf81a1896022ba0d5be2fb36d28a4efeefcc1"
+    },
+    "src/components/TopographicTools.test.tsx": {
+      "previous": "81cc993bef7429164206c3a5b36f258f2f0feee25e936773e6b9f1ae8985d6ef",
+      "current": "3dc915fd129f3479c48efe406c3f462056c98f5db70fb7428d019484430b02b9"
+    },
+    "src/components/Terrain3D.test.tsx": {
+      "previous": "b674b2ca8cb3c972c08c9fba9a5838d2a601a9f8aca71cc3de466ef25be48f98",
+      "current": "4a4076d1515acc2d831209b6ea47453688da2199646d8b00c116772b68f9c1d7"
+    },
+    "src/components/Terrain3D.tsx": {
+      "previous": "c91322a4d4126916f216de0241a577187ff500918b4332371df73861f52ccd7f",
+      "current": "13a4edc4b2870e49cfeec3194998490c1c955f11170cd43fb9cc780c1ae2228f"
+    },
+    "src/components/ElevationRasterImport.tsx": {
+      "previous": "3d80ee60aaa29b34a01c9d148e4266202afe6b2784fc72e5e07fe39c31229f78",
+      "current": "ff8166d5d671b3f888dce9b89ea29a9422ae02d3655475c221bee752700b6958"
+    },
+    "src/components/GeneralSettingsControl.tsx": {
+      "previous": "98f639344eb18b7de52b7f7f48a740181258ea5d9d77f5734a9ef60603878d99",
+      "current": "59274f8431bb134d76e940c3cfdbb1879e368d85f167c29272e9b4bc60c1e1b0"
+    },
+    "src/components/MdtMapPanel.tsx": {
+      "previous": "e06920e2dd293d0abd0292668f1a87aee3866532c11614af312c18c049dfc9b9",
+      "current": "f7b8948227d4bdfcabd02966faf8a4ed12134bae9a97b1e54022bf3237757524"
+    },
+    "src/components/point-list-editor.css": {
+      "previous": "d63fc5f38914554192d8c3178e247be43b4f87d6ce6813eeac3149cfb0e75ab6",
+      "current": "d6280c4395d2169be1a3a680532f373efd5bdf74094899a721556a773c0f4b74"
+    },
+    "src/components/AppTutorial.test.tsx": {
+      "previous": "1aacf5e815bd727b06bcb1222dd49c26ca7a5a59cd336e76d1427cc6b0be54cb",
+      "current": "559d1ca78442ae951340f0d9468217feda9acb74f91c4444bf48e96b8773b64e"
+    },
+    "src/components/TopographicTools.tsx": {
+      "previous": "3b437fd7b2d078dfbf6c3e7fb2239bf1193c1205ff30c6465dfdfb83f48fe5aa",
+      "current": "2300b407ab7c189bd14d79437f2df86655e2d710a95551e1e62cdf6b59e29c93"
+    },
+    "src/components/FacilitatorEditor.tsx": {
+      "previous": "8825e8c7c998bf09a7959fcf9f3f00900fdfc004d5a8f69e48f4692d50a30908",
+      "current": "186ff1591bf8191f5680bb7885268fa05a33170e7d69dcb79f1cd36e2e59c62d"
+    },
+    "src/components/ComparisonViewer.tsx": {
+      "previous": "5b62ba8e5eca8900fc671c107e30fb6895ec7ac428c14bfc2a510afa903834b1",
+      "current": "0296e018034251f2c02dd83c5dbbc9902fda2355799b188ce9c113a530d31b58"
+    },
+    "src/components/FacilitatorEditor.test.tsx": {
+      "previous": "21f534b2b246704377ee358f3eb5c13baa2780017ff4fd75cd2cffba0c5e0848",
+      "current": "e65850837beaf6b22b893ec07317c406254091543e70213c86a54cf34dc0d9af"
+    },
+    "src/components/NativeTerrainWindow.tsx": {
+      "previous": "247316657c37ae9d1ddf5472039f4341f5b3abf2127136a58d036bfe4b3e5574",
+      "current": "4bb754e1a3bae18543b2186cf1160e58e293b71098a3123ff5800245fa59cd29"
+    },
+    "src/components/Terrain3DToolbar.tsx": {
+      "previous": "388eb8fd66a3bf1f262c5c3fdc400088cc6480e11dfb9f437b732866232311ca",
+      "current": "fc0726d76c3bbf350c0154b60d57b96c518d5abd16b642225b4893f354ea742c"
+    },
+    "src/components/PointListEditor.tsx": {
+      "previous": "5fb0b81a21cba288fff4afa7a268185cbb026f1fc6a7d24cd2b422dd021a07f4",
+      "current": "bed222b0dcb1f7cab4e8ce0899e10bcd2d280eea05207b2396f11be53d860d0b"
+    },
+    "src/components/GeneralSettingsControl.test.tsx": {
+      "previous": "1d185a5dfd513ed042218463c3aa279627e0d7c64994122571dfc6cfc82332ee",
+      "current": "07039c59ebf5e7604b0584e966b5123ac7794e372776349226854d1fc3aef518"
+    },
+    "src/components/PlaceSearch.tsx": {
+      "previous": "3d45db3db0c972949f15a7908988d5725617a9a9a6218dab0ccde131538a98d5",
+      "current": "d915a82b9bb07783cae586376b96caaf6bc7653d8cd4e9ba2f478db5712ef7b4"
+    },
+    "src/components/AppTutorial.tsx": {
+      "previous": "f613bf9f78f1ab781a59fdc9581587c26af7c04fc9c2262c5686a219c6977c7e",
+      "current": "a714c5bd79c372bc81829a3bcf8107f25aeda74f70ef29e7881d5519e69fd77f"
+    },
+    "src/components/NativeTerrainWindow.test.tsx": {
+      "previous": "49dd27ef401da87da3cdfa6a03fac96a2b5f8b836fc5cecf17c1ea86a1fe9dcc",
+      "current": "686b557e0c035ab8145e19e0abab72f36452f8cb1bf32354713d9fc61b278d0a"
+    },
+    "src/components/Terrain3DLegend.tsx": {
+      "previous": "90ab71102496c49366d32bff2c7ef1e3c2a6bfbb9907927afcc2a1ff2b4eaec0",
+      "current": "ac23d43a64e8483a867f495ad9cce58610d243a75e10d66ad57beb1ee8efb18f"
+    },
+    "src/components/MapPanel.tsx": {
+      "previous": "54ec4dd3e78265ecb748a3939ea9dc1461b083fd631986756d3789a5a1586273",
+      "current": "fd7f97e08f7cf06ff316af5a2676dbb819766b2658a4075543e46186ed50db25"
+    },
+    "src/services/report.ts": {
+      "previous": "f09e1528a19f40c2f129037fa7f02b0b54d5b0367827a4d68a6de34cb9c392a1",
+      "current": "6227de1781ef2783db0628e7fd1f15c2c3cc2beb4e1345d56c9fdbdc8d479c99"
+    },
+    "src/services/terrainTexture.ts": {
+      "previous": "3e843b5cb83e3b4e04412eadfea164be3ed0c72829839c4e9925864965e0fb1d",
+      "current": "2ae035d68dc602452bb7e9c4e2f9888e3b08d4e638b45420c8178cab7634c8c7"
+    },
+    "src/services/reportMapRenderer.ts": {
+      "previous": "cdaef191ac3e9443229faa5d941ce5a02914c369222b055db174530d66d6657d",
+      "current": "51f4dc7396159aeb76ef0f66add108d5fb784f8a299b0b7d87835290c953d39c"
+    },
+    "src/services/exports.test.ts": {
+      "previous": "ffdc0a76909cd9a08419252a292d7c7fae558b2e517b42ead8274a50e076683a",
+      "current": "8172010622719f84c0ea85863f1ffba772d06205f5626eea6c452c2447cf7334"
+    },
+    "src/services/native.ts": {
+      "previous": "8ecdb9c93043a9ad813a3acd1a4636ea561aa2a944e704e0776904ebbbe93a53",
+      "current": "5414ed72ef8a39b80d0f420745f00e98de77679b840939ae54f3e7cc762abb76"
+    },
+    "src/services/exports.ts": {
+      "previous": "beafe63f3d2e3ad27b99aa620be3ff9538d6e04be9f52875e3c1c151543e812f",
+      "current": "e50b0e6f558657f87f9116f4a1db385d54eebc879c53ead4eb0bed1a3d51a8f1"
+    },
+    "src-tauri/tauri.conf.json": {
+      "previous": "2dad7669fec1c07f09d0e42f7489b72bac5f445cc31d6e901ed397b02c3101d6",
+      "current": "4acfeaba9bd9f0a717daa203b6eda98e7f6c623983688b22fcb2c0dddef5449f"
+    }
+  },
+  "addedToImplementationScope": [
+    "src/services/lidarMap.ts",
+    "src/services/lidarMap.test.ts",
+    "public/fixtures/ign-lidar-wms.xml",
+    "src/core/points.ts",
+    "src/core/points.test.ts",
+    "src/core/hillshade.ts",
+    "src/core/hillshade.test.ts",
+    "src/core/corridorRaster.ts",
+    "src/core/corridorRaster.test.ts",
+    "src/core/videoLegend.ts",
+    "src/core/videoContourLegend.ts",
+    "src/core/videoContourLegend.test.ts",
+    "src/core/videoRouteLegend.ts",
+    "src/core/videoRouteLegend.test.ts",
+    "src/services/processInvoke.ts",
+    "src/services/processInvoke.test.ts",
+    "src/services/calculationTasks.ts",
+    "src/services/calculationTasks.test.ts",
+    "src/core/elementImports.ts",
+    "src/services/elementImports.ts",
+    "src/components/useHillshadePreview.ts",
+    "src/components/useRasterPalette.ts",
+    "src/components/HillshadeControl.tsx",
+    "src/components/VideoExportDialog.tsx",
+    "src/components/VideoExportDialog.test.tsx",
+    "src-tauri/src/lib.rs",
+    "src-tauri/src/video_export.rs",
+    "src-tauri/src/mdt_download.rs",
+    "src-tauri/src/raster_limits.rs",
+    "src-tauri/src/analysis_grid.rs",
+    "src-tauri/src/route_memory.rs",
+    "src-tauri/src/calculation_cancel.rs"
+  ],
+  "checks": [
+    {
+      "check": "TypeScript/React",
+      "command": "pnpm --config.verify-deps-before-run=false test",
+      "result": "609 passed (609)",
+      "logSha256": "817ecf5ec7965b3bab8add4d383afbe0d0a5cda3da07c5875ca421852afabf89"
+    },
+    {
+      "check": "Build web",
+      "command": "pnpm --config.verify-deps-before-run=false build",
+      "result": "built in",
+      "logSha256": "b4d1f872d85343834cac7ff12f3b290601e3cbc94b1b6f4cc09208f83b93a275"
+    },
+    {
+      "check": "Rust",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml",
+      "result": "57 passed; 0 failed; 6 ignored",
+      "logSha256": "f722e0caafccdb4471bd79297b3d80d6741d58f81256535773dba87e3a0f0b96"
+    },
+    {
+      "check": "Colector",
+      "command": "pnpm --config.verify-deps-before-run=false compliance:test",
+      "result": "OK",
+      "logSha256": "5ac7c39c742600d33a36622018c60fca0bf245cc98698e9fc205fe5d97934302"
+    },
+    {
+      "check": "Conversión real MP4",
+      "command": "cargo test --manifest-path src-tauri/Cargo.toml real_mp4 -- --ignored",
+      "result": "1 passed; 0 failed",
+      "logSha256": "0c3a9cb2d3b95cc2b29b40cf61058e8842b0bd76b38097e2dc4bad28f693301c"
+    }
+  ],
+  "officialSources": [
+    {
+      "url": "https://www.ign.es/web/politica-datos",
+      "checked": "2026-09-20",
+      "finding": "Política de uso del IGN con licencia compatible con CC BY 4.0."
+    },
+    {
+      "url": "https://pnoa.ign.es/pnoa-lidar/mapa-lidar",
+      "checked": "2026-09-20",
+      "finding": "Producto cartográfico derivado de PNOA-LiDAR e IGR hidrografía del IGN."
+    }
+  ],
+  "limitations": [
+    "No se repitió la inspección de una nueva .app ni de instaladores.",
+    "La prueba MP4 verifica dimensiones, tiempos, fotogramas y ausencia de audio; no es una revisión visual exhaustiva de todos los créditos.",
+    "Las seis pruebas Rust optativas de la suite ordinaria no se ejecutaron en bloque; se ejecutó adicionalmente la de MP4.",
+    "Las importaciones sin origen/licencia conservan su revisión pendiente; no se conceden derechos sobre datos del usuario."
+  ]
+}

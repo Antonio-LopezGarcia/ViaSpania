@@ -1,0 +1,14 @@
+.video-export-dialog{width:min(420px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:20px;border:1px solid #46534c;border-radius:12px;background:#101713;color:#e8eee8;box-shadow:0 24px 70px #0008}
+.video-export-dialog::backdrop{background:#020604cc}
+.video-export-dialog h2{margin:0 0 16px;font-size:17px}
+.video-export-dialog fieldset{display:grid;gap:10px;margin:0;padding:0;border:0}
+.video-export-dialog legend{margin-bottom:10px;font-size:12px;color:#bdc8c1}
+.video-export-dialog label{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1px solid #35433c;border-radius:8px;cursor:pointer}
+.video-export-dialog label:has(input:checked){border-color:#d8ff55;background:#1c2923}
+.video-export-dialog input{margin-top:3px;accent-color:#d8ff55}
+.video-export-dialog span{display:grid;gap:5px;font-size:13px}
+.video-export-dialog small{font-size:11px;line-height:1.5;color:#bdc8c1}
+.video-export-dialog footer{position:static;display:flex;justify-content:flex-end;gap:8px;height:auto;margin-top:18px;padding:0;border:0;background:transparent}
+.video-export-dialog button{padding:8px 16px;border:1px solid #46534c;border-radius:6px;background:#17201c;color:#e8eee8;cursor:pointer}
+.video-export-dialog button[type=submit]{background:#d8ff55;color:#101713;border-color:#d8ff55}
+.video-export-dialog :focus-visible{outline:2px solid #d8ff55;outline-offset:3px}

@@ -11,8 +11,9 @@ vi.mock('./SurfaceAnalysisViewer',()=>({SurfaceAnalysisViewer:({title,surfaceIma
 vi.mock('./Terrain3D',()=>({Terrain3D:()=>null}));
 afterEach(()=>{cleanup();vi.clearAllMocks()});
 
-it('comunica el observador seleccionado a los visores y actualiza el visor abierto',async()=>{
+it.each([false,true])('comunica el observador seleccionado con puntos nuevos=%s y actualiza el visor abierto',async(newPoints)=>{
  const points:GeoPoint[]=[{id:1,name:'Inicio',role:'inicio',lon:-3,lat:40,comments:'',crs:'EPSG:4326'},{id:2,name:'Final',role:'final',lon:-3.01,lat:40.01,comments:'',crs:'EPSG:4326'},{id:3,name:'Mirador',role:'multipunto',lon:-3.02,lat:40.02,comments:'',crs:'EPSG:4326'}];
+ if(newPoints)points.forEach(point=>{point.role='multipunto'});
  const result:ViewshedResult={observers:points.map((point,index)=>({observerId:String(point.id),observerName:point.name,coordinate:[point.lon,point.lat],groundElevationM:100,observerHeightM:1.7,surfaceWidth:1,surfaceHeight:1,surfaceValues:[index%2],visibleCells:index%2,validCells:1})),rasterCrs:'EPSG:25830',resolutionM:5,source:'MDT de prueba',limitation:'Prueba'};
  vi.mocked(calculateViewshed).mockResolvedValue(result);
  const onViewshedResult=vi.fn();

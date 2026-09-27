@@ -1,15 +1,25 @@
 import {translateText} from '../core/i18n';
-import { invoke } from '@tauri-apps/api/core';
+import {invoke} from './processInvoke';
 import { open, save } from '@tauri-apps/plugin-dialog';
 import { drawViaSpaniaWatermark } from '../core/exportWatermark';
 import { normalizeProjectName, projectNameFromPath } from '../core/projectFiles';
 
 interface ExportOptions { defaultName:string; label:string; extensions:string[] }
-export async function startVideoExport(){
+export type VideoExportFormat='avi'|'mp4';
+async function selectVideoPath(defaultName:string,format:VideoExportFormat){
+ const path=await save({defaultPath:defaultName.replace(/\.(avi|mp4)$/i,`.${format}`),filters:[{name:translateText(format==='avi'?'Vídeo AVI (MJPEG)':'Vídeo MP4 (H.264)'),extensions:[format]}]});
+ if(path&&!path.toLowerCase().endsWith(`.${format}`))throw new Error(translateText(format==='avi'?'Seleccione un archivo AVI.':'Seleccione un archivo MP4.'));
+ return path;
+}
+export async function startVideoExport(format:VideoExportFormat='avi',defaultName='video.avi'){
+ // Choose the destination before rendering so the user can cancel without
+ // spending time generating a video that will not be saved.
+ const videoPath=await selectVideoPath(defaultName,format);
+ if(!videoPath)return null;
  const id=await invoke<string>('video_export_start');
  return {
   async append(bytes:Uint8Array){let binary='';for(let i=0;i<bytes.length;i+=0x8000)binary+=String.fromCharCode(...bytes.subarray(i,i+0x8000));await invoke('video_export_append',{id,base64:btoa(binary)})},
-  async finish(header:Uint8Array,index:Uint8Array,defaultName:string){const path=await save({defaultPath:defaultName,filters:[{name:translateText('Vídeo AVI (MJPEG)'),extensions:['avi']}]});if(!path)return null;return invoke<string>('video_export_finish',{id,path,header:Array.from(header),index:Array.from(index)})},
+  async finish(header:Uint8Array,index:Uint8Array,_defaultName:string){return invoke<string>('video_export_finish',{id,path:videoPath,header:Array.from(header),index:Array.from(index)})},
   async cancel(){await invoke('video_export_cancel',{id})}
  };
 }
@@ -34,6 +44,10 @@ export async function saveProjectFile(currentPath:string|null,currentName:string
   const name=currentPath?currentName:projectNameFromPath(path),text=serialize(name);
   await overwriteTextExport(path,text);
   return {path,name,text};
+}
+export async function autoSaveProject(path:string,text:string,previousText:string|null,projectName:string){
+  if(previousText){const backup=`${path.replace(/\.json$/i,'')}_backup.json`;await overwriteTextExport(backup,previousText)}
+  await overwriteTextExport(path,text);return projectName;
 }
 
 export async function savePdfExport(bytes:Uint8Array,defaultName:string) {

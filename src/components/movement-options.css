@@ -11,3 +11,7 @@
 .movement-options .comparison-route-profiles input[type=checkbox]:checked { background:#d8ff55; }
 .movement-options .comparison-route-profiles input[type=checkbox]:checked::after { left:14px;background:#17201c; }
 .movement-options .comparison-route-profiles input[type=checkbox]:focus-visible { outline:2px solid #d8ff55;outline-offset:2px; }
+
+.movement-profile-control{display:flex;align-items:center;gap:8px}.movement-profile-control>label{flex:1;min-width:0}.profile-help-trigger{flex:none;width:25px;height:25px;padding:0;border:1px solid #617067;border-radius:50%;color:#d8ff55;font-size:15px;font-weight:800}
+
+.comparison-profile-selection .movement-profile-control>label{padding-bottom:0;border-bottom:0;font-weight:400}

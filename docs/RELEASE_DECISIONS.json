@@ -50,15 +50,19 @@
       "evidence": [
         {
           "document": "docs/DATA_LICENSE_REVIEW.md",
-          "sha256": "962607feabde21006085f3e001e3e97f323ecfb8b4060afb9a801217a5a47594",
-          "basis": "Recierre 0.2.2: 626 datos sin cambios; 17 archivos de implementación revisados y 81 pruebas focalizadas aprobadas. Se preservan avisos y procedencia conservadora. No acredita derechos sobre importaciones sin origen."
+          "sha256": "6a99f5a902724adb87fbf56537d27759c8ed3086461b82f4160b53428e576ab9",
+          "basis": "Recierre técnico previo a 0.2.3: 626 datos sin cambios; atribución LiDAR, procedencia y exportaciones revisadas. 609 pruebas TypeScript, 57 Rust, 17 del colector, build web y conversión MP4 real aprobados. No incluye inspección de nuevos instaladores ni derechos sobre importaciones sin origen."
         },
         {
           "document": "docs/data-evidence/REVIEW.json",
-          "sha256": "4818dfa37a46526be947706be2df3de29d1335490920177e83444eba16619d4b"
+          "sha256": "39f4a2cb674f6b13754c3db4831a940d53282a067a27359388e8c92a038a7c21"
         },
         {
           "document": "docs/PROJ_DB_REVIEW.md"
+        },
+        {
+          "document": "docs/data-evidence/REVIEW_0.2.3.json",
+          "sha256": "8fd515c36abd2faaa70a2b9d043402b16191e910b25b617ea010b1dd8029bd5a"
         }
       ]
     },

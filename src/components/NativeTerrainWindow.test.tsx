@@ -7,10 +7,10 @@ const mock=vi.hoisted(()=>({listeners:new Map<string,(event:{payload:unknown})=>
 vi.mock('@tauri-apps/api/event',()=>({listen:vi.fn(async(name,fn)=>{mock.listeners.set(name,fn);return()=>mock.listeners.delete(name)}),emitTo:vi.fn(async()=>{})}));
 vi.mock('@tauri-apps/api/webviewWindow',()=>({WebviewWindow:class{label:string;emit=vi.fn(async()=>{});destroy=vi.fn(async()=>{});once=vi.fn(async()=>()=>{});constructor(label:string){this.label=label;mock.windows.push(this)}},getCurrentWebviewWindow:()=>({label:'test',onCloseRequested:async()=>()=>{}})}));
 vi.mock('./Terrain3D',()=>({Terrain3D:()=> <div>Terreno integrado</div>}));
-import {NativeTerrainWindow,TerrainWindowApp,terrainWindowState} from './NativeTerrainWindow';
+import {NativeTerrainWindow,TerrainWindowApp,terrainWindowState,reconcileTerrainWindowState} from './NativeTerrainWindow';
 const props={mesh:{width:2,height:2,widthM:10,heightM:10,minElevationM:0,maxElevationM:1,elevations:[0,1,0,1],wgs84Extent:[0,0,1,1] as [number,number,number,number]},exaggeration:2,palette:'terrain',points:[],resetToken:0,onSnapshotReady:vi.fn()};
 afterEach(()=>{cleanup();mock.listeners.clear();mock.windows.length=0});
-it('transmite datos sin funciones, conservando terreno y atribución',()=>{const state=terrainWindowState({...props,textureAttribution:'IGN',onCameraChange:vi.fn()});expect(JSON.parse(JSON.stringify(state))).toMatchObject({mesh:props.mesh,textureAttribution:'IGN'});expect(state).not.toHaveProperty('onSnapshotReady');expect(state).not.toHaveProperty('onCameraChange')});
+it('transmite datos sin funciones, conservando terreno y atribución',()=>{const state=terrainWindowState({...props,textureAttribution:'IGN',hillshade:.65,onCameraChange:vi.fn()});expect(JSON.parse(JSON.stringify(state))).toMatchObject({mesh:props.mesh,textureAttribution:'IGN',hillshade:.65});expect(state).not.toHaveProperty('onSnapshotReady');expect(state).not.toHaveProperty('onCameraChange')});
 it('espera al visor, sincroniza cambios y destruye solo la ventana auxiliar al reintegrar',async()=>{
  const onReturn=vi.fn(),onError=vi.fn();const view=render(<NativeTerrainWindow {...props} detached onReturn={onReturn} onError={onError}/>);
  await waitFor(()=>expect(mock.windows).toHaveLength(1));const child=mock.windows[0];
@@ -44,6 +44,8 @@ it('muestra los mismos controles en la ventana externa y envía los cambios al p
  act(()=>mock.listeners.get('terrain-state')?.({payload:{props:{...terrainWindowState(props),toolbar},settings:{language:'es'}}}));
  expect(screen.getByLabelText(/Exageración vertical/)).toBeTruthy();expect(screen.getByLabelText(/Grosor de rutas/)).toBeTruthy();
  expect((screen.getByLabelText('Curvas de nivel') as HTMLInputElement).disabled).toBe(true);
+ fireEvent.change(screen.getByLabelText('Intensidad de hillshade'),{target:{value:'0.8'}});
+ expect(emitTo).toHaveBeenCalledWith('main','terrain-toolbar',{type:'hillshade',value:.8});
  fireEvent.change(screen.getByLabelText('Paleta'),{target:{value:'viridis'}});
  expect(emitTo).toHaveBeenCalledWith('main','terrain-toolbar',{type:'palette',value:'viridis'});
  fireEvent.click(screen.getByLabelText('Barreras'));
@@ -69,4 +71,27 @@ it('abre el visor externo desde el botón situado junto al cierre',()=>{
  expect(button.closest('.terrain-3d-layers')).toBeNull();expect(button.closest('.terrain-3d-toolbar')).toBeTruthy();fireEvent.click(button);expect(onDetach).toHaveBeenCalledOnce();
  view.rerender(<Terrain3DToolbar state={toolbar} onAction={()=>{}} onReturn={()=>{}}/>);
  expect(screen.queryByRole('button',{name:'Abrir el visor 3D en una ventana independiente'})).toBeNull();
+});
+
+it('combina el proceso de la ventana 3D con los procesos del proyecto',async()=>{
+ const {programProcesses}=await import('../core/processStatus');
+ const view=render(<NativeTerrainWindow {...props} detached onReturn={()=>{}} onError={()=>{}}/>);
+ await waitFor(()=>expect(mock.windows).toHaveLength(1));
+ const label=mock.windows[0].label,send=(status:string)=>act(()=>mock.listeners.get('terrain-process-status')?.({payload:{label,status}}));
+ const local=programProcesses.begin();send('running');local.finish();
+ expect(programProcesses.getSnapshot()).toBe('running');send('error');
+ expect(programProcesses.getSnapshot()).toBe('error');
+ send('running');send('success');expect(programProcesses.getSnapshot()).toBe('success');
+ send('running');view.unmount();expect(programProcesses.getSnapshot()).toBe('error');
+});
+
+it('conserva la escena al recibir copias nativas y cambios de cámara, pero aplica datos nuevos',()=>{
+ const original=terrainWindowState({...props,isochroneLines:[{level:10,coordinates:[[0,0],[1,1]]}],initialOrientation:45});
+ const copy=JSON.parse(JSON.stringify(original));
+ expect(reconcileTerrainWindowState(original,copy)).toBe(original);
+ const camera=reconcileTerrainWindowState(original,{...copy,initialOrientation:90});
+ expect(camera.initialOrientation).toBe(90);expect(camera.mesh).toBe(original.mesh);expect(camera.isochroneLines).toBe(original.isochroneLines);expect(camera.points).toBe(original.points);
+ const changed=reconcileTerrainWindowState(camera,{...copy,mesh:{...copy.mesh,elevations:[4,5,4,5]}});
+ expect(changed.mesh.elevations).toEqual([4,5,4,5]);expect(changed.mesh).not.toBe(original.mesh);
+ expect(changed.isochroneLines).toBe(original.isochroneLines);
 });

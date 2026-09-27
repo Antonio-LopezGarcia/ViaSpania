@@ -40,7 +40,7 @@ describe('regresiones de la revisión inglesa',()=>{
 describe('mensajes de exportación 3D',()=>{
  afterEach(()=>setLanguage('es'));
  it.each([
-  ['Exportar fotograma PNG','Export frame'],
+  ['Exportar fotograma PNG','Export PNG frame'],
   ['Creando AVI · 25 %','Creating AVI · 25 %'],
   ['Creando GIF · 100 %','Creating GIF · 100 %'],
   ['Guardado · 1920 × 1080 px · 20.0 s · 1× · AVI','Saved · 1920 × 1080 px · 20.0 s · 1× · AVI'],
@@ -54,6 +54,26 @@ describe('mensajes de exportación 3D',()=>{
   ['Exportación cancelada; recursos liberados.','Export cancelled; resources released.'],
   ['No se pudo codificar el fotograma.','The frame could not be encoded.'],
  ])('traduce sin alterar los datos: %s',(source,expected)=>{
+  setLanguage('en');expect(translateText(source)).toBe(expected);
+  setLanguage('es');expect(translateText(source)).toBe(source);
+ });
+});
+
+
+describe('mensajes de cálculo y nombres de elementos',()=>{
+ afterEach(()=>setLanguage('es'));
+ it.each([
+  ['Calculando la ruta sobre el modelo digital…','Calculating the route over the digital model…'],
+  ['Calculando…','Calculating…'],
+  ['Comparando modelos…','Comparing models…'],
+  ['Ruta a seguir','Route to follow'],
+  ['GeoTIFF real · cálculo métrico EPSG:25830 · superficie preparada','Actual GeoTIFF · metric calculation EPSG:25830 · prepared surface'],
+  ['GeoTIFF real · cálculo métrico EPSG:25830 · superficie preparada · 1 vértice(s) de paso obligatorio: Interés 1','Actual GeoTIFF · metric calculation EPSG:25830 · prepared surface · 1 required crossing vertices: Point of interest 1'],
+  ['GeoTIFF real · cálculo métrico EPSG:25830 · superficie reutilizada','Actual GeoTIFF · metric calculation EPSG:25830 · reused surface'],
+  ['Corredor 1','Corridor 1'],['Barrera 1','Barrier 1'],['Puente 1','Bridge 1'],['Cruce 1','Crossing 1'],['Interés 1','Point of interest 1'],
+  ['╪ Crear cruce','╪ Create crossing'],
+  ['Cruce añadido. Configure sus atributos en Facilitadores.','Crossing added. Configure its attributes under Facilitators.'],
+ ])('traduce y conserva el original español: %s',(source,expected)=>{
   setLanguage('en');expect(translateText(source)).toBe(expected);
   setLanguage('es');expect(translateText(source)).toBe(source);
  });

@@ -36,3 +36,14 @@ it('conserva el título cuando no hay puntos',()=>{
  expect(screen.getByRole('region',{name:'Puntos de paso'})).toBeTruthy();
  expect(screen.getByText('No hay puntos seleccionados. Añádalos en el panel de selección.')).toBeTruthy();
 });
+it('reordena y renumera conservando selección y nombres',()=>{
+ const onReorder=vi.fn(),props={selectedPointId:2,onRename:vi.fn(),onDelete:vi.fn(),onSelect:vi.fn(),onReorder};
+ const {rerender}=render(<PointListEditor {...props} points={points}/>);
+ expect((screen.getByLabelText('Subir punto 1') as HTMLButtonElement).disabled).toBe(true);
+ fireEvent.click(screen.getByLabelText('Subir punto 2'));
+ expect(onReorder).toHaveBeenCalledWith(2,-1);
+ expect(props.onSelect).not.toHaveBeenCalled();
+ rerender(<PointListEditor {...props} points={[points[1],points[0]]}/>);
+ expect((screen.getAllByRole('textbox')[0] as HTMLInputElement).value).toBe('Mi destino');
+ expect((screen.getByLabelText('Bajar punto 2') as HTMLButtonElement).disabled).toBe(true);
+});

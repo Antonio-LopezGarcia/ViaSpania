@@ -1,3 +1,4 @@
+import {trackProcess} from '../core/processStatus';
 import {useEffect,useState} from 'react';
 import {open} from '@tauri-apps/plugin-dialog';
 import {getCurrentWebviewWindow} from '@tauri-apps/api/webviewWindow';
@@ -16,10 +17,10 @@ export function ElevationRasterImport({onClose,onLoad}:{onClose:()=>void;onLoad:
   const[error,setError]=useState('');
   const[working,setWorking]=useState(false);
   const[dragging,setDragging]=useState(false);
-  const inspect=async(candidate:string)=>{if(!/\.tiff?$/i.test(candidate)){setError('Seleccione un archivo con extensión .tif o .tiff.');setDetails(null);return}setWorking(true);setError('');try{const parsed=parseElevationRasterMetadata(await inspectGeospatialFile(candidate));setPath(candidate);setDetails(parsed)}catch(reason){setDetails(null);setError(reason instanceof Error?reason.message:String(reason))}finally{setWorking(false)}};
+  const inspect=async(candidate:string)=>{return trackProcess(async(process)=>{if(!/\.tiff?$/i.test(candidate)){setError('Seleccione un archivo con extensión .tif o .tiff.');setDetails(null);return}setWorking(true);setError('');try{const parsed=parseElevationRasterMetadata(await inspectGeospatialFile(candidate));setPath(candidate);setDetails(parsed)}catch(reason){process.fail();setDetails(null);setError(reason instanceof Error?reason.message:String(reason))}finally{setWorking(false)}});};
   useEffect(()=>{if(!hasNativeBackend())return;let unlisten:(()=>void)|undefined;void getCurrentWebviewWindow().onDragDropEvent(event=>{if(event.payload.type==='over'){setDragging(true);return}setDragging(false);if(event.payload.type==='drop'){const candidate=event.payload.paths.find(value=>/\.tiff?$/i.test(value));if(candidate)void inspect(candidate);else setError('Arrastre un único GeoTIFF o COG con extensión .tif o .tiff.')}}).then(stop=>{unlisten=stop});return()=>unlisten?.()},[]);
-  const choose=async()=>{if(!hasNativeBackend()){setError('La importación está disponible en la aplicación de escritorio.');return}const selected=await open({multiple:false,directory:false,filters:[{name:'GeoTIFF / COG',extensions:['tif','tiff']}]});if(typeof selected==='string')await inspect(selected)};
-  const load=async()=>{if(!details)return;setWorking(true);setError('');try{await onLoad(path,kind,details);onClose()}catch(reason){setError(reason instanceof Error?reason.message:String(reason))}finally{setWorking(false)}};
+  const choose=async()=>{return trackProcess(async()=>{if(!hasNativeBackend()){setError('La importación está disponible en la aplicación de escritorio.');return}const selected=await open({multiple:false,directory:false,filters:[{name:'GeoTIFF / COG',extensions:['tif','tiff']}]});if(typeof selected==='string')await inspect(selected)});};
+  const load=async()=>{return trackProcess(async(process)=>{if(!details)return;setWorking(true);setError('');try{await onLoad(path,kind,details);onClose()}catch(reason){process.fail();setError(reason instanceof Error?reason.message:String(reason))}finally{setWorking(false)}});};
   return <section className="raster-import-backdrop"><div className="raster-import-dialog" role="dialog" aria-modal="true" aria-label="Importar modelo de elevación">
     <header><div><b>Importar modelo de elevación</b><span>Cargue un GeoTIFF local y conviértalo al formato interno de ViaSpania.</span></div><button aria-label="Cerrar importación" onClick={onClose}>×</button></header>
     <div className="raster-import-body">

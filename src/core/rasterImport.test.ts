@@ -8,4 +8,7 @@ describe('importación de modelos de elevación',()=>{
   it('rechaza rasters con más de una banda',()=>expect(()=>parseElevationRasterMetadata({...metadata,bands:[{type:'Float32'},{type:'Float32'}]})).toThrow('exactamente una banda'));
   it('rechaza rasters sin CRS',()=>expect(()=>parseElevationRasterMetadata({...metadata,coordinateSystem:{}})).toThrow('sistema de referencia'));
   it('elige el UTM WGS84 correspondiente',()=>expect(suggestedUtmEpsg([-3.8,40.3,-3.7,40.4])).toBe('EPSG:32630'));
+  it('admite el máximo común en modelos importados a cualquier resolución',()=>{for(const resolution of [1,5,25,30,200])expect(parseElevationRasterMetadata({...metadata,size:[8192,8292],geoTransform:[500000,resolution,0,4500000,0,-resolution]})).toMatchObject({width:8192,height:8292,resolution:[resolution,resolution]})});
+  it('rechaza importaciones que superan el máximo común',()=>expect(()=>parseElevationRasterMetadata({...metadata,size:[8192,8293]})).toThrow('67.928.064'));
+
 });

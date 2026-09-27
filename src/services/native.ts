@@ -1,5 +1,6 @@
 import {withRasterProvenance} from '../core/resultProvenance';
-import { invoke, isTauri } from '@tauri-apps/api/core';
+import { isTauri } from '@tauri-apps/api/core';
+import {invoke} from './processInvoke';
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
 import type { Barrier, Connectivity, ContourResult, EnabledCrossing, IsochroneResult, LcpCorridorResult, ModelId, PointOfInterest, PreferredCorridor, RankedRouteResult, RouteResult, ViewshedResult } from '../types';
 import { loadAppSettings } from '../core/appSettings';
@@ -20,6 +21,7 @@ export const hasNativeBackend = () => isTauri();
 export const nativeStatus = () => invoke<NativeStatus>('native_status');
 export const fetchNativeCapabilities = (url:string) => invoke<string>('fetch_capabilities',{url});
 export const downloadWcs = (requestUrl:string,filename:string) => invoke<RasterResult>('download_wcs',{requestUrl,filename});
+export const downloadElevationTiles = (request:{sourceId:'mdt5'|'mdt25'|'mdt200'|'mds05';boundsWgs84:[number,number,number,number];targetCrs:string;outputName:string}) => invoke<RasterResult>('download_mdt_tiles',{request});
 export const cancelWcs = () => invoke<void>('cancel_wcs');
 export const onWcsProgress = (callback:(progress:DownloadProgress)=>void):Promise<UnlistenFn> => listen<DownloadProgress>('wcs-progress',event=>callback(event.payload));
 export const processRaster = (request:{inputPath:string;outputName:string;targetCrs:string;resolutionM?:number;cutlinePath?:string}) => invoke<RasterResult>('process_raster',{request});
@@ -80,5 +82,5 @@ export const onIsochroneProgress = (callback:(progress:IsochroneProgress)=>void)
 export const sampleRasterElevation = (rasterPath:string,xRatio:number,yRatio:number) => invoke<RasterSample>('sample_raster_elevation',{rasterPath,xRatio,yRatio});
 export const sampleRasterElevationAt = (rasterPath:string,lon:number,lat:number) => invoke<RasterSample>('sample_raster_elevation_at',{rasterPath,lon,lat});
 export const generateTerrainMesh = (rasterPath:string,maxSize=450) => invoke<TerrainMesh>('generate_terrain_mesh',{rasterPath,maxSize});
-export const calculateContours = (rasterPath:string,intervalM:number) => withRasterProvenance(rasterPath,()=>invoke<ContourResult>('calculate_contours',{request:{rasterPath,intervalM}}));
-export const calculateViewshed = (rasterPath:string,observers:{id:string;name:string;coordinate:[number,number]}[],observerHeightM:number):Promise<ViewshedResult> => withRasterProvenance(rasterPath,()=>invoke<ViewshedResult>('calculate_viewshed',{request:{rasterPath,observers,observerHeightM}}));
+export const calculateContours = (rasterPath:string,intervalM:number) => withRasterProvenance(rasterPath,()=>invoke<ContourResult>('calculate_contours',{request:{rasterPath,intervalM,maxCells:loadAppSettings().processingCellLimit}}));
+export const calculateViewshed = (rasterPath:string,observers:{id:string;name:string;coordinate:[number,number]}[],observerHeightM:number):Promise<ViewshedResult> => withRasterProvenance(rasterPath,()=>invoke<ViewshedResult>('calculate_viewshed',{request:{rasterPath,observers,observerHeightM,maxCells:loadAppSettings().processingCellLimit}}));

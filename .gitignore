@@ -7,6 +7,8 @@ vite.config.d.ts
 src-tauri/target/
 src-tauri/resources/geospatial/*
 !src-tauri/resources/geospatial/.gitkeep
+src-tauri/resources/video/*
+!src-tauri/resources/video/.gitkeep
 .DS_Store
 
 # Expedientes locales de fuentes y candidatos de publicación

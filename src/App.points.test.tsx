@@ -1,0 +1,77 @@
+// @vitest-environment jsdom
+import {afterEach,expect,it,vi} from 'vitest';
+import {act,cleanup,fireEvent,render,screen,waitFor} from '@testing-library/react';
+import App from './App';
+import {setLanguage} from './core/i18n';
+import {openProjectFile,saveProjectFile} from './services/exports';
+vi.mock('./services/exports',async(importOriginal)=>({...await importOriginal<typeof import('./services/exports')>(),openProjectFile:vi.fn(),saveProjectFile:vi.fn()}));
+vi.mock('./components/MapPanel',()=>({MapPanel:({kind,pointMode,onPointMapAction}:{kind:string;pointMode:string;onPointMapAction?:(action:unknown)=>void})=>kind==='pnoa'?<button aria-label="Clic mapa selección" onClick={()=>{if(pointMode==='point')onPointMapAction?.({type:'place',lon:0,lat:1});if(pointMode==='poi')window.dispatchEvent(new CustomEvent('viaspania-add-poi',{detail:{coordinate:[0,1]}}))}}>Mapa</button>:null}));
+vi.mock('./components/MdtMapPanel',()=>({MdtMapPanel:()=>null}));
+vi.mock('./components/WelcomeDialog',()=>({WelcomeDialog:()=>null}));
+vi.mock('./components/AppTutorial',()=>({AppTutorial:()=>null}));
+afterEach(()=>{cleanup();setLanguage('es')});
+it('crea puntos consecutivos con una herramienta y mantiene el interés independiente',()=>{
+ render(<App/>);
+ const create=screen.getByRole('button',{name:'＋ Crear punto'});
+ expect(screen.queryByRole('button',{name:'＋ Inicio'})).toBeNull();
+ expect(screen.queryByRole('button',{name:'◎ Final'})).toBeNull();
+ expect(screen.queryByRole('button',{name:'◆ Crear multipunto'})).toBeNull();
+ expect(screen.queryByText('La ruta secuencial necesita al menos dos puntos.')).toBeNull();
+ expect(screen.queryByText('La ruta secuencial conecta los puntos consecutivos en el orden de la lista.')).toBeNull();
+ fireEvent.click(create);
+ for(let i=0;i<3;i++)fireEvent.click(screen.getByRole('button',{name:'Clic mapa selección'}));
+ expect(screen.getAllByTitle('Pulse el nombre para renombrar el punto')).toHaveLength(3);
+ fireEvent.click(screen.getByRole('button',{name:'Clic mapa selección'}));
+ expect(screen.getAllByTitle('Pulse el nombre para renombrar el punto')).toHaveLength(4);
+ fireEvent.click(screen.getByRole('button',{name:'✦ Crear PDI'}));
+ fireEvent.click(screen.getByRole('button',{name:'Clic mapa selección'}));
+ expect(screen.getAllByTitle('Pulse el nombre para renombrar el punto')).toHaveLength(4);
+ expect(screen.getByText('Punto de interés añadido. Configure sus atributos en Facilitadores.')).toBeTruthy();
+ fireEvent.click(screen.getByLabelText('Subir punto 3'));
+ expect(screen.getAllByTitle('Pulse el nombre para renombrar el punto').map(input=>(input as HTMLInputElement).value)).toEqual(['Punto 1','Punto 3','Punto 2','Punto 4']);
+});
+
+it('migra un JSON antiguo, guarda la reordenación y recupera el orden nuevo',async()=>{
+ const points=[{id:3,name:'Final antiguo',role:'final',lon:0,lat:1,crs:'EPSG:4326',comments:'f'},{id:2,name:'Parada antigua',role:'multipunto',lon:0,lat:1,crs:'EPSG:4326',comments:'m'},{id:1,name:'Inicio antiguo',role:'inicio',lon:0,lat:1,crs:'EPSG:4326',comments:'i'}];
+ const result={model:'tobler',direction:'antigua',path:[0,1],cost:23,unit:'s',distanceM:100,ascentM:2,descentM:1,dataProvenance:{version:1,status:'recorded',attribution:'Fixture'}};
+ const sequentialConnections=[{fromId:3,toId:2,result}];
+ vi.mocked(openProjectFile).mockResolvedValue({path:'/tmp/legacy.json',text:JSON.stringify({points,projectName:'Legacy',sequentialConnections})});
+ let saved='';
+ vi.mocked(saveProjectFile).mockImplementation(async(_path,name,serialize)=>{saved=serialize(name);return{path:'/tmp/legacy.json',name,text:saved}});
+ render(<App/>);
+ fireEvent.click(screen.getByRole('button',{name:'Abrir proyecto'}));
+ await waitFor(()=>expect(screen.getAllByTitle('Pulse el nombre para renombrar el punto').map(input=>(input as HTMLInputElement).value)).toEqual(['Inicio antiguo','Parada antigua','Final antiguo']));
+ fireEvent.click(screen.getByRole('button',{name:'Guardar proyecto'}));
+ await waitFor(()=>expect(saved).not.toBe(''));
+ expect(JSON.parse(saved).sequentialConnections).toEqual(sequentialConnections);
+ saved='';
+ fireEvent.click(screen.getByLabelText('Subir punto 3'));
+ fireEvent.click(screen.getByLabelText('Subir punto 2'));
+ fireEvent.click(screen.getByRole('button',{name:'Guardar proyecto'}));
+ await waitFor(()=>expect(saved).not.toBe(''));
+ expect(JSON.parse(saved).pointOrder).toBe('array');
+ expect(JSON.parse(saved).points).toEqual([points[0],points[2],points[1]]);
+ vi.mocked(openProjectFile).mockResolvedValue({path:'/tmp/legacy.json',text:saved});
+ fireEvent.click(screen.getByRole('button',{name:'Abrir proyecto'}));
+ await waitFor(()=>expect(screen.getAllByTitle('Pulse el nombre para renombrar el punto').map(input=>(input as HTMLInputElement).value)).toEqual(['Final antiguo','Inicio antiguo','Parada antigua']));
+});
+
+it('crea nombres en el idioma activo sin prefijos duplicados y deja vacía la categoría del PDI',async()=>{
+ render(<App/>);
+ fireEvent.click(screen.getByRole('button',{name:'＋ Crear punto'}));
+ fireEvent.click(screen.getByRole('button',{name:'Clic mapa selección'}));
+ expect(screen.getByDisplayValue('Punto 1')).toBeTruthy();
+ act(()=>setLanguage('en'));
+ fireEvent.click(screen.getByRole('button',{name:'Clic mapa selección'}));
+ expect(screen.getByDisplayValue('Point 2')).toBeTruthy();
+ fireEvent.click(screen.getByRole('button',{name:'✦ Crear PDI'}));
+ fireEvent.click(screen.getByRole('button',{name:'Clic mapa selección'}));
+ fireEvent.click(screen.getByRole('button',{name:/Barreras y facilitadores/}));
+ expect(screen.getByDisplayValue('POI 1')).toBeTruthy();
+ expect((screen.getByPlaceholderText('Uncategorised') as HTMLInputElement).value).toBe('');
+ act(()=>setLanguage('es'));
+ fireEvent.click(screen.getByRole('button',{name:'Clic mapa selección'}));
+ expect(screen.getByDisplayValue('PDI 2')).toBeTruthy();
+ expect(screen.getAllByPlaceholderText('Sin categoría')).toHaveLength(2);
+ expect(screen.getByDisplayValue('Point 2')).toBeTruthy();
+});

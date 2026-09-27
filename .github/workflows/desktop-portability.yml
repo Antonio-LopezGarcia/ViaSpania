@@ -14,7 +14,7 @@ on:
         description: Etiqueta de la Release en la que publicar los instaladores
         required: true
         type: string
-        default: v0.2.2
+        default: v0.2.3
       installer_platform:
         description: Plataforma cuyos instaladores se construirán y publicarán
         required: true
@@ -115,6 +115,47 @@ jobs:
           "GDAL_DATA=$prefix\Library\share\gdal" | Out-File -FilePath $env:GITHUB_ENV -Append
           "PROJ_DATA=$prefix\Library\share\proj" | Out-File -FilePath $env:GITHUB_ENV -Append
       - run: pnpm install --frozen-lockfile
+      - name: Python para preparar el conversor MP4
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Herramientas de vídeo en macOS
+        if: runner.os == 'macOS'
+        run: |
+          xcrun --find clang
+          make --version
+          brew install pkg-config
+      - name: Herramientas de vídeo en Linux
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y build-essential pkg-config
+      - name: Herramientas de vídeo en Windows
+        if: runner.os == 'Windows'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          path-type: inherit
+          install: >-
+            make
+            diffutils
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-binutils
+            mingw-w64-ucrt-x86_64-pkgconf
+      - name: Preparar y verificar FFmpeg/libx264 en Windows
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          # Use the native Python from setup-python, with the UCRT64 toolchain.
+          export CC=gcc
+          python scripts/prepare-video.py --network
+          python scripts/prepare-video.py --check
+          # Later Tauri hooks run in PowerShell and need objdump for verification.
+          cygpath -w /ucrt64/bin >> "$GITHUB_PATH"
+      - name: Preparar y verificar FFmpeg/libx264 en macOS y Linux
+        if: runner.os != 'Windows'
+        run: |
+          pnpm video:prepare --network
+          pnpm video:check
       - name: Preparar expediente de macOS
         if: runner.os == 'macOS'
         run: |

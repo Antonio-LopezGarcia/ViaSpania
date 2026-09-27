@@ -8,5 +8,14 @@ describe('huecos sin datos en 3D',()=>{it('no conecta triángulos con nodata y c
  expect(highestTerrainPoint({...mesh,validCells:[true,true,false,false]})?.elevationM).toBe(10);
 })});
 
+it('omite el relleno sin datos en los cuatro bordes sin descartar el terreno a cota cero',()=>{
+ const validCells=Array.from({length:25},(_,i)=>{const row=Math.floor(i/5),col=i%5;return row>0&&row<4&&col>0&&col<4});
+ const mesh={width:5,height:5,widthM:25,heightM:25,minElevationM:0,maxElevationM:0,elevations:Array<number>(25).fill(0),validCells,wgs84Extent:[0,0,1,1] as [number,number,number,number]};
+ const indices=terrainTriangleIndices(mesh);
+ expect(indices).toHaveLength(24);
+ expect(indices.every(index=>validCells[index])).toBe(true);
+ expect(highestTerrainPoint(mesh)).toMatchObject({elevationM:0,row:1,column:1});
+});
+
 describe('punto más alto del MDT 3D',()=>{it('conserva la elevación y la convierte a WGS84',()=>{const point=highestTerrainPoint({width:3,height:2,widthM:20,heightM:10,minElevationM:1,maxElevationM:9,elevations:[1,2,3,4,9,5],wgs84Extent:[-4,40,-1,42]});expect(point).toMatchObject({lon:-2.5,lat:40,elevationM:9,row:1,column:1})});it('tolera una malla sin valores válidos',()=>expect(highestTerrainPoint({width:2,height:2,widthM:1,heightM:1,minElevationM:0,maxElevationM:0,elevations:[NaN,NaN,NaN,NaN],wgs84Extent:[0,0,1,1]})).toBeNull())});
 describe('presupuesto de líneas 3D',()=>{it('conserva todas las líneas pequeñas y muestrea resultados masivos',()=>{expect(terrainLineSamplingStride([{coordinates:[0,1,2]}],10)).toBe(1);expect(terrainLineSamplingStride([{coordinates:Array.from({length:1001})}],100)).toBe(10)})});

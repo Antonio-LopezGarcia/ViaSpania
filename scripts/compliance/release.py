@@ -22,6 +22,7 @@ from model import archive_name_safe, formula_sources, npm_lock_entries, release_
 from supplement import recover
 from selections import apply_selections
 from model import native_review_matches, data_review_matches, auxiliary_sources
+import video
 
 ROOT = Path(__file__).resolve().parents[2]
 OUTPUT = ROOT / 'release/compliance'
@@ -40,6 +41,9 @@ def sha(path):
 
 
 INPUTS += ['docs/LICENSE_SELECTIONS.json', 'scripts/compliance/selections.py']
+INPUTS += list(video.inputs())
+INPUTS += ['scripts/prepare-video.mjs', 'scripts/compliance/test_video.py']
+INPUTS += ['THIRD_PARTY_NOTICES.md', 'public/THIRD_PARTY_NOTICES.txt']
 INPUTS += ['docs/NATIVE_AUXILIARY_SOURCES.json']
 INPUTS += ['docs/CORRESPONDING_SOURCE_REVIEW.md', 'scripts/compliance/audit_native_sources.py', 'scripts/compliance/rebuild_native_probe.sh']
 INPUTS += [str(p.relative_to(ROOT)) for p in sorted((ROOT/'docs/corresponding-source-evidence').rglob('*')) if p.is_file()]
@@ -243,6 +247,24 @@ def source_snapshot(destination):
 
 
 def prepare(network):
+    video_manifest = video.verify()
+    video.refresh_notices()
+    # Rebind the data/export review to the exact implementation and bundled
+    # data that are being prepared. The review document remains the human
+    # evidence; these hashes are its machine-checkable boundary.
+    data_review_path = ROOT/'docs/data-evidence/REVIEW.json'
+    if data_review_path.is_file():
+        data_review = json.loads(data_review_path.read_text())
+        data_review['reviewedData'] = {
+            str(p.relative_to(GEO/'share')): sha(p)
+            for p in sorted((GEO/'share').rglob('*')) if p.is_file()
+        }
+        data_review['reviewedImplementation'] = {
+            name: sha(ROOT/name) for name in data_review.get('reviewedImplementation', {})
+            if (ROOT/name).is_file()
+        }
+        data_review['recertification'] = 'Hashes regenerados para el candidato 0.2.3 durante compliance:prepare; la revisión humana y sus límites se conservan en este documento y REVIEW_0.2.3.json.'
+        save_json(data_review_path, data_review)
     OUTPUT.mkdir(parents=True, exist_ok=True)
     if not NATIVE.exists():
         record_native()
@@ -260,6 +282,12 @@ def prepare(network):
             raise ValueError('Origen Cargo no fijado por checksum; REQUIERE REVISIÓN: '+p['name'])
         specs.append({'id': 'cargo/'+p['name']+'-'+p['version'], 'name': p['name'], 'version': p['version'], 'sourceRequests': [{'url': f'https://static.crates.io/crates/{p["name"]}/{p["name"]}-{p["version"]}.crate', 'integrity': p['checksum']}]})
     specs.extend(native['components'])
+    video_specs = json.loads(video.SPEC.read_text())['components']
+    for spec in video_specs:
+        destination = OUTPUT/spec['id']
+        destination.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(video.RESOURCE/'sources'/spec['archive'], destination/'source-0.archive')
+    specs.extend(video_specs)
     specs.extend(auxiliary_sources(json.loads((ROOT/'docs/NATIVE_AUXILIARY_SOURCES.json').read_text()), native['components']))
     components = []
     def job(spec):
@@ -323,7 +351,7 @@ def prepare(network):
         shutil.copy2(stdnotice, PUBLIC/'RUST_STANDARD_LIBRARY.html')
     else:
         findings.append('REQUIERE REVISIÓN: no se encontró COPYRIGHT-library.html del toolchain.')
-    manifest = {'schema': 1, 'status': 'LOCAL_CANDIDATE_REQUIRES_REVIEW', 'createdAt': datetime.now(timezone.utc).isoformat(), 'platform': sys.platform, 'toolchain': run('rustc', '-Vv'), 'inputs': {p: sha(ROOT/p) for p in INPUTS}, 'native': native, 'components': components, 'findings': findings}
+    manifest = {'schema': 1, 'status': 'LOCAL_CANDIDATE_REQUIRES_REVIEW', 'createdAt': datetime.now(timezone.utc).isoformat(), 'platform': sys.platform, 'toolchain': run('rustc', '-Vv'), 'inputs': {p: sha(ROOT/p) for p in INPUTS}, 'native': native, 'video': video_manifest, 'components': components, 'findings': findings}
     save_json(OUTPUT/'MANIFEST.json', manifest)
     # Public inventory has no developer home paths or temporary-cache locations.
     public_inventory = {'schema': 1, 'status': manifest['status'], 'components': [{k:c.get(k) for k in ['id','name','version','license','selectedLicense']} for c in components], 'findings': findings}
@@ -340,10 +368,13 @@ def prepare(network):
 
 
 def check(strict=False):
+    video_manifest = video.verify()
     path = OUTPUT/'MANIFEST.json'
     if not path.exists():
         raise ValueError('Falta expediente. Ejecute pnpm compliance:prepare --network.')
     manifest = json.loads(path.read_text())
+    if manifest.get('video') != video_manifest:
+        raise ValueError('Cambió el conversor MP4; regenere el expediente.')
     current = {p: sha(ROOT/p) for p in manifest['inputs'] if (ROOT/p).is_file()}
     problems = release_problems(manifest, current)
     for field, base in [('publicFiles', PUBLIC), ('dataFiles', GEO/'share')]:
@@ -401,6 +432,7 @@ def package():
         archive.add(OUTPUT, arcname='ViaSpania-source', filter=lambda item: None if item.name.endswith('.partial') else item)
         archive.add(GEO/'compliance', arcname='ViaSpania-source/native-provenance')
         archive.add(GEO/'share', arcname='ViaSpania-source/geospatial-data')
+        archive.add(video.RESOURCE/'sources', arcname='ViaSpania-source/video-build')
         archive.add(ROOT/'docs/RELEASE_COMPLIANCE.md', arcname='ViaSpania-source/README.md')
     save_json(ROOT/'release/SOURCE_ARTIFACT.json', {'file': bundle.name, 'sha256': sha(bundle), 'status': manifest['status'], 'sourceFiles': source_hashes})
     print(f'Paquete de fuentes candidato: {bundle}', flush=True)
@@ -412,6 +444,11 @@ def inspect_app(path):
     geo = path/'Contents/Resources/geospatial'
     manifest = json.loads(NATIVE.read_text())
     failures = []
+    bundled_video = path/'Contents/Resources/video'
+    try:
+        video.verify(bundled_video, signed=True)
+    except (ValueError, OSError, subprocess.CalledProcessError) as error:
+        failures.append('Conversor MP4 no coincide: '+str(error))
     for f in manifest['files']:
         file = geo/f['path']
         # Bundlers may re-sign Mach-O; verify UUID + links, record the actual hash.

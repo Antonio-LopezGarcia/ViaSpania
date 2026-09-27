@@ -1,0 +1,9 @@
+.welcome-dialog{padding:0;color:#e8eee8}.welcome-dialog::backdrop{background:#020604cc}.welcome-dialog .exchange-body{gap:16px;padding:24px}.welcome-dialog .brand{font-size:22px}.welcome-dialog h1{margin:0;font-size:20px}.welcome-dialog p{margin:0;color:#bdc8c1;font-size:12px;line-height:1.5}.welcome-dialog p[role="alert"]{color:#ffb2a8}
+.welcome-loading{display:block;width:100%;height:72px;margin:4px 0}
+.welcome-loading path{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.welcome-loading-track,.welcome-loading-fill{stroke-width:3;stroke-dasharray:7 9}
+.welcome-loading-track{stroke:#35433c}
+.welcome-loading-fill{stroke:#d8ff55}
+.welcome-loading-reveal{stroke:#fff;stroke-width:6;stroke-dasharray:100;stroke-dashoffset:100;animation:welcome-route-progress linear forwards}
+@keyframes welcome-route-progress{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.welcome-loading-reveal{animation:none;stroke-dashoffset:0}}

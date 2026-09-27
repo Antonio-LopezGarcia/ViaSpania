@@ -22,7 +22,7 @@ A background map helps you find your bearings. The elevation model supplies the 
 2. Find a familiar location in **Navigation**. You can move around the map or use **Search for a place**.
 3. Activate **Select area** and drag a small rectangle containing both ends of your journey, with space around them for possible alternatives.
 4. Choose a terrain model and check its resolution and estimated size. Download it and wait for processing to finish.
-5. In the **Selection** map, activate the Start tool and place the origin. Do the same with End for the destination. Both must lie inside the model on cells with valid elevation.
+5. In the **Selection** map, activate **＋ Create point** and add two points. Both must lie inside the model on cells with valid elevation.
 6. Open **Simple route**, choose a travel profile and connectivity. For this first exercise, leave barriers and facilitators empty.
 7. Calculate the outbound route. Review its line, distance, cost and unit, and elevation profile.
 8. To study the return journey, calculate the independent return route. Then save the project and use **Compose report** or **Export results**, depending on what you want to keep.
@@ -115,7 +115,7 @@ Cells without a valid elevation, called **NoData**, are not terrain at zero heig
 
 ### Calculation points
 
-Place Start and End for a route between two endpoints. Use multipoints to study several locations or an itinerary with stops. Check names, positions and order in the list. The select, move and delete tools act on features in the Selection map; return to navigation mode to move the map without editing them.
+Use **＋ Create point**: each click appends a point without replacing others. The list numbers and colours points. Use **Move up** and **Move down** to reorder them. Moving or deleting a point preserves the remaining order. **Create POI** remains independent. The select, move and delete tools act on features in the Selection map; return to navigation mode to move the map without editing them.
 
 You can import points using CSV or GeoJSON. Use the application's CSV template as a guide to columns and formatting, and check the imported positions on the map before calculating. The search field uses latitude, longitude; GeoJSON uses longitude, latitude.
 
@@ -145,7 +145,7 @@ Hiding barriers, facilitators or labels in a viewer only changes their presentat
 
 ### Simple route: connect two places
 
-Use this to find a route between Start and End. Load the model, place both points, choose profile and connectivity, and calculate the outbound journey. Least cost means the lowest cost according to that profile, not necessarily the shortest distance.
+Use this to find a route between Point 1 and Point 2. Load the model, place both points, choose profile and connectivity, and calculate the outbound journey. Least cost means the lowest cost according to that profile, not necessarily the shortest distance.
 
 The result provides a line, distance, cost with unit, ascent, descent and elevation profile. The return journey is calculated independently: climbing and descending may produce different costs and routes. Calculate both to compare directions.
 
@@ -155,13 +155,13 @@ Use this to explore how the route changes with your travel assumptions. Select s
 
 Review the table and the overlaid or dual viewers. The overlaid view lets you show or hide profiles; the dual view lets you inspect two routes with synchronised navigation. Compare geometries and check units before comparing numerical values: seconds, joules and relative cost are not equivalent.
 
-### Multipoint: compare connections between locations
+### Connection matrix (Multipoint): compare connections between locations
 
-Use this to study connections among the first eight points in the list. The result is a cost matrix and a set of directed routes. Read each cell from the origin in its row to the destination in its column.
+Use this to study connections among all points in the list. The result is a cost matrix and a set of directed routes. Read each cell from the origin in its row to the destination in its column.
 
 The A→B connection may differ from B→A. Multipoint answers what it costs to travel between pairs; it does not suggest an order for visiting all locations.
 
-### Multi-route: follow a sequence of stops
+### Sequential route (Multi-route): follow a sequence of stops
 
 Use this when the visit order is already decided. Order the points and calculate: A, B and C produce A→B followed by B→C. Review each leg and its joins.
 
@@ -175,7 +175,7 @@ Separation influences how far routes diverge. These are not the exact k-shortest
 
 ### Corridor: explore a band of alternatives
 
-Use this to identify a potential passage zone between Start and End. Choose profile, connectivity and tolerance percentage, then calculate and inspect the surface.
+Use this to identify a potential passage zone between Point 1 and Point 2. Choose profile, connectivity and tolerance percentage, then calculate and inspect the surface.
 
 A 10% threshold includes cells through which a connection can pass at a cost up to 10% above the optimum. Increasing the percentage usually widens the corridor. It does not represent a physical path width or a probability of use.
 
@@ -241,9 +241,9 @@ Adjust vertical exaggeration, palette or texture, and enable available points, r
 4. Choose duration, speed and resolution. Enable the compass or elevation profile if needed and available.
 5. Click **Export video**, **Export GIF animation** or **Export PNG frame** and wait for save confirmation.
 
-Video is saved as AVI/MJPEG at 30 frames per second, with a maximum of 90 seconds and 1.5 GB per file. Effective duration depends on duration and speed: 20 seconds at 2× produces 10 seconds. Generating the file may take longer than its playback duration.
+Video can be saved as AVI/MJPEG or MP4/H.264 at 30 frames per second, with a maximum of 90 seconds and 1.5 GB per file. MP4 is converted from the completed AVI using FFmpeg bundled with the application; if conversion fails, the AVI is kept for recovery. Effective duration depends on duration and speed: 20 seconds at 2× produces 10 seconds. Generating the file may take longer than its playback duration.
 
-GIF adapts resolution and frame count to control memory. PNG captures the initial frame of the configured mode. Videos can be large; allow disk space for the temporary file and final output. You can cancel export. If your player does not support AVI/MJPEG, open the file with a compatible player.
+GIF adapts resolution and frame count to control memory. PNG captures the initial frame of the configured mode. Videos can be large; allow disk space for the temporary file and final output. You can cancel export. If your player does not support AVI/MJPEG or MP4/H.264, open the file with a compatible player.
 
 ## 10. Save results and compose a report
 
@@ -312,8 +312,14 @@ The project JSON does not contain the elevation file. Download or import the mod
 
 ### Video export fails or the file will not play
 
-Wait for textures to finish loading, check that a route is visible if the mode requires one, and reduce duration or resolution. Review disk space and export limits. The file is AVI/MJPEG; it needs a player supporting that format.
+Wait for textures to finish loading, check that a route is visible if the mode requires one, and reduce duration or resolution. Review disk space and export limits. If MP4/H.264 fails, use the preserved AVI intermediate and review the error details.
 
 ### I need to report a problem
 
 Record version and build, operating system, steps taken and the complete error message. Include the model's source and resolution, and attach only data you can share. Support contact: antonio.lopez@ugr.es.
+
+### Point order and compatibility
+
+**Sequential route** is the recommended default: Point 1 → Point 2 → Point 3, with one leg per consecutive pair. It requires at least two points, valid coordinates, all points inside the study area and a loaded elevation model. The connection matrix is a separate analysis of all directed pairs; its workload grows with the number of points. Simple route, comparison and corridor use the first two points. Isochrones accept an individual point identifier or all points; viewshed retains individual observer selection.
+
+Legacy JSON projects preserve all point data and saved results, ordering former start points first, multipoints in their original order next, and end points last. Saving marks array order so subsequent reordering survives reopening. CSV and GeoJSON retain input order and continue reading and exporting legacy `role`/`rol` metadata without using it to decide sequence.

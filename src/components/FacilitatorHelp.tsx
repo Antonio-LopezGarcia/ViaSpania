@@ -64,7 +64,7 @@ const copy={
 } as const;
 
 export function FacilitatorHelp({onClose}:Props){
- const language=useLanguage(),text=copy[language];
+ const language=useLanguage(),text=copy[language==='it'?'es':language];
  useEffect(()=>{const close=(event:KeyboardEvent)=>{if(event.key==='Escape')onClose()};window.addEventListener('keydown',close);return()=>window.removeEventListener('keydown',close)},[onClose]);
  return <div className="calculation-help-overlay" onMouseDown={event=>{if(event.target===event.currentTarget)onClose()}}>
   <article className="calculation-help-window facilitator-help-window" role="dialog" aria-modal="true" aria-labelledby="facilitator-help-title">

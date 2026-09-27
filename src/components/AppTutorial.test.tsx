@@ -10,7 +10,7 @@ import { AppTutorial,WORKFLOW_STEPS } from './AppTutorial';
 afterEach(cleanup);
 describe('tutorial guiado',()=>{
   it('ordena las fases antes de los análisis y las salidas',()=>{
-    expect(WORKFLOW_STEPS.map(step=>step.title)).toEqual(['Crear proyecto','Abrir proyecto','1. Delimitar el área de estudio','2. Cargar el modelo digital','Comprobar el modelo digital','3. Situar los puntos','4. Añadir barreras y facilitadores','5. Configurar el análisis','Calcular Ruta simple','Comparar perfiles','Analizar varios puntos','Construir una Multirruta','Explorar un Pasillo','Analizar superficie y visibilidad','6. Interpretar con cartografía','Interpretar en 3D','7. Exportar resultados','Componer informe','Guardar el proyecto','Configuración y ayuda']);
+    expect(WORKFLOW_STEPS.map(step=>step.title)).toEqual(['Crear proyecto','Abrir proyecto','1. Delimitar el área de estudio','2. Cargar el modelo digital','Comprobar el modelo digital','3. Situar los puntos','4. Añadir barreras y facilitadores','Importar datos existentes','5. Configurar el análisis','Calcular Ruta simple','Comparar perfiles','Analizar varios puntos','Construir una Ruta secuencial','Explorar un Pasillo','Analizar superficie y visibilidad','6. Interpretar con cartografía','Interpretar en 3D','7. Exportar resultados','Componer informe','Guardar el proyecto','Configuración y ayuda']);
     expect(WORKFLOW_STEPS.every(step=>step.titleEn&&step.textEn)).toBe(true);
   });
   it('se puede iniciar manualmente, avanzar y saltar a otro paso',()=>{
@@ -23,7 +23,7 @@ describe('tutorial guiado',()=>{
     expect(document.querySelector('.tutorial-shades')).toBeNull();
     fireEvent.click(screen.getByRole('button',{name:'Siguiente elemento'}));
     expect(screen.getByText('Abrir proyecto')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button',{name:/Ir al paso 20/}));
+    fireEvent.click(screen.getByRole('button',{name:/Configuración y ayuda/}));
     expect(screen.getByText('Configuración y ayuda')).toBeTruthy();
   });
 });
@@ -46,3 +46,17 @@ it('señala los botones reales tras reordenarlos, sin depender de su posición',
  view.rerender(<><header><nav>{[...controls].reverse()}</nav></header><AppTutorial settings={settings} startToken={1}/></>);
  check();
 });
+
+ it('mantiene el resaltado al desplazar el control y lo oculta si deja de ser visible',()=>{
+  const button=document.createElement('button');button.dataset.tutorial='new-project';document.body.append(button);
+  const measure=vi.spyOn(button,'getBoundingClientRect').mockReturnValue(new DOMRect(100,80,80,30));
+  const settings={...DEFAULT_APP_SETTINGS,tutorialEnabled:false};
+  const view=render(<AppTutorial settings={settings} startToken={0}/>);
+  view.rerender(<AppTutorial settings={settings} startToken={1}/>);
+  expect((document.querySelector('.tutorial-highlight') as HTMLElement).style.top).toBe('75px');
+  measure.mockReturnValue(new DOMRect(100,40,80,30));fireEvent.scroll(window);
+  expect((document.querySelector('.tutorial-highlight') as HTMLElement).style.top).toBe('35px');
+  measure.mockReturnValue(new DOMRect());fireEvent.resize(window);
+  expect(document.querySelector('.tutorial-highlight')).toBeNull();
+  button.remove();
+ });

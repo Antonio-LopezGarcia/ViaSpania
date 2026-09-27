@@ -1,4 +1,4 @@
-import {invoke} from '@tauri-apps/api/core';
+import {invoke} from './processInvoke';
 import {open} from '@tauri-apps/plugin-dialog';
 import {parseElementLayers} from '../core/elementImports';
 import type {GeoPackageLayer} from '../core/resultExports';

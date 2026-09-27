@@ -75,6 +75,7 @@
   z-index: 3;
   display: grid;
   gap: 6px;
+  transform: translateY(24px);
   text-align: center;
   color: #dfe7e1;
 }

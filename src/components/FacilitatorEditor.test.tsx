@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import {cleanup,fireEvent,render,screen} from '@testing-library/react';
+import {act,cleanup,fireEvent,render,screen} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
 import {FacilitatorEditor} from './FacilitatorEditor';
 import type {EnabledCrossing} from '../types';
@@ -75,4 +75,26 @@ it('comparte los colores de símbolos cartográficos y traduce los campos al ing
  colours.forEach((colour,index)=>{const probe=document.createElement('i');probe.style.backgroundColor=String(colour);expect(swatches[index].style.backgroundColor).toBe(probe.style.backgroundColor)});
  expect(swatches[0].style.border).toBe('1px solid rgb(255, 255, 255)');
  cleanup();setLanguage('es');
+});
+
+
+it('traduce los nombres predeterminados al cambiar de idioma sin modificar los datos ni nombres propios',async()=>{
+ const {setLanguage}=await import('../core/i18n');
+ const onChange=vi.fn();
+ setLanguage('es');
+ render(<FacilitatorEditor
+  barriers={[{name:'Barrera 1',kind:'absolute',value:1,coordinates:[[0,0],[1,1]]}]}
+  corridors={[{id:'c',name:'Corredor 1',coordinates:[[0,0],[1,1]],widthM:20,costMultiplier:.5}]}
+  crossings={['Cruce 1','Puente 2','Puente del Rey'].map((name,index)=>({id:String(index),name,coordinates:[[0,0],[1,1]],kind:'bridge' as const,crossingCostMultiplier:1}))}
+  points={[{id:'p',name:'Interés 1',category:'',coordinate:[0,0],influenceRadiusM:100,attraction:.4,mode:'influence'}]}
+  onBarriers={onChange} onCorridors={onChange} onCrossings={onChange} onPoints={onChange}/>
+ );
+ fireEvent.click(screen.getByRole('button',{name:/Barreras y facilitadores/}));
+ act(()=>setLanguage('en'));
+ for(const name of ['Barrier 1','Corridor 1','Crossing 1','Bridge 2','Point of interest 1','Puente del Rey'])expect(screen.getByDisplayValue(name)).toBeTruthy();
+ expect(onChange).not.toHaveBeenCalled();
+ fireEvent.change(screen.getByDisplayValue('Crossing 1'),{target:{value:'Cruce del río'}});
+ expect(onChange).toHaveBeenCalledWith(expect.arrayContaining([expect.objectContaining({name:'Cruce del río'})]));
+ act(()=>setLanguage('es'));
+ for(const name of ['Barrera 1','Corredor 1','Cruce 1','Puente 2','Interés 1','Puente del Rey'])expect(screen.getByDisplayValue(name)).toBeTruthy();
 });

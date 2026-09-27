@@ -1,3 +1,5 @@
+import {createLidarMapSource} from '../services/lidarMap';
+import {pointColor} from '../core/points';
 import {barrierMapStyle,facilitatorMapStyle} from './constraintMapFeatures';
 import { useEffect, useRef, useState } from 'react';
 import Map from 'ol/Map';
@@ -29,8 +31,9 @@ import Attribution from 'ol/control/Attribution';
 import DragBox from 'ol/interaction/DragBox';
 import Draw from 'ol/interaction/Draw';
 import { Circle as CircleStyle, Fill, Stroke, Style, Text } from 'ol/style';
+import {placeMarkerStyle} from './placeMarkerStyle';
 import {selectionMarkerStyle} from './selectionMarkerStyle';
-import type { Barrier, EnabledCrossing, GeoPoint, PointRole, PreferredCorridor } from '../types';
+import type { Barrier, EnabledCrossing, GeoPoint, PreferredCorridor } from '../types';
 import { slopeColor } from '../core/routeSlope';
 import { loadAppSettings } from '../core/appSettings';
 import {builtInMapAttribution} from '../core/mapSources';
@@ -47,7 +50,7 @@ export interface SharedMapView {
   rotation: number;
 }
 
-export type PointMode = 'pan' | 'select' | 'start' | 'end' | 'multipoint' | 'move' | 'delete' | 'barrier' | 'corridor' | 'crossing' | 'poi' | 'select-barrier';
+export type PointMode = 'pan' | 'select' | 'point' | 'move' | 'delete' | 'barrier' | 'corridor' | 'crossing' | 'poi' | 'select-barrier';
 export type StudyExtent = [number, number, number, number];
 export type SelectableElement = {kind:'point';id:number}|{kind:'barrier';id:number}|{kind:'corridor'|'crossing'|'poi';id:string};
 
@@ -55,8 +58,8 @@ interface MapPanelProps {
   kind: 'osm' | 'pnoa' | 'historical';
   expanded?: boolean;
   navigationLayer?: 'osm' | 'ign-topographic';
-  orthophotoLayer?: 'pnoa' | 'copernicus-vhr-2021';
-  historicalLayer?: 'MTN50' | 'MTN25' | 'catastrones' | 'Minutas' | 'AMS_1956-1957' | 'Interministerial_1973-1986';
+  orthophotoLayer?: 'pnoa' | 'ign-lidar' | 'copernicus-vhr-2021';
+  historicalLayer?: 'ign-lidar' | 'MTN50' | 'MTN25' | 'catastrones' | 'Minutas' | 'AMS_1956-1957' | 'Interministerial_1973-1986';
   viewState: SharedMapView;
   onViewChange: (view: SharedMapView) => void;
   points?: GeoPoint[];
@@ -69,7 +72,7 @@ interface MapPanelProps {
   showScale?: boolean;
   showCursorCoordinates?: boolean;
   pointMode?: PointMode;
-  onPointMapAction?: (action: { type: 'place' | 'select' | 'move' | 'delete'; lon: number; lat: number; pointId?: number; role?: PointRole }) => void;
+  onPointMapAction?: (action: { type: 'place' | 'select' | 'move' | 'delete'; lon: number; lat: number; pointId?: number }) => void;
   areaDrawing?: boolean;
   studyExtent?: StudyExtent;
   onStudyExtent?: (extent: StudyExtent) => void;
@@ -86,6 +89,7 @@ interface MapPanelProps {
   onBarrierPolyline?: (coordinates: [number, number][]) => void;
   onFacilitatorPolyline?: (kind:'corridor'|'crossing',coordinates:[number,number][])=>void;
   onPointerCoordinate?: (coordinate:{lon:number;lat:number}|null)=>void;
+  placeMarkerCoordinates?: readonly {lon:number;lat:number}[];
   selectionMarkerCoordinate?: {lon:number;lat:number}|null;
   zoomToStudyExtentToken?: number|null;
   selectedElement?: SelectableElement|null;
@@ -97,9 +101,8 @@ const pnoaRes = Array.from({ length: 20 }, (_, zoom) => 156543.03392804097 / 2 *
 const ids = pnoaRes.map((_, zoom) => String(zoom));
 
 function pointStyle(feature: Feature, selectedPointId?: number | null, showLabel=false, labelSize=11) {
-  const role = feature.get('role') as PointRole;
   const selected = feature.get('pointId') === selectedPointId;
-  const color = role === 'inicio' ? '#59d2ff' : role === 'final' ? '#ff796f' : '#d8ff55';
+  const color = pointColor(feature.get('order')??0);
   return new Style({
     image: new CircleStyle({
       radius: selected ? 9 : 7,
@@ -139,6 +142,7 @@ function populationTileSource(){const format=new MVT(),source=new VectorTileSour
 
 export function MapPanel(props: MapPanelProps) {
   const { kind, viewState, onViewChange, points = [], selectedPointId, pointMode = 'select', onPointMapAction, areaDrawing = false, studyExtent, onStudyExtent } = props;
+  const [mapLoadError,setMapLoadError]=useState('');
   const [pointNameEditorClosed,setPointNameEditorClosed]=useState(false);
   useEffect(()=>setPointNameEditorClosed(false),[selectedPointId]);
   const selectedPoint=points.find(point=>point.id===selectedPointId);
@@ -151,6 +155,7 @@ export function MapPanel(props: MapPanelProps) {
   const barrierSourceRef = useRef(new VectorSource());
   const facilitatorSourceRef = useRef(new VectorSource());
   const locationSourceRef = useRef(new VectorSource());
+  const placeMarkerSourceRef = useRef(new VectorSource());
   const selectionMarkerSourceRef = useRef(new VectorSource());
   const syncingRef = useRef(false);
   const barrierDrawRef = useRef<Draw | null>(null);
@@ -181,6 +186,7 @@ export function MapPanel(props: MapPanelProps) {
             attributions: builtInMapAttribution('ign-topographic'),
           })
         : new OSM({ attributions: builtInMapAttribution('osm') })
+      : kind === 'pnoa' && propsRef.current.orthophotoLayer === 'ign-lidar' ? createLidarMapSource()
       : kind === 'pnoa' && propsRef.current.orthophotoLayer === 'copernicus-vhr-2021' ? new TileWMS({
           url: COPERNICUS_VHR_2021_WMS,
           params: { LAYERS: COPERNICUS_VHR_2021_LAYER, TILED: true, FORMAT: 'image/jpeg', TRANSPARENT: false },
@@ -199,6 +205,7 @@ export function MapPanel(props: MapPanelProps) {
           attributions: builtInMapAttribution('pnoa'),
         }) : (() => {
           const layer = propsRef.current.historicalLayer ?? 'MTN50';
+          if(layer==='ign-lidar')return createLidarMapSource();
           const minutas = layer === 'Minutas';
           const aerial = layer === 'AMS_1956-1957' || layer === 'Interministerial_1973-1986';
           return new TileWMS({
@@ -209,9 +216,13 @@ export function MapPanel(props: MapPanelProps) {
             attributions: builtInMapAttribution(layer),
           });
         })();
+    setMapLoadError('');
+    const lidarSelected=!propsRef.current.externalLayer&&(kind==='pnoa'?propsRef.current.orthophotoLayer==='ign-lidar':kind==='historical'&&propsRef.current.historicalLayer==='ign-lidar');
+    const lidarError=()=>setMapLoadError('No se pudo cargar el mapa LiDAR del IGN. Compruebe la conexión o seleccione otra cartografía.');
+    if(lidarSelected)source.on('tileloaderror',lidarError);
     const labelSize=mapPreferences.labelTextSizePx??11;
     const pointLayer = new VectorLayer({ source: pointSourceRef.current, style: feature => pointStyle(feature as Feature, propsRef.current.selectedPointId, effectiveShowLabels,labelSize), zIndex: 20 });
-    const referenceLayers = kind === 'pnoa' && propsRef.current.orthophotoLayer !== 'copernicus-vhr-2021' ? [
+    const referenceLayers = kind === 'pnoa' && (propsRef.current.orthophotoLayer ?? 'pnoa') === 'pnoa' ? [
       ...((propsRef.current.showMunicipalBoundaries??mapPreferences.showMunicipalBoundaries) ? [new TileLayer({ source: new TileWMS({
         url: 'https://www.ign.es/wms-inspire/unidades-administrativas',
         params: { LAYERS: 'AU.AdministrativeBoundary', STYLES: 'LimitesRojo', TILED: true, FORMAT: 'image/png', TRANSPARENT: true },
@@ -256,7 +267,7 @@ export function MapPanel(props: MapPanelProps) {
     const isochroneSurfaceLayer=propsRef.current.isochroneSurface?new ImageLayer({source:new ImageStatic({url:propsRef.current.isochroneSurface.imageUrl,imageExtent:transformExtent(propsRef.current.isochroneSurface.extent,'EPSG:4326','EPSG:3857'),projection:'EPSG:3857'}),opacity:propsRef.current.isochroneSurface.opacity,zIndex:16}):null;
     const map = new Map({
       target: host.current,
-      layers: [new TileLayer({ source }), ...referenceLayers, areaLayer, ...(isochroneSurfaceLayer?[isochroneSurfaceLayer]:[]), isochroneLayer, routeLayer, barrierLayer, facilitatorLayer, pointLayer,locationLayer,selectionMarkerLayer],
+      layers: [new TileLayer({ source }), ...referenceLayers, areaLayer, ...(isochroneSurfaceLayer?[isochroneSurfaceLayer]:[]), isochroneLayer, routeLayer, barrierLayer, facilitatorLayer, pointLayer,locationLayer,new VectorLayer({source:placeMarkerSourceRef.current,zIndex:29,style:placeMarkerStyle()}),selectionMarkerLayer],
       view: new View({ center: viewState.center, resolution: viewState.resolution, rotation: viewState.rotation }),
       controls: [new Attribution({collapsible:false}), ...(loadAppSettings().showScales ? [new ScaleLine()] : [])],
     });
@@ -322,11 +333,9 @@ export function MapPanel(props: MapPanelProps) {
       else if (currentMode === 'delete' && pointId) propsRef.current.onPointMapAction?.({ type: 'delete', pointId, lon: coordinate[0], lat: coordinate[1] });
       else if (currentMode === 'move' && pointId) propsRef.current.onPointMapAction?.({ type: 'select', pointId, lon: coordinate[0], lat: coordinate[1] });
       else if (currentMode === 'move' && propsRef.current.selectedPointId != null) propsRef.current.onPointMapAction?.({ type: 'move', pointId: propsRef.current.selectedPointId, lon: coordinate[0], lat: coordinate[1] });
-      else if (currentMode === 'start') propsRef.current.onPointMapAction?.({ type: 'place', role: 'inicio', lon: coordinate[0], lat: coordinate[1] });
-      else if (currentMode === 'end') propsRef.current.onPointMapAction?.({ type: 'place', role: 'final', lon: coordinate[0], lat: coordinate[1] });
-      else if (currentMode === 'multipoint') propsRef.current.onPointMapAction?.({ type: 'place', role: 'multipunto', lon: coordinate[0], lat: coordinate[1] });
+      else if (currentMode === 'point') propsRef.current.onPointMapAction?.({ type: 'place', lon: coordinate[0], lat: coordinate[1] });
     });
-    return () => { map.getViewport().removeEventListener('mouseleave',leave);map.getViewport().removeEventListener('contextmenu',contextMenu);barrierDrawRef.current=null;mapRef.current = null; map.setTarget(undefined); };
+    return () => { if(lidarSelected)source.un('tileloaderror',lidarError);map.getViewport().removeEventListener('mouseleave',leave);map.getViewport().removeEventListener('contextmenu',contextMenu);barrierDrawRef.current=null;mapRef.current = null; map.setTarget(undefined); };
   }, [kind, props.historicalLayer, props.navigationLayer, props.orthophotoLayer, props.externalLayer?.id, props.externalLayer?.url, props.showMunicipalBoundaries, props.showGeographicalNames, props.showPointLabels, props.showScale, props.isochroneSurface?.imageUrl, props.isochroneSurface?.opacity, mapPreferences,showConstraints,effectiveShowLabels]);
 
   useEffect(() => {
@@ -341,8 +350,8 @@ export function MapPanel(props: MapPanelProps) {
   useEffect(() => {
     const source = pointSourceRef.current;
     source.clear();
-    source.addFeatures(points.map(point => {
-      const feature = new Feature({ geometry: new Point(fromLonLat([point.lon, point.lat])), pointId: point.id, role: point.role, name: point.name, elementKind:'point', elementId:point.id });
+    source.addFeatures(points.map((point,index) => {
+      const feature = new Feature({ geometry: new Point(fromLonLat([point.lon, point.lat])), pointId: point.id, order:index, name: point.name, elementKind:'point', elementId:point.id });
       feature.setId(`point-${point.id}`);
       return feature;
     }));
@@ -386,6 +395,7 @@ export function MapPanel(props: MapPanelProps) {
 
   useEffect(()=>{const source=locationSourceRef.current;source.clear();const location=props.userLocation;if(!location)return;const center=fromLonLat([location.lon,location.lat]),mercatorRadius=location.accuracyM/Math.max(.1,Math.cos(location.lat*Math.PI/180));source.addFeatures([new Feature(new Circle(center,mercatorRadius)),new Feature(new Point(center))])},[props.userLocation]);
 
+  useEffect(()=>{const source=placeMarkerSourceRef.current;source.clear();source.addFeatures((props.placeMarkerCoordinates??[]).map(coordinate=>new Feature(new Point(fromLonLat([coordinate.lon,coordinate.lat])))))},[props.placeMarkerCoordinates]);
   useEffect(()=>{const source=selectionMarkerSourceRef.current;source.clear();const coordinate=props.selectionMarkerCoordinate;if(coordinate)source.addFeature(new Feature(new Point(fromLonLat([coordinate.lon,coordinate.lat]))))},[props.selectionMarkerCoordinate]);
 
   useEffect(()=>{const map=mapRef.current;if(!map||!studyExtent||props.zoomToStudyExtentToken==null)return;map.getView().fit(transformExtent(studyExtent,'EPSG:4326','EPSG:3857'),{padding:[36,36,36,36],duration:250})},[props.zoomToStudyExtentToken,studyExtent]);
@@ -394,6 +404,7 @@ export function MapPanel(props: MapPanelProps) {
 
   return <>
     <div className={`map ${loadAppSettings().showCrosshairs?'map-crosshair':''}`} ref={host} />
+    {mapLoadError&&<div role="alert">{mapLoadError}</div>}
     {props.expanded&&<div className="mdt-constraint-controls"><label><input type="checkbox" checked={showConstraints} onChange={event=>setShowConstraints(event.target.checked)}/>Mostrar barreras y facilitadores</label><label><input type="checkbox" checked={showLabels} onChange={event=>setShowLabels(event.target.checked)}/>Mostrar etiquetas</label></div>}
     {kind==='pnoa'&&selectedPoint&&!pointNameEditorClosed&&<div className="point-name-editor" onKeyDown={event=>{if(!event.nativeEvent.isComposing&&(event.key==='Enter'||event.key==='Escape')){event.preventDefault();event.stopPropagation();setPointNameEditorClosed(true)}}}>
       <label><span>Nombre del punto</span><input value={selectedPoint.name} maxLength={20} onChange={event=>props.onPointNameChange?props.onPointNameChange(selectedPoint.id,event.target.value):window.dispatchEvent(new CustomEvent('viaspania-rename-point',{detail:{pointId:selectedPoint.id,name:event.target.value}}))}/></label>

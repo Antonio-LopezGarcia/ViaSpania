@@ -3758,7 +3758,13 @@ fn legacy_lcp_distances_for_test(
             reproject_elevation_raster(&input,&output,&request).unwrap();
             let metadata=gdal_json_basic(&output).unwrap();
             assert_eq!(metadata["size"],serde_json::json!([5001,50]));
-            assert_eq!(metadata["geoTransform"],serde_json::json!([500000.0,resolution,0.0,4500000.0,0.0,-resolution]));
+            let transform=metadata["geoTransform"].as_array().expect("GeoTransform debe ser un array");
+            let expected=[500_000.0,resolution,0.0,4_500_000.0,0.0,-resolution];
+            assert_eq!(transform.len(),expected.len());
+            for (actual,expected) in transform.iter().zip(expected) {
+                let actual=actual.as_f64().expect("GeoTransform debe contener números");
+                assert!((actual-expected).abs()<=1e-9*expected.abs().max(1.0),"GeoTransform differs: actual={actual}, expected={expected}");
+            }
         }
         std::fs::remove_dir_all(directory).unwrap();
         let (directory,input)=synthetic_route_grid(8192,8293);

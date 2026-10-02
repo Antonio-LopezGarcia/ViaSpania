@@ -1,3 +1,4 @@
+
 # ViaSpania
 
  [Español](#español) · [English](#english) · [Downloads / Descargas](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) · [Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues)
@@ -35,6 +36,21 @@ Esta versión reúne los cambios posteriores a v0.2.2. Descargue los instaladore
 - **Inicio, tareas y experiencia de uso.** Pantalla de bienvenida con idioma y tutorial en el primer inicio, tutorial actualizado, autoguardado, controles para cancelar cálculos en ejecución y seguimiento de procesos. Se revisan títulos de modelos importados, la ventana de descarga de MDT/MDS, formularios Linux con fondos oscuros, traducciones de elementos y pequeños ajustes de diseño.
 
 El [manual en español](docs/manual.md) recoge el nuevo flujo de puntos. Las cifras de validación y el expediente de cumplimiento de v0.2.2 que se conservan más abajo son históricos y no certifican v0.2.3.
+
+### Cambios previstos para v0.2.4
+
+La siguiente lista recoge los cambios preparados desde v0.2.3. La versión 0.2.4 y sus instaladores aún no se han publicado.
+
+- **Mediciones en mapas.** Herramientas de distancia y área en los visores de cálculo y en el visor cartográfico ampliado. Con un MDT cargado, una distancia medida también puede mostrar un perfil de elevación. Las mediciones son de consulta y no alteran los resultados del análisis.
+- **Rutas de aproximación.** En el visor histórico se pueden dibujar, mover y editar rutas de referencia; cortar o unir líneas; cambiar color y estilo; ocultarlas, ampliar su extensión y deshacer o rehacer cambios. Se conservan en el proyecto y se incluyen en la exportación GeoPackage de elementos. Son trazados manuales y no intervienen en los cálculos de coste.
+- **Máscara marítima desde el MDT.** Una selección por clic detecta celdas contiguas con elevación similar a la celda elegida y crea una barrera absoluta. La tolerancia es configurable y el contorno se puede revisar, editar, cortar, unir, borrar y deshacer/rehacer. Es una ayuda derivada del MDT, no una batimetría ni una línea de costa oficial; conviene revisar el resultado, especialmente cerca de estuarios, lagunas, islas y pasos estrechos.
+- **Cartografía OpenTopoMap.** Se añade OpenTopoMap como fondo seleccionable para navegación y cartografía histórica, con atribución del mapa y sus datos en los visores e informes.
+- **Comprobación de actualizaciones y créditos.** La configuración muestra versión, identificador exacto de compilación, commit y fecha/plataforma, permite consultar si hay una versión posterior compatible y abrir GitHub Releases. Se amplían los créditos de fuentes, licencias y datos, con acceso a los avisos y recursos incluidos en la aplicación.
+- **Informes y exportaciones.** Los mapas de informe representan los tramos múltiples de barreras y distinguen la máscara marítima; las páginas de elementos detallan barreras y facilitadores. La exportación de elementos a GeoPackage incluye rutas de aproximación y geometrías multipartes.
+- **Correcciones de análisis y validación.** Se evitan costuras transparentes en pasillos LCP al reducir la resolución de visualización y se toleran pequeñas diferencias de redondeo en rutas óptimas. La validación de elementos respecto al área de estudio contempla multipartes y pequeñas diferencias numéricas en los límites.
+- **Interfaz y documentación.** Se revisan herramientas de edición de máscara marítima, perfiles de medición, controles de cartografía, mensajes de estado y traducciones al inglés e italiano. Los manuales incorporan instrucciones para las rutas de aproximación, mediciones y máscara marítima.
+
+El [manual en español](docs/manual.md) y los manuales traducidos describen las nuevas herramientas.
 
 ### Novedades de v0.2.2
 

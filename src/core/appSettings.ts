@@ -4,7 +4,7 @@ import type { NotificationSound } from './notificationSounds';
 import type { ExternalMapLayer } from './externalMapLayers';
 import type { ElevationSourceId } from './elevationSources';
 
-export type BuiltInMapSourceId='osm'|'ign-topographic'|'pnoa'|'ign-lidar'|'copernicus-vhr-2021'|'MTN50'|'MTN25'|'catastrones'|'Minutas'|'AMS_1956-1957'|'Interministerial_1973-1986';
+export type BuiltInMapSourceId='osm'|'opentopomap'|'ign-topographic'|'pnoa'|'ign-lidar'|'copernicus-vhr-2021'|'MTN50'|'MTN25'|'catastrones'|'Minutas'|'AMS_1956-1957'|'Interministerial_1973-1986';
 export type PaletteId='grayscale'|'terrain'|'hypsometric'|'viridis'|'alpine';
 
 export interface AppSettings {
@@ -27,7 +27,7 @@ export interface AppSettings {
   defaultPalette:PaletteId;
   defaultTerrain3dPalette:PaletteId;
   defaultHistoricalLayer:'ign-lidar'|'MTN50'|'MTN25'|'catastrones'|'Minutas'|'AMS_1956-1957'|'Interministerial_1973-1986';
-  defaultNavigationLayer:'osm'|'ign-topographic';
+  defaultNavigationLayer:'osm'|'opentopomap'|'ign-topographic';
   defaultSelectionOrthophoto:'pnoa'|'ign-lidar'|'copernicus-vhr-2021';
   defaultTerrain3dExaggeration:0|0.5|1|1.5|2|3|4|6|8;
   defaultTerrain3dHighestPoint:boolean;
@@ -38,12 +38,13 @@ export interface AppSettings {
   notificationSound:NotificationSound;
   autoSaveEnabled:boolean;
   autoSaveIntervalMinutes:3|5|10;
+  preserveOpenedProjectBackup:boolean;
   externalMapLayers:ExternalMapLayer[];
   enabledElevationModels:Record<ElevationSourceId,boolean>;
   enabledMapSources:Record<BuiltInMapSourceId,boolean>;
 }
 
-export const DEFAULT_APP_SETTINGS:AppSettings={tutorialEnabled:true,showPointLabels:true,showMunicipalBoundaries:false,showUrbanNames:false,showCrosshairs:true,showScales:true,showSelectionCoordinates:true,showMdtCursorInfo:false,showSelectionMarker:false,startupProject:'disabled',reportDefaults:{navigation:true,pnoaOverview:true,individualRoutePages:false,terrain3d:true,historical:true,pointList:true,barrierList:true,pageSize:'a4'},defaultPalette:'grayscale',defaultTerrain3dPalette:'grayscale',defaultHistoricalLayer:'MTN50',defaultNavigationLayer:'osm',defaultSelectionOrthophoto:'pnoa',defaultTerrain3dExaggeration:2,defaultTerrain3dHighestPoint:false,defaultTerrain3dShowScale:true,processingCellLimit:3_000_000,notificationSounds:true,notificationSound:'chime',autoSaveEnabled:false,autoSaveIntervalMinutes:3,externalMapLayers:[],enabledElevationModels:{mdt5:true,mdt25:true,mdt200:true,mds05:false,copernicus30:false},enabledMapSources:{osm:true,'ign-topographic':true,pnoa:true,'ign-lidar':true,'copernicus-vhr-2021':true,MTN50:true,MTN25:true,catastrones:true,Minutas:true,'AMS_1956-1957':true,'Interministerial_1973-1986':true}};
+export const DEFAULT_APP_SETTINGS:AppSettings={tutorialEnabled:true,showPointLabels:true,showMunicipalBoundaries:false,showUrbanNames:false,showCrosshairs:true,showScales:true,showSelectionCoordinates:true,showMdtCursorInfo:false,showSelectionMarker:false,startupProject:'disabled',reportDefaults:{navigation:true,pnoaOverview:true,individualRoutePages:false,terrain3d:true,historical:true,pointList:true,barrierList:true,pageSize:'a4'},defaultPalette:'grayscale',defaultTerrain3dPalette:'grayscale',defaultHistoricalLayer:'MTN50',defaultNavigationLayer:'osm',defaultSelectionOrthophoto:'pnoa',defaultTerrain3dExaggeration:2,defaultTerrain3dHighestPoint:false,defaultTerrain3dShowScale:true,processingCellLimit:3_000_000,notificationSounds:true,notificationSound:'chime',autoSaveEnabled:false,autoSaveIntervalMinutes:3,preserveOpenedProjectBackup:false,externalMapLayers:[],enabledElevationModels:{mdt5:true,mdt25:true,mdt200:true,mds05:false,copernicus30:false},enabledMapSources:{osm:true,opentopomap:true,'ign-topographic':true,pnoa:true,'ign-lidar':true,'copernicus-vhr-2021':true,MTN50:true,MTN25:true,catastrones:true,Minutas:true,'AMS_1956-1957':true,'Interministerial_1973-1986':true}};
 
 export function recommendedCellLimit(totalMemoryBytes?:number|null):AppSettings['processingCellLimit']{if(!totalMemoryBytes)return 3_000_000;const gib=totalMemoryBytes/1073741824;if(gib<=8)return 5_000_000;if(gib<=16)return 32_000_000;return MAX_ELEVATION_CELLS}
 

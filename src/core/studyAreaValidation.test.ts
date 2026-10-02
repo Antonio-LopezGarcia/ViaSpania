@@ -5,6 +5,8 @@ describe('elementos fuera del área',()=>{
  it('incluye el borde y rechaza coordenadas inválidas',()=>{
   expect(containsCoordinate(bounds,[-4,40])).toBe(true);
   expect(containsCoordinate(bounds,[-3,41])).toBe(true);
+  expect(containsCoordinate(bounds,[-4-5e-7,40])).toBe(true);
+  expect(containsCoordinate(bounds,[-4-1e-4,40])).toBe(false);
   expect(containsCoordinate(bounds,[-2,40])).toBe(false);
   expect(containsCoordinate(bounds,[NaN,40])).toBe(false);
  });

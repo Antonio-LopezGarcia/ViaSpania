@@ -1,9 +1,10 @@
 import {afterEach,describe,expect,it,vi} from 'vitest';
 import {setLanguage} from './i18n';
-import {projectNameFromPath,projectStudyExtent,reportFileName} from './projectFiles';
+import {projectBackupDate,projectNameFromPath,projectStudyExtent,reportFileName} from './projectFiles';
 
 describe('nombres de proyecto e informes',()=>{
   it('obtiene el nombre desde la ubicación elegida',()=>expect(projectNameFromPath('/datos/Proyecto Sierra.json')).toBe('Proyecto_Sierra'));
+  it('formatea la fecha local de modificación como DDMMAA',()=>expect(projectBackupDate(new Date(2026,8,4).getTime())).toBe('040926'));
   afterEach(()=>{vi.useRealTimers();setLanguage('es')});
   describe.each(['es','en'] as const)('informes en %s',language=>{
     it.each([

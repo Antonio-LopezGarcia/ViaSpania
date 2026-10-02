@@ -12,6 +12,11 @@ describe('raster del corredor',()=>{
   expect(Array.from(corridorRasterPixels(1,1,[.05],5))).toEqual([255,110,70,255]);
   expect(Array.from(corridorRasterPixels(1,1,[0],0))).toEqual([25,225,70,255]);
  });
+ it('conserva visibles los costes óptimos negativos por redondeo y respeta el sentinel NoData',()=>{
+  expect(Array.from(corridorRasterPixels(3,1,[-1,-1e-12,0],10))).toEqual([
+   0,0,0,0,25,225,70,255,25,225,70,255,
+  ]);
+ });
  it('orienta norte arriba y alinea una malla recortada sin estirar el raster',()=>{
   expect(Array.from(corridorRasterUvs(2,2,[-4,36,-2,38],[-4,36,-2,38]))).toEqual([0,0,1,0,0,1,1,1]);
   expect(Array.from(corridorRasterUvs(2,2,[-3.5,36.5,-2.5,37.5],[-4,36,-2,38]))).toEqual([.25,.25,.75,.25,.25,.75,.75,.75]);

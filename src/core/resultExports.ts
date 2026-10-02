@@ -1,6 +1,8 @@
 import {resultProvenance} from './resultProvenance';
 import {MOVECOST_CODES,safeExportBaseName} from './geospatialExports';
 import type {Barrier,ContourResult,EnabledCrossing,GeoPoint,IsochroneResult,ModelId,PointOfInterest,PreferredCorridor} from '../types';
+import type {ApproximationRoute} from '../components/MapPanel';
+import {barrierParts} from './barriers';
 
 export type ResultExportGroup='Datos del proyecto'|'Rutas simples'|'Rutas comparativas'|'Matriz de conexiones'|'Ruta Secuencial'|'Pasillos'|'Isócronas'|'Visibilidad'|'Curvas de nivel';
 export interface ResultExportItem{id:string;group:ResultExportGroup;label:string;fileName:string;format:'GeoJSON'|'PNG'|'GeoPackage'|'GeoTIFF'}
@@ -19,13 +21,14 @@ export function projectElementsGeoPackageName(project:string){return`elementos_$
 export function elevationRasterResultName(project:string,source:string){return`elevacion_${resultToken(project)}_${resultToken(source)}.tif`}
 
 const collection=(name:string,features:unknown[])=>JSON.stringify({type:'FeatureCollection',name,crs:{type:'name',properties:{name:'urn:ogc:def:crs:OGC:1.3:CRS84'}},features});
-export function projectElementsGeoPackageLayers(points:readonly GeoPoint[],barriers:readonly Barrier[],corridors:readonly PreferredCorridor[],crossings:readonly EnabledCrossing[],pointsOfInterest:readonly PointOfInterest[]):GeoPackageLayer[]{
+export function projectElementsGeoPackageLayers(points:readonly GeoPoint[],barriers:readonly Barrier[],corridors:readonly PreferredCorridor[],crossings:readonly EnabledCrossing[],pointsOfInterest:readonly PointOfInterest[],approximationRoutes:readonly ApproximationRoute[]=[]):GeoPackageLayer[]{
  const layers:GeoPackageLayer[]=[];
  if(points.length)layers.push({name:'puntos',geoJson:collection('Puntos',points.map(point=>({type:'Feature',id:point.id,properties:{elemento_id:point.id,nombre:point.name,comentarios:point.comments,rol:point.role,provenance:point.provenance?JSON.stringify(point.provenance):null},geometry:{type:'Point',coordinates:[point.lon,point.lat]}})))});
- if(barriers.length)layers.push({name:'barreras',geoJson:collection('Barreras',barriers.map((barrier,index)=>({type:'Feature',id:index+1,properties:{nombre:barrier.name?.trim()||`Barrera ${index+1}`,tipo:barrier.kind,valor:barrier.value},geometry:{type:'LineString',coordinates:barrier.coordinates}})))});
+ if(barriers.length)layers.push({name:'barreras',geoJson:collection('Barreras',barriers.map((barrier,index)=>({type:'Feature',id:index+1,properties:{nombre:barrier.name?.trim()||`Barrera ${index+1}`,tipo:barrier.kind,valor:barrier.value,origen:barrier.generatedBy??null},geometry:barrier.additionalParts?.length?{type:'MultiLineString',coordinates:barrierParts(barrier)}:{type:'LineString',coordinates:barrier.coordinates}})))});
  if(corridors.length)layers.push({name:'corredores',geoJson:collection('Corredores',corridors.map(item=>({type:'Feature',id:item.id,properties:{elemento_id:item.id,nombre:item.name,anchura_m:item.widthM,multiplicador_coste:item.costMultiplier},geometry:{type:'LineString',coordinates:item.coordinates}})))});
  if(crossings.length)layers.push({name:'puentes',geoJson:collection('Puentes y pasos',crossings.map(item=>({type:'Feature',id:item.id,properties:{elemento_id:item.id,nombre:item.name,tipo:item.kind,multiplicador_coste:item.crossingCostMultiplier,paso_obligatorio:item.required===true,barrera_id:item.barrierId??null},geometry:{type:'LineString',coordinates:item.coordinates}})))});
  if(pointsOfInterest.length)layers.push({name:'puntos_interes',geoJson:collection('Puntos de interés',pointsOfInterest.map(item=>({type:'Feature',id:item.id,properties:{elemento_id:item.id,nombre:item.name,categoria:item.category,radio_influencia_m:item.influenceRadiusM,atraccion:item.attraction,modo:item.mode},geometry:{type:'Point',coordinates:item.coordinate}})))});
+ if(approximationRoutes.length)layers.push({name:'rutas_aproximacion',geoJson:collection('Rutas de aproximación',approximationRoutes.map(item=>({type:'Feature',id:item.id,properties:{elemento_id:item.id,nombre:item.name,color:item.color,estilo:item.lineStyle??'solid'},geometry:{type:'LineString',coordinates:item.coordinates}})))});
  return layers
 }
 

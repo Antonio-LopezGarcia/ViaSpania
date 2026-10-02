@@ -12,4 +12,10 @@ describe('importación de elementos',()=>{
  expect(()=>parseElementLayers(projectElementsGeoPackageLayers([{id:1,name:'X',comments:'',role:'inicio',lon:300,lat:40,crs:'EPSG:4326'}],[],[],[],[]))).toThrow('fuera de rango');
  });
  it('admite capas parciales y booleanos de SQLite',()=>{const layers=projectElementsGeoPackageLayers([],[],[],[{id:'1',name:'Paso',coordinates:[[0,0],[1,1]],kind:'bridge',crossingCostMultiplier:1,required:true}],[]);layers[0].geoJson=layers[0].geoJson.replace('"paso_obligatorio":true','"paso_obligatorio":1');expect(parseElementLayers(layers).crossings[0].required).toBe(true);expect(parseElementLayers(layers).points).toEqual([])});
+ it('guarda y recupera los tramos de una barrera compuesta sin conectarlos',()=>{
+  const barrier={name:'Máscara marina',kind:'absolute' as const,value:1,coordinates:[[-3,40],[-2.9,40.1]] as [number,number][],additionalParts:[[[-2.8,40.2],[-2.7,40.3]] as [number,number][]],generatedBy:'magic-ocean' as const};
+  const layers=projectElementsGeoPackageLayers([], [barrier], [], [], []),feature=JSON.parse(layers[0].geoJson).features[0];
+  expect(feature.geometry.type).toBe('MultiLineString');
+  expect(parseElementLayers(layers).barriers[0]).toEqual(barrier);
+ });
 });

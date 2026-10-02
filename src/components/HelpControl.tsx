@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import manual from '../../docs/manual.md?raw';
 import manualEn from '../../docs/manual.en.md?raw';
+import manualIt from '../../docs/manual.it.md?raw';
 import {useLanguage,translateText} from '../core/i18n';
 import '../exchange-export.css';
 import '../help.css';
@@ -37,13 +38,13 @@ export function parseHelpDocument(source: string): HelpBlock[] {
 }
 
 export function HelpControl() {
-  const [open, setOpen] = useState(false),language=useLanguage(),en=language==='en';
-  const blocks = useMemo(() => parseHelpDocument(language==='en'?manualEn:manual), [language]);
+  const [open, setOpen] = useState(false),language=useLanguage(),en=language==='en',it=language==='it';
+  const blocks = useMemo(() => parseHelpDocument(en?manualEn:it?manualIt:manual), [language]);
   return <>
     <button onClick={() => setOpen(true)}>Ayuda</button>
     {open && <section className="exchange-backdrop">
-      <div className="exchange-dialog help-dialog" role="dialog" aria-modal="true" aria-label={en?'ViaSpania help manual':translateText('Manual de ayuda de ViaSpania',language)}>
-        <header><div><b>{en?'Help':translateText('Ayuda',language)}</b><span>{en?'ViaSpania manual':translateText('Manual de ViaSpania',language)}</span></div><button aria-label={en?'Close help':translateText('Cerrar ayuda',language)} onClick={() => setOpen(false)}>×</button></header>
+      <div className="exchange-dialog help-dialog" role="dialog" aria-modal="true" aria-label={en?'ViaSpania help manual':it?'Manuale di ViaSpania':translateText('Manual de ayuda de ViaSpania',language)}>
+        <header><div><b>{en?'Help':it?'Aiuto':translateText('Ayuda',language)}</b><span>{en?'ViaSpania manual':it?'Manuale di ViaSpania':translateText('Manual de ViaSpania',language)}</span></div><button aria-label={en?'Close help':it?'Chiudi la guida':translateText('Cerrar ayuda',language)} onClick={() => setOpen(false)}>×</button></header>
         <div className="exchange-body help-body">{blocks.map((block, index) => {
           if (block.type === 'h1') return <h2 key={index}>{block.text}</h2>;
           if (block.type === 'h2') return <h3 key={index}>{block.text}</h3>;
@@ -52,7 +53,7 @@ export function HelpControl() {
           if (block.type === 'ul') return <ul key={index}>{block.items?.map((item, itemIndex) => <li key={itemIndex}>{item}</li>)}</ul>;
           return <p key={index}>{block.text}</p>;
         })}</div>
-        <footer><button className="primary" onClick={() => setOpen(false)}>{en?'Close':translateText('Cerrar',language)}</button></footer>
+        <footer><button className="primary" onClick={() => setOpen(false)}>{en?'Close':it?'Chiudi':translateText('Cerrar',language)}</button></footer>
       </div>
     </section>}
   </>;

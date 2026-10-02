@@ -53,9 +53,20 @@ def auxiliary_sources(document, native_components):
     owners = {c['id']: c for c in native_components}
     result, seen = [], set(owners)
     for component in document.get('components', []):
-        owner = owners.get(component.get('owner'), {})
-        hashes = {s.get('integrity') for s in owner.get('sourceRequests', [])}
-        if not owner or component.get('ownerSourceSha256') not in hashes:
+        owner_id = component.get('owner')
+        owner = owners.get(owner_id)
+        expected = component.get('ownerSourceSha256')
+        # Homebrew revisions can change the native component ID without changing
+        # its upstream archive. Keep the recorded ID as the preferred binding,
+        # but allow a renamed/revisioned parent only when its pinned source hash
+        # still identifies exactly one current native component.
+        matching_owners = [c for c in native_components
+                           if expected and expected in {s.get('integrity') for s in c.get('sourceRequests', [])}]
+        if owner and expected in {s.get('integrity') for s in owner.get('sourceRequests', [])}:
+            pass
+        elif len(matching_owners) == 1:
+            owner = matching_owners[0]
+        else:
             raise ValueError('Cambió o falta el componente padre de la fuente auxiliar: ' + component.get('id', '?'))
         identifier = component.get('id', '')
         if not re.fullmatch(r'native-aux/[A-Za-z0-9._+-]+', identifier) or identifier in seen:

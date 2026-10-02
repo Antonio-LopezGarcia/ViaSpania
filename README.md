@@ -20,37 +20,20 @@ ViaSpania es una aplicación de escritorio para analizar costes de desplazamient
 - Proyectos JSON locales, importación de puntos CSV/GeoJSON, exportaciones vectoriales y ráster y compositor de informes PDF con atribución de fuentes.
 - Terreno 3D interactivo con superposición de resultados y exportación de animaciones.
 
-### Novedades de v0.2.3
+### Novedades de v0.2.4 (desde v0.2.2)
 
-Esta versión reúne los cambios posteriores a v0.2.2. Descargue los instaladores de v0.2.3 desde **Assets** en [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases); si una plataforma todavía no tiene paquete 0.2.3, use el instalador 0.2.2 indicado en la tabla de descargas.
+Esta versión reúne los cambios posteriores a v0.2.2. La publicación e instaladores de v0.2.4 estarán disponibles en **Assets** de [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) cuando se publique esa versión.
 
-- **Modelos y análisis de mayor tamaño.** Descarga WCS por bloques para MDT05, MDT25, MDT200 y MDS05, con un máximo común de **67.928.064 celdas** para modelos descargados o importados, rutas, isócronas, pasillos, visibilidad y curvas de nivel. Se optimiza el uso de memoria sin reducir la resolución del análisis para ajustarse al límite. La preferencia de procesado puede imponer un máximo inferior y se comprueba la RAM disponible; las preferencias existentes no se elevan automáticamente. Véanse los [límites de elevación](docs/design-notes/elevation-model-limits.md) y los [análisis grandes](docs/design-notes/large-raster-analyses.md).
-- **Flujo de puntos y autoguardado.** «Crear punto» unifica los puntos iniciales, finales y multipunto: añade puntos numerados y de distintos colores, reordenables con Subir/Bajar. Ruta secuencial es el análisis predeterminado y conecta puntos consecutivos; la Matriz de conexiones utiliza todos los puntos, eliminando el antiguo tope de ocho. Se conserva la compatibilidad con proyectos anteriores y el orden de importación CSV/GeoJSON; los PDI se crean por separado. Los proyectos se guardan automáticamente para reducir la pérdida de trabajo.
-- **Sombreado del relieve.** Control Hillshade compartido entre el MDT ampliado y el visor 3D, con intensidad ajustable y persistencia en el proyecto, también en la ventana 3D independiente. Es una ayuda visual y no modifica las elevaciones ni los costes. Véanse las [notas de sombreado](docs/design-notes/hillshade.md).
-- **Mapa LiDAR del IGN.** Nuevo fondo disponible en mapas, cálculos, comparación, texturas 3D e informes, con atribución IGN/CNIG y PNOA-LiDAR. Es cartografía de referencia visual; no añade clasificación automática de barreras o facilitadores. Véanse las [notas del mapa LiDAR](docs/design-notes/ign-lidar-map.md).
-- **Exportación MP4.** El diálogo de vídeo permite elegir AVI o MP4; la conversión a MP4/H.264 utiliza el FFmpeg incluido en la aplicación. Si falla la conversión, se conserva el AVI para recuperarlo. Continúan las exportaciones GIF y PNG. La compilación y prueba real del conversor están verificadas en macOS ARM64; falta validar Linux y Windows. Véanse [exportación de vídeo y dependencias](docs/VIDEO_EXPORT.md).
-- **Visualización y exportación revisadas.** Corrección de bordes artificiales a cota cero al reproyectar modelos, mejoras de paletas y colores del cálculo de pasillos, representación del *viewshed* en 3D, etiquetas de isócronas y leyendas de curvas de nivel en mapas y de colores en vídeo. Los informes usan nombres únicos y una cabecera más limpia; también se corrigen las etiquetas de texto de «Exportar resultados». Los rásteres antiguos afectados por los bordes deben reprocesarse o descargarse de nuevo; no se corrigen automáticamente. Véase el [diagnóstico de bordes 3D](docs/design-notes/terrain-3d-edges.md).
-- **Modelos de coste ampliados.** Se incorporan Irmischer–Clarke (con variantes de sexo y desplazamiento por sendero/fuera de sendero), Uriarte González, Marín Arroyo y Llobera–Sluckin. Los nuevos parámetros y categorías de perfil se muestran en la configuración y en la ayuda contextual; se conserva la información del modelo en los análisis y resultados exportados.
-- **Superficies acumuladas y capturas 3D.** El visor 3D permite ajustar la opacidad de las superficies acumuladas. Se mejoran las dimensiones mostradas para modelos rectangulares y la captura PNG del estado visible, con nombres de archivo de captura más claros.
-- **Robustez de tareas nativas.** Se refuerzan la cancelación de cálculos, el seguimiento de tareas y el uso de memoria en análisis de cuadrícula, rutas e importación/descarga de MDT; la descarga de elevación por bloques gestiona mejor respuestas parciales y fallos de transferencia.
-- **Inicio, tareas y experiencia de uso.** Pantalla de bienvenida con idioma y tutorial en el primer inicio, tutorial actualizado, autoguardado, controles para cancelar cálculos en ejecución y seguimiento de procesos. Se revisan títulos de modelos importados, la ventana de descarga de MDT/MDS, formularios Linux con fondos oscuros, traducciones de elementos y pequeños ajustes de diseño.
+- **Modelos y análisis de mayor tamaño.** Descarga WCS por bloques para MDT05, MDT25, MDT200 y MDS05, con un máximo común de **67.928.064 celdas** para modelos y análisis. El uso de memoria se optimiza sin reducir la resolución; las preferencias pueden imponer un límite inferior y se comprueba la RAM disponible.
+- **Flujo de puntos y autoguardado.** «Crear punto» unifica la creación de puntos iniciales, finales y multipunto, con numeración, colores y reordenación. La ruta secuencial conecta puntos consecutivos; la matriz de conexiones elimina el antiguo límite de ocho puntos. Se conserva la compatibilidad con proyectos y el orden de importación, y los proyectos se guardan automáticamente.
+- **Modelos de coste y terreno.** Se añaden Irmischer–Clarke, Uriarte González, Marín Arroyo y Llobera–Sluckin. Hillshade configurable acompaña los visores MDT y 3D sin alterar elevaciones ni costes. El mapa LiDAR del IGN se ofrece como referencia visual con atribución.
+- **Vídeo, visualización y capturas 3D.** Se incorpora conversión AVI a MP4/H.264 mediante FFmpeg incluido, conservando el AVI si falla. Se corrigen bordes de elevación al reproyectar, se mejoran paletas, pasillos, *viewsheds*, isócronas, curvas de nivel, informes y leyendas; se añade control de opacidad para superficies acumuladas y se mejora la captura PNG del estado visible.
+- **Análisis de gran tamaño y tareas nativas.** Se refuerzan la cancelación, el seguimiento de procesos, el uso de memoria y la descarga de elevación por bloques frente a respuestas parciales y fallos de transferencia.
+- **Inicio y experiencia de uso.** Se añade una bienvenida con selección de idioma y tutorial, se revisan la descarga de MDT/MDS, los formularios Linux y las traducciones. La versión 0.2.4 amplía estas mejoras con mediciones de distancia y área, rutas de aproximación editables y máscara marítima derivada del MDT.
+- **Cartografía, informes y exportaciones.** OpenTopoMap se incorpora con atribución. Los informes distinguen la máscara marítima y describen barreras y facilitadores; GeoPackage incluye rutas de aproximación y geometrías multipartes. Se amplían los créditos y se añade la consulta de actualizaciones y de identificadores exactos de compilación.
+- **Correcciones y documentación.** Se evitan costuras transparentes en pasillos LCP y se toleran pequeñas diferencias numéricas en rutas y límites del área de estudio. Los manuales documentan las nuevas herramientas y se revisan controles, estados y traducciones al inglés e italiano.
 
-El [manual en español](docs/manual.md) recoge el nuevo flujo de puntos. Las cifras de validación y el expediente de cumplimiento de v0.2.2 que se conservan más abajo son históricos y no certifican v0.2.3.
-
-### Cambios previstos para v0.2.4
-
-La siguiente lista recoge los cambios preparados desde v0.2.3. La versión 0.2.4 y sus instaladores aún no se han publicado.
-
-- **Mediciones en mapas.** Herramientas de distancia y área en los visores de cálculo y en el visor cartográfico ampliado. Con un MDT cargado, una distancia medida también puede mostrar un perfil de elevación. Las mediciones son de consulta y no alteran los resultados del análisis.
-- **Rutas de aproximación.** En el visor histórico se pueden dibujar, mover y editar rutas de referencia; cortar o unir líneas; cambiar color y estilo; ocultarlas, ampliar su extensión y deshacer o rehacer cambios. Se conservan en el proyecto y se incluyen en la exportación GeoPackage de elementos. Son trazados manuales y no intervienen en los cálculos de coste.
-- **Máscara marítima desde el MDT.** Una selección por clic detecta celdas contiguas con elevación similar a la celda elegida y crea una barrera absoluta. La tolerancia es configurable y el contorno se puede revisar, editar, cortar, unir, borrar y deshacer/rehacer. Es una ayuda derivada del MDT, no una batimetría ni una línea de costa oficial; conviene revisar el resultado, especialmente cerca de estuarios, lagunas, islas y pasos estrechos.
-- **Cartografía OpenTopoMap.** Se añade OpenTopoMap como fondo seleccionable para navegación y cartografía histórica, con atribución del mapa y sus datos en los visores e informes.
-- **Comprobación de actualizaciones y créditos.** La configuración muestra versión, identificador exacto de compilación, commit y fecha/plataforma, permite consultar si hay una versión posterior compatible y abrir GitHub Releases. Se amplían los créditos de fuentes, licencias y datos, con acceso a los avisos y recursos incluidos en la aplicación.
-- **Informes y exportaciones.** Los mapas de informe representan los tramos múltiples de barreras y distinguen la máscara marítima; las páginas de elementos detallan barreras y facilitadores. La exportación de elementos a GeoPackage incluye rutas de aproximación y geometrías multipartes.
-- **Correcciones de análisis y validación.** Se evitan costuras transparentes en pasillos LCP al reducir la resolución de visualización y se toleran pequeñas diferencias de redondeo en rutas óptimas. La validación de elementos respecto al área de estudio contempla multipartes y pequeñas diferencias numéricas en los límites.
-- **Interfaz y documentación.** Se revisan herramientas de edición de máscara marítima, perfiles de medición, controles de cartografía, mensajes de estado y traducciones al inglés e italiano. Los manuales incorporan instrucciones para las rutas de aproximación, mediciones y máscara marítima.
-
-El [manual en español](docs/manual.md) y los manuales traducidos describen las nuevas herramientas.
+El [manual en español](docs/manual.md) y el [manual en inglés](docs/manual.en.md) describen las nuevas herramientas. Estos cambios están aún en preparación y no significan que los instaladores 0.2.4 estén publicados.
 
 ### Novedades de v0.2.2
 
@@ -69,17 +52,17 @@ El candidato 0.2.2 se validó con 414 pruebas TypeScript/React, 31 pruebas Rust 
 
 Descargue un instalador desde **Assets** en [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). Los archivos automáticos «Source code» no son instaladores. Elija la arquitectura de su equipo:
 
-| Sistema | Paquetes preparados para v0.2.2 | Arquitectura |
+| Sistema | Paquetes de escritorio (consulte GitHub Releases) | Arquitectura |
 | --- | --- | --- |
 | macOS | `.dmg` | Apple Silicon (`aarch64`, M1 y posteriores) |
 | Windows | `-setup.exe` o `.msi` | Intel/AMD de 64 bits (`x64`) |
 | Linux | `.AppImage`, `.deb`, `.rpm` | Intel/AMD (`amd64`/`x86_64`) o ARM64 (`arm64`/`aarch64`) |
 
-No hay instalador para Mac Intel en v0.2.2. Los paquetes de escritorio incluyen GDAL/PROJ; el usuario no necesita Node.js, pnpm ni Rust. Sí se requieren los motores web del sistema: WebView2 en Windows y WebKitGTK/bibliotecas compatibles en Linux. Consulte la [información de Tauri sobre motores web](https://tauri.app/reference/webview-versions/).
+No hay instalador para Mac Intel según la configuración de publicación actual. Los paquetes de escritorio incluyen GDAL/PROJ; el usuario no necesita Node.js, pnpm ni Rust. Sí se requieren los motores web del sistema: WebView2 en Windows y WebKitGTK/bibliotecas compatibles en Linux. Consulte la [información de Tauri sobre motores web](https://tauri.app/reference/webview-versions/).
 
 #### macOS: primera apertura de la aplicación sin notarizar
 
-El DMG de v0.2.2 no está firmado con un certificado Apple Developer ID ni notarizado por Apple. La firma local/ad hoc no equivale a notarización.
+El DMG no está firmado con un certificado Apple Developer ID ni notarizado por Apple. La firma local/ad hoc no equivale a notarización.
 
 1. Abra el DMG y arrastre `ViaSpania.app` a **Aplicaciones**.
 2. Intente abrirla. Ante un aviso de desarrollador no identificado o de notarización, vaya a **Ajustes del Sistema → Privacidad y seguridad → Abrir igualmente** y confirme. Consulte las [instrucciones de Apple](https://support.apple.com/es-es/102445).
@@ -93,7 +76,7 @@ Esto elimina la cuarentena únicamente de esa aplicación. Un aviso de aplicaci�
 
 #### Windows: instalador sin firma
 
-Ejecute el archivo `-setup.exe` o `.msi` descargado y abra ViaSpania desde Inicio. Los instaladores de v0.2.2 no están firmados, por lo que SmartScreen puede mostrar **Windows protegió su PC**. Tras comprobar la procedencia, seleccione **Más información → Ejecutar de todas formas**, si aparece. Un aviso del Control de cuentas de usuario con «Editor desconocido» no verifica la identidad de la aplicación; autorice únicamente la instalación que acaba de iniciar. Consulte la [documentación de Microsoft sobre SmartScreen](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
+Ejecute el archivo `-setup.exe` o `.msi` descargado y abra ViaSpania desde Inicio. Los instaladores no están firmados, por lo que SmartScreen puede mostrar **Windows protegió su PC**. Tras comprobar la procedencia, seleccione **Más información → Ejecutar de todas formas**, si aparece. Un aviso del Control de cuentas de usuario con «Editor desconocido» no verifica la identidad de la aplicación; autorice únicamente la instalación que acaba de iniciar. Consulte la [documentación de Microsoft sobre SmartScreen](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
 
 Si una política corporativa o Smart App Control bloquea la instalación sin ofrecer una excepción, consulte al administrador. No desactive Defender, SmartScreen ni el Control de cuentas de usuario. Windows utiliza firma de código y comprobaciones de reputación; la notarización de Apple no se aplica.
 
@@ -123,7 +106,7 @@ DEB/RPM añaden un lanzador de la aplicación. Los paquetes Linux no llevan firm
 4. Ejecute un análisis e inspeccione el mapa, las tablas y el perfil de elevación o la vista 3D.
 5. Guarde el proyecto y exporte los productos necesarios o componga un informe PDF.
 
-Consulte el [manual en español](docs/manual.md) para el procedimiento completo. ViaSpania 0.2.2 exporta proyectos JSON, GeoJSON, GeoPackage, GeoTIFF, informes PDF, fotogramas PNG, vídeo AVI y GIF animado. La disponibilidad depende del cálculo y del entorno de ejecución; conserve juntos el proyecto y sus archivos de elevación.
+Consulte el [manual en español](docs/manual.md) para el procedimiento completo. ViaSpania exporta proyectos JSON, GeoJSON, GeoPackage, GeoTIFF, informes PDF, fotogramas PNG, vídeo AVI y GIF animado. La disponibilidad depende del cálculo y del entorno de ejecución; conserve juntos el proyecto y sus archivos de elevación.
 
 ### Procesamiento local y limitaciones
 
@@ -178,22 +161,20 @@ ViaSpania is a desktop application for terrain-based least-cost analysis, route 
 - Local JSON projects, CSV/GeoJSON point import, vector and raster exports, and a PDF report composer with source attribution.
 - Interactive 3D terrain with analytical overlays and animation exports.
 
-### What's new in v0.2.3
+### What's new in v0.2.4 (since v0.2.2)
 
-This release brings together changes since v0.2.2. Download v0.2.3 installers from **Assets** in [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases); if a platform does not yet have a v0.2.3 package, use the v0.2.2 installer listed in the download table.
+This release brings together changes since v0.2.2. v0.2.4 installers will be available under **Assets** in [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) when that version is published.
 
-- **Larger models and analyses.** Block-based WCS downloads for MDT05, MDT25, MDT200 and MDS05, with a shared maximum of **67,928,064 cells** for downloaded or imported models, routes, isochrones, corridors, viewsheds and contours. Memory use is optimised without lowering analysis resolution to fit the limit. Processing preferences can impose a lower maximum and available RAM is checked; existing preferences are not raised automatically. See [elevation limits](docs/design-notes/elevation-model-limits.md) and [large-raster analyses](docs/design-notes/large-raster-analyses.md).
-- **Point workflow and autosave.** “Create point” unifies start, end and multipoint creation: it adds numbered, distinctly coloured points that can be reordered with Move up/Move down. Sequential route is the default analysis and connects consecutive points; the Connection matrix uses all points, removing the previous eight-point cap. Older projects remain compatible and CSV/GeoJSON input order is preserved; POIs are created separately. Projects are saved automatically to reduce lost work.
-- **Terrain shading.** A shared Hillshade control for the expanded DTM and 3D viewer, with adjustable intensity saved in the project and shared with the detached 3D window. This is a visual aid and does not change elevations or costs. See [hillshade notes](docs/design-notes/hillshade.md).
-- **IGN LiDAR map.** A new background for maps, calculations, comparison, 3D textures and reports, with IGN/CNIG and PNOA-LiDAR attribution. It provides visual reference cartography without automatically classifying barriers or facilitators. See [LiDAR map notes](docs/design-notes/ign-lidar-map.md).
-- **MP4 export.** The video dialog offers AVI or MP4; MP4/H.264 conversion uses FFmpeg bundled with the application. Conversion failures preserve the AVI for recovery. GIF and PNG exports remain available. The converter build and real conversion test have been verified on macOS ARM64; Linux and Windows validation remains pending. See [video export and dependencies](docs/VIDEO_EXPORT.md).
-- **Revised visualisation and exports.** Fixed artificial zero-elevation edges when reprojecting models, with improved palettes and corridor colours, 3D viewshed rendering, isochrone labels, contour legends, video colour legends, unique report names and cleaner report headers. Export-result text labels were also corrected. Older rasters affected by the edge issue must be reprocessed or downloaded again; they are not repaired automatically. See [3D edge diagnosis](docs/design-notes/terrain-3d-edges.md).
-- **Expanded cost models.** Added Irmischer–Clarke (with sex and on-path/off-path variants), Uriarte González, Marín Arroyo and Llobera–Sluckin. New parameters and profile categories appear in setup and contextual help; model details are retained in analyses and exported results.
-- **Accumulated surfaces and 3D captures.** The 3D viewer now adjusts accumulated-surface opacity. Displayed dimensions work for rectangular models, and PNG capture records the visible state with clearer screenshot filenames.
-- **Native task robustness.** Calculation cancellation, task tracking and memory use are strengthened across grid analyses, routes and DTM import/download; block-based elevation downloads handle partial responses and transfer failures more reliably.
-- **Startup, tasks and usability.** A welcome screen with first-run language and tutorial options, an updated tutorial, autosave, calculation cancellation controls and process tracking. Imported-model titles, the DTM/DSM download window, Linux dark form backgrounds, element translations and minor interface details were reviewed.
+- **Larger models and analyses.** Block-based WCS downloads for MDT05, MDT25, MDT200 and MDS05 support a shared **67,928,064-cell** ceiling for models and analyses. Memory use is optimised without lowering analysis resolution; preferences may set a lower limit and available RAM is checked.
+- **Point workflow and autosave.** “Create point” unifies start, end and multipoint creation with numbering, colours and reordering. Sequential routes connect consecutive points; the connection matrix removes the former eight-point limit. Existing projects and import order remain compatible, and projects save automatically.
+- **Cost models and terrain.** Irmischer–Clarke, Uriarte González, Marín Arroyo and Llobera–Sluckin are added. Configurable hillshade is shared by DTM and 3D viewers without changing elevations or costs. The IGN LiDAR map is available as attributed visual reference.
+- **Video, visualisation and 3D captures.** AVI-to-MP4/H.264 conversion uses bundled FFmpeg and preserves AVI if conversion fails. Reprojection elevation edges are fixed; palettes, corridors, viewsheds, isochrones, contours, reports and legends improve. Accumulated-surface opacity and visible-state PNG capture are added.
+- **Large analyses and native tasks.** Cancellation, process tracking, memory use and block elevation downloads are strengthened to handle partial responses and transfer failures.
+- **Startup and usability.** A welcome screen adds first-run language and tutorial choices; DTM/DSM downloads, Linux forms and translations are revised. v0.2.4 extends these improvements with distance and area measurements, editable approach routes and a DTM-derived marine mask.
+- **Cartography, reports and exports.** OpenTopoMap is added with attribution. Reports distinguish the marine mask and describe barriers and facilitators; GeoPackage includes approach routes and multipart geometries. Credits expand and settings can check for updates and show exact build identifiers.
+- **Fixes and documentation.** LCP corridors avoid transparent seams; small numerical differences in routes and study-area boundaries are handled. Manuals cover the new tools, and controls, status messages and English/Italian translations are revised.
 
-The [English manual](docs/manual.en.md) covers the new point workflow. The v0.2.2 validation counts and compliance record retained below are historical and do not certify v0.2.3.
+The [English manual](docs/manual.en.md) and [Spanish manual](docs/manual.md) describe the new tools. These changes are still being prepared and do not mean v0.2.4 installers have been published.
 
 ### What's new in v0.2.2
 
@@ -212,17 +193,17 @@ The 0.2.2 candidate was validated with 414 TypeScript/React tests, 31 Rust tests
 
 Download an installer from the **Assets** section of [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). The automatically generated “Source code” archives are not installers. Choose the architecture of your computer:
 
-| System | Packages prepared for v0.2.2 | Architecture |
+| System | Desktop packages (see GitHub Releases) | Architecture |
 | --- | --- | --- |
 | macOS | `.dmg` | Apple Silicon (`aarch64`, M1 and later) |
 | Windows | `-setup.exe` or `.msi` | Intel/AMD 64-bit (`x64`) |
 | Linux | `.AppImage`, `.deb`, `.rpm` | Intel/AMD (`amd64`/`x86_64`) or ARM64 (`arm64`/`aarch64`) |
 
-There is no Intel Mac installer for v0.2.2. Desktop packages include GDAL/PROJ; end users do not need Node.js, pnpm or Rust. System web runtimes are still required: WebView2 on Windows and compatible WebKitGTK/system libraries on Linux. See [Tauri runtime information](https://tauri.app/reference/webview-versions/).
+There is no Intel Mac installer in the current release configuration. Desktop packages include GDAL/PROJ; end users do not need Node.js, pnpm or Rust. System web runtimes are still required: WebView2 on Windows and compatible WebKitGTK/system libraries on Linux. See [Tauri runtime information](https://tauri.app/reference/webview-versions/).
 
 #### macOS: first launch of the unnotarized application
 
-The v0.2.2 DMG is not signed with an Apple Developer ID certificate or notarized by Apple. Local/ad hoc signing is not notarization.
+The DMG is not signed with an Apple Developer ID certificate or notarized by Apple. Local/ad hoc signing is not notarization.
 
 1. Open the DMG and drag `ViaSpania.app` into **Applications**.
 2. Try opening it. For an unidentified-developer/notarization warning, open **System Settings → Privacy & Security → Open Anyway**, then confirm. See [Apple's instructions](https://support.apple.com/en-us/102445).
@@ -236,7 +217,7 @@ This removes quarantine only from that application. A “damaged” message can 
 
 #### Windows: unsigned installer
 
-Run either the downloaded `-setup.exe` or `.msi`, then open ViaSpania from the Start menu. The v0.2.2 installers are unsigned, so SmartScreen may display **Windows protected your PC**. After checking the download's origin, choose **More info → Run anyway** if offered. An “Unknown publisher” UAC prompt does not verify the application's identity; approve only the installation you intentionally started. See [Microsoft's SmartScreen documentation](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
+Run either the downloaded `-setup.exe` or `.msi`, then open ViaSpania from the Start menu. The installers are unsigned, so SmartScreen may display **Windows protected your PC**. After checking the download's origin, choose **More info → Run anyway** if offered. An “Unknown publisher” UAC prompt does not verify the application's identity; approve only the installation you intentionally started. See [Microsoft's SmartScreen documentation](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
 
 If an organisational policy or Smart App Control blocks installation without an override, contact the administrator. Do not turn off Defender, SmartScreen or UAC. Windows uses code signing and reputation checks; Apple notarization does not apply.
 
@@ -266,7 +247,7 @@ DEB/RPM installations add an application launcher. Linux packages do not carry a
 4. Run an analysis and inspect its map, tables and elevation profile or 3D view.
 5. Save the project and export the required products or compose a PDF report.
 
-See the [English manual](docs/manual.en.md) for the full workflow. ViaSpania 0.2.2 exports project JSON, GeoJSON, GeoPackage, GeoTIFF, PDF reports, PNG frames, AVI video and animated GIF. Availability depends on the calculation and runtime; keep the project and its elevation files together.
+See the [English manual](docs/manual.en.md) for the full workflow. ViaSpania exports project JSON, GeoJSON, GeoPackage, GeoTIFF, PDF reports, PNG frames, AVI video and animated GIF. Availability depends on the calculation and runtime; keep the project and its elevation files together.
 
 ### Local processing and limitations
 

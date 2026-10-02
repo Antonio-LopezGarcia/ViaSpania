@@ -3,10 +3,19 @@ import {cleanup,fireEvent,render,screen} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
 import type VectorLayer from 'ol/layer/Vector';
 import type VectorSource from 'ol/source/Vector';
+import type ImageStatic from 'ol/source/ImageStatic';
 import {MdtMapPanel} from './MdtMapPanel';
+import {transformExtent} from 'ol/proj';
 const maps=vi.hoisted(()=>[] as {layers:VectorLayer<VectorSource>[];view:unknown}[]);
 vi.mock('ol/Map',()=>({default:class{options;viewport=document.createElement('div');constructor(options:{layers:VectorLayer<VectorSource>[];view:unknown}){this.options=options;maps.push(options)}on(){}getView(){return this.options.view}getViewport(){return this.viewport}setTarget(){}}}));
 afterEach(()=>{cleanup();maps.length=0});
+it('ubica la imagen en la extensión real del MDT y conserva aparte el área seleccionada',()=>{
+ const props={imageUrl:'terrain.png',studyExtent:[-4,39,-2,41] as [number,number,number,number],imageExtent:[-3.8,39.2,-2.2,40.8] as [number,number,number,number],viewState:{center:[0,0] as [number,number],resolution:10,rotation:0},onViewChange:()=>{},onHover:()=>{},points:[],selectedPointId:null,routes:[]};
+ render(<MdtMapPanel {...props}/>);
+ const image=maps[0].layers.find(layer=>layer.getZIndex()===1)!,coverage=maps[0].layers.find(layer=>layer.getZIndex()===2)!;
+ expect((image.getSource() as unknown as ImageStatic).getImageExtent()).toEqual(transformExtent(props.imageExtent,'EPSG:4326','EPSG:3857'));
+ expect(coverage.getSource()?.getFeatures()[0].getGeometry()?.getExtent()).toEqual(transformExtent(props.studyExtent,'EPSG:4326','EPSG:3857'));
+});
 it('sincroniza ediciones y borrados y controla capa y etiquetas sin reconstruir el mapa',()=>{
  const props={imageUrl:'data:image/png;base64,',studyExtent:[-4,39,-2,41] as [number,number,number,number],viewState:{center:[0,0] as [number,number],resolution:10,rotation:0},onViewChange:()=>{},onHover:()=>{},points:[{id:1,name:'Inicio',role:'inicio' as const,lon:-3,lat:40,comments:'',crs:'EPSG:4326' as const}],selectedPointId:null,routes:[],expanded:true,crossings:[{id:'b',name:'Puente',kind:'bridge' as const,coordinates:[[0,0],[1,1]] as [number,number][],crossingCostMultiplier:1}]};
  const {rerender}=render(<MdtMapPanel {...props}/>);

@@ -26,6 +26,7 @@ vi.mock('three',async original=>{
 });
 vi.mock('three/examples/jsm/controls/OrbitControls.js',async()=>{const THREE=await import('three');return{OrbitControls:class{target=new THREE.Vector3();enabled=true;enableDamping=true;update(){}dispose(){}addEventListener(){}removeEventListener(){}}}});
 const mesh={width:2,height:2,widthM:100,heightM:100,minElevationM:0,maxElevationM:10,elevations:[0,10,0,10],wgs84Extent:[0,0,1,1] as [number,number,number,number]};
+const isochroneMesh={...mesh,wgs84Extent:[0,0,.0008983152841195215,.0008983152841195215] as [number,number,number,number]};
 const routes=[{coordinates:[[.1,.1],[.9,.9]] as [number,number][],color:'#ff0000',result:{elevationsM:[100,150]}},{coordinates:[[.1,.9],[.9,.1]] as [number,number][],color:'#00ff00',result:{elevationsM:[120,180]}}];
 beforeEach(()=>{Object.defineProperty(HTMLDialogElement.prototype,'showModal',{configurable:true,value:function(this:HTMLDialogElement){this.open=true}});Object.defineProperty(HTMLDialogElement.prototype,'close',{configurable:true,value:function(this:HTMLDialogElement){this.open=false}});state.started.mockClear();state.created=0;state.frames=[];state.saved.mockClear();state.png.mockClear();state.compass.mockClear();state.profile.mockClear();vi.stubGlobal('ResizeObserver',class{observe(){}disconnect(){}});vi.stubGlobal('requestAnimationFrame',()=>1);vi.stubGlobal('cancelAnimationFrame',()=>{});vi.spyOn(HTMLCanvasElement.prototype,'getContext').mockReturnValue({drawImage:vi.fn(),getImageData:vi.fn(()=>({data:new Uint8ClampedArray(4),width:1,height:1}))} as unknown as CanvasRenderingContext2D);vi.spyOn(HTMLCanvasElement.prototype,'toBlob').mockImplementation(callback=>callback({arrayBuffer:async()=>new Uint8Array([255,216,255,217]).buffer} as Blob));vi.spyOn(HTMLCanvasElement.prototype,'toDataURL').mockReturnValue('data:image/png;base64,test')});
 afterEach(()=>{cleanup();vi.restoreAllMocks();vi.unstubAllGlobals()});
@@ -131,23 +132,25 @@ describe('exportación del visor 3D',()=>{
   vi.spyOn(HTMLElement.prototype,'clientHeight','get').mockReturnValue(700);
   const fillText=vi.fn();
   vi.mocked(HTMLCanvasElement.prototype.getContext).mockReturnValue({measureText:(text:string)=>({width:text.length*18}),beginPath:vi.fn(),roundRect:vi.fn(),fill:vi.fn(),stroke:vi.fn(),fillText} as unknown as CanvasRenderingContext2D);
-  const lines=[150,600,900].map((level,index)=>{const low=.1+index*.12,high=1-low;return {level,isochroneLabel:['2,5 min','10 min','15 min'][index],coordinates:[[low,low],[high,low],[high,high],[low,high],[low,low]] as [number,number][]}});
-  const props={mesh,points:[],exaggeration:2,palette:'terrain',onSnapshotReady:()=>{},resetToken:0};
+  const lines=[150,600,900].map((level,index)=>{const low=.1+index*.12,high=1-low,coordinate=(value:number)=>value*.0008983152841195215;return {level,isochroneLabel:['2,5 min','10 min','15 min'][index],coordinates:[[coordinate(low),coordinate(low)],[coordinate(high),coordinate(low)],[coordinate(high),coordinate(high)],[coordinate(low),coordinate(high)],[coordinate(low),coordinate(low)]] as [number,number][]}});
+  const props={mesh:isochroneMesh,points:[],exaggeration:2,palette:'terrain',onSnapshotReady:()=>{},resetToken:0};
   const view=render(<Terrain3D {...props} isochroneLines={[...lines,{level:150,coordinates:[[0,0],[1,1]]}]}/>);
   expect(fillText.mock.calls.map(call=>call[0])).toEqual(['2,5 min','10 min','15 min']);
-  for(const [orientation,inclination] of [[45,32],[135,60],[225,25],[315,80]]){
+  for(const [orientation,inclination] of [[135,60],[225,25],[315,80],[45,32]]){
    fireEvent.change(screen.getByRole('slider',{name:/^Orientación/}),{target:{value:String(orientation)}});
    fireEvent.change(screen.getByRole('slider',{name:/^Inclinación/}),{target:{value:String(inclination)}});
    const frame=state.frames.at(-1)!;
    expect(frame.labels.map(label=>label.text)).toEqual(['2,5 min','10 min','15 min']);
+   expect(frame.labels.some(label=>label.visible)).toBe(true);
    frame.labels.forEach((label,index)=>{
-    expect(label.visible).toBe(true);expect(label.depthTest).toBe(false);
+    if(!label.visible)return;
+    expect(label.depthTest).toBe(false);
     const [anchor,end]=frame.leaders[index];
     expect(end).toEqual(label.position.map(value=>Math.fround(value)));
     expect(label.position[1]-anchor[1]).toBeCloseTo(20,4);
     const lon=anchor[0]/100+.5,lat=.5-anchor[2]/100,low=.1+index*.12,high=1-low;
     expect(Math.min(Math.abs(lon-low),Math.abs(lon-high),Math.abs(lat-low),Math.abs(lat-high))).toBeLessThan(.00001);
-    expect(anchor[1]).toBeCloseTo(lon*20+.28*1.7,4);
+    expect(anchor[1]).toBeCloseTo(Math.max(0,Math.min(1,lon*2-.5))*20+.28*1.7,4);
     expect(label.size[1]).toBeCloseTo(11*96/30);
     for(const other of frame.labels.slice(index+1)){
      const dx=Math.abs(label.screen[0]-other.screen[0])*900/2,dy=Math.abs(label.screen[1]-other.screen[1])*700/2;

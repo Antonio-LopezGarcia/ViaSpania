@@ -2,6 +2,7 @@
 import { cleanup,fireEvent,render,screen } from '@testing-library/react';
 import { afterEach,describe,expect,it,vi } from 'vitest';
 import { GeneralSettingsControl } from './GeneralSettingsControl';
+import { BUILD_INFO } from '../core/buildInfo';
 import { DEFAULT_APP_SETTINGS } from '../core/appSettings';
 afterEach(cleanup);
 
@@ -20,6 +21,8 @@ describe('configuración',()=>{
     expect(onSave).toHaveBeenCalledWith(expect.objectContaining({defaultPalette:'alpine',defaultTerrain3dPalette:'alpine'}));
   });
   it('organiza las preferencias en categorías',()=>{render(<GeneralSettingsControl settings={DEFAULT_APP_SETTINGS} onSave={vi.fn()}/>);fireEvent.click(screen.getByRole('button',{name:'Configuración'}));for(const name of ['Tutorial','Visores 2D','Visor 3D','Modelos digitales','Cartografía','Procesado','Sonidos'])expect(screen.getByRole('button',{name})).toBeTruthy();expect(screen.getByText('Mostrar crucetas sobre visores')).toBeTruthy();fireEvent.click(screen.getByRole('button',{name:'Visor 3D'}));expect(screen.getByText('Exageración vertical 3D predeterminada')).toBeTruthy();expect(screen.getByText('Mostrar escala')).toBeTruthy();fireEvent.click(screen.getByRole('button',{name:'Procesado'}));expect(screen.getByText('Opciones de procesado')).toBeTruthy();expect(screen.queryByText('Modelos digitales de superficie (MDS)')).toBeNull();fireEvent.click(screen.getByRole('button',{name:'Sonidos'}));expect(screen.getByText('Sonidos de aviso')).toBeTruthy()});
+
+  it('muestra los datos de compilación en Actualización antes del botón de comprobación',()=>{render(<GeneralSettingsControl settings={DEFAULT_APP_SETTINGS} onSave={vi.fn()}/>);fireEvent.click(screen.getByRole('button',{name:'Configuración'}));fireEvent.click(screen.getByRole('button',{name:'Actualización'}));const build=document.querySelector('.credits-build')!;const check=screen.getByRole('button',{name:'Comprobar actualizaciones'});expect(build.compareDocumentPosition(check)&Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();expect(build.textContent).not.toContain('Compilación en ejecución');expect(build.textContent).toContain(BUILD_INFO.id);expect(build.textContent).toContain(BUILD_INFO.commit+(BUILD_INFO.dirty?' · cambios locales':''));expect(build.textContent).toContain(`${BUILD_INFO.version}`)});
 
   it('permite habilitar MDS desde Modelos digitales',()=>{const onSave=vi.fn();render(<GeneralSettingsControl settings={DEFAULT_APP_SETTINGS} onSave={onSave}/>);fireEvent.click(screen.getByRole('button',{name:'Configuración'}));fireEvent.click(screen.getByRole('button',{name:'Modelos digitales'}));expect(screen.getByText('Modelos digitales de superficie (MDS)')).toBeTruthy();const copernicus=screen.getByLabelText(/Copernicus DEM GLO-30/) as HTMLInputElement;expect(copernicus.checked).toBe(false);fireEvent.click(copernicus);fireEvent.click(screen.getByRole('button',{name:'Guardar preferencias'}));expect(onSave).toHaveBeenCalledWith(expect.objectContaining({enabledElevationModels:expect.objectContaining({mds05:false,copernicus30:true})}))});
 

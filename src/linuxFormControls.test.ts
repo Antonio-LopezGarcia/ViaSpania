@@ -5,7 +5,7 @@ import {installLinuxFormControls} from './linuxFormControls';
 describe('estilos de formularios Linux',()=>{
   it.each(['Linux x86_64','Linux aarch64'])('reconoce Tauri con user agent personalizado: %s',platform=>{
     const target=document.implementation.createHTMLDocument();
-    installLinuxFormControls(target,'ViaSpania/0.2.3 (https://github.com/traxtiber/ViaSpania)',platform);
+    installLinuxFormControls(target,'ViaSpania/0.2.4 (https://github.com/traxtiber/ViaSpania)',platform);
     expect(target.querySelector('#linux-form-controls')).not.toBeNull();
   });
   it.each([

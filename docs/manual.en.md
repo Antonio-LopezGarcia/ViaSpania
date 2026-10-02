@@ -40,6 +40,14 @@ Start with a small area and a single profile. Once you understand the result, ch
 
 The main maps share navigation. Use the expand/restore control when you need more space, and return to the combined layout to compare backgrounds. The visible controls depend on the viewer and available data.
 
+### Cartography panel and approach routes
+
+When **Cartography** is expanded, you can consult available map and orthophoto layers and, in the historical viewer, create and edit **approach routes**. These are lines you draw on the map to document access paths, observed journeys or possible approaches to the study area. They are not routes calculated by the model, do not change terrain cost and are not used in analyses. You can draw, move or edit their vertices, cut lines, join endpoints, delete them, change their colour and style, hide them, zoom to them, and undo or redo edits. Finish a line with a double-click; lines with coincident endpoints can be joined.
+
+### Measure in the viewers
+
+The options in each calculation viewer and the expanded **Cartography** viewer include distance and area measurement. For a distance, add vertices with clicks and finish with a double-click; for an area, mark its outline and finish with a double-click. Distances use length units and areas use square units. When an elevation model is loaded, a measured line can also produce a **distance profile**: enable that option to inspect elevations along the drawn line. A profile requires a distance and valid elevations; measurement does not recalculate or alter analysis results.
+
 ### Main actions
 
 **New project**, **Open project** and **Save project** manage your working file. The active project name appears beside ViaSpania. **Settings** contains preferences; **3D view** opens the terrain when a model is loaded; **Compose report** prepares a PDF and **Export results** saves analysis products.
@@ -117,7 +125,13 @@ Cells without a valid elevation, called **NoData**, are not terrain at zero heig
 
 Use **＋ Create point**: each click appends a point without replacing others. The list numbers and colours points. Use **Move up** and **Move down** to reorder them. Moving or deleting a point preserves the remaining order. **Create POI** remains independent. The select, move and delete tools act on features in the Selection map; return to navigation mode to move the map without editing them.
 
-You can import points using CSV or GeoJSON. Use the application's CSV template as a guide to columns and formatting, and check the imported positions on the map before calculating. The search field uses latitude, longitude; GeoJSON uses longitude, latitude.
+### Create a marine barrier
+
+In the **Selection** map, use **Create marine mask** with a DTM loaded for the study area. Click a sea cell so ViaSpania can select the connected region of similar elevation and trace its outline as an absolute barrier. The mask helps prevent least-cost analyses from crossing the sea where the DTM contains marine cells whose elevation values would otherwise allow passage. It is generated from the elevation model; it is not bathymetry or an official coastline boundary.
+
+**Tolerance** (in metres) controls how much elevation difference from the chosen cell is accepted when detecting the region. If the outline includes too much land or misses part of the water, adjust the tolerance and click the sea again; the new result is added to existing mask parts. Review the outline, especially around estuaries, lagoons, islands and places where land and water have similar elevations: the algorithm follows connected cells and does not identify coastlines or land use.
+
+When the Selection viewer is expanded, advanced options let you **edit vertices**, **delete lines** and **undo/redo** edits. Correct the outline manually and split the mask into multiple parts as needed. The mask is an absolute barrier, so it prevents crossing affected cells; check that it does not close narrow land passages that should remain traversable. Saving the project preserves the barrier with the other conditions. Hiding it in a viewer only changes its display.
 
 ### Barriers and facilitators
 
@@ -226,6 +240,8 @@ Changing a background, palette, opacity or label visibility does not recalculate
 Open the result viewer to explore maps, legends, tables and profiles. The background selector lets you place results over different sources and saved external layers. Historical backgrounds provide visual context; they do not turn the current elevation model into historical terrain.
 
 In the expanded digital model viewer, you can control barriers, facilitators and labels. Hiding them does not change their role in the calculation. Calculation viewers have no direct PNG/PDF export or printing: use the report composer.
+
+Use the measurement tools in the viewer options to measure a line or the outline of an area. With a DTM loaded, you can also inspect the elevation profile of a measured distance. These tools are for inspection and do not change the calculated result.
 
 ### 3D viewer
 

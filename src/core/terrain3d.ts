@@ -20,6 +20,11 @@ export function highestTerrainPoint(mesh:TerrainMesh):HighestTerrainPoint|null {
   let index=-1,elevation=-Infinity;
   for(let candidate=0;candidate<mesh.elevations.length;candidate++)if(mesh.validCells?.[candidate]!==false&&Number.isFinite(mesh.elevations[candidate])&&mesh.elevations[candidate]>elevation){index=candidate;elevation=mesh.elevations[candidate]}
   if(index<0)return null;
-  const row=Math.floor(index/mesh.width),column=index%mesh.width,[west,south,east,north]=mesh.wgs84Extent;
+  const row=Math.floor(index/mesh.width),column=index%mesh.width;
+  if(mesh.projectedExtent3857){
+    const [west,south,east,north]=mesh.projectedExtent3857,x=west+(east-west)*(column+.5)/mesh.width,y=north-(north-south)*(row+.5)/mesh.height,radius=6378137;
+    return{lon:x/radius*180/Math.PI,lat:(2*Math.atan(Math.exp(y/radius))-Math.PI/2)*180/Math.PI,elevationM:elevation,row,column};
+  }
+  const [west,south,east,north]=mesh.wgs84Extent;
   return{lon:west+(east-west)*(column/Math.max(mesh.width-1,1)),lat:north-(north-south)*(row/Math.max(mesh.height-1,1)),elevationM:elevation,row,column};
 }

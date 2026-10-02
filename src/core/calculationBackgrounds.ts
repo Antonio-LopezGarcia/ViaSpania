@@ -5,7 +5,7 @@ import {BUILT_IN_MAP_SOURCES} from './mapSources';
 export const calculationBackgrounds=[
  {id:'pnoa',source:'pnoa'}, {id:'copernicus-vhr-2021',source:'copernicus-vhr-2021'},
  {id:'ign-lidar',source:'ign-lidar'},
- {id:'osm',source:'osm'}, {id:'topographic',source:'ign-topographic'},
+ {id:'osm',source:'osm'}, {id:'opentopomap',source:'opentopomap'}, {id:'topographic',source:'ign-topographic'},
  {id:'mtn50',source:'MTN50'}, {id:'mtn25',source:'MTN25'},
  {id:'catastrones',source:'catastrones'}, {id:'minutas',source:'Minutas'},
  {id:'american',source:'AMS_1956-1957'}, {id:'interministerial',source:'Interministerial_1973-1986'},
@@ -21,7 +21,7 @@ export function calculationMapProps(background:string,externalLayers:readonly Ex
  const externalLayer=externalLayers.find(layer=>`external:${layer.id}`===background);
  if(externalLayer)return {kind:'osm' as const,externalLayer};
  const source=calculationBackgrounds.find(item=>item.id===background)?.source??'pnoa';
- if(source==='osm'||source==='ign-topographic')return {kind:'osm' as const,navigationLayer:source};
+ if(source==='osm'||source==='opentopomap'||source==='ign-topographic')return {kind:'osm' as const,navigationLayer:source};
  if(source==='pnoa'||source==='copernicus-vhr-2021')return {kind:'pnoa' as const,orthophotoLayer:source};
  return {kind:'historical' as const,historicalLayer:source};
 }

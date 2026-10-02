@@ -70,7 +70,7 @@ it('comparte los colores de símbolos cartográficos y traduce los campos al ing
  await screen.findByLabelText('Corridor name');expect(screen.getByLabelText('Crossing name')).toBeTruthy();expect(screen.getByLabelText('Point of interest name')).toBeTruthy();expect(screen.getByLabelText('Barrier name: 1')).toBeTruthy();
  const features=constraintMapFeatures(barriers,corridors,crossings,points),barrierStyles=barrierMapStyle(features[0]);
  if(!Array.isArray(barrierStyles))throw new Error('Expected line styles');
- const colours=[barrierStyles[1].getStroke()!.getColor(),facilitatorMapStyle(features[1]).getStroke()!.getColor(),facilitatorMapStyle(features[2]).getStroke()!.getColor(),(facilitatorMapStyle(features[3]).getImage() as import('ol/style/Circle').default).getFill()!.getColor()];
+ const corridorStyle=facilitatorMapStyle(features[1]),crossingStyle=facilitatorMapStyle(features[2]),poiStyle=facilitatorMapStyle(features[3]);if(Array.isArray(corridorStyle)||!Array.isArray(crossingStyle)||Array.isArray(poiStyle))throw new Error('Expected direct corridor and POI styles, plus outlined crossing styles');const colours=[barrierStyles[1].getStroke()!.getColor(),corridorStyle.getStroke()!.getColor(),crossingStyle[1].getStroke()!.getColor(),(poiStyle.getImage() as import('ol/style/Circle').default).getFill()!.getColor()];
  const swatches=container.querySelectorAll<HTMLElement>('.constraint-card legend i');
  colours.forEach((colour,index)=>{const probe=document.createElement('i');probe.style.backgroundColor=String(colour);expect(swatches[index].style.backgroundColor).toBe(probe.style.backgroundColor)});
  expect(swatches[0].style.border).toBe('1px solid rgb(255, 255, 255)');

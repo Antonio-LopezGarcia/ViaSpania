@@ -2,49 +2,35 @@
 import { cleanup,fireEvent,render,screen } from '@testing-library/react';
 import { afterEach,describe,expect,it,vi } from 'vitest';
 import { DEFAULT_APP_SETTINGS } from '../core/appSettings';
-import {GeneralSettingsControl} from './GeneralSettingsControl';
-import {ReportExportControl} from './ReportExportControl';
-import {ResultExportControl} from './ResultExportControl';
 import { AppTutorial,WORKFLOW_STEPS } from './AppTutorial';
 
 afterEach(cleanup);
 describe('tutorial guiado',()=>{
   it('ordena las fases antes de los análisis y las salidas',()=>{
-    expect(WORKFLOW_STEPS.map(step=>step.title)).toEqual(['Crear proyecto','Abrir proyecto','1. Delimitar el área de estudio','2. Cargar el modelo digital','Comprobar el modelo digital','3. Situar los puntos','4. Añadir barreras y facilitadores','Importar datos existentes','5. Configurar el análisis','Calcular Ruta simple','Comparar perfiles','Analizar varios puntos','Construir una Ruta secuencial','Explorar un Pasillo','Analizar superficie y visibilidad','6. Interpretar con cartografía','Interpretar en 3D','7. Exportar resultados','Componer informe','Guardar el proyecto','Configuración y ayuda']);
+    expect(WORKFLOW_STEPS.map(step=>step.title)).toEqual(['1. Crear o abrir un proyecto','2. Elegir el área','3. Cargar el terreno','4. Añadir los puntos','5. Calcular una ruta','6. Guardar o exportar']);
     expect(WORKFLOW_STEPS.every(step=>step.titleEn&&step.textEn)).toBe(true);
   });
   it('se puede iniciar manualmente, avanzar y saltar a otro paso',()=>{
     document.body.innerHTML='<article class="nav-panel"></article><article class="ortho-panel"></article><article class="dem-panel"></article><article class="historical-panel"></article><div class="calculation-access"></div><header><nav></nav></header>';
     const settings={...DEFAULT_APP_SETTINGS,tutorialEnabled:false},view=render(<AppTutorial settings={settings} startToken={0}/>);
-    expect(screen.queryByText('Crear proyecto')).toBeNull();
+    expect(screen.queryByText('1. Crear o abrir un proyecto')).toBeNull();
     view.rerender(<AppTutorial settings={settings} startToken={1}/>);
-    expect(screen.getByText('Crear proyecto')).toBeTruthy();
+    expect(screen.getByText('1. Crear o abrir un proyecto')).toBeTruthy();
     expect(document.querySelector('.tutorial-shade')).toBeNull();
     expect(document.querySelector('.tutorial-shades')).toBeNull();
-    fireEvent.click(screen.getByRole('button',{name:'Siguiente elemento'}));
-    expect(screen.getByText('Abrir proyecto')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button',{name:/Configuración y ayuda/}));
-    expect(screen.getByText('Configuración y ayuda')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button',{name:'Siguiente'}));
+    expect(screen.getByText('2. Elegir el área')).toBeTruthy();
+    fireEvent.click(screen.getByRole('button',{name:/Ir al paso 6:/}));
+    expect(screen.getByText('6. Guardar o exportar')).toBeTruthy();
   });
 });
 
-it('señala los botones reales tras reordenarlos, sin depender de su posición',()=>{
+it('mantiene asociado cada paso a su control aunque cambie el orden visual',()=>{
  const settings={...DEFAULT_APP_SETTINGS,tutorialEnabled:false};
- const controls=[<ReportExportControl key="report" disabled={false} loading={false} onExport={async()=>{}}/>,<ResultExportControl key="export" items={[]} loading={false} onExport={async()=>{}}/>,<GeneralSettingsControl key="settings" settings={settings} onSave={()=>{}}/>];
- const view=render(<><header><nav>{controls}</nav></header><AppTutorial settings={settings} startToken={0}/></>);
- view.rerender(<><header><nav>{controls}</nav></header><AppTutorial settings={settings} startToken={1}/></>);
- const check=()=>{
-  for(const [title,label] of [['7. Exportar resultados','Exportar resultados'],['Componer informe','Componer informe'],['Configuración y ayuda','Configuración']]){
-   const stepIndex=WORKFLOW_STEPS.findIndex(step=>step.title===title),button=screen.getByRole('button',{name:label});
-   expect(document.querySelector(WORKFLOW_STEPS[stepIndex].selector)).toBe(button);
-   const measure=vi.spyOn(button,'getBoundingClientRect').mockReturnValue(new DOMRect(100,20,80,30));
-   fireEvent.click(screen.getByRole('button',{name:`Ir al paso ${stepIndex+1}: ${title}`}));
-   expect(measure).toHaveBeenCalled();expect((document.querySelector('.tutorial-highlight') as HTMLElement).style.left).toBe('95px');measure.mockRestore();
-  }
- };
- check();
- view.rerender(<><header><nav>{[...controls].reverse()}</nav></header><AppTutorial settings={settings} startToken={1}/></>);
- check();
+ const controls=WORKFLOW_STEPS.map(step=><button key={step.selector} data-tutorial={step.selector.match(/data-tutorial="([^"]+)/)?.[1]} className={step.selector.startsWith('.')?step.selector.slice(1):undefined}/>);
+ const view=render(<><header><nav>{controls}<button className="model-load-toggle"/></nav></header><AppTutorial settings={settings} startToken={0}/></>);
+ view.rerender(<><header><nav>{controls.reverse()}<button className="model-load-toggle"/></nav></header><AppTutorial settings={settings} startToken={1}/></>);
+ WORKFLOW_STEPS.forEach(step=>expect(document.querySelector(step.selector)).toBeTruthy());
 });
 
  it('mantiene el resaltado al desplazar el control y lo oculta si deja de ser visible',()=>{

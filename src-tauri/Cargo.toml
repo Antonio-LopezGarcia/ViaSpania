@@ -1,6 +1,6 @@
 [package]
 name = "viaspania"
-version = "0.2.3"
+version = "0.2.4"
 description = ""
 authors = ["Antonio López García, Universidad de Granada"]
 license = "GPL-3.0-only"

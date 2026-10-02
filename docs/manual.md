@@ -40,6 +40,14 @@ Empiece con un área pequeña y un solo perfil. Cuando comprenda el resultado, p
 
 Los mapas principales comparten la navegación. Utilice el control de ampliar/restaurar para trabajar con más espacio y vuelva a la disposición conjunta cuando quiera contrastar los fondos. Los controles visibles dependen del visor y de los datos disponibles.
 
+### Panel de cartografía y rutas de aproximación
+
+Al ampliar **Cartografía**, puede consultar las capas cartográficas y ortofotográficas disponibles y, en el visor histórico, crear y editar **rutas de aproximación**. Son líneas de referencia dibujadas por usted sobre el mapa para documentar accesos, recorridos observados o hipótesis de llegada a la zona de estudio. No son rutas calculadas por el modelo, no modifican el coste del terreno ni intervienen en los análisis. Puede dibujarlas, moverlas o editar sus vértices, cortarlas, unir extremos, borrarlas, cambiar color y estilo, ocultarlas, ajustar el zoom y deshacer o rehacer cambios. Termine un trazado con doble clic; las líneas cuyos extremos coinciden pueden unirse.
+
+### Medir en los visores
+
+En las opciones de cada visor de cálculo y en el visor ampliado de **Cartografía** puede medir distancias y áreas sobre el mapa. Para una distancia, añada vértices con clic y termine con doble clic; para un área, marque el contorno y termine también con doble clic. Las distancias se muestran en unidades de longitud y las áreas en unidades cuadradas. Si hay un modelo de elevación cargado, una línea de medición puede producir un **perfil de distancia**: active esa opción para consultar las cotas a lo largo del recorrido dibujado. El perfil requiere una distancia y elevaciones válidas; medir no recalcula ni altera los resultados del análisis.
+
 ### Acciones principales
 
 **Nuevo proyecto**, **Abrir proyecto** y **Guardar proyecto** gestionan su archivo de trabajo. El nombre del proyecto activo aparece junto a ViaSpania. **Configuración** reúne las preferencias; **Vista 3D** abre el relieve cuando hay un modelo cargado; **Componer informe** prepara un PDF y **Exportar resultados** guarda productos del análisis.
@@ -117,7 +125,13 @@ Las celdas sin elevación válida, llamadas **NoData**, no son terreno de altura
 
 Use **＋ Crear punto**: cada clic añade un punto al final sin sustituir otros. La lista muestra Punto 1, Punto 2, etc., con colores distintos. Cambie el orden con **Subir** y **Bajar**; al mover o eliminar un punto se conserva el orden restante. **Crear PDI** sigue siendo una herramienta independiente. Las herramientas de seleccionar, mover y eliminar actúan sobre los elementos del mapa de Selección; vuelva al modo de navegación para desplazar el mapa sin editarlos.
 
-Puede importar puntos mediante CSV o GeoJSON. Use la plantilla CSV de la aplicación como referencia de columnas y formato, y compruebe en el mapa el resultado antes de calcular. El orden de coordenadas del buscador es latitud, longitud; GeoJSON utiliza longitud, latitud.
+### Crear una barrera marítima
+
+En el mapa de **Selección**, use **Crear máscara marítima** con un MDT cargado y asociado al área de estudio. Pulse sobre una celda del mar para que ViaSpania seleccione la región contigua de elevación similar y trace su contorno como una barrera absoluta. La máscara ayuda a evitar que los análisis de coste mínimo atraviesen el mar cuando el MDT contiene celdas marinas con valores de elevación que, por sí solos, permitirían el paso. Se genera desde el relieve del modelo; no es una capa batimétrica ni una delimitación oficial de costa.
+
+La **Tolerancia** (en metros) controla qué diferencia de elevación respecto a la celda elegida se acepta al detectar la región. Si el contorno incluye demasiado terreno o no alcanza toda el agua, ajuste la tolerancia y vuelva a pulsar sobre el mar; el resultado se suma a las partes de la máscara existente. Revise el trazado, especialmente en estuarios, lagunas, islas y zonas donde tierra y agua tengan alturas parecidas: el algoritmo sigue celdas conectadas, no interpreta costas ni usos del suelo.
+
+Al ampliar el visor de Selección aparecen opciones avanzadas para **editar vértices**, **borrar líneas** y **deshacer/rehacer** la edición. Puede corregir manualmente el contorno y dividir la máscara en varios tramos. La máscara es una barrera absoluta, así que impide cruzar las celdas afectadas; compruebe que no cierre pasos terrestres estrechos que deban permanecer transitables. Guardar el proyecto conserva la barrera junto con las demás condiciones. Ocultarla en un visor solo cambia su presentación.
 
 ### Barreras y facilitadores
 
@@ -226,6 +240,8 @@ Cambiar fondo, paleta, opacidad o visibilidad de etiquetas no recalcula el anál
 Abra el visor del resultado para explorar mapas, leyendas, tablas y perfiles. El selector de fondo permite situar el resultado sobre distintas fuentes y capas externas guardadas. Los fondos históricos son contexto visual; no convierten el modelo de elevación actual en un terreno histórico.
 
 En el visor ampliado del modelo digital puede controlar barreras, facilitadores y etiquetas. Ocultarlos no cambia su participación en el cálculo. Los visores de cálculo no tienen exportación PNG/PDF ni impresión directa: utilice el compositor de informes.
+
+Use las herramientas de medición disponibles en las opciones del visor para medir una línea o el contorno de un área. Cuando haya un MDT cargado, también puede consultar el perfil de elevación de una distancia medida. Estas herramientas son de consulta y no cambian el resultado calculado.
 
 ### Visor 3D
 

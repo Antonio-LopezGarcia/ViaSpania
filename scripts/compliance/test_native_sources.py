@@ -7,16 +7,24 @@ from model import auxiliary_sources
 
 
 class NativeSourceAuditTests(unittest.TestCase):
-    def test_auxiliary_source_requires_exact_owner_and_digest(self):
+    def test_auxiliary_source_binds_to_exact_parent_source_digest(self):
         parent = {'id': 'native/arrow-1', 'sourceRequests': [{'integrity': 'a' * 64}]}
         component = {'id': 'native-aux/mimalloc-1', 'owner': parent['id'],
                      'ownerSourceSha256': 'a' * 64,
                      'sourceRequests': [{'url': 'https://example.com/source', 'integrity': 'b' * 64}]}
         document = {'schema': 1, 'components': [component]}
         self.assertEqual(auxiliary_sources(document, [parent]), [component])
-        for parents in [[], [dict(parent, sourceRequests=[{'integrity': 'c' * 64}])]]:
+        # Homebrew may bump its formula revision while retaining the same
+        # upstream source archive and hash.
+        revised_parent = dict(parent, id='native/arrow-2')
+        self.assertEqual(auxiliary_sources(document, [revised_parent]), [component])
+        renamed_document = dict(document, components=[dict(component, owner='native/arrow-old')])
+        for parents, candidate_document in [
+                ([], document),
+                ([dict(parent, sourceRequests=[{'integrity': 'c' * 64}])], document),
+                ([parent, dict(parent, id='native/arrow-2')], renamed_document)]:
             with self.assertRaises(ValueError):
-                auxiliary_sources(document, parents)
+                auxiliary_sources(candidate_document, parents)
         with self.assertRaises(ValueError):
             auxiliary_sources(dict(document, components=[component, component]), [parent])
         with self.assertRaises(ValueError):

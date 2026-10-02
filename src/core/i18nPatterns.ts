@@ -1,5 +1,8 @@
 /** Complete message templates; interpolated values retain their original data. */
 export const reviewedPatterns:readonly (readonly [RegExp,string])[]=[
+ [/^No se pudo abrir GitHub en el navegador predeterminado: (.+)$/g,'Could not open GitHub in the default browser: $1'],
+ [/^No se encontró el recurso de créditos: (.+)$/g,'Credits resource not found: $1'],
+ [/^No se pudo abrir el recurso de créditos: (.+)$/g,'Could not open credits resource: $1'],
  [/^Punto (\d+)$/g,'Point $1'],
  [/^Subir punto (\d+)$/g,'Move point $1 up'],
  [/^Bajar punto (\d+)$/g,'Move point $1 down'],

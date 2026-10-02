@@ -14,7 +14,7 @@ on:
         description: Etiqueta de la Release en la que publicar los instaladores
         required: true
         type: string
-        default: v0.2.3
+        default: v0.2.4
       installer_platform:
         description: Plataforma cuyos instaladores se construirán y publicarán
         required: true
@@ -205,7 +205,7 @@ jobs:
         if: runner.os == 'macOS'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release upload "${{ inputs.release_tag }}" src-tauri/target/release/bundle/dmg/*.dmg release/*-source-candidate.tar.gz release/SOURCE_ARTIFACT.json release/APP_INSPECTION.json --clobber
+        run: gh release upload "${{ inputs.release_tag }}" src-tauri/target/release/bundle/dmg/*.dmg release/*-source-candidate.tar.gz.part-* release/SOURCE_ARTIFACT.json release/SOURCE_ARTIFACT_PARTS.json release/APP_INSPECTION.json --clobber
       - name: Publicar instaladores de Linux
         if: runner.os == 'Linux'
         env:

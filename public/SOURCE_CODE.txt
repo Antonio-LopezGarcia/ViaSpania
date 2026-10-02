@@ -6,14 +6,16 @@ Puede copiar, modificar y redistribuir el código bajo GNU GPL versión 3.
 No se ofrece garantía, en la medida permitida por la ley. Consulte LICENSE.txt.
 
 FUENTES CORRESPONDIENTES
-Esta compilación local es un candidato pendiente de revisión, no una release
-publicada con cumplimiento certificado. El expediente se prepara mediante
-pnpm compliance:prepare --network y pnpm compliance:package.
+Este aviso identifica las fuentes correspondientes a esta versión. La
+publicación del instalador no certifica por sí sola el cumplimiento completo
+de GPL: conserve junto a cada paquete el código fuente de la misma versión.
 
 El distribuidor debe ofrecer, junto a la descarga de cada instalador, su paquete
 de fuentes de esa misma versión, sin cargo adicional por obtenerlas. El candidato
-local usa el nombre ViaSpania-0.2.1-source-candidate.tar.gz. Un enlace a la rama
-principal no sustituye las fuentes de la versión descargada.
+local 0.2.4 se distribuye como partes de ViaSpania-0.2.4-source-candidate.tar.gz,
+junto a SOURCE_ARTIFACT_PARTS.json. Descargue todas las partes, únalas en el
+orden del manifiesto y compruebe el SHA-256 completo antes de extraerlas. Un
+enlace a la rama principal no sustituye las fuentes de la versión descargada.
 
 El paquete incluye una instantánea del código propio, archivos fuente de las
 dependencias obtenidos y verificados, recetas nativas, manifiestos, avisos y datos

@@ -50,7 +50,7 @@ it('inicia el tutorial elegido y no lo reabre al reiniciar aunque quede incomple
   const view=render(<Startup/>);
   fireEvent.click(screen.getByRole('button',{name:'Continuar'}));
   expect(screen.queryByRole('dialog',{name:'Bienvenido a ViaSpania'})).toBeNull();
-  expect(screen.getByRole('dialog',{name:'Crear proyecto'})).toBeTruthy();
+  expect(screen.getByRole('dialog',{name:'1. Crear o abrir un proyecto'})).toBeTruthy();
   expect(localStorage.getItem(TUTORIAL_COMPLETED_KEY)).toBeNull();
   view.unmount();render(<Startup/>);
   expect(screen.getByRole('dialog')).toBeTruthy();
@@ -61,7 +61,7 @@ it('inicia el tutorial elegido y no lo reabre al reiniciar aunque quede incomple
   fireEvent.click(screen.getByRole('button',{name:'Tutorial'}));
   expect(screen.queryByLabelText('Mostrar el tutorial automáticamente la primera vez')).toBeNull();
   fireEvent.click(screen.getByRole('button',{name:'Iniciar tutorial ahora'}));
-  expect(screen.getByRole('dialog',{name:'Crear proyecto'})).toBeTruthy();
+  expect(screen.getByRole('dialog',{name:'1. Crear o abrir un proyecto'})).toBeTruthy();
 });
 
 it('conserva preferencias anteriores y permite cambiar el idioma desde Configuración tras reiniciar',()=>{
@@ -101,7 +101,7 @@ it('muestra un error recuperable si no se pueden guardar las preferencias',()=>{
   storage.mockRestore();
   fireEvent.click(screen.getByRole('button',{name:'Continuar'}));
   expect(loadAppSettings().firstRunCompleted).toBe(true);
-  expect(screen.getByRole('dialog',{name:'Crear proyecto'})).toBeTruthy();
+  expect(screen.getByRole('dialog',{name:'1. Crear o abrir un proyecto'})).toBeTruthy();
 });
 
 

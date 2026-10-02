@@ -15,7 +15,7 @@ export interface DownloadProgress { receivedBytes:number; totalBytes?:number; pe
 export interface IsochroneProgress { phase:string; percent:number; processedCells:number; totalCells:number }
 export interface RasterResult { dataAttribution?:string; path:string; bytes:number; metadata:Record<string,unknown>; previewDataUrl:string }
 export interface RasterSample { lon:number; lat:number; elevationM?:number }
-export interface TerrainMesh { validCells?:boolean[]; width:number; height:number; widthM:number; heightM:number; minElevationM:number; maxElevationM:number; elevations:number[]; wgs84Extent:[number,number,number,number] }
+export interface TerrainMesh { validCells?:boolean[]; width:number; height:number; widthM:number; heightM:number; minElevationM:number; maxElevationM:number; elevations:number[]; wgs84Extent:[number,number,number,number]; projectedExtent3857?:[number,number,number,number] }
 
 export const hasNativeBackend = () => isTauri();
 export const nativeStatus = () => invoke<NativeStatus>('native_status');
@@ -81,6 +81,8 @@ export const cancelRasterIsochrones = () => invoke<void>('cancel_raster_isochron
 export const onIsochroneProgress = (callback:(progress:IsochroneProgress)=>void):Promise<UnlistenFn> => listen<IsochroneProgress>('isochrone-progress',event=>callback(event.payload));
 export const sampleRasterElevation = (rasterPath:string,xRatio:number,yRatio:number) => invoke<RasterSample>('sample_raster_elevation',{rasterPath,xRatio,yRatio});
 export const sampleRasterElevationAt = (rasterPath:string,lon:number,lat:number) => invoke<RasterSample>('sample_raster_elevation_at',{rasterPath,lon,lat});
+export const sampleRasterElevationsAt = (rasterPath:string,coordinates:[number,number][]) => invoke<(number|null)[]>('sample_raster_elevations_at',{rasterPath,coordinates});
+export const selectElevationRegion = (rasterPath:string,seed:[number,number],toleranceM:number,studyExtent:[number,number,number,number]) => invoke<{barriers:[number,number][][];seedElevationM:number;selectedCells:number}>('select_elevation_region',{request:{rasterPath,seed,toleranceM,studyExtent}});
 export const generateTerrainMesh = (rasterPath:string,maxSize=450) => invoke<TerrainMesh>('generate_terrain_mesh',{rasterPath,maxSize});
 export const calculateContours = (rasterPath:string,intervalM:number) => withRasterProvenance(rasterPath,()=>invoke<ContourResult>('calculate_contours',{request:{rasterPath,intervalM,maxCells:loadAppSettings().processingCellLimit}}));
 export const calculateViewshed = (rasterPath:string,observers:{id:string;name:string;coordinate:[number,number]}[],observerHeightM:number):Promise<ViewshedResult> => withRasterProvenance(rasterPath,()=>invoke<ViewshedResult>('calculate_viewshed',{request:{rasterPath,observers,observerHeightM,maxCells:loadAppSettings().processingCellLimit}}));

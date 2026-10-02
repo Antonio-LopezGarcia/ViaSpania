@@ -3,8 +3,10 @@ export function corridorRasterPixels(width:number,height:number,values:readonly 
  const pixels=new Uint8Array(width*height*4),maximum=Math.max(thresholdPercent/100,.0001);
  for(let index=0;index<width*height;index++){
   const value=values[index];
-  if(value<0||!Number.isFinite(value))continue;
-  const ratio=Math.min(1,value/maximum);
+  // -1 is the backend's exact NoData sentinel. Other negative values can be
+  // tiny floating-point undershoots on optimal cells in older saved results.
+  if(value===-1||!Number.isFinite(value))continue;
+  const ratio=Math.min(1,Math.max(0,value/maximum));
   pixels.set([Math.round(25+230*ratio),Math.round(225-115*ratio),70,255],index*4);
  }
  return pixels;

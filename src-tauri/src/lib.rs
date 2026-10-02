@@ -165,6 +165,8 @@ struct RouteRequest {
 #[serde(rename_all = "camelCase")]
 struct BarrierRequest {
     coordinates: Vec<[f64; 2]>,
+    #[serde(default)]
+    additional_parts: Vec<Vec<[f64; 2]>>,
     kind: String,
     value: f64,
 }
@@ -400,6 +402,23 @@ struct RasterSample {
     elevation_m: Option<f64>,
 }
 
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct SelectElevationRegionRequest {
+    raster_path: String,
+    seed: [f64; 2],
+    tolerance_m: f64,
+    study_extent: Option<[f64; 4]>,
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+struct SelectedElevationRegion {
+    barriers: Vec<Vec<[f64; 2]>>,
+    seed_elevation_m: f64,
+    selected_cells: usize,
+}
+
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 struct TerrainMesh {
@@ -407,6 +426,7 @@ struct TerrainMesh {
     height: usize,
     width_m: f64,
     height_m: f64,
+    projected_extent_3857: [f64; 4],
     min_elevation_m: f32,
     max_elevation_m: f32,
     elevations: Vec<f32>,
@@ -597,25 +617,52 @@ fn raster_preview_dimensions(path: &Path) -> Result<[String; 2], NativeError> {
     Ok([(width * scale).round().max(1.0).to_string(), (height * scale).round().max(1.0).to_string()])
 }
 
+fn raster_preview_projected_extent(path: &Path) -> Result<[f64; 4], NativeError> {
+    let metadata = gdal_json_basic(path)?;
+    let coordinates = metadata.get("wgs84Extent").and_then(|extent| extent.get("coordinates"))
+        .ok_or_else(|| NativeError::Gdal("El MDT no tiene una extensión WGS84 válida".to_owned()))?;
+    fn collect(value: &Value, points: &mut Vec<[f64; 2]>) {
+        if let Some(values) = value.as_array() {
+            if values.len() >= 2 {
+                if let (Some(x), Some(y)) = (values[0].as_f64(), values[1].as_f64()) {
+                    points.push([x, y]);
+                    return;
+                }
+            }
+            for item in values { collect(item, points); }
+        }
+    }
+    let mut points = Vec::new();
+    collect(coordinates, &mut points);
+    if points.is_empty() { return Err(NativeError::Gdal("El MDT no tiene una extensión WGS84 válida".to_owned())); }
+    let west = points.iter().map(|point| point[0]).fold(f64::INFINITY, f64::min);
+    let south = points.iter().map(|point| point[1]).fold(f64::INFINITY, f64::min);
+    let east = points.iter().map(|point| point[0]).fold(f64::NEG_INFINITY, f64::max);
+    let north = points.iter().map(|point| point[1]).fold(f64::NEG_INFINITY, f64::max);
+    let corners = transform_points(&[[west, south], [east, north]], "EPSG:4326", "EPSG:3857")?;
+    Ok([corners[0][0], corners[0][1], corners[1][0], corners[1][1]])
+}
+
 fn raster_preview_data_url(path: &Path) -> Result<String, NativeError> {
     let executable = command_path("gdal_translate")
         .ok_or_else(|| NativeError::Gdal("gdal_translate no está instalado".to_owned()))?;
+    let warp_executable = command_path("gdalwarp")
+        .ok_or_else(|| NativeError::Gdal("gdalwarp no está instalado".to_owned()))?;
     let preview_path = path.with_extension(format!("preview-{}.png", uuid::Uuid::new_v4()));
+    let warp_path = path.with_extension(format!("preview-{}.vrt", uuid::Uuid::new_v4()));
     let [preview_width, preview_height] = raster_preview_dimensions(path)?;
-    let output = Command::new(executable)
-        .env("GDAL_CACHEMAX", "64")
-        .args([
-            "-of", "PNG", "-ot", "Byte", "-outsize", &preview_width, &preview_height, "-scale",
-        ])
-        .arg(path)
-        .arg(&preview_path)
+    let [west, south, east, north] = raster_preview_projected_extent(path)?;
+    let warp = Command::new(warp_executable).env("GDAL_CACHEMAX", "64")
+        .args(["-overwrite", "-of", "VRT", "-t_srs", "EPSG:3857", "-te", &west.to_string(), &south.to_string(), &east.to_string(), &north.to_string(), "-ts", &preview_width, &preview_height, "-r", "bilinear"])
+        .arg(path).arg(&warp_path)
         .output()
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
-    if !output.status.success() {
-        return Err(NativeError::Gdal(
-            String::from_utf8_lossy(&output.stderr).trim().to_owned(),
-        ));
-    }
+    if !warp.status.success() { let _ = std::fs::remove_file(&warp_path); return Err(NativeError::Gdal(String::from_utf8_lossy(&warp.stderr).trim().to_owned())); }
+    let output = Command::new(executable).env("GDAL_CACHEMAX", "64")
+        .args(["-of", "PNG", "-ot", "Byte", "-scale"]).arg(&warp_path).arg(&preview_path).output()
+        .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    let _ = std::fs::remove_file(&warp_path);
+    if !output.status.success() { let _ = std::fs::remove_file(&preview_path); return Err(NativeError::Gdal(String::from_utf8_lossy(&output.stderr).trim().to_owned())); }
     let bytes = std::fs::read(&preview_path).map_err(|error| NativeError::Io(error.to_string()))?;
     let _ = std::fs::remove_file(&preview_path);
     let _ = std::fs::remove_file(auxiliary_metadata_path(&preview_path));
@@ -625,20 +672,22 @@ fn raster_preview_data_url(path: &Path) -> Result<String, NativeError> {
 fn colored_preview_data_url(path: &Path) -> Result<String, NativeError> {
     let executable = command_path("gdal_translate")
         .ok_or_else(|| NativeError::Gdal("gdal_translate no está instalado".to_owned()))?;
+    let warp_executable = command_path("gdalwarp")
+        .ok_or_else(|| NativeError::Gdal("gdalwarp no está instalado".to_owned()))?;
     let preview_path = path.with_extension(format!("preview-{}.png", uuid::Uuid::new_v4()));
+    let warp_path = path.with_extension(format!("preview-{}.vrt", uuid::Uuid::new_v4()));
     let [preview_width, preview_height] = raster_preview_dimensions(path)?;
-    let output = Command::new(executable)
-        .env("GDAL_CACHEMAX", "64")
-        .args(["-of", "PNG", "-outsize", &preview_width, &preview_height])
-        .arg(path)
-        .arg(&preview_path)
+    let [west, south, east, north] = raster_preview_projected_extent(path)?;
+    let warp = Command::new(warp_executable).env("GDAL_CACHEMAX", "64")
+        .args(["-overwrite", "-of", "VRT", "-t_srs", "EPSG:3857", "-te", &west.to_string(), &south.to_string(), &east.to_string(), &north.to_string(), "-ts", &preview_width, &preview_height, "-r", "bilinear"])
+        .arg(path).arg(&warp_path)
         .output()
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
-    if !output.status.success() {
-        return Err(NativeError::Gdal(
-            String::from_utf8_lossy(&output.stderr).trim().to_owned(),
-        ));
-    }
+    if !warp.status.success() { let _ = std::fs::remove_file(&warp_path); return Err(NativeError::Gdal(String::from_utf8_lossy(&warp.stderr).trim().to_owned())); }
+    let output = Command::new(executable).env("GDAL_CACHEMAX", "64").args(["-of", "PNG"]).arg(&warp_path).arg(&preview_path).output()
+        .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    let _ = std::fs::remove_file(&warp_path);
+    if !output.status.success() { let _ = std::fs::remove_file(&preview_path); return Err(NativeError::Gdal(String::from_utf8_lossy(&output.stderr).trim().to_owned())); }
     let bytes = std::fs::read(&preview_path).map_err(|error| NativeError::Io(error.to_string()))?;
     let _ = std::fs::remove_file(&preview_path);
     let _ = std::fs::remove_file(auxiliary_metadata_path(&preview_path));
@@ -858,7 +907,7 @@ fn rasterize_barriers(
         )
     };
     for barrier in barriers {
-        for segment in barrier.coordinates.windows(2) {
+        for segment in std::iter::once(&barrier.coordinates).chain(barrier.additional_parts.iter()).flat_map(|part| part.windows(2)) {
             let (mut x0, mut y0) = to_pixel(segment[0]);
             let (mut x1, mut y1) = to_pixel(segment[1]);
             x0 = x0.clamp(0, width as isize - 1);
@@ -1312,31 +1361,45 @@ fn calculate_lcp_corridor_from_path(
     }
     let (backward, _) = lcp_distances(&surface, endpoints[1], &request.route, true)?;
     let limit = optimal * (1.0 + request.threshold_percent / 100.0);
+    // Distances along an optimal path are summed in different orders by the
+    // forward and reverse searches. Allow a tiny relative rounding tolerance
+    // so equal-cost path cells do not become transparent at a 0% threshold.
+    let membership_limit = limit + optimal.abs().max(1.0) * 1e-9;
     let sample_step = surface.width.max(surface.height).div_ceil(500).max(1);
     let surface_width = surface.width.div_ceil(sample_step);
     let surface_height = surface.height.div_ceil(sample_step);
-    let corridor_cells = forward
-        .iter()
-        .zip(&backward)
-        .filter(|(from_start, to_end)| {
-            let combined = **from_start + **to_end;
-            combined.is_finite() && combined <= limit
-        })
-        .count();
-    let mut values = Vec::with_capacity(surface_width * surface_height);
-    for y in (0..surface.height).step_by(sample_step) {
-        calculation_cancel::check()?;
-        for x in (0..surface.width).step_by(sample_step) {
-            let index = y * surface.width + x;
-            let combined = forward[index] + backward[index];
-            let inside = combined.is_finite() && combined <= limit;
-            values.push(if inside {
-                ((combined - optimal) / optimal.max(1e-12)) as f32
+    // Aggregate every source cell covered by each output pixel. Point sampling
+    // can skip a narrow optimal path when the analysis raster is downsampled,
+    // leaving a transparent seam through the rendered corridor.
+    let mut corridor_cells = 0;
+    let mut sampled_costs = vec![f64::INFINITY; surface_width * surface_height];
+    for (index, (from_start, to_end)) in forward.iter().zip(&backward).enumerate() {
+        if index % surface.width == 0 {
+            calculation_cancel::check()?;
+        }
+        let combined = from_start + to_end;
+        if !combined.is_finite() || combined > membership_limit {
+            continue;
+        }
+        corridor_cells += 1;
+        let x = index % surface.width;
+        let y = index / surface.width;
+        let output_index = (y / sample_step) * surface_width + x / sample_step;
+        sampled_costs[output_index] = sampled_costs[output_index].min(combined);
+    }
+    let values = sampled_costs
+        .into_iter()
+        .map(|combined| {
+            if combined.is_finite() {
+                // An included cell cannot have a true cost below the optimum;
+                // clamp tiny floating-point undershoots so the renderer does
+                // not mistake them for its negative NoData sentinel.
+                (((combined - optimal) / optimal.max(1e-12)).max(0.0)) as f32
             } else {
                 -1.0
-            });
-        }
-    }
+            }
+        })
+        .collect();
     Ok(LcpCorridorResult {
         model: request.route.model.clone(),
         ic_sex: (request.route.model=="irmischer-clarke").then(||request.route.ic_sex.clone()),
@@ -1501,6 +1564,210 @@ fn sample_raster_elevation_at(
 }
 
 #[tauri::command]
+fn sample_raster_elevations_at(
+    app: tauri::AppHandle,
+    raster_path: String,
+    coordinates: Vec<[f64; 2]>,
+) -> Result<Vec<Option<f64>>, NativeError> {
+    if coordinates.is_empty() {
+        return Ok(Vec::new());
+    }
+    if coordinates.len() > 2_000
+        || coordinates.iter().any(|[lon, lat]| {
+            !lon.is_finite()
+                || !lat.is_finite()
+                || !(-180.0..=180.0).contains(lon)
+                || !(-90.0..=90.0).contains(lat)
+        })
+    {
+        return Err(NativeError::Gdal(
+            "Las coordenadas del perfil no son válidas".to_owned(),
+        ));
+    }
+    let raster = ensure_app_raster(&app, &raster_path)?;
+    let executable = command_path("gdallocationinfo")
+        .ok_or_else(|| NativeError::Gdal("gdallocationinfo no está instalado".to_owned()))?;
+    let mut child = Command::new(executable)
+        .args(["-valonly", "-wgs84", "-E", "-field_sep", ","])
+        .arg(&raster)
+        .stdin(Stdio::piped())
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped())
+        .spawn()
+        .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    {
+        let mut stdin = child.stdin.take().ok_or_else(|| {
+            NativeError::Gdal("No se pudo iniciar el muestreo del perfil".to_owned())
+        })?;
+        for [lon, lat] in &coordinates {
+            writeln!(stdin, "{lon} {lat}")
+                .map_err(|error| NativeError::Gdal(error.to_string()))?;
+        }
+    }
+    let output = child
+        .wait_with_output()
+        .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    if !output.status.success() {
+        return Err(NativeError::Gdal(
+            String::from_utf8_lossy(&output.stderr).trim().to_owned(),
+        ));
+    }
+    let values: Vec<Option<f64>> = String::from_utf8_lossy(&output.stdout)
+        .lines()
+        .map(|line| {
+            line.rsplit(',')
+                .next()
+                .and_then(|value| value.trim().parse::<f64>().ok())
+                .filter(|value| value.is_finite() && *value > -9_000.0)
+        })
+        .collect();
+    if values.len() != coordinates.len() {
+        return Err(NativeError::Gdal(
+            "El MDT no devolvió todas las muestras del perfil".to_owned(),
+        ));
+    }
+    Ok(values)
+}
+
+#[tauri::command]
+fn select_elevation_region(
+    app: tauri::AppHandle,
+    request: SelectElevationRegionRequest,
+) -> Result<SelectedElevationRegion, NativeError> {
+    if !request.tolerance_m.is_finite() || !(0.0..=100.0).contains(&request.tolerance_m)
+        || request.seed.iter().any(|value| !value.is_finite())
+        || !(-180.0..=180.0).contains(&request.seed[0])
+        || !(-90.0..=90.0).contains(&request.seed[1])
+        || request.study_extent.is_some_and(|bounds| bounds.iter().any(|value| !value.is_finite()) || bounds[0] < -180.0 || bounds[2] > 180.0 || bounds[1] < -90.0 || bounds[3] > 90.0 || bounds[0] >= bounds[2] || bounds[1] >= bounds[3])
+    {
+        return Err(NativeError::Gdal("La tolerancia o el punto de selección no son válidos".into()));
+    }
+    let raster = ensure_app_raster(&app, &request.raster_path)?;
+    let metadata = gdal_json_basic(&raster)?;
+    let width = metadata_number(&metadata, "size", 0)? as usize;
+    let height = metadata_number(&metadata, "size", 1)? as usize;
+    let cells = width.checked_mul(height).filter(|cells| *cells > 0 && *cells <= MAX_ROUTE_CELLS)
+        .ok_or_else(|| NativeError::Gdal("El MDT excede el tamaño admitido para la selección mágica".into()))?;
+    let origin_x = metadata_number(&metadata, "geoTransform", 0)?;
+    let pixel_x = metadata_number(&metadata, "geoTransform", 1)?;
+    let origin_y = metadata_number(&metadata, "geoTransform", 3)?;
+    let pixel_y = metadata_number(&metadata, "geoTransform", 5)?;
+    let raster_crs = raster_epsg(&raster)?;
+    let seed_projected = transform_points(&[request.seed], "EPSG:4326", &raster_crs)?[0];
+    let column = ((seed_projected[0] - origin_x) / pixel_x).floor() as isize;
+    let row = ((seed_projected[1] - origin_y) / pixel_y).floor() as isize;
+    if column < 0 || row < 0 || column >= width as isize || row >= height as isize {
+        return Err(NativeError::Gdal("Pulse sobre una celda dentro del MDT".into()));
+    }
+
+    let directory = raster.with_extension(format!("magic-{}", uuid::Uuid::new_v4()));
+    std::fs::create_dir_all(&directory).map_err(|error| NativeError::Io(error.to_string()))?;
+    struct TemporarySelection(PathBuf);
+    impl Drop for TemporarySelection { fn drop(&mut self) { let _ = std::fs::remove_dir_all(&self.0); } }
+    let _temporary = TemporarySelection(directory.clone());
+    let elevation_binary = directory.join("elevation.bin");
+    let executable = command_path("gdal_translate").ok_or_else(|| NativeError::Gdal("gdal_translate no está instalado".into()))?;
+    let output = Command::new(executable).env("GDAL_CACHEMAX", "64").args(["-of", "ENVI", "-ot", "Float32"]).arg(&raster).arg(&elevation_binary).output()
+        .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    if !output.status.success() { return Err(NativeError::Gdal(String::from_utf8_lossy(&output.stderr).trim().into())); }
+    let elevations = route_memory::read_elevations(&elevation_binary, cells)?;
+    let _ = std::fs::remove_file(&elevation_binary);
+    let _ = std::fs::remove_file(elevation_binary.with_extension("hdr"));
+    let seed_index = row as usize * width + column as usize;
+    let seed_elevation = elevations[seed_index];
+    if !valid_elevation_value(seed_elevation, metadata.get("bands").and_then(Value::as_array).and_then(|bands| bands.first()).and_then(|band| band.get("noDataValue")).and_then(Value::as_f64).map(|v| v as f32)) {
+        return Err(NativeError::Gdal("La celda seleccionada no contiene una elevación válida. Si el mar es NoData, el motor ya lo excluye de las rutas".into()));
+    }
+    let no_data = metadata.get("bands").and_then(Value::as_array).and_then(|bands| bands.first()).and_then(|band| band.get("noDataValue")).and_then(Value::as_f64).map(|v| v as f32);
+    let (selected, selected_cells) = connected_elevation_region(&elevations, width, height, seed_index, seed_elevation, request.tolerance_m as f32, no_data)?;
+    if selected_cells < 4 { return Err(NativeError::Gdal("La selección contiene muy pocas celdas. Aumente la tolerancia".into())); }
+
+    let mask_binary = directory.join("region.bin");
+    let mask_header = directory.join("region.hdr");
+    let bytes: Vec<u8> = selected.iter().map(|value| u8::from(*value)).collect();
+    std::fs::write(&mask_binary, bytes).map_err(|error| NativeError::Io(error.to_string()))?;
+    std::fs::write(&mask_header, format!("ENVI\nsamples = {width}\nlines = {height}\nbands = 1\nheader offset = 0\nfile type = ENVI Standard\ndata type = 1\ninterleave = bsq\nbyte order = 0\n"))
+        .map_err(|error| NativeError::Io(error.to_string()))?;
+    let mask_raster = directory.join("region.tif");
+    let upper_y = origin_y;
+    let lower_y = origin_y + height as f64 * pixel_y;
+    let right_x = origin_x + width as f64 * pixel_x;
+    let executable = command_path("gdal_translate").ok_or_else(|| NativeError::Gdal("gdal_translate no está instalado".into()))?;
+    let output = Command::new(executable).env("GDAL_CACHEMAX", "64").args(["-of", "GTiff", "-a_srs", &raster_crs, "-a_ullr", &origin_x.to_string(), &upper_y.to_string(), &right_x.to_string(), &lower_y.to_string()]).arg(&mask_binary).arg(&mask_raster).output()
+        .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    if !output.status.success() { return Err(NativeError::Gdal(String::from_utf8_lossy(&output.stderr).trim().into())); }
+    let polygons = directory.join("region.geojson");
+    let executable = command_path("gdal_polygonize.py").or_else(|| command_path("gdal_polygonize"))
+        .ok_or_else(|| NativeError::Gdal("gdal_polygonize no está instalado".into()))?;
+    let output = Command::new(executable).args(["-mask"]).arg(&mask_raster).args(["-f", "GeoJSON"]).arg(&mask_raster).arg(&polygons).arg("region").arg("value").output()
+        .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    if !output.status.success() { return Err(NativeError::Gdal(String::from_utf8_lossy(&output.stderr).trim().into())); }
+    let geographic = directory.join("region-wgs84.geojson");
+    let executable = command_path("ogr2ogr").ok_or_else(|| NativeError::Gdal("ogr2ogr no está instalado".into()))?;
+    let mut transform = Command::new(executable);
+    let simplification = pixel_x.abs().min(pixel_y.abs()).to_string();
+    transform.args(["-f", "GeoJSON", "-simplify", &simplification, "-t_srs", "EPSG:4326"]);
+    if let Some([west, south, east, north]) = request.study_extent {
+        transform.args(["-clipdst", &west.to_string(), &south.to_string(), &east.to_string(), &north.to_string()]);
+    }
+    let output = transform.arg(&geographic).arg(&polygons).output()
+        .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    if !output.status.success() { return Err(NativeError::Gdal(String::from_utf8_lossy(&output.stderr).trim().into())); }
+    let geojson: Value = serde_json::from_slice(&std::fs::read(&geographic).map_err(|error| NativeError::Io(error.to_string()))?).map_err(|error| NativeError::Gdal(error.to_string()))?;
+    let mut barriers = Vec::new();
+    for feature in geojson.get("features").and_then(Value::as_array).into_iter().flatten() {
+        if feature.get("properties").and_then(|p| p.get("value")).and_then(Value::as_i64) != Some(1) { continue; }
+        let geometry = feature.get("geometry").ok_or_else(|| NativeError::Gdal("La geometría seleccionada no es válida".into()))?;
+        let polygons: Vec<&Value> = match geometry.get("type").and_then(Value::as_str) {
+            Some("Polygon") => vec![geometry.get("coordinates").ok_or_else(|| NativeError::Gdal("La geometría seleccionada está vacía".into()))?],
+            Some("MultiPolygon") => geometry.get("coordinates").and_then(Value::as_array).ok_or_else(|| NativeError::Gdal("La geometría seleccionada está vacía".into()))?.iter().collect(),
+            _ => continue,
+        };
+        for polygon in polygons {
+            for ring in polygon.as_array().into_iter().flatten() {
+                let coordinates: Vec<[f64; 2]> = ring.as_array().into_iter().flatten().filter_map(|point| {
+                    let pair = point.as_array()?;
+                    Some([pair.first()?.as_f64()?, pair.get(1)?.as_f64()?])
+                }).collect();
+                if coordinates.len() >= 4 { barriers.push(coordinates); }
+            }
+        }
+    }
+    if barriers.is_empty() { return Err(NativeError::Gdal("No se pudo generar el contorno de la selección".into())); }
+    Ok(SelectedElevationRegion { barriers, seed_elevation_m: seed_elevation as f64, selected_cells })
+}
+
+fn valid_elevation_value(value: f32, nodata: Option<f32>) -> bool {
+    value.is_finite() && value > -9_000.0 && nodata.is_none_or(|invalid| (value - invalid).abs() > 0.001)
+}
+
+fn connected_elevation_region(elevations: &[f32], width: usize, height: usize, seed: usize, seed_elevation: f32, tolerance: f32, nodata: Option<f32>) -> Result<(Vec<bool>, usize), NativeError> {
+    if width.checked_mul(height) != Some(elevations.len()) || seed >= elevations.len() || !valid_elevation_value(seed_elevation, nodata) || !tolerance.is_finite() || tolerance < 0.0 {
+        return Err(NativeError::Gdal("Los parámetros de selección de celdas no son válidos".into()));
+    }
+    let mut selected = vec![false; elevations.len()];
+    let mut queue = std::collections::VecDeque::new();
+    selected[seed] = true;
+    let mut selected_cells = 1_usize;
+    queue.push_back(seed);
+    while let Some(index) = queue.pop_front() {
+        calculation_cancel::check()?;
+        let x = index % width;
+        let y = index / width;
+        for next in [(x > 0).then(|| index - 1), (x + 1 < width).then(|| index + 1), (y > 0).then(|| index - width), (y + 1 < height).then(|| index + width)].into_iter().flatten() {
+            if selected[next] { continue; }
+            let value = elevations[next];
+            if valid_elevation_value(value, nodata) && (value - seed_elevation).abs() <= tolerance {
+                selected[next] = true;
+                selected_cells += 1;
+                queue.push_back(next);
+            }
+        }
+    }
+    Ok((selected, selected_cells))
+}
+
+#[tauri::command]
 fn generate_terrain_mesh(
     app: tauri::AppHandle,
     raster_path: String,
@@ -1514,46 +1781,47 @@ fn terrain_mesh_from_path(raster: &Path, max_size: Option<usize>) -> Result<Terr
     let metadata = gdal_json_basic(&raster)?;
     let source_width = metadata_number(&metadata, "size", 0)? as usize;
     let source_height = metadata_number(&metadata, "size", 1)? as usize;
-    let margin = terrain_border_margin(source_width, source_height);
-    let cropped_width = source_width - 2 * margin;
-    let cropped_height = source_height - 2 * margin;
-    let nodata = metadata.get("bands").and_then(Value::as_array).and_then(|b| b.first())
-        .and_then(|b| b.get("noDataValue")).and_then(Value::as_f64).map(|v| v as f32);
     let limit = max_size.unwrap_or(450).clamp(100, 700);
-    let scale = (limit as f64 / cropped_width.max(cropped_height) as f64).min(1.0);
-    let width = ((cropped_width as f64 * scale).round() as usize).max(2);
-    let height = ((cropped_height as f64 * scale).round() as usize).max(2);
-    let origin_x = metadata_number(&metadata, "geoTransform", 0)? + metadata_number(&metadata, "geoTransform", 1)? * margin as f64;
-    let pixel_x = metadata_number(&metadata, "geoTransform", 1)?;
-    let origin_y = metadata_number(&metadata, "geoTransform", 3)? + metadata_number(&metadata, "geoTransform", 5)? * margin as f64;
-    let pixel_y = metadata_number(&metadata, "geoTransform", 5)?;
-    let width_m = pixel_x.abs() * cropped_width as f64;
-    let height_m = pixel_y.abs() * cropped_height as f64;
-    let raster_crs = raster_epsg(&raster)?;
-    let corners = transform_points(
-        &[
-            [origin_x, origin_y + pixel_y * cropped_height as f64],
-            [origin_x + pixel_x * cropped_width as f64, origin_y],
-        ],
-        &raster_crs,
-        "EPSG:4326",
-    )?;
+    let scale = (limit as f64 / source_width.max(source_height) as f64).min(1.0);
+    let width = ((source_width as f64 * scale).round() as usize).max(2);
+    let height = ((source_height as f64 * scale).round() as usize).max(2);
+    let target_extent = raster_preview_projected_extent(raster)?;
     let identifier = uuid::Uuid::new_v4();
     let binary = raster.with_extension(format!("mesh-{identifier}.bin"));
+    let warped = raster.with_extension(format!("mesh-{identifier}.vrt"));
     let header = binary.with_extension("hdr");
+    let warp_executable = command_path("gdalwarp")
+        .ok_or_else(|| NativeError::Gdal("gdalwarp no está instalado".to_owned()))?;
+    let warp = Command::new(warp_executable).env("GDAL_CACHEMAX", "64")
+        .args(["-overwrite", "-of", "VRT", "-ot", "Float32", "-t_srs", "EPSG:3857", "-te", &target_extent[0].to_string(), &target_extent[1].to_string(), &target_extent[2].to_string(), &target_extent[3].to_string(), "-ts", &width.to_string(), &height.to_string(), "-r", "bilinear"])
+        .arg(raster).arg(&warped).output().map_err(|error| NativeError::Gdal(error.to_string()))?;
+    if !warp.status.success() { let _ = std::fs::remove_file(&warped); return Err(NativeError::Gdal(String::from_utf8_lossy(&warp.stderr).trim().to_owned())); }
+    let warped_metadata = gdal_json_basic(&warped)?;
+    let width = metadata_number(&warped_metadata, "size", 0)? as usize;
+    let height = metadata_number(&warped_metadata, "size", 1)? as usize;
+    let nodata = warped_metadata.get("bands").and_then(Value::as_array).and_then(|b| b.first())
+        .and_then(|b| b.get("noDataValue")).and_then(Value::as_f64).map(|v| v as f32);
+    let origin_x = metadata_number(&warped_metadata, "geoTransform", 0)?;
+    let pixel_x = metadata_number(&warped_metadata, "geoTransform", 1)?;
+    let origin_y = metadata_number(&warped_metadata, "geoTransform", 3)?;
+    let pixel_y = metadata_number(&warped_metadata, "geoTransform", 5)?;
+    let projected_extent_3857 = [origin_x, origin_y + pixel_y * height as f64, origin_x + pixel_x * width as f64, origin_y];
+    let center = transform_points(&[[(projected_extent_3857[0] + projected_extent_3857[2]) / 2.0, (projected_extent_3857[1] + projected_extent_3857[3]) / 2.0]], "EPSG:3857", "EPSG:4326")?[0];
+    // Convert Web Mercator map units to approximate ground metres at the
+    // model centre so horizontal terrain scale remains comparable to elevation.
+    let ground_scale = center[1].to_radians().cos();
+    let width_m = (projected_extent_3857[2] - projected_extent_3857[0]) * ground_scale;
+    let height_m = (projected_extent_3857[3] - projected_extent_3857[1]) * ground_scale;
+    let corners = transform_points(&[[projected_extent_3857[0], projected_extent_3857[1]], [projected_extent_3857[2], projected_extent_3857[3]]], "EPSG:3857", "EPSG:4326")?;
     let executable = command_path("gdal_translate")
         .ok_or_else(|| NativeError::Gdal("gdal_translate no está instalado".to_owned()))?;
     let output = Command::new(executable)
-        .args([
-            "-of", "ENVI", "-ot", "Float32", "-r", "bilinear", "-outsize",
-        ])
-        .args([width.to_string(), height.to_string()])
-        .arg("-srcwin")
-        .args([margin.to_string(), margin.to_string(), cropped_width.to_string(), cropped_height.to_string()])
-        .arg(&raster)
+        .args(["-of", "ENVI", "-ot", "Float32"])
+        .arg(&warped)
         .arg(&binary)
         .output()
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
+    let _ = std::fs::remove_file(&warped);
     if !output.status.success() {
         return Err(NativeError::Gdal(
             String::from_utf8_lossy(&output.stderr).trim().to_owned(),
@@ -1596,6 +1864,7 @@ fn terrain_mesh_from_path(raster: &Path, max_size: Option<usize>) -> Result<Terr
         height,
         width_m,
         height_m,
+        projected_extent_3857,
         min_elevation_m,
         max_elevation_m,
         elevations,
@@ -1639,6 +1908,8 @@ fn build_prepared_surface(
             || barrier.value < 1.0
             || barrier.value > 1_000.0
             || barrier.coordinates.len() < 2
+            || barrier.additional_parts.iter().any(|part| part.len() < 2)
+            || std::iter::once(&barrier.coordinates).chain(barrier.additional_parts.iter()).flatten().any(|point| point.iter().any(|value| !value.is_finite()))
     }) {
         return Err(NativeError::Gdal(
             "Hay una barrera con tipo, valor o geometría no válidos".to_owned(),
@@ -1687,6 +1958,7 @@ fn build_prepared_surface(
         .map(|barrier| {
             Ok(BarrierRequest {
                 coordinates: transform_points(&barrier.coordinates, "EPSG:4326", &raster_crs)?,
+                additional_parts: barrier.additional_parts.iter().map(|part| transform_points(part, "EPSG:4326", &raster_crs)).collect::<Result<_, _>>()?,
                 kind: barrier.kind.clone(),
                 value: barrier.value,
             })
@@ -2853,6 +3125,39 @@ fn read_project_file(path: String) -> Result<String, NativeError> {
 }
 
 #[tauri::command]
+fn backup_opened_project(path: String, date: String) -> Result<String, NativeError> {
+    if date.len() != 6 || !date.bytes().all(|byte| byte.is_ascii_digit()) {
+        return Err(NativeError::Io("La fecha de la copia del proyecto no es válida".to_owned()));
+    }
+    let input = PathBuf::from(path);
+    if input.extension().and_then(|value| value.to_str()).map(|value| value.eq_ignore_ascii_case("json")) != Some(true) {
+        return Err(NativeError::Io("Seleccione un proyecto ViaSpania con extensión JSON".to_owned()));
+    }
+    let metadata = std::fs::symlink_metadata(&input).map_err(|error| NativeError::Io(error.to_string()))?;
+    if !metadata.is_file() || metadata.file_type().is_symlink() {
+        return Err(NativeError::Io("El proyecto seleccionado no es un archivo JSON válido".to_owned()));
+    }
+    let stem = input.file_stem().and_then(|value| value.to_str()).unwrap_or("Proyecto");
+    let output = input.with_file_name(format!("{stem}_old_{date}.json"));
+    if std::fs::symlink_metadata(&output).is_ok_and(|metadata| metadata.file_type().is_symlink()) {
+        return Err(NativeError::Io("No se permite sobrescribir un enlace simbólico".to_owned()));
+    }
+    std::fs::copy(&input, &output).map_err(|error| NativeError::Io(error.to_string()))?;
+    Ok(output.to_string_lossy().into_owned())
+}
+
+#[tauri::command]
+fn project_file_modified_ms(path: String) -> Result<u64, NativeError> {
+    let metadata = std::fs::symlink_metadata(&path).map_err(|error| NativeError::Io(error.to_string()))?;
+    if !metadata.is_file() || metadata.file_type().is_symlink() {
+        return Err(NativeError::Io("El proyecto seleccionado no es un archivo JSON válido".to_owned()));
+    }
+    let modified = metadata.modified().map_err(|error| NativeError::Io(error.to_string()))?;
+    let duration = modified.duration_since(std::time::UNIX_EPOCH).map_err(|error| NativeError::Io(error.to_string()))?;
+    Ok(duration.as_millis().min(u64::MAX as u128) as u64)
+}
+
+#[tauri::command]
 fn native_status() -> NativeStatus {
     let gdal = command_version("gdalinfo", "--version");
     NativeStatus {
@@ -3549,6 +3854,8 @@ pub fn run() {
         .manage(IsochroneState::default())
         .plugin(tauri_plugin_dialog::init())
         .invoke_handler(tauri::generate_handler![
+            open_releases_page,
+            open_credits_resource,
             gazetteer::geonames_search,gazetteer::project_coordinate,
             native_status,
             fetch_capabilities,
@@ -3571,6 +3878,8 @@ pub fn run() {
             calculation_cancel::release_calculation,
             sample_raster_elevation,
             sample_raster_elevation_at,
+            sample_raster_elevations_at,
+            select_elevation_region,
             generate_terrain_mesh,
             save_export_file,
             video_export::video_export_start,
@@ -3580,10 +3889,45 @@ pub fn run() {
             export_raster_geotiff,
             export_geopackage,
             import_geopackage,
-            read_project_file
+            read_project_file,
+            backup_opened_project,
+            project_file_modified_ms
         ])
         .run(tauri::generate_context!())
         .expect("error al ejecutar ViaSpania");
+}
+
+#[tauri::command]
+fn open_releases_page() -> Result<(), String> {
+    let url = "https://github.com/traxtiber/ViaSpania/releases";
+    #[cfg(target_os = "macos")]
+    let result = Command::new("open").arg(url).spawn();
+    #[cfg(target_os = "windows")]
+    let result = Command::new("cmd").args(["/C", "start", "", url]).spawn();
+    #[cfg(all(unix, not(target_os = "macos")))]
+    let result = Command::new("xdg-open").arg(url).spawn();
+    result.map(|_| ()).map_err(|error| format!("No se pudo abrir GitHub en el navegador predeterminado: {error}"))
+}
+
+#[tauri::command]
+fn open_credits_resource(app: tauri::AppHandle, resource: String) -> Result<(), String> {
+    let relative_path = match resource.as_str() {
+        "LICENSE.txt" | "SOURCE_CODE.txt" | "THIRD_PARTY_NOTICES.txt" => resource.as_str(),
+        "compliance/THIRD_PARTY_LICENSES.txt" | "compliance/DATA_NOTICES.txt" => resource.as_str(),
+        "funding/miciu-ue-aei.jpg" => resource.as_str(),
+        _ => return Err("El recurso de créditos solicitado no está permitido".into()),
+    };
+    let path = app.path().resource_dir().map_err(|error| error.to_string())?.join(relative_path);
+    if !path.is_file() {
+        return Err(format!("No se encontró el recurso de créditos: {relative_path}"));
+    }
+    #[cfg(target_os = "macos")]
+    let result = Command::new("open").arg(&path).spawn();
+    #[cfg(target_os = "windows")]
+    let result = Command::new("cmd").arg("/C").arg("start").arg("").arg(&path).spawn();
+    #[cfg(all(unix, not(target_os = "macos")))]
+    let result = Command::new("xdg-open").arg(&path).spawn();
+    result.map(|_| ()).map_err(|error| format!("No se pudo abrir el recurso de créditos: {error}"))
 }
 
 #[cfg(test)]
@@ -3718,7 +4062,7 @@ fn legacy_lcp_distances_for_test(
         let mut request = grid_route_request(401,301);
         // A soft barrier exercises the lazily allocated factor pages.
         let barrier = transform_points(&[[501000.0,4500000.0],[501000.0,4498495.0]],"EPSG:25830","EPSG:4326").unwrap();
-        request.barriers.push(BarrierRequest {coordinates:barrier,kind:"penalty".into(),value:3.25});
+        request.barriers.push(BarrierRequest {coordinates:barrier,additional_parts:Vec::new(),kind:"penalty".into(),value:3.25});
         for connectivity in [4,8,16] {
             request.connectivity=connectivity;
             let route=calculate_route_from_path(input.clone(),request.clone(),&cache).unwrap();
@@ -3880,6 +4224,40 @@ fn legacy_lcp_distances_for_test(
         assert_eq!(isochrones.max_cost,maximum);
         assert_eq!(isochrones.surface_values,expected.into_iter().map(|v|v as f32).collect::<Vec<_>>());
         assert!(!isochrones.lines.is_empty());
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    fn lcp_preview_keeps_a_narrow_optimal_path_between_sampled_cells() {
+        // The preview is capped at 500 pixels. This offset diagonal crosses
+        // every 2x2 source block but never its top-left sample, reproducing the
+        // transparent seam caused by point sampling.
+        let (width, height) = (502, 502);
+        let (directory, input) = synthetic_route_grid(width, height);
+        let mut request = grid_route_request(width, height);
+        let endpoints = transform_points(
+            &[[500007.5, 4499997.5], [500000.0 + (width as f64 - 0.5) * 5.0, 4500000.0 - (height as f64 - 1.5) * 5.0]],
+            "EPSG:25830",
+            "EPSG:4326",
+        ).unwrap();
+        request.start = endpoints[0];
+        request.end = endpoints[1];
+
+        let result = calculate_lcp_corridor_from_path(
+            input,
+            LcpCorridorRequest { route: request, threshold_percent: 0.0 },
+            &SurfaceCache::default(),
+        ).unwrap();
+
+        assert_eq!((result.surface_width, result.surface_height), (251, 251));
+        assert!(result.surface_values.iter().all(|value| *value == -1.0 || *value >= 0.0));
+        for row in 0..result.surface_height {
+            let column = row;
+            assert!(
+                result.surface_values[row * result.surface_width + column] >= 0.0,
+                "la ruta óptima se perdió en el píxel de salida ({column}, {row})",
+            );
+        }
         std::fs::remove_dir_all(directory).unwrap();
     }
 
@@ -4105,6 +4483,36 @@ fn legacy_lcp_distances_for_test(
     }
 
     #[test]
+    fn magic_selection_only_grows_through_connected_cells_inside_seed_tolerance() {
+        let elevations = [
+            0.0, 0.1, 0.1,
+            0.1, 0.1, 9.0,
+            9.0, 0.1, 0.1,
+        ];
+        let (selected, count) = connected_elevation_region(
+            &elevations, 3, 3, 0, 0.0, 0.2, None,
+        ).expect("selección conectada válida");
+
+        assert_eq!(count, 7);
+        assert!(selected[0..5].iter().all(|cell| *cell));
+        assert!(!selected[5]);
+        assert!(!selected[6]);
+        assert!(selected[7] && selected[8]);
+    }
+
+    #[test]
+    fn magic_selection_does_not_cross_diagonal_cells() {
+        let elevations = [0.0, 9.0, 9.0, 9.0, 0.1, 9.0, 9.0, 9.0, 9.0];
+        let (selected, count) = connected_elevation_region(
+            &elevations, 3, 3, 0, 0.0, 0.2, None,
+        ).expect("selección conectada válida");
+
+        assert_eq!(count, 1);
+        assert!(selected[0]);
+        assert!(!selected[4]);
+    }
+
+    #[test]
     fn exposes_complete_color_palettes() {
         for palette in ["terrain", "hypsometric", "viridis", "alpine"] {
             let definition = palette_definition(palette).expect("paleta disponible");
@@ -4253,6 +4661,7 @@ fn legacy_lcp_distances_for_test(
 
         changed.barriers.push(BarrierRequest {
             coordinates: vec![[-3.71, 40.42], [-3.70, 40.41]],
+            additional_parts: Vec::new(),
             kind: "absolute".to_owned(),
             value: 1.0,
         });
@@ -4268,6 +4677,7 @@ fn legacy_lcp_distances_for_test(
         let (blocked, penalties) = rasterize_barriers(
             &[BarrierRequest {
                 coordinates: vec![[1.0, 9.0], [8.0, 2.0]],
+                additional_parts: Vec::new(),
                 kind: "absolute".to_owned(),
                 value: 1.0,
             }],
@@ -4290,6 +4700,7 @@ fn legacy_lcp_distances_for_test(
         let (blocked, _) = rasterize_barriers(
             &[BarrierRequest {
                 coordinates: vec![[1.0, 9.0], [1.0, 5.0], [7.0, 5.0]],
+                additional_parts: Vec::new(),
                 kind: "absolute".to_owned(),
                 value: 1.0,
             }],
@@ -4306,10 +4717,32 @@ fn legacy_lcp_distances_for_test(
     }
 
     #[test]
+    fn rasterizes_disconnected_parts_of_one_logical_barrier_without_connecting_them() {
+        let (blocked, _) = rasterize_barriers(
+            &[BarrierRequest {
+                coordinates: vec![[1.0, 9.0], [1.0, 6.0]],
+                additional_parts: vec![vec![[9.0, 4.0], [9.0, 1.0]]],
+                kind: "absolute".to_owned(),
+                value: 1.0,
+            }],
+            11,
+            11,
+            0.0,
+            10.0,
+            1.0,
+            -1.0,
+        ).unwrap();
+        assert!(blocked[1 * 11 + 1]);
+        assert!(blocked[9 * 11 + 9]);
+        assert!(!blocked[5 * 11 + 5], "no se dibuja un segmento entre las partes");
+    }
+
+    #[test]
     fn applies_soft_barrier_penalties() {
         let (blocked, penalties) = rasterize_barriers(
             &[BarrierRequest {
                 coordinates: vec![[1.0, 9.0], [8.0, 2.0]],
+                additional_parts: Vec::new(),
                 kind: "penalty".to_owned(),
                 value: 4.0,
             }],
@@ -4357,7 +4790,7 @@ fn legacy_lcp_distances_for_test(
     #[test]
     fn diagonal_bridge_opens_absolute_barrier_for_every_connectivity() {
         let (blocked, penalties) = rasterize_barriers(
-            &[BarrierRequest { coordinates: vec![[4.5, -0.5], [4.5, -8.5]], kind: "absolute".into(), value: 1.0 }],
+            &[BarrierRequest { coordinates: vec![[4.5, -0.5], [4.5, -8.5]], additional_parts: Vec::new(), kind: "absolute".into(), value: 1.0 }],
             9, 9, 0.0, 0.0, 1.0, -1.0,
         ).unwrap();
         for connectivity in [4, 8, 16] {

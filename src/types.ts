@@ -8,7 +8,7 @@ export type IrmischerSex='male'|'female';
 export type IrmischerContext='paths'|'off-path';
 export type Connectivity = 4 | 8 | 16;
 export type BarrierKind = 'absolute' | 'penalty';
-export interface Barrier { name?:string;coordinates: [number,number][]; kind: BarrierKind; value: number }
+export interface Barrier { name?:string;coordinates: [number,number][];additionalParts?:[number,number][][];generatedBy?:'magic-ocean'; kind: BarrierKind; value: number }
 export interface PreferredCorridor { id:string; name:string; coordinates:readonly [number,number][]; widthM:number; costMultiplier:number }
 export type EnabledCrossingKind = 'bridge' | 'ford' | 'tunnel';
 export interface EnabledCrossing { id:string; name:string; coordinates:readonly [number,number][]; kind:EnabledCrossingKind; crossingCostMultiplier:number; required?:boolean; barrierId?:string }

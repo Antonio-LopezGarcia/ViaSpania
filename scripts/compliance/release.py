@@ -435,6 +435,25 @@ def package():
         archive.add(video.RESOURCE/'sources', arcname='ViaSpania-source/video-build')
         archive.add(ROOT/'docs/RELEASE_COMPLIANCE.md', arcname='ViaSpania-source/README.md')
     save_json(ROOT/'release/SOURCE_ARTIFACT.json', {'file': bundle.name, 'sha256': sha(bundle), 'status': manifest['status'], 'sourceFiles': source_hashes})
+    part_size = 1_800_000_000
+    parts = []
+    for stale in (ROOT/'release').glob(bundle.name+'.part-*'):
+        stale.unlink()
+    with bundle.open('rb') as source:
+        index = 1
+        while chunk := source.read(part_size):
+            part = bundle.with_name(bundle.name+f'.part-{index:03d}')
+            part.write_bytes(chunk)
+            parts.append({'file': part.name, 'sizeBytes': part.stat().st_size, 'sha256': sha(part)})
+            index += 1
+    save_json(ROOT/'release/SOURCE_ARTIFACT_PARTS.json', {
+        'file': bundle.name,
+        'sizeBytes': bundle.stat().st_size,
+        'sha256': sha(bundle),
+        'partSizeBytes': part_size,
+        'parts': parts,
+        'assembly': f"cat {bundle.name}.part-* > {bundle.name}",
+    })
     print(f'Paquete de fuentes candidato: {bundle}', flush=True)
 
 

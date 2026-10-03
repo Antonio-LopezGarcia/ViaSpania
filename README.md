@@ -22,7 +22,7 @@ ViaSpania es una aplicación de escritorio para analizar costes de desplazamient
 
 ### Novedades de v0.2.4 (desde v0.2.2)
 
-Esta versión reúne los cambios posteriores a v0.2.2. La publicación e instaladores de v0.2.4 estarán disponibles en **Assets** de [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) cuando se publique esa versión.
+Esta versión reúne los cambios posteriores a v0.2.2. La versión 0.2.4 ya está publicada; descarga los instaladores desde [GitHub Releases v0.2.4](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.4).
 
 - **Modelos y análisis de mayor tamaño.** Descarga WCS por bloques para MDT05, MDT25, MDT200 y MDS05, con un máximo común de **67.928.064 celdas** para modelos y análisis. El uso de memoria se optimiza sin reducir la resolución; las preferencias pueden imponer un límite inferior y se comprueba la RAM disponible.
 - **Flujo de puntos y autoguardado.** «Crear punto» unifica la creación de puntos iniciales, finales y multipunto, con numeración, colores y reordenación. La ruta secuencial conecta puntos consecutivos; la matriz de conexiones elimina el antiguo límite de ocho puntos. Se conserva la compatibilidad con proyectos y el orden de importación, y los proyectos se guardan automáticamente.
@@ -33,7 +33,7 @@ Esta versión reúne los cambios posteriores a v0.2.2. La publicación e instala
 - **Cartografía, informes y exportaciones.** OpenTopoMap se incorpora con atribución. Los informes distinguen la máscara marítima y describen barreras y facilitadores; GeoPackage incluye rutas de aproximación y geometrías multipartes. Se amplían los créditos y se añade la consulta de actualizaciones y de identificadores exactos de compilación.
 - **Correcciones y documentación.** Se evitan costuras transparentes en pasillos LCP y se toleran pequeñas diferencias numéricas en rutas y límites del área de estudio. Los manuales documentan las nuevas herramientas y se revisan controles, estados y traducciones al inglés e italiano.
 
-El [manual en español](docs/manual.md) y el [manual en inglés](docs/manual.en.md) describen las nuevas herramientas. Estos cambios están aún en preparación y no significan que los instaladores 0.2.4 estén publicados.
+El [manual en español](docs/manual.md) y el [manual en inglés](docs/manual.en.md) describen las nuevas herramientas.
 
 ### Novedades de v0.2.2
 
@@ -163,7 +163,7 @@ ViaSpania is a desktop application for terrain-based least-cost analysis, route 
 
 ### What's new in v0.2.4 (since v0.2.2)
 
-This release brings together changes since v0.2.2. v0.2.4 installers will be available under **Assets** in [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) when that version is published.
+This release brings together changes since v0.2.2. Version 0.2.4 is published; download installers from [GitHub Releases v0.2.4](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.4).
 
 - **Larger models and analyses.** Block-based WCS downloads for MDT05, MDT25, MDT200 and MDS05 support a shared **67,928,064-cell** ceiling for models and analyses. Memory use is optimised without lowering analysis resolution; preferences may set a lower limit and available RAM is checked.
 - **Point workflow and autosave.** “Create point” unifies start, end and multipoint creation with numbering, colours and reordering. Sequential routes connect consecutive points; the connection matrix removes the former eight-point limit. Existing projects and import order remain compatible, and projects save automatically.
@@ -174,7 +174,7 @@ This release brings together changes since v0.2.2. v0.2.4 installers will be ava
 - **Cartography, reports and exports.** OpenTopoMap is added with attribution. Reports distinguish the marine mask and describe barriers and facilitators; GeoPackage includes approach routes and multipart geometries. Credits expand and settings can check for updates and show exact build identifiers.
 - **Fixes and documentation.** LCP corridors avoid transparent seams; small numerical differences in routes and study-area boundaries are handled. Manuals cover the new tools, and controls, status messages and English/Italian translations are revised.
 
-The [English manual](docs/manual.en.md) and [Spanish manual](docs/manual.md) describe the new tools. These changes are still being prepared and do not mean v0.2.4 installers have been published.
+The [English manual](docs/manual.en.md) and [Spanish manual](docs/manual.md) describe the new tools.
 
 ### What's new in v0.2.2
 

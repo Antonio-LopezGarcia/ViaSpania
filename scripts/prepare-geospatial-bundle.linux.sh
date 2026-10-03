@@ -60,7 +60,12 @@ while test -s "$queue_file"; do
 done
 for executable in "$bin_dir"/*; do patchelf --set-rpath '$ORIGIN/../lib' "$executable"; done
 for library in "$lib_dir"/*; do patchelf --set-rpath '$ORIGIN' "$library" 2>/dev/null || true; done
-"$bin_dir/gdal" raster polygonize --help >/dev/null 2>&1 || { echo "GDAL 3.11 o posterior con raster polygonize es requerido." >&2; exit 1; }
+if ! "$bin_dir/gdal" raster polygonize --help >/dev/null 2>&1; then
+  echo "GDAL 3.11 o posterior con raster polygonize es requerido." >&2
+  echo "GDAL de origen: $(gdal-config --version) ($(command -v gdal))" >&2
+  "$bin_dir/gdal" raster polygonize --help >&2 || true
+  exit 1
+fi
 
 for source in /usr/share/doc/gdal*/copyright /usr/share/doc/proj*/copyright; do
   test -f "$source" && cp "$source" "$license_dir/$(basename "$(dirname "$source")")-copyright"

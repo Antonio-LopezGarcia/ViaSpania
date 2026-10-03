@@ -23,6 +23,8 @@ is_system_runtime_library() {
 for tool in gdal-config projinfo ldd patchelf; do
   command -v "$tool" >/dev/null || { echo "Falta la herramienta requerida en Linux: $tool" >&2; exit 1; }
 done
+gdal_prefix="$(gdal-config --prefix)"
+export LD_LIBRARY_PATH="$gdal_prefix/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
 
 rm -rf "$bundle_dir"
 mkdir -p "$bin_dir" "$lib_dir" "$share_dir/gdal" "$share_dir/proj" "$license_dir"

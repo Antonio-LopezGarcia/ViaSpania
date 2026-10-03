@@ -3422,6 +3422,7 @@ fn elevation_warp_command(input: &Path, output: &Path, request: &RasterProcessRe
     // the negative sentinel for unsigned sources and preserves interpolated heights.
     // https://gdal.org/en/stable/programs/gdalwarp.html#cmdoption-gdalwarp-dstnodata
     command.env("GDAL_CACHEMAX", "64");
+    mdt_download::configure_ca_bundle(&mut command);
     command.args(["-wm", "64"]);
     if format == "COG" { command.args(["-co", "NUM_THREADS=1"]); }
     command.args([

@@ -46,6 +46,31 @@ impl WcsSource {
 }
 const MAX_SOURCE_CELLS: u64 = 100_000_000;
 
+/// Linux GDAL builds can retain the CA path from their build environment
+/// (for example, a temporary Conda runner path). Prefer a CA bundle installed
+/// by the user's distribution so HTTPS WCS requests work in the packaged app.
+pub(super) fn configure_ca_bundle(command: &mut Command) {
+    #[cfg(target_os = "linux")]
+    {
+        const SYSTEM_CA_BUNDLES: &[&str] = &[
+            "/etc/ssl/certs/ca-certificates.crt",
+            "/etc/pki/tls/certs/ca-bundle.crt",
+            "/etc/ssl/ca-bundle.pem",
+            "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem",
+        ];
+        if let Some(bundle) = SYSTEM_CA_BUNDLES
+            .iter()
+            .map(Path::new)
+            .find(|path| path.is_file())
+        {
+            // GDAL documents both options for its curl-backed HTTP access.
+            command
+                .env("CURL_CA_BUNDLE", bundle)
+                .env("SSL_CERT_FILE", bundle);
+        }
+    }
+}
+
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MdtDownloadRequest {
@@ -103,6 +128,7 @@ fn translate() -> Result<Command, NativeError> {
     command
         .env("GDAL_FORCE_CACHING", "YES")
         .env("GDAL_CACHEMAX", "64");
+    configure_ca_bundle(&mut command);
     Ok(command)
 }
 

@@ -35,11 +35,14 @@
       "evidence": [
         {
           "document": "docs/NATIVE_LICENSE_REVIEW.md",
-          "sha256": "d4eda09d0acb8788d5341ccefc315757e67de53c6b227f6b0c678be81b670cd1",
-          "basis": "Cierre residual PB-2 limitado al runtime macOS exacto: fuentes 1.22.2, cabeceras, Makefile/configure, símbolos y enlaces. Avisos conservados; reapertura automática si cambia el inventario nativo."
+          "sha256": "b20330f4549a054c7624dc9fefcabebff5471648899e349b8e11cfa92f39f301",
+          "basis": "Cierre residual PB-2 para el runtime macOS ARM64 exacto: revisión de fuentes 1.22.2 y adenda 0.3.0 que verifica el único Mach-O añadido y la identidad sin cambios de la cadena libgdal → libpq → Kerberos. Avisos conservados; reapertura automática si cambia el inventario nativo."
         },
         {
           "document": "docs/native-evidence/REVIEW.json"
+        },
+        {
+          "document": "docs/native-evidence/GDAL_CLI_ADDITION_0.3.0.json"
         }
       ]
     },
@@ -55,7 +58,7 @@
         },
         {
           "document": "docs/data-evidence/REVIEW.json",
-          "sha256": "39f4a2cb674f6b13754c3db4831a940d53282a067a27359388e8c92a038a7c21"
+          "sha256": "631306c639765d763f7892a9931817ecf3a9b9fe85c0bb6178a64563f7f9f9cc"
         },
         {
           "document": "docs/PROJ_DB_REVIEW.md"

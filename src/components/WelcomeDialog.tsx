@@ -1,4 +1,4 @@
-import {translateText} from '../core/i18n';
+import {setLanguage as applyLanguage, translateText, type AppLanguage} from '../core/i18n';
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import type { AppSettings } from '../core/appSettings';
 import { BUILD_INFO } from '../core/buildInfo';
@@ -12,7 +12,7 @@ export function WelcomeDialog({settings,onSave,onStartTutorial}:{settings:AppSet
   const progressMaskId=useId();
   const [open,setOpen]=useState(true);
   const [firstRun]=useState(()=>settings.firstRunCompleted!==true);
-  const [language,setLanguage]=useState(settings.language??'es');
+  const [language,setLanguage]=useState<AppLanguage>(settings.language??'es');
   const [startTutorial,setStartTutorial]=useState(settings.tutorialEnabled);
   const [error,setError]=useState(false);
   const dialogRef=useRef<HTMLDialogElement>(null),en=language==='en';
@@ -43,7 +43,7 @@ export function WelcomeDialog({settings,onSave,onStartTutorial}:{settings:AppSet
       <h1 id="welcome-title">{en?'Welcome to ViaSpania':translateText('Bienvenido a ViaSpania',language)}</h1>
       <p>{en?'Version':translateText('Versión',language)} {BUILD_INFO.version}</p>
       <p>Copyright © 2026 Antonio López García, Universidad de Granada</p>
-      {firstRun&&<><label>{translateText('Idioma / Language',language)}<select autoFocus value={language} onChange={event=>setLanguage(event.target.value as 'es'|'en'|'it')}><option value="es">Español</option><option value="en">English</option><option value="it">Italiano</option></select></label>
+      {firstRun&&<><label>{translateText('Idioma / Language',language)}<select autoFocus value={language} onChange={event=>{const selected=event.target.value as AppLanguage;setLanguage(selected);applyLanguage(selected)}}><option value="es">Español</option><option value="en">English</option><option value="it">Italiano</option></select></label>
       <label className="check"><input type="checkbox" checked={startTutorial} onChange={event=>setStartTutorial(event.target.checked)}/>{en?'Start the tutorial':translateText('Iniciar el tutorial',language)}</label></>}
       {!error&&<svg className="welcome-loading" viewBox="0 0 496 72" role="progressbar" aria-label={en?'Starting ViaSpania':translateText('Iniciando ViaSpania',language)}>
         <defs><mask id={progressMaskId} maskUnits="userSpaceOnUse" x="0" y="0" width="496" height="72">

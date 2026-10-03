@@ -271,6 +271,7 @@
   "La geometría seleccionada no es válida": "The selected geometry is invalid",
   "La geometría seleccionada está vacía": "The selected geometry is empty",
   "No se pudo generar el contorno de la selección": "Could not generate the selection boundary",
+  "No se encontró el poligonizador GDAL incluido para generar el contorno": "The bundled GDAL polygonizer could not be found to generate the boundary",
   "Los parámetros de selección de celdas no son válidos": "The cell selection parameters are invalid",
   "Las coordenadas geográficas del punto no son válidas": "The point’s geographic coordinates are invalid",
   "La malla 3D tiene un tamaño inesperado": "The 3D mesh has an unexpected size",

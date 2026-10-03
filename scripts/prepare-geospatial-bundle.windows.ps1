@@ -4,7 +4,7 @@ $bundleDir = Join-Path $rootDir 'src-tauri/resources/geospatial'
 $binDir = Join-Path $bundleDir 'bin'
 $shareDir = Join-Path $bundleDir 'share'
 $licenseDir = Join-Path $bundleDir 'licenses'
-$commands = @('gdalinfo', 'gdalwarp', 'gdal_translate', 'gdaldem', 'gdalsrsinfo', 'gdaltransform', 'gdallocationinfo', 'ogr2ogr', 'proj')
+$commands = @('gdal', 'gdalinfo', 'gdalwarp', 'gdal_translate', 'gdaldem', 'gdalsrsinfo', 'gdaltransform', 'gdallocationinfo', 'ogr2ogr', 'proj')
 
 if (Test-Path $bundleDir) { Remove-Item -Recurse -Force $bundleDir }
 New-Item -ItemType Directory -Force $binDir, (Join-Path $shareDir 'gdal'), (Join-Path $shareDir 'proj'), $licenseDir | Out-Null
@@ -27,6 +27,10 @@ if (-not (Test-Path $projData)) { throw 'No se encontró PROJ_DATA. Defina la va
 Copy-Item "$gdalData/*" (Join-Path $shareDir 'gdal') -Recurse
 Get-ChildItem (Join-Path $shareDir 'gdal') -Include 'GDALLogo*.svg','gdalicon.png' -Recurse -ErrorAction SilentlyContinue | Remove-Item -Force
 Copy-Item "$projData/*" (Join-Path $shareDir 'proj') -Recurse
+$env:GDAL_DATA = Join-Path $shareDir 'gdal'
+$env:PROJ_DATA = Join-Path $shareDir 'proj'
+& (Join-Path $binDir 'gdal.exe') raster polygonize --help *> $null
+if ($LASTEXITCODE -ne 0) { throw 'La distribución requiere GDAL 3.11 o posterior, con el comando raster polygonize.' }
 
 $condaPrefix = Split-Path -Parent (Split-Path -Parent $sourceBin)
 $condaPackages = conda list --prefix $condaPrefix --json | ConvertFrom-Json

@@ -7,7 +7,7 @@ bin_dir="$bundle_dir/bin"
 lib_dir="$bundle_dir/lib"
 share_dir="$bundle_dir/share"
 license_dir="$bundle_dir/licenses"
-commands=(gdalinfo gdalwarp gdal_translate gdaldem gdalsrsinfo gdaltransform gdallocationinfo ogrinfo ogr2ogr proj)
+commands=(gdal gdalinfo gdalwarp gdal_translate gdaldem gdalsrsinfo gdaltransform gdallocationinfo ogrinfo ogr2ogr proj)
 
 is_system_runtime_library() {
   case "$(basename "$1")" in
@@ -33,7 +33,6 @@ for name in "${commands[@]}"; do
   cp "$(realpath "$source_path")" "$bin_dir/$name"
   chmod 755 "$bin_dir/$name"
 done
-
 cp -R "$(gdal-config --datadir)/." "$share_dir/gdal/"
 rm -f "$share_dir/gdal"/GDALLogo*.svg "$share_dir/gdal/gdalicon.png"
 proj_data="$(projinfo --searchpaths | tail -n 1)"
@@ -61,6 +60,7 @@ while test -s "$queue_file"; do
 done
 for executable in "$bin_dir"/*; do patchelf --set-rpath '$ORIGIN/../lib' "$executable"; done
 for library in "$lib_dir"/*; do patchelf --set-rpath '$ORIGIN' "$library" 2>/dev/null || true; done
+"$bin_dir/gdal" raster polygonize --help >/dev/null 2>&1 || { echo "GDAL 3.11 o posterior con raster polygonize es requerido." >&2; exit 1; }
 
 for source in /usr/share/doc/gdal*/copyright /usr/share/doc/proj*/copyright; do
   test -f "$source" && cp "$source" "$license_dir/$(basename "$(dirname "$source")")-copyright"

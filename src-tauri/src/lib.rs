@@ -1660,7 +1660,9 @@ fn select_elevation_region(
         return Err(NativeError::Gdal("Pulse sobre una celda dentro del MDT".into()));
     }
 
-    let directory = raster.with_extension(format!("magic-{}", uuid::Uuid::new_v4()));
+    // Keep intermediates under the user's temp directory rather than beside the
+    // source raster (which may be read-only, on a UNC share, or have a long path).
+    let directory = std::env::temp_dir().join(format!("viaspania-magic-{}", uuid::Uuid::new_v4()));
     std::fs::create_dir_all(&directory).map_err(|error| NativeError::Io(error.to_string()))?;
     struct TemporarySelection(PathBuf);
     impl Drop for TemporarySelection { fn drop(&mut self) { let _ = std::fs::remove_dir_all(&self.0); } }
@@ -1693,15 +1695,46 @@ fn select_elevation_region(
     let lower_y = origin_y + height as f64 * pixel_y;
     let right_x = origin_x + width as f64 * pixel_x;
     let executable = command_path("gdal_translate").ok_or_else(|| NativeError::Gdal("gdal_translate no está instalado".into()))?;
-    let output = Command::new(executable).env("GDAL_CACHEMAX", "64").args(["-of", "GTiff", "-a_srs", &raster_crs, "-a_ullr", &origin_x.to_string(), &upper_y.to_string(), &right_x.to_string(), &lower_y.to_string()]).arg(&mask_binary).arg(&mask_raster).output()
+    let output = Command::new(executable).env("GDAL_CACHEMAX", "64").args(["-of", "GTiff", "-a_nodata", "0", "-a_srs", &raster_crs, "-a_ullr", &origin_x.to_string(), &upper_y.to_string(), &right_x.to_string(), &lower_y.to_string()]).arg(&mask_binary).arg(&mask_raster).output()
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
     if !output.status.success() { return Err(NativeError::Gdal(String::from_utf8_lossy(&output.stderr).trim().into())); }
     let polygons = directory.join("region.geojson");
-    let executable = command_path("gdal_polygonize.py").or_else(|| command_path("gdal_polygonize"))
-        .ok_or_else(|| NativeError::Gdal("gdal_polygonize no está instalado".into()))?;
-    let output = Command::new(executable).args(["-mask"]).arg(&mask_raster).args(["-f", "GeoJSON"]).arg(&mask_raster).arg(&polygons).arg("region").arg("value").output()
-        .map_err(|error| NativeError::Gdal(error.to_string()))?;
-    if !output.status.success() { return Err(NativeError::Gdal(String::from_utf8_lossy(&output.stderr).trim().into())); }
+    // GDAL 3.11+ exposes polygonization in its native CLI, which is bundled
+    // with the rest of GDAL. This avoids the legacy Python gdal_polygonize.py
+    // utility and its unbundled Python/GDAL bindings dependency on Windows.
+    let polygonizer = command_path("gdal");
+    #[cfg(target_os = "macos")]
+    let polygonizer = polygonizer.or_else(|| {
+        command_path("gdal_polygonize.py").or_else(|| command_path("gdal_polygonize"))
+    });
+    let polygonizer = polygonizer.ok_or_else(|| {
+        NativeError::Gdal(
+            "No se encontró el poligonizador GDAL incluido para generar el contorno".into(),
+        )
+    })?;
+    let output = if polygonizer.file_stem().is_some_and(|name| name == "gdal_polygonize" || name == "gdal_polygonize.py") {
+        // Compatibility with older macOS bundles which predate the unified GDAL CLI.
+        Command::new(polygonizer)
+            .args(["-mask"])
+            .arg(&mask_raster)
+            .args(["-f", "GeoJSON"])
+            .arg(&mask_raster)
+            .arg(&polygons)
+            .args(["region", "value"])
+            .output()
+    } else {
+        Command::new(polygonizer)
+            .args(["raster", "polygonize", "-q", "-f", "GeoJSON", "--attribute-name", "value", "--output-layer", "region"])
+            .arg(&mask_raster)
+            .arg(&polygons)
+            .output()
+    }
+    .map_err(|error| NativeError::Gdal(format!("No se pudo iniciar GDAL para poligonizar la máscara: {error}")))?;
+    if !output.status.success() {
+        let diagnostic = String::from_utf8_lossy(&output.stderr).trim().to_owned();
+        let diagnostic = if diagnostic.is_empty() { String::from_utf8_lossy(&output.stdout).trim().to_owned() } else { diagnostic };
+        return Err(NativeError::Gdal(format!("GDAL no pudo poligonizar la máscara (código {:?}): {}", output.status.code(), if diagnostic.is_empty() { "sin detalles adicionales" } else { &diagnostic })));
+    }
     let geographic = directory.join("region-wgs84.geojson");
     let executable = command_path("ogr2ogr").ok_or_else(|| NativeError::Gdal("ogr2ogr no está instalado".into()))?;
     let mut transform = Command::new(executable);

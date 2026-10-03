@@ -7,7 +7,7 @@ bin_dir="$bundle_dir/bin"
 lib_dir="$bundle_dir/lib"
 share_dir="$bundle_dir/share"
 license_dir="$bundle_dir/licenses"
-commands=(gdalinfo gdalwarp gdal_translate gdaldem gdalsrsinfo gdaltransform gdallocationinfo ogr2ogr proj)
+commands=(gdal gdalinfo gdalwarp gdal_translate gdaldem gdalsrsinfo gdaltransform gdallocationinfo ogr2ogr proj)
 
 for tool in otool install_name_tool codesign brew node; do
   command -v "$tool" >/dev/null || { echo "Falta la herramienta de macOS: $tool" >&2; exit 1; }
@@ -25,7 +25,6 @@ for name in "${commands[@]}"; do
   cp "$(realpath "$source_path")" "$bin_dir/$name"
   chmod 755 "$bin_dir/$name"
 done
-
 cp -R "$(gdal-config --datadir)/." "$share_dir/gdal/"
 rm -f "$share_dir/gdal"/GDALLogo*.svg "$share_dir/gdal/gdalicon.png"
 proj_data="$(projinfo --searchpaths | tail -n 1)"
@@ -100,6 +99,7 @@ for library in "$lib_dir"/*; do
   install_name_tool -add_rpath '@loader_path' "$library" 2>/dev/null || true
   codesign --force --sign - "$library" >/dev/null 2>&1
 done
+"$bin_dir/gdal" raster polygonize --help >/dev/null 2>&1 || { echo "GDAL 3.11 o posterior con raster polygonize es requerido." >&2; exit 1; }
 
 gdal_prefix="$(cd "$(dirname "$(realpath "$(command -v gdalinfo)")")/.." && pwd)"
 proj_prefix="$(cd "$(dirname "$(realpath "$(command -v proj)")")/.." && pwd)"

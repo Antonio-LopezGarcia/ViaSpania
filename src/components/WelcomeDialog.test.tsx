@@ -46,6 +46,24 @@ it('muestra la identidad y la versión real y conserva el idioma al reiniciar',(
   expect(getLanguage()).toBe('en');
 });
 
+it.each([
+  ['es','Bienvenido a ViaSpania'],
+  ['en','Welcome to ViaSpania'],
+  ['it','Benvenuto in ViaSpania'],
+] as const)('permite elegir %s en una instalación nueva, lo aplica y lo conserva tras reiniciar', (language,title)=>{
+  const view=render(<StrictMode><Startup/></StrictMode>);
+  fireEvent.change(screen.getByRole('combobox'),{target:{value:language}});
+  expect(getLanguage()).toBe(language);
+  expect(screen.getByRole('dialog',{name:title})).toBeTruthy();
+  fireEvent.click(screen.getByRole('button',{name:language==='en'?'Continue':language==='it'?'Continua':'Continuar'}));
+  expect(loadAppSettings()).toMatchObject({language,firstRunCompleted:true});
+  view.unmount();
+  render(<StrictMode><Startup/></StrictMode>);
+  expect(getLanguage()).toBe(language);
+  act(()=>vi.advanceTimersByTime(5000));
+  expect(getLanguage()).toBe(language);
+});
+
 it('inicia el tutorial elegido y no lo reabre al reiniciar aunque quede incompleto',()=>{
   const view=render(<Startup/>);
   fireEvent.click(screen.getByRole('button',{name:'Continuar'}));

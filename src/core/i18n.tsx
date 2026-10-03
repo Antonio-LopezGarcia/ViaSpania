@@ -62,6 +62,8 @@ const exact:Record<string,string>={
 };
 const replacements:readonly (readonly [RegExp,string])[]=[
  [/^(.+), autoguardado$/g,'$1, autosaved'],
+ [/^No se pudo iniciar GDAL para poligonizar la máscara: (.*)$/g,'Could not start GDAL to polygonize the mask: $1'],
+ [/^GDAL no pudo poligonizar la máscara \(código (.*)\): (.*)$/g,'GDAL could not polygonize the mask (code $1): $2'],
  ...reviewedPatterns,
  [/^Eliminar punto (\d+)$/g,'Delete point $1'],
  [/Tobler por caminos/g,'Tobler on paths'],[/Tobler campo a través/g,'Tobler off-path'],[/Pandolf corregido para descenso/g,'Pandolf corrected for descent'],[/Vehículo con pendiente crítica/g,'Vehicle with critical slope'],

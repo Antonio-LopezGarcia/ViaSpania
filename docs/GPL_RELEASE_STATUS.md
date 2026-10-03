@@ -1,8 +1,16 @@
-> Estado vigente 2026-09-11: candidato 0.2.2 en preparación para GitHub como borrador; expediente con 823 componentes. Las revisiones de fuentes correspondientes y de datos/exportaciones están cerradas para los hashes inventariados. No se declara publicación hasta regenerar y verificar los artefactos finales.
+> Estado vigente 2026-10-03: candidato ViaSpania 0.3.0, aún no publicado. Las cinco revisiones de `docs/RELEASE_DECISIONS.json` constan como resueltas; el control estricto informó cero revisiones pendientes. Este control no equivale a certificación jurídica. El candidato se publica solo después de comprobar los artefactos finales y ofrecer las fuentes correspondientes.
 
-# Estado de preparación GPL de ViaSpania 0.2.1
+# Estado de preparación GPL de ViaSpania 0.3.0 y registro histórico de 0.2.1
 
-## Resultado actual
+## Candidato 0.3.0
+
+El cierre PB-2 para macOS ARM64 incluye la revisión incremental del ejecutable GDAL unificado, documentada en [NATIVE_LICENSE_REVIEW.md](NATIVE_LICENSE_REVIEW.md) y `docs/native-evidence/GDAL_CLI_ADDITION_0.3.0.json`. El inventario conserva los 196 binarios revisados y añade `bin/gdal`; la cadena dinámica relevante para Kerberos no cambió.
+
+El build macOS ARM64 se generó con `compliance:build`; la `.app` pasó la inspección del inventario y avisos (1.026 archivos) y `hdiutil verify` validó la DMG. El paquete de fuentes correspondiente supera 2 GiB y se divide en las partes descritas en `release/SOURCE_ARTIFACT_PARTS.json`; su hash completo se registra en `release/SOURCE_ARTIFACT.json`. Los artefactos son candidatos vinculados al commit de 0.3.0; esta nota no declara aún publicada la release ni certifica por sí sola el cumplimiento jurídico.
+
+## Registro histórico del candidato 0.2.1
+
+### Resultado
 
 PB-2 (alcance residual de Kerberos) está resuelto para el runtime macOS exacto, con avisos conservados y reapertura si cambian los binarios: [NATIVE_LICENSE_REVIEW.md](NATIVE_LICENSE_REVIEW.md). Estos nuevos avisos/evidencias requieren incorporarse al próximo build y paquete de fuentes; los artefactos siguientes son históricos.
 
@@ -16,7 +24,7 @@ La evidencia distingue declaraciones/cabeceras originales de textos estándar SP
 
 El expediente reúne 819 componentes, 839 archivos originales de paquetes/fuentes y material de declaración/licencia para los 819 componentes. Esto no implica que todos estén incluidos en macOS, ni que los archivos originales npm con herramientas binarias sean su código fuente preferido para modificaciones.
 
-## Verificación y candidato local
+### Verificación y candidato local
 
 - 360 tests de la aplicación y 7 del colector superados. La primera ejecución de la aplicación tuvo timeouts simultáneos; la repetición completa pasó sin cambiar tests ni sus límites.
 - Build web y build macOS correctos. Créditos y los recursos de licencias incluyen las selecciones.
@@ -27,14 +35,14 @@ El expediente reúne 819 componentes, 839 archivos originales de paquetes/fuente
 
 El ejecutable principal usa GDAL/PROJ mediante subprocess; la app sí distribuye el runtime geoespacial y sus dependencias dinámicas. Mantener esta distinción no elimina las obligaciones sobre esos binarios distribuidos.
 
-## Dos revisiones que siguen abiertas
+### Revisiones abiertas en el estado histórico 0.2.1
 
 - REQUIERE REVISIÓN: Cerrar recursos auxiliares de builds nativos y verificar reconstrucción desde las fuentes suministradas.
 - REQUIERE REVISIÓN: Revisar términos de proj.db, rejillas y exportaciones según DATA_NOTICES.txt.
 
 Estas cuestiones no se resuelven escogiendo MIT. Deben cerrarse con evidencia en [RELEASE_DECISIONS.json](RELEASE_DECISIONS.json). El control estricto de publicación continúa fallando por esas dos revisiones, no por los nueve casos ya resueltos. Se mantiene GPL-3.0-only para el código propio; no se certifica todavía toda la distribución.
 
-## Artefactos locales
+### Artefactos históricos
 
 - Inventario: `release/compliance/MANIFEST.json`; pendientes: `release/compliance/STATUS.md`.
 - Inspección: `release/APP_INSPECTION.json`; hashes: `release/ARTIFACTS.json`.

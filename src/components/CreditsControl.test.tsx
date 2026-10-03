@@ -4,8 +4,16 @@ import {afterEach,describe,expect,it} from 'vitest';
 import {CreditsControl} from './CreditsControl';
 import {setLanguage} from '../core/i18n';
 import {BUILD_INFO} from '../core/buildInfo';
+import {SOFTWARE_CREDITS} from '../core/credits';
 afterEach(()=>{cleanup();setLanguage('es')});
 describe('CreditsControl',()=>{it('muestra los avisos de licencia y la financiación al final, sin la tarjeta de compilación',()=>{render(<CreditsControl/>);fireEvent.click(screen.getByRole('button',{name:'Créditos'}));expect(screen.queryByRole('region',{name:'Compilación en ejecución'})).toBeNull();expect(screen.getByRole('link',{name:/Aviso completo/}).getAttribute('href')).toBe('/LICENSE.txt');expect(screen.getByRole('link',{name:/Avisos completos/}).getAttribute('href')).toBe('/THIRD_PARTY_NOTICES.txt');expect(screen.getByText(/Las exportaciones Copernicus GLO-30/)).toBeTruthy();const funding=screen.getByRole('region',{name:'Financiación institucional'});expect(funding.nextElementSibling).toBeNull()});});
+
+it('renders component credits in the canonical source order',()=>{
+  render(<CreditsControl/>);
+  fireEvent.click(screen.getByRole('button',{name:'Créditos'}));
+  const rows=[...document.querySelectorAll('.credits-dialog table tbody tr')];
+  expect(rows.map(row=>row.querySelector('td')?.textContent)).toEqual(SOFTWARE_CREDITS.map(([name])=>name));
+});
 
 it.each([
   ['es', 'Financiación institucional', 'Este programa es resultado de la ayuda RYC2022-037730-I financiada por MICIU/AEI/10.13039/501100011033 y por ESF+.'],

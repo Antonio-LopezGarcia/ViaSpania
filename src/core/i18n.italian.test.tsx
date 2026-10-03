@@ -16,7 +16,18 @@ it('traduce italiano y permite pasar por los tres idiomas con atributos y SVG',(
 it('persiste italiano y traduce avisos fuera del DOM sin modificar rutas',()=>{
  saveAppSettings({...DEFAULT_APP_SETTINGS,language:'it'});setLanguage(loadAppSettings().language!);expect(getLanguage()).toBe('it');expect(translateText('Punto 3 seleccionado')).toBe('Punto 3 selezionato');expect(translateText('Proyecto guardado en /tmp/Ruta de España $&.json')).toBe('Progetto salvato in /tmp/Ruta de España $&.json');
 });
+it('traduce el panel de actualización y conserva intactos los identificadores de compilación',()=>{
+ setLanguage('it');
+ expect(translateText('Actualización')).toBe('Aggiornamento');
+ expect(translateText('Versión')).toBe('Versione');
+ expect(translateText('Build exacto')).toBe('Identificativo build');
+ expect(translateText('Commit')).toBe('Commit');
+ expect(translateText('Compilado')).toBe('Compilato');
+ expect(translateText(' · cambios locales')).toBe(' · modifiche locali');
+ expect(translateText('Comprobar actualizaciones')).toBe('Controlla gli aggiornamenti');
+ expect(translateText('No se ha encontrado ninguna versión más reciente de ViaSpania.')).toBe('Non è stata trovata una versione di ViaSpania più recente.');
+});
 it('previsualiza italiano en la bienvenida antes de guardar la preferencia',()=>{
  vi.useFakeTimers();const save=vi.fn();setLanguage('es');render(<WelcomeDialog settings={DEFAULT_APP_SETTINGS} onSave={save} onStartTutorial={vi.fn()}/>);
- fireEvent.change(screen.getByRole('combobox'),{target:{value:'it'}});expect(screen.getByRole('heading',{name:'Benvenuto in ViaSpania'})).toBeTruthy();expect(getLanguage()).toBe('es');fireEvent.click(screen.getByRole('button',{name:'Continua'}));expect(save).toHaveBeenCalledWith(expect.objectContaining({language:'it',firstRunCompleted:true}));
+ fireEvent.change(screen.getByRole('combobox'),{target:{value:'it'}});expect(screen.getByRole('heading',{name:'Benvenuto in ViaSpania'})).toBeTruthy();expect(getLanguage()).toBe('it');fireEvent.click(screen.getByRole('button',{name:'Continua'}));expect(save).toHaveBeenCalledWith(expect.objectContaining({language:'it',firstRunCompleted:true}));
 });

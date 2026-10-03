@@ -14,6 +14,9 @@ describe('composición cartográfica del visor 3D',()=>{
 });
 
 describe('resolución de la textura 3D',()=>{
+ it('dimensiona un extent Web Mercator en metros sin volver a proyectarlo',()=>{
+  expect(terrainTextureSize([-400000,4800000,-390000,4810000])).toEqual({width:4096,height:4096});
+ });
  it('genera detalle 4K manteniendo la proporción del terreno',()=>{
   expect(terrainTextureSize([0,0,2000,1000])).toEqual({width:4096,height:2048});
   expect(terrainTextureSize([0,0,1000,2000])).toEqual({width:2048,height:4096});

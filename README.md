@@ -20,6 +20,16 @@ ViaSpania es una aplicación de escritorio para analizar costes de desplazamient
 - Proyectos JSON locales, importación de puntos CSV/GeoJSON, exportaciones vectoriales y ráster y compositor de informes PDF con atribución de fuentes.
 - Terreno 3D interactivo con superposición de resultados y exportación de animaciones.
 
+### Novedades de v0.3.0 (desde v0.2.4)
+
+Esta versión reúne las correcciones y mejoras revisadas desde la publicación de v0.2.4. Es un candidato en desarrollo; aún no se ha publicado.
+
+- **Máscara marítima y GDAL.** Se corrige la generación de máscaras en distintos sistemas: los temporales se guardan en la carpeta temporal del usuario, se excluyen los píxeles de fondo al poligonizar y se muestran diagnósticos útiles si GDAL falla. Los paquetes incluyen y comprueban el comando de poligonización de GDAL; el flujo de CI prepara GDAL también en Linux y verifica la máscara en Windows.
+- **Textura de terreno 3D.** Se corrige el uso de los límites proyectados del terreno, que antes se trataban por error como coordenadas geográficas y podían colapsar la textura.
+- **Visor 3D.** Se sincronizan la aguja y la lectura numérica del indicador de inclinación de cámara, también al volver a cero.
+- **Inicio y localización.** El idioma elegido en la bienvenida se aplica inmediatamente al resto de la interfaz. Se ajusta la traducción italiana de «Crear máscara».
+- **Créditos e interfaz.** La tabla de componentes usa un catálogo canónico ordenado. Se sustituye el ancla emoji de la herramienta marítima por un icono vectorial legible en los distintos sistemas.
+
 ### Novedades de v0.2.4 (desde v0.2.2)
 
 Esta versión reúne los cambios posteriores a v0.2.2. La versión 0.2.4 ya está publicada; descarga los instaladores desde [GitHub Releases v0.2.4](https://github.com/Antonio-LopezGarcia/ViaSpania/releases/tag/v0.2.4).
@@ -160,6 +170,16 @@ ViaSpania is a desktop application for terrain-based least-cost analysis, route 
 - Editable barriers, preferred corridors, bridges/crossings and points of interest, including mandatory visits.
 - Local JSON projects, CSV/GeoJSON point import, vector and raster exports, and a PDF report composer with source attribution.
 - Interactive 3D terrain with analytical overlays and animation exports.
+
+### What's new in v0.3.0 (since v0.2.4)
+
+This version collects the fixes and improvements reviewed since v0.2.4 was published. It is a development candidate and has not been released.
+
+- **Marine masks and GDAL.** Mask generation is made more reliable across platforms: temporary files go in the user's temporary directory, background pixels are excluded from polygonization, and GDAL failures return useful diagnostics. Bundles include and check GDAL's polygonization command; CI prepares GDAL on Linux and verifies mask polygonization on Windows.
+- **3D terrain texture.** The terrain's projected bounds are no longer misread as geographic coordinates, which could collapse the texture.
+- **3D viewer.** The camera inclination needle and numeric reading stay synchronized, including when returning to zero.
+- **Startup and localization.** The language selected in the welcome dialog is applied immediately across the interface. The Italian translation for “Create mask” is refined.
+- **Credits and interface.** The component table uses a canonical ordered catalogue. The marine tool's emoji anchor is replaced with a vector icon that renders consistently across platforms.
 
 ### What's new in v0.2.4 (since v0.2.2)
 

@@ -38,7 +38,7 @@ La aplicación sí incorpora tres manuales como contenido de ayuda (`manual.md`,
 
 ### Documentación activa o con consumidor directo
 
-- `README.md`: portada, instalación, estado público y enlaces. La versión actual contiene texto sobre cambios locales preparados para v0.2.4; retirarlo o actualizarlo al publicar la release.
+- `README.md`: portada, instalación, estado público y enlaces. La versión actual documenta el candidato v0.3.0; actualizar su estado y enlaces cuando se publique la release.
 - `docs/manual.md`, `docs/manual.en.md`, `docs/manual.it.md`: ayuda integrada. Los manuales español e inglés estaban modificados localmente durante esta auditoría; no se compararon esos cambios con el código ni se sobrescribieron.
 - `docs/VIDEO_EXPORT.md`, `docs/desktop-portability.md`, `docs/TRANSLATING_IT.md`, `docs/model-audit.md`: documentación de subsistemas y procesos concretos. Comprobar cifras y comandos al cambiar esos subsistemas.
 - `docs/ASSETS.md`, `docs/CODE_OWNERSHIP.md`, `docs/RELEASE_COMPLIANCE.md` y revisiones de licencia/fuentes/datos: expediente de distribución y decisiones declaradas. Aunque algunas páginas sean largas o específicas, no son restos sin uso.

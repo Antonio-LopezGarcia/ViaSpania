@@ -34,6 +34,12 @@
   vertical-align: -2px;
 }
 
+/* Keep this icon independent of native emoji color and button state colors. */
+.ocean-selection-tools .marine-anchor-icon {
+  color: #fff;
+  stroke: #fff;
+}
+
 .point-tools button.active,
 .area-tool.active {
   background: #d8ff55;

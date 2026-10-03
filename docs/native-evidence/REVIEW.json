@@ -3,6 +3,7 @@
   "sourceUrl": "https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz",
   "sourceSha256": "3243ffbc8ea4d4ac22ddc7dd2a1dc54c57874c40648b60ff97009763554eaf13",
   "reviewedRuntime": {
+    "bin/gdal": "a3064c034f7a0cf94370c16db4bb3a48af0fc1f9d361a70849e7edebab44d077",
     "bin/gdal_translate": "207ee8b7fdd32f66e3bb87b5043d39fc351a10aa54055feb536e0653e8ecc460",
     "bin/gdaldem": "242eb27ceb8254cbdc735770afaca3a51762a4eace0095f8e554e8aee1c435fe",
     "bin/gdalinfo": "68adc0f24a521533acb54488ea3641ea8e22ba3fd3ad3b4bd33f66585dad4115",

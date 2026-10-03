@@ -4,7 +4,7 @@ import {cleanup,fireEvent,render,screen,waitFor,within} from '@testing-library/r
 import * as THREE from 'three';
 import {MODELS} from '../core/costModels';
 import {comparisonRouteColor} from '../core/comparisonColors';
-import {formatDisplayedAngle,Terrain3D} from './Terrain3D';
+import {cameraInclinationFromDirection,formatDisplayedAngle,syncInclinationIndicator,Terrain3D} from './Terrain3D';
 const state=vi.hoisted(()=>({scene:null as import('three').Scene|null,created:0,started:vi.fn(),completeTexture:()=>{},failTexture:()=>{},frames:[] as {terrainColors:number[];contourColors:string[];labels:{text:string;position:number[];screen:number[];size:number[];visible:boolean;depthTest:boolean}[];leaders:number[][][];routes:number;markers:number[][];markerColors:string[];mapped:boolean;position:number[];width:number;height:number}[],saved:vi.fn(async()=>'/tmp/test.avi'),png:vi.fn(async()=>'/tmp/test.png'),compass:vi.fn(),profile:vi.fn()}));
 vi.mock('../services/exports',()=>({saveMediaExport:state.saved,savePngExport:state.png,startVideoExport:async(format:string)=>{state.started(format);return{append:async()=>{},finish:state.saved,cancel:async()=>{}}}}));
 vi.mock('../core/i18n',()=>({useLanguage:()=> 'es',translateText:(s:string)=>s}));
@@ -32,6 +32,15 @@ beforeEach(()=>{Object.defineProperty(HTMLDialogElement.prototype,'showModal',{c
 afterEach(()=>{cleanup();vi.restoreAllMocks();vi.unstubAllGlobals()});
 function beginVideoExport(format:'avi'|'mp4'='avi'){fireEvent.click(screen.getByRole('button',{name:'Exportar vídeo'}));const dialog=within(screen.getByRole('dialog'));if(format==='mp4')fireEvent.click(dialog.getByRole('radio',{name:/MP4/}));fireEvent.click(dialog.getByRole('button',{name:'Exportar'}))}
 describe('exportación del visor 3D',()=>{
+ it.each([0,2.5,45,85,-2.5,-45,-85])('mantiene la lectura y la aguja sincronizadas a %s°',angle=>{
+  const needle=document.createElement('i'),reading=document.createElement('span');
+  syncInclinationIndicator(needle,reading,angle);
+  expect(needle.style.transform).toBe(`translate(-50%, -50%) rotate(${angle}deg)`);
+  expect(reading.textContent).toBe(`${formatDisplayedAngle(angle)}°`);
+  expect(cameraInclinationFromDirection({x:0,y:-Math.sin(angle*Math.PI/180),z:-Math.cos(angle*Math.PI/180)})).toBeCloseTo(angle,10);
+  syncInclinationIndicator(needle,reading,0);
+  expect(needle.style.transform).toBe('translate(-50%, -50%) rotate(0deg)');
+ });
  it('abre la selección sin renderizar y cancelar no crea archivos',()=>{
   render(<Terrain3D mesh={mesh} points={[]} exaggeration={1} palette="terrain" onSnapshotReady={()=>{}} resetToken={0}/>);
   fireEvent.click(screen.getByRole('button',{name:'Exportar vídeo'}));

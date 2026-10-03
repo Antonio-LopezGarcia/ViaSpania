@@ -6,30 +6,7 @@ import '../exchange-export.css';
 import '../credits-build.css';
 import '../credits-sources.css';
 import {useLanguage,translateText} from '../core/i18n';
-
-const software:[string,string,string][]=[
-  ['React, React DOM y Scheduler','React, React DOM and Scheduler','MIT'],['OpenLayers','OpenLayers','BSD-2-Clause'],['Three.js','Three.js','MIT'],['jsPDF y sus componentes de renderizado','jsPDF and its rendering components','MIT y licencias compatibles'],
-  ['GeoTIFF.js y códecs raster','GeoTIFF.js and raster codecs','MIT, Apache-2.0, BSD, Zlib y CC0'],['API JavaScript de Tauri y Dialog','Tauri and Dialog JavaScript APIs','Apache-2.0 OR MIT'],
-  ['base64 0.22.1 (Rust)','base64 0.22.1 (Rust)','MIT'],
-  ['futures-util 0.3.34 (Rust)','futures-util 0.3.34 (Rust)','MIT'],
-  ['reqwest 0.12.28 (Rust)','reqwest 0.12.28 (Rust)','MIT'],
-  ['serde 1.0.229 (Rust)','serde 1.0.229 (Rust)','MIT'],
-  ['serde_json 1.0.151 (Rust)','serde_json 1.0.151 (Rust)','MIT'],
-  ['tauri 2.11.5 (Rust)','tauri 2.11.5 (Rust)','MIT'],
-  ['tauri-plugin-dialog 2.7.2 (Rust)','tauri-plugin-dialog 2.7.2 (Rust)','MIT'],
-  ['thiserror 2.0.20 (Rust)','thiserror 2.0.20 (Rust)','MIT'],
-  ['tokio 1.53.1 (Rust)','tokio 1.53.1 (Rust)','MIT'],
-  ['url 2.5.8 (Rust)','url 2.5.8 (Rust)','MIT'],
-  ['uuid 1.24.1 (Rust)','uuid 1.24.1 (Rust)','MIT'],
-  ['@napi-rs/lzma-linux-x64-gnu 1.5.1 (build Linux)','@napi-rs/lzma-linux-x64-gnu 1.5.1 (Linux build)','MIT'],
-  ['lerc 3.0.0','lerc 3.0.0','Apache-2.0'],
-  ['stackback 0.0.2 (tests)','stackback 0.0.2 (tests)','MIT; formatstack.js: BSD-3-Clause'],
-  ['libappindicator-sys 0.9.0 (Linux)','libappindicator-sys 0.9.0 (Linux)','MIT'],
-  ['r-efi 5.3.0 y 6.0.0 (UEFI)','r-efi 5.3.0 and 6.0.0 (UEFI)','MIT'],
-  ['selectors 0.36.1','selectors 0.36.1','MPL-2.0; GPL-3.0-only vía §3.3'],
-  ['winapi-i686/x86_64-pc-windows-gnu 0.4.0 (Windows)','winapi-i686/x86_64-pc-windows-gnu 0.4.0 (Windows)','MIT'],
-  ['Dependencias transitivas Rust','Transitive Rust dependencies','MIT, Apache-2.0, MPL-2.0, ISC, Unicode-3.0, CDLA-Permissive-2.0…'],['GDAL','GDAL','MIT/X'],['PROJ','PROJ','MIT'],
-];
+import {SOFTWARE_CREDITS} from '../core/credits';
 
 export function CreditsControl(){
   const [open,setOpen]=useState(false),[linkError,setLinkError]=useState(''),language=useLanguage(),en=language==='en';
@@ -46,7 +23,7 @@ export function CreditsControl(){
       <p>{en?'ViaSpania preserves attributions and licence notices. Scientific formulae are cited in each profile and in the manual.':translateText('ViaSpania conserva atribuciones y avisos de licencia. Las fórmulas científicas se citan en cada perfil y en el manual.',language)}</p>
       <p><a href="/THIRD_PARTY_NOTICES.txt" target="_blank" rel="noreferrer" onClick={openResource('THIRD_PARTY_NOTICES.txt')}>{en?'Complete production dependency notices':translateText('Avisos completos de dependencias de producción',language)} ↗</a></p>
       <p>{en?'MIT is the licence used for the eleven direct Rust dependencies listed above. Transitive dependencies retain their own licences; the complete notices include the selected MIT texts.':translateText('MIT es la licencia utilizada para las once dependencias directas Rust indicadas. Las dependencias transitivas conservan sus propias licencias; los avisos completos incluyen los textos MIT seleccionados.',language)}</p>
-      <table><thead><tr><th>{en?'Component':translateText('Componente',language)}</th><th>{en?'Licence':translateText('Licencia',language)}</th></tr></thead><tbody>{software.map(([name,nameEn,license])=><tr key={name}><td>{en?nameEn:name}</td><td>{license}</td></tr>)}</tbody></table>
+      <table><thead><tr><th>{en?'Component':translateText('Componente',language)}</th><th>{en?'Licence':translateText('Licencia',language)}</th></tr></thead><tbody>{SOFTWARE_CREDITS.map(([name,nameEn,license])=><tr key={name}><td>{en?nameEn:name}</td><td>{license}</td></tr>)}</tbody></table>
       <section className="credits-funding" aria-label={en?'Institutional funding':translateText('Financiación institucional',language)}>
         <h3>{en?'Institutional funding':translateText('Financiación institucional',language)}</h3>
         <p>{en?'This application is a result of the grant RYC2022-037730-I funded by MICIU/AEI/10.13039/501100011033 and by ESF+.':translateText('Este programa es resultado de la ayuda RYC2022-037730-I financiada por MICIU/AEI/10.13039/501100011033 y por ESF+.',language)}</p>

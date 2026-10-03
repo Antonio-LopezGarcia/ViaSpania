@@ -6,7 +6,6 @@ import OSM from 'ol/source/OSM';
 import TileWMS from 'ol/source/TileWMS';
 import WMTS from 'ol/source/WMTS';
 import WMTSTileGrid from 'ol/tilegrid/WMTS';
-import { transformExtent } from 'ol/proj';
 import { COPERNICUS_VHR_2021_LAYER, COPERNICUS_VHR_2021_WMS } from './ogc';
 import {createExternalMapSource} from './externalMapLayers';
 import type {ExternalMapLayer} from '../core/externalMapLayers';
@@ -29,8 +28,10 @@ export function terrainTextureSize(extent:readonly number[]){
   return {width:Math.max(1,Math.round(dx*scale)),height:Math.max(1,Math.round(dy*scale))};
 }
 
-export async function createTerrainTexture(id:'none'|TerrainTextureId,wgs84Extent:[number,number,number,number],externalLayers:readonly ExternalMapLayer[]=[]){
-  const projected=transformExtent(wgs84Extent,'EPSG:4326','EPSG:3857'),{width,height}=terrainTextureSize(projected);
+export async function createTerrainTexture(id:'none'|TerrainTextureId,projectedExtent3857:[number,number,number,number],externalLayers:readonly ExternalMapLayer[]=[]){
+  // The terrain mesh already supplies EPSG:3857 bounds. Reprojecting those metre
+  // coordinates as if they were longitude/latitude collapses/clamps the extent.
+  const projected=projectedExtent3857,{width,height}=terrainTextureSize(projected);
   const target=document.createElement('div');target.style.cssText=`position:fixed;left:-12000px;top:0;width:${width}px;height:${height}px`;document.body.appendChild(target);
   const plan=terrainTextureLayerPlan(id,externalLayers),layers:TileLayer[]=plan.map(item=>new TileLayer({source:item.external?createExternalMapSource(item.external):source(id as TerrainTextureId),opacity:item.opacity}));if(!layers.length)throw new Error('Seleccione al menos una capa cartográfica para preparar la textura 3D.');
   const map=new Map({target,layers,pixelRatio:1,view:new View({center:[0,0],zoom:2}),controls:[]});

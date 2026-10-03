@@ -4,6 +4,8 @@
 
 **PB-2 resuelto para el runtime macOS identificado en `native-evidence/REVIEW.json`: no se ha identificado una incompatibilidad residual de Kerberos que impida combinar este runtime con software GPLv3.** La conclusión está condicionada a conservar los avisos y las fuentes/licencias aplicables; no convierte Kerberos en MIT ni sustituye sus licencias.
 
+El cierre se amplió el 2026-10-03 para el runtime macOS ARM64 de ViaSpania 0.3.0 mediante [GDAL_CLI_ADDITION_0.3.0.json](native-evidence/GDAL_CLI_ADDITION_0.3.0.json): de los 197 binarios Mach-O actuales, los 196 ya revisados son byte-identical y el único añadido es `bin/gdal`. Ese CLI enlaza con el mismo `libgdal.39.dylib`; `libgdal`, `libpq` y la cadena Kerberos conservan exactamente sus hashes y UUID anteriores. La evidencia coteja el inventario empaquetado y la copia incluida en `.app`.
+
 Esta revisión cierra el problema residual de alcance señalado por la auditoría previa de los 85 proveedores nativos. No es una nueva certificación de todas las líneas de todos sus proyectos, ni cierra las revisiones separadas de datos y código fuente correspondiente. Tampoco se aplica a otro sistema operativo o a bibliotecas futuras.
 
 ## Identidad e integración reales
@@ -56,4 +58,4 @@ Los UUID, SHA-256, enlaces y tablas `nm -m` completas de esas cinco bibliotecas 
 
 Se combinaron hashes/UUID, dependencias Mach-O, símbolos definidos/importados, listas de objetos de Makefile, condiciones de configure y cabeceras de fuentes. No se dispone del mapa de enlace del build histórico de Homebrew ni se ha reconstruido Kerberos bit a bit. No se usa la mera ausencia de una cadena en un binario como prueba única de ausencia de código: se contrasta con su estructura de compilación y, en strptime, con la importación positiva de libSystem. La reconstrucción y el cierre de recursos de build siguen en la revisión separada de código fuente correspondiente.
 
-El resultado permite cerrar PB-2 sobre este runtime con las obligaciones anteriores. No autoriza todavía la release completa: permanecen las revisiones de datos y código fuente correspondiente.
+El resultado permite cerrar PB-2 sobre este runtime con las obligaciones anteriores. Por sí solo no autoriza la release completa: aún deben pasar los demás controles estrictos y la verificación final de los artefactos que se vayan a distribuir.

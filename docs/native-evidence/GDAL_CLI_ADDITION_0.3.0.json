@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "reviewedAt": "2026-10-03",
+  "scope": "PB-2 addendum for the GDAL unified CLI added to the ViaSpania macOS ARM64 runtime in 0.3.0",
+  "runtimeInventory": "src-tauri/resources/geospatial/compliance/NATIVE.json",
+  "comparison": {
+    "previousMachOFiles": 196,
+    "currentMachOFiles": 197,
+    "unchangedPreviousFiles": 196,
+    "addedFiles": [
+      {
+        "path": "bin/gdal",
+        "sha256": "a3064c034f7a0cf94370c16db4bb3a48af0fc1f9d361a70849e7edebab44d077",
+        "uuid": "72DB9F45-BBA8-3A83-B58F-336DC259C839",
+        "component": "native/gdal-3.13.2_1",
+        "linkedLibraries": [
+          "@rpath/libgdal.39.dylib",
+          "/usr/lib/libc++.1.dylib",
+          "/usr/lib/libSystem.B.dylib"
+        ]
+      }
+    ],
+    "changedPreviousFiles": []
+  },
+  "kerberosDependencyChain": [
+    {
+      "path": "lib/libgdal.39.dylib",
+      "sha256": "01316b7341b4f05fe3aaed8d5e11a513e599e216aff5138369533630558502dc",
+      "uuid": "21186460-4112-3010-B73C-A327D3F93182",
+      "component": "native/gdal-3.13.2_1"
+    },
+    {
+      "path": "lib/libpq.5.dylib",
+      "sha256": "03a78635a51e0d31179520cb7435bf8fc5ea1e71a3e5d3b435a246ec9f6f03a9",
+      "uuid": "54DEECFC-FD10-3211-B6EB-FDE1243D33A4",
+      "component": "native/libpq-18.6"
+    },
+    {
+      "path": "lib/libgssapi_krb5.2.2.dylib",
+      "sha256": "60c0973be1c0bdd1f27fcf4e84e24d2ea945a04b4517a43f8d4dc5562363ab4d",
+      "uuid": "3D8BB1A1-3C18-3AEC-83E2-F221243F0ED8",
+      "component": "native/krb5-1.22.2"
+    }
+  ],
+  "verification": [
+    "Compared every path and SHA-256 in the 0.2.4 reviewedRuntime map with the current macOS NATIVE.json: all 196 existing files are byte-identical; bin/gdal is the only addition.",
+    "otool -L confirms bin/gdal links to the existing libgdal.39.dylib and the macOS libc++/libSystem libraries.",
+    "otool -L confirms the unchanged libgdal -> libpq -> libgssapi_krb5 dependency chain; the hashes and UUIDs match the original PB-2 review.",
+    "The built ViaSpania.app contains byte-identical copies of bin/gdal and libgdal.39.dylib from the reviewed runtime inventory."
+  ],
+  "conclusion": "The new unified GDAL CLI introduces no changed or additional Kerberos-relevant libraries. For this exact macOS ARM64 runtime, the PB-2 conclusion remains applicable: the added executable uses the same reviewed libgdal and unchanged Kerberos dependency chain. This addendum does not extend the review to Windows, Linux, another runtime, or the complete release compliance decision."
+}

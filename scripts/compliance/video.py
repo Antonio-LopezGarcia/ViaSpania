@@ -119,7 +119,8 @@ def refresh_notices():
         for c in spec['components'])+'\n\nCompilación mínima estática, sin componentes nonfree ni bibliotecas externas autodetectadas. This software is based in part on the work of the Independent JPEG Group. Textos: compliance/VIDEO_LICENSES.txt. Fuentes exactas y receta: video/sources en la distribución.\n'
     for name in ['THIRD_PARTY_NOTICES.md', 'public/THIRD_PARTY_NOTICES.txt']:
         path = ROOT/name
-        path.write_text(path.read_text().split(marker)[0].rstrip()+'\n'+summary)
+        path.write_text(path.read_text(encoding='utf-8').split(marker)[0].rstrip()+'\n'+summary,
+                        encoding='utf-8')
     public = ROOT/'public/compliance'
     public.mkdir(parents=True, exist_ok=True)
-    (public/'VIDEO_LICENSES.txt').write_text(notices())
+    (public/'VIDEO_LICENSES.txt').write_text(notices(), encoding='utf-8')

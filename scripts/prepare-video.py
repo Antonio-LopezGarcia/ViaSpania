@@ -68,6 +68,10 @@ def main():
     # and need its POSIX spelling instead of Python's backslash paths.
     env['PKG_CONFIG_LIBDIR'] = (prefix/'lib/pkgconfig').as_posix()
     env['PKG_CONFIG_PATH'] = (prefix/'lib/pkgconfig').as_posix()
+    if os.name == 'nt':
+        # Do not make the bundled converter depend on DLLs from the MSYS2
+        # build environment. The app ships ffmpeg.exe, not the MinGW runtime.
+        env['LDFLAGS'] = (env.get('LDFLAGS', '')+' -static -static-libgcc').strip()
     configure_prefix = (subprocess.check_output(['cygpath', '-u', str(prefix)], text=True).strip()
                         if os.name == 'nt' else str(prefix))
     jobs = str(min(os.cpu_count() or 2, 8))

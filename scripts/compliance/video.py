@@ -44,6 +44,16 @@ def binary_identity(binary):
     return {'uuid': uuid[1], 'links': [line.strip() for line in links]}
 
 
+def validate_windows_dlls(dlls):
+    system = {'kernel32.dll', 'msvcrt.dll', 'ucrtbase.dll', 'advapi32.dll', 'bcrypt.dll',
+              'user32.dll', 'winmm.dll', 'ws2_32.dll', 'secur32.dll', 'shell32.dll', 'ole32.dll'}
+    external = sorted({name.lower() for name in dlls
+                       if name.lower() not in system and not name.lower().startswith('api-ms-win-')})
+    if external or not dlls:
+        detail = ', '.join(external) if external else 'no se encontraron imports'
+        raise ValueError('FFmpeg: DLL externa no inventariada: '+detail)
+
+
 def verify(resource=RESOURCE, signed=False):
     spec = json.loads(SPEC.read_text())
     manifest = json.loads((resource/'BUILD.json').read_text())
@@ -79,10 +89,7 @@ def verify(resource=RESOURCE, signed=False):
     elif platform.system() == 'Windows':
         headers = subprocess.check_output(['objdump', '-p', str(binary)], text=True)
         dlls = re.findall(r'DLL Name:\s*(\S+)', headers, re.I)
-        system = {'kernel32.dll', 'msvcrt.dll', 'ucrtbase.dll', 'advapi32.dll', 'bcrypt.dll',
-                  'user32.dll', 'winmm.dll', 'ws2_32.dll', 'secur32.dll', 'shell32.dll', 'ole32.dll'}
-        if not dlls or any(name.lower() not in system and not name.lower().startswith('api-ms-win-') for name in dlls):
-            raise ValueError('FFmpeg: DLL externa no inventariada')
+        validate_windows_dlls(dlls)
     else:
         raise ValueError('FFmpeg: falta revisión de dependencias dinámicas para esta plataforma')
     return manifest

@@ -4,7 +4,7 @@ import platform
 import tempfile
 import unittest
 from unittest.mock import patch
-from video import SPEC, validate_configuration, notices, verify
+from video import SPEC, validate_configuration, validate_windows_dlls, notices, verify
 
 
 class VideoComplianceTests(unittest.TestCase):
@@ -33,6 +33,13 @@ class VideoComplianceTests(unittest.TestCase):
         text = notices()
         for credit in ['Independent JPEG Group', 'x264 project', 'GNU GENERAL PUBLIC LICENSE', 'GNU LESSER GENERAL PUBLIC LICENSE']:
             self.assertIn(credit, text)
+
+    def test_windows_runtime_dlls_must_be_system_provided(self):
+        validate_windows_dlls(['KERNEL32.dll', 'api-ms-win-crt-runtime-l1-1-0.dll'])
+        with self.assertRaisesRegex(ValueError, 'libwinpthread-1.dll'):
+            validate_windows_dlls(['KERNEL32.dll', 'libwinpthread-1.dll'])
+        with self.assertRaisesRegex(ValueError, 'no se encontraron imports'):
+            validate_windows_dlls([])
 
     def test_binary_or_source_tampering_fails_before_execution(self):
         with tempfile.TemporaryDirectory() as directory:

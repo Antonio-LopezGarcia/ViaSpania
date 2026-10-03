@@ -18,8 +18,6 @@ Descargue el instalador adecuado desde [GitHub Releases](https://github.com/Anto
 | Windows | `-setup.exe` o `.msi` | Intel/AMD de 64 bits (`x64`) |
 | Linux | `.AppImage`, `.deb` o `.rpm` | Intel/AMD (`amd64`/`x86_64`) o ARM64 (`arm64`/`aarch64`), según el paquete |
 
-Los paquetes incluyen GDAL/PROJ. No necesita instalar Node.js, pnpm ni Rust. Windows requiere WebView2; Linux necesita WebKitGTK y bibliotecas compatibles. La disponibilidad de paquetes puede variar entre releases: consulte los **Assets** de la versión elegida.
-
 **macOS (aplicación no notarizada):** abra el DMG y arrastre ViaSpania a Aplicaciones. Si macOS bloquea la primera apertura, vaya a **Ajustes del Sistema → Privacidad y seguridad → Abrir igualmente** y confirme. Si la copia oficial continúa bloqueada por cuarentena, cierre la aplicación y ejecute `xattr -dr com.apple.quarantine "/Applications/ViaSpania.app"` en Terminal. Descargue una copia oficial nueva si macOS indica que está dañada; no omita avisos de malware ni desactive Gatekeeper globalmente. [Instrucciones de Apple](https://support.apple.com/es-es/102445).
 
 **Windows (instalador sin firma):** SmartScreen puede mostrar «Windows protegió su PC». Compruebe que descargó el instalador desde este repositorio y, si se ofrece, seleccione **Más información → Ejecutar de todas formas**. Si una política del dispositivo lo bloquea, consulte con su administrador; no desactive Defender ni SmartScreen. [Información de Microsoft sobre SmartScreen](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
@@ -40,10 +38,6 @@ sudo dnf install ./ViaSpania-VERSION-1.ARCH.rpm
 
 Si AppImage requiere FUSE, instale el soporte indicado por su distribución o use el paquete DEB/RPM. Linux puede requerir bibliotecas del sistema compatibles.
 
-### Soporte
-
-Informe errores en [GitHub Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues). Incluya la versión, sistema y arquitectura, pasos para reproducir el problema y el mensaje de error. Quite datos personales o sensibles de los archivos adjuntos. Contacto: [Antonio López García](mailto:antonio.lopez@ugr.es).
-
 ### Autoría, licencia y fuentes
 
 Copyright © 2026 Antonio López García, Universidad de Granada. ViaSpania se distribuye bajo [GNU GPL versión 3, solo](LICENSE). La licencia y los avisos de terceros se incluyen en el repositorio y en la aplicación: consulte [avisos de terceros](THIRD_PARTY_NOTICES.md) y los créditos para conocer las licencias, atribuciones y fuentes de software, datos y cartografía. Entre las fuentes cartográficas figuran © OpenStreetMap contributors (ODbL), IGN/CNIG y GeoNames; respete la atribución y condiciones de cada proveedor.
@@ -55,6 +49,11 @@ Consulte la página de cada [release](https://github.com/Antonio-LopezGarcia/Via
 Este programa es resultado de la ayuda RYC2022-037730-I, financiada por MICIU/AEI/10.13039/501100011033 y por ESF+.
 
 [Reconocimiento de financiación y fuentes oficiales](docs/funding.md).
+
+### Soporte
+
+Informe errores en [GitHub Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues). Incluya la versión, sistema y arquitectura, pasos para reproducir el problema y el mensaje de error. Quite datos personales o sensibles de los archivos adjuntos. Contacto: [Antonio López García](mailto:antonio.lopez@ugr.es).
+
 
 ## English
 
@@ -71,8 +70,6 @@ Download the appropriate installer from [GitHub Releases](https://github.com/Ant
 | macOS | `.dmg` | Apple Silicon (M1 or later) |
 | Windows | `-setup.exe` or `.msi` | 64-bit Intel/AMD (`x64`) |
 | Linux | `.AppImage`, `.deb` or `.rpm` | Intel/AMD (`amd64`/`x86_64`) or ARM64 (`arm64`/`aarch64`), depending on the package |
-
-Packages include GDAL/PROJ. You do not need Node.js, pnpm or Rust. Windows requires WebView2; Linux requires compatible WebKitGTK and system libraries. Package availability may vary by release; check the **Assets** for the version you choose.
 
 **macOS (application not notarized):** open the DMG and drag ViaSpania to Applications. If macOS blocks the first launch, go to **System Settings → Privacy & Security → Open Anyway** and confirm. If quarantine still blocks the official copy, quit the app and run `xattr -dr com.apple.quarantine "/Applications/ViaSpania.app"` in Terminal. Download a fresh official copy if macOS says the app is damaged; do not bypass malware alerts or disable Gatekeeper globally. [Apple instructions](https://support.apple.com/en-us/102445).
 
@@ -91,12 +88,7 @@ sudo apt install ./ViaSpania_VERSION_ARCH.deb
 # Distributions using DNF
 sudo dnf install ./ViaSpania-VERSION-1.ARCH.rpm
 ```
-
-Linux packages are not signed by a distribution authority; Linux does not use Apple notarization. If your system blocks an unsigned package, follow the method approved by your distribution or administrator. If AppImage requires FUSE, install the support recommended by your distribution or use the DEB/RPM package. Linux may require compatible system libraries.
-
-### Support
-
-Report issues on [GitHub Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues). Include the version, operating system and architecture, reproduction steps and error message. Remove personal or sensitive data from attachments. Contact: [Antonio López García](mailto:antonio.lopez@ugr.es).
+If AppImage requires FUSE, install the support recommended by your distribution or use the DEB/RPM package. Linux may require compatible system libraries.
 
 ### Authorship, licence and source credits
 
@@ -109,3 +101,7 @@ See each [release page](https://github.com/Antonio-LopezGarcia/ViaSpania/release
 This application is a result of grant RYC2022-037730-I, funded by MICIU/AEI/10.13039/501100011033 and ESF+.
 
 [Funding acknowledgement and official sources](docs/funding.md).
+
+### Support
+
+Report issues on [GitHub Issues](https://github.com/Antonio-LopezGarcia/ViaSpania/issues). Include the version, operating system and architecture, reproduction steps and error message. Remove personal or sensitive data from attachments. Contact: [Antonio López García](mailto:antonio.lopez@ugr.es).

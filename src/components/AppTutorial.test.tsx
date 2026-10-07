@@ -7,7 +7,7 @@ import { AppTutorial,WORKFLOW_STEPS } from './AppTutorial';
 afterEach(cleanup);
 describe('tutorial guiado',()=>{
   it('ordena las fases antes de los análisis y las salidas',()=>{
-    expect(WORKFLOW_STEPS.map(step=>step.title)).toEqual(['1. Crear o abrir un proyecto','2. Elegir el área','3. Cargar el terreno','4. Añadir los puntos','5. Calcular una ruta','6. Guardar o exportar']);
+    expect(WORKFLOW_STEPS.map(step=>step.title)).toEqual(['1. Crear o abrir un proyecto','2. Elegir el área','3. Cargar el terreno','4. Añadir puntos y condiciones de paso','5. Calcular una ruta','6. Guardar o exportar']);
     expect(WORKFLOW_STEPS.every(step=>step.titleEn&&step.textEn)).toBe(true);
   });
   it('se puede iniciar manualmente, avanzar y saltar a otro paso',()=>{

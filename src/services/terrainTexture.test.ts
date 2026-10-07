@@ -1,5 +1,6 @@
 import {describe,expect,it} from 'vitest';
-import {terrainTextureLayerPlan,terrainTextureSize} from './terrainTexture';
+import {terrainTextureLayerPlan,terrainTextureOptions,terrainTextureSize} from './terrainTexture';
+import {DEFAULT_APP_SETTINGS} from '../core/appSettings';
 import type {ExternalMapLayer} from '../core/externalMapLayers';
 
 const layer=(id:string,opacity:number):ExternalMapLayer=>({id,name:id,url:`https://tiles.example/${id}/{z}/{x}/{y}.png`,viewer:'historical',protocol:'xyz',opacity});
@@ -11,6 +12,12 @@ describe('composición cartográfica del visor 3D',()=>{
   expect(plan.map(item=>item.opacity)).toEqual([1,.4,.8]);
  });
  it('permite usar únicamente capas externas',()=>expect(terrainTextureLayerPlan('none',[layer('raster',.55)]).map(item=>item.id)).toEqual(['raster']));
+ it('ofrece OpenTopoMap y nuevas capas importadas compatibles con el visor',()=>{
+  const installed={...layer('instalada',1),protocol:'wms' as const,url:'https://tiles.example/wms',layerName:'base',version:'1.3.0' as const,format:'image/png',transparent:true};
+  expect(terrainTextureOptions(DEFAULT_APP_SETTINGS.enabledMapSources,[installed])).toContainEqual({id:'opentopomap',name:'OpenTopoMap'});
+  expect(terrainTextureOptions(DEFAULT_APP_SETTINGS.enabledMapSources,[installed])).toContainEqual({id:'external:instalada',name:'instalada · externa'});
+  expect(terrainTextureLayerPlan('none',[installed])[0].external).toBe(installed);
+ });
 });
 
 describe('resolución de la textura 3D',()=>{

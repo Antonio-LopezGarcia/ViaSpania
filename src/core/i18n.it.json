@@ -1221,6 +1221,7 @@
     "La resolución métrica no es válida": "La risoluzione metrica non è valida",
     "La respuesta no contiene Capabilities XML": "La risposta non contiene Capabilities XML",
     "La respuesta supera el límite de 1,5 GB": "La risposta supera il limite di 1,5 GB",
+    "El proyecto supera el límite de 100 MB": "Il progetto supera il limite di 100 MB",
     "La ruta contiene una celda fuera de la rejilla": "Il percorso contiene una cella fuori dalla griglia",
     "La ruta de seguimiento ya no está disponible.": "Il percorso di inseguimento non è più disponibile.",
     "La ruta secuencial conecta los puntos consecutivos en el orden de la lista.": "Il percorso sequenziale collega i punti consecutivi nell’ordine dell’elenco.",
@@ -1345,6 +1346,8 @@
     "MB descarga ·": "MB da scaricare ·",
     "MB descarga · procesamiento por bloques": "MB da scaricare · elaborazione a blocchi",
     "0 MB descarga · procesamiento por bloques": "0 MB da scaricare · elaborazione a blocchi",
+    "Tamaño del archivo": "Dimensione del file",
+    "MB de descarga": "MB da scaricare",
     "MB proceso": "MB elaborazione",
     "MDS": "",
     "MDS global": "MDS globale",
@@ -4226,5 +4229,10 @@
   "Los extremos están separados. Acerque uno mediante snap y vuelva a seleccionarlos.": "Le estremità sono distanti. Avvicinane una con lo snap e selezionale di nuovo.",
   "Líneas unidas.": "Linee unite.",
   "Pulse cerca de un extremo de la línea.": "Fai clic vicino a un’estremità della linea.",
-  "Los extremos están separados.": "Le estremità sono distanti."
+  "Los extremos están separados.": "Le estremità sono distanti.",
+  "Calidad de la capa base": "Qualità del livello di base",
+  "Máscaras marítimas": "Maschere marine",
+  "Estándar · 4096 px": "Standard · 4096 px",
+  "Alta · 5120 px": "Alta · 5120 px",
+  " (no compatible)": " (non supportata)"
 }

@@ -127,7 +127,12 @@ fn translate() -> Result<Command, NativeError> {
     // https://gdal.org/en/stable/user/configoptions.html#config-GDAL_FORCE_CACHING
     command
         .env("GDAL_FORCE_CACHING", "YES")
-        .env("GDAL_CACHEMAX", "64");
+        .env("GDAL_CACHEMAX", "64")
+        // WCS reads each native block with a separate HTTP request. Some
+        // service nodes intermittently reject a TLS handshake mid-download;
+        // retry transient transport failures before failing the whole raster.
+        .env("GDAL_HTTP_MAX_RETRY", "5")
+        .env("GDAL_HTTP_RETRY_DELAY", "2");
     configure_ca_bundle(&mut command);
     Ok(command)
 }

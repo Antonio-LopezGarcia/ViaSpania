@@ -191,6 +191,8 @@
   "MB descarga ·": "MB to download ·",
   "MB descarga · procesamiento por bloques": "MB to download · block processing",
   "0 MB descarga · procesamiento por bloques": "0 MB to download · block processing",
+  "Tamaño del archivo": "File size",
+  "MB de descarga": "MB to download",
   "MB proceso": "MB processing",
   "Superficie · opciones avanzadas": "Surface · advanced options",
   "Baja · 0,1": "Low · 0.1",
@@ -252,6 +254,7 @@
   "No se pudo leer la respuesta de GeoNames.": "The GeoNames response could not be read.",
   "La descarga fue cancelada": "The download was cancelled",
   "La respuesta supera el límite de 1,5 GB": "The response exceeds the 1.5 GB limit",
+  "El proyecto supera el límite de 100 MB": "The project exceeds the 100 MB limit",
   "Paleta de color no reconocida": "Unrecognised colour palette",
   "El MDT no pertenece al proyecto actual": "The DTM does not belong to the current project",
   "No se pudo identificar el CRS del MDT": "The DTM CRS could not be identified",
@@ -511,5 +514,10 @@
   "No se pudo abrir GitHub en el navegador predeterminado: {error}": "Could not open GitHub in the default browser: {error}",
   "El recurso de créditos solicitado no está permitido": "The requested credits resource is not allowed",
   "No se encontró el recurso de créditos: {relative_path}": "Credits resource not found: {relative_path}",
-  "No se pudo abrir el recurso de créditos: {error}": "Could not open credits resource: {error}"
+  "No se pudo abrir el recurso de créditos: {error}": "Could not open credits resource: {error}",
+  "Calidad de la capa base": "Base layer quality",
+  "Máscaras marítimas": "Marine masks",
+  "Estándar · 4096 px": "Standard · 4096 px",
+  "Alta · 5120 px": "High · 5120 px",
+  " (no compatible)": " (not supported)"
 }

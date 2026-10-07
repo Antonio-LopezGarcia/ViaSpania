@@ -96,6 +96,15 @@ export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,c
     const leave=()=>{onPointerCoordinateRef.current?.(null);if(hoverEnabled)onHoverRef.current(null)};map.getViewport().addEventListener('mouseleave',leave);
     return()=>{map.getViewport().removeEventListener('mouseleave',leave);mapRef.current=null;if(measurementTools)setMeasurementMap(null);map.setTarget(undefined)};
   },[imageUrl,studyExtent,imageExtentKey,routes,isochroneLines,isochroneSurface?.imageUrl,isochroneSurface?.opacity,userLocation,preferencesVersion,hoverEnabled,measurementTools]);
+  useEffect(()=>{
+    const map=mapRef.current;
+    if(!map||!expanded)return;
+    const frame=requestAnimationFrame(()=>{
+      map.updateSize();
+      map.getView().fit(transformExtent(rasterExtent,'EPSG:4326','EPSG:3857'),{padding:[32,32,32,32],duration:0});
+    });
+    return()=>cancelAnimationFrame(frame);
+  },[expanded,imageExtentKey]);
   useEffect(()=>{const source=placeMarkerSourceRef.current;source.clear();source.addFeatures((placeMarkerCoordinates??[]).map(coordinate=>new Feature(new Point(fromLonLat([coordinate.lon,coordinate.lat])))))},[placeMarkerCoordinates]);
   useEffect(()=>{const source=selectionMarkerSourceRef.current;source.clear();if(selectionMarkerCoordinate)source.addFeature(new Feature(new Point(fromLonLat([selectionMarkerCoordinate.lon,selectionMarkerCoordinate.lat]))))},[selectionMarkerCoordinate]);
   useEffect(()=>{const map=mapRef.current;if(!map||sameView(map.getView(),viewState))return;syncing.current=true;map.getView().setCenter(viewState.center);map.getView().setResolution(viewState.resolution);map.getView().setRotation(viewState.rotation)},[viewState]);

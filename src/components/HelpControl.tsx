@@ -53,7 +53,6 @@ export function HelpControl() {
           if (block.type === 'ul') return <ul key={index}>{block.items?.map((item, itemIndex) => <li key={itemIndex}>{item}</li>)}</ul>;
           return <p key={index}>{block.text}</p>;
         })}</div>
-        <footer><button className="primary" onClick={() => setOpen(false)}>{en?'Close':it?'Chiudi':translateText('Cerrar',language)}</button></footer>
       </div>
     </section>}
   </>;

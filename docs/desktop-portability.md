@@ -2,6 +2,10 @@
 
 ViaSpania debe compilarse de forma nativa en cada plataforma. El frontend y el backend Rust son compartidos, pero GDAL/PROJ y el WebView pertenecen al sistema anfitrión; no se reutilizan binarios entre macOS, Windows y Linux.
 
+Los preparadores de GDAL/PROJ escriben deliberadamente en una ruta común (`src-tauri/resources/geospatial`) que Tauri copia al paquete. Por eso, compilar Linux en el mismo checkout reemplaza allí los recursos macOS (y viceversa). Los archivos de recursos generados están ignorados por Git, así que un checkout compartido no los restaura al cambiar de rama o sistema.
+
+Para evitar contaminación entre builds, compila cada plataforma en un checkout o una máquina/runner independiente. Si reutilizas el checkout, ejecuta el build macOS completo allí: `beforeBuildCommand` vuelve a preparar los recursos desde las herramientas macOS instaladas, y ahora una comprobación final exige que tanto ejecutables como bibliotecas sean Mach-O de la arquitectura anfitriona antes de que Tauri pueda empaquetarlos. No uses `VIASPANIA_USE_PREPARED_GEOSPATIAL=1` salvo que los recursos preparados correspondan a ese mismo sistema y arquitectura. Si el build falla en la comprobación, ejecuta `pnpm geospatial:prepare` en macOS y vuelve a compilar.
+
 ## Comandos
 
 - `pnpm desktop:dev`: desarrollo con las herramientas GDAL/PROJ disponibles en `PATH`.

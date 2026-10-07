@@ -29,7 +29,7 @@ export interface AppSettings {
   defaultHistoricalLayer:'ign-lidar'|'MTN50'|'MTN25'|'catastrones'|'Minutas'|'AMS_1956-1957'|'Interministerial_1973-1986';
   defaultNavigationLayer:'osm'|'opentopomap'|'ign-topographic';
   defaultSelectionOrthophoto:'pnoa'|'ign-lidar'|'copernicus-vhr-2021';
-  defaultTerrain3dExaggeration:0|0.5|1|1.5|2|3|4|6|8;
+  defaultTerrain3dExaggeration:1|1.5|2|2.5|3|3.5|4;
   defaultTerrain3dHighestPoint:boolean;
   defaultTerrain3dShowScale:boolean;
   terrain3dDetached?:boolean;
@@ -49,7 +49,7 @@ export const DEFAULT_APP_SETTINGS:AppSettings={tutorialEnabled:true,showPointLab
 export function recommendedCellLimit(totalMemoryBytes?:number|null):AppSettings['processingCellLimit']{if(!totalMemoryBytes)return 3_000_000;const gib=totalMemoryBytes/1073741824;if(gib<=8)return 5_000_000;if(gib<=16)return 32_000_000;return MAX_ELEVATION_CELLS}
 
 export function normalizePointName(value:string){return Array.from(value.trimStart()).slice(0,20).join('')}
-export function loadAppSettings():AppSettings{try{const stored=localStorage.getItem('viaspania.settings.v1');if(!stored)return DEFAULT_APP_SETTINGS;const parsed=JSON.parse(stored) as Partial<AppSettings>&{enabledSurfaceModels?:Partial<Record<'mds05'|'copernicus30',boolean>>};const oldSurfaces=parsed.enabledSurfaceModels;return{...DEFAULT_APP_SETTINGS,...parsed,defaultTerrain3dPalette:parsed.defaultPalette??DEFAULT_APP_SETTINGS.defaultPalette,reportDefaults:{...DEFAULT_APP_SETTINGS.reportDefaults,...parsed.reportDefaults},enabledElevationModels:{...DEFAULT_APP_SETTINGS.enabledElevationModels,...parsed.enabledElevationModels,mds05:parsed.enabledElevationModels?.mds05??oldSurfaces?.mds05??false,copernicus30:parsed.enabledElevationModels?.copernicus30??oldSurfaces?.copernicus30??false},enabledMapSources:{...DEFAULT_APP_SETTINGS.enabledMapSources,...parsed.enabledMapSources}}}catch{return DEFAULT_APP_SETTINGS}}
+export function loadAppSettings():AppSettings{try{const stored=localStorage.getItem('viaspania.settings.v1');if(!stored)return DEFAULT_APP_SETTINGS;const parsed=JSON.parse(stored) as Partial<AppSettings>&{enabledSurfaceModels?:Partial<Record<'mds05'|'copernicus30',boolean>>};const oldSurfaces=parsed.enabledSurfaceModels;const savedExaggeration=parsed.defaultTerrain3dExaggeration;const defaultTerrain3dExaggeration=(typeof savedExaggeration==='number'&&savedExaggeration>=1&&savedExaggeration<=4?savedExaggeration:DEFAULT_APP_SETTINGS.defaultTerrain3dExaggeration) as AppSettings['defaultTerrain3dExaggeration'];return{...DEFAULT_APP_SETTINGS,...parsed,defaultTerrain3dExaggeration,defaultTerrain3dPalette:parsed.defaultPalette??DEFAULT_APP_SETTINGS.defaultPalette,reportDefaults:{...DEFAULT_APP_SETTINGS.reportDefaults,...parsed.reportDefaults},enabledElevationModels:{...DEFAULT_APP_SETTINGS.enabledElevationModels,...parsed.enabledElevationModels,mds05:parsed.enabledElevationModels?.mds05??oldSurfaces?.mds05??false,copernicus30:parsed.enabledElevationModels?.copernicus30??oldSurfaces?.copernicus30??false},enabledMapSources:{...DEFAULT_APP_SETTINGS.enabledMapSources,...parsed.enabledMapSources}}}catch{return DEFAULT_APP_SETTINGS}}
 export function saveAppSettings(settings:AppSettings){localStorage.setItem('viaspania.settings.v1',JSON.stringify({...settings,defaultTerrain3dPalette:settings.defaultPalette}))}
 const LAST_PROJECT_KEY='viaspania.last-saved-project.v1';
 export function saveLastProject(project:string){localStorage.setItem(LAST_PROJECT_KEY,project)}

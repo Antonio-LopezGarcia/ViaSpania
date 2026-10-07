@@ -14,6 +14,12 @@ Nelle opzioni di ciascun visualizzatore di calcolo e nel visualizzatore di **Car
 
 ## Pannello Selezione
 
+### Passaggi obbligatori
+
+Selezionare **Passaggio obbligatorio** se il percorso deve visitare quel ponte o passaggio. Se non è selezionato, il passaggio resta disponibile per attraversare la barriera, ma il percorso può scegliere un'alternativa. I passaggi obbligatori si applicano ai percorsi semplici, al confronto, alle connessioni multipunto e alle alternative.
+
+L'applicazione concatena le visite e non ne ottimizza globalmente l'ordine. In Multipercorso le condizioni si applicano a ogni tratta e un passaggio può essere visitato più di una volta. Le isocrone e la superficie del corridoio non rappresentano un itinerario di visite obbligatorie.
+
 ### Creare una barriera marittima
 
 Nel visualizzatore **Selezione**, usare **Crea maschera marina** dopo aver caricato un MDT associato all'area di studio. Fare clic su una cella del mare: ViaSpania individua la regione contigua con elevazione simile e ne traccia il contorno come barriera assoluta. La maschera aiuta a evitare che le analisi di costo minimo attraversino il mare quando il modello contiene celle marine con valori di elevazione che altrimenti consentirebbero il passaggio. Viene ricavata dal modello di elevazione; non è un dato batimetrico né una delimitazione ufficiale della costa.

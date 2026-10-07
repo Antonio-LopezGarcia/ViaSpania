@@ -125,14 +125,6 @@ Cells without a valid elevation, called **NoData**, are not terrain at zero heig
 
 Use **＋ Create point**: each click appends a point without replacing others. The list numbers and colours points. Use **Move up** and **Move down** to reorder them. Moving or deleting a point preserves the remaining order. **Create POI** remains independent. The select, move and delete tools act on features in the Selection map; return to navigation mode to move the map without editing them.
 
-### Create a marine barrier
-
-In the **Selection** map, use **Create marine mask** with a DTM loaded for the study area. Click a sea cell so ViaSpania can select the connected region of similar elevation and trace its outline as an absolute barrier. The mask helps prevent least-cost analyses from crossing the sea where the DTM contains marine cells whose elevation values would otherwise allow passage. It is generated from the elevation model; it is not bathymetry or an official coastline boundary.
-
-**Tolerance** (in metres) controls how much elevation difference from the chosen cell is accepted when detecting the region. If the outline includes too much land or misses part of the water, adjust the tolerance and click the sea again; the new result is added to existing mask parts. Review the outline, especially around estuaries, lagoons, islands and places where land and water have similar elevations: the algorithm follows connected cells and does not identify coastlines or land use.
-
-When the Selection viewer is expanded, advanced options let you **edit vertices**, **delete lines** and **undo/redo** edits. Correct the outline manually and split the mask into multiple parts as needed. The mask is an absolute barrier, so it prevents crossing affected cells; check that it does not close narrow land passages that should remain traversable. Saving the project preserves the barrier with the other conditions. Hiding it in a viewer only changes its display.
-
 ### Barriers and facilitators
 
 Draw features in Selection and edit their properties in the collapsible **Barriers and facilitators** panel. Its summary lets you review conditions without keeping every control open.
@@ -150,6 +142,14 @@ For example, to represent an obstacle that can only be crossed at a particular p
 Select **Required waypoint** if the route must visit that bridge or crossing. When unchecked, it remains available for crossing the barrier, but the route can choose another alternative. Mandatory crossings apply to simple routes, comparison, multipoint connections and alternatives.
 
 The application chains visits together; it does not globally optimise their order. In Multi-route, conditions apply to every leg and a crossing may be visited more than once. Isochrones and the corridor surface do not represent an itinerary of mandatory visits.
+
+### Create a marine barrier
+
+In the **Selection** map, use **Create marine mask** with a DTM loaded for the study area. Click a sea cell so ViaSpania can select the connected region of similar elevation and trace its outline as an absolute barrier. The mask helps prevent least-cost analyses from crossing the sea where the DTM contains marine cells whose elevation values would otherwise allow passage. It is generated from the elevation model; it is not bathymetry or an official coastline boundary.
+
+**Tolerance** (in metres) controls how much elevation difference from the chosen cell is accepted when detecting the region. If the outline includes too much land or misses part of the water, adjust the tolerance and click the sea again; the new result is added to existing mask parts. Review the outline, especially around estuaries, lagoons, islands and places where land and water have similar elevations: the algorithm follows connected cells and does not identify coastlines or land use.
+
+When the Selection viewer is expanded, advanced options let you **edit vertices**, **delete lines** and **undo/redo** edits. Correct the outline manually and split the mask into multiple parts as needed. The mask is an absolute barrier, so it prevents crossing affected cells; check that it does not close narrow land passages that should remain traversable. Saving the project preserves the barrier with the other conditions. Hiding it in a viewer only changes its display.
 
 ### Display is different from activation or deletion
 

@@ -28,6 +28,7 @@ use tokio::io::AsyncWriteExt;
 use url::Url;
 
 const MAX_DOWNLOAD_BYTES: u64 = 1_500_000_000;
+const MAX_PROJECT_FILE_BYTES: u64 = 100_000_000;
 const MAX_ROUTE_CELLS: usize = route_memory::MAX_CELLS;
 const MAX_ANALYSIS_CELLS: usize = raster_limits::MAX_CELLS;
 // Serialize graph searches so comparisons cannot multiply the memory budget.
@@ -86,6 +87,8 @@ enum NativeError {
     CalculationCancelled,
     #[error("La respuesta supera el límite de 1,5 GB")]
     TooLarge,
+    #[error("El proyecto supera el límite de 100 MB")]
+    ProjectTooLarge,
     #[error("El servicio devolvió XML en lugar de un GeoTIFF: {0}")]
     ServiceException(String),
 }
@@ -3151,8 +3154,8 @@ fn read_project_file(path: String) -> Result<String, NativeError> {
             "El proyecto seleccionado no es un archivo JSON válido".to_owned(),
         ));
     }
-    if metadata.len() > 10_000_000 {
-        return Err(NativeError::TooLarge);
+    if metadata.len() > MAX_PROJECT_FILE_BYTES {
+        return Err(NativeError::ProjectTooLarge);
     }
     std::fs::read_to_string(input).map_err(|error| NativeError::Io(error.to_string()))
 }

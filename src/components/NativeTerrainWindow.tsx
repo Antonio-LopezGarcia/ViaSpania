@@ -11,7 +11,7 @@ import '../terrain-3d.css';
 
 type Props=ComponentProps<typeof Terrain3D>&{toolbar?:TerrainToolbarState;onToolbarAction?:(action:TerrainToolbarAction)=>void;profileRoutes?:ComponentProps<typeof ElevationProfileOverlay>['routes']};
 export function terrainWindowState(props:Props){
- const {onSnapshotReady,onVideoExported,onCameraChange,onToggleLegendItem,onToolbarAction,...state}=props;
+ const {onSnapshotReady,onVideoExported,onCameraChange,onToggleLegendItem,onToolbarAction,onTextureResolutionChange,...state}=props;
  return state;
 }
 type State=ReturnType<typeof terrainWindowState>;
@@ -42,6 +42,7 @@ export function NativeTerrainWindow({detached,onReturn,onError,...props}:Props&{
    // Register the handshake before creating the webview: its load can be very fast.
    await register(listen<string>('terrain-ready',e=>{if(!disposed&&e.payload===target.current?.label){clearTimeout(timeout);setActive(true);void publish()?.catch(fail)}}));
    await register(listen<TerrainToolbarAction>('terrain-toolbar',e=>latest.current.props.onToolbarAction?.(e.payload)));
+   await register(listen<number>('terrain-texture-resolution',e=>latest.current.props.onTextureResolutionChange?.(e.payload)));
    await register(listen<{label:string;status:ProcessStatus}>('terrain-process-status',e=>{if(disposed||e.payload.label!==target.current?.label)return;if(e.payload.status==='running'){remoteProcess??=programProcesses.begin()}else finishRemote(e.payload.status==='error')}));
    await register(listen('terrain-return',()=>latest.current.onReturn()));
    await register(listen<{inclination:number;orientation:number}>('terrain-camera',e=>latest.current.props.onCameraChange?.(e.payload)));
@@ -65,5 +66,5 @@ export function TerrainWindowApp(){
   void listen<{props:State;settings:ReturnType<typeof loadAppSettings>}>('terrain-state',e=>{setLanguage(e.payload.settings.language??'es');setState(previous=>reconcileTerrainWindowState(previous,e.payload.props))}).then(async unlisten=>{if(disposed){unlisten();return}stop=unlisten;await emitTo('main','terrain-ready',getCurrentWebviewWindow().label)}).catch(()=>setError('No se pudo conectar con el proyecto abierto.'));
   return()=>{disposed=true;stop?.()};
  },[]);
- return <section className="terrain-3d-overlay" style={{inset:0}}><button className="terrain-3d-close" aria-label="Cerrar visor 3D" onClick={()=>void getCurrentWebviewWindow().close()}>×</button>{state?.toolbar?<Terrain3DToolbar state={state.toolbar} onAction={action=>void emitTo('main','terrain-toolbar',action).catch(()=>setError('No se pudo actualizar el visor 3D.'))} onReturn={()=>void emitTo('main','terrain-return')}/>:<div className="terrain-3d-toolbar"><strong>Visor 3D</strong></div>}{error&&<p role="alert">{error}</p>}<div className="terrain-3d-stage">{state?<Terrain3D {...state} onSnapshotReady={()=>{}} onCameraChange={view=>void emitTo('main','terrain-camera',view)} onToggleLegendItem={id=>void emitTo('main','terrain-legend',id)}/>:<p>{error||'Esperando el proyecto…'}</p>}{state&&<ElevationProfileOverlay movable routes={state.profileRoutes??[]}/>}</div></section>;
+ return <section className="terrain-3d-overlay" style={{inset:0}}><button className="terrain-3d-close" aria-label="Cerrar visor 3D" onClick={()=>void getCurrentWebviewWindow().close()}>×</button>{state?.toolbar?<Terrain3DToolbar state={state.toolbar} onAction={action=>void emitTo('main','terrain-toolbar',action).catch(()=>setError('No se pudo actualizar el visor 3D.'))} onReturn={()=>void emitTo('main','terrain-return')}/>:<div className="terrain-3d-toolbar"><strong>Visor 3D</strong></div>}{error&&<p role="alert">{error}</p>}<div className="terrain-3d-stage">{state?<Terrain3D {...state} onSnapshotReady={()=>{}} onTextureResolutionChange={value=>void emitTo('main','terrain-texture-resolution',value)} onCameraChange={view=>void emitTo('main','terrain-camera',view)} onToggleLegendItem={id=>void emitTo('main','terrain-legend',id)}/>:<p>{error||'Esperando el proyecto…'}</p>}{state&&<ElevationProfileOverlay movable routes={state.profileRoutes??[]}/>}</div></section>;
 }

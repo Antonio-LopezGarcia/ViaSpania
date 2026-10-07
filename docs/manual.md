@@ -125,14 +125,6 @@ Las celdas sin elevación válida, llamadas **NoData**, no son terreno de altura
 
 Use **＋ Crear punto**: cada clic añade un punto al final sin sustituir otros. La lista muestra Punto 1, Punto 2, etc., con colores distintos. Cambie el orden con **Subir** y **Bajar**; al mover o eliminar un punto se conserva el orden restante. **Crear PDI** sigue siendo una herramienta independiente. Las herramientas de seleccionar, mover y eliminar actúan sobre los elementos del mapa de Selección; vuelva al modo de navegación para desplazar el mapa sin editarlos.
 
-### Crear una barrera marítima
-
-En el mapa de **Selección**, use **Crear máscara marítima** con un MDT cargado y asociado al área de estudio. Pulse sobre una celda del mar para que ViaSpania seleccione la región contigua de elevación similar y trace su contorno como una barrera absoluta. La máscara ayuda a evitar que los análisis de coste mínimo atraviesen el mar cuando el MDT contiene celdas marinas con valores de elevación que, por sí solos, permitirían el paso. Se genera desde el relieve del modelo; no es una capa batimétrica ni una delimitación oficial de costa.
-
-La **Tolerancia** (en metros) controla qué diferencia de elevación respecto a la celda elegida se acepta al detectar la región. Si el contorno incluye demasiado terreno o no alcanza toda el agua, ajuste la tolerancia y vuelva a pulsar sobre el mar; el resultado se suma a las partes de la máscara existente. Revise el trazado, especialmente en estuarios, lagunas, islas y zonas donde tierra y agua tengan alturas parecidas: el algoritmo sigue celdas conectadas, no interpreta costas ni usos del suelo.
-
-Al ampliar el visor de Selección aparecen opciones avanzadas para **editar vértices**, **borrar líneas** y **deshacer/rehacer** la edición. Puede corregir manualmente el contorno y dividir la máscara en varios tramos. La máscara es una barrera absoluta, así que impide cruzar las celdas afectadas; compruebe que no cierre pasos terrestres estrechos que deban permanecer transitables. Guardar el proyecto conserva la barrera junto con las demás condiciones. Ocultarla en un visor solo cambia su presentación.
-
 ### Barreras y facilitadores
 
 Dibuje los elementos en Selección y edite sus propiedades en el panel desplegable **Barreras y facilitadores**. Su resumen permite revisar las condiciones sin mantener todos los controles abiertos.
@@ -150,6 +142,14 @@ Por ejemplo, para representar un obstáculo atravesable solo por un paso, dibuje
 Marque **Paso obligatorio** si la ruta debe visitar ese puente o paso. Sin marcarlo, el paso sigue disponible para cruzar la barrera, pero la ruta puede elegir otra alternativa. Los pasos obligatorios se aplican a rutas simples, comparación, conexiones multipunto y alternativas.
 
 La aplicación encadena visitas; no optimiza globalmente su orden. En Multirruta las condiciones se aplican a cada tramo y un paso puede visitarse más de una vez. Las isócronas y la superficie de pasillo no representan un itinerario de visitas obligatorias.
+
+### Crear una barrera marítima
+
+En el mapa de **Selección**, use **Crear máscara marítima** con un MDT cargado y asociado al área de estudio. Pulse sobre una celda del mar para que ViaSpania seleccione la región contigua de elevación similar y trace su contorno como una barrera absoluta. La máscara ayuda a evitar que los análisis de coste mínimo atraviesen el mar cuando el MDT contiene celdas marinas con valores de elevación que, por sí solos, permitirían el paso. Se genera desde el relieve del modelo; no es una capa batimétrica ni una delimitación oficial de costa.
+
+La **Tolerancia** (en metros) controla qué diferencia de elevación respecto a la celda elegida se acepta al detectar la región. Si el contorno incluye demasiado terreno o no alcanza toda el agua, ajuste la tolerancia y vuelva a pulsar sobre el mar; el resultado se suma a las partes de la máscara existente. Revise el trazado, especialmente en estuarios, lagunas, islas y zonas donde tierra y agua tengan alturas parecidas: el algoritmo sigue celdas conectadas, no interpreta costas ni usos del suelo.
+
+Al ampliar el visor de Selección aparecen opciones avanzadas para **editar vértices**, **borrar líneas** y **deshacer/rehacer** la edición. Puede corregir manualmente el contorno y dividir la máscara en varios tramos. La máscara es una barrera absoluta, así que impide cruzar las celdas afectadas; compruebe que no cierre pasos terrestres estrechos que deban permanecer transitables. Guardar el proyecto conserva la barrera junto con las demás condiciones. Ocultarla en un visor solo cambia su presentación.
 
 ### Mostrar no equivale a activar o eliminar
 

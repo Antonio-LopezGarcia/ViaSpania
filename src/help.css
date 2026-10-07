@@ -7,3 +7,7 @@
 .help-body ol,
 .help-body ul { margin: 0 0 14px; padding-left: 24px; color: #d8e0db; }
 .help-body li { margin: 4px 0; }
+.help-dialog { display: flex; flex-direction: column; overflow: hidden; }
+.help-dialog > header,
+.help-dialog > footer { flex: 0 0 auto; }
+.help-dialog > .help-body { flex: 1 1 auto; min-height: 0; }

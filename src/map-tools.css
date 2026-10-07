@@ -34,6 +34,11 @@
   vertical-align: -2px;
 }
 
+.selection-history-tooltip { position: relative; display: block; width: 100%; }
+.selection-history-tooltip button { width: 100%; }
+.selection-history-shortcut { position: absolute; z-index: 20; left: calc(100% + 8px); top: 50%; transform: translateY(-50%); padding: 5px 8px; border: 1px solid #53645a; border-radius: 5px; background: #101713; box-shadow: 0 3px 12px #0008; color: #f4f7f4; font-size: 11px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .12s ease; }
+.selection-history-tooltip:hover .selection-history-shortcut, .selection-history-tooltip:focus-within .selection-history-shortcut { opacity: 1; }
+
 /* Keep this icon independent of native emoji color and button state colors. */
 .ocean-selection-tools .marine-anchor-icon {
   color: #fff;
@@ -148,7 +153,6 @@
 .approximation-tools{top:48px;left:10px;z-index:4;align-items:stretch;gap:5px;border:0;border-radius:8px;background:#101713df;box-shadow:none;color:#dce7df;font-size:10px}.approximation-tools>b{padding:2px 3px;color:#d8ff55;font-size:10px}.approximation-tools .point-tool-row{width:100%}.approximation-tools .point-tool-row button.active{background:#d8ff55;color:#111;border-color:#d8ff55}.approximation-color-control,.approximation-visibility-control{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:3px 4px;color:#dce7df;font-size:10px}.approximation-tools .approximation-color-control input[type=color]{width:29px;height:24px;padding:1px;border:1px solid #46534c;border-radius:4px;background:#121b17}.approximation-tools .approximation-visibility-control{justify-content:flex-start}.approximation-tools .approximation-visibility-control input{margin:0;accent-color:#d8ff55}
 .approximation-join-hint{display:block;padding:3px 4px;color:#d8ff55;font-size:9px;line-height:1.35}
 
-.approximation-tools .approximation-pan-symbol{color:#fff!important}
 .approximation-line-style-control{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:3px 4px;color:#dce7df;font-size:10px}.approximation-tools .approximation-line-style-control select{max-width:94px;padding:4px;background:#17201c;color:#fff;border:1px solid #46534c;border-radius:5px;font-size:10px}
 .approximation-tools{width:184px}
 .approximation-tools .measurement-tools-title{padding:7px 3px 2px;border-top:1px solid #35433c;color:#d8ff55;font-size:10px}

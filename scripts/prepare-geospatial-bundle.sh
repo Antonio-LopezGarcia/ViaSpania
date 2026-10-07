@@ -9,11 +9,30 @@ share_dir="$bundle_dir/share"
 license_dir="$bundle_dir/licenses"
 commands=(gdal gdalinfo gdalwarp gdal_translate gdaldem gdalsrsinfo gdaltransform gdallocationinfo ogr2ogr proj)
 
-for tool in otool install_name_tool codesign brew node; do
+for tool in otool install_name_tool codesign brew node file lipo; do
   command -v "$tool" >/dev/null || { echo "Falta la herramienta de macOS: $tool" >&2; exit 1; }
 done
 command -v gdal-config >/dev/null || { echo "GDAL no está instalado; instálelo antes de crear el bundle." >&2; exit 1; }
 command -v projinfo >/dev/null || { echo "PROJ no está instalado; instálelo antes de crear el bundle." >&2; exit 1; }
+
+# Validate every source executable before deleting the existing bundle. This
+# catches copied Linux/Windows builds (or a cross-architecture Homebrew PATH)
+# before they can be packaged into a macOS app.
+host_arch="$(uname -m)"
+for name in "${commands[@]}"; do
+  source_path="$(command -v "$name" || true)"
+  test -n "$source_path" || { echo "Falta la utilidad requerida: $name" >&2; exit 1; }
+  source_path="$(realpath "$source_path")"
+  file_description="$(file -b "$source_path")"
+  case "$file_description" in
+    *Mach-O*) ;;
+    *) echo "La utilidad $name no es un binario Mach-O de macOS: $source_path ($file_description)" >&2; exit 1 ;;
+  esac
+  lipo "$source_path" -verify_arch "$host_arch" >/dev/null 2>&1 || {
+    echo "La utilidad $name no contiene la arquitectura macOS $host_arch: $source_path" >&2
+    exit 1
+  }
+done
 
 rm -rf "$bundle_dir"
 mkdir -p "$bin_dir" "$lib_dir" "$share_dir/gdal" "$share_dir/proj" "$license_dir"

@@ -31,6 +31,19 @@ it('crea puntos consecutivos con una herramienta y mantiene el interés independ
  expect(screen.getAllByTitle('Pulse el nombre para renombrar el punto').map(input=>(input as HTMLInputElement).value)).toEqual(['Punto 1','Punto 3','Punto 2','Punto 4']);
 });
 
+it('deshace y rehace cambios de puntos desde el panel de selección ampliado',()=>{
+ render(<App/>);
+ fireEvent.click(screen.getByRole('button',{name:'＋ Crear punto'}));
+ fireEvent.click(screen.getByRole('button',{name:'Clic mapa selección'}));
+ fireEvent.click(screen.getByRole('button',{name:'Ampliar visor de Selección'}));
+ const undo=screen.getByRole('button',{name:/Deshacer/});
+ expect((undo as HTMLButtonElement).disabled).toBe(false);
+ fireEvent.click(undo);
+ expect(screen.queryByTitle('Pulse el nombre para renombrar el punto')).toBeNull();
+ fireEvent.click(screen.getByRole('button',{name:/Rehacer/}));
+ expect(screen.getByDisplayValue('Punto 1')).toBeTruthy();
+});
+
 it('migra un JSON antiguo, guarda la reordenación y recupera el orden nuevo',async()=>{
  const points=[{id:3,name:'Final antiguo',role:'final',lon:0,lat:1,crs:'EPSG:4326',comments:'f'},{id:2,name:'Parada antigua',role:'multipunto',lon:0,lat:1,crs:'EPSG:4326',comments:'m'},{id:1,name:'Inicio antiguo',role:'inicio',lon:0,lat:1,crs:'EPSG:4326',comments:'i'}];
  const result={model:'tobler',direction:'antigua',path:[0,1],cost:23,unit:'s',distanceM:100,ascentM:2,descentM:1,dataProvenance:{version:1,status:'recorded',attribution:'Fixture'}};

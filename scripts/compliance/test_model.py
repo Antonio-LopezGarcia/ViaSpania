@@ -69,6 +69,11 @@ class ComplianceTests(unittest.TestCase):
         entries = npm_lock_entries(text)
         self.assertEqual([(p['name'], p['version']) for p in entries], [('@scope/name', '1.2.3'), ('plain', '2.0.0')])
 
+    def test_lockfile_uses_project_packages_after_pnpm_bootstrap_document(self):
+        text = "\npackages:\n\n  pnpm@12.9.1:\n    resolution: {integrity: sha512-bootstrap}\n\nsnapshots:\n\n---\n\npackages:\n\n  '@napi-rs/lzma-linux-x64-gnu@1.5.1':\n    resolution: {integrity: sha512-project}\n\nsnapshots:\n"
+        entries = npm_lock_entries(text)
+        self.assertEqual([(p['name'], p['version']) for p in entries], [('@napi-rs/lzma-linux-x64-gnu', '1.5.1')])
+
     def test_recipe_does_not_execute_ruby_or_guess_interpolations(self):
         h = 'a' * 64
         self.assertEqual(len(formula_sources(f'  url "https://example.org/source.tar.gz"\n  sha256 "{h}"\n')), 1)

@@ -38,7 +38,7 @@ Confirmar titularidad/mandato institucional; aprobar términos precisos de asset
 
 Windows/Linux requieren la misma comprobación sobre sus propios instaladores y procedencia apt/conda; este colector nativo no convierte el resultado macOS en una auditoría de esos targets.
 
-El build ordinario conserva su flujo de desarrollo. `compliance:build` añade comprobación del expediente y recibo de entradas para el candidato macOS; `compliance:check --strict` bloquea cualquier publicación automática sin expediente cerrado, también en otros targets.
+El build ordinario conserva su flujo de desarrollo. `compliance:build` añade comprobación del expediente y recibo de entradas para el candidato macOS. En el workflow de publicación, `compliance:check --strict` se ejecuta en macOS, donde el colector puede verificar la procedencia Homebrew y los binarios Mach-O. Linux y Windows ejecutan sus comprobaciones de runtime propias; este control macOS no es una auditoría de sus binarios.
 
 Las cinco revisiones se documentan en `docs/RELEASE_DECISIONS.json`. Solo marcar `resolved` después de completar la revisión indicada e incluir evidencia identificable (permiso, informe, resultado de reconstrucción). El programa registra esa declaración; no valida la autoridad del firmante ni la veracidad jurídica. La publicación de fuentes se cumple al ofrecerlas junto al instalador; no es una autorización que se conceda a sí mismo el colector. Los archivos npm originales pueden contener binarios de herramientas de build: conservarlos no los convierte en código fuente.
 

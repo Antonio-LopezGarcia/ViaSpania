@@ -26,7 +26,14 @@ def verify_integrity(data, expected):
 
 
 def npm_lock_entries(text):
-    block = text.split('\npackages:\n', 1)[1].split('\nsnapshots:\n', 1)[0]
+    # Newer pnpm lockfiles may contain a small leading YAML document for
+    # packageManagerDependencies (pnpm itself) before the project lock data.
+    # Read the final packages section so optional platform packages used by
+    # the project are not omitted from the release compliance inventory.
+    sections = text.rsplit('\npackages:\n', 1)
+    if len(sections) != 2:
+        raise ValueError('No se encontró la sección packages de pnpm-lock.yaml')
+    block = sections[1].split('\nsnapshots:\n', 1)[0]
     result = []
     for match in re.finditer(r'^  (\S[^\n]*):\n(.*?)(?=^  \S|\Z)', block, re.M | re.S):
         key, body = match.groups()

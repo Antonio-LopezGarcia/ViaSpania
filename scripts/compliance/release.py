@@ -324,7 +324,23 @@ def prepare(network):
         elif key == 'native_scope':
             review = json.loads((ROOT/'docs/native-evidence/REVIEW.json').read_text())
             if not native_review_matches(review, native):
-                findings.append('REQUIERE REVISIÓN: cambió el runtime nativo respecto al cierre documentado de PB-2.')
+                reviewed = review.get('reviewedRuntime', {})
+                current = {item['path']: item['sha256'] for item in native.get('files', [])}
+                changed_paths = sorted(path for path in set(reviewed) | set(current) if reviewed.get(path) != current.get(path))
+                records = {item['path']: item for item in native.get('files', [])}
+                components = sorted({records[path].get('component', '') for path in changed_paths if path in records} - {''})
+                component_versions = sorted(
+                    f"{item.get('id')} ({', '.join(source.get('integrity', '')[:12] for source in item.get('sourceRequests', []))})"
+                    for item in native.get('components', []) if item.get('id') in components
+                )
+                details = '; ficheros distintos: '+str(len(changed_paths))
+                if components:
+                    details += '; componentes: '+', '.join(component_versions)
+                if changed_paths:
+                    details += '; rutas: '+', '.join(changed_paths[:12])
+                    if len(changed_paths) > 12:
+                        details += ', …'
+                findings.append('REQUIERE REVISIÓN: cambió el runtime nativo respecto al cierre documentado de PB-2'+details+'.')
         elif key == 'data':
             review_path = ROOT/'docs/data-evidence/REVIEW.json'
             review = json.loads(review_path.read_text()) if review_path.is_file() else {}

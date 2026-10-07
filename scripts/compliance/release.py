@@ -328,13 +328,13 @@ def prepare(network):
                 current = {item['path']: item['sha256'] for item in native.get('files', [])}
                 changed_paths = sorted(path for path in set(reviewed) | set(current) if reviewed.get(path) != current.get(path))
                 records = {item['path']: item for item in native.get('files', [])}
-                components = sorted({records[path].get('component', '') for path in changed_paths if path in records} - {''})
+                native_component_ids = sorted({records[path].get('component', '') for path in changed_paths if path in records} - {''})
                 component_versions = sorted(
                     f"{item.get('id')} ({', '.join(source.get('integrity', '')[:12] for source in item.get('sourceRequests', []))})"
-                    for item in native.get('components', []) if item.get('id') in components
+                    for item in native.get('components', []) if item.get('id') in native_component_ids
                 )
                 details = '; ficheros distintos: '+str(len(changed_paths))
-                if components:
+                if native_component_ids:
                     details += '; componentes: '+', '.join(component_versions)
                 if changed_paths:
                     details += '; rutas: '+', '.join(changed_paths[:12])

@@ -37,7 +37,7 @@ it('cerrar la ventana externa devuelve el visor sin cerrar el proyecto',async()=
  expect(onReturn).toHaveBeenCalledOnce();expect(screen.getByText('Terreno integrado')).toBeTruthy();
 });
 
-const toolbar={exaggeration:2,routeWidth:4,palette:'terrain',textureId:'none',textureOptions:[{id:'external:map',name:'Mapa propio · externa'}],textureDisabled:false,textureLoading:false,contoursAvailable:false,layers:{points:true,pointLabels:true,barriers:true,crossings:true,corridors:true,pointsOfInterest:true,contours:false,highestPoint:false,scale:true}};
+const toolbar={exaggeration:2,routeWidth:4,palette:'terrain',textureId:'none',textureOptions:[{id:'external:map',name:'Mapa propio · externa'}],textureDisabled:false,textureLoading:false,contoursAvailable:false,layers:{points:true,pointLabels:true,barriers:true,marineMasks:true,crossings:true,corridors:true,pointsOfInterest:true,contours:false,highestPoint:false,scale:true}};
 it('muestra los mismos controles en la ventana externa y envía los cambios al proyecto',async()=>{
  render(<TerrainWindowApp/>);
  await waitFor(()=>expect(mock.listeners.has('terrain-state')).toBe(true));

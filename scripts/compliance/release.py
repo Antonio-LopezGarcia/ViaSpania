@@ -365,8 +365,11 @@ def prepare(network):
                 output.write('\nOrigen: '+n['original']+'\nTipo: '+n.get('kind', 'upstream-notice')+'\n'+(OUTPUT/n['path']).read_text(errors='replace')+'\n')
     # Retain the standard library notice separately from the compiler's complete licence inventory.
     rustroot = Path(run('rustc', '--print', 'sysroot').strip())
-    stdnotice = rustroot/'share/doc/rustc/COPYRIGHT-library.html'
-    if stdnotice.is_file():
+    stdnotice = next((path for path in (
+        rustroot/'share/doc/rustc/COPYRIGHT-library.html',  # Homebrew layout
+        rustroot/'share/doc/rust/COPYRIGHT-library.html',   # rustup layout
+    ) if path.is_file()), None)
+    if stdnotice is not None:
         shutil.copy2(stdnotice, PUBLIC/'RUST_STANDARD_LIBRARY.html')
     else:
         findings.append('REQUIERE REVISIÓN: no se encontró COPYRIGHT-library.html del toolchain.')

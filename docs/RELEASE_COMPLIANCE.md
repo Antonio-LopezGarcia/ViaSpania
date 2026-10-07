@@ -25,6 +25,7 @@ Cambiar las fuentes después de generar el paquete exige regenerarlo y repetir s
 - `release/compliance/STATUS.md`: faltas concretas de obtención, textos y revisiones.
 - `release/compliance/npm`, `cargo`, `native`: archivos comprimidos originales sin ejecutar su contenido; URL y SHA-256 documentados. npm verifica SRI del lockfile y crates SHA-256 de Cargo.lock.
 - `src-tauri/resources/geospatial/compliance`: relación Mach-O ↔ fórmula/version instalada y recetas/recibos. No depende de una consulta actual a `brew info`.
+- `docs/native-source-cache`: copias de contingencia de fuentes nativas verificadas, restauradas solo si su hash coincide con el fijado por la receta Homebrew.
 - `public/compliance/THIRD_PARTY_LICENSES.txt`: textos originales encontrados; no borra copyrights, no inventa titulares y no convierte una licencia dual OR en obligación AND.
 - `public/compliance/RUST_STANDARD_LIBRARY.html`: avisos específicos de std del toolchain instalado, cuando están disponibles.
 - `release/APP_INSPECTION.json`: evidencia de la `.app` real, incluida la relación con frameworks del SO.

@@ -3,6 +3,7 @@ GitHub tree/blob evidence is retained; no guessed tag or current main branch.
 """
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import tarfile
@@ -54,7 +55,11 @@ def recover(component, output, network):
         if tree_file.exists():
             tree = json.loads(tree_file.read_text())
         else:
-            with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'ViaSpania-license-audit'}), timeout=45) as response:
+            headers = {'User-Agent': 'ViaSpania-license-audit', 'Accept': 'application/vnd.github+json'}
+            token = os.environ.get('GH_TOKEN') or os.environ.get('GITHUB_TOKEN')
+            if token:
+                headers['Authorization'] = 'Bearer '+token
+            with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=45) as response:
                 tree = json.load(response)
             tree_file.parent.mkdir(parents=True, exist_ok=True)
             tree_file.write_text(json.dumps(tree))

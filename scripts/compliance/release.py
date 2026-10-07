@@ -18,7 +18,7 @@ import urllib.error
 import urllib.request
 import zipfile
 from datetime import datetime, timezone
-from model import archive_name_safe, formula_sources, npm_lock_entries, release_problems, verify_integrity
+from model import archive_name_safe, formula_sources, npm_lock_entries, release_problems, verify_integrity, restore_pinned_source_cache
 from supplement import recover
 from selections import apply_selections
 from model import native_review_matches, data_review_matches, auxiliary_sources
@@ -53,6 +53,7 @@ INPUTS += [str(p.relative_to(ROOT)) for p in sorted((ROOT/'docs/data-evidence').
 if (ROOT/'docs/data-evidence/REVIEW.json').is_file():
     INPUTS += list(json.loads((ROOT/'docs/data-evidence/REVIEW.json').read_text()).get('reviewedImplementation', {}))
 INPUTS += [str(p.relative_to(ROOT)) for p in sorted((ROOT/'docs/native-evidence').rglob('*')) if p.is_file()]
+INPUTS += [str(p.relative_to(ROOT)) for p in sorted((ROOT/'docs/native-source-cache').glob('*')) if p.is_file()]
 
 
 def save_json(path, data):
@@ -204,6 +205,8 @@ def work_component(spec, network):
                 cached = list((Path.home()/'.cargo/registry/cache').glob('*/'+spec['name']+'-'+spec['version']+'.crate'))
                 if cached and verify_integrity(cached[0].read_bytes(), request['integrity']):
                     shutil.copy2(cached[0], source)
+            if not source.is_file():
+                restore_pinned_source_cache(spec['id'], i, request['integrity'], ROOT/'docs/native-source-cache', source)
             download(request['url'], request['integrity'], source, network)
             component['sources'].append({'path': str(source.relative_to(OUTPUT)), 'url': request['url'], 'sha256': sha(source)})
             texts, metadata = archive_notices(source)

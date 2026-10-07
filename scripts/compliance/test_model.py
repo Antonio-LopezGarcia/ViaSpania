@@ -7,7 +7,7 @@ from pathlib import Path
 from release import archive_notices
 from selections import validate_selection
 from model import native_review_matches, data_review_matches
-from model import archive_name_safe, formula_sources, npm_lock_entries, release_problems, verify_integrity
+from model import archive_name_safe, formula_sources, npm_lock_entries, release_problems, verify_integrity, restore_pinned_source_cache
 
 
 class ComplianceTests(unittest.TestCase):
@@ -73,6 +73,20 @@ class ComplianceTests(unittest.TestCase):
         text = "\npackages:\n\n  pnpm@12.9.1:\n    resolution: {integrity: sha512-bootstrap}\n\nsnapshots:\n\n---\n\npackages:\n\n  '@napi-rs/lzma-linux-x64-gnu@1.5.1':\n    resolution: {integrity: sha512-project}\n\nsnapshots:\n"
         entries = npm_lock_entries(text)
         self.assertEqual([(p['name'], p['version']) for p in entries], [('@napi-rs/lzma-linux-x64-gnu', '1.5.1')])
+
+    def test_pinned_source_cache_requires_exact_hash(self):
+        data = b'verified source archive'
+        digest = hashlib.sha256(data).hexdigest()
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            cache = root/'cache'
+            cache.mkdir()
+            (cache/'native__example-1.0-source-0.archive').write_bytes(data)
+            destination = root/'output/source-0.archive'
+            self.assertTrue(restore_pinned_source_cache('native/example-1.0', 0, digest, cache, destination))
+            self.assertEqual(destination.read_bytes(), data)
+            with self.assertRaisesRegex(ValueError, 'no coincide'):
+                restore_pinned_source_cache('native/example-1.0', 0, '0'*64, cache, destination)
 
     def test_recipe_does_not_execute_ruby_or_guess_interpolations(self):
         h = 'a' * 64

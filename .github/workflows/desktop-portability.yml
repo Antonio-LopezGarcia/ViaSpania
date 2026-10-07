@@ -167,6 +167,8 @@ jobs:
           pnpm video:check
       - name: Preparar expediente de macOS
         if: runner.os == 'macOS'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           pnpm geospatial:prepare
           pnpm compliance:prepare --network

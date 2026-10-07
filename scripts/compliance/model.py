@@ -2,6 +2,7 @@
 import base64
 import hashlib
 import re
+import shutil
 from pathlib import PurePosixPath
 
 
@@ -23,6 +24,19 @@ def verify_integrity(data, expected):
         if base64.b64encode(hashlib.new(algorithm, data).digest()).decode() == encoded:
             return True
     return False
+
+
+def restore_pinned_source_cache(component_id, index, expected, cache_root, destination):
+    """Restore an explicitly vendored source archive only when its pin matches."""
+    safe_id = component_id.replace('/', '__')
+    cached = cache_root / f'{safe_id}-source-{index}.archive'
+    if not cached.is_file():
+        return False
+    if not verify_integrity(cached.read_bytes(), expected):
+        raise ValueError(f'El archivo de fuente en caché no coincide con su hash: {cached.name}')
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(cached, destination)
+    return True
 
 
 def npm_lock_entries(text):

@@ -125,3 +125,8 @@
 .matrix-scroll table { min-width:520px; }
 .layer-tabs { white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
 .raster-view { cursor:crosshair; }
+.viewshed-summary{display:grid;gap:4px;margin-top:8px;padding:9px 10px;border:1px solid #35433c;border-radius:7px;background:#17201c;color:#b9c5bd;font-size:11px;font-weight:400}
+.viewshed-summary span{color:inherit;font:inherit}
+.viewshed-results-card{display:grid;gap:0;margin-top:5px;padding:8px;border:1px solid #2d3933;border-radius:8px;background:#151e1a}
+.viewshed-results-card .viewshed-summary{margin:0;padding:0 2px 7px;border:0;border-radius:0;background:transparent}
+.viewshed-results-card .viewshed-observer-list{margin:0;padding:6px 7px;border-color:#2d3933;border-radius:6px;background:#17201c}

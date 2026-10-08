@@ -16,6 +16,27 @@ Para evitar contaminación entre builds, compila cada plataforma en un checkout 
 - `pnpm desktop:build:linux`: genera DEB, AppImage y RPM.
 - `pnpm desktop:build:signed:macos`: build y firma ad hoc local de la aplicación macOS.
 
+### Checkout limpio en macOS
+
+En un Mac ARM64, instala Xcode Command Line Tools, Homebrew, Python 3.12, Node 24, pnpm 12.9.1 y Rust 1.97.1. Instala GDAL/PROJ con Homebrew y las herramientas de compilación de vídeo con `brew install gdal pkg-config`; verifica también que `xcrun --find clang` y `make --version` funcionen. Desde la raíz del checkout, ejecuta:
+
+```sh
+pnpm install --frozen-lockfile
+pnpm video:prepare --network
+pnpm geospatial:prepare
+pnpm compliance:prepare --network
+pnpm test
+pnpm compliance:test
+pnpm build
+VIASPANIA_USE_PREPARED_GEOSPATIAL=1 pnpm compliance:build
+pnpm compliance:inspect
+pnpm compliance:package
+```
+
+Es la ruta de candidato que usa el job macOS de `.github/workflows/desktop-portability.yml`: genera la `.app` y el DMG, inspecciona el paquete y prepara las fuentes correspondientes. Python debe ser 3.11 o posterior. La preparación de vídeo descarga únicamente las fuentes con hashes fijados en `docs/VIDEO_DEPENDENCIES.json`; necesita red la primera vez. El job no sube artefactos desde un PR. `compliance:check --strict` se ejecuta antes de la carga a una Release y puede impedirla si quedan revisiones pendientes.
+
+El proyecto fija Rust en `rust-toolchain.toml`; al actualizarlo, cambia en el mismo commit la referencia de `dtolnay/rust-toolchain`, la clave del caché Cargo y el paso `rust-docs` del workflow. Allí también se fijan Miniforge 25.3.1-0 y GDAL 3.11.5 de conda-forge. Sus dependencias transitivas y los paquetes GDAL/WebKit instalados desde Homebrew o APT siguen los repositorios de cada plataforma; no son snapshots reproducibles. Al actualizar esas bases, ejecuta la matriz `quality` y el job manual de instaladores para cada plataforma antes de publicar, y revisa los logs de preparación de GDAL/PROJ y de empaquetado. Las acciones de GitHub siguen referencias de versión mayor; revisar sus versiones y compatibilidad como parte del mantenimiento de CI.
+
 El firmado de distribución, la notarización y la publicación deben ejecutarse en CI o mediante credenciales específicas de cada plataforma. No forman parte del build reproducible normal.
 
 ## macOS
@@ -46,4 +67,4 @@ En cada sistema y arquitectura soportados se debe ejecutar:
 
 Las exportaciones de vídeo requieren una comprobación adicional porque los códecs disponibles dependen de WebKit en macOS, WebView2 en Windows y WebKitGTK en Linux.
 
-La matriz `.github/workflows/desktop-portability.yml` ejecuta pruebas y build web en los tres sistemas en cada cambio. La construcción de instaladores, mucho más pesada por GDAL/PROJ, se activa manualmente mediante `workflow_dispatch` y la opción `build_installers`.
+La matriz `.github/workflows/desktop-portability.yml` ejecuta pruebas y build web en macOS, Linux y Windows en cada push y pull request. La compilación de instaladores, incluido el empaquetado de GDAL/PROJ y FFmpeg/libx264, se activa manualmente mediante `workflow_dispatch` y la opción `build_installers`; en esa ejecución cada plataforma construye su instalador y solo lo sube tras superar sus comprobaciones. Node/pnpm usa la caché por lockfile de `setup-node`; Cargo reutiliza caché solo si coinciden sistema, arquitectura, Rust y lockfile. Los recursos geoespaciales y los ejecutables generados no se cachean.

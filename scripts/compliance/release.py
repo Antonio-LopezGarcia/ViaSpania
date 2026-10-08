@@ -18,7 +18,7 @@ import urllib.error
 import urllib.request
 import zipfile
 from datetime import datetime, timezone
-from model import archive_name_safe, formula_sources, npm_lock_entries, release_problems, verify_integrity, restore_pinned_source_cache
+from model import archive_name_safe, formula_license, formula_sources, npm_lock_entries, release_problems, verify_integrity, restore_pinned_source_cache
 from supplement import recover
 from selections import apply_selections
 from model import native_review_matches, data_review_matches, auxiliary_sources
@@ -30,6 +30,7 @@ GEO = ROOT / 'src-tauri/resources/geospatial'
 NATIVE = GEO / 'compliance/NATIVE.json'
 PUBLIC = ROOT / 'public/compliance'
 INPUTS = ['package.json', 'pnpm-lock.yaml', 'src-tauri/Cargo.toml', 'src-tauri/Cargo.lock', 'src-tauri/tauri.conf.json', 'src-tauri/tauri.compliance.conf.json', 'LICENSE', 'docs/ASSETS.md', 'docs/RELEASE_DECISIONS.json', 'scripts/prepare-geospatial-bundle.sh', 'scripts/compliance/release.py', 'scripts/compliance/model.py', 'scripts/compliance/supplement.py']
+INPUTS += ['src-tauri/resources/geospatial/compliance/NATIVE.json']
 
 
 def sha(path):
@@ -115,7 +116,8 @@ def record_native(paths_file=None):
         destination.mkdir(parents=True, exist_ok=True)
         shutil.copy2(recipe, destination/recipe.name)
         shutil.copy2(prefix/'INSTALL_RECEIPT.json', destination/'INSTALL_RECEIPT.json')
-        components[key] = {'id': 'native/'+key, 'name': name, 'version': version, 'recipe': str((destination/recipe.name).relative_to(ROOT)), 'prefix': str(prefix), 'sourceRequests': formula_sources(recipe.read_text())}
+        recipe_text = recipe.read_text()
+        components[key] = {'id': 'native/'+key, 'name': name, 'version': version, 'recipe': str((destination/recipe.name).relative_to(ROOT)), 'prefix': str(prefix), 'license': formula_license(recipe_text), 'sourceRequests': formula_sources(recipe_text)}
         records.append({'path': str(p.relative_to(GEO)), 'sha256': sha(p), 'uuid': uid, 'component': 'native/'+key, 'original': str(original), 'links': [line.strip().split(' (compatibility')[0] for line in run('otool', '-L', str(p)).splitlines()[1:]]})
     save_json(NATIVE, {'schema': 1, 'platform': 'macos', 'files': records, 'components': list(components.values())})
     print(f'Procedencia nativa registrada: {len(records)} binarios, {len(components)} componentes.', flush=True)
@@ -252,22 +254,9 @@ def source_snapshot(destination):
 def prepare(network):
     video_manifest = video.verify()
     video.refresh_notices()
-    # Rebind the data/export review to the exact implementation and bundled
-    # data that are being prepared. The review document remains the human
-    # evidence; these hashes are its machine-checkable boundary.
-    data_review_path = ROOT/'docs/data-evidence/REVIEW.json'
-    if data_review_path.is_file():
-        data_review = json.loads(data_review_path.read_text())
-        data_review['reviewedData'] = {
-            str(p.relative_to(GEO/'share')): sha(p)
-            for p in sorted((GEO/'share').rglob('*')) if p.is_file()
-        }
-        data_review['reviewedImplementation'] = {
-            name: sha(ROOT/name) for name in data_review.get('reviewedImplementation', {})
-            if (ROOT/name).is_file()
-        }
-        data_review['recertification'] = 'Hashes regenerados para el candidato 0.2.3 durante compliance:prepare; la revisión humana y sus límites se conservan en este documento y REVIEW_0.2.3.json.'
-        save_json(data_review_path, data_review)
+    # Keep the human-reviewed data/export boundary immutable during preparation.
+    # A changed source or dataset must reopen review in check(); preparation must
+    # never replace the reviewed hashes with the candidate's current hashes.
     OUTPUT.mkdir(parents=True, exist_ok=True)
     if not NATIVE.exists():
         record_native()

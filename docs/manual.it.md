@@ -27,3 +27,19 @@ Nel visualizzatore **Selezione**, usare **Crea maschera marina** dopo aver caric
 La **Tolleranza**, espressa in metri, determina quale differenza di quota rispetto alla cella selezionata è accettata nell'individuazione della regione. Se il contorno include troppa terra o non copre tutta l'acqua, modificare la tolleranza e fare nuovamente clic sul mare: il risultato viene aggiunto alle parti della maschera già esistente. Controllare il tracciato, soprattutto presso estuari, lagune, isole e aree dove terra e acqua hanno quote simili. L'algoritmo segue celle contigue, non riconosce coste o uso del suolo.
 
 Espandendo il visualizzatore Selezione sono disponibili opzioni avanzate per **modificare i vertici**, **eliminare linee** e **annullare/ripristinare** le modifiche. Correggere manualmente il contorno se necessario. La maschera è una barriera assoluta e impedisce l'attraversamento delle celle interessate: verificare che non chiuda passaggi terrestri stretti che devono restare percorribili. Il progetto salvato conserva la barriera insieme alle altre condizioni. Nasconderla in un visualizzatore ne modifica solo la visualizzazione.
+
+## Analisi topografiche
+
+### Visibilità
+
+È possibile calcolare la visibilità da più punti contemporaneamente e attivare o disattivare ciascun osservatore nel risultato. Quando si mostrano più osservatori insieme, una cella è visibile se è visibile da almeno uno degli osservatori selezionati. Nel visualizzatore 3D si può scegliere un osservatore, mostrare solo le aree visibili o non visibili, regolare l'opacità oppure avviare un calcolo da un punto selezionato sul terreno. L'altezza dell'osservatore è misurata sopra la superficie del modello caricato.
+
+Il calcolo confronta la pendenza apparente di ogni cella, `s = (z − (z₀ + h)) / d` (quote `z` e `z₀`, altezza dell'osservatore `h` e distanza orizzontale `d` in metri; `s` è adimensionale), con l'orizzonte massimo precedente. Questo criterio di visibilità basato sul gradiente è descritto anche nel manuale di [GRASS GIS r.viewshed](https://grass.osgeo.org/grass-stable/manuals/r.viewshed.html). ViaSpania usa la quota della cella più vicina all'osservatore e approssima ogni cella come un settore angolare; il visualizzatore riassume i blocchi di celle native per maggioranza semplice, fino a un massimo di 500 celle sull'asse più lungo. È una stima che dipende dalla risoluzione e dal campionamento, non una linea di vista esatta tra punti. Non corregge la curvatura terrestre.
+
+### Curve di livello
+
+Scegliere l'equidistanza verticale in metri e generare le curve. Nel visualizzatore è possibile scegliere lo stile topografico o colorare le curve in base alla quota, cambiare il colore dello stile topografico ed evidenziare una curva maestra a intervalli regolari. Le etichette di quota vengono collocate sui tratti visibili delle linee; è possibile mostrare o nascondere le etichette delle cime rilevate nel modello. Un'equidistanza minore genera più linee, ma non migliora la precisione dei dati di origine.
+
+### Visualizzatore 3D e modalità di volo
+
+La modalità di volo consente di muoversi nella scena con la tastiera: W/S per avanzare o indietreggiare, A/D per spostarsi lateralmente, le frecce per virare e cambiare il beccheggio, T/G per salire e scendere. Regolare la velocità, attivare la velocità di crociera oppure scegliere una posizione nella vista isometrica; l'indicatore mostra l'altezza sopra il terreno. La modalità di volo modifica la telecamera, non il modello né i risultati dell'analisi.

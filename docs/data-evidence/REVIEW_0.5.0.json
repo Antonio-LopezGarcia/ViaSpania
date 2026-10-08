@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "candidate": "0.5.0",
+  "date": "2026-10-08",
+  "reviewerApproval": "Aprobación explícita del responsable del proyecto en esta conversación, 2026-10-08.",
+  "scope": "Candidato local ViaSpania 0.5.0: revisión técnica de integridad de datos geoespaciales, análisis de terreno y exportaciones afectadas. Los 626 archivos de datos revisados se mantienen idénticos; se revisaron los cambios de implementación frente a la revisión anterior y los del candidato actual. No acredita instaladores de Windows/Linux, firma, notarización ni derechos sobre archivos importados por usuarios.",
+  "data": {
+    "reviewedFiles": 626,
+    "changedFiles": 0,
+    "result": "Los 626 archivos bajo src-tauri/resources/geospatial/share coinciden byte a byte con los hashes de la revisión anterior.",
+    "newTerrainSources": false,
+    "newAccessOrLandCoverSources": false,
+    "attribution": "Los resultados se derivan del raster cargado; las importaciones sin fuente/licencia siguen marcadas REQUIERE REVISIÓN."
+  },
+  "implementationFindings": [
+    "La visibilidad transforma el punto WGS84 al CRS proyectado del raster, toma la cota de la celda más próxima y compara pendientes aparentes respecto al horizonte de celdas anteriores.",
+    "La aproximación angular trata las celdas como sectores; la rejilla visual resume celdas nativas por mayoría simple hasta 500 celdas en su eje más largo. No corrige curvatura terrestre ni refracción atmosférica.",
+    "Curvas de nivel y picos se calculan desde la malla del raster cargado. Los picos son máximos locales detectados, no nombres ni cumbres oficiales; su filtro espacial respeta la extensión visible por centro de celda.",
+    "Los cambios de leyenda de vídeo, estilo de curvas y marca de agua son de representación; no cambian alturas, fuentes ni procedencia del raster.",
+    "Se conservaron atribuciones en resultados e informes; no se incorporaron datasets de terreno, acceso o cobertura nuevos."
+  ],
+  "technicalReference": {
+    "url": "https://grass.osgeo.org/grass-stable/manuals/r.viewshed.html",
+    "checked": "2026-10-08",
+    "finding": "El manual oficial describe el criterio de visibilidad mediante comparación del gradiente/horizonte. ViaSpania documenta su aproximación por sectores y su diferencia frente a interpolación de superficie."
+  },
+  "validation": {
+    "pnpmTest": "679 passed in 109 files",
+    "pnpmBuild": "passed",
+    "cargoTest": "64 passed, 0 failed, 6 ignored",
+    "complianceTest": "23 passed",
+    "appInspection": "passed; 1026 files; no failures",
+    "dmg": "hdiutil verify valid; mounted read-only; ViaSpania.app version 0.5.0 present",
+    "dmgPath": "src-tauri/target/release/bundle/dmg/ViaSpania_0.5.0_aarch64.dmg",
+    "dmgSha256": "d48b06e5e1ae2d0541252917126e1940ec27aafa471ac02bd7878ecbb56807c0",
+    "dmgBytes": 876601678
+  },
+  "limitations": [
+    "El DMG local no está firmado ni notarizado; su integridad estructural no implica aprobación de Gatekeeper.",
+    "No se generaron instaladores Windows o Linux en esta revisión.",
+    "La revisión de licencia de datos se limita a los recursos empaquetados con hash y la evidencia previa; no concede derechos sobre rasteres importados por usuarios.",
+    "La compilación web conserva una advertencia de tamaño de bundle superior a 800 kB."
+  ]
+}

@@ -203,11 +203,17 @@ Las líneas representan tiempo solo si el perfil usa unidades temporales. Con ot
 
 Seleccione los observadores y su altura sobre la superficie, calcule y examine las zonas visibles y no visibles. La altura del observador puede representar una persona, un trípode, una torre o un valor personalizado.
 
+Puede calcular la visibilidad desde varios puntos a la vez y activar o desactivar cada observador en el resultado. Al mostrar varios observadores juntos, una celda se considera visible si es visible desde al menos uno de los seleccionados. En el visor 3D puede elegir un observador, mostrar solo las zonas visibles o no visibles y ajustar la opacidad; también puede iniciar un cálculo desde un punto elegido sobre el terreno.
+
 La visibilidad depende del modelo cargado. Un MDT no incorpora automáticamente árboles ni edificios; un MDS solo incorpora lo registrado en su superficie. El análisis no incluye refracción atmosférica ni reconstruye condiciones históricas.
+
+El cálculo compara la pendiente aparente de cada celda, `s = (z − (z₀ + h)) / d` (cotas `z` y `z₀`, altura del observador `h` y distancia horizontal `d` en metros; `s` es adimensional), con el horizonte máximo anterior. Este criterio de línea de visión por gradientes se describe también en el manual de [GRASS GIS r.viewshed](https://grass.osgeo.org/grass-stable/manuals/r.viewshed.html). ViaSpania toma la cota de la celda más próxima al observador y aproxima cada celda como un sector angular; el visor resume los bloques de celdas nativas mediante mayoría simple hasta un máximo de 500 celdas en el eje más largo. Es una estimación dependiente de la resolución y del muestreo, no una línea de visión exacta entre puntos. Tampoco corrige la curvatura terrestre.
 
 ### Curvas de nivel: leer las alturas
 
 Elija la separación vertical en metros y genere las curvas. Utilice sus valores de cota para reconocer laderas, crestas y fondos. Una separación pequeña produce más líneas, pero no mejora la precisión de la fuente.
+
+En el visor puede elegir el estilo topográfico o colorear las curvas por altitud, cambiar el color del estilo topográfico y destacar cada cierto número de curvas una curva maestra. Las etiquetas de cota se colocan sobre los tramos visibles de las líneas; puede mostrar u ocultar las etiquetas de las cumbres detectadas en el modelo.
 
 Las curvas calculadas pueden superponerse en los visores que las admiten, incluido el 3D. Sobre un MDS describen la superficie superior, no necesariamente el suelo.
 
@@ -248,6 +254,8 @@ Use las herramientas de medición disponibles en las opciones del visor para med
 Con un modelo cargado, pulse **Vista 3D**. Arrastre con el botón izquierdo para orbitar, con el derecho para desplazar y use la rueda para acercar o alejar. La brújula y el indicador de inclinación ayudan a orientarse.
 
 Ajuste exageración vertical, paleta o textura y active los puntos, rutas, curvas y demás resultados disponibles. La exageración solo modifica la representación; un valor de cero aplana la vista. La malla 3D es una representación simplificada, no una fuente de elevación adicional.
+
+El **modo de vuelo** permite recorrer la escena con el teclado: W/S avanza y retrocede, A/D desplaza lateralmente, las flechas giran y cambian el cabeceo, y T/G asciende y desciende. Ajuste la velocidad, active la velocidad de crucero o elija una posición en la vista isométrica; el indicador muestra la altura sobre el terreno. El modo de vuelo cambia la cámara, no el modelo ni los resultados del análisis.
 
 ### Crear imágenes y animaciones
 

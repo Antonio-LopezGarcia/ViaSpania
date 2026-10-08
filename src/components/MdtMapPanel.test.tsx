@@ -44,8 +44,8 @@ it('mantiene el triángulo del lugar independiente del cursor y permite borrarlo
  const placeSource=maps[0].layers.find(layer=>layer.getZIndex()===7)!.getSource()!;
  const cursorSource=maps[0].layers.find(layer=>layer.getZIndex()===8)!.getSource()!;
  expect(placeSource.getFeatures()).toHaveLength(2);
- const fixed=placeSource.getFeatures()[0].getGeometry()!.getExtent();
- const cursor=cursorSource.getFeatures()[0].getGeometry()!.getExtent();
+ const fixed=placeSource.getFeatures()[0].getGeometry()!.getExtent().slice();
+ const cursor=cursorSource.getFeatures()[0].getGeometry()!.getExtent().slice();
  rerender(<MdtMapPanel {...props} placeMarkerCoordinates={[place,{lon:3,lat:43}]} selectionMarkerCoordinate={{lon:1,lat:42}}/>);
  expect(placeSource.getFeatures()[0].getGeometry()!.getExtent()).toEqual(fixed);
  expect(cursorSource.getFeatures()[0].getGeometry()!.getExtent()).not.toEqual(cursor);

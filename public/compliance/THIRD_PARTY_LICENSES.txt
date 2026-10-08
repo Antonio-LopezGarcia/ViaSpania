@@ -115351,7 +115351,7 @@ DEALINGS IN THE SOFTWARE.
 
 ========================================================================
 native/gdal-3.13.2_1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MIT
 
 Origen: gdal-3.13.2/cmake/modules/Copyright.txt
 Tipo: upstream-notice
@@ -117049,7 +117049,7 @@ limitations under the License.
 
 ========================================================================
 native/proj-9.8.1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MIT
 
 Origen: proj-9.8.1/COPYING
 Tipo: upstream-notice
@@ -117549,7 +117549,7 @@ za_cdngi_sageoid2010.tif,Chief Directorate: National Geospatial Information (CD:
 
 ========================================================================
 native/openexr-3.4.14
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: openexr-3.4.14/.github/workflows/release-notice.yml
 Tipo: upstream-notice
@@ -117704,7 +117704,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ========================================================================
 native/imath-3.2.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: Imath-3.2.2/.github/workflows/release-notice.yml
 Tipo: upstream-notice
@@ -117802,7 +117802,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ========================================================================
 native/liblerc-4.2.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: lerc-4.2.0/LICENSE
 Tipo: upstream-notice
@@ -117937,7 +117937,7 @@ E-mail: contracts@esri.com
 
 ========================================================================
 native/sfcgal-2.3.0_1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-2.0-or-later
 
 Origen: SFCGAL-v2.3.0/LICENSE
 Tipo: upstream-notice
@@ -118426,7 +118426,7 @@ That's all there is to it!
 
 ========================================================================
 native/abseil-20260526.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: abseil-cpp-20260526.0/LICENSE
 Tipo: upstream-notice
@@ -118637,7 +118637,7 @@ Tipo: upstream-notice
 
 ========================================================================
 native/libaec-1.1.7
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-2-Clause
 
 Origen: libaec-v1.1.7/LICENSE.txt
 Tipo: upstream-notice
@@ -118669,7 +118669,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/aom-3.14.1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-2-Clause
 
 Origen: installed/LICENSE
 Tipo: upstream-notice
@@ -118704,7 +118704,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/libarchive-3.8.9
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-2-Clause
 
 Origen: libarchive-3.8.9/COPYING
 Tipo: upstream-notice
@@ -118777,7 +118777,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/apache-arrow-25.0.1_1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: apache-arrow-25.0.1/LICENSE.txt
 Tipo: upstream-notice
@@ -126009,7 +126009,7 @@ Copyright 2025-2026 The Apache Software Foundation
 
 ========================================================================
 native/libassuan-3.0.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-2.1-or-later AND GPL-3.0-or-later AND FSFULLR
 
 Origen: libassuan-3.0.2/COPYING
 Tipo: upstream-notice
@@ -127207,7 +127207,7 @@ That's all there is to it!
 
 ========================================================================
 native/aws-c-auth-0.10.4
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-auth-0.10.4/LICENSE
 Tipo: upstream-notice
@@ -127424,7 +127424,7 @@ SPDX-License-Identifier: Apache-2.0.
 
 ========================================================================
 native/aws-c-cal-0.9.15
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-cal-0.9.15/LICENSE
 Tipo: upstream-notice
@@ -127614,7 +127614,7 @@ SPDX-License-Identifier: Apache-2.0.
 
 ========================================================================
 native/aws-c-common-0.14.5
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-common-0.14.5/LICENSE
 Tipo: upstream-notice
@@ -127917,7 +127917,7 @@ SOFTWARE.
 
 ========================================================================
 native/aws-c-compression-0.3.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-compression-0.3.2/LICENSE
 Tipo: upstream-notice
@@ -128134,7 +128134,7 @@ SPDX-License-Identifier: Apache-2.0.
 
 ========================================================================
 native/aws-c-event-stream-0.7.1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-event-stream-0.7.1/LICENSE
 Tipo: upstream-notice
@@ -128351,7 +128351,7 @@ SPDX-License-Identifier: Apache-2.0.
 
 ========================================================================
 native/aws-c-http-0.11.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-http-0.11.0/LICENSE
 Tipo: upstream-notice
@@ -128568,7 +128568,7 @@ SPDX-License-Identifier: Apache-2.0.
 
 ========================================================================
 native/aws-c-io-0.27.6
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-io-0.27.6/LICENSE
 Tipo: upstream-notice
@@ -128787,7 +128787,7 @@ The source/pkcs11/v2.40/pkcs11.h header file is based on Public Domain content f
 
 ========================================================================
 native/aws-c-mqtt-0.16.1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-mqtt-0.16.1/LICENSE
 Tipo: upstream-notice
@@ -129004,7 +129004,7 @@ SPDX-License-Identifier: Apache-2.0.
 
 ========================================================================
 native/aws-c-s3-0.13.5
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-s3-0.13.5/LICENSE
 Tipo: upstream-notice
@@ -129192,7 +129192,7 @@ Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 ========================================================================
 native/aws-c-sdkutils-0.2.9
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-c-sdkutils-0.2.9/LICENSE
 Tipo: upstream-notice
@@ -129380,7 +129380,7 @@ Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
 ========================================================================
 native/aws-checksums-0.2.10
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-checksums-0.2.10/LICENSE
 Tipo: upstream-notice
@@ -129589,7 +129589,7 @@ Tipo: upstream-notice
 
 ========================================================================
 native/aws-sdk-cpp-1.11.870
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-sdk-cpp-1.11.870/LICENSE
 Tipo: upstream-notice
@@ -175178,7 +175178,7 @@ include("${CMAKE_CURRENT_LIST_DIR}/aws-cpp-sdk-license-manager-user-subscription
 
 ========================================================================
 native/aws-crt-cpp-0.43.5
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: aws-crt-cpp-0.43.5/LICENSE
 Tipo: upstream-notice
@@ -175395,7 +175395,7 @@ SPDX-License-Identifier: Apache-2.0.
 
 ========================================================================
 native/libb2-0.98.1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: CC0-1.0
 
 Origen: libb2-0.98.1/COPYING
 Tipo: upstream-notice
@@ -175520,7 +175520,7 @@ For more information, please see
 
 ========================================================================
 native/c-blosc-1.21.6
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: c-blosc-1.21.6/LICENSE.txt
 Tipo: upstream-notice
@@ -175611,7 +175611,7 @@ DEALINGS IN THE SOFTWARE.
 
 ========================================================================
 native/boost-1.92.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSL-1.0
 
 Origen: boost-1.92.0/LICENSE_1_0.txt
 Tipo: upstream-notice
@@ -178665,7 +178665,7 @@ namespace boost
 
 ========================================================================
 native/brotli-1.2.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MIT
 
 Origen: brotli-1.2.0/LICENSE
 Tipo: upstream-notice
@@ -178692,7 +178692,7 @@ THE SOFTWARE.
 
 ========================================================================
 native/cfitsio-4.7.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: CFITSIO
 
 Origen: cfitsio-4.7.0/licenses/License.txt
 Tipo: upstream-notice
@@ -178725,7 +178725,7 @@ SERVICES PROVIDED HEREUNDER.
 
 ========================================================================
 native/krb5-1.22.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-2-Clause AND BSD-2-Clause-first-lines AND BSD-3-Clause AND BSD-4-Clause AND Brian-Gladman-2-Clause AND CMU-Mach-nodoc AND FSFULLRWD AND HPND AND HPND-export2-US AND HPND-export-US AND HPND-export-US-acknowledgement AND HPND-export-US-modify AND ISC AND MIT AND MIT-CMU AND OLDAP-2.8 AND OpenVision AND BSD-2-Clause AND GPL-2.0-or-later
 
 Origen: krb5-1.22.2/doc/copyright.rst
 Tipo: upstream-notice
@@ -181974,7 +181974,7 @@ Tipo: upstream-notice
 
 ========================================================================
 native/openssl@3-3.6.3
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: openssl-3.6.3/LICENSE.txt
 Tipo: upstream-notice
@@ -183004,7 +183004,7 @@ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 ========================================================================
 native/libde265-1.1.1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-3.0-or-later
 
 Origen: libde265-1.1.1/COPYING
 Tipo: upstream-notice
@@ -184076,7 +184076,7 @@ Library.
 
 ========================================================================
 native/libdeflate-1.25
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MIT
 
 Origen: libdeflate-1.25/COPYING
 Tipo: upstream-notice
@@ -184314,7 +184314,7 @@ fontconfig/src/ftglue.[ch]
 
 ========================================================================
 native/freetype-2.14.3
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: FTL
 
 Origen: freetype-2.14.3/src/tools/update-copyright-year
 Tipo: upstream-notice
@@ -184618,7 +184618,7 @@ builds) is in the public domain.
 
 ========================================================================
 native/freexl-2.0.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: None
 
 Origen: freexl-2.0.0/COPYING
 Tipo: upstream-notice
@@ -185099,7 +185099,7 @@ EXHIBIT A -Mozilla Public License.
 
 ========================================================================
 native/geos-3.14.1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-2.1-or-later
 
 Origen: geos-3.14.1/tools/astyle/LICENSE.md
 Tipo: upstream-notice
@@ -185870,7 +185870,7 @@ Tipo: upstream-notice
 
 ========================================================================
 native/libgeotiff-1.7.4
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MIT
 
 Origen: libgeotiff-1.7.4/COPYING
 Tipo: upstream-notice
@@ -185965,7 +185965,7 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/giflib-6.1.3
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MIT
 
 Origen: giflib-6.1.3/COPYING
 Tipo: upstream-notice
@@ -185992,7 +185992,7 @@ THE SOFTWARE.
 
 ========================================================================
 native/gmp-6.3.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: None
 
 Origen: gmp-6.3.0/COPYING
 Tipo: upstream-notice
@@ -187864,7 +187864,7 @@ Public License instead of this License.
 
 ========================================================================
 native/libgpg-error-1.61
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-2.1-or-later
 
 Origen: libgpg-error-1.61/COPYING
 Tipo: upstream-notice
@@ -188726,7 +188726,7 @@ That's all there is to it!
 
 ========================================================================
 native/gpgme-2.1.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-2.1-or-later
 
 Origen: gpgme-2.1.2/COPYING
 Tipo: upstream-notice
@@ -189630,7 +189630,7 @@ with any binary distributions derived from the GNU C Library.
 
 ========================================================================
 native/gpgmepp-2.1.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-2.1-or-later
 
 Origen: gpgmepp-2.1.0/COPYING
 Tipo: upstream-notice
@@ -190977,7 +190977,7 @@ That's all there is to it!
 
 ========================================================================
 native/hdf5-2.2.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: ./hdf5-2.2.0/config/sanitizer/LICENSE
 Tipo: upstream-notice
@@ -191424,7 +191424,7 @@ Tipo: upstream-notice
 
 ========================================================================
 native/libheif-1.23.1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-3.0-or-later
 
 Origen: libheif-1.23.1/COPYING
 Tipo: upstream-notice
@@ -192378,7 +192378,7 @@ SOFTWARE.
 
 ========================================================================
 native/highway-1.4.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: None
 
 Origen: highway-1.4.0/LICENSE
 Tipo: upstream-notice
@@ -192780,7 +192780,7 @@ License: Apache-2.0
 
 ========================================================================
 native/gettext-1.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: GPL-3.0-or-later AND LGPL-2.1-or-later
 
 Origen: gettext-1.0/COPYING
 Tipo: upstream-notice
@@ -194890,7 +194890,7 @@ fi
 
 ========================================================================
 native/jpeg-turbo-3.2.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: IJG AND Zlib AND BSD-3-Clause
 
 Origen: libjpeg-turbo-3.2.0/LICENSE.md
 Tipo: upstream-notice
@@ -195212,7 +195212,7 @@ License.  (Refer to LICENSE.md.)
 
 ========================================================================
 native/json-c-0.19
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MIT
 
 Origen: json-c-0.19/COPYING
 Tipo: upstream-notice
@@ -195262,7 +195262,7 @@ SOFTWARE.
 
 ========================================================================
 native/jpeg-xl-0.12.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: libjxl-0.12.0/LICENSE
 Tipo: upstream-notice
@@ -195772,7 +195772,7 @@ Tipo: upstream-notice
 
 ========================================================================
 native/libkml-1.3.0_1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: libkml-1.3.0/COPYING
 Tipo: upstream-notice
@@ -195834,7 +195834,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/little-cms2-2.19
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MIT
 
 Origen: lcms2-2.19/LICENSE
 Tipo: upstream-notice
@@ -196612,7 +196612,7 @@ We are required to state that
 
 ========================================================================
 native/libtool-2.6.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: GPL-2.0-or-later
 
 Origen: libtool-2.6.2/COPYING
 Tipo: upstream-notice
@@ -198405,7 +198405,7 @@ That's all there is to it!
 
 ========================================================================
 native/lz4-1.10.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-2-Clause
 
 Origen: lz4-1.10.0/LICENSE
 Tipo: upstream-notice
@@ -198581,7 +198581,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/xz-5.8.3
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: 0BSD AND GPL-2.0-or-later
 
 Origen: xz-5.8.3/COPYING
 Tipo: upstream-notice
@@ -200380,7 +200380,7 @@ exit "$STATUS"
 
 ========================================================================
 native/minizip-1.3.2_1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Zlib
 
 Origen: zlib-1.3.2/LICENSE
 Tipo: upstream-notice
@@ -200498,7 +200498,7 @@ the above disclaimer and the following restrictions:
 
 ========================================================================
 native/mpfr-4.2.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-3.0-or-later
 
 Origen: mpfr-4.2.2/COPYING.LESSER
 Tipo: upstream-notice
@@ -201441,7 +201441,7 @@ Public License instead of this License.  But first, please read
 
 ========================================================================
 native/netcdf-4.10.1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: netcdf-c-4.10.1/COPYRIGHT
 Tipo: upstream-notice
@@ -201614,7 +201614,7 @@ bzip2/libbzip2 version 1.0.8 of 13 July 2019
 
 ========================================================================
 native/nspr-4.40
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MPL-2.0
 
 Origen: nspr-4.40/nspr/LICENSE
 Tipo: upstream-notice
@@ -202005,7 +202005,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 ========================================================================
 native/nss-3.127
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MPL-2.0
 
 Origen: nss-3.127/nss/COPYING
 Tipo: upstream-notice
@@ -202557,7 +202557,7 @@ You are solely responsible for determining the appropriateness of using and dist
 
 ========================================================================
 native/unixodbc-2.3.14
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: LGPL-2.1-or-later
 
 Origen: unixODBC-2.3.14/exe/COPYING
 Tipo: upstream-notice
@@ -203853,7 +203853,7 @@ Tipo: upstream-notice
 
 ========================================================================
 native/openjpeg-2.5.4
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-2-Clause
 
 Origen: openjpeg-2.5.4/LICENSE
 Tipo: upstream-notice
@@ -204092,7 +204092,7 @@ be appreciated.
 
 ========================================================================
 native/openjph-0.31.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-2-Clause
 
 Origen: OpenJPH-0.31.0/LICENSE
 Tipo: upstream-notice
@@ -204127,7 +204127,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/pcre2-10.47_1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: pcre2-10.47/LICENCE.md
 Tipo: upstream-notice
@@ -204303,7 +204303,7 @@ End
 
 ========================================================================
 native/libpng-1.6.58
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: libpng-2.0
 
 Origen: libpng-1.6.58/LICENSE
 Tipo: upstream-notice
@@ -204891,7 +204891,7 @@ software.
 
 ========================================================================
 native/poppler-26.08.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: None
 
 Origen: poppler-26.08.0/COPYING
 Tipo: upstream-notice
@@ -206013,7 +206013,7 @@ The Makefile is licensed under the MIT license:
 
 ========================================================================
 native/libpq-18.6
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: PostgreSQL
 
 Origen: postgresql-18.6/COPYRIGHT
 Tipo: upstream-notice
@@ -206583,7 +206583,7 @@ defaultNoticeProcessor(void *arg, const char *message)
 
 ========================================================================
 native/qhull-2020.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Qhull
 
 Origen: qhull-2020.2/COPYING.txt
 Tipo: upstream-notice
@@ -206630,7 +206630,7 @@ modified, and redistributed under the following conditions:
 
 ========================================================================
 native/re2-2025-11-05_1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: re2-2025-11-05/LICENSE
 Tipo: upstream-notice
@@ -206665,7 +206665,7 @@ Tipo: upstream-notice
 
 ========================================================================
 native/librttopo-1.1.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: GPL-2.0-or-later
 
 Origen: librttopo/COPYING
 Tipo: upstream-notice
@@ -207012,7 +207012,7 @@ Public License instead of this License.
 
 ========================================================================
 native/s2n-1.7.7
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: s2n-tls-1.7.7/LICENSE
 Tipo: upstream-notice
@@ -207259,7 +207259,7 @@ USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/webp-1.6.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: libwebp-1.6.0/COPYING
 Tipo: upstream-notice
@@ -207297,7 +207297,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/snappy-1.2.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: snappy-1.2.2/COPYING
 Tipo: upstream-notice
@@ -207359,7 +207359,7 @@ Some of the benchmark data in testdata/ is licensed differently:
 
 ========================================================================
 native/libspatialite-5.1.0_4
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: None
 
 Origen: libspatialite-5.1.0/src/control_points/COPYING
 Tipo: upstream-notice
@@ -208188,7 +208188,7 @@ EXHIBIT A -Mozilla Public License.
 
 ========================================================================
 native/sqlite-3.53.4
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: blessing
 
 Origen: sqlite-autoconf-3530400/autosetup/LICENSE
 Tipo: upstream-notice
@@ -208241,7 +208241,7 @@ a legal notice, here is a blessing:
 
 ========================================================================
 native/thrift-0.24.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: thrift-0.24.0/doc/licenses/otp-base-license.txt
 Tipo: upstream-notice
@@ -208717,7 +208717,7 @@ For the aclocal/ax_boost_base.m4 and contrib/fb303/aclocal/ax_boost_base.m4 comp
 
 ========================================================================
 native/libtiff-4.7.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: libtiff
 
 Origen: tiff-4.7.2/doc/html-prebuilt/_sources/project/license.rst.txt
 Tipo: upstream-notice
@@ -208931,7 +208931,7 @@ WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 ========================================================================
 native/uriparser-1.0.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause
 
 Origen: uriparser-1.0.2/COPYING.Apache-2.0
 Tipo: upstream-notice
@@ -209689,7 +209689,7 @@ That's all there is to it!
 
 ========================================================================
 native/utf8proc-2.11.3
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: None
 
 Origen: utf8proc-2.11.3/LICENSE.md
 Tipo: upstream-notice
@@ -209790,7 +209790,7 @@ trademarks mentioned herein are the property of their respective owners.
 
 ========================================================================
 native/libvmaf-3.2.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-2-Clause-Patent
 
 Origen: vmaf-3.2.0/LICENSE
 Tipo: upstream-notice
@@ -209839,7 +209839,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ========================================================================
 native/x265-4.2
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: GPL-2.0-or-later
 
 Origen: x265_4.2/COPYING
 Tipo: upstream-notice
@@ -210235,7 +210235,7 @@ THE SOFTWARE.
 
 ========================================================================
 native/xerces-c-3.3.0
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: Apache-2.0
 
 Origen: xerces-c-3.3.0/LICENSE
 Tipo: upstream-notice
@@ -210459,7 +210459,7 @@ Tipo: upstream-notice
 
 ========================================================================
 native/libxml2-2.15.3
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: MIT
 
 Origen: libxml2-2.15.3/Copyright
 Tipo: upstream-notice
@@ -210522,7 +210522,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ========================================================================
 native/zstd-1.5.7_1
-Licencia declarada: Véanse receta y textos; REQUIERE REVISIÓN
+Licencia declarada: BSD-3-Clause AND GPL-2.0-only AND BSD-2-Clause AND MIT
 
 Origen: zstd-1.5.7/COPYING
 Tipo: upstream-notice

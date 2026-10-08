@@ -7,10 +7,29 @@ from pathlib import Path
 from release import archive_notices
 from selections import validate_selection
 from model import native_review_matches, data_review_matches
-from model import archive_name_safe, formula_sources, npm_lock_entries, release_problems, verify_integrity, restore_pinned_source_cache
+from model import archive_name_safe, formula_license, formula_sources, npm_lock_entries, release_problems, verify_integrity, restore_pinned_source_cache
 
 
 class ComplianceTests(unittest.TestCase):
+    def test_homebrew_composite_license_is_recorded_without_evaluating_ruby(self):
+        recipe = '''license all_of: [
+  "HPND-sell-variant",
+  "Unicode-3.0", # data file
+  "MIT-Modern-Variant",
+  "MIT",
+  :public_domain,
+]'''
+        self.assertEqual(
+            formula_license(recipe),
+            'HPND-sell-variant AND Unicode-3.0 AND MIT-Modern-Variant AND MIT AND LicenseRef-Homebrew-public-domain',
+        )
+
+    def test_homebrew_single_license_is_recorded(self):
+        self.assertEqual(formula_license('license "MIT"'), 'MIT')
+
+    def test_unknown_formula_license_syntax_stays_unresolved(self):
+        self.assertIsNone(formula_license('license any_of: [:unknown_custom]'))
+
     def test_data_review_reopens_for_changed_missing_or_additional_data(self):
         review = {'reviewedData': {'proj/proj.db': 'abc'}, 'reviewedImplementation': {'src/export.ts': 'def'}}
         self.assertTrue(data_review_matches(review, review['reviewedData'], review['reviewedImplementation']))

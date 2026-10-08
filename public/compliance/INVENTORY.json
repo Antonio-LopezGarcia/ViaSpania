@@ -5144,238 +5144,238 @@
       "id": "native/gdal-3.13.2_1",
       "name": "gdal",
       "version": "3.13.2_1",
-      "license": null,
+      "license": "MIT",
       "selectedLicense": null
     },
     {
       "id": "native/proj-9.8.1",
       "name": "proj",
       "version": "9.8.1",
-      "license": null,
+      "license": "MIT",
       "selectedLicense": null
     },
     {
       "id": "native/openexr-3.4.14",
       "name": "openexr",
       "version": "3.4.14",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/imath-3.2.2",
       "name": "imath",
       "version": "3.2.2",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/liblerc-4.2.0",
       "name": "liblerc",
       "version": "4.2.0",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/sfcgal-2.3.0_1",
       "name": "sfcgal",
       "version": "2.3.0_1",
-      "license": null,
+      "license": "LGPL-2.0-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/abseil-20260526.0",
       "name": "abseil",
       "version": "20260526.0",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/libaec-1.1.7",
       "name": "libaec",
       "version": "1.1.7",
-      "license": null,
+      "license": "BSD-2-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/aom-3.14.1",
       "name": "aom",
       "version": "3.14.1",
-      "license": null,
+      "license": "BSD-2-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/libarchive-3.8.9",
       "name": "libarchive",
       "version": "3.8.9",
-      "license": null,
+      "license": "BSD-2-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/apache-arrow-25.0.1_1",
       "name": "apache-arrow",
       "version": "25.0.1_1",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/libassuan-3.0.2",
       "name": "libassuan",
       "version": "3.0.2",
-      "license": null,
+      "license": "LGPL-2.1-or-later AND GPL-3.0-or-later AND FSFULLR",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-auth-0.10.4",
       "name": "aws-c-auth",
       "version": "0.10.4",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-cal-0.9.15",
       "name": "aws-c-cal",
       "version": "0.9.15",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-common-0.14.5",
       "name": "aws-c-common",
       "version": "0.14.5",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-compression-0.3.2",
       "name": "aws-c-compression",
       "version": "0.3.2",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-event-stream-0.7.1",
       "name": "aws-c-event-stream",
       "version": "0.7.1",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-http-0.11.0",
       "name": "aws-c-http",
       "version": "0.11.0",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-io-0.27.6",
       "name": "aws-c-io",
       "version": "0.27.6",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-mqtt-0.16.1",
       "name": "aws-c-mqtt",
       "version": "0.16.1",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-s3-0.13.5",
       "name": "aws-c-s3",
       "version": "0.13.5",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-c-sdkutils-0.2.9",
       "name": "aws-c-sdkutils",
       "version": "0.2.9",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-checksums-0.2.10",
       "name": "aws-checksums",
       "version": "0.2.10",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-sdk-cpp-1.11.870",
       "name": "aws-sdk-cpp",
       "version": "1.11.870",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/aws-crt-cpp-0.43.5",
       "name": "aws-crt-cpp",
       "version": "0.43.5",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/libb2-0.98.1",
       "name": "libb2",
       "version": "0.98.1",
-      "license": null,
+      "license": "CC0-1.0",
       "selectedLicense": null
     },
     {
       "id": "native/c-blosc-1.21.6",
       "name": "c-blosc",
       "version": "1.21.6",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/boost-1.92.0",
       "name": "boost",
       "version": "1.92.0",
-      "license": null,
+      "license": "BSL-1.0",
       "selectedLicense": null
     },
     {
       "id": "native/brotli-1.2.0",
       "name": "brotli",
       "version": "1.2.0",
-      "license": null,
+      "license": "MIT",
       "selectedLicense": null
     },
     {
       "id": "native/cfitsio-4.7.0",
       "name": "cfitsio",
       "version": "4.7.0",
-      "license": null,
+      "license": "CFITSIO",
       "selectedLicense": null
     },
     {
       "id": "native/krb5-1.22.2",
       "name": "krb5",
       "version": "1.22.2",
-      "license": null,
+      "license": "BSD-2-Clause AND BSD-2-Clause-first-lines AND BSD-3-Clause AND BSD-4-Clause AND Brian-Gladman-2-Clause AND CMU-Mach-nodoc AND FSFULLRWD AND HPND AND HPND-export2-US AND HPND-export-US AND HPND-export-US-acknowledgement AND HPND-export-US-modify AND ISC AND MIT AND MIT-CMU AND OLDAP-2.8 AND OpenVision AND BSD-2-Clause AND GPL-2.0-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/openssl@3-3.6.3",
       "name": "openssl@3",
       "version": "3.6.3",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/libde265-1.1.1",
       "name": "libde265",
       "version": "1.1.1",
-      "license": null,
+      "license": "LGPL-3.0-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/libdeflate-1.25",
       "name": "libdeflate",
       "version": "1.25",
-      "license": null,
+      "license": "MIT",
       "selectedLicense": null
     },
     {
@@ -5389,7 +5389,7 @@
       "id": "native/freetype-2.14.3",
       "name": "freetype",
       "version": "2.14.3",
-      "license": null,
+      "license": "FTL",
       "selectedLicense": null
     },
     {
@@ -5403,21 +5403,21 @@
       "id": "native/geos-3.14.1",
       "name": "geos",
       "version": "3.14.1",
-      "license": null,
+      "license": "LGPL-2.1-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/libgeotiff-1.7.4",
       "name": "libgeotiff",
       "version": "1.7.4",
-      "license": null,
+      "license": "MIT",
       "selectedLicense": null
     },
     {
       "id": "native/giflib-6.1.3",
       "name": "giflib",
       "version": "6.1.3",
-      "license": null,
+      "license": "MIT",
       "selectedLicense": null
     },
     {
@@ -5431,35 +5431,35 @@
       "id": "native/libgpg-error-1.61",
       "name": "libgpg-error",
       "version": "1.61",
-      "license": null,
+      "license": "LGPL-2.1-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/gpgme-2.1.2",
       "name": "gpgme",
       "version": "2.1.2",
-      "license": null,
+      "license": "LGPL-2.1-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/gpgmepp-2.1.0",
       "name": "gpgmepp",
       "version": "2.1.0",
-      "license": null,
+      "license": "LGPL-2.1-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/hdf5-2.2.0",
       "name": "hdf5",
       "version": "2.2.0",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/libheif-1.23.1",
       "name": "libheif",
       "version": "1.23.1",
-      "license": null,
+      "license": "LGPL-3.0-or-later",
       "selectedLicense": null
     },
     {
@@ -5473,133 +5473,133 @@
       "id": "native/gettext-1.0",
       "name": "gettext",
       "version": "1.0",
-      "license": null,
+      "license": "GPL-3.0-or-later AND LGPL-2.1-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/jpeg-turbo-3.2.0",
       "name": "jpeg-turbo",
       "version": "3.2.0",
-      "license": null,
+      "license": "IJG AND Zlib AND BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/json-c-0.19",
       "name": "json-c",
       "version": "0.19",
-      "license": null,
+      "license": "MIT",
       "selectedLicense": null
     },
     {
       "id": "native/jpeg-xl-0.12.0",
       "name": "jpeg-xl",
       "version": "0.12.0",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/libkml-1.3.0_1",
       "name": "libkml",
       "version": "1.3.0_1",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/little-cms2-2.19",
       "name": "little-cms2",
       "version": "2.19",
-      "license": null,
+      "license": "MIT",
       "selectedLicense": null
     },
     {
       "id": "native/libtool-2.6.2",
       "name": "libtool",
       "version": "2.6.2",
-      "license": null,
+      "license": "GPL-2.0-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/lz4-1.10.0",
       "name": "lz4",
       "version": "1.10.0",
-      "license": null,
+      "license": "BSD-2-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/xz-5.8.3",
       "name": "xz",
       "version": "5.8.3",
-      "license": null,
+      "license": "0BSD AND GPL-2.0-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/minizip-1.3.2_1",
       "name": "minizip",
       "version": "1.3.2_1",
-      "license": null,
+      "license": "Zlib",
       "selectedLicense": null
     },
     {
       "id": "native/mpfr-4.2.2",
       "name": "mpfr",
       "version": "4.2.2",
-      "license": null,
+      "license": "LGPL-3.0-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/netcdf-4.10.1",
       "name": "netcdf",
       "version": "4.10.1",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/nspr-4.40",
       "name": "nspr",
       "version": "4.40",
-      "license": null,
+      "license": "MPL-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/nss-3.127",
       "name": "nss",
       "version": "3.127",
-      "license": null,
+      "license": "MPL-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/unixodbc-2.3.14",
       "name": "unixodbc",
       "version": "2.3.14",
-      "license": null,
+      "license": "LGPL-2.1-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/openjpeg-2.5.4",
       "name": "openjpeg",
       "version": "2.5.4",
-      "license": null,
+      "license": "BSD-2-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/openjph-0.31.0",
       "name": "openjph",
       "version": "0.31.0",
-      "license": null,
+      "license": "BSD-2-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/pcre2-10.47_1",
       "name": "pcre2",
       "version": "10.47_1",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/libpng-1.6.58",
       "name": "libpng",
       "version": "1.6.58",
-      "license": null,
+      "license": "libpng-2.0",
       "selectedLicense": null
     },
     {
@@ -5613,49 +5613,49 @@
       "id": "native/libpq-18.6",
       "name": "libpq",
       "version": "18.6",
-      "license": null,
+      "license": "PostgreSQL",
       "selectedLicense": null
     },
     {
       "id": "native/qhull-2020.2",
       "name": "qhull",
       "version": "2020.2",
-      "license": null,
+      "license": "Qhull",
       "selectedLicense": null
     },
     {
       "id": "native/re2-2025-11-05_1",
       "name": "re2",
       "version": "2025-11-05_1",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/librttopo-1.1.0",
       "name": "librttopo",
       "version": "1.1.0",
-      "license": null,
+      "license": "GPL-2.0-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/s2n-1.7.7",
       "name": "s2n",
       "version": "1.7.7",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/webp-1.6.0",
       "name": "webp",
       "version": "1.6.0",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
       "id": "native/snappy-1.2.2",
       "name": "snappy",
       "version": "1.2.2",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
@@ -5669,28 +5669,28 @@
       "id": "native/sqlite-3.53.4",
       "name": "sqlite",
       "version": "3.53.4",
-      "license": null,
+      "license": "blessing",
       "selectedLicense": null
     },
     {
       "id": "native/thrift-0.24.0",
       "name": "thrift",
       "version": "0.24.0",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/libtiff-4.7.2",
       "name": "libtiff",
       "version": "4.7.2",
-      "license": null,
+      "license": "libtiff",
       "selectedLicense": null
     },
     {
       "id": "native/uriparser-1.0.2",
       "name": "uriparser",
       "version": "1.0.2",
-      "license": null,
+      "license": "BSD-3-Clause",
       "selectedLicense": null
     },
     {
@@ -5704,35 +5704,35 @@
       "id": "native/libvmaf-3.2.0",
       "name": "libvmaf",
       "version": "3.2.0",
-      "license": null,
+      "license": "BSD-2-Clause-Patent",
       "selectedLicense": null
     },
     {
       "id": "native/x265-4.2",
       "name": "x265",
       "version": "4.2",
-      "license": null,
+      "license": "GPL-2.0-or-later",
       "selectedLicense": null
     },
     {
       "id": "native/xerces-c-3.3.0",
       "name": "xerces-c",
       "version": "3.3.0",
-      "license": null,
+      "license": "Apache-2.0",
       "selectedLicense": null
     },
     {
       "id": "native/libxml2-2.15.3",
       "name": "libxml2",
       "version": "2.15.3",
-      "license": null,
+      "license": "MIT",
       "selectedLicense": null
     },
     {
       "id": "native/zstd-1.5.7_1",
       "name": "zstd",
       "version": "1.5.7_1",
-      "license": null,
+      "license": "BSD-3-Clause AND GPL-2.0-only AND BSD-2-Clause AND MIT",
       "selectedLicense": null
     },
     {

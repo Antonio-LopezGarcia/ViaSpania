@@ -3764,8 +3764,10 @@ fn viewshed_for(
         ));
     }
     let projected = transform_points(&[observer.coordinate], "EPSG:4326", &surface.raster_crs)?[0];
-    let ox = ((projected[0] - surface.origin_x) / surface.pixel_x - 0.5).round() as isize;
-    let oy = ((projected[1] - surface.origin_y) / surface.pixel_y - 0.5).round() as isize;
+    let observer_x = (projected[0] - surface.origin_x) / surface.pixel_x - 0.5;
+    let observer_y = (projected[1] - surface.origin_y) / surface.pixel_y - 0.5;
+    let ox = observer_x.round() as isize;
+    let oy = observer_y.round() as isize;
     if ox < 0 || oy < 0 || ox >= surface.width as isize || oy >= surface.height as isize {
         return Err(NativeError::Gdal(format!(
             "El observador «{}» está fuera del MDT",
@@ -3784,30 +3786,71 @@ fn viewshed_for(
     let step = ((surface.width.max(surface.height) + max_side - 1) / max_side).max(1);
     let width = (surface.width + step - 1) / step;
     let height = (surface.height + step - 1) / step;
-    let bins = 7200usize;
-    let cells = analysis_grid::RadialCells::new(surface.width,surface.height,ox as usize,oy as usize,surface.pixel_x,surface.pixel_y)?;
-    let mut horizon = vec![f64::NEG_INFINITY; bins];
+    // Keep angular sectors narrower than half a native cell at the far edge
+    // of the raster. A fixed 7200-sector horizon merged unrelated rays on
+    // large DEMs, causing ridges to leak visibility around their edges.
+    let far_x = (ox as usize).max(surface.width - 1 - ox as usize) as f64 * surface.pixel_x.abs();
+    let far_y = (oy as usize).max(surface.height - 1 - oy as usize) as f64 * surface.pixel_y.abs();
+    let max_distance = far_x.hypot(far_y).max(surface.pixel_x.abs().max(surface.pixel_y.abs()));
+    let angular_step = (surface.pixel_x.abs().min(surface.pixel_y.abs()) * 0.5 / max_distance)
+        .clamp(1e-8, std::f64::consts::PI);
+    let bins = (std::f64::consts::TAU / angular_step).ceil().max(7200.0) as usize;
+    let cells = analysis_grid::RadialCells::new(surface.width,surface.height,observer_x,observer_y,surface.pixel_x,surface.pixel_y)?;
+    let mut horizon = analysis_grid::AngularHorizon::new(bins);
+    let mut pending_horizon: Vec<(usize, usize, f64)> = Vec::new();
+    let mut ring_distance: Option<f64> = None;
     let mut values = vec![-1f32; width * height];
+    let mut bucket_visible = vec![0usize; width * height];
+    let mut bucket_valid = vec![0usize; width * height];
     let mut visible = 0;
     let mut valid_cells = 0;
+    let half_diagonal = 0.5 * surface.pixel_x.hypot(surface.pixel_y);
     for (x, y, d2) in cells {
         calculation_cancel::check()?;
+        if ring_distance.is_some_and(|previous| (d2 - previous).abs() > 1e-9 * previous.max(1.0)) {
+            for (center, radius, slope) in pending_horizon.drain(..) {
+                horizon.update_circular(center, radius, slope);
+            }
+            ring_distance = Some(d2);
+        } else if ring_distance.is_none() {
+            ring_distance = Some(d2);
+        }
         let z = surface.elevations[y * surface.width + x];
         if !valid_elevation(surface, z) { continue; }
         valid_cells += 1;
-        let seen = if d2 == 0.0 { true } else {
-            let dx = (x as f64 - ox as f64) * surface.pixel_x;
-            let dy = (y as f64 - oy as f64) * surface.pixel_y;
-            let angle = dy.atan2(dx);
-            let bin = (((angle + std::f64::consts::PI) / (2.0 * std::f64::consts::PI) * bins as f64).floor() as usize).min(bins - 1);
-            let vertical = ((z as f64) - (ground as f64 + observer_height)) / d2.sqrt();
-            let seen = vertical >= horizon[bin] - 1e-9;
-            horizon[bin] = horizon[bin].max(vertical);
+        let seen = if x == ox as usize && y == oy as usize { true } else {
+            let dx = (x as f64 - observer_x) * surface.pixel_x;
+            let dy = (y as f64 - observer_y) * surface.pixel_y;
+            let angle = dy.atan2(dx).rem_euclid(std::f64::consts::TAU);
+            let bin = ((angle / std::f64::consts::TAU * bins as f64).floor() as usize).min(bins - 1);
+            let distance = d2.sqrt();
+            let half_angle = if distance <= half_diagonal {
+                std::f64::consts::FRAC_PI_2
+            } else {
+                (half_diagonal / distance).asin()
+            };
+            let angular_radius = (half_angle / std::f64::consts::TAU * bins as f64).ceil() as usize;
+            let vertical = ((z as f64) - (ground as f64 + observer_height)) / distance;
+            // Cells contribute their height across the full angular interval
+            // they occupy. Targets are still classified on their center ray,
+            // while a ridge cell between rays can no longer leak visibility.
+            let seen = vertical >= horizon.max_circular(bin, 0) - 1e-9;
+            pending_horizon.push((bin, angular_radius, vertical));
             seen
         };
         if seen { visible += 1; }
-        if x % step == 0 && y % step == 0 {
-            values[(y / step) * width + x / step] = if seen { 1.0 } else { 0.0 };
+        let output_index = (y / step) * width + x / step;
+        bucket_valid[output_index] += 1;
+        bucket_visible[output_index] += usize::from(seen);
+    }
+    for (center, radius, slope) in pending_horizon {
+        horizon.update_circular(center, radius, slope);
+    }
+    // Every output pixel summarizes its native-cell block. Leaving unsampled
+    // pixels as -1 produced transparent gaps in the rendered viewshed.
+    for index in 0..values.len() {
+        if bucket_valid[index] > 0 {
+            values[index] = if bucket_visible[index] * 2 >= bucket_valid[index] { 1.0 } else { 0.0 };
         }
     }
     Ok(ViewshedObserverResult {
@@ -4236,6 +4279,7 @@ fn legacy_lcp_distances_for_test(
         assert_eq!(result.visible_cells,2);
         assert_eq!(result.surface_values[0],1.0);
         assert_eq!(result.surface_values[1],0.0);
+        assert!(result.surface_values.iter().all(|value| *value >= 0.0));
     }
 
     #[test]

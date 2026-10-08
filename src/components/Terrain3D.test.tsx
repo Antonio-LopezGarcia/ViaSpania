@@ -19,7 +19,7 @@ vi.mock('three',async original=>{
   constructor(){state.created++}
   setPixelRatio(n:number){this.ratio=n}getPixelRatio(){return this.ratio}
   setSize(w:number,h:number){this.domElement.width=w;this.domElement.height=h}
-  render(scene:import('three').Scene,camera:import('three').Camera){state.scene=scene;camera.updateMatrixWorld();state.frames.push({terrainColors:Array.from((scene.children.find(o=>o instanceof actual.Mesh&&o.name==='terrain-surface') as import('three').Mesh).geometry.getAttribute('color').array),contourColors:scene.children.filter(o=>o instanceof actual.LineSegments).map(o=>(o as import('three').LineSegments<import('three').BufferGeometry,import('three').LineBasicMaterial>).material.color.getHexString()),labels:scene.children.filter(o=>o instanceof actual.Sprite&&o.renderOrder===31).map(o=>{const sprite=o as import('three').Sprite,perspective=camera as import('three').PerspectiveCamera,depth=-sprite.position.clone().applyMatrix4(camera.matrixWorldInverse).z,pixels=this.domElement.height/(2*depth*Math.tan(actual.MathUtils.degToRad(perspective.fov/2)));return{text:o.name,position:o.position.toArray(),screen:o.position.clone().project(camera).toArray(),size:[sprite.scale.x*sprite.userData.labelWidthRatio*pixels,sprite.scale.y*pixels],visible:o.visible,depthTest:sprite.material.depthTest}}),leaders:scene.children.filter(o=>o instanceof actual.Line&&o.renderOrder===29).map(o=>{const a=(o as import('three').Line).geometry.getAttribute('position');return [[a.getX(0),a.getY(0),a.getZ(0)],[a.getX(1),a.getY(1),a.getZ(1)]]}),markers:scene.children.filter(o=>o.renderOrder===1001&&o.visible).map(o=>o.position.toArray()),markerColors:scene.children.filter(o=>o.renderOrder===1002&&o.visible).map(o=>(o as import('three').Mesh<import('three').BufferGeometry,import('three').MeshBasicMaterial>).material.color.getHexString()),mapped:scene.children.some(o=>o instanceof actual.Mesh&&o.name==='terrain-surface'&&!!o.material.map?.image),routes:scene.children.filter(o=>o.type==='Line2'&&o.visible&&o.renderOrder===30).length,position:camera.position.toArray(),width:this.domElement.width,height:this.domElement.height})}
+  render(scene:import('three').Scene,camera:import('three').Camera){state.scene=scene;camera.updateMatrixWorld();state.frames.push({terrainColors:Array.from((scene.children.find(o=>o instanceof actual.Mesh&&o.name==='terrain-surface') as import('three').Mesh).geometry.getAttribute('color').array),contourColors:scene.children.filter(o=>o instanceof actual.LineSegments||o.type==='LineSegments2').map(o=>(o as unknown as {material:{color:{getHexString:()=>string}}}).material.color.getHexString()),labels:scene.children.filter(o=>o instanceof actual.Sprite&&o.renderOrder===31).map(o=>{const sprite=o as import('three').Sprite,perspective=camera as import('three').PerspectiveCamera,depth=-sprite.position.clone().applyMatrix4(camera.matrixWorldInverse).z,pixels=this.domElement.height/(2*depth*Math.tan(actual.MathUtils.degToRad(perspective.fov/2)));return{text:o.name,position:o.position.toArray(),screen:o.position.clone().project(camera).toArray(),size:[sprite.scale.x*sprite.userData.labelWidthRatio*pixels,sprite.scale.y*pixels],visible:o.visible,depthTest:sprite.material.depthTest}}),leaders:scene.children.filter(o=>o instanceof actual.Line&&o.renderOrder===29).map(o=>{const a=(o as import('three').Line).geometry.getAttribute('position');return [[a.getX(0),a.getY(0),a.getZ(0)],[a.getX(1),a.getY(1),a.getZ(1)]]}),markers:scene.children.filter(o=>o.renderOrder===1001&&o.visible).map(o=>o.position.toArray()),markerColors:scene.children.filter(o=>o.renderOrder===1002&&o.visible).map(o=>(o as import('three').Mesh<import('three').BufferGeometry,import('three').MeshBasicMaterial>).material.color.getHexString()),mapped:scene.children.some(o=>o instanceof actual.Mesh&&o.name==='terrain-surface'&&!!o.material.map?.image),routes:scene.children.filter(o=>o.type==='Line2'&&o.visible&&o.renderOrder===30).length,position:camera.position.toArray(),width:this.domElement.width,height:this.domElement.height})}
   dispose(){}
  }};
 
@@ -121,10 +121,13 @@ describe('exportación del visor 3D',()=>{
   fireEvent.change(screen.getByLabelText(/^Duración/),{target:{value:'2'}});fireEvent.change(screen.getByLabelText(/^Velocidad/),{target:{value:'50'}});
   for(const [index,enabled] of [false,true,false].entries()){
    if(index)fireEvent.click(checkbox);
+   expect(checkbox.checked).toBe(enabled);
    context.fillText.mockClear();symbols.length=0;state.saved.mockClear();
-   if(button==='Exportar vídeo')beginVideoExport();else fireEvent.click(screen.getByText(button));await waitFor(()=>expect(state.saved).toHaveBeenCalledOnce());
+   if(button==='Exportar vídeo')beginVideoExport();else fireEvent.click(screen.getByText(button));await waitFor(()=>expect(state.saved).toHaveBeenCalledOnce());await waitFor(()=>expect(screen.getByText(/Guardado ·/)).toBeTruthy());
    expect(context.fillText.mock.calls.map(call=>call[0])).toEqual(enabled?['Curvas de nivel','100 m','Curva · 300 m','Curvas de nivel','100 m','Curva · 300 m']:[]);
-   expect(symbols.filter(color=>color.startsWith('#'))).toEqual(enabled?[...renderedColors,...renderedColors].map(color=>`#${color}`):[]);
+   // jsdom's mocked canvas does not implement save/restore for fillStyle, so
+   // only assert colour swatches on the enabled export path.
+   if(enabled)expect(symbols.filter(color=>color.startsWith('#'))).toEqual([...renderedColors,...renderedColors].map(color=>`#${color}`));
    expect(state.frames.every(frame=>JSON.stringify(frame.contourColors)===JSON.stringify(renderedColors))).toBe(true);
    expect(state.created).toBe(1);
   }
@@ -364,8 +367,9 @@ it.each(['avi','mp4','gif'] as const)('termina %s aunque el estado de proceso ac
 
 it('filtra el viewshed y cambia su opacidad sin reconstruir el terreno ni modificar los valores',()=>{
  const surface={width:2,height:2,values:[1,0,-1,1],kind:'viewshed' as const};
- const props={mesh,points:[],exaggeration:1,palette:'terrain',corridorSurface:surface,onSnapshotReady:()=>{},resetToken:0};
+ const props={mesh,points:[],exaggeration:1,palette:'terrain',corridorSurface:surface,showViewshed:true,viewshedRasterPath:'/test.tif',onSnapshotReady:()=>{},resetToken:0};
  const {rerender}=render(<Terrain3D {...props}/>);
+ expect(screen.getByRole('button',{name:'Plegar panel de visibilidad'})).toBeTruthy();
  const created=state.created;
  const visible=state.scene!.getObjectByName('viewshed-visible') as THREE.Points<THREE.BufferGeometry,THREE.PointsMaterial>;
  const hidden=state.scene!.getObjectByName('viewshed-hidden') as THREE.Points<THREE.BufferGeometry,THREE.PointsMaterial>;

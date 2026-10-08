@@ -94,7 +94,8 @@ interface MapPanelProps {
   routeCoordinates?: [number, number][];
   routeSlopesPercent?: number[];
   routeOverlays?: { id: string; coordinates: [number,number][]; color: string }[];
-  isochroneLines?: { level:number; coordinates:[number,number][]; color?:string }[];
+  isochroneLines?: { level:number; coordinates:[number,number][]; color?:string; width?:number; label?:string; labelPoints?:[number,number][]; labelRotation?:number; halo?:string; labelColor?:string }[];
+  peakLabels?: {coordinate:[number,number];label:string}[];
   isochroneSurface?: {imageUrl:string;extent:StudyExtent;opacity:number};
   barriers?: Barrier[];
   onBarriersChange?: (barriers: Barrier[])=>void;
@@ -109,6 +110,8 @@ interface MapPanelProps {
   onMagicOceanSeed?: (coordinate:[number,number])=>void;
   onFacilitatorPolyline?: (kind:'corridor'|'crossing',coordinates:[number,number][])=>void;
   onPointerCoordinate?: (coordinate:{lon:number;lat:number}|null)=>void;
+  onMapPick?: (coordinate:[number,number])=>void;
+  pickingViewshed?: boolean;
   placeMarkerCoordinates?: readonly {lon:number;lat:number}[];
   selectionMarkerCoordinate?: {lon:number;lat:number}|null;
   zoomToStudyExtentToken?: number|null;
@@ -211,6 +214,7 @@ export function MapPanel(props: MapPanelProps) {
   const locationSourceRef = useRef(new VectorSource());
   const placeMarkerSourceRef = useRef(new VectorSource());
   const selectionMarkerSourceRef = useRef(new VectorSource());
+  const selectionMarkerFeatureRef = useRef<Feature<Point> | null>(null);
   const approximationSourceRef = useRef(new VectorSource());
   const measurementSourceRef = useRef(new VectorSource());
   const [measurementMode,setMeasurementMode]=useState<'pan'|'distance'|'area'>('pan');
@@ -367,8 +371,9 @@ export function MapPanel(props: MapPanelProps) {
     const oceanLayer=new VectorLayer({source:oceanSourceRef.current,style:[new Style({stroke:new Stroke({color:'#fff',width:8,lineCap:'round',lineJoin:'round',lineDash:[1,6]})}),new Style({stroke:new Stroke({color:'#168cff',width:4,lineCap:'round',lineJoin:'round',lineDash:[1,6]})})],zIndex:23});
     const isochroneLayer = new VectorLayer({
       source: isochroneSourceRef.current,
-      style: feature => new Style({ stroke:new Stroke({color:String(feature.get('color')??'#ffffff'),width:2}) }),
+      style: feature => {const color=String(feature.get('color')??'#ffffff'),width=Number(feature.get('width')??2),label=String(feature.get('label')??''),halo=String(feature.get('halo')??'#101713');if(feature.get('labelOnly'))return new Style({text:new Text({text:label,rotation:Number(feature.get('rotation')??0),font:'600 12px sans-serif',fill:new Fill({color}),stroke:new Stroke({color:halo,width:4}),overflow:true})});return new Style({stroke:new Stroke({color,width})})},
       zIndex:17,
+      declutter:true,
     });
     const barrierLayer = new VectorLayer({
       source: barrierSourceRef.current,
@@ -438,6 +443,7 @@ export function MapPanel(props: MapPanelProps) {
     map.getViewport().addEventListener('mouseleave',leave);
     map.getViewport().addEventListener('contextmenu',contextMenu);
     map.on('singleclick', event => {
+      if(propsRef.current.pickingViewshed){const coordinate=toLonLat(event.coordinate) as [number,number];propsRef.current.onMapPick?.(coordinate);return}
       if(kind==='pnoa'&&propsRef.current.expanded&&oceanModeRef.current==='join'){
         const hits=map.getFeaturesAtPixel(event.pixel,{layerFilter:layer=>layer===oceanLayer,hitTolerance:10}).filter((feature):feature is Feature=>feature instanceof Feature&&Boolean(feature.get('oceanLine'))),hit=hits[0];if(!hit)return;const line=hit.getGeometry();if(!(line instanceof LineString))return;const coords=line.getCoordinates(),first=map.getPixelFromCoordinate(coords[0]),last=map.getPixelFromCoordinate(coords.at(-1)!),firstDistance=Math.hypot(event.pixel[0]-first[0],event.pixel[1]-first[1]),lastDistance=Math.hypot(event.pixel[0]-last[0],event.pixel[1]-last[1]),end:0|1=firstDistance<lastDistance?0:1,selected=oceanJoinRef.current;if(Math.min(firstDistance,lastDistance)>16)return;if(!selected){oceanJoinRef.current={feature:hit,end};return}if(selected.feature===hit){oceanJoinRef.current={feature:hit,end};return}const a=(selected.feature.getGeometry() as LineString).getCoordinates(),b=coords,selectedCoordinate=a[selected.end===0?0:a.length-1],hitCoordinate=b[end===0?0:b.length-1],selectedPixel=map.getPixelFromCoordinate(selectedCoordinate),hitPixel=map.getPixelFromCoordinate(hitCoordinate);if(Math.hypot(selectedPixel[0]-hitPixel[0],selectedPixel[1]-hitPixel[1])>16){oceanJoinRef.current={feature:hit,end};return}const merged=new Feature(new LineString([...(selected.end===0?[...a].reverse():a),...(end===0?b.slice(1):[...b].reverse().slice(1))]));merged.set('oceanLine',true);oceanSourceRef.current.removeFeature(selected.feature);oceanSourceRef.current.removeFeature(hit);oceanSourceRef.current.addFeature(merged);oceanJoinRef.current=null;commitOcean();return;
       }
@@ -551,8 +557,9 @@ export function MapPanel(props: MapPanelProps) {
   useEffect(()=>{
     const source=isochroneSourceRef.current;source.clear();
     const lines=props.isochroneLines??[],levels=[...new Set(lines.map(line=>line.level))].sort((a,b)=>a-b);
-    for(const [index,level] of levels.entries()){const segments=lines.filter(line=>line.level===level&&line.coordinates.length>=2).map(line=>line.coordinates.map(coordinate=>fromLonLat(coordinate)));if(!segments.length)continue;const feature=new Feature(new MultiLineString(segments));const lineColor=lines.find(line=>line.level===level)?.color,ratio=levels.length<2?1:index/(levels.length-1);feature.set('color',lineColor??`hsl(${205-ratio*165} 95% 58%)`);source.addFeature(feature)}
-  },[props.isochroneLines]);
+    for(const [index,level] of levels.entries()){const levelLines=lines.filter(line=>line.level===level&&line.coordinates.length>=2),segments=levelLines.map(line=>line.coordinates.map(coordinate=>fromLonLat(coordinate)));if(!segments.length)continue;const feature=new Feature(new MultiLineString(segments)),sample=lines.find(line=>line.level===level)!,ratio=levels.length<2?1:index/(levels.length-1);feature.set('color',sample.color??`hsl(${205-ratio*165} 95% 58%)`);if(sample.width)feature.set('width',sample.width);if(sample.halo)feature.set('halo',sample.halo);source.addFeature(feature);if(sample.label){for(const line of levelLines)for(const coordinate of line.labelPoints??[]){const labelFeature=new Feature(new Point(fromLonLat(coordinate)));labelFeature.setProperties({label:sample.label,color:sample.labelColor??sample.color??'#111111',halo:sample.halo??'#ffffff',rotation:line.labelRotation??0,labelOnly:true});source.addFeature(labelFeature)}}}
+    for(const peak of props.peakLabels??[]){const feature=new Feature(new Point(fromLonLat(peak.coordinate)));feature.setProperties({label:peak.label,color:'#111111',halo:'#ffffff',labelOnly:true});source.addFeature(feature)}
+  },[props.isochroneLines,props.peakLabels]);
 
   useEffect(() => {
     const source=barrierSourceRef.current;
@@ -567,7 +574,7 @@ export function MapPanel(props: MapPanelProps) {
   useEffect(()=>{const source=locationSourceRef.current;source.clear();const location=props.userLocation;if(!location)return;const center=fromLonLat([location.lon,location.lat]),mercatorRadius=location.accuracyM/Math.max(.1,Math.cos(location.lat*Math.PI/180));source.addFeatures([new Feature(new Circle(center,mercatorRadius)),new Feature(new Point(center))])},[props.userLocation]);
 
   useEffect(()=>{const source=placeMarkerSourceRef.current;source.clear();source.addFeatures((props.placeMarkerCoordinates??[]).map(coordinate=>new Feature(new Point(fromLonLat([coordinate.lon,coordinate.lat])))))},[props.placeMarkerCoordinates]);
-  useEffect(()=>{const source=selectionMarkerSourceRef.current;source.clear();const coordinate=props.selectionMarkerCoordinate;if(coordinate)source.addFeature(new Feature(new Point(fromLonLat([coordinate.lon,coordinate.lat]))))},[props.selectionMarkerCoordinate]);
+  useEffect(()=>{const source=selectionMarkerSourceRef.current,coordinate=props.selectionMarkerCoordinate;if(!coordinate){if(selectionMarkerFeatureRef.current)source.removeFeature(selectionMarkerFeatureRef.current);selectionMarkerFeatureRef.current=null;return}const projected=fromLonLat([coordinate.lon,coordinate.lat]);if(selectionMarkerFeatureRef.current)selectionMarkerFeatureRef.current.getGeometry()?.setCoordinates(projected);else{const feature=new Feature(new Point(projected));selectionMarkerFeatureRef.current=feature;source.addFeature(feature)}},[props.selectionMarkerCoordinate]);
 
   useEffect(()=>{const map=mapRef.current;if(!map||!studyExtent||props.zoomToStudyExtentToken==null)return;map.getView().fit(transformExtent(studyExtent,'EPSG:4326','EPSG:3857'),{padding:[36,36,36,36],duration:250})},[props.zoomToStudyExtentToken,studyExtent]);
   useEffect(()=>{

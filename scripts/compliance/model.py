@@ -67,6 +67,24 @@ def formula_sources(recipe):
     return [{'url': u, 'integrity': h} for u, h in dict.fromkeys(pairs) if '#{' not in u]
 
 
+def formula_license(recipe):
+    """Read the literal Homebrew license declaration without evaluating Ruby."""
+    simple = re.search(r'^\s*license\s+"([^"]+)"\s*(?:#.*)?$', recipe, re.M)
+    if simple:
+        return simple.group(1)
+    block = re.search(r'^\s*license\s+(all_of|any_of):\s*\[(.*?)^\s*\]', recipe, re.M | re.S)
+    if not block:
+        return None
+    operator, body = block.groups()
+    body = re.sub(r'#[^\n]*', '', body)
+    tokens = re.findall(r'"([^"]+)"|:([A-Za-z_][A-Za-z_0-9]*)', body)
+    values = [text or ("LicenseRef-Homebrew-public-domain" if symbol == 'public_domain' else '')
+              for text, symbol in tokens]
+    if not values or any(not value for value in values):
+        return None
+    return (' AND ' if operator == 'all_of' else ' OR ').join(values)
+
+
 def auxiliary_sources(document, native_components):
     """Bind supplemental sources to the exact inventoried parent source."""
     if document.get('schema') != 1:

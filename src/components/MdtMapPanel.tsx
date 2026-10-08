@@ -36,26 +36,29 @@ interface MdtMapPanelProps {
   points: GeoPoint[];
   selectedPointId: number | null;
   routes: { coordinates: [number, number][]; color: string }[];
-  isochroneLines?: {level:number;coordinates:[number,number][];color?:string}[];
+  isochroneLines?: {level:number;coordinates:[number,number][];color?:string;width?:number;label?:string;labelPoints?:[number,number][];labelRotation?:number;halo?:string;labelColor?:string}[];
+  peakLabels?: {coordinate:[number,number];label:string}[];
   isochroneSurface?: {imageUrl:string;opacity:number};
   onHover: (coordinate: [number, number] | null) => void;
   userLocation?: { lon:number; lat:number; accuracyM:number } | null;
   zoomToStudyExtentToken?: number|null;
   hoverEnabled?: boolean;
   onPointerCoordinate?: (coordinate:{lon:number;lat:number}|null)=>void;
+  onMapPick?: (coordinate:[number,number])=>void;
   placeMarkerCoordinates?: readonly {lon:number;lat:number}[];
   selectionMarkerCoordinate?: {lon:number;lat:number}|null;
 }
 
 const EMPTY_BARRIERS:Barrier[]=[],EMPTY_CORRIDORS:PreferredCorridor[]=[],EMPTY_CROSSINGS:EnabledCrossing[]=[],EMPTY_POIS:PointOfInterest[]=[];
 const EMPTY_ISOCHRONE_LINES:{level:number;coordinates:[number,number][]}[]=[];
+const EMPTY_PEAK_LABELS:{coordinate:[number,number];label:string}[]=[];
 
 function sameView(view: View, next: SharedMapView) {
   const center = view.getCenter(), resolution = view.getResolution();
   return Boolean(center && resolution && Math.abs(center[0]-next.center[0])<.01 && Math.abs(center[1]-next.center[1])<.01 && Math.abs(resolution-next.resolution)<.001 && Math.abs(view.getRotation()-next.rotation)<.00001);
 }
 
-export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,crossings=EMPTY_CROSSINGS,pointsOfInterest=EMPTY_POIS,expanded=false,measurementTools=false,rasterPath,imageUrl,studyExtent,imageExtent,viewState,onViewChange,points,selectedPointId,routes,isochroneLines=EMPTY_ISOCHRONE_LINES,isochroneSurface,onHover,userLocation,zoomToStudyExtentToken,hoverEnabled=true,onPointerCoordinate,selectionMarkerCoordinate,placeMarkerCoordinates}:MdtMapPanelProps){
+export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,crossings=EMPTY_CROSSINGS,pointsOfInterest=EMPTY_POIS,expanded=false,measurementTools=false,rasterPath,imageUrl,studyExtent,imageExtent,viewState,onViewChange,points,selectedPointId,routes,isochroneLines=EMPTY_ISOCHRONE_LINES,peakLabels=EMPTY_PEAK_LABELS,isochroneSurface,onHover,userLocation,zoomToStudyExtentToken,hoverEnabled=true,onPointerCoordinate,onMapPick,selectionMarkerCoordinate,placeMarkerCoordinates}:MdtMapPanelProps){
   const rasterExtent=imageExtent??studyExtent,imageExtentKey=rasterExtent.join(',');
   const [showConstraints,setShowConstraints]=useState(true),[showLabels,setShowLabels]=useState(false);
   const [preferencesVersion,setPreferencesVersion]=useState(0),preferences=loadAppSettings();
@@ -67,8 +70,8 @@ export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,c
   useEffect(()=>{const size=loadAppSettings().labelTextSizePx??11;pointLayer.current.setStyle(feature=>{const point=feature.get('point') as GeoPoint,selected=point.id===selectedPointId,color=pointColor(feature.get('order')??0);return new Style({image:new CircleStyle({radius:selected?9:7,fill:new Fill({color}),stroke:new Stroke({color:selected?'#fff':'#101713',width:selected?3:2})}),text:showLabels?new Text({text:point.name,offsetY:-(size+6),font:`600 ${size}px sans-serif`,fill:new Fill({color:'#fff'}),stroke:new Stroke({color:'#101713',width:3})}):undefined})})},[selectedPointId,showLabels,preferencesVersion]);
   useEffect(()=>{const refresh=()=>setPreferencesVersion(value=>value+1);window.addEventListener('viaspania-settings',refresh);return()=>window.removeEventListener('viaspania-settings',refresh)},[]);
   const placeMarkerSourceRef=useRef(new VectorSource());
-  const host=useRef<HTMLDivElement>(null),mapRef=useRef<Map|null>(null),[measurementMap,setMeasurementMap]=useState<Map|null>(null),syncing=useRef(false),onViewChangeRef=useRef(onViewChange),onHoverRef=useRef(onHover),onPointerCoordinateRef=useRef(onPointerCoordinate),selectionMarkerSourceRef=useRef(new VectorSource());
-  onViewChangeRef.current=onViewChange;onHoverRef.current=onHover;onPointerCoordinateRef.current=onPointerCoordinate;
+  const host=useRef<HTMLDivElement>(null),mapRef=useRef<Map|null>(null),[measurementMap,setMeasurementMap]=useState<Map|null>(null),syncing=useRef(false),onViewChangeRef=useRef(onViewChange),onHoverRef=useRef(onHover),onPointerCoordinateRef=useRef(onPointerCoordinate),onMapPickRef=useRef(onMapPick),selectionMarkerSourceRef=useRef(new VectorSource()),selectionMarkerFeatureRef=useRef<Feature<Point>|null>(null);
+  onViewChangeRef.current=onViewChange;onHoverRef.current=onHover;onPointerCoordinateRef.current=onPointerCoordinate;onMapPickRef.current=onMapPick;
   useEffect(()=>{
     if(!host.current)return;
     const projectedImageExtent=transformExtent(rasterExtent,'EPSG:4326','EPSG:3857'),studyAreaExtent=transformExtent(studyExtent,'EPSG:4326','EPSG:3857');
@@ -78,12 +81,13 @@ export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,c
     const coverageSource=new VectorSource({features:[new Feature(polygonFromExtent(studyAreaExtent))]});
     if(userLocation){const center=fromLonLat([userLocation.lon,userLocation.lat]),radius=userLocation.accuracyM/Math.max(.1,Math.cos(userLocation.lat*Math.PI/180));locationSource.addFeatures([new Feature(new Circle(center,radius)),new Feature(new Point(center))])}
     for(const route of routes){if(route.coordinates.length<2)continue;const feature=new Feature(new LineString(route.coordinates.map(coordinate=>fromLonLat(coordinate))));feature.set('color',route.color);routeSource.addFeature(feature)}
-    for(const [index,level] of levels.entries()){const segments=isochroneLines.filter(line=>line.level===level&&line.coordinates.length>=2).map(line=>line.coordinates.map(coordinate=>fromLonLat(coordinate)));if(!segments.length)continue;const feature=new Feature(new MultiLineString(segments));const lineColor=isochroneLines.find(line=>line.level===level)?.color,ratio=levels.length<2?1:index/(levels.length-1);feature.set('color',lineColor??`hsl(${205-ratio*165} 95% 58%)`);isochroneSource.addFeature(feature)}
+    for(const [index,level] of levels.entries()){const levelLines=isochroneLines.filter(line=>line.level===level&&line.coordinates.length>=2),segments=levelLines.map(line=>line.coordinates.map(coordinate=>fromLonLat(coordinate)));if(!segments.length)continue;const feature=new Feature(new MultiLineString(segments)),sample=isochroneLines.find(line=>line.level===level)!,ratio=levels.length<2?1:index/(levels.length-1),color=sample.color??`hsl(${205-ratio*165} 95% 58%)`;feature.set('color',color);if(sample.width)feature.set('width',sample.width);if(sample.halo)feature.set('halo',sample.halo);isochroneSource.addFeature(feature);if(sample.label){for(const line of levelLines)for(const coordinate of line.labelPoints??[]){const labelFeature=new Feature(new Point(fromLonLat(coordinate)));labelFeature.setProperties({label:sample.label,color:sample.labelColor??color,halo:sample.halo??'#ffffff',rotation:line.labelRotation??0,labelOnly:true});isochroneSource.addFeature(labelFeature)}}}
+    for(const peak of peakLabels){const feature=new Feature(new Point(fromLonLat(peak.coordinate)));feature.setProperties({label:peak.label,color:'#111111',halo:'#ffffff',labelOnly:true});isochroneSource.addFeature(feature)}
     const map=new Map({target:host.current,layers:[constraintLayer.current,
       new ImageLayer({source:new ImageStatic({url:imageUrl,imageExtent:projectedImageExtent,projection:'EPSG:3857'}),zIndex:1}),
       new VectorLayer({source:coverageSource,zIndex:2,style:new Style({fill:new Fill({color:'rgba(216,255,85,.04)'}),stroke:new Stroke({color:'#d8ff55',width:2,lineDash:[7,5]})})}),
       ...(isochroneSurface?[new ImageLayer({source:new ImageStatic({url:isochroneSurface.imageUrl,imageExtent:projectedImageExtent,projection:'EPSG:3857'}),opacity:isochroneSurface.opacity,zIndex:1.5})]:[]),
-      new VectorLayer({source:isochroneSource,zIndex:2,style:feature=>new Style({stroke:new Stroke({color:String(feature.get('color')??'#fff'),width:2})})}),
+      new VectorLayer({source:isochroneSource,zIndex:2,declutter:true,style:feature=>{const color=String(feature.get('color')??'#fff'),width=Number(feature.get('width')??2),label=String(feature.get('label')??''),halo=String(feature.get('halo')??'#101713');if(feature.get('labelOnly'))return new Style({text:new Text({text:label,rotation:Number(feature.get('rotation')??0),font:'600 12px sans-serif',fill:new Fill({color}),stroke:new Stroke({color:halo,width:4}),overflow:true})});return new Style({stroke:new Stroke({color,width})})}}),
       new VectorLayer({source:routeSource,zIndex:2,style:feature=>[new Style({stroke:new Stroke({color:'rgba(5,15,18,.92)',width:9,lineCap:'round',lineJoin:'round'})}),new Style({stroke:new Stroke({color:String(feature.get('color')??'#00f0ff'),width:4,lineCap:'round',lineJoin:'round'})})]}),
       pointLayer.current,
       new VectorLayer({source:locationSource,zIndex:4,style:feature=>feature.getGeometry()?.getType()==='Circle'?new Style({fill:new Fill({color:'rgba(60,150,255,.16)'}),stroke:new Stroke({color:'rgba(90,180,255,.8)',width:2})}):new Style({image:new CircleStyle({radius:7,fill:new Fill({color:'#168cff'}),stroke:new Stroke({color:'#fff',width:3})})})}),
@@ -91,11 +95,12 @@ export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,c
       new VectorLayer({source:selectionMarkerSourceRef.current,zIndex:8,style:selectionMarkerStyle()}),
     ],view:new View({center:viewState.center,resolution:viewState.resolution,rotation:viewState.rotation}),controls:preferences.showScales?[new ScaleLine()]:[]});
     mapRef.current=map;if(measurementTools)setMeasurementMap(map);
-    map.on('moveend',()=>{if(syncing.current){syncing.current=false;return}const view=map.getView(),center=view.getCenter(),resolution=view.getResolution();if(center&&resolution)onViewChangeRef.current({center:[center[0],center[1]],resolution,rotation:view.getRotation()})});
+    map.on('moveend',()=>{if(syncing.current){syncing.current=false;return}const view=map.getView(),center=view.getCenter(),resolution=view.getResolution(),size=map.getSize();if(center&&resolution)onViewChangeRef.current({center:[center[0],center[1]],resolution,rotation:view.getRotation(),extent:size?transformExtent(view.calculateExtent(size),view.getProjection(),'EPSG:4326') as [number,number,number,number]:undefined})});
     map.on('pointermove',event=>{const coordinate=toLonLat(event.coordinate) as [number,number];onPointerCoordinateRef.current?.({lon:coordinate[0],lat:coordinate[1]});if(hoverEnabled)onHoverRef.current(coordinate)});
+    map.on('singleclick',event=>{const coordinate=toLonLat(event.coordinate) as [number,number];onMapPickRef.current?.(coordinate)});
     const leave=()=>{onPointerCoordinateRef.current?.(null);if(hoverEnabled)onHoverRef.current(null)};map.getViewport().addEventListener('mouseleave',leave);
     return()=>{map.getViewport().removeEventListener('mouseleave',leave);mapRef.current=null;if(measurementTools)setMeasurementMap(null);map.setTarget(undefined)};
-  },[imageUrl,studyExtent,imageExtentKey,routes,isochroneLines,isochroneSurface?.imageUrl,isochroneSurface?.opacity,userLocation,preferencesVersion,hoverEnabled,measurementTools]);
+  },[imageUrl,studyExtent,imageExtentKey,routes,isochroneLines,peakLabels,isochroneSurface?.imageUrl,isochroneSurface?.opacity,userLocation,preferencesVersion,hoverEnabled,measurementTools]);
   useEffect(()=>{
     const map=mapRef.current;
     if(!map||!expanded)return;
@@ -106,7 +111,7 @@ export function MdtMapPanel({barriers=EMPTY_BARRIERS,corridors=EMPTY_CORRIDORS,c
     return()=>cancelAnimationFrame(frame);
   },[expanded,imageExtentKey]);
   useEffect(()=>{const source=placeMarkerSourceRef.current;source.clear();source.addFeatures((placeMarkerCoordinates??[]).map(coordinate=>new Feature(new Point(fromLonLat([coordinate.lon,coordinate.lat])))))},[placeMarkerCoordinates]);
-  useEffect(()=>{const source=selectionMarkerSourceRef.current;source.clear();if(selectionMarkerCoordinate)source.addFeature(new Feature(new Point(fromLonLat([selectionMarkerCoordinate.lon,selectionMarkerCoordinate.lat]))))},[selectionMarkerCoordinate]);
+  useEffect(()=>{const source=selectionMarkerSourceRef.current;if(!selectionMarkerCoordinate){if(selectionMarkerFeatureRef.current)source.removeFeature(selectionMarkerFeatureRef.current);selectionMarkerFeatureRef.current=null;return}const coordinate=fromLonLat([selectionMarkerCoordinate.lon,selectionMarkerCoordinate.lat]);if(selectionMarkerFeatureRef.current)selectionMarkerFeatureRef.current.getGeometry()?.setCoordinates(coordinate);else{const feature=new Feature(new Point(coordinate));selectionMarkerFeatureRef.current=feature;source.addFeature(feature)}},[selectionMarkerCoordinate]);
   useEffect(()=>{const map=mapRef.current;if(!map||sameView(map.getView(),viewState))return;syncing.current=true;map.getView().setCenter(viewState.center);map.getView().setResolution(viewState.resolution);map.getView().setRotation(viewState.rotation)},[viewState]);
   useEffect(()=>{const map=mapRef.current;if(!map||zoomToStudyExtentToken==null)return;map.getView().fit(transformExtent(studyExtent,'EPSG:4326','EPSG:3857'),{padding:[36,36,36,36],duration:250})},[zoomToStudyExtentToken,studyExtent]);
   return <div className="mdt-map"><div ref={host} className="mdt-map-canvas"/>{measurementTools&&<MeasurementPanel map={measurementMap} rasterPath={rasterPath}/>}{expanded&&<div className="mdt-constraint-controls"><label><input type="checkbox" checked={showConstraints} onChange={event=>setShowConstraints(event.target.checked)}/>Mostrar barreras y facilitadores</label><label><input type="checkbox" checked={showLabels} onChange={event=>setShowLabels(event.target.checked)}/>Mostrar etiquetas</label></div>}{preferences.showCrosshairs&&<div className="mdt-crosshair"/>}</div>;

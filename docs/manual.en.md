@@ -203,11 +203,17 @@ Lines represent time only when the profile uses time units. Other profiles produ
 
 Select observers and their height above the surface, calculate, and inspect visible and non-visible areas. Observer height can represent a person, tripod, tower or custom value.
 
+You can calculate visibility from several points at once and toggle each observer in the result. When several observers are shown together, a cell is visible if it is visible from at least one selected observer. In the 3D viewer, choose an observer, show only visible or non-visible areas, adjust opacity, or start a calculation from a point selected on the terrain.
+
 Visibility depends on the loaded model. A DTM does not automatically include trees or buildings; a DSM only includes what its surface records. The analysis does not include atmospheric refraction or reconstruct historical conditions.
+
+The calculation compares each cell's apparent slope, `s = (z − (z₀ + h)) / d` (cell elevations `z` and `z₀`, observer height `h`, and horizontal distance `d` are in metres; `s` is dimensionless), with the maximum preceding horizon. This gradient-based line-of-sight criterion is also described in the [GRASS GIS r.viewshed manual](https://grass.osgeo.org/grass-stable/manuals/r.viewshed.html). ViaSpania uses the elevation of the nearest cell to the observer and approximates each cell as an angular sector; the viewer reduces blocks of native cells by simple majority to at most 500 cells along the longest axis. This is a resolution- and sampling-dependent estimate, not an exact line of sight between points. It does not correct for Earth curvature.
 
 ### Contour lines: read elevations
 
 Choose vertical spacing in metres and generate contours. Use their elevation values to recognise slopes, ridges and valley bottoms. Smaller spacing produces more lines but does not improve source accuracy.
+
+In the viewer, choose the topographic style or colour contours by elevation, change the topographic line colour, and highlight every few contours as major lines. Elevation labels are placed on visible line segments; you can show or hide labels for peaks detected in the model.
 
 Calculated contours can be overlaid in supporting viewers, including 3D. On a DSM they describe the upper surface, not necessarily the ground.
 
@@ -248,6 +254,8 @@ Use the measurement tools in the viewer options to measure a line or the outline
 With a model loaded, click **3D view**. Drag with the left button to orbit, the right button to pan, and use the wheel to zoom. The compass and inclination indicator help you find your bearings.
 
 Adjust vertical exaggeration, palette or texture, and enable available points, routes, contours and other results. Exaggeration changes only the display; zero flattens the view. The 3D mesh is a simplified representation, not an additional elevation source.
+
+**Flight mode** lets you move through the scene with the keyboard: W/S moves forward and backward, A/D strafes, the arrow keys turn and change pitch, and T/G moves up and down. Adjust speed, enable cruise control, or choose a position in the isometric view; the indicator shows height above terrain. Flight mode moves the camera and does not change the model or analysis results.
 
 ### Create images and animations
 

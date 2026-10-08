@@ -6,12 +6,12 @@ import {emitTo,listen} from '@tauri-apps/api/event';
 import {Terrain3D} from './Terrain3D';
 import {ElevationProfileOverlay} from './ElevationProfileOverlay';
 import {loadAppSettings} from '../core/appSettings';
-import {setLanguage} from '../core/i18n';
+import {setLanguage,translateText} from '../core/i18n';
 import '../terrain-3d.css';
 
 type Props=ComponentProps<typeof Terrain3D>&{toolbar?:TerrainToolbarState;onToolbarAction?:(action:TerrainToolbarAction)=>void;profileRoutes?:ComponentProps<typeof ElevationProfileOverlay>['routes']};
 export function terrainWindowState(props:Props){
- const {onSnapshotReady,onVideoExported,onCameraChange,onToggleLegendItem,onToolbarAction,onTextureResolutionChange,...state}=props;
+ const {onSnapshotReady,onVideoExported,onCameraChange,onFlightModeChange,onToggleLegendItem,onViewshedVisibilityChange,onToolbarAction,onTextureResolutionChange,...state}=props;
  return state;
 }
 type State=ReturnType<typeof terrainWindowState>;
@@ -45,8 +45,10 @@ export function NativeTerrainWindow({detached,onReturn,onError,...props}:Props&{
    await register(listen<number>('terrain-texture-resolution',e=>latest.current.props.onTextureResolutionChange?.(e.payload)));
    await register(listen<{label:string;status:ProcessStatus}>('terrain-process-status',e=>{if(disposed||e.payload.label!==target.current?.label)return;if(e.payload.status==='running'){remoteProcess??=programProcesses.begin()}else finishRemote(e.payload.status==='error')}));
    await register(listen('terrain-return',()=>latest.current.onReturn()));
+   await register(listen<boolean>('terrain-flight-mode',e=>latest.current.props.onFlightModeChange?.(e.payload)));
    await register(listen<{inclination:number;orientation:number}>('terrain-camera',e=>latest.current.props.onCameraChange?.(e.payload)));
    await register(listen<string>('terrain-legend',e=>latest.current.props.onToggleLegendItem?.(e.payload)));
+   await register(listen<{id:string;visible:boolean}>('terrain-viewshed-visibility',e=>latest.current.props.onViewshedVisibilityChange?.(e.payload.id,e.payload.visible)));
    if(disposed)return;
    const label=`terrain-${crypto.randomUUID()}`;
    const child=new WebviewWindow(label,{url:'index.html?terrainWindow=1',title:'ViaSpania · Visor 3D',width:1280,height:820,minWidth:640,minHeight:480,resizable:true,maximizable:true,decorations:true});target.current=child;timeout=setTimeout(fail,15000);
@@ -61,10 +63,10 @@ export function NativeTerrainWindow({detached,onReturn,onError,...props}:Props&{
 }
 export function TerrainWindowApp(){
  useEffect(()=>programProcesses.subscribe(()=>{void emitTo('main','terrain-process-status',{label:getCurrentWebviewWindow().label,status:programProcesses.getSnapshot()}).catch(()=>{})}),[]);
- const [state,setState]=useState<State|null>(null),[error,setError]=useState('');
+ const [state,setState]=useState<State|null>(null),[error,setError]=useState(''),[flightMode,setFlightMode]=useState(false);
  useEffect(()=>{let disposed=false,stop:(()=>void)|undefined;
   void listen<{props:State;settings:ReturnType<typeof loadAppSettings>}>('terrain-state',e=>{setLanguage(e.payload.settings.language??'es');setState(previous=>reconcileTerrainWindowState(previous,e.payload.props))}).then(async unlisten=>{if(disposed){unlisten();return}stop=unlisten;await emitTo('main','terrain-ready',getCurrentWebviewWindow().label)}).catch(()=>setError('No se pudo conectar con el proyecto abierto.'));
   return()=>{disposed=true;stop?.()};
  },[]);
- return <section className="terrain-3d-overlay" style={{inset:0}}><button className="terrain-3d-close" aria-label="Cerrar visor 3D" onClick={()=>void getCurrentWebviewWindow().close()}>×</button>{state?.toolbar?<Terrain3DToolbar state={state.toolbar} onAction={action=>void emitTo('main','terrain-toolbar',action).catch(()=>setError('No se pudo actualizar el visor 3D.'))} onReturn={()=>void emitTo('main','terrain-return')}/>:<div className="terrain-3d-toolbar"><strong>Visor 3D</strong></div>}{error&&<p role="alert">{error}</p>}<div className="terrain-3d-stage">{state?<Terrain3D {...state} onSnapshotReady={()=>{}} onTextureResolutionChange={value=>void emitTo('main','terrain-texture-resolution',value)} onCameraChange={view=>void emitTo('main','terrain-camera',view)} onToggleLegendItem={id=>void emitTo('main','terrain-legend',id)}/>:<p>{error||'Esperando el proyecto…'}</p>}{state&&<ElevationProfileOverlay movable routes={state.profileRoutes??[]}/>}</div></section>;
+ return <section className={`terrain-3d-overlay${flightMode?' flight-mode':''}`} style={{inset:0}}><button className="terrain-3d-close" aria-label={translateText('Cerrar visor 3D')} title={translateText('Cerrar visor 3D')} onClick={()=>void getCurrentWebviewWindow().close()}>×</button>{state?.toolbar?<Terrain3DToolbar state={state.toolbar} onAction={action=>void emitTo('main','terrain-toolbar',action).catch(()=>setError('No se pudo actualizar el visor 3D.'))} flightMode={flightMode} onFlightModeToggle={()=>window.dispatchEvent(new Event('terrain-flight-toggle'))} onReturn={()=>void emitTo('main','terrain-return')}/>:<div className="terrain-3d-toolbar"><strong>Visor 3D</strong></div>}{error&&<p role="alert">{error}</p>}<div className="terrain-3d-stage">{state?<Terrain3D {...state} onSnapshotReady={()=>{}} onFlightModeChange={active=>{setFlightMode(active);void emitTo('main','terrain-flight-mode',active)}} onTextureResolutionChange={value=>void emitTo('main','terrain-texture-resolution',value)} onCameraChange={view=>void emitTo('main','terrain-camera',view)} onToggleLegendItem={id=>void emitTo('main','terrain-legend',id)} onViewshedVisibilityChange={(id,visible)=>void emitTo('main','terrain-viewshed-visibility',{id,visible})}/>:<p>{error||'Esperando el proyecto…'}</p>}{state&&<ElevationProfileOverlay movable routes={state.profileRoutes??[]}/>}</div></section>;
 }

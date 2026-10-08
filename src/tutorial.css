@@ -17,3 +17,8 @@
 .tutorial-card footer{display:flex;justify-content:space-between;gap:8px}
 .tutorial-card footer button:last-child{margin-left:auto}
 @media(max-width:700px){.tutorial-card{left:16px!important;top:auto!important;bottom:16px}.tutorial-highlight{display:none}}
+.tutorial-language{display:grid;gap:6px;margin:0 0 16px;color:#aebbb3;font-size:12px}
+.tutorial-language select{width:100%;padding:9px;background:#17201c;color:#edf4ef;border:1px solid #46534c;border-radius:7px}
+.tutorial-card{width:min(340px,calc(100vw - 32px));}
+.tutorial-card.language-choice{left:50%;top:50%;transform:translate(-50%,-50%)}
+@media(max-width:700px){.tutorial-card.language-choice{left:50%!important;top:50%!important;bottom:auto!important;transform:translate(-50%,-50%)}}

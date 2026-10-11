@@ -1,5 +1,5 @@
 export type ReportFileKind='route-simple'|'route-comparison'|'multipoint'|'multiroute'|'corridor'|'isochrones'|'viewshed'|'contours';
-const REPORT_CODES:Record<ReportFileKind,string>={'route-simple':'RSimple','route-comparison':'RComp',multipoint:'MultiPn',multiroute:'MultiRt',corridor:'Pas',isochrones:'Isoc',viewshed:'Vis',contours:'Curvas'};
+const REPORT_CODES:Record<ReportFileKind,string>={'route-simple':'RSimple','route-comparison':'RComp',multipoint:'Matrix',multiroute:'Seq',corridor:'Pas',isochrones:'Isoc',viewshed:'Vis',contours:'Curv'};
 
 export function normalizeProjectName(value:string){return value.trim().replace(/[\\/:*?"<>|]+/g,'_').replace(/\s+/g,'_').replace(/^_+|_+$/g,'')}
 export function projectNameFromPath(path:string){const filename=path.split(/[\\/]/).at(-1)??'';return normalizeProjectName(filename.replace(/\.json$/i,''))||'Proyecto'}

@@ -58,7 +58,7 @@ export function GeneralSettingsControl({settings,onSave,onStartTutorial}:{settin
       {tab==='viewer3d'&&<fieldset><legend>Visor 3D</legend>
         <label>Exageración vertical 3D predeterminada<select value={draft.defaultTerrain3dExaggeration} onChange={e=>update('defaultTerrain3dExaggeration',Number(e.target.value) as AppSettings['defaultTerrain3dExaggeration'])}>{[1,1.5,2,2.5,3,3.5,4].map(value=><option key={value} value={value}>{value.toFixed(1)}×</option>)}</select></label>
         <label>Paleta predeterminada del modelo 3D{paletteOptions(draft.defaultPalette)}</label>
-        <label>Separación vertical de etiquetas<input type="number" min="0" max="500" step="5" value={draft.label3dOffsetM??20} onChange={e=>update('label3dOffsetM',Math.min(500,Math.max(0,Number(e.target.value)||0)))}/><span>m</span></label>
+        <label className="settings-compact-number">Separación vertical de etiquetas<span className="settings-number-unit"><input type="number" min="0" max="500" step="5" value={draft.label3dOffsetM??20} onChange={e=>update('label3dOffsetM',Math.min(500,Math.max(0,Number(e.target.value)||0)))}/><span>m</span></span></label>
         <label className="check"><input type="checkbox" checked={draft.label3dLeaderLine??true} onChange={e=>update('label3dLeaderLine',e.target.checked)}/> Conectar etiquetas con una línea indicadora</label>
         <label className="check"><input type="checkbox" checked={draft.defaultTerrain3dHighestPoint} onChange={e=>update('defaultTerrain3dHighestPoint',e.target.checked)}/> Mostrar por defecto la cota más alta</label>
         <label className="check"><input type="checkbox" checked={draft.defaultTerrain3dShowScale} onChange={e=>update('defaultTerrain3dShowScale',e.target.checked)}/> Mostrar escala</label>

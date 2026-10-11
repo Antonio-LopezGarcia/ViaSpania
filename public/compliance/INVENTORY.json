@@ -5778,5 +5778,7 @@
       "selectedLicense": null
     }
   ],
-  "findings": []
+  "findings": [
+    "REQUIERE REVISIÓN: cambiaron los datos o la implementación respecto al cierre de datos/exportaciones."
+  ]
 }

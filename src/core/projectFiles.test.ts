@@ -8,8 +8,8 @@ describe('nombres de proyecto e informes',()=>{
   afterEach(()=>{vi.useRealTimers();setLanguage('es')});
   describe.each(['es','en'] as const)('informes en %s',language=>{
     it.each([
-      ['route-simple','RSimple'],['route-comparison','RComp'],['multipoint','MultiPn'],
-      ['multiroute','MultiRt'],['corridor','Pas'],['isochrones','Isoc'],['viewshed','Vis'],['contours','Curvas'],
+      ['route-simple','RSimple'],['route-comparison','RComp'],['multipoint','Matrix'],
+      ['multiroute','Seq'],['corridor','Pas'],['isochrones','Isoc'],['viewshed','Vis'],['contours','Curv'],
     ] as const)('nombra %s con el prefijo y la fecha local de generación', (kind,code)=>{
       setLanguage(language);
       vi.useFakeTimers();

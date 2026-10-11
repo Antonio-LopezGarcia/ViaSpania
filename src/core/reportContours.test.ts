@@ -24,10 +24,22 @@ describe('report contour overlay',()=>{
  });
 });
 
-import {reportContourPoint} from './reportContours';
+import {reportContourPoint,reportMapExtent,reportMapRasterSize} from './reportContours';
 it('aligns WGS84 contours to the basemap corners and centre',()=>{
  const extent=[-4,39,-2,41] as const;
- expect(reportContourPoint([-4,41],extent,1600,900)).toEqual([0,0]);
- expect(reportContourPoint([-2,39],extent,1600,900)).toEqual([1600,900]);
- expect(reportContourPoint([-3,40],extent,1600,900)).toEqual([800,450]);
+ const fitted=reportMapExtent(extent,1600,900);
+ expect(reportContourPoint([fitted[0],fitted[3]],extent,1600,900)).toEqual([0,0]);
+ expect(reportContourPoint([fitted[2],fitted[1]],extent,1600,900)).toEqual([1600,900]);
+ const centrePoint=reportContourPoint([-3,40],extent,1600,900);
+ expect(centrePoint[0]).toBeCloseTo(800,8);
+ expect(centrePoint[1]).toBeCloseTo(453.3,1);
+ expect(fitted[0]).toBeLessThan(extent[0]);
+});
+
+it('sizes the report raster to the projected study-area shape',()=>{
+ const extent=[-0.8877831869,37.6037643509,-0.6789364894,37.8454375606] as const;
+ const [width,height]=reportMapRasterSize(extent);
+ expect(width).toBeLessThan(height);
+ expect(width/height).toBeCloseTo(((extent[2]-extent[0])*Math.PI/180)/(Math.log(Math.tan(Math.PI/4+extent[3]*Math.PI/360))-Math.log(Math.tan(Math.PI/4+extent[1]*Math.PI/360))),3);
+ expect(Math.max(width,height)).toBe(1600);
 });

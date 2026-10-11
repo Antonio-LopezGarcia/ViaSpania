@@ -7,6 +7,7 @@ import '../credits-build.css';
 import '../credits-sources.css';
 import {useLanguage,translateText} from '../core/i18n';
 import {SOFTWARE_CREDITS} from '../core/credits';
+import {BUILD_INFO} from '../core/buildInfo';
 
 export function CreditsControl(){
   const [open,setOpen]=useState(false),[linkError,setLinkError]=useState(''),language=useLanguage(),en=language==='en';
@@ -14,6 +15,7 @@ export function CreditsControl(){
   return <><button onClick={()=>setOpen(true)}>Créditos</button>{open&&<section className="exchange-backdrop"><div className="exchange-dialog credits-dialog">
     <header><img className="credits-header-logo" src={viaSpaniaLogo} alt="ViaSpania"/><div><b>{en?'Credits and licences':translateText('Créditos y licencias',language)}</b></div><button aria-label={en?'Close credits':translateText('Cerrar créditos',language)} onClick={()=>setOpen(false)}>×</button></header>
     <div className="exchange-body">
+      <p className="credits-version">ViaSpania {BUILD_INFO.version}</p>
       <h3>{en?'Creator and maintainer':translateText('Creador y responsable',language)}</h3><p>Antonio López García, Universidad de Granada, 2026.</p><p>{en?'Contact':translateText('Contacto',language)}: <a href={CONTACT_HREF}>{CONTACT_EMAIL}</a></p>
       <h3>{en?'ViaSpania licence':translateText('Licencia de ViaSpania',language)}</h3><p>ViaSpania<br/>Copyright © 2026 Antonio López García, Universidad de Granada<br/>{en?'This program is distributed under the GPL-3.0-only licence.':translateText('Este programa se distribuye bajo la licencia GPL-3.0-only.',language)} <a href="/LICENSE.txt" target="_blank" rel="noreferrer" onClick={openResource('LICENSE.txt')}>{en?'Full notice':translateText('Aviso completo',language)} ↗</a></p>
       <p>{en?'You may copy, modify and redistribute the code under GNU GPL version 3. No warranty is provided, to the extent permitted by law.':translateText('Puede copiar, modificar y redistribuir el código bajo GNU GPL versión 3. No se ofrece garantía, en la medida permitida por la ley.',language)} <a href="/SOURCE_CODE.txt" target="_blank" rel="noreferrer" onClick={openResource('SOURCE_CODE.txt')}>{en?'Corresponding source':translateText('Fuentes correspondientes',language)} ↗</a></p>

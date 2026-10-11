@@ -24,6 +24,6 @@ it('traduce las páginas técnicas de los quince perfiles antes de medir y divid
  const text=captured.drawn.join('\n'),wrapped=captured.wrapped.join('\n');
  expect(text).toContain('Profile and parameters');
  expect(text).toContain('Walking speed based on signed slope.');
- expect(wrapped).not.toMatch(/Descripción|Pendiente|Velocidad|vecinos|según|para |del |terreno/);
- expect(text).not.toMatch(/Descripción|Pendiente|Velocidad|vecinos|según|para |del |terreno/);
+ expect(wrapped).not.toMatch(/Descripción|Pendiente|Velocidad|vecinos|según|\bpara\b|\bdel\b|terreno/);
+ expect(text).not.toMatch(/Descripción|Pendiente|Velocidad|vecinos|según|\bpara\b|\bdel\b|terreno/);
 });

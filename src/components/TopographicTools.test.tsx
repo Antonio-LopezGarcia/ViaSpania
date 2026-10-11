@@ -1,11 +1,11 @@
 // @vitest-environment jsdom
 import {cleanup,fireEvent,render,screen,waitFor} from '@testing-library/react';
 import {afterEach,expect,it,vi} from 'vitest';
-import type {GeoPoint,ViewshedResult} from '../types';
+import type {ContourResult,GeoPoint,ViewshedResult} from '../types';
 import {calculateViewshed} from '../services/native';
 import {TopographicTools} from './TopographicTools';
 
-vi.mock('../services/native',()=>({calculateViewshed:vi.fn(),calculateContours:vi.fn(),generateTerrainMesh:vi.fn()}));
+vi.mock('../services/native',()=>({calculateViewshed:vi.fn(),calculateContours:vi.fn(),generateTerrainMesh:vi.fn().mockResolvedValue({})}));
 vi.mock('../core/topographicAnalysis',()=>({viewshedDataUrl:(observer:{observerId:string})=>`surface-${observer.observerId}`}));
 vi.mock('./SurfaceAnalysisViewer',()=>({SurfaceAnalysisViewer:({title,surfaceImageUrl,selectedPointId}:{title:string;surfaceImageUrl:string;selectedPointId:number})=><div data-testid="visibility-viewer" data-surface={surfaceImageUrl} data-point={selectedPointId}>{title}</div>}));
 vi.mock('./Terrain3D',()=>({Terrain3D:()=>null}));
@@ -25,4 +25,11 @@ it.each([false,true])('conserva el observador visible al calcular con puntos nue
  expect(viewer.textContent).toBe('Visibilidad · Final');
  expect(viewer.getAttribute('data-surface')).toBe('surface-2');
  expect(viewer.getAttribute('data-point')).toBe('2');
+});
+
+it('mantiene disponible el visor cuando recibe curvas calculadas previamente',()=>{
+ const contourResult:ContourResult={intervalM:20,minElevationM:100,maxElevationM:120,rasterCrs:'EPSG:25830',resolutionM:5,nodataCells:0,source:'MDT de prueba',lines:[{level:100,coordinates:[[-3,40],[-2.9,40.1]]}]};
+ render(<TopographicTools tool="contours" raster={{path:'/test.tif',bytes:1,metadata:{},previewDataUrl:'preview'}} points={[]} studyExtent={[-4,39,-2,41]} previewImage="preview" initialView={{center:[0,0],resolution:10,rotation:0}} onNotice={()=>{}} contourResult={contourResult}/>);
+ fireEvent.click(screen.getByRole('button',{name:'Abrir visor de curvas de nivel'}));
+ expect(screen.getByText('Curvas de nivel')).toBeTruthy();
 });

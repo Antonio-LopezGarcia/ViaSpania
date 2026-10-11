@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createProjectReport, routeTechnicalSections, imageContainRect, REPORT_LAYOUT, REPORT_TYPOGRAPHY } from './report';
+const pagePoints={a4:[595.28,841.89],a3:[841.89,1190.55],a2:[1190.55,1683.78]} as const;
 
 describe('informe de proyecto',()=>{
   it('exporta una página altimétrica por ruta con sus cotas aunque se desactiven las páginas opcionales',()=>{
@@ -18,11 +19,11 @@ describe('informe de proyecto',()=>{
     expect(REPORT_LAYOUT.bodyLeading).toBeGreaterThan(REPORT_LAYOUT.captionLeading);
     expect(REPORT_LAYOUT.lineHeightFactor).toBeGreaterThan(1);
   });
-  const base={options:{navigation:false,pnoaOverview:false,individualRoutePages:false,terrain3d:false,historical:false,pointList:false,barrierList:false,pageSize:'a4' as const},points:[],barriers:[],routes:[],extent:[-4,40,-3,41] as [number,number,number,number],navigationLabel:'OSM',historicalLabel:'MTN50',resolution:25,paletteLabel:'Terreno',areaKm2:100,cells:160000,mdtSource:'IGN',connectivity:8 as const,criticalSlopePercent:10};
+  const base={options:{navigation:false,pnoaOverview:false,individualRoutePages:false,terrain3d:false,historical:false,pointList:false,barrierList:false,pageSize:'a4' as const,pageOrientation:'portrait' as const},points:[],barriers:[],routes:[],extent:[-4,40,-3,41] as [number,number,number,number],navigationLabel:'OSM',historicalLabel:'MTN50',resolution:25,paletteLabel:'Terreno',areaKm2:100,cells:160000,mdtSource:'IGN',connectivity:8 as const,criticalSlopePercent:10};
   it('ordena la ficha y presenta una sola vez cada parámetro con los valores efectivos',()=>{
     const route={model:'tobler-off' as const,direction:'inicio→final',path:[0,1],coordinates:[[-3.8,40.4],[-3.7,40.5]] as [number,number][],cost:3078.98,unit:'s',distanceM:2664.8,ascentM:22,descentM:97,settings:{connectivity:16 as const}};
     const sections=routeTechnicalSections(route,{...base,resolution:5,mdtSource:'MDT05 · IGN/CNIG · WCS MDT de España'});
-    expect(sections.map(section=>section.title)).toEqual(['Perfil de desplazamiento','Configuración del cálculo','Resultado']);
+    expect(sections.map(section=>section.title)).toEqual(['Perfil de desplazamiento · Tobler campo a través','Configuración del cálculo','Resultado']);
     const configuration=sections[1].rows.join('\n');
     expect(configuration.match(/16 vecinos/g)).toHaveLength(1);
     expect(configuration).toContain('Pendiente crítica: no utilizada');
@@ -30,7 +31,8 @@ describe('informe de proyecto',()=>{
     expect(configuration).toContain('REQUIERE REVISIÓN');
     expect(configuration).not.toContain('MDT05');
     expect(configuration).not.toMatch(/Conectividad utilizada|Resolución del MDT|Fuente del MDT/);
-    expect(sections[2].rows).toContain('Distancia: 2664,8 m · Coste acumulado: 3078,98 s');
+    expect(sections[2].rows).toContain('Distancia: 2664,8 m');
+    expect(sections[2].rows).toContain('Coste acumulado: 3078,98 s');
     expect(sections[0].rows.filter(row=>row.startsWith('Referencia:'))).toHaveLength(1);
   });
   it('respeta pendiente y velocidad guardadas y no inventa una velocidad ausente',()=>{
@@ -45,8 +47,21 @@ describe('informe de proyecto',()=>{
     expect(bytes.length).toBeGreaterThan(1000);
   });
   it.each(['a4','a3','a2'] as const)('aplica el mismo sistema tipográfico al formato %s horizontal',pageSize=>{
-    const bytes=createProjectReport({...base,options:{...base.options,pageSize},customTextPages:[{id:'text',title:'Informe con texto extenso',lines:[`Descripción: ${'contenido cartográfico y técnico '.repeat(35)}`]}],customOrder:['text']});
+    const bytes=createProjectReport({...base,options:{...base.options,pageSize,pageOrientation:'landscape'},customTextPages:[{id:'text',title:'Informe con texto extenso',lines:[`Descripción: ${'contenido cartográfico y técnico '.repeat(35)}`]}],customOrder:['text']});
+    const source=new TextDecoder('latin1').decode(bytes),box=source.match(/\/MediaBox \[0 0 ([\d.]+) ([\d.]+)\]/);
     expect(new TextDecoder().decode(bytes.slice(0,5))).toBe('%PDF-');
+    expect(Number(box?.[1])).toBeCloseTo(pagePoints[pageSize][1],1);
+    expect(Number(box?.[2])).toBeCloseTo(pagePoints[pageSize][0],1);
+    expect(bytes.length).toBeGreaterThan(1000);
+  });
+  it.each(['a4','a3','a2'] as const)('genera páginas verticales %s con medidas de página en orientación vertical',pageSize=>{
+    const bytes=createProjectReport({...base,options:{...base.options,pageSize,pageOrientation:'portrait'},customTextPages:[{id:'text',title:'Informe vertical',lines:['Tabla, perfil y contenido de prueba']}] ,customOrder:['text']});
+    const source=new TextDecoder('latin1').decode(bytes);
+    const boxes=[...source.matchAll(/\/MediaBox \[0 0 ([\d.]+) ([\d.]+)\]/g)];
+    expect(boxes.length).toBeGreaterThan(0);
+    expect(Number(boxes[0][1])).toBeCloseTo(pagePoints[pageSize][0],1);
+    expect(Number(boxes[0][2])).toBeCloseTo(pagePoints[pageSize][1],1);
+    expect(source).toContain('/Count 2');
     expect(bytes.length).toBeGreaterThan(1000);
   });
   it('genera con el mismo motor una plantilla específica de isócronas',()=>{

@@ -3,3 +3,30 @@
 .route-report-composer{height:auto!important;max-height:min(650px,calc(100vh - 24px))!important}.route-report-composer>header{padding:9px 12px}.route-report-composer>header span{line-height:1.2}.route-report-grid{grid-template-columns:1.25fr 1fr 1fr 1.15fr;gap:7px;padding:9px;overflow:auto;flex:none}.route-report-grid section{padding:9px;border-radius:7px;gap:6px;min-width:0}.route-report-grid h3{margin:0 0 2px;font-size:12px}.route-report-grid label{gap:5px;font-size:11px;line-height:1.2}.route-report-grid small{font-size:9px;line-height:1.25}.route-report-grid select{min-width:0;max-width:145px;padding:5px}.route-report-grid input[type=range]{width:min(110px,100%)}.route-report-preview{display:none}.route-report-composer>footer{padding:8px 12px}
 
 .route-report-grid .report-origin-summary{display:grid;gap:2px;font-size:11px;line-height:1.25}.route-report-grid .report-origin-summary b{font-size:11px;font-weight:600}.route-report-grid .report-origin-summary small{color:#96a39b}.route-report-grid .report-observer-height{font-size:11px;font-weight:400;line-height:1.25}
+
+/* Two-step report composer */
+.route-report-composer>.report-stepper{display:flex;align-items:center;gap:10px;padding:12px 18px 4px;border-bottom:1px solid #26372f;background:#0d1712}.report-stepper>span{display:flex;align-items:center;gap:8px;color:#829087;font-size:12px}.report-stepper>span+span:before{content:"";width:34px;height:1px;background:#405349;margin-right:2px}.report-stepper i{display:grid;place-items:center;width:25px;height:25px;border:1px solid #52665a;border-radius:50%;font-style:normal;font-size:11px}.report-stepper .active{color:#f2f6ef}.report-stepper .active i,.report-stepper .complete i{border-color:#d8ff55;background:#d8ff55;color:#172018;font-weight:800}.route-report-grid[data-step="1"]>.report-visual-options{display:none}.route-report-grid[data-step="1"]>.report-contour-style{display:none}.route-report-grid[data-step="2"]>section:not(.report-contour-style){display:none}.route-report-grid .report-visual-options{display:contents}.route-report-grid[data-step="2"]{grid-template-columns:repeat(3,minmax(0,1fr));align-content:start}.route-report-composer>footer{display:flex;justify-content:flex-end;gap:8px;border-top:1px solid #27372f}.route-report-composer>footer button:first-child{margin-right:auto}.route-report-composer>footer .primary{min-width:132px}.route-report-composer .route-report-preview{display:grid;margin:0 12px 8px;padding:8px 12px;font-size:11px}.route-report-composer .route-report-preview small{font-size:10px}@media(max-width:700px){.route-report-grid[data-step="2"]{grid-template-columns:1fr}.route-report-composer .route-report-preview{grid-template-columns:1fr;gap:4px}.route-report-stepper>span+span:before{width:18px}}
+/* Three-step report composer: map furniture and overlays stay in separate steps. */
+.route-report-grid[data-step="1"]>.report-visual-options{display:none}
+.route-report-grid[data-step="2"]>section:not(.report-contour-style),.route-report-grid[data-step="3"]>section{display:none}
+.route-report-grid[data-step="1"]>.report-contour-style,.route-report-grid[data-step="3"]>.report-contour-style{display:none}
+.route-report-grid .report-visual-options,.route-report-grid .report-map-options,.route-report-grid .report-overlay-options{display:contents}
+.route-report-grid[data-step="1"] .report-map-options,.route-report-grid[data-step="1"] .report-overlay-options,.route-report-grid[data-step="2"] .report-overlay-options,.route-report-grid[data-step="3"] .report-map-options{display:none}
+.route-report-grid[data-step="2"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+.route-report-grid[data-step="3"]{grid-template-columns:minmax(260px,620px);justify-content:center}
+.report-approximation-route{display:flex;align-items:center;gap:8px;padding-left:25px;color:#aab8af;font-size:10px}
+.report-approximation-route i{width:22px;border-top:2px solid;flex:none}
+@media(max-width:700px){.route-report-grid[data-step="2"]{grid-template-columns:1fr}.route-report-grid[data-step="3"]{grid-template-columns:1fr}}
+
+/* Size the dialog to the active report step and its available controls. */
+.route-report-composer[data-step="1"][data-content-cards="1"]{width:min(620px,calc(100vw - 28px))!important}
+.route-report-composer[data-step="1"][data-content-cards="2"]{width:min(850px,calc(100vw - 28px))!important}
+.route-report-composer[data-step="2"][data-map-cards="2"]{width:min(790px,calc(100vw - 28px))!important}
+.route-report-composer[data-step="2"][data-map-cards="3"]{width:min(1040px,calc(100vw - 28px))!important}
+.route-report-composer[data-step="3"]{width:min(680px,calc(100vw - 28px))!important}
+.route-report-composer{height:auto!important;max-height:calc(100vh - 28px)!important}
+.route-report-grid{max-height:min(56vh,480px);overflow:auto;flex:none}
+.route-report-grid[data-step="1"]{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}
+.route-report-grid[data-step="2"][data-map-cards="2"]{grid-template-columns:repeat(2,minmax(0,1fr))}
+.route-report-grid[data-step="2"][data-map-cards="3"]{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:700px){.route-report-grid[data-step="1"],.route-report-grid[data-step="2"]{grid-template-columns:1fr}.route-report-grid{max-height:58vh}}

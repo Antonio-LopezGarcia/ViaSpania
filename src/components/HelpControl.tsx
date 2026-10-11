@@ -44,7 +44,7 @@ export function HelpControl() {
     <button onClick={() => setOpen(true)}>Ayuda</button>
     {open && <section className="exchange-backdrop">
       <div className="exchange-dialog help-dialog" role="dialog" aria-modal="true" aria-label={en?'ViaSpania help manual':it?'Manuale di ViaSpania':translateText('Manual de ayuda de ViaSpania',language)}>
-        <header><div><b>{en?'Help':it?'Aiuto':translateText('Ayuda',language)}</b><span>{en?'ViaSpania manual':it?'Manuale di ViaSpania':translateText('Manual de ViaSpania',language)}</span></div><button aria-label={en?'Close help':it?'Chiudi la guida':translateText('Cerrar ayuda',language)} onClick={() => setOpen(false)}>×</button></header>
+        <header><div className="help-header-brand"><img src="/viaspania-logo.svg" alt="" aria-hidden="true"/><b>{en?'Help':it?'Aiuto':translateText('Ayuda',language)}</b></div><button aria-label={en?'Close help':it?'Chiudi la guida':translateText('Cerrar ayuda',language)} onClick={() => setOpen(false)}>×</button></header>
         <div className="exchange-body help-body">{blocks.map((block, index) => {
           if (block.type === 'h1') return <h2 key={index}>{block.text}</h2>;
           if (block.type === 'h2') return <h3 key={index}>{block.text}</h3>;

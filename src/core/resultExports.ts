@@ -4,7 +4,7 @@ import type {Barrier,ContourResult,EnabledCrossing,GeoPoint,IsochroneResult,Mode
 import type {ApproximationRoute} from '../components/MapPanel';
 import {barrierParts} from './barriers';
 
-export type ResultExportGroup='Datos del proyecto'|'Rutas simples'|'Rutas comparativas'|'Matriz de conexiones'|'Ruta Secuencial'|'Pasillos'|'Isócronas'|'Visibilidad'|'Curvas de nivel';
+export type ResultExportGroup='Datos del proyecto'|'Máscaras marítimas'|'Rutas de aproximación'|'Rutas simples'|'Rutas comparativas'|'Matriz de conexiones'|'Ruta Secuencial'|'Pasillos'|'Isócronas'|'Visibilidad'|'Curvas de nivel';
 export interface ResultExportItem{id:string;group:ResultExportGroup;label:string;fileName:string;format:'GeoJSON'|'PNG'|'GeoPackage'|'GeoTIFF'}
 export interface GeoPackageLayer {name:string;geoJson:string}
 
@@ -19,8 +19,13 @@ export function viewshedResultName(project:string,observer:string,heightM:number
 export function contourResultName(project:string){return`curvas_${resultToken(project)}.geojson`}
 export function projectElementsGeoPackageName(project:string){return`elementos_${resultToken(project)}.gpkg`}
 export function elevationRasterResultName(project:string,source:string){return`elevacion_${resultToken(project)}_${resultToken(source)}.tif`}
+export function marineMasksResultName(project:string){return`mascaras_maritimas_${resultToken(project)}.geojson`}
+export function approximationRoutesResultName(project:string){return`rutas_aproximacion_${resultToken(project)}.geojson`}
+export function approximationRoutesGeoPackageName(project:string){return`rutas_aproximacion_${resultToken(project)}.gpkg`}
 
 const collection=(name:string,features:unknown[])=>JSON.stringify({type:'FeatureCollection',name,crs:{type:'name',properties:{name:'urn:ogc:def:crs:OGC:1.3:CRS84'}},features});
+export function marineMasksGeoJson(barriers:readonly Barrier[]){const masks=barriers.filter(barrier=>barrier.generatedBy==='magic-ocean');return collection('Máscaras marítimas',masks.map((barrier,index)=>{const parts=barrierParts(barrier);return{type:'Feature',id:index+1,properties:{nombre:barrier.name?.trim()||`Máscara marítima ${index+1}`,tipo:barrier.kind,valor:barrier.value},geometry:parts.length>1?{type:'MultiLineString',coordinates:parts}:{type:'LineString',coordinates:parts[0]}}}))}
+export function approximationRoutesGeoJson(routes:readonly ApproximationRoute[]){return collection('Rutas de aproximación',routes.map(route=>({type:'Feature',id:route.id,properties:{elemento_id:route.id,nombre:route.name,color:route.color,estilo:route.lineStyle??'solid'},geometry:{type:'LineString',coordinates:route.coordinates}})))}
 export function projectElementsGeoPackageLayers(points:readonly GeoPoint[],barriers:readonly Barrier[],corridors:readonly PreferredCorridor[],crossings:readonly EnabledCrossing[],pointsOfInterest:readonly PointOfInterest[],approximationRoutes:readonly ApproximationRoute[]=[]):GeoPackageLayer[]{
  const layers:GeoPackageLayer[]=[];
  if(points.length)layers.push({name:'puntos',geoJson:collection('Puntos',points.map(point=>({type:'Feature',id:point.id,properties:{elemento_id:point.id,nombre:point.name,comentarios:point.comments,rol:point.role,provenance:point.provenance?JSON.stringify(point.provenance):null},geometry:{type:'Point',coordinates:[point.lon,point.lat]}})))});

@@ -8,7 +8,7 @@
 .options>.tabs button{flex:1 1 0;min-width:0;padding:7px 5px;font-size:10px;white-space:nowrap}
 .calculation-access{display:grid;gap:5px;margin-bottom:14px}.calculation-access>div{display:grid;gap:4px}.calculation-access>div:first-child{grid-template-columns:repeat(5,minmax(0,1fr))}.calculation-access>div:last-child{grid-template-columns:repeat(3,minmax(0,1fr))}.calculation-access button{min-width:0;padding:7px 4px;font-size:10px;white-space:normal;line-height:1.15}.calculation-access button.active{background:#d8ff55;color:#111;border-color:#d8ff55}
 .viewer-eye{width:17px;height:17px;margin-right:6px;vertical-align:-4px;fill:none;stroke:#ff4b4b;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.viewer-eye circle{fill:#ff4b4b;stroke:none}
-.viewer-button{background:#1c2923;color:#dce7df;border-color:#3b4942;font-weight:600}
+.viewer-button{background:#1c2923;color:#dce7df;border-color:#3b4942;font-weight:600;font-size:12px;line-height:1.25}
 .comparison-toolbar button,.isochrone-viewer-toolbar button{padding:5px 8px;font-size:10px;line-height:1.2;border-radius:5px}
 .comparison-toolbar .comparison-mode{gap:3px}
 .isochrone-viewer-toolbar{gap:7px;padding-top:7px;padding-bottom:7px}
@@ -28,3 +28,4 @@ main>footer{justify-content:flex-start;gap:8px}
 
 .isochrone-viewer-overlay.surface-analysis-viewer{grid-template-rows:auto auto minmax(0,1fr)}
 .surface-analysis-viewer .isochrone-viewer-map>.terrain-viewshed-panel{max-height:min(42vh,360px);overflow:auto}
+.close-project-backdrop{position:fixed;inset:0;z-index:3000;display:grid;place-items:center;background:#050806c9;padding:20px}.close-project-dialog{display:grid;gap:10px;width:min(420px,100%);padding:18px;border:1px solid #46534c;border-radius:10px;background:#151d18;color:#f3f5f2;box-shadow:0 18px 60px #0009;font-size:12px}.close-project-dialog h2{margin:0;font-size:17px;line-height:1.25}.close-project-dialog p{margin:0;color:#b7c1ba;font-size:12px}.close-project-dialog>label{display:flex;align-items:center;gap:8px;font-size:12px;line-height:1.35}.close-project-dialog input{accent-color:#d8ff55}.close-project-actions{display:flex;justify-content:flex-end;gap:7px;flex-wrap:wrap;margin-top:3px}.close-project-actions button{min-height:30px;padding:6px 10px;font-size:11px;line-height:1.2;border-radius:6px}

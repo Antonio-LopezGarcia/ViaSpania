@@ -1,5 +1,10 @@
 {
   "messages": {
+    "Pasos del informe": "Fasi del rapporto",
+    "Contenido": "Contenuto",
+    "Mapa y formato": "Mappa e formato",
+    "Siguiente": "Avanti",
+    "Atrás": "Indietro",
     "Panel de visibilidad": "Pannello di visibilità",
     "Visibilidad 3D": "Visibilità 3D",
     "Plegar panel de visibilidad": "Comprimi il pannello di visibilità",
@@ -7,13 +12,11 @@
     "Punto de observación": "Punto di osservazione",
     "Punto de visibilidad 3D": "Punto di osservazione 3D",
     "Áreas visibles": "Aree visibili",
-    "Áreas del viewshed 3D": "Aree del viewshed 3D",
     "Visibles e invisibles": "Visibili e non visibili",
     "Solo visibles": "Solo visibili",
     "Solo invisibles": "Solo non visibili",
     "Altura del observador": "Altezza dell’osservatore",
     "Altura del observador desde el terreno": "Altezza dell’osservatore dal terreno",
-    "Opacidad del viewshed 3D": "Opacità del viewshed 3D",
     "Calcular desde un punto del terreno": "Calcola da un punto del terreno",
     "Cancelar selección": "Annulla selezione",
     "Calculando visibilidad…": "Calcolo della visibilità…",
@@ -211,11 +214,11 @@
     "Abrir visor de comparación": "Apri visualizzatore di confronto",
     "Abrir visor de curvas de nivel": "Apri visualizzatore delle curve di livello",
     "Abrir visor de isócronas": "Apri visualizzatore delle isocrone",
-    "Abrir visor de multirruta": "Apri visualizzatore multipercorso",
+    "Abrir visor de ruta secuencial": "Apri il visualizzatore del percorso sequenziale",
     "Abrir visor de pasillos": "Apri visualizzatore dei corridoi",
     "Abrir visor de ruta": "Apri visualizzatore del percorso",
     "Abrir visor de visibilidad": "Apri visualizzatore della visibilità",
-    "Abrir visor multipunto": "Apri visualizzatore della matrice",
+    "Abrir visor de rutas multipunto": "Apri visualizzatore dei percorsi multipunto",
     "Absoluta": "Assoluta",
     "Abstract": "Astratto",
     "Acciones principales": "Azioni principali",
@@ -229,9 +232,7 @@
     "Comprobando…": "Verifica in corso…",
     "Hay una versión más reciente compatible con este equipo.": "È disponibile una versione più recente compatibile con questo dispositivo.",
     "No se ha encontrado ninguna versión más reciente de ViaSpania.": "Non è stata trovata una versione di ViaSpania più recente.",
-    "No se pudo comprobar si hay actualizaciones. Compruebe su conexión e inténtelo de nuevo.": "Impossibile verificare la disponibilità di aggiornamenti. Controlla la connessione e riprova.",
     "Adaptación de la función de marcha de Waldo R. Tobler.": "Adattamento della funzione di cammino di Waldo R. Tobler.",
-    "Admite teselas XYZ y servicios interoperables WMS o WMTS. En WMS/WMTS, consulte primero las capacidades del servicio.": "Supporta tile XYZ e servizi interoperabili WMS o WMTS. Per WMS/WMTS, consultare prima le capacità del servizio.",
     "Agrupa los segmentos obtenidos por nivel.": "Raggruppa i segmenti ottenuti per livello.",
     "Ajuste empírico para senderos en espacios naturales.": "Adattamento empirico per sentieri in ambienti naturali.",
     "Ajuste exageración vertical, paleta o textura y active los puntos, rutas, curvas y demás resultados disponibles. La exageración solo modifica la representación; un valor de cero aplana la vista. La malla 3D es una representación simplificada, no una fuente de elevación adicional.": "Regolare l’esagerazione verticale, la palette o la texture e attivare i punti, i percorsi, le curve e gli altri risultati disponibili. L’esagerazione modifica solo la rappresentazione; un valore pari a zero appiattisce la vista. La mesh 3D è una rappresentazione semplificata, non una fonte di elevazione aggiuntiva.",
@@ -399,6 +400,10 @@
     "Calcular matriz multipunto": "Calcola matrice multipunto",
     "Calcular multipunto": "Calcola multipunto",
     "Calcular multirruta secuencial": "Calcola multipercorso sequenziale",
+    "Calcular ruta secuencial": "Calcola percorso sequenziale",
+    "Calcular ruta subóptima": "Calcola percorso subottimale",
+    "Calcular matriz de conexiones": "Calcola matrice delle connessioni",
+    "Calcular pasillo": "Calcola corridoio",
     "Calcular multirruta subóptima": "Calcola multipercorso subottimale",
     "Calcular pasillo LCP": "Calcola corridoio LCP",
     "Calcular Ruta simple": "Calcola Percorso semplice",
@@ -433,7 +438,6 @@
     "Caminar, correr o bicicleta": "Camminare, correre o andare in bicicletta",
     "Campanilla": "Campanello",
     "Cancelando…": "Annullamento…",
-    "Cancelar": "Annulla",
     "Cancelar cálculo": "Annulla calcolo",
     "Capa": "Livello",
     "Capa base sobre el modelo": "Livello di base sul modello",
@@ -843,6 +847,8 @@
     "Elemento duplicado o no válido.": "Elemento duplicato o non valido.",
     "elemento(s) ·": "elemento/i ·",
     "Elementos": "Elementi",
+    "Mostrar cotas": "Mostra le quote altimetriche",
+    "Mostrar cumbres": "Mostra le etichette delle cime",
     "Elementos cartográficos": "Elementi cartografici",
     "elementos_{0}.gpkg": "",
     "Elevación del terreno": "Elevazione del terreno",
@@ -1014,7 +1020,6 @@
     "Generando la vista 3D del informe…": "Generazione della vista 3D del rapporto…",
     "Generando malla del terreno…": "Generazione della mesh del terreno…",
     "Generando una malla 3D simplificada desde el GeoTIFF…": "Generazione di una mesh 3D semplificata dal GeoTIFF…",
-    "Generar PDF": "Genera PDF",
     "Generated using European Union's Copernicus Land Monitoring Service information · VHR 2021 · Composición cartográfica ViaSpania · https://land.copernicus.eu/en/data-policy": "",
     "Genere un informe PDF después de revisar el resultado. El compositor permite elegir mapas, páginas técnicas, formato y elementos visuales para documentar el análisis.": "Generare un rapporto PDF dopo aver verificato il risultato. Il compositore consente di scegliere mappe, pagine tecniche, formato ed elementi visivi per documentare l’analisi.",
     "GeoJSON conserva geometrías vectoriales; GeoPackage agrupa capas y atributos; GeoTIFF conserva datos ráster y su georreferenciación. El GeoTIFF de elevación no incorpora la paleta de la previsualización. Compruebe el mensaje final y los archivos generados antes de trasladar o cerrar el trabajo.": "GeoJSON conserva le geometrie vettoriali; GeoPackage raggruppa livelli e attributi; GeoTIFF conserva i dati raster e la relativa georeferenziazione. Il GeoTIFF di elevazione non incorpora la palette dell’anteprima. Verificare il messaggio finale e i file generati prima di spostare o chiudere il lavoro.",
@@ -1113,7 +1118,6 @@
     "Informe de Pasillo": "Rapporto sul Corridoio",
     "Informe de Pasillos": "Rapporto sui Corridoi",
     "Informe de Ruta comparativa": "Rapporto sul Percorso comparativo",
-    "Informe de Ruta simple": "Rapporto sul Percorso semplice",
     "Informe de rutas comparadas": "Rapporto sui percorsi confrontati",
     "Informe de Visibilidad": "Rapporto sulla Visibilità",
     "Informe Multipunto": "Rapporto Multipunto",
@@ -1990,7 +1994,6 @@
     "Rutas Multipunto": "Percorsi Multipunto",
     "Rutas Multipunto · modelo 3D": "Percorsi Multipunto · modello 3D",
     "Rutas Multirruta": "Percorsi Multipercorso",
-    "Rutas Multirruta · modelo 3D": "Percorsi Multipercorso · modello 3D",
     "Rutas representadas: {0}. Los colores corresponden a la leyenda de resultados de la ortofotografía.": "Percorsi rappresentati: {0}. I colori corrispondono alla legenda dei risultati dell’ortofoto.",
     "Rutas simples": "Percorsi semplici",
     "Rutas subóptimas": "Percorsi subottimali",
@@ -2275,7 +2278,6 @@
     "Vídeo MP4": "Video MP4",
     "Vídeo MP4 (H.264)": "Video MP4 (H.264)",
     "Vídeo WebM": "Video WebM",
-    "Viewshed and contour calculations are geometric terrain analyses and do not use these movement modifiers.": "I calcoli di viewshed e delle curve di livello sono analisi geometriche del terreno e non utilizzano questi modificatori di spostamento.",
     "viewshed-{0}": "",
     "Viridis": "",
     "Vis": "",
@@ -2309,7 +2311,6 @@
     "Visores 2D": "Visualizzatori 2D",
     "Visores 2D permite ajustar punteros, coordenadas, escalas, etiquetas, límites y fondos predeterminados. Visor 3D reúne preferencias de relieve y representación. Estas opciones afectan a la lectura del mapa, no a las elevaciones originales.": "Visualizzatori 2D consente di regolare puntatori, coordinate, scale, etichette, limiti e sfondi predefiniti. Visualizzatore 3D raccoglie le preferenze per rilievo e rappresentazione. Queste opzioni influiscono sulla lettura della mappa, non sulle elevazioni originali.",
     "Vista de análisis vacía": "Vista di analisi vuota",
-    "Vista prevista": "Vista prevista",
     "Visualización y opacidad de la superficie": "Visualizzazione e opacità della superficie",
     "Visualizador analítico abierto": "Visualizzatore analitico aperto",
     "Vite y @vitejs/plugin-react": "Vite e @vitejs/plugin-react",
@@ -2356,6 +2357,13 @@
     "Cada 3 curvas": "Ogni 3 curve",
     "Cada 5 curvas": "Ogni 5 curve",
     "Cada 10 curvas": "Ogni 10 curve",
+    "Estilo de curvas": "Stile delle curve di livello",
+    "Color curvas ordinarias": "Colore delle curve ordinarie",
+    "Grosor curvas ordinarias": "Spessore delle curve ordinarie",
+    "Intervalo de curvas maestras": "Intervallo delle curve direttrici",
+    "Desactivadas": "Disattivate",
+    "Color curva maestra": "Colore della curva direttrice",
+    "Grosor curva maestra": "Spessore della curva direttrice",
     "Continua": "Continua",
     "Discontinua": "Tratteggiata",
     "Punteada": "Punteggiata",
@@ -2401,9 +2409,437 @@
     "Modo de vuelo": "Modalità volo",
     "Salir del modo de vuelo": "Esci dalla modalità volo",
     "Ocultar controles": "Nascondi i comandi",
-    "Mostrar controles": "Mostra i comandi"
+    "Abrir visor de matriz de conexiones": "Apri il visualizzatore della matrice delle connessioni",
+    "Visor de ruta secuencial · {0}": "Visualizzatore del percorso sequenziale · {0}",
+    "Visor de matriz de conexiones": "Visualizzatore della matrice delle connessioni",
+    "Elementos espaciales y configuración del análisis": "Elementi spaziali e configurazione dell’analisi",
+    "CRS de coordenadas:": "CRS delle coordinate:",
+    "Precisión exportada:": "Precisione esportata:",
+    "Cotas: no disponibles para los elementos de entrada.": "Quote altimetriche non disponibili per gli elementi di input.",
+    "Ninguno": "Nessuno",
+    "Ninguna": "Nessuna",
+    "función:": "ruolo:",
+    "cota: no registrada": "quota altimetrica: non registrata",
+    "absoluta": "assoluta",
+    "penalización ×": "penalità ×",
+    "ancho": "larghezza",
+    "coste ×": "costo ×",
+    "tipo": "tipo",
+    "obligatorio": "obbligatorio",
+    "barrera asociada": "barriera associata",
+    "categoría": "categoria",
+    "modo": "modalità",
+    "radio": "raggio",
+    "atracción": "attrazione",
+    "Orden": "Ordine",
+    "Precisión exportada": "Precisione esportata",
+    "CRS de coordenadas": "CRS delle coordinate",
+    "longitud, latitud; grados decimales": "longitudine, latitudine; gradi decimali",
+    "Mostrar curvas de nivel": "Mostra le curve di livello",
+    "No hay rutas creadas": "Non sono stati tracciati percorsi",
+    "sin rutas dibujadas": "nessun percorso di avvicinamento disegnato",
+    "(sin rutas dibujadas)": "(nessun percorso di avvicinamento disegnato)",
+    "Intervalo de curvas del informe": "Intervallo delle curve del rapporto",
+    "Color de curva maestra": "Colore della curva direttrice",
+    "¿Guardar antes de salir?": "Salvare prima di uscire?",
+    "Puede guardar el proyecto y el modelo digital descargado.": "Puoi salvare il progetto e il modello digitale del terreno scaricato.",
+    "Guardar modelo digital en GeoTIFF": "Salva il modello digitale del terreno in GeoTIFF",
+    "Salir sin guardar": "Esci senza salvare",
+    "Guardar y salir": "Salva ed esci",
+    "Guardando…": "Salvataggio…",
+    "Guarde primero el proyecto para elegir la carpeta del GeoTIFF.": "Salva prima il progetto per scegliere la cartella del GeoTIFF.",
+    "Mostrar cotas en metros": "Mostra le quote in metri",
+    "Etiquetar cada": "Etichetta ogni",
+    "Mostrar cumbres principales": "Mostra le cime principali",
+    "3 curvas": "3 curve di livello",
+    "5 curvas": "5 curve di livello",
+    "10 curvas": "10 curve di livello"
   },
   "patterns": [
+    {
+      "source": "^Barreras marítimas \\((\\d+)\\)$",
+      "flags": "g",
+      "reference": "Marine barriers ($1)",
+      "translation": "Barriere marine ($1)"
+    },
+    {
+      "source": "^Barreras terrestres \\((\\d+)\\)$",
+      "flags": "g",
+      "reference": "Land barriers ($1)",
+      "translation": "Barriere terrestri ($1)"
+    },
+    {
+      "source": "^Puntos seleccionados \\((\\d+)\\)$",
+      "flags": "g",
+      "reference": "Selected points ($1)",
+      "translation": "Punti selezionati ($1)"
+    },
+    {
+      "source": "^CRS de coordenadas: (.+)$",
+      "flags": "g",
+      "reference": "Coordinate CRS: $1",
+      "translation": "CRS delle coordinate: $1"
+    },
+    {
+      "source": "^Precisión exportada: (.+)$",
+      "flags": "g",
+      "reference": "Export precision: $1",
+      "translation": "Precisione esportata: $1"
+    },
+    {
+      "source": "^Orden: (.+)$",
+      "flags": "g",
+      "reference": "Order: $1",
+      "translation": "Ordine: $1"
+    },
+    {
+      "source": "^atracción (.+)$",
+      "flags": "g",
+      "reference": "attraction $1",
+      "translation": "attrazione $1"
+    },
+    {
+      "source": "^radio (.+)$",
+      "flags": "g",
+      "reference": "radius $1",
+      "translation": "raggio $1"
+    },
+    {
+      "source": "^modo (.+)$",
+      "flags": "g",
+      "reference": "mode $1",
+      "translation": "modalità $1"
+    },
+    {
+      "source": "^categoría (.+)$",
+      "flags": "g",
+      "reference": "category $1",
+      "translation": "categoria $1"
+    },
+    {
+      "source": "^barrera asociada (.+)$",
+      "flags": "g",
+      "reference": "associated barrier $1",
+      "translation": "barriera associata $1"
+    },
+    {
+      "source": "^obligatorio (.+)$",
+      "flags": "g",
+      "reference": "required $1",
+      "translation": "obbligatorio $1"
+    },
+    {
+      "source": "^coste ×(.+)$",
+      "flags": "g",
+      "reference": "cost ×$1",
+      "translation": "costo ×$1"
+    },
+    {
+      "source": "^ancho (.+)$",
+      "flags": "g",
+      "reference": "width $1",
+      "translation": "larghezza $1"
+    },
+    {
+      "source": "\\bPuntos seleccionados\\b",
+      "flags": "g",
+      "reference": "Selected points",
+      "translation": "Punti selezionati"
+    },
+    {
+      "source": "\\bBarreras terrestres\\b",
+      "flags": "g",
+      "reference": "Land barriers",
+      "translation": "Barriere terrestri"
+    },
+    {
+      "source": "\\bBarreras marítimas\\b",
+      "flags": "g",
+      "reference": "Marine barriers",
+      "translation": "Barriere marine"
+    },
+    {
+      "source": "\\bFacilitadores\\b",
+      "flags": "g",
+      "reference": "Facilitators",
+      "translation": "Facilitatori"
+    },
+    {
+      "source": "\\bancho\\b",
+      "flags": "g",
+      "reference": "width",
+      "translation": "larghezza"
+    },
+    {
+      "source": "\\bcoste\\b",
+      "flags": "g",
+      "reference": "cost",
+      "translation": "costo"
+    },
+    {
+      "source": "\\bobligatorio\\b",
+      "flags": "g",
+      "reference": "required",
+      "translation": "obbligatorio"
+    },
+    {
+      "source": "\\bbarrera asociada\\b",
+      "flags": "g",
+      "reference": "associated barrier",
+      "translation": "barriera associata"
+    },
+    {
+      "source": "\\bcategoría\\b",
+      "flags": "g",
+      "reference": "category",
+      "translation": "categoria"
+    },
+    {
+      "source": "\\bmodo\\b",
+      "flags": "g",
+      "reference": "mode",
+      "translation": "modalità"
+    },
+    {
+      "source": "\\bradio\\b",
+      "flags": "g",
+      "reference": "radius",
+      "translation": "raggio"
+    },
+    {
+      "source": "\\batracción\\b",
+      "flags": "g",
+      "reference": "attraction",
+      "translation": "attrazione"
+    },
+    {
+      "source": "\\bgrados decimales\\b",
+      "flags": "g",
+      "reference": "decimal degrees",
+      "translation": "gradi decimali"
+    },
+    {
+      "source": "\\blongitud\\b",
+      "flags": "g",
+      "reference": "longitude",
+      "translation": "longitudine"
+    },
+    {
+      "source": "\\blatitud\\b",
+      "flags": "g",
+      "reference": "latitude",
+      "translation": "latitudine"
+    },
+    {
+      "source": "\\bdecimales\\b",
+      "flags": "g",
+      "reference": "decimal places",
+      "translation": "decimali"
+    },
+    {
+      "source": "\\bOrden\\b",
+      "flags": "g",
+      "reference": "Order",
+      "translation": "Ordine"
+    },
+    {
+      "source": "\\bOrigen\\b",
+      "flags": "g",
+      "reference": "Origin",
+      "translation": "Origine"
+    },
+    {
+      "source": "\\bDestino\\b",
+      "flags": "g",
+      "reference": "Destination",
+      "translation": "Destinazione"
+    },
+    {
+      "source": "\\bvia\\b",
+      "flags": "g",
+      "reference": "waypoint",
+      "translation": "intermedio"
+    },
+    {
+      "source": "\\bsí\\b",
+      "flags": "g",
+      "reference": "yes",
+      "translation": "sì"
+    },
+    {
+      "source": "\\bninguna?\\b",
+      "flags": "g",
+      "reference": "none",
+      "translation": "nessuna"
+    },
+    {
+      "source": "\\bpermeable\\b",
+      "flags": "g",
+      "reference": "permeable",
+      "translation": "permeabile"
+    },
+    {
+      "source": "\\bpenalización\\b",
+      "flags": "g",
+      "reference": "penalty",
+      "translation": "penalità"
+    },
+    {
+      "source": "\\bAbsoluta\\b",
+      "flags": "g",
+      "reference": "Absolute",
+      "translation": "Assoluta"
+    },
+    {
+      "source": "\\bBarrera\\b",
+      "flags": "g",
+      "reference": "Barrier",
+      "translation": "Barriera"
+    },
+    {
+      "source": "\\bCorredor\\b",
+      "flags": "g",
+      "reference": "Corridor",
+      "translation": "Corridoio"
+    },
+    {
+      "source": "\\bCruce\\b",
+      "flags": "g",
+      "reference": "Crossing",
+      "translation": "Attraversamento"
+    },
+    {
+      "source": "\\bPunto de interés\\b",
+      "flags": "g",
+      "reference": "Point of interest",
+      "translation": "Punto di interesse"
+    },
+    {
+      "source": "Punto (\\d+) «",
+      "flags": "g",
+      "reference": "Point $1 “",
+      "translation": "Punto $1 “"
+    },
+    {
+      "source": "Barrera (\\d+)\\.(\\d+) «",
+      "flags": "g",
+      "reference": "Barrier $1.$2 “",
+      "translation": "Barriera $1.$2 “"
+    },
+    {
+      "source": "Corredor ([^·]+) ·",
+      "flags": "g",
+      "reference": "Corridoio $1 ·",
+      "translation": "Corridoio $1 ·"
+    },
+    {
+      "source": "Cruce ([^·]+) ·",
+      "flags": "g",
+      "reference": "Crossing $1 ·",
+      "translation": "Attraversamento $1 ·"
+    },
+    {
+      "source": "Punto de interés ([^·]+) ·",
+      "flags": "g",
+      "reference": "Point of interest $1 ·",
+      "translation": "Punto di interesse $1 ·"
+    },
+    {
+      "source": "vértices ",
+      "flags": "g",
+      "reference": "vertices ",
+      "translation": "vertici "
+    },
+    {
+      "source": " · función: ",
+      "flags": "g",
+      "reference": " · role: ",
+      "translation": " · ruolo: "
+    },
+    {
+      "source": " · cota: no registrada",
+      "flags": "g",
+      "reference": " · elevation: not recorded",
+      "translation": " · quota altimetrica: non registrata"
+    },
+    {
+      "source": " · vértices ",
+      "flags": "g",
+      "reference": " · vertices ",
+      "translation": " · vertici "
+    },
+    {
+      "source": " · categoría ",
+      "flags": "g",
+      "reference": " · category ",
+      "translation": " · categoria "
+    },
+    {
+      "source": " · modo ",
+      "flags": "g",
+      "reference": " · mode ",
+      "translation": " · modalità "
+    },
+    {
+      "source": " · radio ",
+      "flags": "g",
+      "reference": " · radius ",
+      "translation": " · raggio "
+    },
+    {
+      "source": " · atracción ",
+      "flags": "g",
+      "reference": " · attraction ",
+      "translation": " · attrazione "
+    },
+    {
+      "source": " · barrera asociada ",
+      "flags": "g",
+      "reference": " · associated barrier ",
+      "translation": " · barriera associata "
+    },
+    {
+      "source": " · ancho ",
+      "flags": "g",
+      "reference": " · width ",
+      "translation": " · larghezza "
+    },
+    {
+      "source": " · coste ×",
+      "flags": "g",
+      "reference": " · cost ×",
+      "translation": " · costo ×"
+    },
+    {
+      "source": " · tipo ",
+      "flags": "g",
+      "reference": " · type ",
+      "translation": " · tipo "
+    },
+    {
+      "source": " · obligatorio ",
+      "flags": "g",
+      "reference": " · required ",
+      "translation": " · obbligatorio "
+    },
+    {
+      "source": " · absoluta ·",
+      "flags": "g",
+      "reference": " · absolute ·",
+      "translation": " · assoluta ·"
+    },
+    {
+      "source": " · penalización ×",
+      "flags": "g",
+      "reference": " · penalty ×",
+      "translation": " · penalità ×"
+    },
+    {
+      "source": "Orden: ([^·]+)",
+      "flags": "g",
+      "reference": "Order: $1",
+      "translation": "Ordine: $1"
+    },
     {
       "source": "^Eliminar punto (\\d+)$",
       "flags": "g",
@@ -2749,8 +3185,8 @@
     {
       "source": "Componiendo rutas Multirruta sobre ",
       "flags": "g",
-      "reference": "Composing Multi-route routes over ",
-      "translation": "Composizione dei percorsi multipercorso su "
+      "reference": "Composing multi-route itineraries over ",
+      "translation": "Composizione degli itinerari multipercorso su "
     },
     {
       "source": "Componiendo pasillo calculado sobre ",
@@ -2809,8 +3245,8 @@
     {
       "source": "Rutas Multirruta · modelo 3D",
       "flags": "g",
-      "reference": "Multi-route routes · 3D model",
-      "translation": "Percorsi multipercorso · modello 3D"
+      "reference": "Multi-route itineraries · 3D model",
+      "translation": "Itinerari multipercorso · modello 3D"
     },
     {
       "source": "Pasillo calculado · modelo 3D",
@@ -4189,8 +4625,8 @@
     {
       "source": "GeoTIFF real · cálculo acumulado multi-origen",
       "flags": "g",
-      "reference": "Actual GeoTIFF · multi-origin accumulated calculation",
-      "translation": "GeoTIFF reale · calcolo accumulato multi-origine"
+      "reference": "Actual GeoTIFF · multi-origin cumulative cost calculation",
+      "translation": "GeoTIFF reale · calcolo del costo cumulativo multi-origine"
     },
     {
       "source": "(\\d+) vértice\\(s\\) de paso obligatorio:",
@@ -4239,6 +4675,36 @@
       "flags": "g",
       "reference": "Point of interest",
       "translation": "Punto di interesse"
+    },
+    {
+      "source": "^Puntos seleccionados \\((\\d+)\\)$",
+      "flags": "g",
+      "reference": "Selected points ($1)",
+      "translation": "Punti selezionati ($1)"
+    },
+    {
+      "source": "^Facilitadores \\((\\d+)\\)$",
+      "flags": "g",
+      "reference": "Facilitators ($1)",
+      "translation": "Facilitatori ($1)"
+    },
+    {
+      "source": "^Barreras terrestres \\((\\d+)\\)$",
+      "flags": "g",
+      "reference": "Land barriers ($1)",
+      "translation": "Barriere terrestri ($1)"
+    },
+    {
+      "source": "^Barreras marítimas \\((\\d+)\\)$",
+      "flags": "g",
+      "reference": "Marine barriers ($1)",
+      "translation": "Barriere marine ($1)"
+    },
+    {
+      "source": "^(?:Ruta|Route) de aproximación (\\d+)$",
+      "flags": "g",
+      "reference": "Approach route $1",
+      "translation": "Percorso di avvicinamento $1"
     }
   ],
   "Edición de máscara marítima": "Modifica maschera marina",
@@ -4282,6 +4748,7 @@
   "Los extremos están separados.": "Le estremità sono distanti.",
   "Calidad de la capa base": "Qualità del livello di base",
   "Máscaras marítimas": "Maschere marine",
+  "Elementos del proyecto": "Elementi del progetto",
   "Estándar · 4096 px": "Standard · 4096 px",
   "Alta · 5120 px": "Alta · 5120 px",
   " (no compatible)": " (non supportata)"

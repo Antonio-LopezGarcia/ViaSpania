@@ -1727,7 +1727,10 @@ fn select_elevation_region(
             .output()
     } else {
         Command::new(polygonizer)
-            .args(["raster", "polygonize", "-q", "-f", "GeoJSON", "--attribute-name", "value", "--output-layer", "region"])
+            // GDAL 3.11 (the bundled/CI baseline) does not support --quiet or
+            // --output-layer on this provisional subcommand. The output
+            // filename determines the layer name, so neither option is needed.
+            .args(["raster", "polygonize", "-f", "GeoJSON", "--attribute-name", "value"])
             .arg(&mask_raster)
             .arg(&polygons)
             .output()
@@ -3039,7 +3042,7 @@ fn import_geopackage(path: String) -> Result<Vec<Value>, NativeError> {
     let names: Vec<&str> = catalog["features"].as_array().ok_or_else(|| NativeError::Io("El GeoPackage no contiene un catálogo válido".into()))?
         .iter().filter_map(|f| f["properties"]["table_name"].as_str()).collect();
     let mut layers = Vec::new();
-    for name in ["puntos", "barreras", "corredores", "puentes", "puntos_interes"] {
+    for name in ["puntos", "barreras", "corredores", "puentes", "puntos_interes", "rutas_aproximacion"] {
         if names.contains(&name) {
             let data = read(&["-t_srs", "EPSG:4326", "-preserve_fid"], Some(name))?;
             layers.push(serde_json::json!({"name":name,"geoJson":data.to_string()}));

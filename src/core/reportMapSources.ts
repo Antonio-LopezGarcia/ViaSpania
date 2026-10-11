@@ -4,7 +4,7 @@ import type {ExternalMapLayer} from './externalMapLayers';
 
 export interface ReportMapSource {
   id:string;name:string;
-  group:'Cartografía'|'Ortofotografías'|'Capas importadas'|'Modelo 3D';
+  group:'Cartografía'|'Ortofotografías'|'Capas importadas'|'Modelo digital'|'Modelo 3D';
   attribution:string;builtIn?:BuiltInMapSource;external?:ExternalMapLayer;terrain3d?:true;
 }
 

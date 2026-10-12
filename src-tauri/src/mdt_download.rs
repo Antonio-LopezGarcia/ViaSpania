@@ -39,8 +39,8 @@ impl WcsSource {
             Self::Mds5 => ("https://wcs-mds.idee.es/mds?", "mds05", 5.0),
         }
     }
-    fn service_xml(self) -> String {
-        let (url, coverage, _) = self.specification();
+    fn service_xml(self, url: &str) -> String {
+        let (_, coverage, _) = self.specification();
         format!("<WCS_GDAL><ServiceURL>{url}</ServiceURL><Version>1.0.0</Version><CoverageName>{coverage}</CoverageName><PreferredFormat>GEOTIFFINT16</PreferredFormat><BlockXSize>1024</BlockXSize><BlockYSize>1024</BlockYSize><OverviewCount>0</OverviewCount><OriginAtBoundary>true</OriginAtBoundary><Timeout>120</Timeout></WCS_GDAL>")
     }
 }
@@ -69,13 +69,6 @@ pub(super) fn configure_ca_bundle(_command: &mut Command) {
                 .env("SSL_CERT_FILE", bundle);
         }
     }
-}
-
-fn configure_wcs_retries(command: &mut Command) {
-    command
-        .env("GDAL_HTTP_MAX_RETRY", "5")
-        .env("GDAL_HTTP_RETRY_CODES", "ALL")
-        .env("GDAL_HTTP_RETRY_DELAY", "2");
 }
 
 #[derive(Deserialize)]
@@ -135,9 +128,10 @@ fn translate() -> Result<Command, NativeError> {
     command
         .env("GDAL_FORCE_CACHING", "YES")
         .env("GDAL_CACHEMAX", "64");
-    // Retry transient failures even when the server never returns an HTTP
-    // status (for example, a TLS handshake alert between WCS block requests).
-    configure_wcs_retries(&mut command);
+    // The local relay retries each upstream request. GDAL must not multiply
+    // those attempts after a persistent server failure.
+    command.env("GDAL_HTTP_MAX_RETRY", "0");
+    wcs_relay::bypass_proxy_for_loopback(&mut command);
     configure_ca_bundle(&mut command);
     Ok(command)
 }
@@ -192,14 +186,25 @@ fn download(
     cancel: &AtomicBool,
 ) -> Result<RasterResult, NativeError> {
     validate_request(request)?;
+    if cancel.load(Ordering::SeqCst) {
+        return Err(NativeError::Cancelled);
+    }
     let temporary = directory.join(format!("mdt-blocks-{}", uuid::Uuid::new_v4()));
     std::fs::create_dir_all(&temporary).map_err(|e| NativeError::Io(e.to_string()))?;
+    let relay = match wcs_relay::WcsRelay::start(request.source_id.specification().0) {
+        Ok(relay) => relay,
+        Err(error) => {
+            let _ = std::fs::remove_dir_all(&temporary);
+            return Err(error);
+        }
+    };
+    let service_url = relay.service_url();
     let result = (|| {
         let service = temporary.join("service.xml");
         let window = temporary.join("window.vrt");
         let source = temporary.join("source.tif");
         let output = temporary.join("result.tif");
-        std::fs::write(&service, request.source_id.service_xml())
+        std::fs::write(&service, request.source_id.service_xml(service_url))
             .map_err(|e| NativeError::Io(e.to_string()))?;
         let [west, south, east, north] = request.bounds_wgs84;
         // VRT creation only describes the selected native grid. No -tr, -outsize,
@@ -289,6 +294,7 @@ fn download(
             preview_data_url,
         })
     })();
+    let result = result.map_err(|error| relay.explain(error));
     let _ = std::fs::remove_dir_all(&temporary);
     result
 }
@@ -318,12 +324,15 @@ mod tests {
     use super::*;
 
     #[test]
-    fn retries_wcs_requests_for_transport_errors_without_http_status() {
-        let mut command = Command::new("gdal_translate");
-        configure_wcs_retries(&mut command);
+    fn all_platforms_use_the_relay_and_per_request_retries() {
+        let command = translate().unwrap();
         assert!(command.get_envs().any(|(key, value)| {
-            key == "GDAL_HTTP_RETRY_CODES" && value == Some(std::ffi::OsStr::new("ALL"))
+            key == "GDAL_HTTP_MAX_RETRY" && value == Some(std::ffi::OsStr::new("0"))
         }));
+        let source = WcsSource::Mdt5;
+        assert!(source
+            .service_xml("http://127.0.0.1:12345/?")
+            .contains("<ServiceURL>http://127.0.0.1:12345/?</ServiceURL>"));
     }
 
     #[test]
@@ -334,7 +343,7 @@ mod tests {
             (WcsSource::Mdt200, "Elevacion4258_200", 200.0),
             (WcsSource::Mds5, "mds05", 5.0),
         ] {
-            let xml = source.service_xml();
+            let xml = source.service_xml(source.specification().0);
             assert!(xml.contains(&format!("<CoverageName>{coverage}</CoverageName>")));
             assert!(xml.contains("<BlockXSize>1024</BlockXSize>"));
             assert_eq!(source.specification().2, resolution);
@@ -388,8 +397,10 @@ mod tests {
         };
         let result = download(&directory, &request, &AtomicBool::new(true));
         assert!(matches!(result, Err(NativeError::Cancelled)));
-        assert_eq!(std::fs::read_dir(&directory).unwrap().count(), 0);
-        std::fs::remove_dir_all(directory).unwrap();
+        if directory.exists() {
+            assert_eq!(std::fs::read_dir(&directory).unwrap().count(), 0);
+            std::fs::remove_dir_all(directory).unwrap();
+        }
     }
 
     #[test]
@@ -471,6 +482,55 @@ mod tests {
         assert!(raster_preview_data_url(&output)
             .unwrap()
             .starts_with("data:image/png;base64,"));
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    #[ignore = "WCS real: ejecutar por fuente con VIASPANIA_WCS_SOURCE=mdt5|mdt25|mdt200|mds05"]
+    fn live_small_model() {
+        let source_id = match std::env::var("VIASPANIA_WCS_SOURCE").as_deref() {
+            Ok("mdt5") => WcsSource::Mdt5,
+            Ok("mdt25") => WcsSource::Mdt25,
+            Ok("mdt200") => WcsSource::Mdt200,
+            Ok("mds05") => WcsSource::Mds5,
+            _ => panic!("Defina VIASPANIA_WCS_SOURCE=mdt5|mdt25|mdt200|mds05"),
+        };
+        let directory = std::env::temp_dir()
+            .join(format!("wcs-small-test-{}", uuid::Uuid::new_v4()));
+        let request = MdtDownloadRequest {
+            source_id,
+            bounds_wgs84: [-3.165, 40.115, -3.155, 40.125],
+            target_crs: "EPSG:25830".into(),
+            output_name: "modelo-prueba".into(),
+        };
+        let result = download(&directory, &request, &AtomicBool::new(false)).unwrap();
+        assert!(result.bytes > 0);
+        assert!(result.metadata["size"][0].as_u64().unwrap() > 0);
+        assert!(result.metadata["size"][1].as_u64().unwrap() > 0);
+        assert_eq!(result.metadata["geoTransform"][1], source_id.specification().2);
+        std::fs::remove_dir_all(directory).unwrap();
+    }
+
+    #[test]
+    #[ignore = "WCS real de varios bloques: VIASPANIA_WCS_SOURCE=mdt5 o mds05"]
+    fn live_multi_block_model() {
+        let source_id = match std::env::var("VIASPANIA_WCS_SOURCE").as_deref() {
+            Ok("mdt5") => WcsSource::Mdt5,
+            Ok("mds05") => WcsSource::Mds5,
+            _ => panic!("Defina VIASPANIA_WCS_SOURCE=mdt5 o mds05"),
+        };
+        let directory = std::env::temp_dir()
+            .join(format!("wcs-blocks-test-{}", uuid::Uuid::new_v4()));
+        let request = MdtDownloadRequest {
+            source_id,
+            bounds_wgs84: [-3.20, 40.09, -3.13, 40.145],
+            target_crs: "EPSG:25830".into(),
+            output_name: "modelo-bloques".into(),
+        };
+        let result = download(&directory, &request, &AtomicBool::new(false)).unwrap();
+        assert!(result.metadata["size"][0].as_u64().unwrap() > 1024);
+        assert!(result.metadata["size"][1].as_u64().unwrap() > 1024);
+        assert_eq!(result.metadata["geoTransform"][1], 5.0);
         std::fs::remove_dir_all(directory).unwrap();
     }
 

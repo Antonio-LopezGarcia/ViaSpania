@@ -1,6 +1,6 @@
 [package]
 name = "viaspania"
-version = "0.6.0"
+version = "1.0.0"
 description = ""
 authors = ["Antonio López García, Universidad de Granada"]
 license = "GPL-3.0-only"
@@ -16,7 +16,7 @@ tauri-build = { version = "2", features = [] }
 [dependencies]
 base64 = "0.22"
 futures-util = "0.3"
-reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "stream"] }
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls", "stream"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tauri = { version = "2", features = [] }

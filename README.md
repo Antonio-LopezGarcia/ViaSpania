@@ -6,7 +6,7 @@
 
 ViaSpania es una aplicación de escritorio para analizar costes de desplazamiento sobre el terreno, comparar rutas y explorar la topografía. Permite trabajar con modelos de elevación, cartografía y datos geográficos locales; incluye análisis de rutas de coste mínimo, perfiles, pasillos, isócronas, cuencas visuales y terreno 3D. Los cálculos se realizan en el equipo; los mapas, las descargas de elevación y la búsqueda de lugares necesitan conexión.
 
-Versión del proyecto: **0.6.0**. Consulte las [notas de la versión 0.6.0](docs/RELEASE_0.6.0.md).
+Versión del proyecto: **1.0.0**. Consulte las [notas de la versión 1.0.0](docs/RELEASE_1.0.0.md).
 
 https://github.com/user-attachments/assets/ee2ea6d8-2c74-4082-ab1c-d10cbf481d35
 
@@ -61,7 +61,7 @@ Informe errores en [GitHub Issues](https://github.com/Antonio-LopezGarcia/ViaSpa
 
 ViaSpania is a desktop application for terrain-based movement-cost analysis, route comparison and topographic exploration. It works with elevation models, maps and local geographic data, and provides least-cost routes, profiles, corridors, isochrones, viewsheds and 3D terrain. Analyses run on your computer; maps, elevation downloads and place searches require an internet connection.
 
-Project version: **0.6.0**. See the [0.6.0 release notes](docs/RELEASE_0.6.0.md).
+Project version: **1.0.0**. See the [1.0.0 release notes](docs/RELEASE_1.0.0.md).
 
 https://github.com/user-attachments/assets/30de8dae-7c5e-4916-ad62-112b4db818fd
 

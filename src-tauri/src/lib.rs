@@ -4,6 +4,7 @@ use base64::{engine::general_purpose::STANDARD as BASE64, Engine as _};
 mod video_export;
 mod gazetteer;
 mod mdt_download;
+mod wcs_relay;
 mod route_memory;
 mod raster_limits;
 mod analysis_grid;
@@ -595,9 +596,9 @@ fn gdal_json(path: &Path) -> Result<Value, NativeError> {
 fn gdal_json_basic(path: &Path) -> Result<Value, NativeError> {
     let executable = command_path("gdalinfo")
         .ok_or_else(|| NativeError::Gdal("gdalinfo no está instalado".to_owned()))?;
-    let output = Command::new(executable)
-        .arg("-json")
-        .arg(path)
+    let mut command = Command::new(executable);
+    wcs_relay::bypass_proxy_for_loopback(&mut command);
+    let output = command.arg("-json").arg(path)
         .cancellable_output()
         .map_err(|error| NativeError::Gdal(error.to_string()))?;
     if !output.status.success() {
@@ -3429,6 +3430,7 @@ fn elevation_warp_command(input: &Path, output: &Path, request: &RasterProcessRe
     // https://gdal.org/en/stable/programs/gdalwarp.html#cmdoption-gdalwarp-dstnodata
     command.env("GDAL_CACHEMAX", "64");
     mdt_download::configure_ca_bundle(&mut command);
+    wcs_relay::bypass_proxy_for_loopback(&mut command);
     command.args(["-wm", "64"]);
     if format == "COG" { command.args(["-co", "NUM_THREADS=1"]); }
     command.args([

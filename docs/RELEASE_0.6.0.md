@@ -14,6 +14,7 @@ Esta versión reúne las novedades de ViaSpania desde la 0.2.2 y conserva aquí 
 - **Modo de vuelo inmersivo:** permite recorrer el terreno 3D con controles de dirección, velocidad, ascenso y descenso, control de crucero e indicadores de rumbo y altitud; un minimapa sitúa la cámara sobre el modelo.
 - **Identidad visual y acabado gráfico:** se incorpora un nuevo logotipo en la bienvenida y en las exportaciones, se renuevan los iconos de la aplicación y se retocan la presentación de controles, paneles y animación de inicio.
 - **Proyectos y uso:** al cerrar la aplicación se puede elegir si guardar el proyecto y el modelo digital descargado. Se amplían textos de ayuda, traducciones y detalles de los controles 3D.
+- **Descargas WCS:** las peticiones MDT/MDS en Linux, macOS y Windows pasan por un relé local con HTTPS al proveedor y reintentos por bloque, con una política uniforme para los fallos de transporte del GDAL empaquetado. La comprobación optativa de servicios reales puede ejecutarse en las tres plataformas desde el workflow de portabilidad.
 
 #### 0.5.0 — Portabilidad y expediente de publicación
 
@@ -74,6 +75,7 @@ This release brings together ViaSpania's changes since version 0.2.2 and preserv
 - **Immersive flight mode:** explore 3D terrain with direction, speed, ascent and descent controls, cruise control, heading and altitude indicators, and a minimap showing the camera position on the model.
 - **Visual identity and polish:** a new logo appears in the welcome screen and exports, application icons are renewed, and controls, panels and the startup animation receive visual refinements.
 - **Projects and usability:** when closing the application, choose whether to save the project and downloaded elevation model. Help text, translations and 3D controls are refined.
+- **WCS downloads:** MDT/MDS requests on Linux, macOS and Windows use a local relay with HTTPS to the provider and per-block retries, providing one policy for transport failures in bundled GDAL. Optional live service checks can run on all three platforms through the portability workflow.
 
 #### 0.5.0 — Portability and release evidence
 

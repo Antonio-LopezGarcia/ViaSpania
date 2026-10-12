@@ -10,6 +10,11 @@ on:
         required: false
         type: boolean
         default: false
+      verify_live_wcs:
+        description: Probar MDT05, MDT25, MDT200 y MDS05 reales en Linux, macOS y Windows
+        required: false
+        type: boolean
+        default: false
       release_tag:
         description: Etiqueta de la Release en la que publicar los instaladores
         required: true
@@ -80,6 +85,16 @@ jobs:
       - run: pnpm test
       - run: pnpm build
       - run: cargo test --manifest-path src-tauri/Cargo.toml
+      - name: Verificar servicios WCS reales en Linux, macOS y Windows
+        if: github.event_name == 'workflow_dispatch' && inputs.verify_live_wcs
+        shell: bash
+        run: |
+          for source in mdt5 mdt25 mdt200 mds05; do
+            VIASPANIA_WCS_SOURCE="$source" cargo test --manifest-path src-tauri/Cargo.toml live_small_model -- --ignored
+          done
+          for source in mdt5 mds05; do
+            VIASPANIA_WCS_SOURCE="$source" cargo test --manifest-path src-tauri/Cargo.toml live_multi_block_model -- --ignored
+          done
 
   installers:
     name: Instalador · ${{ matrix.label }}

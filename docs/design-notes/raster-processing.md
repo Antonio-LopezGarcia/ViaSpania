@@ -12,6 +12,10 @@ Las descargas WCS tienen además límites del proveedor y un presupuesto de **10
 
 Los proveedores y coberturas se seleccionan explícitamente en el adaptador nativo; las peticiones se leen por bloques con caché acotada para respetar las dimensiones máximas del servicio. El tamaño proyectado se valida antes de crear la salida. La descarga produce un ráster georreferenciado independiente de sus temporales.
 
+En todas las plataformas, GDAL consulta un relé HTTP local limitado a la descarga en curso. El relé reenvía cada `DescribeCoverage` y `GetCoverage` al servicio oficial mediante `reqwest` con rustls y reintenta errores de transporte y respuestas temporales del servidor. Esto evita los fallos de transporte sin código HTTP del GDAL empaquetado y hace uniforme la política de reintentos. GDAL sigue interpretando la cobertura y manteniendo su rejilla nativa; el relé no modifica los píxeles ni cambia la atribución. Los servicios reales deben probarse en cada plataforma antes de publicar una versión.
+
+La acción «Portabilidad de escritorio» ofrece la opción manual `verify_live_wcs` para probar en Linux, macOS y Windows las cuatro fuentes con ventanas pequeñas y MDT05/MDS05 con ventanas de varios bloques. Permanece desactivada en pruebas rutinarias para que estas sean deterministas.
+
 La inspección de GeoTIFF local y su procesamiento nativo validan también el tamaño de salida reproyectada. La reproyección conserva las propiedades espaciales del flujo seleccionado y no debe asignar CRS o resolución ficticios para superar un límite. Los fallos y cancelaciones deben limpiar temporales sin publicar una salida incompleta.
 
 ## Análisis y memoria

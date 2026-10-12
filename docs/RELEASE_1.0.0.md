@@ -1,10 +1,9 @@
 # ViaSpania 1.0.0
 
 ## Español
+Versión oficial de lanzamiento de la aplicación.
 
-Esta versión conserva las notas de la release 0.6.0 y añade las novedades incorporadas desde entonces. Se mantiene aquí el historial por versión, de la más reciente a la más antigua. Las secciones históricas resumen lo que se incorporó en cada publicación; no implican que cada función o instalador de aquellas versiones se haya vuelto a validar en 1.0.0.
-
-### Novedades y correcciones
+### Novedades y correcciones desde la primera versión estable (0.2.2)
 
 #### 1.0.0 — Descargas WCS multiplataforma
 
@@ -58,18 +57,13 @@ Esta versión conserva las notas de la release 0.6.0 y añade las novedades inco
 - **Vídeo:** se añade exportación AVI/MJPEG y MP4/H.264 mediante FFmpeg/libx264; continúan GIF y PNG. Si falla MP4, se conserva el AVI. En la publicación se documentó la conversión real en macOS ARM64; Linux y Windows requerían validación adicional de MP4.
 - **Robustez y experiencia de uso:** se actualizan la bienvenida, el selector de idioma y el tutorial. Se refuerzan la cancelación, la memoria y el seguimiento de tareas en cálculos e importaciones; se revisan formularios Linux, traducciones, controles de descarga, títulos de modelos y elementos de interfaz. Se corrigen artefactos de reproyección, costuras de pasillos, geometrías, texturas 3D, sincronización de indicadores y máscaras marítimas multiplataforma. Los rásteres antiguos afectados por el problema de bordes deben reprocesarse o descargarse de nuevo.
 
-#### 0.2.2 — Versión de partida del historial
-
-- La nota de 0.2.2 registra una actualización de la interfaz, la importación de elementos, las opciones de movimiento y las exportaciones de resultados y vídeo, junto con cambios posteriores a 0.2.1.
-- Su expediente amplió los avisos de fuentes y licencias con mimalloc y dependencias de cabeceras de SFCGAL. La nota histórica consignó 414 pruebas de aplicación para aquella revisión; esa cifra no describe la validación de 1.0.0.
-
 ---
 
 ## English
 
-This release preserves the 0.6.0 release notes and adds the changes incorporated since then. The version history remains ordered from newest to oldest. Historical sections describe what each release introduced; they do not mean that every feature or installer from those versions has been revalidated in 1.0.0.
+Official application release version.
 
-### Features and fixes
+### Features and fixes since the first stable version (0.2.2)
 
 #### 1.0.0 — Cross-platform WCS downloads
 
@@ -122,8 +116,3 @@ This release preserves the 0.6.0 release notes and adds the changes incorporated
 - **Viewers and reports:** improves palettes, corridor colours, 3D viewsheds, isochrone labels, and contour and video legends. The 3D viewer adjusts accumulated-surface opacity, displays rectangular-model dimensions and captures the visible state as PNG. Reports use unique filenames and a clearer header.
 - **Video:** adds AVI/MJPEG and MP4/H.264 export using FFmpeg/libx264; GIF and PNG remain available. If MP4 conversion fails, the AVI is retained. The release recorded a real conversion on macOS ARM64; Linux and Windows still required MP4 validation.
 - **Reliability and usability:** updates welcome, language selection and tutorial flows. Calculation and import cancellation, memory use and task tracking improve; Linux forms, translations, download controls, model titles and interface details are revised. Fixes address reprojection artifacts, corridor seams, geometry validation, 3D textures, indicator synchronisation and cross-platform sea-mask generation. Older rasters affected by the edge issue must be reprocessed or downloaded again.
-
-#### 0.2.2 — Starting point for this history
-
-- The 0.2.2 notes record an interface update, element import, movement options and result and video exports, together with changes made after 0.2.1.
-- Its source and licence notices were expanded to cover mimalloc and SFCGAL header dependencies. The historical notes recorded 414 application tests for that revision; that figure does not describe 1.0.0 validation.

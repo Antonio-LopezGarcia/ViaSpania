@@ -1,5 +1,7 @@
 # ViaSpania 1.0.0
 
+**Guías de instalación / Installation guides:** [Español (PDF)](installation/Manual_instalacion_ViaSpania_ES.pdf) · [English (PDF)](installation/Installation_Guide_ViaSpania_EN.pdf).
+
 ## Español
 Versión oficial de lanzamiento de la aplicación.
 

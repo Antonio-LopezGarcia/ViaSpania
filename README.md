@@ -14,6 +14,8 @@ https://github.com/user-attachments/assets/ee2ea6d8-2c74-4082-ab1c-d10cbf481d35
 
 Descargue el instalador adecuado desde [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). En **Assets**, elija el paquete de su sistema y arquitectura; los archivos automáticos «Source code» no son instaladores.
 
+Consulte el [manual de instalación de ViaSpania 1.0.0 en español](docs/installation/Manual_instalacion_ViaSpania_ES.pdf) o la [guía de instalación en inglés](docs/installation/Installation_Guide_ViaSpania_EN.pdf) para ver los pasos ilustrados.
+
 | Sistema | Paquetes | Arquitectura disponible |
 | --- | --- | --- |
 | macOS | `.dmg` | Apple Silicon (M1 o posterior) |
@@ -68,6 +70,8 @@ https://github.com/user-attachments/assets/30de8dae-7c5e-4916-ad62-112b4db818fd
 ### Download and install
 
 Download the appropriate installer from [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). Under **Assets**, choose a package for your system and architecture; GitHub's automatically generated “Source code” archives are not installers.
+
+See the illustrated [ViaSpania 1.0.0 installation guide in English](docs/installation/Installation_Guide_ViaSpania_EN.pdf) or the [Spanish installation manual](docs/installation/Manual_instalacion_ViaSpania_ES.pdf).
 
 | System | Packages | Available architecture |
 | --- | --- | --- |

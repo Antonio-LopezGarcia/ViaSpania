@@ -7,6 +7,7 @@
 .welcome-loading-reveal{stroke:#fff;stroke-width:6;stroke-dasharray:100;stroke-dashoffset:100;animation:welcome-route-progress linear forwards}
 .welcome-loading-node{opacity:0;stroke:#101814;stroke-width:2;animation:welcome-node-arrive 140ms ease-out forwards}
 .welcome-loading-node-start{opacity:1;animation:none}
+.close-loading-reveal{animation-duration:1.4s;animation-timing-function:linear;animation-fill-mode:forwards}
 @keyframes welcome-node-arrive{to{opacity:1}}
 @keyframes welcome-route-progress{to{stroke-dashoffset:0}}
 @media(prefers-reduced-motion:reduce){.welcome-loading-reveal{animation:none;stroke-dashoffset:0}.welcome-loading-node{opacity:1;animation:none}}

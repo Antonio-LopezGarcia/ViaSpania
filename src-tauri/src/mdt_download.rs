@@ -49,7 +49,7 @@ const MAX_SOURCE_CELLS: u64 = 100_000_000;
 /// Linux GDAL builds can retain the CA path from their build environment
 /// (for example, a temporary Conda runner path). Prefer a CA bundle installed
 /// by the user's distribution so HTTPS WCS requests work in the packaged app.
-pub(super) fn configure_ca_bundle(command: &mut Command) {
+pub(super) fn configure_ca_bundle(_command: &mut Command) {
     #[cfg(target_os = "linux")]
     {
         const SYSTEM_CA_BUNDLES: &[&str] = &[
@@ -64,11 +64,18 @@ pub(super) fn configure_ca_bundle(command: &mut Command) {
             .find(|path| path.is_file())
         {
             // GDAL documents both options for its curl-backed HTTP access.
-            command
+            _command
                 .env("CURL_CA_BUNDLE", bundle)
                 .env("SSL_CERT_FILE", bundle);
         }
     }
+}
+
+fn configure_wcs_retries(command: &mut Command) {
+    command
+        .env("GDAL_HTTP_MAX_RETRY", "5")
+        .env("GDAL_HTTP_RETRY_CODES", "ALL")
+        .env("GDAL_HTTP_RETRY_DELAY", "2");
 }
 
 #[derive(Deserialize)]
@@ -127,12 +134,10 @@ fn translate() -> Result<Command, NativeError> {
     // https://gdal.org/en/stable/user/configoptions.html#config-GDAL_FORCE_CACHING
     command
         .env("GDAL_FORCE_CACHING", "YES")
-        .env("GDAL_CACHEMAX", "64")
-        // WCS reads each native block with a separate HTTP request. Some
-        // service nodes intermittently reject a TLS handshake mid-download;
-        // retry transient transport failures before failing the whole raster.
-        .env("GDAL_HTTP_MAX_RETRY", "5")
-        .env("GDAL_HTTP_RETRY_DELAY", "2");
+        .env("GDAL_CACHEMAX", "64");
+    // Retry transient failures even when the server never returns an HTTP
+    // status (for example, a TLS handshake alert between WCS block requests).
+    configure_wcs_retries(&mut command);
     configure_ca_bundle(&mut command);
     Ok(command)
 }
@@ -311,6 +316,16 @@ pub(crate) async fn download_mdt_tiles(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn retries_wcs_requests_for_transport_errors_without_http_status() {
+        let mut command = Command::new("gdal_translate");
+        configure_wcs_retries(&mut command);
+        assert!(command.get_envs().any(|(key, value)| {
+            key == "GDAL_HTTP_RETRY_CODES" && value == Some(std::ffi::OsStr::new("ALL"))
+        }));
+    }
+
     #[test]
     fn selects_official_service_and_resolution_for_each_model() {
         for (source, coverage, resolution) in [

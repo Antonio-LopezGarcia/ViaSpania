@@ -1,5 +1,7 @@
 # ViaSpania
 
+![Tarjeta de ViaSpania](docs/github-repo-card.svg)
+
 [Español](#español) · [English](#english) · [Descargas / Downloads](https://github.com/Antonio-LopezGarcia/ViaSpania/releases) · [Soporte / Support](https://github.com/Antonio-LopezGarcia/ViaSpania/issues)
 
 ## Español
@@ -15,32 +17,6 @@ https://github.com/user-attachments/assets/ee2ea6d8-2c74-4082-ab1c-d10cbf481d35
 Descargue el instalador adecuado desde [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). En **Assets**, elija el paquete de su sistema y arquitectura; los archivos automáticos «Source code» no son instaladores.
 
 Consulte el [manual de instalación de ViaSpania 1.0.0 en español](docs/installation/Manual_instalacion_ViaSpania_ES.pdf) o la [guía de instalación en inglés](docs/installation/Installation_Guide_ViaSpania_EN.pdf) para ver los pasos ilustrados.
-
-| Sistema | Paquetes | Arquitectura disponible |
-| --- | --- | --- |
-| macOS | `.dmg` | Apple Silicon (M1 o posterior) |
-| Windows | `-setup.exe` o `.msi` | Intel/AMD de 64 bits (`x64`) |
-| Linux | `.AppImage`, `.deb` o `.rpm` | Intel/AMD (`amd64`/`x86_64`) o ARM64 (`arm64`/`aarch64`), según el paquete |
-
-**macOS (aplicación no notarizada):** abra el DMG y arrastre ViaSpania a Aplicaciones. Si macOS bloquea la primera apertura, vaya a **Ajustes del Sistema → Privacidad y seguridad → Abrir igualmente** y confirme. Si la copia oficial continúa bloqueada por cuarentena, cierre la aplicación y ejecute `xattr -dr com.apple.quarantine "/Applications/ViaSpania.app"` en Terminal. Descargue una copia oficial nueva si macOS indica que está dañada; no omita avisos de malware ni desactive Gatekeeper globalmente. [Instrucciones de Apple](https://support.apple.com/es-es/102445).
-
-**Windows (instalador sin firma):** SmartScreen puede mostrar «Windows protegió su PC». Compruebe que descargó el instalador desde este repositorio y, si se ofrece, seleccione **Más información → Ejecutar de todas formas**. Si una política del dispositivo lo bloquea, consulte con su administrador; no desactive Defender ni SmartScreen. [Información de Microsoft sobre SmartScreen](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
-
-**Linux (paquete local o AppImage):** use el archivo descargado, con su nombre y arquitectura exactos. Elija el comando correspondiente. Los paquetes no están firmados por una autoridad de distribución; Linux no usa la notarización de Apple. Si su sistema bloquea un paquete sin firmar, siga el método aprobado por su distribución o administrador.
-
-```bash
-# AppImage
-chmod +x ./ViaSpania_VERSION_ARCH.AppImage
-./ViaSpania_VERSION_ARCH.AppImage
-
-# Debian / Ubuntu
-sudo apt install ./ViaSpania_VERSION_ARCH.deb
-
-# Distribuciones con DNF
-sudo dnf install ./ViaSpania-VERSION-1.ARCH.rpm
-```
-
-Si AppImage requiere FUSE, instale el soporte indicado por su distribución o use el paquete DEB/RPM. Linux puede requerir bibliotecas del sistema compatibles.
 
 ### Autoría, licencia y fuentes
 
@@ -72,31 +48,6 @@ https://github.com/user-attachments/assets/30de8dae-7c5e-4916-ad62-112b4db818fd
 Download the appropriate installer from [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). Under **Assets**, choose a package for your system and architecture; GitHub's automatically generated “Source code” archives are not installers.
 
 See the illustrated [ViaSpania 1.0.0 installation guide in English](docs/installation/Installation_Guide_ViaSpania_EN.pdf) or the [Spanish installation manual](docs/installation/Manual_instalacion_ViaSpania_ES.pdf).
-
-| System | Packages | Available architecture |
-| --- | --- | --- |
-| macOS | `.dmg` | Apple Silicon (M1 or later) |
-| Windows | `-setup.exe` or `.msi` | 64-bit Intel/AMD (`x64`) |
-| Linux | `.AppImage`, `.deb` or `.rpm` | Intel/AMD (`amd64`/`x86_64`) or ARM64 (`arm64`/`aarch64`), depending on the package |
-
-**macOS (application not notarized):** open the DMG and drag ViaSpania to Applications. If macOS blocks the first launch, go to **System Settings → Privacy & Security → Open Anyway** and confirm. If quarantine still blocks the official copy, quit the app and run `xattr -dr com.apple.quarantine "/Applications/ViaSpania.app"` in Terminal. Download a fresh official copy if macOS says the app is damaged; do not bypass malware alerts or disable Gatekeeper globally. [Apple instructions](https://support.apple.com/en-us/102445).
-
-**Windows (unsigned installer):** SmartScreen may display “Windows protected your PC”. Verify that you downloaded the installer from this repository and, if offered, choose **More info → Run anyway**. If device policy blocks it, contact your administrator; do not disable Defender or SmartScreen. [Microsoft SmartScreen information](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation).
-
-**Linux (local package or AppImage):** use the downloaded file with its exact name and architecture. Choose the relevant command:
-
-```bash
-# AppImage
-chmod +x ./ViaSpania_VERSION_ARCH.AppImage
-./ViaSpania_VERSION_ARCH.AppImage
-
-# Debian / Ubuntu
-sudo apt install ./ViaSpania_VERSION_ARCH.deb
-
-# Distributions using DNF
-sudo dnf install ./ViaSpania-VERSION-1.ARCH.rpm
-```
-If AppImage requires FUSE, install the support recommended by your distribution or use the DEB/RPM package. Linux may require compatible system libraries.
 
 ### Authorship, licence and source credits
 

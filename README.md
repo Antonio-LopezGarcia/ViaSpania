@@ -12,13 +12,15 @@ Versión del proyecto: **1.0.0**. Consulte las [notas de la versión 1.0.0](docs
 
 https://github.com/user-attachments/assets/ee2ea6d8-2c74-4082-ab1c-d10cbf481d35
 
+### Manual de uso
+
+Descargue el [manual de uso de ViaSpania en español](https://doi.org/10.5281/zenodo.23360640) desde Zenodo.
+
 ### Descargar e instalar
 
 Descargue el instalador adecuado desde [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). En **Assets**, elija el paquete de su sistema y arquitectura; los archivos automáticos «Source code» no son instaladores.
 
 Consulte el [manual de instalación de ViaSpania 1.0.0 en español](docs/installation/Manual_instalacion_ViaSpania_ES.pdf) o la [guía de instalación en inglés](docs/installation/Installation_Guide_ViaSpania_EN.pdf) para ver los pasos ilustrados.
-
-Descargue el [manual de ViaSpania en español](https://doi.org/10.5281/zenodo.23360640) desde Zenodo.
 
 ### Autoría, licencia y fuentes
 
@@ -45,13 +47,15 @@ Project version: **1.0.0**. See the [1.0.0 release notes](docs/RELEASE_1.0.0.md)
 
 https://github.com/user-attachments/assets/30de8dae-7c5e-4916-ad62-112b4db818fd
 
+### User manual
+
+Download the [ViaSpania user manual in English](https://doi.org/10.5281/zenodo.23401113) from Zenodo.
+
 ### Download and install
 
 Download the appropriate installer from [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). Under **Assets**, choose a package for your system and architecture; GitHub's automatically generated “Source code” archives are not installers.
 
 See the illustrated [ViaSpania 1.0.0 installation guide in English](docs/installation/Installation_Guide_ViaSpania_EN.pdf) or the [Spanish installation manual](docs/installation/Manual_instalacion_ViaSpania_ES.pdf).
-
-Download the [ViaSpania manual in English](https://doi.org/10.5281/zenodo.23401113) from Zenodo.
 
 ### Authorship, licence and source credits
 

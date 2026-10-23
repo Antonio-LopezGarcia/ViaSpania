@@ -18,6 +18,8 @@ Descargue el instalador adecuado desde [GitHub Releases](https://github.com/Anto
 
 Consulte el [manual de instalación de ViaSpania 1.0.0 en español](docs/installation/Manual_instalacion_ViaSpania_ES.pdf) o la [guía de instalación en inglés](docs/installation/Installation_Guide_ViaSpania_EN.pdf) para ver los pasos ilustrados.
 
+Descargue el [manual de ViaSpania en español](https://doi.org/10.5281/zenodo.23360640) desde Zenodo.
+
 ### Autoría, licencia y fuentes
 
 Copyright © 2026 Antonio López García, Universidad de Granada. ViaSpania se distribuye bajo [GNU GPL versión 3, solo](LICENSE). La licencia y los avisos de terceros se incluyen en el repositorio y en la aplicación: consulte [avisos de terceros](THIRD_PARTY_NOTICES.md) y los créditos para conocer las licencias, atribuciones y fuentes de software, datos y cartografía. Entre las fuentes cartográficas figuran © OpenStreetMap contributors (ODbL), IGN/CNIG y GeoNames; respete la atribución y condiciones de cada proveedor.
@@ -48,6 +50,8 @@ https://github.com/user-attachments/assets/30de8dae-7c5e-4916-ad62-112b4db818fd
 Download the appropriate installer from [GitHub Releases](https://github.com/Antonio-LopezGarcia/ViaSpania/releases). Under **Assets**, choose a package for your system and architecture; GitHub's automatically generated “Source code” archives are not installers.
 
 See the illustrated [ViaSpania 1.0.0 installation guide in English](docs/installation/Installation_Guide_ViaSpania_EN.pdf) or the [Spanish installation manual](docs/installation/Manual_instalacion_ViaSpania_ES.pdf).
+
+Download the [ViaSpania manual in English](https://doi.org/10.5281/zenodo.23401113) from Zenodo.
 
 ### Authorship, licence and source credits
 

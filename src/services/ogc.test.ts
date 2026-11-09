@@ -14,8 +14,8 @@ describe('WCS GetCapabilities', () => {
 });
 
 describe('Copernicus VHR 2021', () => {
-  it('usa el WMS paneuropeo oficial y su capa publicada', () => {
+  it('usa el WMS paneuropeo oficial y el nombre técnico de capa publicado', () => {
     expect(new URL(COPERNICUS_VHR_2021_WMS).hostname).toBe('copernicus.discomap.eea.europa.eu');
-    expect(COPERNICUS_VHR_2021_LAYER).toBe('VHR_2021_LAEA');
+    expect(COPERNICUS_VHR_2021_LAYER).toBe('0');
   });
 });

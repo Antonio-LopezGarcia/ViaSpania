@@ -4,7 +4,7 @@ import {invoke} from './processInvoke';
 import { listen, type UnlistenFn } from '@tauri-apps/api/event';
 import type { Barrier, Connectivity, ContourResult, EnabledCrossing, IsochroneResult, LcpCorridorResult, ModelId, PointOfInterest, PreferredCorridor, RankedRouteResult, RouteResult, ViewshedResult } from '../types';
 import { loadAppSettings } from '../core/appSettings';
-import {requiredRouteWaypoints} from '../core/facilitators';
+import {geodesicDistanceM,requiredRouteWaypoints} from '../core/facilitators';
 import {joinRouteSegments,rankResult} from '../core/rankedRoutes';
 let activeCorridors:PreferredCorridor[]=[];let activeCrossings:EnabledCrossing[]=[];
 let activePointsOfInterest:PointOfInterest[]=[];
@@ -55,15 +55,28 @@ const routeWithWaypoints=async(request:RouteRequest,rankPenalizedCells:number[]=
 export const calculateRasterRoute=(request:RouteRequest):Promise<RouteResult>=>routeWithWaypoints(request);
 
 export interface RankedItinerary extends RankedRouteResult{segments:RouteResult[]}
+function segmentAfterNearestSequentialWaypoint(point:readonly [number,number],stops:readonly [number,number][]):number{
+ let nearestWaypoint=0,nearestDistance=Infinity;
+ for(let index=0;index<stops.length;index++){
+  const distance=geodesicDistanceM(point,stops[index]);
+  if(distance<nearestDistance){nearestDistance=distance;nearestWaypoint=index}
+ }
+ // Associate with the outgoing leg; the last waypoint has no outgoing leg.
+ return nearestWaypoint===stops.length-1?nearestWaypoint-1:nearestWaypoint;
+}
 export async function calculateRankedRasterItineraries(request:RouteRequest,stops:readonly [number,number][],k:number,penalty:number,direction:string):Promise<RankedItinerary[]>{
  if(stops.length<2)throw new Error('El itinerario requiere al menos dos puntos.');
  if(k<1||k>10)throw new Error('El número de alternativas debe estar entre 1 y 10.');
  if(!(penalty>0&&penalty<=1))throw new Error('La separación de alternativas no es válida.');
- const results:RankedItinerary[]=[],penalized=new Set<number>(),signatures=new Set<string>();
+ const results:RankedItinerary[]=[],penalized=new Set<number>(),signatures=new Set<string>(),pointsOfInterest=request.pointsOfInterest??activePointsOfInterest;
  let optimalCost=0;
  for(let rank=1;rank<=k;rank++){
   const segments:RouteResult[]=[];
-  for(let index=1;index<stops.length;index++)segments.push(await routeWithWaypoints({...request,start:[...stops[index-1]],end:[...stops[index]]},[...penalized],rank===1?1:penalty));
+  const pointsBySegment=pointsOfInterest.reduce<PointOfInterest[][]>((assigned,point)=>{assigned[segmentAfterNearestSequentialWaypoint(point.coordinate,stops)].push(point);return assigned},Array.from({length:stops.length-1},()=>[]));
+  for(let index=1;index<stops.length;index++){
+   const segmentPointsOfInterest=pointsBySegment[index-1];
+   segments.push(await routeWithWaypoints({...request,pointsOfInterest:segmentPointsOfInterest,start:[...stops[index-1]],end:[...stops[index]]},[...penalized],rank===1?1:penalty));
+  }
   const result=joinRouteSegments(segments,direction),signature=result.path.join(',');
   if(signatures.has(signature))break;
   signatures.add(signature);if(rank===1)optimalCost=result.cost;

@@ -28,6 +28,7 @@
   "bundle": {
     "active": true,
     "targets": "all",
+    "publisher": "Antonio López García, Universidad de Granada",
     "resources": {
       "resources/geospatial/": "geospatial/",
       "resources/video/": "video/",
